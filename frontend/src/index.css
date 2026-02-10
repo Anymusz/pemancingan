@@ -1,0 +1,284 @@
+/* src/index.css */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ========================================
+   BASE STYLES
+======================================== */
+:root {
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Border Radius */
+  --radius: 0.5rem;
+
+  /* ========================================
+   COLOR SYSTEM - LIGHT MODE (Default)
+======================================== */
+  --background: oklch(99% 0.003 247.858); /* ✅ slate-50 (#f8fafc) */
+  --foreground: oklch(0.282 0.013 256.8); /* slate-800 */
+
+  --card: oklch(1 0 0); /* white */
+  --card-foreground: oklch(0.282 0.013 256.8); /* slate-800 */
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.282 0.013 256.8);
+
+  /* PRIMARY: sky-500 (#0ea5e9) */
+  --primary: oklch(0.697 0.133 231.7); /* sky-500 */
+  --primary-foreground: oklch(1 0 0); /* white */
+
+  /* SECONDARY: slate system */
+  --secondary: oklch(0.968 0.007 247.9); /* slate-100 */
+  --secondary-foreground: oklch(0.282 0.013 256.8); /* slate-800 */
+
+  /* MUTED: untuk caption, helper text */
+  --muted: oklch(0.968 0.007 247.9); /* slate-100 background */
+  --muted-foreground: oklch(0.566 0.019 252.6); /* slate-400 */
+
+  /* ACCENT: sky-400 for highlights */
+  --accent: oklch(0.756 0.144 232.6); /* sky-400 */
+  --accent-foreground: oklch(0.282 0.013 256.8); /* slate-800 */
+
+  /* DESTRUCTIVE: red for errors */
+  --destructive: oklch(0.577 0.245 27.3); /* red-500 */
+  --destructive-foreground: oklch(1 0 0);
+
+  /* BORDERS & INPUTS */
+  --border: oklch(0.917 0.006 256.8); /* slate-200 */
+  --input: oklch(0.917 0.006 256.8);
+  --ring: oklch(0.697 0.133 231.7); /* sky-500 for focus ring */
+
+  /* CHARTS (optional, keep existing) */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* SIDEBAR (if used) */
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.282 0.013 256.8);
+  --sidebar-primary: oklch(0.697 0.133 231.7);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.968 0.007 247.9);
+  --sidebar-accent-foreground: oklch(0.282 0.013 256.8);
+  --sidebar-border: oklch(0.917 0.006 256.8);
+  --sidebar-ring: oklch(0.697 0.133 231.7);
+}
+
+/* ========================================
+   THEME COLORS - Tailwind v4 Format
+======================================== */
+@theme {
+  /* PRIMARY SYSTEM - sky colors */
+  --color-primary: oklch(68.5% 0.169 237.323); /* sky-500 */
+  --color-primary-light: #38bdf8; /* sky-400 */
+  --color-primary-dark: #0284c7; /* sky-600 */
+  /* --color-primary-hover: #0284c7; sky-600 for hover */
+  --color-primary-hover: oklch(87.9% 0.169 91.605); /* sky-600 for hover */
+
+  /* SEMANTIC COLORS */
+  --color-success: #10b981; /* green-500 */
+  --color-error: #ef4444; /* red-500 */
+  --color-warning: #f59e0b; /* amber-500 */
+  --color-info: #3b82f6; /* blue-500 */
+
+  /* TEXT COLORS - explicit definitions */
+  --color-text-primary: #1e293b; /* slate-800 */
+  --color-text-body: #475569; /* slate-600 */
+  --color-text-muted: #94a3b8; /* slate-400 */
+  --color-text-inverse: #ffffff; /* white */
+
+  /* BACKGROUND COLORS */
+  --color-bg-main: #f8fafc; /* slate-50 */
+  --color-bg-card: #ffffff; /* white */
+  --color-bg-subtle: #f1f5f9; /* slate-100 */
+
+  /* BORDER COLORS */
+  --color-border-subtle: #e2e8f0; /* slate-200 */
+  --color-border-default: #cbd5e1; /* slate-300 */
+}
+
+/* ========================================
+   RADIUS UTILITIES
+======================================== */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Map CSS variables to Tailwind utilities */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ========================================
+   DARK MODE (Optional - jika dibutuhkan nanti)
+======================================== */
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.756 0.144 232.6); /* sky-400 for dark mode */
+  --primary-foreground: oklch(0.129 0.042 264.695);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.697 0.133 231.7); /* sky-500 for dark */
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.756 0.144 232.6);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.756 0.144 232.6);
+  --sidebar-primary-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.756 0.144 232.6);
+}
+
+/* ========================================
+   BASE LAYER - Apply defaults
+======================================== */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    display: block;
+  }
+
+  /* Typography defaults */
+  h1 {
+    @apply text-text-primary;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  h2 {
+    @apply text-text-primary;
+    font-size: 2rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  h3 {
+    @apply text-text-primary;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  p {
+    @apply text-text-body;
+  }
+
+  /* Link defaults (flexible - dapat di-override) */
+  a {
+    @apply text-primary hover:text-primary-dark transition-colors;
+    font-weight: 500;
+    text-decoration: none;
+  }
+}
+
+/* Tambahkan di paling bawah src/index.css */
+
+/* ========================================
+   ACCORDION ANIMATIONS (Radix UI)
+======================================== */
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
