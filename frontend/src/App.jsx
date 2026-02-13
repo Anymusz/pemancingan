@@ -34,6 +34,7 @@
 // }
 // export default App;
 
+// File: src/App.jsx (tambahkan route untuk test)
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ClickSpark from "@/components/ui/ClickSpark";
 import LandingPage from "./pages/landing/LandingPage";
@@ -41,45 +42,52 @@ import NotFound from "./pages/NotFound";
 import GradientBg from "@/components/ui/gradient-bg";
 import { FloatingNav } from "./components/ui/floating-navbar";
 import { NAV_ITEMS } from "./constants/navigation";
+import { ToastProvider } from "@/contexts/ToastContext";
+import TesComponent from "./pages/landing/sections/TesComponent"; // Import test component
 
 function App() {
   return (
     <BrowserRouter>
-      {/* Global Gradient Background */}
-      <div className="fixed inset-0 -z-10">
-        <GradientBg theme="light" />
-      </div>
-
-      {/* Floating Navigation - Only show on landing page */}
-      <FloatingNav navItems={NAV_ITEMS} />
-
-      {/* Click Spark Effect */}
-      <ClickSpark
-        sparkColor="purple"
-        sparkSize={10}
-        sparkRadius={60}
-        sparkCount={10}
-        duration={500}
-      >
-        <div className="w-full min-h-screen">
-          <Routes>
-            {/* Landing Page Routes (Guest) */}
-            <Route path="/" element={<LandingPage />} />
-
-            {/* Auth Routes */}
-            {/* <Route path="/login" element={<Login />} /> */}
-            {/* <Route path="/register" element={<Register />} /> */}
-
-            {/* Member Routes */}
-            {/* <Route path="/member/dashboard" element={<MemberDashboard />} /> */}
-            {/* <Route path="/member/profile" element={<MemberProfile />} /> */}
-            {/* <Route path="/member/order" element={<MemberOrder />} /> */}
-
-            {/* 404 Not Found */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+      <ToastProvider>
+        {/* Global Gradient Background */}
+        <div className="fixed inset-0 -z-10">
+          <GradientBg theme="light" />
         </div>
-      </ClickSpark>
+
+        {/* Floating Navigation - Only show on landing page */}
+        <FloatingNav navItems={NAV_ITEMS} />
+
+        {/* Click Spark Effect */}
+        <ClickSpark
+          sparkColor="purple"
+          sparkSize={10}
+          sparkRadius={60}
+          sparkCount={10}
+          duration={500}
+        >
+          <div className="w-full min-h-screen">
+            <Routes>
+              {/* Landing Page Routes (Guest) */}
+              <Route path="/" element={<LandingPage />} />
+
+              {/* Test Component Route */}
+              <Route path="/test-toast" element={<TesComponent />} />
+
+              {/* Auth Routes */}
+              {/* <Route path="/login" element={<Login />} /> */}
+              {/* <Route path="/register" element={<Register />} /> */}
+
+              {/* Member Routes */}
+              {/* <Route path="/member/dashboard" element={<MemberDashboard />} /> */}
+              {/* <Route path="/member/profile" element={<MemberProfile />} /> */}
+              {/* <Route path="/member/order" element={<MemberOrder />} /> */}
+
+              {/* 404 Not Found */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+        </ClickSpark>
+      </ToastProvider>
     </BrowserRouter>
   );
 }

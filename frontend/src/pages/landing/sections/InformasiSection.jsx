@@ -1,8 +1,74 @@
-// File: src/components/InformationSection.jsx
+// File: src/pages/landing/sections/InformasiSection.jsx
 import { cn } from "@/lib/utils";
 import { MapPin, Fish, Wallet, Crown, CreditCard, Coffee } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getFishTypes } from "@/services/fishService";
+import { LoaderOne } from "@/components/ui/loader";
+import { ErrorAlert } from "@/components/feedback/inlineAlert";
 
 const InformationSection = () => {
+  // State untuk fish types
+  const [fishTypes, setFishTypes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch fish types saat component mount
+  useEffect(() => {
+    const fetchFishTypes = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await getFishTypes();
+
+        // Safe data access dengan optional chaining
+        const fishData = response?.data || [];
+        setFishTypes(fishData);
+      } catch (err) {
+        console.error("Failed to fetch fish types:", err);
+        setError("Gagal memuat data harga ikan");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFishTypes();
+  }, []);
+
+  // Format harga ikan untuk description
+  const formatFishPrices = () => {
+    if (loading) return <LoaderOne />;
+
+    if (error) {
+      return (
+        <ErrorAlert
+          description={error}
+          dismissible
+          onDismiss={() => setError(null)} // Clear error dari parent state
+        />
+      );
+    }
+
+    if (fishTypes.length === 0) {
+      return "Belum ada data harga ikan.";
+    }
+
+    // Format: "Ikan Patin Rp25.000, Nila Rp35.000, ..."
+    const formattedPrices = fishTypes
+      .map((fish) => {
+        const price = new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        }).format(fish.price_per_kg);
+
+        return `${fish.name} ${price}`;
+      })
+      .join(", ");
+
+    return `Ikan ${formattedPrices}. Harga sudah termasuk jasa pemancingan.`;
+  };
+
   const features = [
     {
       title: "Informasi Umum",
@@ -12,9 +78,9 @@ const InformationSection = () => {
     },
     {
       title: "Harga Ikan Per Kilogram",
-      description:
-        "Ikan Patin Rp25.000, Nila Rp35.000, Gurame Rp60.000, Bawal Rp40.000. Harga sudah termasuk jasa pemancingan.",
+      description: formatFishPrices(), // Dynamic data dari API
       icon: <Fish />,
+      isDynamic: true, // Flag untuk styling khusus jika loading/error
     },
     {
       title: "Deposit & Pengunjung",
@@ -66,7 +132,7 @@ const InformationSection = () => {
   );
 };
 
-const Feature = ({ title, description, icon, index }) => {
+const Feature = ({ title, description, icon, index, isDynamic }) => {
   return (
     <div
       className={cn(
@@ -102,9 +168,14 @@ const Feature = ({ title, description, icon, index }) => {
       </div>
 
       {/* Description */}
-      <p className="text-sm text-text-body dark:text-muted-foreground max-w-md relative z-10 px-10">
+      <div
+        className={cn(
+          "text-sm text-text-body dark:text-muted-foreground max-w-md relative z-10 px-10",
+          isDynamic && "min-h-[60px] flex items-center", // Min height untuk loading state
+        )}
+      >
         {description}
-      </p>
+      </div>
     </div>
   );
 };

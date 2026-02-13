@@ -46,9 +46,9 @@ export default function LandingPage() {
       </section>
 
       {/* Leaderboard Section */}
-      <section id="leaderboard">
+      {/* <section id="leaderboard">
         <LeaderboardSection />
-      </section>
+      </section> */}
 
       {/* Informasi Section */}
       <section id="informasi">
