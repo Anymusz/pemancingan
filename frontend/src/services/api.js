@@ -1,5 +1,6 @@
-// File: src/services/api.js
+// src/services/api.js
 import axios from "axios";
+import { getToken, removeToken } from "@/utils/tokenManager";
 
 // Create axios instance dengan base configuration
 const api = axios.create({
@@ -8,37 +9,68 @@ const api = axios.create({
     "Content-Type": "application/json",
     Accept: "application/json",
   },
-  timeout: 10000, // 10 detik timeout
+  timeout: 10000,
 });
 
-// Response interceptor untuk global error handling
+// ========================================
+// Request Interceptor - Attach Token
+// ========================================
+api.interceptors.request.use(
+  (config) => {
+    const token = getToken();
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+
+// ========================================
+// Response Interceptor - Handle 401
+// ========================================
 api.interceptors.response.use(
   (response) => {
-    // Jika response sukses, langsung return
     return response;
   },
   (error) => {
-    // Global error handling
     if (error.response) {
-      // Server response dengan error status (4xx, 5xx)
-      console.error("API Error:", error.response.status, error.response.data);
+      const status = error.response.status;
 
-      // Handle specific error codes
-      switch (error.response.status) {
+      // Handle 401 Unauthorized - Token expired/invalid
+      if (status === 401) {
+        removeToken();
+
+        // Redirect ke login page (avoid infinite loop)
+        if (window.location.pathname !== "/login") {
+          window.location.href = "/login";
+        }
+      }
+
+      // Handle error codes lainnya
+      switch (status) {
+        case 403:
+          console.error("Forbidden: You do not have permission");
+          break;
         case 404:
           console.error("Resource not found");
+          break;
+        case 422:
+          console.error("Validation error:", error.response.data);
           break;
         case 500:
           console.error("Internal server error");
           break;
         default:
-          console.error("An error occurred");
+          console.error("An error occurred:", error.response.data);
       }
     } else if (error.request) {
-      // Request dibuat tapi tidak ada response (network error)
       console.error("Network Error: No response from server");
     } else {
-      // Error lain saat setup request
       console.error("Error:", error.message);
     }
 
