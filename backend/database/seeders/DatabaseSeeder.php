@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         // Fase 1A: Master Data untuk Landing Page
         $this->call([
+            UserSeeder::class,
+
             MemberTierSeeder::class,
             FishTypeSeeder::class,
             FishStockSeeder::class,

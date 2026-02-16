@@ -14,9 +14,16 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable(); // DIUBAH: nullable untuk email opsional
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            
+            // DITAMBAH: Kolom sesuai flow operasional
+            $table->string('phone')->unique(); // Kredensial utama login
+            $table->text('address'); // Alamat lengkap member
+            $table->enum('role', ['owner', 'employee', 'member'])->default('member');
+            $table->enum('status', ['pending', 'active', 'rejected'])->default('pending');
+            
             $table->rememberToken();
             $table->timestamps();
         });
