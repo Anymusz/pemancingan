@@ -18,7 +18,7 @@ class Member extends Model
     protected $fillable = [
         'user_id',
         'member_id',
-        'tier',
+        'tier_id',
         'total_points',
         'total_fish_weight',
         'qr_code_hash',
@@ -45,10 +45,13 @@ class Member extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function tier()
+    {
+        return $this->belongsTo(MemberTier::class, 'tier_id');
+    }
 
     /**
      * Generate unique member ID with format: MBR + 8 random alphanumeric chars
-     * Example: MBRX7K9P2M4, MBRA1B2C3D4
      *
      * @return string
      * @throws \Exception

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\Owner;
 
+use App\Models\MemberTier;
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Member;
@@ -48,7 +50,7 @@ class MemberValidationController extends Controller
             ]);
         } catch (\Exception $e) {
             Log::error('Error getting pending members: ' . $e->getMessage());
-            
+
             return response()->json([
                 'success' => false,
                 'message' => 'Gagal mengambil data pending members',
@@ -61,192 +63,201 @@ class MemberValidationController extends Controller
      * Approve pending member dengan transaction safety
      */
     public function approveMember(Request $request)
-{
-    $request->validate([
-        'user_id' => 'required|exists:users,id',
-    ]);
-
-    $qrHash = null;
-
-    DB::beginTransaction();
-    
-    try {
-        // 1. Get user dengan pessimistic locking
-        $user = User::where('id', $request->user_id)
-            ->lockForUpdate()
-            ->first();
-
-        if (!$user) {
-            throw ValidationException::withMessages([
-                'user_id' => ['User tidak ditemukan'],
-            ]);
-        }
-
-        // 2. Verify user status dan role
-        if ($user->status !== 'pending') {
-            throw ValidationException::withMessages([
-                'user_id' => ['Hanya member pending yang bisa di-approve'],
-            ]);
-        }
-
-        if ($user->role !== 'member') {
-            throw ValidationException::withMessages([
-                'user_id' => ['Invalid user role'],
-            ]);
-        }
-
-        // 2.5. CHECK: Apakah user sudah punya member record (data inconsistency)
-        $existingMember = Member::where('user_id', $user->id)->first();
-        if ($existingMember) {
-            throw ValidationException::withMessages([
-                'user_id' => ['User sudah memiliki member record. Data inconsistent - hubungi admin.'],
-            ]);
-        }
-
-        // 3. Generate member ID
-        $memberId = Member::generateMemberId();
-
-        // 4. Generate QR hash
-        $qrHash = Member::generateQRHash();
-
-        // 5. Create temporary member object untuk generate QR content
-        $tempMember = new Member([
-            'member_id' => $memberId,
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
         ]);
 
-        // 6. Generate QR Code file
-        $this->qrCodeService->generateMemberQRCodeWithHash($tempMember, $qrHash);
+        $regularTierId = MemberTier::where('name', 'REGULAR')->value('id');
 
-        // 7. Create member record
-        $member = Member::create([
-            'user_id' => $user->id,
-            'member_id' => $memberId,
-            'tier' => 'REGULAR',
-            'total_points' => 0,
-            'total_fish_weight' => 0.00,
-            'qr_code_hash' => $qrHash,
-            'approved_at' => now(),
-        ]);
+        if (!$regularTierId) {
+            return response()->json([
+                'success' => false,
+                'message' => 'REGULAR tier not found - please seed member_tiers table',
+            ], 500);
+        }
 
-        // 8. Update user status to active
-        $user->update([
-            'status' => 'active',
-        ]);
+        $qrHash = null;
 
-        // 9. Commit transaction
-        DB::commit();
+        DB::beginTransaction();
 
-        // 10. Return success response
-        return response()->json([
-            'success' => true,
-            'message' => 'Member berhasil divalidasi',
-            'data' => [
-                'member_id' => $member->member_id,
-                'name' => $user->name,
-                'tier' => $member->tier,
-            ],
-        ]);
+        try {
+            // 1. Get user dengan pessimistic locking
+            $user = User::where('id', $request->user_id)
+                ->lockForUpdate()
+                ->first();
 
-    } catch (ValidationException $e) {
-        DB::rollBack();
-        
-        // Cleanup QR file if exists
-        if ($qrHash) {
-            try {
-                $this->qrCodeService->deleteQRCode($qrHash);
-            } catch (\Exception $cleanupError) {
-                Log::error('Failed to cleanup QR code: ' . $cleanupError->getMessage());
+            if (!$user) {
+                throw ValidationException::withMessages([
+                    'user_id' => ['User tidak ditemukan'],
+                ]);
             }
-        }
-        
-        return response()->json([
-            'success' => false,
-            'message' => 'Validasi gagal',
-            'errors' => $e->errors(),
-        ], 422);
 
-    } catch (\Exception $e) {
-        DB::rollBack();
-
-        // Cleanup QR file if exists
-        if ($qrHash) {
-            try {
-                $this->qrCodeService->deleteQRCode($qrHash);
-            } catch (\Exception $cleanupError) {
-                Log::error('Failed to cleanup QR code: ' . $cleanupError->getMessage());
+            // 2. Verify user status dan role
+            if ($user->status !== 'pending') {
+                throw ValidationException::withMessages([
+                    'user_id' => ['Hanya member pending yang bisa di-approve'],
+                ]);
             }
+
+            if ($user->role !== 'member') {
+                throw ValidationException::withMessages([
+                    'user_id' => ['Invalid user role'],
+                ]);
+            }
+
+            // 2.5. CHECK: Apakah user sudah punya member record (data inconsistency)
+            $existingMember = Member::where('user_id', $user->id)->first();
+            if ($existingMember) {
+                throw ValidationException::withMessages([
+                    'user_id' => ['User sudah memiliki member record. Data inconsistent - hubungi admin.'],
+                ]);
+            }
+
+            // 3. Generate member ID
+            $memberId = Member::generateMemberId();
+
+            // 4. Generate QR hash
+            $qrHash = Member::generateQRHash();
+
+            // 5. Create temporary member object untuk generate QR content
+            $tempMember = new Member([
+                'member_id' => $memberId,
+            ]);
+
+            // 6. Generate QR Code file
+            $this->qrCodeService->generateMemberQRCodeWithHash($tempMember, $qrHash);
+
+            // 7. Create member record
+            $member = Member::create([
+                'user_id' => $user->id,
+                'member_id' => $memberId,
+                'tier_id' => $regularTierId,  // ✅ FIXED
+                'total_points' => 0,
+                'total_fish_weight' => 0.00,
+                'qr_code_hash' => $qrHash,
+                'approved_at' => now(),
+            ]);
+
+            // 8. Update user status to active
+            $user->update([
+                'status' => 'active',
+            ]);
+
+            // 9. Commit transaction
+            DB::commit();
+
+            // 10. Return success response
+            return response()->json([
+                'success' => true,
+                'message' => 'Member berhasil divalidasi',
+                'data' => [
+                    'member_id' => $member->member_id,
+                    'name' => $user->name,
+                    'tier' => $member->tier->name,  // ✅ FIXED - via relasi
+                ],
+            ]);
+
+        } catch (ValidationException $e) {
+            DB::rollBack();
+
+            // Cleanup QR file if exists
+            if ($qrHash) {
+                try {
+                    $this->qrCodeService->deleteQRCode($qrHash);
+                } catch (\Exception $cleanupError) {
+                    Log::error('Failed to cleanup QR code: ' . $cleanupError->getMessage());
+                }
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors' => $e->errors(),
+            ], 422);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            // Cleanup QR file if exists
+            if ($qrHash) {
+                try {
+                    $this->qrCodeService->deleteQRCode($qrHash);
+                } catch (\Exception $cleanupError) {
+                    Log::error('Failed to cleanup QR code: ' . $cleanupError->getMessage());
+                }
+            }
+
+            Log::error('Error approving member: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal approve member: ' . $e->getMessage(),
+            ], 500);
         }
-
-        Log::error('Error approving member: ' . $e->getMessage());
-
-        return response()->json([
-            'success' => false,
-            'message' => 'Gagal approve member: ' . $e->getMessage(),
-        ], 500);
     }
-}
 
     /**
      * POST /owner/reject-member
      * Reject pending member dengan optional reason
      */
     public function rejectMember(Request $request)
-{
-    // Validasi input
-    $request->validate([
-        'user_id' => 'required|exists:users,id',
-        'rejection_reason' => 'required|string|min:10|max:500',
-    ]);
-
-    try {
-        // Get user
-        $user = User::find($request->user_id);
-
-        if (!$user) {
-            return response()->json([
-                'success' => false,
-                'message' => 'User tidak ditemukan',
-            ], 404);
-        }
-
-        // Verify status pending
-        if ($user->status !== 'pending') {
-            return response()->json([
-                'success' => false,
-                'message' => 'Hanya member pending yang bisa ditolak',
-            ], 422);
-        }
-
-        // Update user to rejected
-        $user->update([
-            'status' => 'rejected',
-            'rejection_reason' => $request->rejection_reason,
-            'rejected_at' => now(),
+    {
+        // Validasi input
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'rejection_reason' => 'required|string|min:10|max:500',
         ]);
 
-        // ✅ REFRESH model dari database
-        $user->refresh();
+        try {
+            // Get user
+            $user = User::find($request->user_id);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Member berhasil ditolak',
-            'data' => [
-                'user_id' => $user->id,
-                'name' => $user->name,
-                'rejected_at' => $user->rejected_at->format('Y-m-d H:i:s'),
-                'rejection_reason' => $user->rejection_reason,
-            ],
-        ]);
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User tidak ditemukan',
+                ], 404);
+            }
 
-    } catch (\Exception $e) {
-        Log::error('Error rejecting member: ' . $e->getMessage());
+            // Verify status pending
+            if ($user->status !== 'pending') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Hanya member pending yang bisa ditolak',
+                ], 422);
+            }
 
-        return response()->json([
-            'success' => false,
-            'message' => 'Gagal reject member',
-        ], 500);
+            // Update user to rejected
+            $user->update([
+                'status' => 'rejected',
+                'rejection_reason' => $request->rejection_reason,
+                'rejected_at' => now(),
+            ]);
+
+            // ✅ REFRESH model dari database
+            $user->refresh();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Member berhasil ditolak',
+                'data' => [
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'rejected_at' => $user->rejected_at->format('Y-m-d H:i:s'),
+                    'rejection_reason' => $user->rejection_reason,
+                ],
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Error rejecting member: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal reject member',
+            ], 500);
+        }
     }
-}
 
     /**
      * POST /owner/reactivate-rejected-member
@@ -307,7 +318,6 @@ class MemberValidationController extends Controller
 
     /**
      * DELETE /owner/deactivate-member
-     * Deactivate member aktif (untuk kasus pelanggaran)
      */
     public function deactivateMember(Request $request)
     {
@@ -329,7 +339,6 @@ class MemberValidationController extends Controller
                 ]);
             }
 
-            // Verify status active dan ada member record
             if ($user->status !== 'active') {
                 throw ValidationException::withMessages([
                     'user_id' => ['Hanya member aktif yang bisa dinonaktifkan'],
@@ -387,23 +396,22 @@ class MemberValidationController extends Controller
         }
     }
     /**
- * GET /owner/validation-history
- * Riwayat validasi member (approved & rejected)
- */
+     * GET /owner/validation-history
+     */
     public function getValidationHistory()
     {
         try {
-            // Approved members
-            $approved = Member::with('user:id,name,phone')
+            // Approved members dengan eager loading
+            $approved = Member::with(['user:id,name,phone', 'tier'])
                 ->orderBy('approved_at', 'desc')
                 ->get()
                 ->map(function ($member) {
                     return [
-                        'user_id' => $member->user_id,  // ← TAMBAH INI
+                        'user_id' => $member->user_id,
                         'member_id' => $member->member_id,
                         'name' => $member->user->name,
                         'phone' => $member->user->phone,
-                        'tier' => $member->tier,
+                        'tier' => $member->tier->name,  // ✅ FIXED - via relasi
                         'approved_at' => $member->approved_at->format('Y-m-d H:i:s'),
                     ];
                 });

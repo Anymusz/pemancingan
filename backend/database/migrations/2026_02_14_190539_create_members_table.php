@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('member_id', 11)->unique(); // Format: MBR + 8 random chars
             
             // Business Logic
-            $table->enum('tier', ['REGULAR', 'BRONZE', 'SILVER', 'GOLD'])->default('REGULAR');
+            $table->foreignId('tier_id')->constrained('member_tiers')->onDelete('restrict');
             $table->integer('total_points')->default(0);
             $table->decimal('total_fish_weight', 10, 2)->default(0.00); // dalam kg
             
