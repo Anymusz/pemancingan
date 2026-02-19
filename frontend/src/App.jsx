@@ -130,13 +130,16 @@ import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
 import OwnerDashboard from "@/pages/owner/OwnerDashboard";
 
-import ProtectedRoute from "@/components/ProtectedRoute";
+import ProtectedRoute from "@/routes/ProtectedRoute";
 
 import ClickSpark from "@/components/ui/ClickSpark";
 import GradientBg from "@/components/ui/gradient-bg";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { NAV_ITEMS } from "@/constants/navigation";
 import { ToastProvider } from "@/contexts/ToastContext";
+
+import MemberDashboard from "./pages/member/Dashboard";
+import LeaderboardPublic from "./pages/LeaderboardPublic";
 
 // ===============================
 // Layout Wrapper
@@ -201,16 +204,26 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/member/dashboard"
+              element={
+                <ProtectedRoute allowedRoles={["member"]}>
+                  <MemberDashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route path="/leaderboard" element={<LeaderboardPublic />} />
 
             {/* Member Routes (Placeholder - Fase Lain) */}
-            <Route
+            {/* <Route
               path="/member/dashboard"
               element={
                 <ProtectedRoute allowedRoles={["member"]}>
                   <div>Member Dashboard (Coming Soon)</div>
                 </ProtectedRoute>
               }
-            />
+            /> */}
 
             {/* Unauthorized Page */}
             <Route

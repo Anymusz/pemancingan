@@ -60,6 +60,16 @@ const ownerService = {
     const response = await api.get("/owner/validation-history");
     return response.data;
   },
+
+  /**
+   * Get full leaderboard for owner (no masking)
+   */
+  getLeaderboard: async (limit = 100) => {
+    const response = await api.get("/owner/leaderboard", {
+      params: { limit },
+    });
+    return response.data;
+  },
 };
 
 export default ownerService;

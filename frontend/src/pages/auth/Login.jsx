@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setToken } from "@/utils/tokenManager";
+import { setToken, setUser } from "@/utils/tokenManager";
 import api from "@/services/api";
 
 const Login = () => {
@@ -33,13 +33,9 @@ const Login = () => {
 
       const { user, token } = response.data.data;
 
-      // Simpan token
       setToken(token);
+      setUser(user);
 
-      // Simpan user data ke localStorage
-      localStorage.setItem("user", JSON.stringify(user));
-
-      // Role-based redirect
       if (user.role === "owner") {
         navigate("/owner/dashboard");
       } else if (user.role === "employee") {

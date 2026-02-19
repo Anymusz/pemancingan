@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PendingMembersList from "./PendingMembersList";
 import ActiveMembersList from "./ActiveMembersList";
 import ValidationHistory from "./ValidationHistory";
+import OwnerLeaderboard from "./OwnerLeaderboard";
 import { removeToken } from "@/utils/tokenManager";
 
 const OwnerDashboard = () => {
@@ -43,6 +44,12 @@ const OwnerDashboard = () => {
           >
             Validation History
           </button>
+          <button
+            onClick={() => setActiveMenu("leaderboard")}
+            disabled={activeMenu === "leaderboard"}
+          >
+            Leaderboard
+          </button>
           <button onClick={handleLogout}>Logout</button>
         </nav>
       </header>
@@ -51,6 +58,7 @@ const OwnerDashboard = () => {
         {activeMenu === "pending" && <PendingMembersList />}
         {activeMenu === "active" && <ActiveMembersList />}
         {activeMenu === "history" && <ValidationHistory />}
+        {activeMenu === "leaderboard" && <OwnerLeaderboard />}
       </main>
     </div>
   );

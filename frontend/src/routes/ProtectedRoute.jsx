@@ -1,4 +1,4 @@
-// File: src/components/ProtectedRoute.jsx
+// File: src/routes/ProtectedRoute.jsx
 import { Navigate } from "react-router-dom";
 import { isAuthenticated, getUser } from "@/utils/tokenManager";
 
