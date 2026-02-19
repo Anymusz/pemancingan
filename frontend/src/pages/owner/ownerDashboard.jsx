@@ -1,9 +1,14 @@
+// File: src/pages/owner/ownerDashboard.jsx
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PendingMembersList from "./PendingMembersList";
 import ActiveMembersList from "./ActiveMembersList";
 import ValidationHistory from "./ValidationHistory";
 import OwnerLeaderboard from "./OwnerLeaderboard";
+import MenuManagement from "./MenuManagement";
+import FishTypeManagement from "./FishTypeManagement";
+import EventManagement from "./EventManagement";
 import { removeToken } from "@/utils/tokenManager";
 
 const OwnerDashboard = () => {
@@ -26,6 +31,8 @@ const OwnerDashboard = () => {
       >
         <h1>Owner Dashboard</h1>
         <nav>
+          {/* Kelola Member */}
+          <span>Kelola Member: </span>
           <button
             onClick={() => setActiveMenu("pending")}
             disabled={activeMenu === "pending"}
@@ -44,12 +51,41 @@ const OwnerDashboard = () => {
           >
             Validation History
           </button>
+
+          {" | "}
+
+          {/* Kelola Produk */}
+          <span>Kelola Produk: </span>
+          <button
+            onClick={() => setActiveMenu("menus")}
+            disabled={activeMenu === "menus"}
+          >
+            Menu Makanan & Minuman
+          </button>
+          <button
+            onClick={() => setActiveMenu("fish-types")}
+            disabled={activeMenu === "fish-types"}
+          >
+            Jenis Ikan
+          </button>
+          <button
+            onClick={() => setActiveMenu("events")}
+            disabled={activeMenu === "events"}
+          >
+            Event & Informasi
+          </button>
+
+          {" | "}
+
           <button
             onClick={() => setActiveMenu("leaderboard")}
             disabled={activeMenu === "leaderboard"}
           >
             Leaderboard
           </button>
+
+          {" | "}
+
           <button onClick={handleLogout}>Logout</button>
         </nav>
       </header>
@@ -59,6 +95,9 @@ const OwnerDashboard = () => {
         {activeMenu === "active" && <ActiveMembersList />}
         {activeMenu === "history" && <ValidationHistory />}
         {activeMenu === "leaderboard" && <OwnerLeaderboard />}
+        {activeMenu === "menus" && <MenuManagement />}
+        {activeMenu === "fish-types" && <FishTypeManagement />}
+        {activeMenu === "events" && <EventManagement />}
       </main>
     </div>
   );
