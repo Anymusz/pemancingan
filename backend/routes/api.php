@@ -5,7 +5,9 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\FishTypeController;
 use App\Http\Controllers\Api\MemberTierController;
+use App\Http\Controllers\Api\MemberController;
 use App\Http\Controllers\Api\Owner\MemberValidationController;
+use App\Http\Controllers\Api\Owner\LeaderboardController;
 
 // ========================================
 // PUBLIC ROUTES (No Authentication)
@@ -19,17 +21,25 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/fish-types', [FishTypeController::class, 'index']);
 Route::get('/member-tiers', [MemberTierController::class, 'index']);
+Route::get('/leaderboard', [MemberController::class, 'getLeaderboard']);
 
 // ========================================
 // PROTECTED ROUTES (Require Authentication)
 // ========================================
 
 Route::middleware('auth:sanctum')->group(function () {
-    
+
     // Auth Routes
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
-    
+
+    // Member Routes
+    Route::prefix('member')
+        ->middleware('role:member')
+        ->group(function () {
+            Route::get('/profile', [MemberController::class, 'getProfile']);
+        });
+
 });
 
 // ========================================
@@ -46,4 +56,7 @@ Route::prefix('owner')
         Route::post('/reactivate-rejected', [MemberValidationController::class, 'reactivateRejectedMember']);
         Route::delete('/deactivate-member', [MemberValidationController::class, 'deactivateMember']);
         Route::get('/validation-history', [MemberValidationController::class, 'getValidationHistory']);
+
+        // Leaderboard
+        Route::get('/leaderboard', [LeaderboardController::class, 'getOwnerLeaderboard']);
     });

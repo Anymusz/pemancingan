@@ -39,12 +39,37 @@ class Member extends Model
     ];
 
     /**
+     * Append virtual attributes to JSON
+     *
+     * @var array<int, string>
+     */
+    protected $appends = ['qr_code_url'];
+
+    /**
+     * Get QR code URL accessor
+     *
+     * @return string|null
+     */
+    public function getQrCodeUrlAttribute(): ?string
+    {
+        if (!$this->qr_code_hash) {
+            return null;
+        }
+
+        return url('storage/qrcodes/' . $this->qr_code_hash . '.svg');
+    }
+
+    /**
      * Get the user that owns the member.
      */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the tier that the member belongs to.
+     */
     public function tier()
     {
         return $this->belongsTo(MemberTier::class, 'tier_id');

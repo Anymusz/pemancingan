@@ -32,7 +32,14 @@ class CheckRole
             ], 403);
         }
 
-        // Lanjutkan request
+        // ✅ TAMBAH - CRITICAL: Check status untuk member
+        if (in_array('member', $roles) && $request->user()->status !== 'active') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Your account is not active. Please contact admin.',
+            ], 403);
+        }
+
         return $next($request);
     }
 }
