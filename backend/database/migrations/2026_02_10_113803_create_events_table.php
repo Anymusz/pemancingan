@@ -1,15 +1,11 @@
-// File: database/migrations/2024_01_01_000004_create_events_table.php
 <?php
+// File: database/migrations/2026_02_10_113803_create_events_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
@@ -21,18 +17,16 @@ return new class extends Migration
             $table->date('end_date')->nullable()->comment('Tanggal berakhir');
             $table->enum('status', ['draft', 'published'])->default('draft')->comment('Status publikasi');
             $table->timestamps();
+            $table->softDeletes();
 
-            // Indexes untuk query cepat
             $table->index('status');
             $table->index('start_date');
             $table->index('end_date');
-            $table->index(['status', 'start_date']); // Composite index untuk filter published + date
+            $table->index(['status', 'start_date']);
+            $table->index('deleted_at');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('events');
