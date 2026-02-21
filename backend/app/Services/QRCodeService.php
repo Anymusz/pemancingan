@@ -20,7 +20,6 @@ class QRCodeService
      */
     public function generateMemberQRCode(Member $member): string
     {
-        // Generate unique hash untuk filename
         $qrHash = Member::generateQRHash();
 
         // Generate QR code dengan hash
@@ -62,7 +61,6 @@ class QRCodeService
         $writer = new Writer($renderer);
         $qrCode = $writer->writeString(json_encode($qrContent));
 
-        // Save to storage
         $filename = $qrHash . '.svg';
         $path = $storagePath . '/' . $filename;
 
@@ -88,14 +86,12 @@ class QRCodeService
 
     /**
      * Delete QR code file
-     *
      * @param string $qrHash
-     * @return bool
      */
     public function deleteQRCode(string $qrHash): bool
     {
         $path = 'qrcodes/' . $qrHash . '.svg';
-        
+
         if (Storage::disk('public')->exists($path)) {
             return Storage::disk('public')->delete($path);
         }

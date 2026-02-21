@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\Owner\LeaderboardController;
 use App\Http\Controllers\Api\Owner\MenuController;
 use App\Http\Controllers\Api\Owner\FishTypeController as OwnerFishTypeController;
 use App\Http\Controllers\Api\Owner\EventController as OwnerEventController;
+use App\Http\Controllers\Api\Employee\ArrivalController;
+use App\Http\Controllers\Api\Employee\TransactionController;
 
 // ========================================
 // PUBLIC ROUTES
@@ -72,3 +74,25 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     Route::patch('/events/{id}/publish', [OwnerEventController::class, 'publish']);
     Route::delete('/events/{id}', [OwnerEventController::class, 'destroy']);
 });
+
+
+// ========================================
+// EMPLOYEE ROUTES
+// ========================================
+Route::prefix('employee')
+    ->middleware(['auth:sanctum', 'role:employee'])
+    ->group(function () {
+        // Arrival
+        Route::post('/check-in', [ArrivalController::class, 'checkIn']);
+        Route::get('/today-arrivals', [ArrivalController::class, 'todayArrivals']);
+        Route::post('/check-out/{arrival_id}', [ArrivalController::class, 'checkOut']);
+
+        Route::get('/search-member', [ArrivalController::class, 'searchMember']);
+        Route::get('/search-arrival', [ArrivalController::class, 'searchArrival']);
+
+        // Transactions
+        Route::post('/checkout', [TransactionController::class, 'checkout']);
+        Route::get('/transactions', [TransactionController::class, 'index']);
+        Route::get('/transactions/{id}', [TransactionController::class, 'show']);
+
+    });

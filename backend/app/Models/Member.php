@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class Member extends Model
 {
@@ -46,8 +47,6 @@ class Member extends Model
     protected $appends = ['qr_code_url'];
 
     /**
-     * Get QR code URL accessor
-     *
      * @return string|null
      */
     public function getQrCodeUrlAttribute(): ?string
@@ -77,9 +76,6 @@ class Member extends Model
 
     /**
      * Generate unique member ID with format: MBR + 8 random alphanumeric chars
-     *
-     * @return string
-     * @throws \Exception
      */
     public static function generateMemberId(): string
     {
@@ -94,10 +90,8 @@ class Member extends Model
                 $randomString .= $chars[random_int(0, strlen($chars) - 1)];
             }
 
-            // Prefix with MBR
             $memberId = 'MBR' . $randomString;
 
-            // Check uniqueness in database
             $exists = self::where('member_id', $memberId)->exists();
 
             if (!$exists) {
@@ -112,11 +106,17 @@ class Member extends Model
 
     /**
      * Generate UUID v4 for QR code filename
-     *
-     * @return string
      */
     public static function generateQRHash(): string
     {
         return Str::uuid()->toString();
+    }
+
+    public function getCurrentTier()
+    {
+        return DB::table('member_tiers')
+            ->where('min_points', '<=', $this->total_points)
+            ->where('max_points', '>=', $this->total_points)
+            ->first();
     }
 }

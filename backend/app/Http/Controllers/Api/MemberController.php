@@ -12,7 +12,6 @@ class MemberController extends Controller
 {
     /**
      * GET /api/member/profile
-     * Get complete member profile data
      */
     public function getProfile()
     {

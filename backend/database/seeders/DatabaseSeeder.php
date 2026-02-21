@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
             FishTypeSeeder::class,
             FishStockSeeder::class,
             EventSeeder::class,
+            MenuSeeder::class,
+
+            MemberSeeder::class,
+            ArrivalSeeder::class,
         ]);
     }
 }
