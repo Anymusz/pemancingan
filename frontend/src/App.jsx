@@ -141,6 +141,8 @@ import { ToastProvider } from "@/contexts/ToastContext";
 import MemberDashboard from "./pages/member/Dashboard";
 import LeaderboardPublic from "./pages/LeaderboardPublic";
 
+import EmployeeDashboard from "@/pages/employee/EmployeeDashboard";
+
 // ===============================
 // Layout Wrapper
 // ===============================
@@ -196,14 +198,14 @@ function App() {
             />
 
             {/* Employee Routes (Placeholder - Fase Lain) */}
-            <Route
+            {/* <Route
               path="/employee/dashboard"
               element={
                 <ProtectedRoute allowedRoles={["employee"]}>
                   <div>Employee Dashboard (Coming Soon)</div>
                 </ProtectedRoute>
               }
-            />
+            /> */}
             <Route
               path="/member/dashboard"
               element={
@@ -233,6 +235,15 @@ function App() {
 
             {/* 404 Not Found */}
             <Route path="*" element={<NotFound />} />
+
+            <Route
+              path="/employee/dashboard"
+              element={
+                <ProtectedRoute role="employee">
+                  <EmployeeDashboard />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </AppLayout>
       </ToastProvider>
