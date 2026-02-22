@@ -35,29 +35,7 @@ const Dashboard = () => {
     }
   };
 
-  const calculateNextTier = () => {
-    if (!profile) return null;
-
-    const tiers = [
-      { name: "BRONZE", min: 50 },
-      { name: "SILVER", min: 400 },
-      { name: "GOLD", min: 800 },
-    ];
-
-    const currentPoints = profile.member.total_points;
-    const nextTier = tiers.find((t) => t.min > currentPoints);
-
-    if (!nextTier) return null;
-
-    return {
-      name: nextTier.name,
-      pointsNeeded: nextTier.min - currentPoints,
-    };
-  };
-
-  if (loading) {
-    return <div>Loading profile...</div>;
-  }
+  if (loading) return <div>Loading profile...</div>;
 
   if (error) {
     return (
@@ -68,11 +46,10 @@ const Dashboard = () => {
     );
   }
 
-  if (!profile) {
-    return <div>No profile data</div>;
-  }
+  if (!profile) return <div>No profile data</div>;
 
-  const nextTier = calculateNextTier();
+  // next_tier langsung dari backend — tidak hardcode
+  const nextTier = profile.next_tier;
 
   return (
     <div style={{ padding: "20px" }}>
@@ -92,6 +69,9 @@ const Dashboard = () => {
         </p>
         <p>
           <strong>Tier:</strong> {profile.tier.name}
+        </p>
+        <p>
+          <strong>Diskon:</strong> {profile.tier.discount_percentage}%
         </p>
 
         {profile.member.qr_code_url && (
@@ -123,7 +103,7 @@ const Dashboard = () => {
         {nextTier ? (
           <p>
             <strong>Tier Berikutnya:</strong> {nextTier.name} (
-            {nextTier.pointsNeeded} poin lagi)
+            {nextTier.points_needed} poin lagi)
           </p>
         ) : (
           <p>
@@ -147,6 +127,12 @@ const Dashboard = () => {
       {/* Quick Links */}
       <div>
         <h2>Menu</h2>
+        <button
+          onClick={() => navigate("/member/order")}
+          style={{ marginRight: "10px" }}
+        >
+          Pesan Makanan / Sewa Alat
+        </button>
         <button
           onClick={() => navigate("/leaderboard")}
           style={{ marginRight: "10px" }}

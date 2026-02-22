@@ -143,6 +143,8 @@ import LeaderboardPublic from "./pages/LeaderboardPublic";
 
 import EmployeeDashboard from "@/pages/employee/EmployeeDashboard";
 
+import Order from "./pages/member/Order";
+
 // ===============================
 // Layout Wrapper
 // ===============================
@@ -196,16 +198,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
-            {/* Employee Routes (Placeholder - Fase Lain) */}
-            {/* <Route
-              path="/employee/dashboard"
-              element={
-                <ProtectedRoute allowedRoles={["employee"]}>
-                  <div>Employee Dashboard (Coming Soon)</div>
-                </ProtectedRoute>
-              }
-            /> */}
             <Route
               path="/member/dashboard"
               element={
@@ -217,15 +209,14 @@ function App() {
 
             <Route path="/leaderboard" element={<LeaderboardPublic />} />
 
-            {/* Member Routes (Placeholder - Fase Lain) */}
-            {/* <Route
-              path="/member/dashboard"
+            <Route
+              path="/member/order"
               element={
                 <ProtectedRoute allowedRoles={["member"]}>
-                  <div>Member Dashboard (Coming Soon)</div>
+                  <Order />
                 </ProtectedRoute>
               }
-            /> */}
+            />
 
             {/* Unauthorized Page */}
             <Route
@@ -239,7 +230,7 @@ function App() {
             <Route
               path="/employee/dashboard"
               element={
-                <ProtectedRoute role="employee">
+                <ProtectedRoute allowedRoles={["employee"]}>
                   <EmployeeDashboard />
                 </ProtectedRoute>
               }

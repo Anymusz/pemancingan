@@ -7,9 +7,18 @@ const memberService = {
   },
 
   async getLeaderboard(limit = 10) {
-    const response = await api.get("/leaderboard", {
-      params: { limit },
-    });
+    const response = await api.get("/leaderboard", { params: { limit } });
+    return response.data;
+  },
+
+  async getMenus() {
+    const response = await api.get("/menus");
+    return response.data;
+  },
+
+  async createOrder(data) {
+    // data: { items: [{ menu_id, quantity }] }
+    const response = await api.post("/member/orders", data);
     return response.data;
   },
 };

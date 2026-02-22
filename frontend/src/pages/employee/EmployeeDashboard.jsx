@@ -7,6 +7,7 @@ import TodayArrivals from "./TodayArrivals";
 import Checkout from "./Checkout";
 import TransactionHistory from "./TransactionHistory";
 import { removeToken, removeUser } from "@/utils/tokenManager";
+import AddOrder from "./AddOrder";
 
 const EmployeeDashboard = () => {
   const [activeMenu, setActiveMenu] = useState("checkin");
@@ -29,6 +30,12 @@ const EmployeeDashboard = () => {
       >
         <h1>Employee Dashboard</h1>
         <nav>
+          <button
+            onClick={() => setActiveMenu("addorder")}
+            disabled={activeMenu === "addorder"}
+          >
+            Tambah Order
+          </button>
           <button
             onClick={() => setActiveMenu("checkin")}
             disabled={activeMenu === "checkin"}
@@ -63,6 +70,7 @@ const EmployeeDashboard = () => {
         {activeMenu === "arrivals" && <TodayArrivals />}
         {activeMenu === "checkout" && <Checkout />}
         {activeMenu === "history" && <TransactionHistory />}
+        {activeMenu === "addorder" && <AddOrder />}
       </main>
     </div>
   );
