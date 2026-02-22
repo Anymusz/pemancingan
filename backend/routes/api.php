@@ -6,13 +6,16 @@ use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\FishTypeController;
 use App\Http\Controllers\Api\MemberTierController;
 use App\Http\Controllers\Api\MemberController;
+use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\Owner\MemberValidationController;
 use App\Http\Controllers\Api\Owner\LeaderboardController;
-use App\Http\Controllers\Api\Owner\MenuController;
+use App\Http\Controllers\Api\Owner\MenuController as OwnerMenuController;
 use App\Http\Controllers\Api\Owner\FishTypeController as OwnerFishTypeController;
 use App\Http\Controllers\Api\Owner\EventController as OwnerEventController;
 use App\Http\Controllers\Api\Employee\ArrivalController;
 use App\Http\Controllers\Api\Employee\TransactionController;
+use App\Http\Controllers\Api\Employee\PendingOrderController;
+use App\Http\Controllers\Api\Member\OrderController;
 
 // ========================================
 // PUBLIC ROUTES
@@ -29,11 +32,13 @@ Route::get('/leaderboard', [MemberController::class, 'getLeaderboard']);
 // PROTECTED ROUTES
 // ========================================
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/menus', [MenuController::class, 'index']); // member & employee: hanya menu available
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
 
     Route::prefix('member')->middleware('role:member')->group(function () {
         Route::get('/profile', [MemberController::class, 'getProfile']);
+        Route::post('/orders', [OrderController::class, 'store']); // self-order
     });
 });
 
@@ -53,18 +58,17 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     Route::get('/leaderboard', [LeaderboardController::class, 'getOwnerLeaderboard']);
 
     // Menu Management
-    Route::get('/menus', [MenuController::class, 'index']);
-    Route::post('/menus', [MenuController::class, 'store']);
-    Route::put('/menus/{id}', [MenuController::class, 'update']);
-    Route::delete('/menus/{id}', [MenuController::class, 'destroy']);
-    Route::patch('/menus/{id}/availability', [MenuController::class, 'updateAvailability']);
+    Route::get('/menus', [OwnerMenuController::class, 'index']);
+    Route::post('/menus', [OwnerMenuController::class, 'store']);
+    Route::put('/menus/{id}', [OwnerMenuController::class, 'update']);
+    Route::delete('/menus/{id}', [OwnerMenuController::class, 'destroy']);
+    Route::patch('/menus/{id}/availability', [OwnerMenuController::class, 'updateAvailability']);
 
     // Fish Type Management
     Route::get('/fish-types', [OwnerFishTypeController::class, 'index']);
     Route::post('/fish-types', [OwnerFishTypeController::class, 'store']);
     Route::put('/fish-types/{id}', [OwnerFishTypeController::class, 'update']);
     Route::delete('/fish-types/{id}', [OwnerFishTypeController::class, 'destroy']);
-
     Route::patch('/fish-types/{id}/toggle-active', [OwnerFishTypeController::class, 'toggleActive']);
 
     // Event Management
@@ -75,24 +79,23 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     Route::delete('/events/{id}', [OwnerEventController::class, 'destroy']);
 });
 
-
 // ========================================
 // EMPLOYEE ROUTES
 // ========================================
-Route::prefix('employee')
-    ->middleware(['auth:sanctum', 'role:employee'])
-    ->group(function () {
-        // Arrival
-        Route::post('/check-in', [ArrivalController::class, 'checkIn']);
-        Route::get('/today-arrivals', [ArrivalController::class, 'todayArrivals']);
-        Route::post('/check-out/{arrival_id}', [ArrivalController::class, 'checkOut']);
+Route::prefix('employee')->middleware(['auth:sanctum', 'role:employee'])->group(function () {
+    // Arrival
+    Route::post('/check-in', [ArrivalController::class, 'checkIn']);
+    Route::get('/today-arrivals', [ArrivalController::class, 'todayArrivals']);
+    Route::post('/check-out/{arrival_id}', [ArrivalController::class, 'checkOut']);
+    Route::get('/search-member', [ArrivalController::class, 'searchMember']);
+    Route::get('/search-arrival', [ArrivalController::class, 'searchArrival']);
 
-        Route::get('/search-member', [ArrivalController::class, 'searchMember']);
-        Route::get('/search-arrival', [ArrivalController::class, 'searchArrival']);
+    // Pending Orders
+    Route::post('/pending-orders', [PendingOrderController::class, 'store']);
+    Route::get('/pending-orders/{arrival_id}', [PendingOrderController::class, 'index']);
 
-        // Transactions
-        Route::post('/checkout', [TransactionController::class, 'checkout']);
-        Route::get('/transactions', [TransactionController::class, 'index']);
-        Route::get('/transactions/{id}', [TransactionController::class, 'show']);
-
-    });
+    // Transactions
+    Route::post('/checkout', [TransactionController::class, 'checkout']);
+    Route::get('/transactions', [TransactionController::class, 'index']);
+    Route::get('/transactions/{id}', [TransactionController::class, 'show']);
+});

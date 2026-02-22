@@ -11,15 +11,13 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaction_id');
 
-            // Fase 3B: Hanya 'fish' yang aktif digunakan
-            // 'menu' & 'equipment_rental' untuk fase pending orders (belum diimplementasi)
-            $table->enum('item_type', ['fish', 'menu', 'equipment_rental']);
+            $table->enum('item_type', ['fish', 'menu', 'equipment_rental', 'penalty']);
 
-            $table->unsignedBigInteger('item_id')->nullable(); // Nullable: item bisa soft deleted
-            $table->string('item_name_snapshot', 100);         // Historical record
-            $table->decimal('quantity', 8, 2);                 // Ikan: kg, Menu: qty
-            $table->decimal('unit_price_snapshot', 10, 2);     // Historical record
-            $table->decimal('subtotal', 10, 2);                // quantity × unit_price
+            $table->unsignedBigInteger('item_id')->nullable();
+            $table->string('item_name_snapshot', 100);
+            $table->decimal('quantity', 8, 2);
+            $table->decimal('unit_price_snapshot', 10, 2);
+            $table->decimal('subtotal', 10, 2);
             $table->timestamps();
 
             $table->index('transaction_id');

@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Api\Employee;
 use App\Http\Controllers\Controller;
 use App\Models\Arrival;
 use App\Models\FishType;
+use App\Models\FishStock;
+use App\Models\PendingOrder;
 use App\Models\Transaction;
 use App\Models\TransactionItem;
 use Illuminate\Http\JsonResponse;
@@ -22,10 +24,13 @@ class TransactionController extends Controller
     {
         $request->validate([
             'arrival_id' => 'required|integer|exists:arrivals,id',
-            'items' => 'required|array|min:1',
-            'items.*.item_type' => 'required|in:fish', // Fase 3B: hanya fish
-            'items.*.item_id' => 'required|integer',
-            'items.*.quantity' => 'required|numeric|min:0.01',
+            'fish_items' => 'nullable|array',
+            'fish_items.*.item_id' => 'required|integer|exists:fish_types,id',
+            'fish_items.*.quantity' => 'required|numeric|min:0.01',
+            'penalty_items' => 'nullable|array',
+            'penalty_items.*.name' => 'required|string|max:100',
+            'penalty_items.*.quantity' => 'required|integer|min:1',
+            'penalty_items.*.unit_price' => 'required|numeric|min:0',
             'payment_method' => 'required|in:cash,transfer,qris',
             'tips' => 'nullable|numeric|min:0',
             'notes' => 'nullable|string|max:500',
@@ -34,7 +39,7 @@ class TransactionController extends Controller
         try {
             DB::beginTransaction();
 
-            // Step 1: Get & validate arrival
+            // Step 1: Validate arrival
             $arrival = Arrival::find($request->arrival_id);
 
             if (!$arrival) {
@@ -44,7 +49,7 @@ class TransactionController extends Controller
 
             if ($arrival->status !== 'active') {
                 DB::rollBack();
-                return response()->json(['success' => false, 'message' => 'Member sudah check-out. Tidak dapat memproses transaksi.'], 422);
+                return response()->json(['success' => false, 'message' => 'Member sudah check-out.'], 422);
             }
 
             // Step 2: Get member
@@ -55,64 +60,113 @@ class TransactionController extends Controller
                 return response()->json(['success' => false, 'message' => 'Member tidak aktif'], 422);
             }
 
-            // Step 3: Get tier member saat ini
+            // Step 3: Fetch pending orders (menu + rental) milik arrival
+            $pendingOrders = PendingOrder::where('arrival_id', $arrival->id)
+                ->where('payment_status', 'unpaid')
+                ->get();
+
+            $fishItems = $request->fish_items ?? [];
+            $penaltyItems = $request->penalty_items ?? [];
+
+            // Minimal harus ada sesuatu untuk di-checkout
+            if (empty($fishItems) && $pendingOrders->isEmpty() && empty($penaltyItems)) {
+                DB::rollBack();
+                return response()->json(['success' => false, 'message' => 'Tidak ada item untuk di-checkout'], 422);
+            }
+
+            // Step 4: Get tier
             $currentTier = DB::table('member_tiers')
                 ->where('min_points', '<=', $member->total_points)
                 ->where('max_points', '>=', $member->total_points)
                 ->first();
-
             $tierDiscount = $currentTier?->discount_percentage ?? 0;
 
-            // Step 4: Generate transaction code dengan random suffix untuk hindari duplikat
+            // Step 5: Generate transaction code
             $transactionCode = 'TRX-' . Carbon::now()->format('Ymd') . '-'
                 . str_pad($arrival->member_id, 4, '0', STR_PAD_LEFT) . '-'
                 . Carbon::now()->format('His') . '-'
                 . rand(100, 999);
 
-            // Step 5: Loop items
+            // Step 6: Kalkulasi
             $transactionItems = [];
-            $totalAmount = 0;
-            $discountTier = 0;
+            $subtotalFish = 0;
+            $subtotalPending = 0;
+            $subtotalPenalty = 0;
             $totalFishWeight = 0;
+            $fishStockUpdates = []; // [fish_type_id => total_qty]
 
-            foreach ($request->items as $item) {
-                // Fase 3B: hanya fish — blok ini tetap di sini jika nanti fase berkembang
+            // --- Fish items ---
+            foreach ($fishItems as $item) {
                 $fishType = FishType::find($item['item_id']);
                 if (!$fishType) {
                     DB::rollBack();
-                    return response()->json(['success' => false, 'message' => "Jenis ikan ID {$item['item_id']} tidak ditemukan"], 422);
+                    return response()->json([
+                        'success' => false,
+                        'message' => "Jenis ikan ID {$item['item_id']} tidak ditemukan",
+                    ], 422);
                 }
 
-                $itemName = $fishType->name;
-                $unitPrice = $fishType->price_per_kg;
-                $subtotal = $item['quantity'] * $unitPrice;
-
-                $totalAmount += $subtotal;
-                $discountTier += $subtotal * ($tierDiscount / 100);
+                $subtotal = $item['quantity'] * $fishType->price_per_kg;
+                $subtotalFish += $subtotal;
                 $totalFishWeight += $item['quantity'];
 
+                $fishStockUpdates[$fishType->id] = ($fishStockUpdates[$fishType->id] ?? 0) + $item['quantity'];
+
                 $transactionItems[] = [
-                    'item_type' => $item['item_type'],
-                    'item_id' => $item['item_id'],
-                    'item_name_snapshot' => $itemName,
+                    'item_type' => 'fish',
+                    'item_id' => $fishType->id,
+                    'item_name_snapshot' => $fishType->name,
                     'quantity' => $item['quantity'],
-                    'unit_price_snapshot' => $unitPrice,
+                    'unit_price_snapshot' => $fishType->price_per_kg,
                     'subtotal' => $subtotal,
                 ];
             }
 
+            // --- Pending orders (menu + rental) ---
+            foreach ($pendingOrders as $order) {
+                $subtotalPending += $order->subtotal;
+
+                $transactionItems[] = [
+                    'item_type' => $order->item_type,
+                    'item_id' => $order->item_id,
+                    'item_name_snapshot' => $order->item_name_snapshot,
+                    'quantity' => $order->quantity,
+                    'unit_price_snapshot' => $order->unit_price_snapshot,
+                    'subtotal' => $order->subtotal,
+                ];
+            }
+
+            // --- Penalty items ---
+            foreach ($penaltyItems as $penalty) {
+                $subtotal = $penalty['quantity'] * $penalty['unit_price'];
+                $subtotalPenalty += $subtotal;
+
+                $transactionItems[] = [
+                    'item_type' => 'penalty',
+                    'item_id' => null,
+                    'item_name_snapshot' => $penalty['name'],
+                    'quantity' => $penalty['quantity'],
+                    'unit_price_snapshot' => $penalty['unit_price'],
+                    'subtotal' => $subtotal,
+                ];
+            }
+
+            $totalAmount = $subtotalFish + $subtotalPending + $subtotalPenalty;
+            $discountTier = $subtotalFish * ($tierDiscount / 100);
             $finalAmount = $totalAmount - $discountTier;
             $tips = $request->tips ?? 0;
 
-            // Step 6: Hitung poin dari harga ASLI sebelum diskon
-            $pointsEarned = (int) floor($totalAmount / 10000);
+            // Poin: penalty tidak ikut hitungan poin
+            $pointsEarned = (int) floor(($subtotalFish + $subtotalPending) / 10000);
 
-            // Step 7: Create transaction
+            // Step 7: Insert transaction
             $transaction = Transaction::create([
                 'transaction_code' => $transactionCode,
                 'arrival_id' => $arrival->id,
+                'member_id' => $member->id, // fix: member_id wajib diisi
                 'total_amount' => $totalAmount,
                 'discount_tier' => $discountTier,
+                'discount_voucher' => 0,
                 'final_amount' => $finalAmount,
                 'tips' => $tips,
                 'payment_method' => $request->payment_method,
@@ -123,22 +177,52 @@ class TransactionController extends Controller
                 'notes' => $request->notes,
             ]);
 
-            // Step 8: Create transaction items
+            // Step 8: Insert transaction items
             foreach ($transactionItems as $itemData) {
-                TransactionItem::create(array_merge(['transaction_id' => $transaction->id], $itemData));
+                TransactionItem::create(array_merge(
+                    ['transaction_id' => $transaction->id],
+                    $itemData
+                ));
             }
 
-            // Step 9: Update member (points, fish weight, last_transaction_date)
+            // Step 9: Update pending orders → paid + link ke transaction
+            if ($pendingOrders->isNotEmpty()) {
+                PendingOrder::whereIn('id', $pendingOrders->pluck('id'))->update([
+                    'payment_status' => 'paid',
+                    'transaction_id' => $transaction->id,
+                ]);
+            }
+
+            // Step 10: Validasi & update stok ikan via tabel fish_stocks
+            foreach ($fishStockUpdates as $fishTypeId => $qty) {
+                $fishStock = FishStock::where('fish_type_id', $fishTypeId)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (!$fishStock) {
+                    DB::rollBack();
+                    return response()->json([
+                        'success' => false,
+                        'message' => "Data stok untuk ikan ID {$fishTypeId} tidak ditemukan",
+                    ], 422);
+                }
+
+                if ($fishStock->current_stock_kg < $qty) {
+                    DB::rollBack();
+                    $fishType = FishType::find($fishTypeId);
+                    return response()->json([
+                        'success' => false,
+                        'message' => "Stok ikan {$fishType->name} tidak mencukupi. Tersedia: {$fishStock->current_stock_kg} kg, dibutuhkan: {$qty} kg",
+                    ], 422);
+                }
+
+                $fishStock->decrement('current_stock_kg', $qty);
+            }
+
+            // Step 11: Update member (points, fish weight, last_transaction_date, tier)
             $newPoints = $member->total_points + $pointsEarned;
             $newFishWeight = $member->total_fish_weight + $totalFishWeight;
 
-            $member->update([
-                'total_points' => $newPoints,
-                'total_fish_weight' => $newFishWeight,
-                'last_transaction_date' => Carbon::now(),
-            ]);
-
-            // Step 10: Check tier upgrade
             $newTier = DB::table('member_tiers')
                 ->where('min_points', '<=', $newPoints)
                 ->where('max_points', '>=', $newPoints)
@@ -146,10 +230,18 @@ class TransactionController extends Controller
 
             $tierUpgraded = $newTier && $currentTier && $newTier->id !== $currentTier->id;
 
-            // Step 11: Close arrival
+            $member->update([
+                'total_points' => $newPoints,
+                'total_fish_weight' => $newFishWeight,
+                'last_transaction_date' => Carbon::now(),
+                'tier_id' => $newTier?->id ?? $currentTier?->id,
+            ]);
+
+            // Step 12: Close arrival — kosongkan active_token agar unique constraint terlepas
             $arrival->update([
                 'status' => 'completed',
                 'check_out_at' => Carbon::now(),
+                'active_token' => null,
             ]);
 
             DB::commit();
@@ -180,7 +272,10 @@ class TransactionController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['success' => false, 'message' => 'Gagal memproses transaksi'], 500);
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal memproses transaksi: ' . $e->getMessage(), // sementara tampilkan pesan asli untuk debugging
+            ], 500);
         }
     }
 
@@ -213,17 +308,15 @@ class TransactionController extends Controller
         }
 
         $total = $query->count();
-        $transactions = $query->limit($limit)->get()->map(function ($trx) {
-            return [
-                'id' => $trx->id,
-                'transaction_code' => $trx->transaction_code,
-                'member_name' => $trx->arrival?->member?->user?->name ?? '-',
-                'member_code' => $trx->arrival?->member?->member_id ?? '-',
-                'final_amount' => $trx->final_amount,
-                'payment_method' => $trx->payment_method,
-                'transaction_date' => $trx->transaction_date,
-            ];
-        });
+        $transactions = $query->limit($limit)->get()->map(fn($trx) => [
+            'id' => $trx->id,
+            'transaction_code' => $trx->transaction_code,
+            'member_name' => $trx->arrival?->member?->user?->name ?? '-',
+            'member_code' => $trx->arrival?->member?->member_id ?? '-',
+            'final_amount' => $trx->final_amount,
+            'payment_method' => $trx->payment_method,
+            'transaction_date' => $trx->transaction_date,
+        ]);
 
         return response()->json([
             'success' => true,
@@ -264,6 +357,7 @@ class TransactionController extends Controller
                     ]),
                     'total_amount' => $transaction->total_amount,
                     'discount_tier' => $transaction->discount_tier,
+                    'discount_voucher' => $transaction->discount_voucher,
                     'final_amount' => $transaction->final_amount,
                     'tips' => $transaction->tips,
                     'payment_method' => $transaction->payment_method,

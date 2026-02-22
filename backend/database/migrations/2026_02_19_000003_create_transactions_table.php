@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('transaction_code', 20)->unique();
+            $table->string('transaction_code', 30)->unique();
             $table->unsignedBigInteger('arrival_id');           // NOT NULL — wajib ada arrival
             $table->decimal('total_amount', 10, 2);
             $table->decimal('discount_tier', 10, 2)->default(0);

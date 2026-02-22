@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class MemberController extends Controller
@@ -16,10 +17,8 @@ class MemberController extends Controller
     public function getProfile()
     {
         try {
-            // Get authenticated user dengan eager load member & tier
             $user = Auth::user();
 
-            // Verify user has member record
             if (!$user->member) {
                 return response()->json([
                     'success' => false,
@@ -28,12 +27,15 @@ class MemberController extends Controller
             }
 
             $member = $user->member;
-
             $member->load('tier');
 
             $leaderboardData = $this->calculateLeaderboardRank($member);
 
-            $qrCodeUrl = $member->qr_code_url;
+            // Ambil tier berikutnya dari database — tidak hardcode
+            $nextTier = DB::table('member_tiers')
+                ->where('min_points', '>', $member->total_points)
+                ->orderBy('min_points', 'asc')
+                ->first();
 
             return response()->json([
                 'success' => true,
@@ -52,7 +54,7 @@ class MemberController extends Controller
                             ? $member->last_transaction_date->toISOString()
                             : null,
                         'approved_at' => $member->approved_at->toISOString(),
-                        'qr_code_url' => $qrCodeUrl,
+                        'qr_code_url' => $member->qr_code_url,
                     ],
                     'tier' => [
                         'name' => $member->tier->name,
@@ -60,13 +62,17 @@ class MemberController extends Controller
                         'max_points' => $member->tier->max_points,
                         'discount_percentage' => (float) $member->tier->discount_percentage,
                     ],
+                    'next_tier' => $nextTier ? [
+                        'name' => $nextTier->name,
+                        'min_points' => $nextTier->min_points,
+                        'points_needed' => $nextTier->min_points - $member->total_points,
+                    ] : null,
                     'leaderboard' => $leaderboardData,
                 ],
             ]);
 
         } catch (\Exception $e) {
             Log::error('Error getting member profile: ' . $e->getMessage());
-
             return response()->json([
                 'success' => false,
                 'message' => 'Gagal mengambil data profile',
@@ -76,9 +82,6 @@ class MemberController extends Controller
 
     /**
      * Calculate member's leaderboard rank
-     * 
-     * @param Member $member
-     * @return array
      */
     private function calculateLeaderboardRank(Member $member): array
     {
@@ -89,13 +92,8 @@ class MemberController extends Controller
             ];
         }
 
-        $membersAbove = Member::where('total_fish_weight', '>', $member->total_fish_weight)
-            ->count();
-
-        // Rank = jumlah yang di atas + 1
+        $membersAbove = Member::where('total_fish_weight', '>', $member->total_fish_weight)->count();
         $rank = $membersAbove + 1;
-
-        // Total member yang masuk leaderboard (weight > 0)
         $totalRanked = Member::where('total_fish_weight', '>', 0)->count();
 
         return [
@@ -106,20 +104,17 @@ class MemberController extends Controller
 
     /**
      * GET /api/leaderboard
-     * Get public leaderboard data (no auth required)
      */
     public function getLeaderboard(Request $request)
     {
         try {
-            // Validate & sanitize limit parameter
             $limit = $request->query('limit', 10);
-            $limit = min(max((int) $limit, 1), 100); // Clamp between 1-100
+            $limit = min(max((int) $limit, 1), 100);
 
-            // Get ranked members (only with fish weight > 0)
             $leaderboard = Member::with(['user', 'tier'])
                 ->where('total_fish_weight', '>', 0)
                 ->orderBy('total_fish_weight', 'desc')
-                ->orderBy('id', 'asc') // Tie-breaker: earlier member wins
+                ->orderBy('id', 'asc')
                 ->limit($limit)
                 ->get()
                 ->map(function ($member, $index) {
@@ -132,7 +127,6 @@ class MemberController extends Controller
                     ];
                 });
 
-            // Count total ranked members
             $totalRanked = Member::where('total_fish_weight', '>', 0)->count();
 
             return response()->json([
@@ -149,7 +143,6 @@ class MemberController extends Controller
 
         } catch (\Exception $e) {
             Log::error('Error getting leaderboard: ' . $e->getMessage());
-
             return response()->json([
                 'success' => false,
                 'message' => 'Gagal mengambil data leaderboard',
@@ -159,23 +152,16 @@ class MemberController extends Controller
 
     /**
      * Mask member name for privacy
-     *
-     * - 1 word  -> full name
-     * - 2 words -> full name
-     * - >=3 words -> first two words + third initial
      */
     private function maskName(string $fullName): string
     {
         $nameParts = array_values(array_filter(explode(' ', trim($fullName))));
         $count = count($nameParts);
 
-        if ($count === 0) {
+        if ($count === 0)
             return '';
-        }
-
-        if ($count <= 2) {
+        if ($count <= 2)
             return implode(' ', $nameParts);
-        }
 
         return $nameParts[0] . ' ' .
             $nameParts[1] . ' ' .
