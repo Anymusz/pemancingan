@@ -4,26 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique()->nullable(); // DIUBAH: nullable untuk email opsional
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            
-            // DITAMBAH: Kolom sesuai flow operasional
-            $table->string('phone')->unique(); // Kredensial utama login
-            $table->text('address'); // Alamat lengkap member
+            $table->string('phone')->unique();
+            $table->text('address');
             $table->enum('role', ['owner', 'employee', 'member'])->default('member');
             $table->enum('status', ['pending', 'active', 'rejected'])->default('pending');
-            
+            $table->text('rejection_reason')->nullable();
+            $table->timestamp('rejected_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -44,9 +39,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');

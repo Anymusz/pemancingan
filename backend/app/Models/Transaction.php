@@ -10,9 +10,11 @@ class Transaction extends Model
     protected $fillable = [
         'transaction_code',
         'arrival_id',
+        // 'member_id',
         'total_amount',
         'discount_tier',
         'final_amount',
+        // 'discount_voucher',
         'tips',
         'payment_method',
         'points_earned',

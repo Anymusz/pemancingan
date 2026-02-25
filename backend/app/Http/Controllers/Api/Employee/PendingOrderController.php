@@ -13,6 +13,84 @@ use Carbon\Carbon;
 class PendingOrderController extends Controller
 {
     /**
+     * GET /api/employee/pending-orders
+     * Semua pending orders unpaid dari arrival active hari ini
+     */
+    public function all(): JsonResponse
+    {
+        $orders = PendingOrder::with(['arrival.member.user'])
+            ->where('payment_status', 'unpaid')
+            ->whereHas('arrival', function ($q) {
+                $q->where('status', 'active')
+                    ->whereDate('check_in_at', Carbon::today());
+            })
+            ->orderBy('created_at', 'asc')
+            ->get()
+            ->map(fn($o) => [
+                'id' => $o->id,
+                'arrival_id' => $o->arrival_id,
+                'member_name' => $o->arrival?->member?->user?->name ?? '-',
+                'item_type' => $o->item_type,
+                'item_name_snapshot' => $o->item_name_snapshot,
+                'quantity' => $o->quantity,
+                'unit_price_snapshot' => $o->unit_price_snapshot,
+                'subtotal' => $o->subtotal,
+                'order_source' => $o->order_source,
+                'production_status' => $o->production_status,
+                'cancellation_reason' => $o->cancellation_reason,
+                'created_at' => $o->created_at,
+            ]);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'orders' => $orders,
+                'total' => $orders->count(),
+            ],
+        ]);
+    }
+
+    /**
+     * PATCH /api/employee/pending-orders/{id}/status
+     */
+    public function updateStatus(Request $request, int $id): JsonResponse
+    {
+        $request->validate([
+            'status' => 'required|in:pending,done,cancelled',
+            'cancellation_reason' => 'required_if:status,cancelled|nullable|string|max:255',
+        ]);
+
+        $order = PendingOrder::find($id);
+
+        if (!$order) {
+            return response()->json(['success' => false, 'message' => 'Order tidak ditemukan'], 404);
+        }
+
+        if ($order->payment_status === 'paid') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Order yang sudah dibayar tidak dapat diubah statusnya',
+            ], 422);
+        }
+
+        $order->production_status = $request->status;
+        $order->cancellation_reason = $request->status === 'cancelled' ? $request->cancellation_reason : null;
+        $order->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Status order berhasil diperbarui',
+            'data' => [
+                'order' => [
+                    'id' => $order->id,
+                    'production_status' => $order->production_status,
+                    'cancellation_reason' => $order->cancellation_reason,
+                ],
+            ],
+        ]);
+    }
+
+    /**
      * POST /api/employee/pending-orders
      */
     public function store(Request $request): JsonResponse

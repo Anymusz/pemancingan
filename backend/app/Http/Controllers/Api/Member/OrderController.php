@@ -14,6 +14,43 @@ use Carbon\Carbon;
 class OrderController extends Controller
 {
     /**
+     * GET /api/member/orders
+     */
+    public function getMyOrders(Request $request): JsonResponse
+    {
+        $member = $request->user()->member;
+
+        if (!$member) {
+            return response()->json(['success' => false, 'message' => 'Data member tidak ditemukan'], 404);
+        }
+
+        $orders = PendingOrder::whereHas('arrival', function ($q) use ($member) {
+            $q->where('member_id', $member->id)
+                ->where('status', 'active')
+                ->whereDate('check_in_at', Carbon::today());
+        })
+            ->orderBy('created_at', 'asc')
+            ->get()
+            ->map(fn($o) => [
+                'id' => $o->id,
+                'item_name_snapshot' => $o->item_name_snapshot,
+                'quantity' => $o->quantity,
+                'unit_price_snapshot' => $o->unit_price_snapshot,
+                'subtotal' => $o->subtotal,
+                'payment_status' => $o->payment_status,
+                'production_status' => $o->production_status,
+                'cancellation_reason' => $o->cancellation_reason,
+                'order_source' => $o->order_source,
+                'created_at' => $o->created_at,
+            ]);
+
+        return response()->json([
+            'success' => true,
+            'data' => ['orders' => $orders],
+        ]);
+    }
+
+    /**
      * POST /api/member/orders
      */
     public function store(Request $request): JsonResponse
@@ -30,7 +67,6 @@ class OrderController extends Controller
             return response()->json(['success' => false, 'message' => 'Data member tidak ditemukan'], 404);
         }
 
-        // Validasi: member harus punya active arrival hari ini
         $arrival = Arrival::where('member_id', $member->id)
             ->where('status', 'active')
             ->whereDate('check_in_at', Carbon::today())
@@ -45,7 +81,6 @@ class OrderController extends Controller
 
         $created = [];
 
-        // Pre-fetch semua menu yang dibutuhkan (hindari N+1)
         $menuIds = collect($request->items)->pluck('menu_id');
         $menus = Menu::whereNull('deleted_at')
             ->where('availability', 'available')
@@ -53,7 +88,6 @@ class OrderController extends Controller
             ->get()
             ->keyBy('id');
 
-        // Validasi semua menu tersedia sebelum insert
         foreach ($request->items as $item) {
             if (!$menus->has($item['menu_id'])) {
                 return response()->json([

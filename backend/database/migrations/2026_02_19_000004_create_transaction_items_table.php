@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaction_id');
 
-            $table->enum('item_type', ['fish', 'menu', 'equipment_rental', 'penalty']);
+            $table->enum('item_type', ['fish', 'menu', 'rental', 'penalty']);
 
             $table->unsignedBigInteger('item_id')->nullable();
             $table->string('item_name_snapshot', 100);

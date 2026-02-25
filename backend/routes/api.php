@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\Owner\EventController as OwnerEventController;
 use App\Http\Controllers\Api\Employee\ArrivalController;
 use App\Http\Controllers\Api\Employee\TransactionController;
 use App\Http\Controllers\Api\Employee\PendingOrderController;
+use App\Http\Controllers\Api\Employee\MenuController as EmployeeMenuController;
 use App\Http\Controllers\Api\Member\OrderController;
 
 // ========================================
@@ -38,7 +39,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('member')->middleware('role:member')->group(function () {
         Route::get('/profile', [MemberController::class, 'getProfile']);
-        Route::post('/orders', [OrderController::class, 'store']); // self-order
+        Route::post('/orders', [OrderController::class, 'store']);
+        Route::get('/orders', [OrderController::class, 'getMyOrders']);
     });
 });
 
@@ -92,10 +94,16 @@ Route::prefix('employee')->middleware(['auth:sanctum', 'role:employee'])->group(
 
     // Pending Orders
     Route::post('/pending-orders', [PendingOrderController::class, 'store']);
+    Route::get('/pending-orders', [PendingOrderController::class, 'all']);
     Route::get('/pending-orders/{arrival_id}', [PendingOrderController::class, 'index']);
+    Route::patch('/pending-orders/{id}/status', [PendingOrderController::class, 'updateStatus']);
 
     // Transactions
     Route::post('/checkout', [TransactionController::class, 'checkout']);
     Route::get('/transactions', [TransactionController::class, 'index']);
     Route::get('/transactions/{id}', [TransactionController::class, 'show']);
+
+    // Menu Availability 
+    Route::get('/menus', [EmployeeMenuController::class, 'index']);
+    Route::patch('/menus/{id}/availability', [EmployeeMenuController::class, 'updateAvailability']);
 });

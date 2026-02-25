@@ -18,6 +18,8 @@ class PendingOrder extends Model
         'order_source',
         'created_by',
         'transaction_id',
+        'production_status',
+        'cancellation_reason',
     ];
 
     protected $casts = [

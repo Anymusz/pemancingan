@@ -60,7 +60,6 @@ class MenuController extends Controller
 
     /**
      * POST /api/owner/menus
-     * Tambah menu baru
      */
     public function store(Request $request): JsonResponse
     {
@@ -98,7 +97,6 @@ class MenuController extends Controller
 
     /**
      * PUT /api/owner/menus/{id}
-     * Edit menu existing
      */
     public function update(Request $request, int $id): JsonResponse
     {
@@ -137,7 +135,6 @@ class MenuController extends Controller
 
     /**
      * DELETE /api/owner/menus/{id}
-     * Soft delete menu
      */
     public function destroy(int $id): JsonResponse
     {
@@ -167,7 +164,6 @@ class MenuController extends Controller
 
     /**
      * PATCH /api/owner/menus/{id}/availability
-     * Toggle availability menu
      */
     public function updateAvailability(Request $request, int $id): JsonResponse
     {
