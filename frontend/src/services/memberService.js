@@ -21,6 +21,11 @@ const memberService = {
     const response = await api.post("/member/orders", data);
     return response.data;
   },
+
+  async getMyOrders() {
+    const response = await api.get("/member/orders");
+    return response.data;
+  },
 };
 
 export default memberService;

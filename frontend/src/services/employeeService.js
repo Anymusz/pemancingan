@@ -48,6 +48,10 @@ const employeeService = {
     const response = await api.get(`/employee/pending-orders/${arrivalId}`);
     return response.data;
   },
+  getAllPendingOrders: async () => {
+    const response = await api.get("/employee/pending-orders");
+    return response.data;
+  },
 
   // ==================== TRANSACTION ====================
 
@@ -76,6 +80,22 @@ const employeeService = {
 
   getMenus: async () => {
     const response = await api.get("/menus");
+    return response.data;
+  },
+  updateOrderStatus: async (id, data) => {
+    // data: { status, cancellation_reason (opsional) }
+    const response = await api.patch(
+      `/employee/pending-orders/${id}/status`,
+      data,
+    );
+    return response.data;
+  },
+  updateMenuAvailability: async (id) => {
+    const response = await api.patch(`/employee/menus/${id}/availability`);
+    return response.data;
+  },
+  getAllMenus: async () => {
+    const response = await api.get("/employee/menus");
     return response.data;
   },
 };

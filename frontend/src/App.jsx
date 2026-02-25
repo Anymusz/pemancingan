@@ -116,13 +116,7 @@
 
 // export default App;
 
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import LandingPage from "@/pages/landing/LandingPage";
 import NotFound from "@/pages/NotFound";
@@ -140,10 +134,7 @@ import { ToastProvider } from "@/contexts/ToastContext";
 
 import MemberDashboard from "./pages/member/Dashboard";
 import LeaderboardPublic from "./pages/LeaderboardPublic";
-
 import EmployeeDashboard from "@/pages/employee/EmployeeDashboard";
-
-import Order from "./pages/member/Order";
 
 // ===============================
 // Layout Wrapper
@@ -154,12 +145,10 @@ const AppLayout = ({ children }) => {
 
   return (
     <>
-      {/* Global Background */}
       <div className="fixed inset-0 -z-10">
         <GradientBg theme="light" />
       </div>
 
-      {/* FloatingNav ONLY on Landing */}
       {isLanding && <FloatingNav navItems={NAV_ITEMS} />}
 
       <ClickSpark
@@ -188,8 +177,9 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/leaderboard" element={<LeaderboardPublic />} />
 
-            {/* Owner Protected Routes */}
+            {/* Owner */}
             <Route
               path="/owner/dashboard"
               element={
@@ -198,6 +188,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            {/* Member */}
             <Route
               path="/member/dashboard"
               element={
@@ -207,26 +199,7 @@ function App() {
               }
             />
 
-            <Route path="/leaderboard" element={<LeaderboardPublic />} />
-
-            <Route
-              path="/member/order"
-              element={
-                <ProtectedRoute allowedRoles={["member"]}>
-                  <Order />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* Unauthorized Page */}
-            <Route
-              path="/unauthorized"
-              element={<div>Unauthorized Access</div>}
-            />
-
-            {/* 404 Not Found */}
-            <Route path="*" element={<NotFound />} />
-
+            {/* Employee */}
             <Route
               path="/employee/dashboard"
               element={
@@ -235,6 +208,13 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            {/* Misc */}
+            <Route
+              path="/unauthorized"
+              element={<div>Unauthorized Access</div>}
+            />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </AppLayout>
       </ToastProvider>

@@ -1,6 +1,6 @@
 // File: src/pages/member/Order.jsx
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import memberService from "../../services/memberService";
 
 const Order = () => {
@@ -10,11 +10,26 @@ const Order = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [toast, setToast] = useState(null);
   const [successInfo, setSuccessInfo] = useState(null); // konfirmasi sukses
+  const [myOrders, setMyOrders] = useState([]);
+  const [ordersLoading, setOrdersLoading] = useState(false);
 
   const showToast = (message, type = "success") => {
     setToast({ message, type });
     setTimeout(() => setToast(null), 4000);
   };
+
+  // ==================== FETCH MY ORDERS ====================
+  const fetchMyOrders = useCallback(async () => {
+    setOrdersLoading(true);
+    try {
+      const res = await memberService.getMyOrders();
+      if (res.success) setMyOrders(res.data.orders);
+    } catch {
+      // silent fail
+    } finally {
+      setOrdersLoading(false);
+    }
+  }, []);
 
   // ==================== FETCH MENUS ====================
   useEffect(() => {
@@ -31,6 +46,17 @@ const Order = () => {
     };
     fetchMenus();
   }, []);
+
+  useEffect(() => {
+    fetchMyOrders();
+  }, [fetchMyOrders]);
+
+  useEffect(() => {
+    const hasPending = myOrders.some((o) => o.production_status === "pending");
+    if (!hasPending) return;
+    const interval = setInterval(fetchMyOrders, 30000);
+    return () => clearInterval(interval);
+  }, [myOrders, fetchMyOrders]);
 
   // ==================== QUANTITY HANDLERS ====================
   const handleQtyChange = (menuId, value) => {
@@ -79,6 +105,7 @@ const Order = () => {
         setSuccessInfo(res.data.orders);
         setQuantities({});
         showToast("Pesanan berhasil dikirim!");
+        fetchMyOrders(); // tambahkan ini
       }
     } catch (err) {
       showToast(
@@ -214,6 +241,43 @@ const Order = () => {
           )}
         </>
       )}
+
+      {/* ===== STATUS PESANAN SAYA ===== */}
+      <section style={{ marginTop: 24 }}>
+        <h2>Status Pesanan Saya</h2>
+        {ordersLoading ? (
+          <p>Memuat status pesanan...</p>
+        ) : myOrders.length === 0 ? (
+          <p>Belum ada pesanan hari ini.</p>
+        ) : (
+          <table border="1" width="100%">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Subtotal</th>
+                <th>Status</th>
+                <th>Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              {myOrders.map((o) => (
+                <tr key={o.id}>
+                  <td>{o.item_name_snapshot}</td>
+                  <td>{o.quantity}</td>
+                  <td>Rp {Number(o.subtotal).toLocaleString("id-ID")}</td>
+                  <td>{o.production_status}</td>
+                  <td>
+                    {o.production_status === "cancelled"
+                      ? o.cancellation_reason
+                      : "-"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </section>
     </div>
   );
 };
