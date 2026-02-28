@@ -1,5 +1,4 @@
 <?php
-// File: app/Models/FishType.php
 
 namespace App\Models;
 
@@ -20,4 +19,14 @@ class FishType extends Model
         'price_per_kg' => 'decimal:2',
         'is_active' => 'boolean',
     ];
+
+    public function stock(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(FishStock::class);
+    }
+
+    public function restockLogs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(RestockLog::class);
+    }
 }

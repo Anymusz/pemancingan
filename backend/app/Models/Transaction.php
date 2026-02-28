@@ -10,11 +10,10 @@ class Transaction extends Model
     protected $fillable = [
         'transaction_code',
         'arrival_id',
-        // 'member_id',
         'total_amount',
         'discount_tier',
         'final_amount',
-        // 'discount_voucher',
+        'discount_voucher',
         'tips',
         'payment_method',
         'points_earned',
@@ -27,10 +26,16 @@ class Transaction extends Model
     protected $casts = [
         'total_amount' => 'decimal:2',
         'discount_tier' => 'decimal:2',
+        'discount_voucher' => 'decimal:2',
         'final_amount' => 'decimal:2',
         'tips' => 'decimal:2',
         'transaction_date' => 'datetime',
     ];
+
+    public function voucher()
+    {
+        return $this->hasOne(Voucher::class);
+    }
 
     public function arrival()
     {

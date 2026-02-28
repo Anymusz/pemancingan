@@ -17,6 +17,9 @@ use App\Http\Controllers\Api\Employee\TransactionController;
 use App\Http\Controllers\Api\Employee\PendingOrderController;
 use App\Http\Controllers\Api\Employee\MenuController as EmployeeMenuController;
 use App\Http\Controllers\Api\Member\OrderController;
+use App\Http\Controllers\Api\Owner\FishStockController as OwnerFishStockController;
+use App\Http\Controllers\Api\Owner\VoucherController as OwnerVoucherController;
+use App\Http\Controllers\Api\Owner\VoucherConfigController as OwnerVoucherConfigController;
 
 // ========================================
 // PUBLIC ROUTES
@@ -73,12 +76,25 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     Route::delete('/fish-types/{id}', [OwnerFishTypeController::class, 'destroy']);
     Route::patch('/fish-types/{id}/toggle-active', [OwnerFishTypeController::class, 'toggleActive']);
 
+    // Fish Stock Management
+    Route::get('/fish-stocks', [OwnerFishStockController::class, 'index']);
+    Route::post('/fish-stocks/{fishTypeId}/restock', [OwnerFishStockController::class, 'restock']);
+    Route::patch('/fish-stocks/{fishTypeId}/threshold', [OwnerFishStockController::class, 'updateThreshold']);
+    Route::get('/fish-stocks/{fishTypeId}/history', [OwnerFishStockController::class, 'history']);
+
     // Event Management
     Route::get('/events', [OwnerEventController::class, 'index']);
     Route::post('/events', [OwnerEventController::class, 'store']);
     Route::put('/events/{id}', [OwnerEventController::class, 'update']);
     Route::patch('/events/{id}/publish', [OwnerEventController::class, 'publish']);
     Route::delete('/events/{id}', [OwnerEventController::class, 'destroy']);
+
+    // Voucher Management
+    Route::get('/vouchers', [OwnerVoucherController::class, 'index']);
+
+    // Voucher Config
+    Route::get('/voucher-configs', [OwnerVoucherConfigController::class, 'index']);
+    Route::put('/voucher-configs', [OwnerVoucherConfigController::class, 'update']);
 });
 
 // ========================================
@@ -103,7 +119,10 @@ Route::prefix('employee')->middleware(['auth:sanctum', 'role:employee'])->group(
     Route::get('/transactions', [TransactionController::class, 'index']);
     Route::get('/transactions/{id}', [TransactionController::class, 'show']);
 
-    // Menu Availability 
+    // Menu Availability
     Route::get('/menus', [EmployeeMenuController::class, 'index']);
     Route::patch('/menus/{id}/availability', [EmployeeMenuController::class, 'updateAvailability']);
+
+    // Voucher
+    Route::get('/member-voucher/{memberId}', [TransactionController::class, 'getMemberVoucher']);
 });

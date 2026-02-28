@@ -16,8 +16,8 @@ class FishTypeController extends Controller
     public function index(Request $request): JsonResponse
     {
         $query = $request->boolean('include_deleted')
-            ? FishType::withTrashed()
-            : FishType::query();
+            ? FishType::withTrashed()->with('stock')
+            : FishType::query()->with('stock');
 
         if ($request->filled('search')) {
             $query->where('name', 'like', '%' . $request->search . '%');
@@ -38,27 +38,32 @@ class FishTypeController extends Controller
      * POST /api/owner/fish-types
      */
     public function store(Request $request): JsonResponse
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:50|unique:fish_types,name',
-            'price_per_kg' => 'required|numeric|min:1000',
+{
+    $validated = $request->validate([
+        'name'         => 'required|string|max:50|unique:fish_types,name',
+        'price_per_kg' => 'required|numeric|min:1000',
+    ]);
+
+    try {
+        $fishType = FishType::create($validated);
+
+        $fishType->stock()->create([
+            'current_stock_kg'   => 0,
+            'alert_threshold_kg' => 0,
         ]);
 
-        try {
-            $fishType = FishType::create($validated);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Jenis ikan berhasil ditambahkan',
-                'data' => ['fish_type' => $fishType],
-            ], 201);
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal menambahkan jenis ikan',
-            ], 500);
-        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Jenis ikan berhasil ditambahkan',
+            'data'    => ['fish_type' => $fishType->load('stock')],
+        ], 201);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Gagal menambahkan jenis ikan',
+        ], 500);
     }
+}
 
     /**
      * PUT /api/owner/fish-types/{id}
