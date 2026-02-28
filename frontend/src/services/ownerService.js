@@ -104,6 +104,34 @@ const ownerService = {
     return response.data;
   },
 
+  // ==================== FISH STOCK MANAGEMENT ====================
+
+  getFishStocks: async () => {
+    const response = await api.get("/owner/fish-stocks");
+    return response.data;
+  },
+
+  restockFish: async (fishTypeId, data) => {
+    const response = await api.post(
+      `/owner/fish-stocks/${fishTypeId}/restock`,
+      data,
+    );
+    return response.data;
+  },
+
+  updateFishThreshold: async (fishTypeId, data) => {
+    const response = await api.patch(
+      `/owner/fish-stocks/${fishTypeId}/threshold`,
+      data,
+    );
+    return response.data;
+  },
+
+  getFishRestockHistory: async (fishTypeId) => {
+    const response = await api.get(`/owner/fish-stocks/${fishTypeId}/history`);
+    return response.data;
+  },
+
   // ==================== EVENT MANAGEMENT ====================
 
   getOwnerEvents: async (filters = {}) => {
@@ -128,6 +156,23 @@ const ownerService = {
 
   toggleEventPublish: async (id, status) => {
     const response = await api.patch(`/owner/events/${id}/publish`, { status });
+    return response.data;
+  },
+
+  // ==================== VOUCHER MANAGEMENT ====================
+
+  getVouchers: async (filters = {}) => {
+    const response = await api.get("/owner/vouchers", { params: filters });
+    return response.data;
+  },
+
+  getVoucherConfigs: async () => {
+    const response = await api.get("/owner/voucher-configs");
+    return response.data;
+  },
+
+  updateVoucherConfigs: async (data) => {
+    const response = await api.put("/owner/voucher-configs", data);
     return response.data;
   },
 };

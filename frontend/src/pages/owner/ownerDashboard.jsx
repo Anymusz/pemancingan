@@ -9,6 +9,7 @@ import OwnerLeaderboard from "./OwnerLeaderboard";
 import MenuManagement from "./MenuManagement";
 import FishTypeManagement from "./FishTypeManagement";
 import EventManagement from "./EventManagement";
+import VoucherManagement from "./VoucherManagement";
 import { removeToken } from "@/utils/tokenManager";
 
 const OwnerDashboard = () => {
@@ -74,6 +75,12 @@ const OwnerDashboard = () => {
           >
             Event & Informasi
           </button>
+          <button
+            onClick={() => setActiveMenu("vouchers")}
+            disabled={activeMenu === "vouchers"}
+          >
+            Voucher
+          </button>
 
           {" | "}
 
@@ -98,6 +105,7 @@ const OwnerDashboard = () => {
         {activeMenu === "menus" && <MenuManagement />}
         {activeMenu === "fish-types" && <FishTypeManagement />}
         {activeMenu === "events" && <EventManagement />}
+        {activeMenu === "vouchers" && <VoucherManagement />}
       </main>
     </div>
   );

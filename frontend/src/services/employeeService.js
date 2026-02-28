@@ -98,6 +98,13 @@ const employeeService = {
     const response = await api.get("/employee/menus");
     return response.data;
   },
+
+  // ==================== VOUCHER ====================
+
+  getMemberVoucher: async (memberId) => {
+    const response = await api.get(`/employee/member-voucher/${memberId}`);
+    return response.data;
+  },
 };
 
 export default employeeService;

@@ -28,6 +28,7 @@ const Checkout = () => {
   const [tierUpgradeAlert, setTierUpgradeAlert] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
+  const [activeVoucher, setActiveVoucher] = useState(null);
 
   // Fish input state
   const [selectedFishId, setSelectedFishId] = useState("");
@@ -61,9 +62,11 @@ const Checkout = () => {
     [subtotalFish, subtotalPending, subtotalPenalty],
   );
 
+  const discountVoucher = activeVoucher ? Number(activeVoucher.amount) : 0;
+
   const finalAmount = useMemo(
-    () => totalAmount - discountTier,
-    [totalAmount, discountTier],
+    () => Math.max(0, totalAmount - discountTier - discountVoucher),
+    [totalAmount, discountTier, discountVoucher],
   );
 
   // Poin: penalty tidak ikut
@@ -87,6 +90,7 @@ const Checkout = () => {
     setPaymentMethod("");
     setNotes("");
     setSearchQuery("");
+    setActiveVoucher(null);
   };
 
   // ==================== FETCH ====================
@@ -130,6 +134,15 @@ const Checkout = () => {
     }
   };
 
+  const fetchMemberVoucher = async (memberId) => {
+    try {
+      const res = await employeeService.getMemberVoucher(memberId);
+      if (res.success) setActiveVoucher(res.data.voucher);
+    } catch {
+      setActiveVoucher(null);
+    }
+  };
+
   // ==================== ARRIVAL AUTOCOMPLETE ====================
   const filteredArrivals = useMemo(() => {
     if (!searchQuery.trim()) return arrivals;
@@ -155,13 +168,16 @@ const Checkout = () => {
     setShowDropdown(true);
   };
 
+  // [2] handlePickArrival dengan fetch voucher
   const handlePickArrival = (arrival) => {
     setSelectedArrival(arrival);
     setSearchQuery(arrival.name);
     setShowDropdown(false);
     setFishItems([]);
     setPenaltyItems([]);
+    setActiveVoucher(null); // reset dulu
     fetchPendingOrders(arrival.arrival_id);
+    fetchMemberVoucher(arrival.member_id); // fetch voucher
   };
 
   const handleSearchBlur = () => {
@@ -285,10 +301,16 @@ const Checkout = () => {
       };
 
       const res = await employeeService.checkout(payload);
+
       if (res.success) {
+        const voucherInfo =
+          res.data.transaction.discount_voucher > 0
+            ? ` | Voucher digunakan: Rp ${Number(res.data.transaction.discount_voucher).toLocaleString("id-ID")}`
+            : "";
         showToast(
-          `Checkout berhasil! Kode: ${res.data.transaction.transaction_code}`,
+          `Checkout berhasil! Kode: ${res.data.transaction.transaction_code}${voucherInfo}`,
         );
+
         if (res.data.tier_upgraded) {
           setTierUpgradeAlert(
             `Selamat! Tier member naik ke ${res.data.new_tier}!`,
@@ -553,6 +575,14 @@ const Checkout = () => {
           Diskon Tier ({selectedArrival?.discount_percentage ?? 0}% khusus
           ikan): - Rp {discountTier.toLocaleString("id-ID")}
         </p>
+        {/* [6] Info voucher aktif */}
+        {activeVoucher && (
+          <p style={{ color: "green" }}>
+            Voucher aktif: - Rp{" "}
+            {Number(activeVoucher.amount).toLocaleString("id-ID")} (akan
+            otomatis digunakan)
+          </p>
+        )}
         <p>
           Subtotal Pending Orders: Rp {subtotalPending.toLocaleString("id-ID")}
         </p>
