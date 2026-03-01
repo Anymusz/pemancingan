@@ -10,3 +10,5 @@ Artisan::command('inspire', function () {
 
 // Issue monthly vouchers on the 1st of each month at 00:01
 Schedule::command('vouchers:issue-monthly')->monthlyOn(1, '00:01');
+
+Schedule::command('members:process-downgrade')->dailyAt('00:05');
