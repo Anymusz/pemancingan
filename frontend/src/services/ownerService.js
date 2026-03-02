@@ -175,6 +175,51 @@ const ownerService = {
     const response = await api.put("/owner/voucher-configs", data);
     return response.data;
   },
+
+  // ==================== REPORTS ====================
+
+  getReportSummary: async (filters = {}) => {
+    const response = await api.get("/owner/reports/summary", {
+      params: filters,
+    });
+    return response.data;
+  },
+
+  getReportBreakdown: async (filters = {}) => {
+    const response = await api.get("/owner/reports/breakdown", {
+      params: filters,
+    });
+    return response.data;
+  },
+
+  getReportTransactions: async (filters = {}) => {
+    const response = await api.get("/owner/reports/transactions", {
+      params: filters,
+    });
+    return response.data;
+  },
+
+  getReportStockSummary: async (filters = {}) => {
+    const response = await api.get("/owner/reports/stock-summary", {
+      params: filters,
+    });
+    return response.data;
+  },
+
+  exportReportExcel: async (filters = {}) => {
+    const response = await api.get("/owner/reports/export", {
+      params: filters,
+      responseType: "blob",
+    });
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "laporan.xlsx");
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+  },
 };
 
 export default ownerService;

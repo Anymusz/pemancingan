@@ -10,6 +10,7 @@ import MenuManagement from "./MenuManagement";
 import FishTypeManagement from "./FishTypeManagement";
 import EventManagement from "./EventManagement";
 import VoucherManagement from "./VoucherManagement";
+import FinancialReport from "./FinancialReport";
 import { removeToken } from "@/utils/tokenManager";
 
 const OwnerDashboard = () => {
@@ -81,6 +82,12 @@ const OwnerDashboard = () => {
           >
             Voucher
           </button>
+          <button
+            onClick={() => setActiveMenu("financial-report")}
+            disabled={activeMenu === "financial-report"}
+          >
+            Laporan Keuangan
+          </button>
 
           {" | "}
 
@@ -106,6 +113,7 @@ const OwnerDashboard = () => {
         {activeMenu === "fish-types" && <FishTypeManagement />}
         {activeMenu === "events" && <EventManagement />}
         {activeMenu === "vouchers" && <VoucherManagement />}
+        {activeMenu === "financial-report" && <FinancialReport />}
       </main>
     </div>
   );
