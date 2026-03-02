@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Models\Transaction;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +13,66 @@ use Illuminate\Support\Facades\Log;
 
 class MemberController extends Controller
 {
+    /**
+     * GET /api/member/transactions
+     */
+    public function getTransactionsHistory(Request $request): JsonResponse
+    {
+        $user = Auth::user();
+
+        if (!$user->member) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Member profile tidak ditemukan.',
+            ], 404);
+        }
+
+        $memberId = $user->member->id;
+        $perPage  = min((int) $request->input('per_page', 10), 50);
+
+        $query = Transaction::with('items')
+            ->whereHas('arrival', fn ($q) => $q->where('member_id', $memberId))
+            ->orderByDesc('transaction_date');
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('transaction_date', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('transaction_date', '<=', $request->end_date);
+        }
+
+        $paginator = $query->paginate($perPage);
+
+        $data = collect($paginator->items())->map(fn (Transaction $trx) => [
+            'transaction_code' => $trx->transaction_code,
+            'transaction_date' => $trx->transaction_date->toDateTimeString(),
+            'payment_method'   => $trx->payment_method,
+            'total_amount'     => (float) $trx->total_amount,
+            'discount_tier'    => (float) $trx->discount_tier,
+            'discount_voucher' => (float) $trx->discount_voucher,
+            'final_amount'     => (float) $trx->final_amount,
+            'points_earned'    => $trx->points_earned,
+            'items'            => $trx->items->map(fn ($item) => [
+                'item_type'           => $item->item_type,
+                'item_name_snapshot'  => $item->item_name_snapshot,
+                'quantity'            => $item->quantity,
+                'unit_price_snapshot' => $item->unit_price_snapshot,
+                'subtotal'            => $item->subtotal,
+            ])->toArray(),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'data'    => $data,
+            'meta'    => [
+                'current_page' => $paginator->currentPage(),
+                'last_page'    => $paginator->lastPage(),
+                'total'        => $paginator->total(),
+                'per_page'     => $paginator->perPage(),
+            ],
+        ]);
+    }
+
     /**
      * GET /api/member/profile
      */

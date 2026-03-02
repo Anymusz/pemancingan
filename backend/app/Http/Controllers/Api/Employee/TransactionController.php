@@ -23,9 +23,9 @@ class TransactionController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $limit = min($request->input('limit', 20), 100);
+        $perPage = min((int) $request->input('per_page', 10), 50);
 
-        $query = Transaction::with(['arrival.member.user', 'processedBy'])
+        $query = Transaction::with(['arrival.member.user', 'processedBy', 'items'])
             ->orderBy('transaction_date', 'desc');
 
         if ($request->filled('date_from')) {
@@ -37,32 +37,43 @@ class TransactionController extends Controller
         if ($request->filled('payment_method')) {
             $query->where('payment_method', $request->payment_method);
         }
-        if ($request->filled('member_id')) {
-            $query->whereHas('arrival', function ($q) use ($request) {
-                $q->where('member_id', $request->member_id);
-            });
-        }
         if ($request->filled('transaction_code')) {
             $query->where('transaction_code', 'like', '%' . $request->transaction_code . '%');
         }
 
-        $total = $query->count();
-        $transactions = $query->limit($limit)->get()->map(fn($trx) => [
-            'id' => $trx->id,
-            'transaction_code' => $trx->transaction_code,
-            'member_name' => $trx->arrival?->member?->user?->name ?? '-',
-            'member_code' => $trx->arrival?->member?->member_id ?? '-',
-            'final_amount' => $trx->final_amount,
-            'payment_method' => $trx->payment_method,
-            'transaction_date' => $trx->transaction_date,
+        $paginator = $query->paginate($perPage);
+
+        $data = collect($paginator->items())->map(fn (Transaction $trx) => [
+            'id'                => $trx->id,
+            'transaction_code'  => $trx->transaction_code,
+            'member_name'       => $trx->arrival?->member?->user?->name ?? '-',
+            'member_code'       => $trx->arrival?->member?->member_id ?? '-',
+            'total_amount'      => (float) $trx->total_amount,
+            'discount_tier'     => (float) $trx->discount_tier,
+            'discount_voucher'  => (float) $trx->discount_voucher,
+            'final_amount'      => (float) $trx->final_amount,
+            'tips'              => (float) $trx->tips,
+            'payment_method'    => $trx->payment_method,
+            'points_earned'     => $trx->points_earned,
+            'transaction_date'  => $trx->transaction_date,
+            'processed_by_name' => $trx->processedBy?->name ?? '-',
+            'items'             => $trx->items->map(fn ($item) => [
+                'item_type'           => $item->item_type,
+                'item_name_snapshot'  => $item->item_name_snapshot,
+                'quantity'            => $item->quantity,
+                'unit_price_snapshot' => $item->unit_price_snapshot,
+                'subtotal'            => $item->subtotal,
+            ])->toArray(),
         ]);
 
         return response()->json([
             'success' => true,
-            'data' => [
-                'transactions' => $transactions,
-                'total' => $total,
-                'showing' => $transactions->count(),
+            'data'    => $data,
+            'meta'    => [
+                'current_page' => $paginator->currentPage(),
+                'last_page'    => $paginator->lastPage(),
+                'total'        => $paginator->total(),
+                'per_page'     => $paginator->perPage(),
             ],
         ]);
     }

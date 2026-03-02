@@ -5,7 +5,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\FishTypeController;
 use App\Http\Controllers\Api\MemberTierController;
-use App\Http\Controllers\Api\MemberController;
+use App\Http\Controllers\Api\Member\MemberController;
 use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\Owner\MemberValidationController;
 use App\Http\Controllers\Api\Owner\LeaderboardController;
@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('member')->middleware('role:member')->group(function () {
         Route::get('/profile', [MemberController::class, 'getProfile']);
+        Route::get('/transactions', [MemberController::class, 'getTransactionsHistory']);
         Route::post('/orders', [OrderController::class, 'store']);
         Route::get('/orders', [OrderController::class, 'getMyOrders']);
     });
