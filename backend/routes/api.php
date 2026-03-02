@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\Member\OrderController;
 use App\Http\Controllers\Api\Owner\FishStockController as OwnerFishStockController;
 use App\Http\Controllers\Api\Owner\VoucherController as OwnerVoucherController;
 use App\Http\Controllers\Api\Owner\VoucherConfigController as OwnerVoucherConfigController;
+use App\Http\Controllers\Api\Owner\ReportController as OwnerReportController;
 
 // ========================================
 // PUBLIC ROUTES
@@ -95,6 +96,13 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     // Voucher Config
     Route::get('/voucher-configs', [OwnerVoucherConfigController::class, 'index']);
     Route::put('/voucher-configs', [OwnerVoucherConfigController::class, 'update']);
+
+    // Reports
+    Route::get('/reports/summary', [OwnerReportController::class, 'summary']);
+    Route::get('/reports/breakdown', [OwnerReportController::class, 'breakdown']);
+    Route::get('/reports/transactions', [OwnerReportController::class, 'transactions']);
+    Route::get('/reports/export', [OwnerReportController::class, 'export']);
+    Route::get('/reports/stock-summary', [OwnerReportController::class, 'stockSummary']);
 });
 
 // ========================================
