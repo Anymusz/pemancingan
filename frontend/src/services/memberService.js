@@ -26,6 +26,11 @@ const memberService = {
     const response = await api.get("/member/orders");
     return response.data;
   },
+
+  getTransactionHistory: async (params = {}) => {
+    const response = await api.get("/member/transactions", { params });
+    return response.data;
+  },
 };
 
 export default memberService;

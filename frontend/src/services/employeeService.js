@@ -56,14 +56,13 @@ const employeeService = {
   // ==================== TRANSACTION ====================
 
   checkout: async (data) => {
-    // data: { arrival_id, fish_items, penalty_items, payment_method, tips, notes }
     const response = await api.post("/employee/checkout", data);
     return response.data;
   },
 
-  getTransactions: async (filters = {}) => {
+  getTransactions: async (params = {}) => {
     const response = await api.get("/employee/transactions", {
-      params: filters,
+      params,
     });
     return response.data;
   },

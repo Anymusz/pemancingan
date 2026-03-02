@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, Fragment } from "react";
-import employeeService from "../../services/employeeService";
+import memberService from "../../services/memberService";
 
 const formatCurrency = (val) =>
   `Rp ${Number(val || 0).toLocaleString("id-ID")}`;
@@ -28,105 +28,44 @@ const PAYMENT_LABELS = {
   qris: "QRIS",
 };
 
-const PAYMENT_OPTIONS = [
-  { value: "", label: "Semua" },
-  { value: "cash", label: "Cash" },
-  { value: "transfer", label: "Transfer" },
-  { value: "qris", label: "QRIS" },
-];
-
 const TransactionHistory = () => {
-  // ==================== STATE ====================
   const [transactions, setTransactions] = useState([]);
   const [meta, setMeta] = useState(null);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [expandedRow, setExpandedRow] = useState(null);
 
-  // Filter state (draft — applied on "Terapkan")
-  const [filterDraft, setFilterDraft] = useState({
-    date_from: "",
-    date_to: "",
-    transaction_code: "",
-    payment_method: "",
-  });
-  const [appliedFilters, setAppliedFilters] = useState({});
-  const [dateError, setDateError] = useState("");
-
-  // ==================== FETCH ====================
-
-  const fetchTransactions = useCallback(
-    async (targetPage = 1, filters = appliedFilters) => {
-      setLoading(true);
-      try {
-        const params = { page: targetPage, per_page: 10 };
-        if (filters.date_from) params.date_from = filters.date_from;
-        if (filters.date_to) params.date_to = filters.date_to;
-        if (filters.transaction_code)
-          params.transaction_code = filters.transaction_code;
-        if (filters.payment_method)
-          params.payment_method = filters.payment_method;
-
-        const res = await employeeService.getTransactions(params);
-        if (res.success) {
-          setTransactions(res.data || []);
-          setMeta(res.meta || null);
-        }
-      } catch (err) {
-        console.error("Gagal memuat riwayat transaksi:", err);
-      } finally {
-        setLoading(false);
+  const fetchTransactions = useCallback(async (targetPage = 1) => {
+    setLoading(true);
+    try {
+      const res = await memberService.getTransactionHistory({
+        page: targetPage,
+        per_page: 10,
+      });
+      if (res.success) {
+        setTransactions(res.data || []);
+        setMeta(res.meta || null);
       }
-    },
-    [appliedFilters],
-  );
+    } catch (err) {
+      console.error("Gagal memuat riwayat transaksi:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    fetchTransactions(1, appliedFilters);
-  }, [appliedFilters, fetchTransactions]);
-
-  // ==================== HANDLERS ====================
-
-  const handleApplyFilter = () => {
-    // Validate date range
-    if (
-      filterDraft.date_from &&
-      filterDraft.date_to &&
-      filterDraft.date_to < filterDraft.date_from
-    ) {
-      setDateError("Tanggal akhir tidak boleh sebelum tanggal awal");
-      return;
-    }
-    setDateError("");
-    setPage(1);
-    setExpandedRow(null);
-    setAppliedFilters({ ...filterDraft });
-  };
-
-  const handleResetFilter = () => {
-    setDateError("");
-    setFilterDraft({
-      date_from: "",
-      date_to: "",
-      transaction_code: "",
-      payment_method: "",
-    });
-    setPage(1);
-    setExpandedRow(null);
-    setAppliedFilters({});
-  };
+    fetchTransactions(1);
+  }, [fetchTransactions]);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
     setExpandedRow(null);
-    fetchTransactions(newPage, appliedFilters);
+    fetchTransactions(newPage);
   };
 
   const handleRowClick = (code) => {
     setExpandedRow((prev) => (prev === code ? null : code));
   };
-
-  // ==================== RENDER ====================
 
   return (
     <div>
@@ -134,93 +73,13 @@ const TransactionHistory = () => {
         Riwayat Transaksi
       </h2>
 
-      {/* Filter Section */}
-      <div className="mb-4 p-4 bg-white border border-gray-200 rounded-lg">
-        <div className="flex flex-wrap items-end gap-3">
-          <div>
-            <label className="block text-xs text-gray-500 mb-1">Dari</label>
-            <input
-              type="date"
-              value={filterDraft.date_from}
-              onChange={(e) =>
-                setFilterDraft((d) => ({ ...d, date_from: e.target.value }))
-              }
-              className="px-3 py-2 text-sm border border-gray-300 rounded-md"
-            />
-          </div>
-          <div>
-            <label className="block text-xs text-gray-500 mb-1">Sampai</label>
-            <input
-              type="date"
-              value={filterDraft.date_to}
-              onChange={(e) =>
-                setFilterDraft((d) => ({ ...d, date_to: e.target.value }))
-              }
-              className="px-3 py-2 text-sm border border-gray-300 rounded-md"
-            />
-          </div>
-          <div>
-            <label className="block text-xs text-gray-500 mb-1">
-              Kode Transaksi
-            </label>
-            <input
-              type="text"
-              placeholder="TRX-..."
-              value={filterDraft.transaction_code}
-              onChange={(e) =>
-                setFilterDraft((d) => ({
-                  ...d,
-                  transaction_code: e.target.value,
-                }))
-              }
-              className="px-3 py-2 text-sm border border-gray-300 rounded-md"
-            />
-          </div>
-          <div>
-            <label className="block text-xs text-gray-500 mb-1">
-              Metode Bayar
-            </label>
-            <select
-              value={filterDraft.payment_method}
-              onChange={(e) =>
-                setFilterDraft((d) => ({
-                  ...d,
-                  payment_method: e.target.value,
-                }))
-              }
-              className="px-3 py-2 text-sm border border-gray-300 rounded-md"
-            >
-              {PAYMENT_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="flex gap-2">
-            <button
-              onClick={handleApplyFilter}
-              className="px-4 py-2 text-sm bg-sky-500 text-white rounded-md hover:bg-sky-600 transition-colors"
-            >
-              Terapkan
-            </button>
-            <button
-              onClick={handleResetFilter}
-              className="px-4 py-2 text-sm bg-white text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-            >
-              Reset
-            </button>
-          </div>
-        </div>
-        {dateError && <p className="text-red-500 text-xs mt-2">{dateError}</p>}
-      </div>
-
-      {/* Table */}
       <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
         {loading ? (
           <p className="text-gray-500 text-sm p-4">Memuat transaksi...</p>
         ) : transactions.length === 0 ? (
-          <p className="text-gray-400 text-sm p-4">Tidak ada transaksi.</p>
+          <p className="text-gray-400 text-sm p-4">
+            Belum ada riwayat transaksi.
+          </p>
         ) : (
           <>
             <div className="overflow-x-auto">
@@ -232,9 +91,6 @@ const TransactionHistory = () => {
                     </th>
                     <th className="text-left px-4 py-3 text-gray-500 font-medium">
                       No. Transaksi
-                    </th>
-                    <th className="text-left px-4 py-3 text-gray-500 font-medium">
-                      Nama Member
                     </th>
                     <th className="text-right px-4 py-3 text-gray-500 font-medium">
                       Total Bayar
@@ -249,9 +105,9 @@ const TransactionHistory = () => {
                 </thead>
                 <tbody>
                   {transactions.map((trx) => (
-                    <Fragment key={trx.id}>
+                    <Fragment key={trx.transaction_code}>
                       <tr
-                        onClick={() => handleRowClick(trx.id)}
+                        onClick={() => handleRowClick(trx.transaction_code)}
                         className="border-b border-gray-100 hover:bg-sky-50 cursor-pointer transition-colors"
                       >
                         <td className="px-4 py-3 text-gray-700">
@@ -259,9 +115,6 @@ const TransactionHistory = () => {
                         </td>
                         <td className="px-4 py-3 text-gray-700 font-mono text-xs">
                           {trx.transaction_code}
-                        </td>
-                        <td className="px-4 py-3 text-gray-700">
-                          {trx.member_name}
                         </td>
                         <td className="px-4 py-3 text-right text-gray-700">
                           {formatCurrency(trx.final_amount)}
@@ -276,9 +129,9 @@ const TransactionHistory = () => {
                       </tr>
 
                       {/* Expanded Row */}
-                      {expandedRow === trx.id && (
+                      {expandedRow === trx.transaction_code && (
                         <tr>
-                          <td colSpan={6} className="bg-gray-50 px-6 py-4">
+                          <td colSpan={5} className="bg-gray-50 px-6 py-4">
                             {/* Bagian 1: Daftar Item */}
                             <table className="w-full text-sm mb-3">
                               <thead>
@@ -331,10 +184,6 @@ const TransactionHistory = () => {
 
                             {/* Bagian 2: Ringkasan Pembayaran */}
                             <div className="border-t border-gray-200 pt-2 space-y-1 text-sm">
-                              <div className="flex justify-between text-gray-600">
-                                <span>Subtotal</span>
-                                <span>{formatCurrency(trx.total_amount)}</span>
-                              </div>
                               {trx.discount_tier > 0 && (
                                 <div className="flex justify-between text-gray-600">
                                   <span>Diskon Tier</span>
@@ -355,15 +204,9 @@ const TransactionHistory = () => {
                                 <span>Total Bayar</span>
                                 <span>{formatCurrency(trx.final_amount)}</span>
                               </div>
-                              {trx.tips > 0 && (
-                                <div className="flex justify-between text-gray-600">
-                                  <span>Tips</span>
-                                  <span>{formatCurrency(trx.tips)}</span>
-                                </div>
-                              )}
-                              <div className="flex justify-between text-gray-500 text-xs pt-1">
-                                <span>Diproses Oleh</span>
-                                <span>{trx.processed_by_name || "-"}</span>
+                              <div className="flex justify-between text-green-600">
+                                <span>Poin Diperoleh</span>
+                                <span>+{trx.points_earned ?? 0} poin</span>
                               </div>
                             </div>
                           </td>
@@ -379,8 +222,7 @@ const TransactionHistory = () => {
             {meta && meta.last_page > 1 && (
               <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200">
                 <p className="text-sm text-gray-500">
-                  Halaman {meta.current_page} dari {meta.last_page} (
-                  {meta.total} transaksi)
+                  Halaman {meta.current_page} dari {meta.last_page}
                 </p>
                 <div className="flex gap-2">
                   <button

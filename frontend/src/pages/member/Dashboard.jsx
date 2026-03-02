@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import memberService from "../../services/memberService";
 import { useToast } from "../../hooks/useToast";
 import Order from "./Order";
+import TransactionHistory from "./TransactionHistory";
 
 const Dashboard = () => {
   const [profile, setProfile] = useState(null);
@@ -145,8 +146,11 @@ const Dashboard = () => {
             >
               Lihat Leaderboard
             </button>
-            <button disabled style={{ marginRight: "10px" }}>
-              Riwayat Transaksi (Coming Soon)
+            <button
+              onClick={() => setActiveTab("history")}
+              style={{ marginRight: "10px" }}
+            >
+              Riwayat Transaksi
             </button>
             <button onClick={fetchProfile}>Refresh Profile</button>
           </div>
@@ -159,6 +163,15 @@ const Dashboard = () => {
             ← Kembali ke Dashboard
           </button>
           <Order />
+        </div>
+      )}
+
+      {activeTab === "history" && (
+        <div>
+          <button onClick={() => setActiveTab("home")}>
+            ← Kembali ke Dashboard
+          </button>
+          <TransactionHistory />
         </div>
       )}
     </div>
