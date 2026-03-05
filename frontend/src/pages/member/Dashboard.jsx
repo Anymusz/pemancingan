@@ -1,20 +1,60 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import memberService from "../../services/memberService";
+import notificationService from "../../services/notificationService";
 import { useToast } from "../../hooks/useToast";
 import Order from "./Order";
 import TransactionHistory from "./TransactionHistory";
+
+const MONTHS = [
+  "",
+  "Januari",
+  "Februari",
+  "Maret",
+  "April",
+  "Mei",
+  "Juni",
+  "Juli",
+  "Agustus",
+  "September",
+  "Oktober",
+  "November",
+  "Desember",
+];
 
 const Dashboard = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [vouchers, setVouchers] = useState([]);
+  const [vouchersLoading, setVouchersLoading] = useState(true);
   const { showToast } = useToast();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("home");
+  const [activeTab, setActiveTab] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("tab") || "home";
+  });
 
   useEffect(() => {
     fetchProfile();
+    fetchVouchers();
+  }, []);
+
+  // Fetch unread count on mount + polling every 30s
+  useEffect(() => {
+    const fetchUnreadCount = async () => {
+      try {
+        const res = await notificationService.getUnreadCount();
+        setUnreadCount(res.data?.unread_count ?? 0);
+      } catch {
+        // silent fail
+      }
+    };
+
+    fetchUnreadCount();
+    const interval = setInterval(fetchUnreadCount, 30000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchProfile = async () => {
@@ -38,6 +78,18 @@ const Dashboard = () => {
     }
   };
 
+  const fetchVouchers = async () => {
+    try {
+      setVouchersLoading(true);
+      const res = await memberService.getVouchers();
+      setVouchers(res.data?.vouchers ?? []);
+    } catch {
+      // silent fail
+    } finally {
+      setVouchersLoading(false);
+    }
+  };
+
   if (loading) return <div>Loading profile...</div>;
 
   if (error) {
@@ -55,6 +107,53 @@ const Dashboard = () => {
 
   return (
     <div style={{ padding: "20px" }}>
+      {/* Header with notification bell */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginBottom: "16px",
+        }}
+      >
+        <button
+          onClick={() => navigate("/notifications")}
+          style={{
+            position: "relative",
+            background: "none",
+            border: "none",
+            fontSize: "24px",
+            cursor: "pointer",
+            padding: "4px",
+          }}
+          title="Notifikasi"
+        >
+          🔔
+          {unreadCount > 0 && (
+            <span
+              style={{
+                position: "absolute",
+                top: "-4px",
+                right: "-4px",
+                background: "#EF4444",
+                color: "white",
+                fontSize: "11px",
+                fontWeight: "bold",
+                borderRadius: "9999px",
+                minWidth: "20px",
+                height: "20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "0 5px",
+                lineHeight: "1",
+              }}
+            >
+              {unreadCount < 100 ? unreadCount : "99+"}
+            </span>
+          )}
+        </button>
+      </div>
+
       {activeTab === "home" && (
         <div>
           <h1>Selamat datang, {profile.user.name}</h1>
@@ -129,6 +228,61 @@ const Dashboard = () => {
                 ? `#${profile.leaderboard.rank}`
                 : "Belum masuk peringkat"}
             </p>
+          </div>
+
+          {/* Voucher Aktif Section */}
+          <div
+            style={{
+              border: "1px solid #ccc",
+              padding: "20px",
+              marginBottom: "20px",
+            }}
+          >
+            <h2>🎟️ Voucher Aktif</h2>
+            {vouchersLoading ? (
+              <p style={{ color: "#888", fontSize: "14px" }}>
+                Memuat voucher...
+              </p>
+            ) : vouchers.length === 0 ? (
+              <p style={{ color: "#888", fontSize: "14px" }}>
+                Anda belum memiliki voucher aktif.
+              </p>
+            ) : (
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+                  gap: "12px",
+                }}
+              >
+                {vouchers.map((voucher) => (
+                  <div
+                    key={voucher.id}
+                    style={{
+                      border: "1px solid #d1d5db",
+                      borderRadius: "8px",
+                      padding: "16px",
+                      background: "#f9fafb",
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                        color: "#059669",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      Rp {Number(voucher.amount).toLocaleString("id-ID")}
+                    </p>
+                    <p style={{ fontSize: "13px", color: "#6b7280" }}>
+                      Periode: {MONTHS[voucher.period_month]}{" "}
+                      {voucher.period_year}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Quick Links */}

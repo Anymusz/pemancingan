@@ -122,7 +122,7 @@ import LandingPage from "@/pages/landing/LandingPage";
 import NotFound from "@/pages/NotFound";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
-import OwnerDashboard from "@/pages/owner/OwnerDashboard";
+import OwnerDashboard from "@/pages/owner/ownerDashboard";
 
 import ProtectedRoute from "@/routes/ProtectedRoute";
 
@@ -135,6 +135,7 @@ import { ToastProvider } from "@/contexts/ToastContext";
 import MemberDashboard from "./pages/member/Dashboard";
 import LeaderboardPublic from "./pages/LeaderboardPublic";
 import EmployeeDashboard from "@/pages/employee/EmployeeDashboard";
+import Notifications from "@/pages/Notifications";
 
 // ===============================
 // Layout Wrapper
@@ -205,6 +206,16 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={["employee"]}>
                   <EmployeeDashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Notifications (all roles) */}
+            <Route
+              path="/notifications"
+              element={
+                <ProtectedRoute allowedRoles={["owner", "employee", "member"]}>
+                  <Notifications />
                 </ProtectedRoute>
               }
             />

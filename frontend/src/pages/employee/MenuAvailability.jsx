@@ -6,6 +6,8 @@ export default function MenuAvailability() {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState({});
   const [toast, setToast] = useState(null);
+  const [fishStocks, setFishStocks] = useState([]);
+  const [fishStocksLoading, setFishStocksLoading] = useState(true);
 
   const showToast = (message, type = "error") => {
     setToast({ message, type });
@@ -23,7 +25,20 @@ export default function MenuAvailability() {
         setLoading(false);
       }
     };
+
+    const fetchFishStocks = async () => {
+      try {
+        const res = await employeeService.getFishStocks();
+        setFishStocks(res.data?.fish_stocks ?? []);
+      } catch (err) {
+        console.error("Gagal memuat stok ikan:", err);
+      } finally {
+        setFishStocksLoading(false);
+      }
+    };
+
     fetchMenus();
+    fetchFishStocks();
   }, []);
 
   const handleToggle = async (menuId) => {
@@ -111,6 +126,50 @@ export default function MenuAvailability() {
           </table>
         </div>
       )}
+
+      {/* Stok Ikan Section */}
+      <div className="mt-10">
+        <h2 className="text-lg font-semibold text-gray-800 mb-4">
+          📦 Stok Ikan
+        </h2>
+
+        {fishStocksLoading ? (
+          <p className="text-gray-500 text-sm">Memuat data stok ikan...</p>
+        ) : fishStocks.length === 0 ? (
+          <p className="text-gray-500 text-sm">Tidak ada data stok ikan.</p>
+        ) : (
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
+            <table className="min-w-full text-sm">
+              <thead className="bg-gray-50 text-gray-600 uppercase text-xs">
+                <tr>
+                  <th className="px-4 py-3 text-left">Nama Ikan</th>
+                  <th className="px-4 py-3 text-left">Stok Saat Ini (kg)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 bg-white">
+                {fishStocks.map((fish) => (
+                  <tr key={fish.id} className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-800">
+                      {fish.name}
+                    </td>
+                    <td className="px-4 py-3 text-gray-600">
+                      {Number(fish.current_stock_kg).toLocaleString("id-ID", {
+                        minimumFractionDigits: 1,
+                      })}{" "}
+                      kg
+                      {fish.is_below_threshold && (
+                        <span className="ml-2 text-red-600 font-semibold text-xs">
+                          Stok Rendah
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

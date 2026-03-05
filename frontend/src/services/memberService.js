@@ -31,6 +31,11 @@ const memberService = {
     const response = await api.get("/member/transactions", { params });
     return response.data;
   },
+
+  getVouchers: async () => {
+    const response = await api.get("/member/vouchers");
+    return response.data;
+  },
 };
 
 export default memberService;

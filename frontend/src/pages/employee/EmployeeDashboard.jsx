@@ -1,6 +1,6 @@
 // File: src/pages/employee/EmployeeDashboard.jsx
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CheckIn from "./CheckIn";
 import TodayArrivals from "./TodayArrivals";
@@ -10,12 +10,34 @@ import AddOrder from "./AddOrder";
 import PendingOrder from "./PendingOrder";
 import MenuAvailability from "./MenuAvailability";
 import { removeToken, removeUser } from "@/utils/tokenManager";
+import notificationService from "@/services/notificationService";
 
 const EmployeeDashboard = () => {
-  const [activeMenu, setActiveMenu] = useState("checkin");
-  const [mountedTabs, setMountedTabs] = useState(new Set(["checkin"]));
+  const initialTab = (() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("tab") || "checkin";
+  })();
+  const [activeMenu, setActiveMenu] = useState(initialTab);
+  const [mountedTabs, setMountedTabs] = useState(new Set([initialTab]));
   const [preselectArrivalId, setPreselectArrivalId] = useState(null);
+  const [unreadCount, setUnreadCount] = useState(0);
   const navigate = useNavigate();
+
+  // Fetch unread count on mount + polling every 30s
+  useEffect(() => {
+    const fetchUnreadCount = async () => {
+      try {
+        const res = await notificationService.getUnreadCount();
+        setUnreadCount(res.data?.unread_count ?? 0);
+      } catch (err) {
+        console.error("Gagal memuat stok ikan:", err);
+      }
+    };
+
+    fetchUnreadCount();
+    const interval = setInterval(fetchUnreadCount, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleLogout = () => {
     removeToken();
@@ -42,7 +64,58 @@ const EmployeeDashboard = () => {
           marginBottom: "20px",
         }}
       >
-        <h1>Employee Dashboard</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <h1>Employee Dashboard</h1>
+
+          {/* Notification Bell */}
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <button
+              onClick={() => navigate("/notifications")}
+              style={{
+                position: "relative",
+                background: "none",
+                border: "none",
+                fontSize: "24px",
+                cursor: "pointer",
+                padding: "4px",
+              }}
+              title="Notifikasi"
+            >
+              🔔
+              {unreadCount > 0 && (
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "-4px",
+                    right: "-4px",
+                    background: "#EF4444",
+                    color: "white",
+                    fontSize: "11px",
+                    fontWeight: "bold",
+                    borderRadius: "9999px",
+                    minWidth: "20px",
+                    height: "20px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "0 5px",
+                    lineHeight: "1",
+                  }}
+                >
+                  {unreadCount < 100 ? unreadCount : "99+"}
+                </span>
+              )}
+            </button>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        </div>
+
         <nav>
           <button
             onClick={() => handleMenuChange("pendingorder")}
@@ -86,8 +159,6 @@ const EmployeeDashboard = () => {
           >
             Riwayat Transaksi
           </button>
-          {" | "}
-          <button onClick={handleLogout}>Logout</button>
         </nav>
       </header>
 

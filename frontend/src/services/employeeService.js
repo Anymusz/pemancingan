@@ -104,6 +104,13 @@ const employeeService = {
     const response = await api.get(`/employee/member-voucher/${memberId}`);
     return response.data;
   },
+
+  // ==================== NOTIFICATION ====================
+
+  getFishStocks: async () => {
+    const response = await api.get("/employee/fish-stocks");
+    return response.data;
+  },
 };
 
 export default employeeService;
