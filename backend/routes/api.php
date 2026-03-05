@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\FishTypeController;
 use App\Http\Controllers\Api\MemberTierController;
 use App\Http\Controllers\Api\Member\MemberController;
 use App\Http\Controllers\Api\MenuController;
+use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Owner\MemberValidationController;
 use App\Http\Controllers\Api\Owner\LeaderboardController;
 use App\Http\Controllers\Api\Owner\MenuController as OwnerMenuController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Api\Employee\ArrivalController;
 use App\Http\Controllers\Api\Employee\TransactionController;
 use App\Http\Controllers\Api\Employee\PendingOrderController;
 use App\Http\Controllers\Api\Employee\MenuController as EmployeeMenuController;
+use App\Http\Controllers\Api\Employee\FishStockController as EmployeeFishStockController;
 use App\Http\Controllers\Api\Member\OrderController;
 use App\Http\Controllers\Api\Owner\FishStockController as OwnerFishStockController;
 use App\Http\Controllers\Api\Owner\VoucherController as OwnerVoucherController;
@@ -41,9 +43,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
 
+    // Notifications (semua role)
+    Route::prefix('notifications')->group(function () {
+        Route::get('/', [NotificationController::class, 'index']);
+        Route::get('/unread-count', [NotificationController::class, 'unreadCount']);
+        Route::patch('/read-all', [NotificationController::class, 'markAllAsRead']);
+        Route::patch('/{id}/read', [NotificationController::class, 'markAsRead']);
+    });
+
     Route::prefix('member')->middleware('role:member')->group(function () {
         Route::get('/profile', [MemberController::class, 'getProfile']);
         Route::get('/transactions', [MemberController::class, 'getTransactionsHistory']);
+        Route::get('/vouchers', [MemberController::class, 'getVouchers']);
         Route::post('/orders', [OrderController::class, 'store']);
         Route::get('/orders', [OrderController::class, 'getMyOrders']);
     });
@@ -134,4 +145,7 @@ Route::prefix('employee')->middleware(['auth:sanctum', 'role:employee'])->group(
 
     // Voucher
     Route::get('/member-voucher/{memberId}', [TransactionController::class, 'getMemberVoucher']);
+
+    // Fish Stocks
+    Route::get('/fish-stocks', [EmployeeFishStockController::class, 'index']);
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Owner;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Services\NotificationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -157,6 +158,17 @@ class EventController extends Controller
         }
 
         $event->update(['status' => $request->status]);
+
+        // Notifikasi: Event Published → kirim ke semua member aktif
+        if ($request->status === 'published') {
+            NotificationService::sendToRole(
+                'member',
+                'event_published',
+                'Event Baru!',
+                "Event \"{$event->title}\" telah dipublikasikan. Lihat detailnya sekarang!",
+                ['event_id' => $event->id, 'event_title' => $event->title]
+            );
+        }
 
         return response()->json([
             'success' => true,

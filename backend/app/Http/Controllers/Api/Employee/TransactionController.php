@@ -10,6 +10,7 @@ use App\Models\FishStock;
 use App\Models\PendingOrder;
 use App\Models\Transaction;
 use App\Models\TransactionItem;
+use App\Services\NotificationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -218,7 +219,10 @@ class TransactionController extends Controller
             $subtotalFish  += $subtotal;
             $totalFishWeight += $item['quantity'];
 
-            $fishStockUpdates[$fishType->id] = ($fishStockUpdates[$fishType->id] ?? 0) + $item['quantity'];
+            $fishStockUpdates[$fishType->id] = [
+                'qty'  => ($fishStockUpdates[$fishType->id]['qty'] ?? 0) + $item['quantity'],
+                'name' => $fishType->name,
+            ];
 
             $transactionItems[] = [
                 'item_type'          => 'fish',
@@ -312,7 +316,10 @@ class TransactionController extends Controller
         }
 
         // Step 10: Validasi & update stok ikan via tabel fish_stocks
-        foreach ($fishStockUpdates as $fishTypeId => $qty) {
+        foreach ($fishStockUpdates as $fishTypeId => $stockData) {
+            $qty          = $stockData['qty'];
+            $fishTypeName = $stockData['name'];
+
             $fishStock = FishStock::where('fish_type_id', $fishTypeId)
                 ->lockForUpdate()
                 ->first();
@@ -321,20 +328,34 @@ class TransactionController extends Controller
                 DB::rollBack();
                 return response()->json([
                     'success' => false,
-                    'message' => "Data stok untuk ikan ID {$fishTypeId} tidak ditemukan",
+                    'message' => "Data stok untuk ikan {$fishTypeName} tidak ditemukan",
                 ], 422);
             }
 
             if ($fishStock->current_stock_kg < $qty) {
                 DB::rollBack();
-                $fishType = FishType::find($fishTypeId);
                 return response()->json([
                     'success' => false,
-                    'message' => "Stok ikan {$fishType->name} tidak mencukupi. Tersedia: {$fishStock->current_stock_kg} kg, dibutuhkan: {$qty} kg",
+                    'message' => "Stok ikan {$fishTypeName} tidak mencukupi. Tersedia: {$fishStock->current_stock_kg} kg, dibutuhkan: {$qty} kg",
                 ], 422);
             }
 
             $fishStock->decrement('current_stock_kg', $qty);
+
+            // Notifikasi: Low Stock Alert — hanya saat transisi melewati threshold
+            $stockBefore = $fishStock->current_stock_kg + $qty; // stok sebelum decrement
+            $stockAfter  = $fishStock->current_stock_kg;         // stok setelah decrement
+            $threshold   = $fishStock->alert_threshold_kg;
+
+            if ($threshold > 0 && $stockBefore > $threshold && $stockAfter <= $threshold) {
+                NotificationService::sendToRoles(
+                    ['owner', 'employee'],
+                    'low_stock',
+                    'Stok Ikan Menipis',
+                    "Stok ikan {$fishTypeName} tinggal {$stockAfter} kg, di bawah batas {$threshold} kg.",
+                    ['fish_type_id' => $fishTypeId, 'fish_type_name' => $fishTypeName, 'current_stock' => (float) $stockAfter]
+                );
+            }
         }
 
         // Step 11: Update member (points, fish weight, last_transaction_date, tier)
@@ -355,6 +376,17 @@ class TransactionController extends Controller
             'tier_id'               => $newTier?->id ?? $currentTier?->id,
         ]);
 
+        // Notifikasi: Tier Upgraded
+        if ($tierUpgraded) {
+            NotificationService::send(
+                $member->user_id,
+                'tier_upgraded',
+                'Selamat! Tier Anda Naik',
+                "Tier Anda telah naik menjadi {$newTier->name}. Nikmati benefit baru!",
+                ['new_tier' => $newTier->name]
+            );
+        }
+
         // Step 12: Close arrival
         $arrival->update([
             'status'       => 'completed',
@@ -363,7 +395,7 @@ class TransactionController extends Controller
         ]);
 
 
-        // Tandai voucher sebagai used setelah commit
+        // Tandai voucher sebagai used (sebelum commit agar masuk transaksi DB)
         if ($activeVoucher) {
             $activeVoucher->update([
                 'status'         => 'used',

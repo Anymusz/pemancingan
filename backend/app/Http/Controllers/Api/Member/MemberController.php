@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Member;
 use App\Http\Controllers\Controller;
 use App\Models\Member;
 use App\Models\Transaction;
+use App\Models\Voucher;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -228,5 +229,38 @@ class MemberController extends Controller
         return $nameParts[0] . ' ' .
             $nameParts[1] . ' ' .
             strtoupper(substr($nameParts[2], 0, 1)) . '.';
+    }
+
+    /**
+     * GET /api/member/vouchers
+     */
+    public function getVouchers(Request $request): JsonResponse
+    {
+        $member = $request->user()->member;
+
+        if (!$member) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Member profile tidak ditemukan.',
+            ], 404);
+        }
+
+        $vouchers = Voucher::where('member_id', $member->id)
+            ->where('status', 'unused')
+            ->orderBy('issued_at', 'asc')
+            ->get()
+            ->map(fn (Voucher $v) => [
+                'id'           => $v->id,
+                'amount'       => (float) $v->amount,
+                'rank'         => $v->rank,
+                'period_month' => $v->period_month,
+                'period_year'  => $v->period_year,
+                'issued_at'    => $v->issued_at,
+            ]);
+
+        return response()->json([
+            'success' => true,
+            'data'    => ['vouchers' => $vouchers],
+        ]);
     }
 }

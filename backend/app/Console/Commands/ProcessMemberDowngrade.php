@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Member;
+use App\Services\NotificationService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -54,6 +55,15 @@ class ProcessMemberDowngrade extends Command
                 ]);
 
                     if ($tierChanged) {
+                        // Notifikasi: Tier Downgraded
+                        NotificationService::send(
+                            $member->user_id,
+                            'tier_downgraded',
+                            'Tier Anda Turun',
+                            "Tier Anda turun dari {$oldTierName} menjadi {$newTier->name} karena tidak ada transaksi selama 180 hari.",
+                            ['old_tier' => $oldTierName, 'new_tier' => $newTier->name]
+                        );
+
                         Log::info("[Downgrade] {$member->user->name} | Poin: {$oldPoints} → {$newPoints} | Tier: {$oldTierName} → {$newTier->name}");
                         $this->info("  ↓ {$member->user->name}: {$oldPoints} → {$newPoints} poin | {$oldTierName} → {$newTier->name}");
                     } else {

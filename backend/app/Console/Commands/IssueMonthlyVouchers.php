@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Member;
 use App\Models\Voucher;
 use App\Models\VoucherConfig;
+use App\Services\NotificationService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -43,13 +44,18 @@ class IssueMonthlyVouchers extends Command
             return;
         }
 
-        DB::transaction(function () use ($topMembers, $voucherConfigs, $year, $month) {
+        $months    = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                      'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $monthName = $months[$month] . ' ' . $year;
+        $command   = $this;
+
+        DB::transaction(function () use ($topMembers, $voucherConfigs, $year, $month, $monthName, $command) {
             foreach ($topMembers as $index => $member) {
                 $rank   = $index + 1;
                 $config = $voucherConfigs->get($rank);
 
                 if (!$config) {
-                    $this->warn("Config untuk rank {$rank} tidak ditemukan, skip.");
+                    $command->warn("Config untuk rank {$rank} tidak ditemukan, skip.");
                     continue;
                 }
 
@@ -64,7 +70,15 @@ class IssueMonthlyVouchers extends Command
                     'issued_at'    => now(),
                 ]);
 
-                $this->info("Voucher rank {$rank} diterbitkan untuk member #{$member->member_id} — Rp " . number_format($config->amount, 0, ',', '.'));
+                NotificationService::send(
+                    $member->user_id,
+                    'voucher_issued',
+                    'Voucher Baru!',
+                    "Selamat! Anda mendapatkan voucher Rp " . number_format($config->amount, 0, ',', '.') . " sebagai juara {$rank} periode {$monthName}.",
+                    ['amount' => $config->amount, 'rank' => $rank, 'period' => $monthName]
+                );
+
+                $command->info("Voucher rank {$rank} diterbitkan untuk member #{$member->member_id} — Rp " . number_format($config->amount, 0, ',', '.'));
             }
         });
 

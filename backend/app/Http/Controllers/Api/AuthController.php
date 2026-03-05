@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +13,7 @@ class AuthController extends Controller
 {
     /**
      * Register new user account
-     * 
+     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -46,6 +47,14 @@ class AuthController extends Controller
             'status' => 'pending',
         ]);
 
+        // Notifikasi: Member baru mendaftar → kirim ke semua owner
+        NotificationService::sendToRole(
+            'owner',
+            'member_pending',
+            'Member Baru Mendaftar',
+            "Member baru '{$user->name}' menunggu validasi."
+        );
+
         return response()->json([
             'success' => true,
             'message' => 'Registrasi berhasil. Akun menunggu validasi owner.',
@@ -63,7 +72,7 @@ class AuthController extends Controller
 
     /**
      * Login user with phone or email
-     * 
+     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -109,13 +118,13 @@ class AuthController extends Controller
     // Check user status - REJECTED
     if ($user->status === 'rejected') {
         Auth::logout();
-        
+
         $message = 'Akun ditolak oleh owner';
-        
+
         if ($user->rejection_reason) {
             $message .= '. Alasan: ' . $user->rejection_reason;
         }
-        
+
         return response()->json([
             'success' => false,
             'message' => $message,
@@ -149,7 +158,7 @@ class AuthController extends Controller
 
     /**
  * Logout user (revoke current token)
- * 
+ *
  * @param Request $request
  * @return \Illuminate\Http\JsonResponse
  */
@@ -168,7 +177,7 @@ public function logout(Request $request)
 
     /**
      * Get authenticated user data
-     * 
+     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
