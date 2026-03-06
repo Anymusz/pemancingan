@@ -111,6 +111,13 @@ const employeeService = {
     const response = await api.get("/employee/fish-stocks");
     return response.data;
   },
+
+  // ==================== QR ====================
+
+  resolveQR: async (payload) => {
+    const response = await api.post("/employee/resolve-qr", payload);
+    return response.data;
+  },
 };
 
 export default employeeService;
