@@ -40,10 +40,10 @@ class QRCodeService
     {
         // Prepare QR content (structured JSON)
         $qrContent = [
-            'type' => 'member',
+            'type'      => 'member',
+            'qr_hash'   => $qrHash,
             'member_id' => $member->member_id,
-            'issued_at' => now()->toIso8601String(),
-            'version' => '1.0',
+            'version'   => '1.0',
         ];
 
         // Create folder if not exists

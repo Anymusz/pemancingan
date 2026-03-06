@@ -256,4 +256,63 @@ class ArrivalController extends Controller
             'data' => ['arrivals' => $arrivals],
         ]);
     }
+
+    /**
+     * POST /api/employee/resolve-qr
+     */
+    public function resolveQR(Request $request): JsonResponse
+    {
+        $request->validate([
+            'qr_hash'   => 'required|string',
+            'member_id' => 'required|string',
+        ]);
+
+        // Step 1: Query by qr_hash (bukan member_id) untuk mencegah brute-force
+        $member = Member::with('user')->where('qr_code_hash', $request->qr_hash)->first();
+
+        if (!$member) {
+            return response()->json([
+                'success' => false,
+                'message' => 'QR code tidak valid atau member tidak ditemukan',
+            ], 404);
+        }
+
+        // Step 2: Tamper detection — cocokkan member_id dari payload QR
+        if ($member->member_id !== $request->member_id) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data QR code tidak valid',
+            ], 422);
+        }
+
+        // Step 3: Cek status user aktif
+        if ($member->user->status !== 'active') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Member tidak aktif',
+            ], 422);
+        }
+
+        // Step 4: Cek arrival active (tanpa filter tanggal)
+        $activeArrival = Arrival::where('member_id', $member->id)
+            ->where('status', 'active')
+            ->first();
+
+        $tier = $member->getCurrentTier();
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'id'           => $member->id,
+                'name'         => $member->user->name,
+                'member_id'    => $member->member_id,
+                'tier'         => $tier?->name ?? 'REGULAR',
+                'total_points' => $member->total_points,
+                'phone'        => $member->user->phone,
+                'active_arrival' => $activeArrival
+                    ? ['exists' => true, 'check_in_at' => $activeArrival->check_in_at]
+                    : ['exists' => false],
+            ],
+        ]);
+    }
 }

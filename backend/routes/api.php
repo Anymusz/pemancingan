@@ -127,6 +127,7 @@ Route::prefix('employee')->middleware(['auth:sanctum', 'role:employee'])->group(
     Route::post('/check-out/{arrival_id}', [ArrivalController::class, 'checkOut']);
     Route::get('/search-member', [ArrivalController::class, 'searchMember']);
     Route::get('/search-arrival', [ArrivalController::class, 'searchArrival']);
+    Route::post('/resolve-qr', [ArrivalController::class, 'resolveQR']);
 
     // Pending Orders
     Route::post('/pending-orders', [PendingOrderController::class, 'store']);
