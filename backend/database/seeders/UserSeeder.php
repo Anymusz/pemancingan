@@ -66,5 +66,42 @@ class UserSeeder extends Seeder
             'role' => 'member',
             'status' => 'active',
         ]);
+
+        $faker = \Faker\Factory::create('id_ID');
+
+        // Tambahan 6 Member Aktif (Total 8 termasuk Dhani & Siti)
+        for ($i = 0; $i < 6; $i++) {
+            User::create([
+                'name' => $faker->name,
+                'phone' => '082200001' . str_pad($i, 3, '0', STR_PAD_LEFT),
+                'email' => $faker->unique()->safeEmail,
+                'password' => 'password',
+                'address' => $faker->address,
+                'role' => 'member',
+                'status' => 'active',
+            ]);
+        }
+
+        // Tambahan 1 Member Pending (Total 2 termasuk Budi)
+        User::create([
+            'name' => $faker->name,
+            'phone' => '082200002000',
+            'email' => $faker->unique()->safeEmail,
+            'password' => 'password',
+            'address' => $faker->address,
+            'role' => 'member',
+            'status' => 'pending',
+        ]);
+
+        // Tambahan 1 Member Rejected (Total 1)
+        User::create([
+            'name' => $faker->name,
+            'phone' => '082200003000',
+            'email' => $faker->unique()->safeEmail,
+            'password' => 'password',
+            'address' => $faker->address,
+            'role' => 'member',
+            'status' => 'rejected',
+        ]);
     }
 }

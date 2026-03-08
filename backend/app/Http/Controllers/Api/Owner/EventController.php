@@ -67,7 +67,7 @@ class EventController extends Controller
             'start_date' => 'required_if:category,event|nullable|date|after_or_equal:today',
             'end_date' => 'required_if:category,event|nullable|date|after_or_equal:start_date',
             'status' => 'sometimes|in:draft,published',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
         try {
@@ -88,6 +88,16 @@ class EventController extends Controller
                 'status' => $validated['status'] ?? 'draft',
                 'image' => $imageFilename,
             ]);
+
+            if ($event->status === 'published') {
+                NotificationService::sendToRole(
+                    'member',
+                    'event_published',
+                    'Event Baru!',
+                    "Event \"{$event->title}\" telah dipublikasikan. Lihat detailnya sekarang!",
+                    ['event_id' => $event->id, 'event_title' => $event->title]
+                );
+            }
 
             return response()->json([
                 'success' => true,
@@ -150,7 +160,20 @@ class EventController extends Controller
             unset($validated['image']);
         }
 
+        $wasPublished = $event->getOriginal('status') === 'draft'
+            && isset($validated['status']) && $validated['status'] === 'published';
+
         $event->update($validated);
+
+        if ($wasPublished) {
+            NotificationService::sendToRole(
+                'member',
+                'event_published',
+                'Event Baru!',
+                "Event \"{$event->title}\" telah dipublikasikan. Lihat detailnya sekarang!",
+                ['event_id' => $event->id, 'event_title' => $event->title]
+            );
+        }
 
         return response()->json([
             'success' => true,

@@ -14,66 +14,99 @@ class EventSeeder extends Seeder
     {
         $events = [];
 
-        // Event 1-3: Published Events (sedang berlangsung)
-        for ($i = 0; $i < 3; $i++) {
-            $startDate = now()->subDays(fake()->numberBetween(5, 15));
-            $events[] = [
-                'title' => fake()->sentence(5),
-                'description' => fake()->paragraphs(3, true),
-                'category' => 'event',
-                'start_date' => $startDate,
-                'end_date' => $startDate->copy()->addDays(fake()->numberBetween(7, 30)),
-                'status' => 'published',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-        }
+        // --- Category: Event, Status: Published ---
+        $events[] = [
+            'title' => 'Lomba Mancing Mania - Ongoing',
+            'description' => fake()->paragraphs(5, true),
+            'category' => 'event',
+            'start_date' => now()->subDays(2),
+            'end_date' => now()->addDays(5), // ongoing
+            'status' => 'published',
+            'image' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        $events[] = [
+            'title' => 'Turnamen Akbar Akhir Tahun - Upcoming',
+            'description' => fake()->paragraphs(6, true),
+            'category' => 'event',
+            'start_date' => now()->addDays(10),
+            'end_date' => now()->addDays(12), // upcoming
+            'status' => 'published',
+            'image' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        $events[] = [
+            'title' => 'Lomba Mancing Kemerdekaan - Finished',
+            'description' => fake()->paragraphs(4, true),
+            'category' => 'event',
+            'start_date' => now()->subDays(30),
+            'end_date' => now()->subDays(28), // finished
+            'status' => 'published',
+            'image' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
 
-        // Event 4-5: Published Events (upcoming)
-        for ($i = 0; $i < 2; $i++) {
-            $startDate = now()->addDays(fake()->numberBetween(5, 20));
-            $events[] = [
-                'title' => fake()->sentence(5),
-                'description' => fake()->paragraphs(3, true),
-                'category' => 'event',
-                'start_date' => $startDate,
-                'end_date' => $startDate->copy()->addDays(fake()->numberBetween(7, 30)),
-                'status' => 'published',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-        }
+        // --- Category: Info, Status: Published ---
+        $events[] = [
+            'title' => 'Peraturan Baru Kolam Pancing - Active No End Date',
+            'description' => fake()->paragraphs(5, true),
+            'category' => 'info',
+            'start_date' => now()->subDays(5),
+            'end_date' => null, // active no end_date
+            'status' => 'published',
+            'image' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        $events[] = [
+            'title' => 'Diskon Ulang Tahun Pemancingan - Active With End Date',
+            'description' => fake()->paragraphs(5, true),
+            'category' => 'info',
+            'start_date' => now()->subDays(1),
+            'end_date' => now()->addDays(14), // active with end date
+            'status' => 'published',
+            'image' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        $events[] = [
+            'title' => 'Promo Lebaran - Expired',
+            'description' => fake()->paragraphs(4, true),
+            'category' => 'info',
+            'start_date' => now()->subDays(60),
+            'end_date' => now()->subDays(45), // expired
+            'status' => 'published',
+            'image' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
 
-        // Info 1-3: Published General Info (tanpa tanggal)
-        for ($i = 0; $i < 3; $i++) {
-            $events[] = [
-                'title' => fake()->sentence(4),
-                'description' => fake()->paragraphs(2, true),
-                'category' => 'info',
-                'start_date' => null,
-                'end_date' => null,
-                'status' => 'published',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-        }
-
-        // Event & Info Draft (belum dipublish)
-        for ($i = 0; $i < 2; $i++) {
-            $category = fake()->randomElement(['event', 'info']);
-            $startDate = $category === 'event' ? now()->addDays(fake()->numberBetween(30, 60)) : null;
-            
-            $events[] = [
-                'title' => fake()->sentence(4),
-                'description' => fake()->paragraphs(2, true),
-                'category' => $category,
-                'start_date' => $startDate,
-                'end_date' => $startDate ? $startDate->copy()->addDays(fake()->numberBetween(7, 14)) : null,
-                'status' => 'draft',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-        }
+        // --- Status: Draft ---
+        $events[] = [
+            'title' => 'Draft Turnamen Musim Hujan',
+            'description' => fake()->paragraphs(4, true),
+            'category' => 'event',
+            'start_date' => now()->addDays(40),
+            'end_date' => now()->addDays(42),
+            'status' => 'draft',
+            'image' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        $events[] = [
+            'title' => 'Draft Perubahan Harga Tiket Masuk',
+            'description' => fake()->paragraphs(3, true),
+            'category' => 'info',
+            'start_date' => null,
+            'end_date' => null,
+            'status' => 'draft',
+            'image' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
 
         DB::table('events')->insert($events);
     }

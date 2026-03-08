@@ -11,18 +11,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Fase 1A: Master Data untuk Landing Page
         $this->call([
             UserSeeder::class,
-
             MemberTierSeeder::class,
             FishTypeSeeder::class,
             FishStockSeeder::class,
             EventSeeder::class,
             MenuSeeder::class,
-
+            VoucherConfigSeeder::class,
             MemberSeeder::class,
             ArrivalSeeder::class,
+            TransactionSeeder::class,
+            TransactionItemSeeder::class,
+            VoucherSeeder::class,
+            NotificationSeeder::class,
         ]);
     }
 }

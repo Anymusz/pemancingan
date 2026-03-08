@@ -116,7 +116,10 @@ class Member extends Model
     {
         return DB::table('member_tiers')
             ->where('min_points', '<=', $this->total_points)
-            ->where('max_points', '>=', $this->total_points)
+            ->where(function ($q) {
+                $q->whereNull('max_points')
+                  ->orWhere('max_points', '>=', $this->total_points);
+            })
             ->first();
     }
 }
