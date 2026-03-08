@@ -301,6 +301,12 @@ const Dashboard = () => {
               Lihat Leaderboard
             </button>
             <button
+              onClick={() => navigate("/events")}
+              style={{ marginRight: "10px" }}
+            >
+              Lihat Event
+            </button>
+            <button
               onClick={() => setActiveTab("history")}
               style={{ marginRight: "10px" }}
             >

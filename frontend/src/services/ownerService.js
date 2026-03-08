@@ -140,12 +140,16 @@ const ownerService = {
   },
 
   createEvent: async (data) => {
-    const response = await api.post("/owner/events", data);
+    const response = await api.post("/owner/events", data, {
+      headers: { "Content-Type": undefined },
+    });
     return response.data;
   },
 
   updateEvent: async (id, data) => {
-    const response = await api.put(`/owner/events/${id}`, data);
+    const response = await api.post(`/owner/events/${id}`, data, {
+      headers: { "Content-Type": undefined },
+    });
     return response.data;
   },
 

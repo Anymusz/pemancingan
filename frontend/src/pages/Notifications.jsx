@@ -41,7 +41,7 @@ const getNotificationIcon = (type) => {
   }
 };
 
-const getRedirectPath = (notifType, role) => {
+const getRedirectPath = (notifType, role, data = null) => {
   switch (notifType) {
     case "member_pending":
       return "/owner/dashboard?tab=pending";
@@ -54,8 +54,7 @@ const getRedirectPath = (notifType, role) => {
     case "tier_downgraded":
       return "/member/dashboard";
     case "event_published":
-      // return data?.event_id ? `/events/${data.event_id}` : "/";
-      return "/";
+      return data?.event_id ? `/events/${data.event_id}` : "/events";
     case "voucher_issued":
       return "/member/dashboard";
     default:
@@ -156,7 +155,7 @@ export default function Notifications() {
       }
     }
 
-    const path = getRedirectPath(notif.type, role);
+    const path = getRedirectPath(notif.type, role, notif.data);
     if (path) navigate(path);
   };
 

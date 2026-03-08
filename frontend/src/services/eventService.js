@@ -2,19 +2,24 @@
 import api from "./api";
 
 /**
- * Get all published events
+ * Get all published events (paginated)
+ * @param {number} page - Page number
+ * @param {string|null} category - Category filter ('event' | 'info' | null)
  * @returns {Promise} Response dengan list events
  */
-export const getEvents = async () => {
-  const response = await api.get("/events");
+export const getEvents = async (page = 1, category = null) => {
+  const params = { page, per_page: 6 };
+  if (category) params.category = category;
+  const response = await api.get("/events", { params });
   return response.data;
 };
 
 /**
- * Get latest events (untuk landing page)
- * Note: Filtering/slicing dilakukan di component, bukan di service
+ * Get event detail by ID
+ * @param {number|string} id - Event ID
+ * @returns {Promise} Response dengan event detail
  */
-export const getLatestEvents = async () => {
-  const response = await api.get("/events");
+export const getEventDetail = async (id) => {
+  const response = await api.get(`/events/${id}`);
   return response.data;
 };

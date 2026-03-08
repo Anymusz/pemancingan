@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ownerService from "@/services/ownerService";
+import { formatDateTime } from "@/utils/utils";
 
 const PendingMembersList = () => {
   const [pendingMembers, setPendingMembers] = useState([]);
@@ -133,7 +134,8 @@ const PendingMembersList = () => {
                 <strong>Alamat:</strong> {member.address}
               </p>
               <p>
-                <strong>Tanggal Daftar:</strong> {member.registered_at}
+                <strong>Tanggal Daftar:</strong>{" "}
+                {formatDateTime(member.registered_at)}
               </p>
               <div>
                 <button

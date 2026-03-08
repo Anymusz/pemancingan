@@ -136,6 +136,8 @@ import MemberDashboard from "./pages/member/Dashboard";
 import LeaderboardPublic from "./pages/LeaderboardPublic";
 import EmployeeDashboard from "@/pages/employee/EmployeeDashboard";
 import Notifications from "@/pages/Notifications";
+import EventsPage from "@/pages/events/EventsPage";
+import EventDetailPage from "@/pages/events/EventDetailPage";
 
 // ===============================
 // Layout Wrapper
@@ -179,6 +181,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/leaderboard" element={<LeaderboardPublic />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/events/:id" element={<EventDetailPage />} />
 
             {/* Owner */}
             <Route

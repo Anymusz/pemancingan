@@ -33,6 +33,7 @@ import FAQSection from "./sections/FAQSection";
 import FooterSection from "./sections/FooterSection";
 import LeaderboardSection from "./sections/LeaderboardSection";
 import InformasiSection from "./sections/InformasiSection";
+import EventsSection from "./sections/EventsSection";
 
 export default function LandingPage() {
   return (
@@ -41,13 +42,15 @@ export default function LandingPage() {
       <section id="hero">
         <HeroSection />
       </section>
-      <section id="hero">
-        <HeroSection />
-      </section>
 
       {/* Leaderboard Section */}
       <section id="leaderboard">
         <LeaderboardSection />
+      </section>
+
+      {/* Events Section */}
+      <section id="events">
+        <EventsSection />
       </section>
 
       {/* Informasi Section */}

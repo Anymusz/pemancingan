@@ -8,7 +8,7 @@ import ValidationHistory from "./ValidationHistory";
 import OwnerLeaderboard from "./OwnerLeaderboard";
 import MenuManagement from "./MenuManagement";
 import FishTypeManagement from "./FishTypeManagement";
-import EventManagement from "./EventManagement";
+import EventManagement from "./event-management/EventManagement";
 import VoucherManagement from "./VoucherManagement";
 import FinancialReport from "./FinancialReport";
 import { removeToken } from "@/utils/tokenManager";
