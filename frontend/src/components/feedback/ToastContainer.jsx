@@ -1,7 +1,7 @@
 // File: src/components/feedback/ToastContainer.jsx
 import { createPortal } from "react-dom";
 import Toast from "./Toast";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 
 export const ToastContainer = ({ toasts, onClose }) => {
   return createPortal(

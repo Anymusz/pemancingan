@@ -7,7 +7,7 @@ import {
   X,
   ChevronDown,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { useEffect, useState, useRef, useCallback } from "react";
 
 export const Toast = ({

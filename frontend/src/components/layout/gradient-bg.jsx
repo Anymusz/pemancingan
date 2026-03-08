@@ -1,4 +1,4 @@
-import { FloatingDots } from "./floating-dots";
+import { FloatingDots } from "../ui/floating-dots";
 
 export default function GradientBg({ theme = "light" }) {
   return (

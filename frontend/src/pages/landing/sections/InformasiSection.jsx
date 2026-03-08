@@ -1,5 +1,5 @@
 // File: src/pages/landing/sections/InformasiSection.jsx
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { MapPin, Fish, Wallet, Crown, CreditCard, Coffee } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getFishTypes } from "@/services/fishService";

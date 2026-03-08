@@ -9,8 +9,18 @@ import TransactionHistory from "./TransactionHistory";
 import AddOrder from "./AddOrder";
 import PendingOrder from "./PendingOrder";
 import MenuAvailability from "./MenuAvailability";
-import { removeToken, removeUser } from "@/utils/tokenManager";
+import { removeToken, removeUser, getUser } from "@/utils/tokenManager";
 import notificationService from "@/services/notificationService";
+import DashboardLayout from "@/components/layout/DashboardLayout";
+import {
+  QrCode,
+  CalendarCheck,
+  PlusCircle,
+  ClipboardList,
+  ShoppingCart,
+  UtensilsCrossed,
+  History,
+} from "lucide-react";
 
 const EmployeeDashboard = () => {
   const initialTab = (() => {
@@ -55,149 +65,78 @@ const EmployeeDashboard = () => {
     handleMenuChange("checkout");
   };
 
+  const employeeNavGroups = [
+    {
+      label: "Kedatangan",
+      items: [
+        { key: "checkin", label: "Check In", icon: QrCode },
+        { key: "arrivals", label: "Today Arrivals", icon: CalendarCheck },
+      ],
+    },
+    {
+      label: "Pesanan",
+      items: [
+        { key: "addorder", label: "Add Order", icon: PlusCircle },
+        { key: "pendingorder", label: "Pending Orders", icon: ClipboardList },
+        { key: "checkout", label: "Checkout", icon: ShoppingCart },
+      ],
+    },
+    {
+      label: "Operasional",
+      items: [
+        {
+          key: "menuavailability",
+          label: "Menu Availability",
+          icon: UtensilsCrossed,
+        },
+        { key: "history", label: "Transactions", icon: History },
+      ],
+    },
+  ];
+
+  const currentUser = getUser();
+
   return (
-    <div>
-      <header
-        style={{
-          borderBottom: "2px solid #000",
-          padding: "10px",
-          marginBottom: "20px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <h1>Employee Dashboard</h1>
+    <DashboardLayout
+      navGroups={employeeNavGroups}
+      activeItem={activeMenu}
+      onNavChange={handleMenuChange}
+      title="Sistem Pemancingan"
+      user={{ name: currentUser?.name, role: "Employee" }}
+      unreadCount={unreadCount}
+      onLogout={handleLogout}
+    >
+      {[
+        "pendingorder",
+        "addorder",
+        "checkin",
+        "arrivals",
+        "checkout",
+        "history",
+        "menuavailability",
+      ].map((menu) => {
+        if (activeMenu !== menu && !mountedTabs.has(menu)) return null;
 
-          {/* Notification Bell */}
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <button
-              onClick={() => navigate("/notifications")}
-              style={{
-                position: "relative",
-                background: "none",
-                border: "none",
-                fontSize: "24px",
-                cursor: "pointer",
-                padding: "4px",
-              }}
-              title="Notifikasi"
-            >
-              🔔
-              {unreadCount > 0 && (
-                <span
-                  style={{
-                    position: "absolute",
-                    top: "-4px",
-                    right: "-4px",
-                    background: "#EF4444",
-                    color: "white",
-                    fontSize: "11px",
-                    fontWeight: "bold",
-                    borderRadius: "9999px",
-                    minWidth: "20px",
-                    height: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: "0 5px",
-                    lineHeight: "1",
-                  }}
-                >
-                  {unreadCount < 100 ? unreadCount : "99+"}
-                </span>
-              )}
-            </button>
-            <button onClick={handleLogout}>Logout</button>
+        return (
+          <div key={menu} className={activeMenu === menu ? "block" : "hidden"}>
+            {menu === "pendingorder" && <PendingOrder />}
+            {menu === "addorder" && <AddOrder />}
+            {menu === "checkin" && <CheckIn />}
+            {menu === "arrivals" && (
+              <TodayArrivals onGoToCheckout={handleGoToCheckout} />
+            )}
+            {menu === "menuavailability" && <MenuAvailability />}
+            {menu === "checkout" && (
+              <Checkout
+                preselectArrivalId={preselectArrivalId}
+                onPreselectConsumed={() => setPreselectArrivalId(null)}
+              />
+            )}
+            {menu === "history" && <TransactionHistory />}
           </div>
-        </div>
-
-        <nav>
-          <button
-            onClick={() => handleMenuChange("pendingorder")}
-            disabled={activeMenu === "pendingorder"}
-          >
-            Pesanan Masuk
-          </button>
-          <button
-            onClick={() => handleMenuChange("addorder")}
-            disabled={activeMenu === "addorder"}
-          >
-            Tambah Order
-          </button>
-          <button
-            onClick={() => handleMenuChange("checkin")}
-            disabled={activeMenu === "checkin"}
-          >
-            Check-in Member
-          </button>
-          <button
-            onClick={() => handleMenuChange("arrivals")}
-            disabled={activeMenu === "arrivals"}
-          >
-            Kedatangan Hari Ini
-          </button>
-          <button
-            onClick={() => handleMenuChange("checkout")}
-            disabled={activeMenu === "checkout"}
-          >
-            Checkout Transaksi
-          </button>
-          <button
-            onClick={() => handleMenuChange("menuavailability")}
-            disabled={activeMenu === "menuavailability"}
-          >
-            Ketersediaan Menu
-          </button>
-          <button
-            onClick={() => handleMenuChange("history")}
-            disabled={activeMenu === "history"}
-          >
-            Riwayat Transaksi
-          </button>
-        </nav>
-      </header>
-
-      <main style={{ padding: "20px" }}>
-        {[
-          "pendingorder",
-          "addorder",
-          "checkin",
-          "arrivals",
-          "checkout",
-          "history",
-          "menuavailability",
-        ].map((menu) => {
-          if (activeMenu !== menu && !mountedTabs.has(menu)) return null;
-
-          return (
-            <div
-              key={menu}
-              style={{ display: activeMenu === menu ? "block" : "none" }}
-            >
-              {menu === "pendingorder" && <PendingOrder />}
-              {menu === "addorder" && <AddOrder />}
-              {menu === "checkin" && <CheckIn />}
-              {menu === "arrivals" && (
-                <TodayArrivals onGoToCheckout={handleGoToCheckout} />
-              )}
-              {menu === "menuavailability" && <MenuAvailability />}
-              {menu === "checkout" && (
-                <Checkout
-                  preselectArrivalId={preselectArrivalId}
-                  onPreselectConsumed={() => setPreselectArrivalId(null)}
-                />
-              )}
-              {menu === "history" && <TransactionHistory />}
-            </div>
-          );
-        })}
-      </main>
-    </div>
+        );
+      })}
+    </DashboardLayout>
   );
 };
 

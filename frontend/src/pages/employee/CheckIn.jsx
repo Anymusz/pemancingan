@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import employeeService from "../../services/employeeService";
-import QRScanner from "./component/QRScanner";
+import QRScanner from "../../components/employee/QRScanner";
 
 const CheckIn = () => {
   // ==================== SHARED STATE ====================

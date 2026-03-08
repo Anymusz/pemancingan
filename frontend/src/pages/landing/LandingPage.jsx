@@ -1,32 +1,3 @@
-// // src/pages/landing/LandingPage.jsx
-
-// import HeroSection from "./sections/HeroSection";
-// import LeaderboardSection from "./sections/LeaderboardSection";
-// import InformasiSection from "./sections/InformasiSection";
-// import FAQSection from "./sections/FAQSection";
-
-// export default function LandingPage() {
-//   return (
-//     <main>
-//       <section id="hero">
-//         <HeroSection />
-//       </section>
-
-//       <section id="leaderboard">
-//         <LeaderboardSection />
-//       </section>
-
-//       <section id="informasi">
-//         <InformasiSection />
-//       </section>
-
-//       <section id="faq">
-//         <FAQSection />
-//       </section>
-//     </main>
-//   );
-// }
-
 // File: src/pages/landing/LandingPage.jsx (MODIFIED)
 import HeroSection from "./sections/HeroSection";
 import FAQSection from "./sections/FAQSection";

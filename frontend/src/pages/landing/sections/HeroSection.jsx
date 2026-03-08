@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import GradientBg from "@/components/ui/gradient-bg";
+import GradientBg from "@/components/layout/gradient-bg";
 
 const FLOATING_ELEMENTS = [
   {
