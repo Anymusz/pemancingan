@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->date('start_date')->nullable()->comment('Tanggal mulai (nullable untuk info umum)');
             $table->date('end_date')->nullable()->comment('Tanggal berakhir');
             $table->enum('status', ['draft', 'published'])->default('draft')->comment('Status publikasi');
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

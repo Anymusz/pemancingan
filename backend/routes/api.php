@@ -31,6 +31,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/events', [EventController::class, 'index']);
+Route::get('/events/{id}', [EventController::class, 'show']);
 Route::get('/fish-types', [FishTypeController::class, 'index']);
 Route::get('/member-tiers', [MemberTierController::class, 'index']);
 Route::get('/leaderboard', [MemberController::class, 'getLeaderboard']);
@@ -98,7 +99,7 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     // Event Management
     Route::get('/events', [OwnerEventController::class, 'index']);
     Route::post('/events', [OwnerEventController::class, 'store']);
-    Route::put('/events/{id}', [OwnerEventController::class, 'update']);
+    Route::post('/events/{id}', [OwnerEventController::class, 'update']);
     Route::patch('/events/{id}/publish', [OwnerEventController::class, 'publish']);
     Route::delete('/events/{id}', [OwnerEventController::class, 'destroy']);
 

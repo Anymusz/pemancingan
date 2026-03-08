@@ -8,6 +8,8 @@ use App\Models\Event;
 use App\Services\NotificationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -65,9 +67,18 @@ class EventController extends Controller
             'start_date' => 'required_if:category,event|nullable|date|after_or_equal:today',
             'end_date' => 'required_if:category,event|nullable|date|after_or_equal:start_date',
             'status' => 'sometimes|in:draft,published',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         try {
+            $imageFilename = null;
+
+            if ($request->hasFile('image') && $validated['category'] === 'event') {
+                $file = $request->file('image');
+                $imageFilename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('events', $imageFilename, 'public');
+            }
+
             $event = Event::create([
                 'title' => $validated['title'],
                 'description' => $validated['description'],
@@ -75,6 +86,7 @@ class EventController extends Controller
                 'start_date' => $validated['start_date'] ?? null,
                 'end_date' => $validated['end_date'] ?? null,
                 'status' => $validated['status'] ?? 'draft',
+                'image' => $imageFilename,
             ]);
 
             return response()->json([
@@ -94,40 +106,64 @@ class EventController extends Controller
      * PUT /api/owner/events/{id}
      */
     public function update(Request $request, int $id): JsonResponse
-    {
-        $event = Event::find($id);
+{
+    $event = Event::find($id);
 
-        if (!$event) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Event tidak ditemukan',
-            ], 404);
-        }
-
-        $validated = $request->validate([
-            'title' => 'required|string|max:200',
-            'description' => 'required|string',
-            'category' => 'required|in:event,info',
-            'start_date' => 'required_if:category,event|nullable|date|after_or_equal:today',
-            'end_date' => 'required_if:category,event|nullable|date|after_or_equal:start_date',
-            'status' => 'sometimes|in:draft,published',
-        ]);
-
-        try {
-            $event->update($validated);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Event berhasil diperbarui',
-                'data' => ['event' => $event->fresh()],
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal memperbarui event',
-            ], 500);
-        }
+    if (!$event) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Event tidak ditemukan',
+        ], 404);
     }
+
+    $validated = $request->validate([
+        'title'      => 'required|string|max:200',
+        'description' => 'required|string',
+        'category'   => 'required|in:event,info',
+        'start_date' => 'required_if:category,event|nullable|date',
+        'end_date'   => 'required_if:category,event|nullable|date|after_or_equal:start_date',
+        'status'     => 'sometimes|in:draft,published',
+        'image'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+    ]);
+
+    try {
+        // Jika kategori diubah dari event ke info, hapus gambar
+        if ($validated['category'] === 'info' && $event->category === 'event' && $event->image) {
+            Storage::disk('public')->delete('events/' . $event->image);
+            $validated['image'] = null;
+        }
+        // Jika owner eksplisit hapus gambar (tanpa upload baru)
+        elseif ($request->input('remove_image') === '1' && $event->image && $validated['category'] === 'event') {
+            Storage::disk('public')->delete('events/' . $event->image);
+            $validated['image'] = null;
+        }
+        // Jika ada file gambar baru dikirim dan kategori event
+        elseif ($request->hasFile('image') && $validated['category'] === 'event') {
+            if ($event->image) {
+                Storage::disk('public')->delete('events/' . $event->image);
+            }
+            $file = $request->file('image');
+            $imageFilename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('events', $imageFilename, 'public');
+            $validated['image'] = $imageFilename;
+        } else {
+            unset($validated['image']);
+        }
+
+        $event->update($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Event berhasil diperbarui',
+            'data'    => ['event' => $event->fresh()],
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Gagal memperbarui event',
+        ], 500);
+    }
+}
 
     /**
      * PATCH /api/owner/events/{id}/publish
@@ -147,7 +183,6 @@ class EventController extends Controller
             'status' => 'required|in:draft,published',
         ]);
 
-        // Validasi date untuk event category saat publish
         if ($request->status === 'published' && $event->category === 'event') {
             if (!$event->start_date || !$event->end_date) {
                 return response()->json([
@@ -159,7 +194,6 @@ class EventController extends Controller
 
         $event->update(['status' => $request->status]);
 
-        // Notifikasi: Event Published → kirim ke semua member aktif
         if ($request->status === 'published') {
             NotificationService::sendToRole(
                 'member',
@@ -196,6 +230,10 @@ class EventController extends Controller
                 'success' => false,
                 'message' => 'Event sudah dihapus sebelumnya',
             ], 400);
+        }
+
+        if ($event->image) {
+            Storage::disk('public')->delete('events/' . $event->image);
         }
 
         $event->delete();
