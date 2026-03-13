@@ -30,6 +30,13 @@ use App\Http\Controllers\Api\Owner\ReportController as OwnerReportController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])
+    ->middleware('throttle:1,1')
+    ->name('password.email');
+
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])
+    ->name('password.update');
+
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{id}', [EventController::class, 'show']);
 Route::get('/fish-types', [FishTypeController::class, 'index']);
@@ -72,6 +79,9 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     Route::post('/reactivate-rejected', [MemberValidationController::class, 'reactivateRejectedMember']);
     Route::delete('/deactivate-member', [MemberValidationController::class, 'deactivateMember']);
     Route::get('/validation-history', [MemberValidationController::class, 'getValidationHistory']);
+    Route::get('/members/active', [MemberValidationController::class, 'getActiveMembers']);
+    Route::get('/members/deactivated', [MemberValidationController::class, 'getDeactivatedMembers']);
+    Route::get('/members/counts', [MemberValidationController::class, 'getMemberCounts']);
 
     // Leaderboard
     Route::get('/leaderboard', [LeaderboardController::class, 'getOwnerLeaderboard']);
@@ -92,6 +102,7 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
 
     // Fish Stock Management
     Route::get('/fish-stocks', [OwnerFishStockController::class, 'index']);
+    Route::get('/fish-stocks/history', [OwnerFishStockController::class, 'allHistory']);
     Route::post('/fish-stocks/{fishTypeId}/restock', [OwnerFishStockController::class, 'restock']);
     Route::patch('/fish-stocks/{fishTypeId}/threshold', [OwnerFishStockController::class, 'updateThreshold']);
     Route::get('/fish-stocks/{fishTypeId}/history', [OwnerFishStockController::class, 'history']);

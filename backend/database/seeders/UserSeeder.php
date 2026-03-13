@@ -56,11 +56,11 @@ class UserSeeder extends Seeder
             'status' => 'pending',
         ]);
 
-        // Account 5 - Member Tanpa Email
+        // Account 5 - Active Member
         User::create([
-            'name' => 'Siti Tanpa Email',
+            'name' => 'Siti Member',
             'phone' => '081234567894',
-            'email' => null,
+            'email' => 'siti@pemancingan.com',
             'password' => 'password',
             'address' => 'Jl. Member No. 3, Jakarta',
             'role' => 'member',

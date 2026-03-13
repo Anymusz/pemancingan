@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Owner;
 
 use App\Http\Controllers\Controller;
 use App\Models\FishType;
+use App\Models\RestockLog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -169,6 +170,24 @@ class FishStockController extends Controller
                 'fish_type' => $fishType->name,
                 'logs'      => $logs,
                 'total'     => $logs->count(),
+            ],
+        ]);
+    }
+
+    /**
+     * GET /api/owner/fish-stocks/history
+     */
+    public function allHistory(): JsonResponse
+    {
+        $logs = RestockLog::with(['restockedBy:id,name', 'fishType:id,name'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'data'    => [
+                'logs'  => $logs,
+                'total' => $logs->count(),
             ],
         ]);
     }

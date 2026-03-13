@@ -22,7 +22,8 @@ class User extends Authenticatable
         // ✅ TAMBAHKAN 3 FIELD INI:
         'rejection_reason',
         'rejected_at',
-        'rejected_by',
+        'deactivated_reason',
+        'deactivated_at',
     ];
 
     protected $hidden = [
@@ -34,6 +35,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'rejected_at' => 'datetime',
+        'deactivated_at' => 'datetime',
     ];
 
     public function member()
@@ -51,5 +53,11 @@ class User extends Authenticatable
     {
         return $query->where('role', 'member')
                      ->where('status', 'rejected');
+    }
+
+    public function scopeDeactivatedMembers($query)
+    {
+        return $query->where('role', 'member')
+                     ->where('status', 'deactivated');
     }
 }

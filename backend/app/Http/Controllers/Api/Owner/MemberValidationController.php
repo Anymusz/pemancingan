@@ -281,19 +281,19 @@ class MemberValidationController extends Controller
                 ], 404);
             }
 
-            // Verify status rejected
-            if ($user->status !== 'rejected') {
+            // Verify status deactivated
+            if ($user->status !== 'deactivated') {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Hanya member rejected yang bisa direaktivasi',
+                    'message' => 'Hanya member deactivated yang bisa direaktivasi',
                 ], 422);
             }
 
-            // Update user to pending (clear rejection data)
+            // Update user to active (clear deactivated data)
             $user->update([
-                'status' => 'pending',
-                'rejection_reason' => null,
-                'rejected_at' => null,
+                'status' => 'active',
+                'deactivated_reason' => null,
+                'deactivated_at' => null,
             ]);
 
             return response()->json([
@@ -324,7 +324,7 @@ class MemberValidationController extends Controller
         // Validasi input
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'rejection_reason' => 'required|string|max:500',
+            'deactivated_reason' => 'required|string|max:500',
         ]);
 
         DB::beginTransaction();
@@ -353,14 +353,11 @@ class MemberValidationController extends Controller
 
             $memberIdBackup = $user->member->member_id;
 
-            // Delete member record (hard delete)
-            $user->member->delete();
-
-            // Update user to rejected
+            // Update user to deactivated
             $user->update([
-                'status' => 'rejected',
-                'rejection_reason' => $request->rejection_reason,
-                'rejected_at' => now(),
+                'status' => 'deactivated',
+                'deactivated_reason' => $request->deactivated_reason,
+                'deactivated_at' => now(),
             ]);
 
             DB::commit();
@@ -372,7 +369,7 @@ class MemberValidationController extends Controller
                     'user_id' => $user->id,
                     'name' => $user->name,
                     'member_id' => $memberIdBackup,
-                    'reason' => $user->rejection_reason,
+                    'reason' => $user->deactivated_reason,
                 ],
             ]);
 
@@ -431,11 +428,27 @@ class MemberValidationController extends Controller
                     ];
                 });
 
+            // Deactivated members
+            $deactivated = User::where('status', 'deactivated')
+                ->where('role', 'member')
+                ->orderBy('deactivated_at', 'desc')
+                ->get(['id', 'name', 'phone', 'deactivated_at', 'deactivated_reason'])
+                ->map(function ($user) {
+                    return [
+                        'user_id' => $user->id,
+                        'name' => $user->name,
+                        'phone' => $user->phone,
+                        'deactivated_at' => $user->deactivated_at ? $user->deactivated_at->format('Y-m-d H:i:s') : null,
+                        'deactivated_reason' => $user->deactivated_reason,
+                    ];
+                });
+
             return response()->json([
                 'success' => true,
                 'data' => [
                     'approved' => $approved,
                     'rejected' => $rejected,
+                    'deactivated' => $deactivated,
                 ],
             ]);
         } catch (\Exception $e) {
@@ -444,6 +457,108 @@ class MemberValidationController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Gagal mengambil riwayat validasi',
+            ], 500);
+        }
+    }
+
+    /**
+     * GET /owner/members/active
+     */
+    public function getActiveMembers()
+    {
+        try {
+            $activeMembers = User::where('role', 'member')
+                ->where('status', 'active')
+                ->with('member.tier')
+                ->orderBy('created_at', 'desc')
+                ->get()
+                ->map(function ($user) {
+                    return [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'phone' => $user->phone,
+                        'email' => $user->email,
+                        'member_id' => $user->member?->member_id,
+                        'tier' => $user->member?->tier?->name,
+                        'total_points' => $user->member?->total_points,
+                        'total_fish_weight' => $user->member?->total_fish_weight,
+                        'approved_at' => $user->member?->approved_at?->format('Y-m-d H:i:s'),
+                    ];
+                });
+
+            return response()->json([
+                'success' => true,
+                'data' => $activeMembers,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error getting active members: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengambil data member aktif',
+            ], 500);
+        }
+    }
+
+    /**
+     * GET /owner/members/deactivated
+     */
+    public function getDeactivatedMembers()
+    {
+        try {
+            $deactivatedMembers = User::where('role', 'member')
+                ->where('status', 'deactivated')
+                ->orderBy('deactivated_at', 'desc')
+                ->get()
+                ->map(function ($user) {
+                    return [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'phone' => $user->phone,
+                        'email' => $user->email,
+                        'deactivated_at' => $user->deactivated_at?->format('Y-m-d H:i:s'),
+                        'deactivated_reason' => $user->deactivated_reason,
+                    ];
+                });
+
+            return response()->json([
+                'success' => true,
+                'data' => $deactivatedMembers,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error getting deactivated members: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengambil data member dinonaktifkan',
+            ], 500);
+        }
+    }
+
+    /**
+     * GET /owner/members/counts
+     */
+    public function getMemberCounts()
+    {
+        try {
+            $counts = User::where('role', 'member')
+                ->selectRaw('status, count(*) as count')
+                ->groupBy('status')
+                ->pluck('count', 'status')
+                ->toArray();
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'pending' => $counts['pending'] ?? 0,
+                    'active' => $counts['active'] ?? 0,
+                    'rejected' => $counts['rejected'] ?? 0,
+                    'deactivated' => $counts['deactivated'] ?? 0,
+                ],
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error getting member counts: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengambil jumlah member',
             ], 500);
         }
     }

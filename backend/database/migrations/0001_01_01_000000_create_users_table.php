@@ -10,15 +10,17 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone')->unique();
             $table->text('address');
             $table->enum('role', ['owner', 'employee', 'member'])->default('member');
-            $table->enum('status', ['pending', 'active', 'rejected'])->default('pending');
+            $table->enum('status', ['pending', 'active', 'rejected', 'deactivated'])->default('pending');
             $table->text('rejection_reason')->nullable();
             $table->timestamp('rejected_at')->nullable();
+            $table->text('deactivated_reason')->nullable();
+            $table->timestamp('deactivated_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
