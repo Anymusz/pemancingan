@@ -4,6 +4,8 @@ import LandingPage from "@/pages/landing/LandingPage";
 import NotFound from "@/pages/NotFound";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
+import ForgotPassword from "@/pages/auth/ForgotPassword";
+import ResetPassword from "@/pages/auth/ResetPassword";
 import OwnerDashboard from "@/pages/owner/ownerDashboard";
 
 import ProtectedRoute from "@/routes/ProtectedRoute";
@@ -20,6 +22,7 @@ import EmployeeDashboard from "@/pages/employee/EmployeeDashboard";
 import Notifications from "@/pages/Notifications";
 import EventsPage from "@/pages/events/EventsPage";
 import EventDetailPage from "@/pages/events/EventDetailPage";
+import ComponentsTest from "@/pages/dev/ComponentsTest";
 
 // ===============================
 // Layout Wrapper
@@ -62,6 +65,8 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/leaderboard" element={<LeaderboardPublic />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/events/:id" element={<EventDetailPage />} />
@@ -105,6 +110,9 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            {/* Dev */}
+            <Route path="/dev/components" element={<ComponentsTest />} />
 
             {/* Misc */}
             <Route

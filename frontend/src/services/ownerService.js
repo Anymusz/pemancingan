@@ -30,16 +30,37 @@ const ownerService = {
     });
     return response.data;
   },
+  reactivateMember: async (userId) => {
+    const response = await api.post("/owner/reactivate-rejected", {
+      user_id: userId,
+    });
+    return response.data;
+  },
 
   deactivateMember: async (userId, reason) => {
     const response = await api.delete("/owner/deactivate-member", {
-      data: { user_id: userId, rejection_reason: reason },
+      data: { user_id: userId, deactivated_reason: reason },
     });
     return response.data;
   },
 
   getValidationHistory: async () => {
     const response = await api.get("/owner/validation-history");
+    return response.data;
+  },
+
+  getActiveMembers: async () => {
+    const response = await api.get("/owner/members/active");
+    return response.data;
+  },
+
+  getDeactivatedMembers: async () => {
+    const response = await api.get("/owner/members/deactivated");
+    return response.data;
+  },
+
+  getMemberCounts: async () => {
+    const response = await api.get("/owner/members/counts");
     return response.data;
   },
 
@@ -108,6 +129,11 @@ const ownerService = {
 
   getFishStocks: async () => {
     const response = await api.get("/owner/fish-stocks");
+    return response.data;
+  },
+
+  getAllFishRestockHistory: async () => {
+    const response = await api.get("/owner/fish-stocks/history");
     return response.data;
   },
 

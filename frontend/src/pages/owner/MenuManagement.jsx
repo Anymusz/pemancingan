@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import ownerService from "../../services/ownerService";
+import { useToast } from "@/hooks/useToast";
 
 const MenuManagement = () => {
   const [menus, setMenus] = useState([]);
@@ -12,7 +13,7 @@ const MenuManagement = () => {
   });
   const [loading, setLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
-  const [toast, setToast] = useState(null);
+  const toast = useToast();
 
   const [filters, setFilters] = useState({
     category: "",
@@ -39,12 +40,6 @@ const MenuManagement = () => {
   });
   const [formErrors, setFormErrors] = useState({});
 
-  // ---- Toast ----
-  const showToast = (message, type = "success") => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 3000);
-  };
-
   // ---- Fetch ----
   const fetchMenus = useCallback(async (currentFilters) => {
     setLoading(true);
@@ -66,11 +61,11 @@ const MenuManagement = () => {
         });
       }
     } catch {
-      showToast("Gagal memuat data menu", "error");
+      toast.error("Gagal memuat data menu");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     fetchMenus(filters);
@@ -169,18 +164,15 @@ const MenuManagement = () => {
     try {
       if (modalState.mode === "edit") {
         await ownerService.updateMenu(modalState.selectedMenu.id, form);
-        showToast("Menu berhasil diperbarui");
+        toast.success("Menu berhasil diperbarui");
       } else {
         await ownerService.createMenu(form);
-        showToast("Menu berhasil ditambahkan");
+        toast.success("Menu berhasil ditambahkan");
       }
       closeModals();
       fetchMenus(filters);
     } catch (err) {
-      showToast(
-        err?.response?.data?.message || "Gagal menyimpan menu",
-        "error",
-      );
+      toast.error(err?.response?.data?.message || "Gagal menyimpan menu");
     } finally {
       setSubmitLoading(false);
     }
@@ -190,13 +182,12 @@ const MenuManagement = () => {
     setSubmitLoading(true);
     try {
       await ownerService.deleteMenu(modalState.selectedMenu.id);
-      showToast("Menu berhasil dihapus");
+      toast.success("Menu berhasil dihapus");
       closeModals();
       fetchMenus(filters);
     } catch (err) {
-      showToast(
+      toast.error(
         err?.response?.data?.message || "Gagal menghapus menu",
-        "error",
       );
     } finally {
       setSubmitLoading(false);
@@ -214,7 +205,7 @@ const MenuManagement = () => {
     );
     try {
       await ownerService.toggleMenuAvailability(menu.id, newAvailability);
-      showToast(`Status "${menu.name}" berhasil diubah`);
+      toast.success(`Status "${menu.name}" berhasil diubah`);
     } catch {
       // Revert
       setMenus((prev) =>
@@ -222,20 +213,13 @@ const MenuManagement = () => {
           m.id === menu.id ? { ...m, availability: menu.availability } : m,
         ),
       );
-      showToast("Gagal mengubah status ketersediaan", "error");
+      toast.error("Gagal mengubah status ketersediaan");
     }
   };
 
   // ==================== RENDER ====================
   return (
     <div>
-      {/* Toast */}
-      {toast && (
-        <div>
-          [{toast.type === "success" ? "OK" : "ERROR"}] {toast.message}
-        </div>
-      )}
-
       <h1>Manajemen Menu</h1>
 
       {/* Summary */}

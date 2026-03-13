@@ -55,11 +55,23 @@ export {
   isAuthenticated,
 };
 
+export const forgotPassword = async (email) => {
+  const response = await api.post("/forgot-password", { email });
+  return response.data;
+};
+
+export const resetPassword = async (data) => {
+  const response = await api.post("/reset-password", data);
+  return response.data;
+};
+
 export default {
   register,
   login,
   logout,
   getMe,
+  forgotPassword,
+  resetPassword,
   getToken,
   setToken,
   removeToken,

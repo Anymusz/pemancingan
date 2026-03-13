@@ -1,6 +1,24 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Fish } from "lucide-react";
+import { useToast } from "@/hooks/useToast";
 import authService from "@/services/authService";
+import { ErrorAlert } from "@/components/feedback/inlineAlert";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +31,8 @@ const Register = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleChange = (e) => {
     setFormData({
@@ -33,9 +51,9 @@ const Register = () => {
       const response = await authService.register(formData);
 
       if (response.success) {
-        setSuccess(true);
-        alert(
-          "Registrasi berhasil! Akun Anda menunggu validasi owner. Silakan login setelah akun disetujui.",
+        toast.success(
+          "Registrasi Berhasil",
+          "Akun Anda menunggu validasi owner.",
         );
         setTimeout(() => {
           navigate("/login");
@@ -57,153 +75,149 @@ const Register = () => {
     }
   };
 
-  if (success) {
-    return (
-      <div
-        style={{
-          maxWidth: "400px",
-          margin: "50px auto",
-          padding: "20px",
-          border: "1px solid green",
-          background: "#ccffcc",
-        }}
-      >
-        <h2>Registrasi Berhasil!</h2>
-        <p>Akun Anda menunggu validasi owner.</p>
-        <p>Redirecting to login...</p>
-      </div>
-    );
-  }
-
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "50px auto",
-        padding: "20px",
-        border: "1px solid #ccc",
-      }}
-    >
-      <h2>Register</h2>
-
-      {error && (
-        <div
-          style={{
-            background: "#ffcccc",
-            padding: "10px",
-            marginBottom: "10px",
-            border: "1px solid red",
-          }}
-        >
-          {error}
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Nama Lengkap *
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
+    <div className="min-h-screen flex items-center justify-center px-4 py-8">
+      <div className="flex flex-col gap-6 w-full max-w-sm">
+        <div className="flex flex-col items-center gap-2 justify-center">
+          <div className="flex items-center gap-2">
+            <div className="bg-sky-500 rounded-lg p-2">
+              <Fish className="text-white" size={24} />
+            </div>
+            <span className="font-semibold text-lg">Pemancingan Sutoyo</span>
+          </div>
         </div>
 
-        <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Nomor HP *
-          </label>
-          <input
-            type="text"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px" }}
-            placeholder="08123456789"
-          />
-        </div>
+        <Card className="w-full">
+          <CardHeader className="text-center">
+            <CardTitle className="text-xl">Buat Akun Baru</CardTitle>
+            <CardDescription>
+              Daftarkan diri Anda untuk mulai menggunakan layanan pemancingan.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit}>
+              <FieldGroup>
+                {error !== null && (
+                  <ErrorAlert
+                    description={error}
+                    dismissible
+                    onDismiss={() => setError(null)}
+                  />
+                )}
 
-        <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Email (opsional)
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
+                <Field>
+                  <FieldLabel htmlFor="name">Nama Lengkap</FieldLabel>
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </Field>
 
-        <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Password *
-          </label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
+                <Field>
+                  <FieldLabel htmlFor="phone">Nomor HP</FieldLabel>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="text"
+                    placeholder="08123456789"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                  />
+                </Field>
 
-        <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Konfirmasi Password *
-          </label>
-          <input
-            type="password"
-            name="password_confirmation"
-            value={formData.password_confirmation}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
+                <Field>
+                  <FieldLabel htmlFor="email">Email</FieldLabel>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="email@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </Field>
 
-        <div style={{ marginBottom: "10px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>
-            Alamat *
-          </label>
-          <textarea
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-            rows="3"
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
+                <Field>
+                  <FieldLabel htmlFor="password">Password</FieldLabel>
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                  <span className="text-sm text-muted-foreground">
+                    Password minimal 8 karakter
+                  </span>
+                </Field>
 
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            width: "100%",
-            padding: "10px",
-            background: "#28a745",
-            color: "white",
-            border: "none",
-            cursor: loading ? "not-allowed" : "pointer",
-          }}
-        >
-          {loading ? "Loading..." : "Daftar"}
-        </button>
-      </form>
+                <Field>
+                  <FieldLabel htmlFor="password_confirmation">
+                    Konfirmasi Password
+                  </FieldLabel>
+                  <Input
+                    id="password_confirmation"
+                    name="password_confirmation"
+                    type="password"
+                    value={formData.password_confirmation}
+                    onChange={handleChange}
+                    required
+                  />
+                </Field>
 
-      <div style={{ marginTop: "15px", textAlign: "center" }}>
-        <p>
-          Sudah punya akun? <a href="/login">Login disini</a>
-        </p>
+                <Field>
+                  <FieldLabel htmlFor="address">Alamat</FieldLabel>
+                  <textarea
+                    id="address"
+                    name="address"
+                    rows={3}
+                    value={formData.address}
+                    onChange={handleChange}
+                    required
+                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  />
+                </Field>
+
+                <Field>
+                  <Button type="submit" disabled={loading} className="w-full">
+                    {loading ? "Memproses..." : "Daftar"}
+                  </Button>
+                  <FieldDescription className="text-center">
+                    Sudah punya akun?{" "}
+                    <Link to="/login" className="underline underline-offset-4">
+                      Login di sini
+                    </Link>
+                  </FieldDescription>
+                </Field>
+              </FieldGroup>
+            </form>
+          </CardContent>
+        </Card>
+
+        <FieldDescription className="px-6 text-center">
+          Dengan melanjutkan, Anda menyetujui{" "}
+          <a
+            href="#"
+            className="underline underline-offset-4 hover:text-primary"
+          >
+            Ketentuan Layanan
+          </a>{" "}
+          dan{" "}
+          <a
+            href="#"
+            className="underline underline-offset-4 hover:text-primary"
+          >
+            Kebijakan Privasi
+          </a>{" "}
+          kami.
+        </FieldDescription>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 // File: src/contexts/ToastContext.jsx
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 import ToastContainer from "@/components/feedback/ToastContainer";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -27,16 +27,19 @@ export const ToastProvider = ({ children }) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
   };
 
-  const toast = {
-    success: (title, description, duration) =>
-      addToast({ variant: "success", title, description, duration }),
-    error: (title, description, duration) =>
-      addToast({ variant: "error", title, description, duration }),
-    warning: (title, description, duration) =>
-      addToast({ variant: "warning", title, description, duration }),
-    info: (title, description, duration) =>
-      addToast({ variant: "info", title, description, duration }),
-  };
+  const toast = React.useMemo(
+    () => ({
+      success: (title, description, duration) =>
+        addToast({ variant: "success", title, description, duration }),
+      error: (title, description, duration) =>
+        addToast({ variant: "error", title, description, duration }),
+      warning: (title, description, duration) =>
+        addToast({ variant: "warning", title, description, duration }),
+      info: (title, description, duration) =>
+        addToast({ variant: "info", title, description, duration }),
+    }),
+    []
+  );
 
   return (
     <ToastContext.Provider value={toast}>

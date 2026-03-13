@@ -150,7 +150,7 @@ export const Toast = ({
   return (
     <div
       className={cn(
-        "relative w-[340px] bg-white dark:bg-slate-900 rounded-2xl overflow-hidden",
+        "relative w-full bg-white dark:bg-slate-900 rounded-2xl overflow-hidden",
         "shadow-[0_8px_24px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_24px_rgba(0,0,0,0.3)]",
         "border border-slate-200/60 dark:border-slate-700/60",
         "transition-all duration-300",

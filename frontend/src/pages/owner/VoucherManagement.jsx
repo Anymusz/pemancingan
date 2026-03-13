@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import ownerService from "../../services/ownerService";
+import { useToast } from "@/hooks/useToast";
 
 const MONTH_NAMES = [
   "Januari",
@@ -36,14 +37,9 @@ const VoucherManagement = () => {
   const [filterMonth, setFilterMonth] = useState("");
 
   // Toast
-  const [toast, setToast] = useState(null);
+  const toast = useToast();
 
   // ==================== HELPERS ====================
-
-  const showToast = (message, type = "success") => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 3000);
-  };
 
   const formatCurrency = (val) => `Rp ${Number(val).toLocaleString("id-ID")}`;
 
@@ -85,11 +81,11 @@ const VoucherManagement = () => {
         setConfigs(mapped);
       }
     } catch {
-      showToast("Gagal memuat konfigurasi voucher", "error");
+      toast.error("Gagal memuat konfigurasi voucher");
     } finally {
       setConfigLoading(false);
     }
-  }, []);
+  }, [toast]);
 
   const fetchVouchers = useCallback(async () => {
     setVoucherLoading(true);
@@ -105,11 +101,11 @@ const VoucherManagement = () => {
         setVouchers(Array.isArray(res.data) ? res.data : []);
       }
     } catch {
-      showToast("Gagal memuat daftar voucher", "error");
+      toast.error("Gagal memuat daftar voucher");
     } finally {
       setVoucherLoading(false);
     }
-  }, [filterStatus, filterYear, filterMonth]);
+  }, [filterStatus, filterYear, filterMonth, toast]);
 
   useEffect(() => {
     fetchConfigs();
@@ -132,13 +128,10 @@ const VoucherManagement = () => {
           { rank: 3, amount: Number(configs.rank_3) },
         ],
       });
-      showToast("Konfigurasi voucher berhasil disimpan");
+      toast.success("Konfigurasi voucher berhasil disimpan");
       fetchConfigs();
     } catch (err) {
-      showToast(
-        err?.response?.data?.message || "Gagal menyimpan konfigurasi",
-        "error",
-      );
+      toast.error(err?.response?.data?.message || "Gagal menyimpan konfigurasi");
     } finally {
       setConfigSaving(false);
     }
@@ -147,26 +140,6 @@ const VoucherManagement = () => {
   // ==================== RENDER ====================
   return (
     <div>
-      {/* Toast */}
-      {toast && (
-        <div
-          style={{
-            position: "fixed",
-            top: 16,
-            right: 16,
-            padding: "12px 20px",
-            borderRadius: 8,
-            color: "#fff",
-            backgroundColor: toast.type === "success" ? "#16a34a" : "#dc2626",
-            zIndex: 9999,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-            fontSize: 14,
-          }}
-        >
-          {toast.message}
-        </div>
-      )}
-
       <h1>Manajemen Voucher</h1>
 
       {/* ======================== SECTION 1 ======================== */}

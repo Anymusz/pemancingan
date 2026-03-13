@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PendingMembersList from "./PendingMembersList";
-import ActiveMembersList from "./ActiveMembersList";
-import ValidationHistory from "./ValidationHistory";
+import MemberManagement from "./MemberManagement";
 import OwnerLeaderboard from "./OwnerLeaderboard";
 import MenuManagement from "./MenuManagement";
 import FishTypeManagement from "./FishTypeManagement";
@@ -30,7 +28,7 @@ import {
 const OwnerDashboard = () => {
   const [activeMenu, setActiveMenu] = useState(() => {
     const params = new URLSearchParams(window.location.search);
-    return params.get("tab") || "pending";
+    return params.get("tab") || "members";
   });
   const [unreadCount, setUnreadCount] = useState(0);
   const navigate = useNavigate();
@@ -63,11 +61,7 @@ const OwnerDashboard = () => {
     },
     {
       label: "Kelola Member",
-      items: [
-        { key: "pending", label: "Pending Members", icon: UserCheck },
-        { key: "active", label: "Active Members", icon: Users },
-        { key: "history", label: "Validation History", icon: ClipboardList },
-      ],
+      items: [{ key: "members", label: "Kelola Member", icon: Users }],
     },
     {
       label: "Kelola Produk",
@@ -99,9 +93,7 @@ const OwnerDashboard = () => {
       unreadCount={unreadCount}
       onLogout={handleLogout}
     >
-      {activeMenu === "pending" && <PendingMembersList />}
-      {activeMenu === "active" && <ActiveMembersList />}
-      {activeMenu === "history" && <ValidationHistory />}
+      {activeMenu === "members" && <MemberManagement />}
       {activeMenu === "leaderboard" && <OwnerLeaderboard />}
       {activeMenu === "menus" && <MenuManagement />}
       {activeMenu === "fish-types" && <FishTypeManagement />}

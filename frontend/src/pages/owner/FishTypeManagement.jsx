@@ -1,14 +1,16 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import ownerService from "../../services/ownerService";
+import { useToast } from "@/hooks/useToast";
 
 const FishTypeManagement = () => {
   const [fishTypes, setFishTypes] = useState([]);
   const [fishStocks, setFishStocks] = useState({});
   const [loading, setLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
-  const [historyData, setHistoryData] = useState([]);
-  const [historyLoading, setHistoryLoading] = useState(false);
-  const [toast, setToast] = useState(null);
+  const [allHistoryData, setAllHistoryData] = useState([]);
+  const [allHistoryLoading, setAllHistoryLoading] = useState(false);
+  const [historyFishId, setHistoryFishId] = useState("");
+  const toast = useToast();
 
   const [filters, setFilters] = useState({
     search: "",
@@ -36,28 +38,25 @@ const FishTypeManagement = () => {
   });
   const [formErrors, setFormErrors] = useState({});
 
-  // ---- Toast ----
-  const showToast = (message, type = "success") => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 3000);
-  };
-
   // ---- Fetch Fish Types ----
-  const fetchFishTypes = useCallback(async (currentFilters) => {
-    setLoading(true);
-    try {
-      const params = {};
-      if (currentFilters.search) params.search = currentFilters.search;
-      if (currentFilters.include_deleted) params.include_deleted = true;
+  const fetchFishTypes = useCallback(
+    async (currentFilters) => {
+      setLoading(true);
+      try {
+        const params = {};
+        if (currentFilters.search) params.search = currentFilters.search;
+        if (currentFilters.include_deleted) params.include_deleted = true;
 
-      const res = await ownerService.getOwnerFishTypes(params);
-      if (res.success) setFishTypes(res.data.fish_types);
-    } catch {
-      showToast("Gagal memuat data jenis ikan", "error");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+        const res = await ownerService.getOwnerFishTypes(params);
+        if (res.success) setFishTypes(res.data.fish_types);
+      } catch {
+        toast.error("Gagal memuat data jenis ikan");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [toast],
+  );
 
   // ---- Fetch Fish Stocks ----
   const fetchFishStocks = useCallback(async () => {
@@ -71,22 +70,22 @@ const FishTypeManagement = () => {
         setFishStocks(stockMap);
       }
     } catch {
-      showToast("Gagal memuat data stok", "error");
+      toast.error("Gagal memuat data stok");
     }
-  }, []);
+  }, [toast]);
 
-  // ---- Fetch History ----
-  const fetchHistory = useCallback(async (fishTypeId) => {
-    setHistoryLoading(true);
+  // ---- Fetch All History ----
+  const fetchAllHistory = useCallback(async () => {
+    setAllHistoryLoading(true);
     try {
-      const res = await ownerService.getFishRestockHistory(fishTypeId);
-      if (res.success) setHistoryData(res.data.logs);
+      const res = await ownerService.getAllFishRestockHistory();
+      if (res.success) setAllHistoryData(res.data.logs);
     } catch {
-      showToast("Gagal memuat riwayat restock", "error");
+      toast.error("Gagal memuat riwayat restock");
     } finally {
-      setHistoryLoading(false);
+      setAllHistoryLoading(false);
     }
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     fetchFishTypes(filters);
@@ -95,6 +94,10 @@ const FishTypeManagement = () => {
   useEffect(() => {
     fetchFishStocks();
   }, [fetchFishStocks]);
+
+  useEffect(() => {
+    fetchAllHistory();
+  }, [fetchAllHistory]);
 
   // ---- Filter Handlers ----
   const handleSearchChange = (e) => {
@@ -116,7 +119,6 @@ const FishTypeManagement = () => {
       selectedFishType: null,
     });
     setFormErrors({});
-    setHistoryData([]);
   };
 
   // ---- Form Modal ----
@@ -159,13 +161,11 @@ const FishTypeManagement = () => {
   const openRestockModal = (fishType) => {
     setRestockForm({ quantity_kg: "", notes: "" });
     setFormErrors({});
-    setHistoryData([]);
     setModalState((prev) => ({
       ...prev,
       restock: true,
       selectedFishType: fishType,
     }));
-    fetchHistory(fishType.id);
   };
 
   // ---- Validation ----
@@ -217,7 +217,7 @@ const FishTypeManagement = () => {
           fetchFishStocks();
         }
 
-        showToast("Jenis ikan berhasil diperbarui");
+        toast.success("Jenis ikan berhasil diperbarui");
       } else {
         const res = await ownerService.createFishType({
           name: form.name,
@@ -228,16 +228,13 @@ const FishTypeManagement = () => {
             alert_threshold_kg: Number(form.alert_threshold_kg),
           });
         }
-        showToast("Jenis ikan berhasil ditambahkan");
+        toast.success("Jenis ikan berhasil ditambahkan");
         fetchFishStocks();
       }
       closeModals();
       fetchFishTypes(filters);
     } catch (err) {
-      showToast(
-        err?.response?.data?.message || "Gagal menyimpan jenis ikan",
-        "error",
-      );
+      toast.error(err?.response?.data?.message || "Gagal menyimpan jenis ikan");
     } finally {
       setSubmitLoading(false);
     }
@@ -247,14 +244,11 @@ const FishTypeManagement = () => {
     setSubmitLoading(true);
     try {
       await ownerService.deleteFishType(modalState.selectedFishType.id);
-      showToast("Jenis ikan berhasil dihapus");
+      toast.success("Jenis ikan berhasil dihapus");
       closeModals();
       fetchFishTypes(filters);
     } catch (err) {
-      showToast(
-        err?.response?.data?.message || "Gagal menghapus jenis ikan",
-        "error",
-      );
+      toast.error(err?.response?.data?.message || "Gagal menghapus jenis ikan");
     } finally {
       setSubmitLoading(false);
     }
@@ -268,14 +262,14 @@ const FishTypeManagement = () => {
     );
     try {
       await ownerService.toggleFishTypeActive(fishType.id);
-      showToast(`Status "${fishType.name}" berhasil diubah`);
+      toast.success(`Status "${fishType.name}" berhasil diubah`);
     } catch {
       setFishTypes((prev) =>
         prev.map((ft) =>
           ft.id === fishType.id ? { ...ft, is_active: fishType.is_active } : ft,
         ),
       );
-      showToast("Gagal mengubah status ikan", "error");
+      toast.error("Gagal mengubah status ikan");
     }
   };
 
@@ -292,15 +286,12 @@ const FishTypeManagement = () => {
         quantity_kg: Number(restockForm.quantity_kg),
         notes: restockForm.notes || null,
       });
-      showToast("Restock berhasil");
+      toast.success("Restock berhasil");
       setRestockForm({ quantity_kg: "", notes: "" });
       fetchFishStocks();
-      fetchHistory(modalState.selectedFishType.id);
+      fetchAllHistory();
     } catch (err) {
-      showToast(
-        err?.response?.data?.message || "Gagal melakukan restock",
-        "error",
-      );
+      toast.error(err?.response?.data?.message || "Gagal melakukan restock");
     } finally {
       setSubmitLoading(false);
     }
@@ -316,16 +307,15 @@ const FishTypeManagement = () => {
       minute: "2-digit",
     });
 
+  const filteredHistory = historyFishId
+    ? allHistoryData.filter(
+        (log) => Number(log.fish_type_id) === Number(historyFishId),
+      )
+    : allHistoryData;
+
   // ==================== RENDER ====================
   return (
     <div>
-      {/* Toast */}
-      {toast && (
-        <div>
-          [{toast.type === "success" ? "OK" : "ERROR"}] {toast.message}
-        </div>
-      )}
-
       <h1>Manajemen Jenis Ikan</h1>
 
       <button onClick={openAddModal}>+ Tambah Jenis Ikan</button>
@@ -550,41 +540,62 @@ const FishTypeManagement = () => {
             {submitLoading ? "Menyimpan..." : "Restock"}
           </button>{" "}
           <button onClick={closeModals}>Tutup</button>
-          {/* Riwayat Restock */}
-          <hr style={{ margin: "16px 0" }} />
-          <h3>Riwayat Restock</h3>
-          {historyLoading ? (
-            <p>Memuat riwayat...</p>
-          ) : historyData.length === 0 ? (
-            <p>Belum ada riwayat restock</p>
-          ) : (
-            <table border="1" width="100%">
-              <thead>
-                <tr>
-                  <th>Tanggal</th>
-                  <th>Jumlah (Kg)</th>
-                  <th>Stok Sebelum</th>
-                  <th>Stok Sesudah</th>
-                  <th>Dicatat oleh</th>
-                  <th>Catatan</th>
-                </tr>
-              </thead>
-              <tbody>
-                {historyData.map((log) => (
-                  <tr key={log.id}>
-                    <td>{formatDate(log.created_at)}</td>
-                    <td>+{Number(log.quantity_kg).toLocaleString("id-ID")}</td>
-                    <td>{Number(log.stock_before).toLocaleString("id-ID")}</td>
-                    <td>{Number(log.stock_after).toLocaleString("id-ID")}</td>
-                    <td>{log.restocked_by?.name ?? "-"}</td>
-                    <td>{log.notes ?? "-"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
         </div>
       )}
+
+      {/* ======================= RIWAYAT RESTOCK SECTION ======================= */}
+      <div
+        style={{ marginTop: 32, paddingTop: 16, borderTop: "2px solid #ccc" }}
+      >
+        <h2>Riwayat Restock</h2>
+        <div style={{ marginBottom: 16 }}>
+          <label style={{ marginRight: 8 }}>Pilih Jenis Ikan: </label>
+          <select
+            value={historyFishId}
+            onChange={(e) => setHistoryFishId(e.target.value)}
+          >
+            <option value="">Semua Jenis Ikan</option>
+            {fishTypes.map((ft) => (
+              <option key={ft.id} value={ft.id}>
+                {ft.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {allHistoryLoading ? (
+          <p>Memuat riwayat...</p>
+        ) : filteredHistory.length === 0 ? (
+          <p>Belum ada riwayat restock</p>
+        ) : (
+          <table border="1" width="100%">
+            <thead>
+              <tr>
+                <th>Jenis Ikan</th>
+                <th>Tanggal</th>
+                <th>Jumlah (Kg)</th>
+                <th>Stok Sebelum</th>
+                <th>Stok Sesudah</th>
+                <th>Dicatat oleh</th>
+                <th>Catatan</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredHistory.map((log) => (
+                <tr key={log.id}>
+                  <td>{log.fish_type?.name ?? "-"}</td>
+                  <td>{formatDate(log.created_at)}</td>
+                  <td>+{Number(log.quantity_kg).toLocaleString("id-ID")}</td>
+                  <td>{Number(log.stock_before).toLocaleString("id-ID")}</td>
+                  <td>{Number(log.stock_after).toLocaleString("id-ID")}</td>
+                  <td>{log.restocked_by?.name ?? "-"}</td>
+                  <td>{log.notes ?? "-"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 };
