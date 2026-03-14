@@ -34,7 +34,7 @@ const Dashboard = () => {
   const [unreadCount, setUnreadCount] = useState(0);
   const [vouchers, setVouchers] = useState([]);
   const [vouchersLoading, setVouchersLoading] = useState(true);
-  const { showToast } = useToast();
+  const toast = useToast();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(() => {
     const params = new URLSearchParams(window.location.search);
@@ -72,12 +72,12 @@ const Dashboard = () => {
         setProfile(response.data);
       } else {
         setError(response.message);
-        showToast(response.message, "error");
+        toast.error(response.message);
       }
     } catch (err) {
       const message = err.response?.data?.message || "Gagal memuat profile";
       setError(message);
-      showToast(message, "error");
+      toast.error(message);
     } finally {
       setLoading(false);
     }

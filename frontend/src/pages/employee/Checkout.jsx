@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import employeeService from "../../services/employeeService";
+import { useToast } from "@/hooks/useToast";
+import { formatDateTime } from "@/utils/utils";
 
 const TIER_DISCOUNT_FALLBACK = 0;
 
@@ -24,8 +26,8 @@ const Checkout = () => {
   const [loading, setLoading] = useState(false);
   const [fetchLoading, setFetchLoading] = useState(false);
   const [pendingLoading, setPendingLoading] = useState(false);
-  const [toast, setToast] = useState(null);
   const [tierUpgradeAlert, setTierUpgradeAlert] = useState(null);
+  const toast = useToast();
   const [searchQuery, setSearchQuery] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [activeVoucher, setActiveVoucher] = useState(null);
@@ -76,11 +78,6 @@ const Checkout = () => {
   );
 
   // ==================== HELPERS ====================
-  const showToast = (message, type = "success") => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 4000);
-  };
-
   const resetForm = () => {
     setSelectedArrival(null);
     setPendingOrders([]);
@@ -102,25 +99,25 @@ const Checkout = () => {
         setArrivals(res.data.arrivals.filter((a) => a.status === "active"));
       }
     } catch {
-      showToast("Gagal memuat data kedatangan", "error");
+      toast.error("Gagal memuat data kedatangan");
     } finally {
       setFetchLoading(false);
     }
-  }, []);
+  }, [toast]);
 
-  const fetchFishTypes = async () => {
+  const fetchFishTypes = useCallback(async () => {
     try {
       const res = await employeeService.getFishTypes();
       if (res.success) setFishTypes(res.data);
     } catch {
-      showToast("Gagal memuat data jenis ikan", "error");
+      toast.error("Gagal memuat data jenis ikan");
     }
-  };
+  }, [toast]);
 
   useEffect(() => {
     fetchArrivals();
     fetchFishTypes();
-  }, [fetchArrivals]);
+  }, [fetchArrivals, fetchFishTypes]);
 
   const fetchPendingOrders = async (arrivalId) => {
     setPendingLoading(true);
@@ -128,7 +125,7 @@ const Checkout = () => {
       const res = await employeeService.getPendingOrders(arrivalId);
       if (res.success) setPendingOrders(res.data.orders);
     } catch {
-      showToast("Gagal memuat pending orders", "error");
+      toast.error("Gagal memuat pending orders");
     } finally {
       setPendingLoading(false);
     }
@@ -278,7 +275,7 @@ const Checkout = () => {
       pendingOrders.length > 0 ||
       penaltyItems.length > 0;
     if (!hasAnyItem) {
-      showToast("Tidak ada item untuk di-checkout", "error");
+      toast.error("Tidak ada item untuk di-checkout");
       return;
     }
 
@@ -307,7 +304,7 @@ const Checkout = () => {
           res.data.transaction.discount_voucher > 0
             ? ` | Voucher digunakan: Rp ${Number(res.data.transaction.discount_voucher).toLocaleString("id-ID")}`
             : "";
-        showToast(
+        toast.success(
           `Checkout berhasil! Kode: ${res.data.transaction.transaction_code}${voucherInfo}`,
         );
 
@@ -321,10 +318,7 @@ const Checkout = () => {
         fetchArrivals();
       }
     } catch (err) {
-      showToast(
-        err?.response?.data?.message || "Gagal memproses checkout",
-        "error",
-      );
+      toast.error(err?.response?.data?.message || "Gagal memproses checkout");
     } finally {
       setLoading(false);
     }
@@ -335,14 +329,8 @@ const Checkout = () => {
   const isSubmitDisabled =
     !selectedArrival || !paymentMethod || !hasAnyItem || loading;
 
-  // ==================== RENDER ====================
   return (
     <div>
-      {toast && (
-        <div>
-          [{toast.type === "success" ? "OK" : "ERROR"}] {toast.message}
-        </div>
-      )}
       {tierUpgradeAlert && (
         <div style={{ border: "2px solid green", padding: 12 }}>
           🎉 {tierUpgradeAlert}
@@ -399,10 +387,7 @@ const Checkout = () => {
                     >
                       <strong>{a.name}</strong> | {a.member_code} | {a.tier} |
                       Check-in:{" "}
-                      {new Date(a.check_in_at).toLocaleTimeString("id-ID", {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
+                      {formatDateTime(a.check_in_at)}
                     </div>
                   ))
                 )}
@@ -507,7 +492,12 @@ const Checkout = () => {
               {fishItems.map((item, i) => (
                 <tr key={i}>
                   <td>{item.name}</td>
-                  <td>{item.quantity}</td>
+                  <td>
+                    {Number(item.quantity).toLocaleString("id-ID", {
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 2,
+                    })}
+                  </td>
                   <td>
                     Rp{" "}
                     {Number(item.unit_price_snapshot).toLocaleString("id-ID")}

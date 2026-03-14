@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import ownerService from "../../services/ownerService";
 import { useToast } from "@/hooks/useToast";
+import ConfirmDialog from "../../components/common/ConfirmDialog";
 
 const MONTH_NAMES = [
   "Januari",
@@ -28,6 +29,7 @@ const VoucherManagement = () => {
   });
   const [configLoading, setConfigLoading] = useState(false);
   const [configSaving, setConfigSaving] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   // Section 3 — Daftar Voucher
   const [vouchers, setVouchers] = useState([]);
@@ -134,6 +136,7 @@ const VoucherManagement = () => {
       toast.error(err?.response?.data?.message || "Gagal menyimpan konfigurasi");
     } finally {
       setConfigSaving(false);
+      setConfirmOpen(false);
     }
   };
 
@@ -188,7 +191,7 @@ const VoucherManagement = () => {
             </p>
 
             <button
-              onClick={handleSaveConfig}
+              onClick={() => setConfirmOpen(true)}
               disabled={configSaving}
               style={{
                 marginTop: 8,
@@ -202,6 +205,17 @@ const VoucherManagement = () => {
             >
               {configSaving ? "Menyimpan..." : "Simpan Konfigurasi"}
             </button>
+
+            <ConfirmDialog
+              open={confirmOpen}
+              onClose={() => setConfirmOpen(false)}
+              onConfirm={handleSaveConfig}
+              title="Konfirmasi Simpan Konfigurasi"
+              description="Perubahan ini hanya berlaku untuk voucher yang diterbitkan di masa depan. Voucher yang sudah terbit tidak akan berubah. Lanjutkan?"
+              confirmLabel="Ya, Simpan"
+              cancelLabel="Batal"
+              loading={configSaving}
+            />
           </>
         )}
       </div>

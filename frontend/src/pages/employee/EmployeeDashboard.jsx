@@ -30,6 +30,7 @@ const EmployeeDashboard = () => {
   const [activeMenu, setActiveMenu] = useState(initialTab);
   const [mountedTabs, setMountedTabs] = useState(new Set([initialTab]));
   const [preselectArrivalId, setPreselectArrivalId] = useState(null);
+  const [preselectAddOrderArrivalId, setPreselectAddOrderArrivalId] = useState(null);
   const [unreadCount, setUnreadCount] = useState(0);
   const navigate = useNavigate();
 
@@ -120,8 +121,20 @@ const EmployeeDashboard = () => {
         return (
           <div key={menu} className={activeMenu === menu ? "block" : "hidden"}>
             {menu === "pendingorder" && <PendingOrder />}
-            {menu === "addorder" && <AddOrder />}
-            {menu === "checkin" && <CheckIn />}
+            {menu === "addorder" && (
+              <AddOrder
+                preselectArrivalId={preselectAddOrderArrivalId}
+                onPreselectConsumed={() => setPreselectAddOrderArrivalId(null)}
+              />
+            )}
+            {menu === "checkin" && (
+              <CheckIn
+                onNavigateToAddOrder={(arrivalId) => {
+                  setPreselectAddOrderArrivalId(arrivalId);
+                  handleMenuChange("addorder");
+                }}
+              />
+            )}
             {menu === "arrivals" && (
               <TodayArrivals onGoToCheckout={handleGoToCheckout} />
             )}

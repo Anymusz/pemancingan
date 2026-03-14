@@ -3,13 +3,17 @@
 import { useState, useEffect, useRef } from "react";
 import employeeService from "../../services/employeeService";
 import QRScanner from "../../components/employee/QRScanner";
+import FormDialog from "../../components/common/FormDialog";
+import { formatDateTime } from "../../utils/utils";
+import { useToast } from "@/hooks/useToast";
 
-const CheckIn = () => {
+const CheckIn = ({ onNavigateToAddOrder }) => {
   // ==================== SHARED STATE ====================
   const [activeTab, setActiveTab] = useState("manual"); // 'manual' | 'scan'
   const [notes, setNotes] = useState("");
   const [submitLoading, setSubmitLoading] = useState(false);
-  const [toast, setToast] = useState(null);
+  const [successData, setSuccessData] = useState(null);
+  const toast = useToast();
 
   // ==================== MANUAL TAB STATE ====================
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,12 +27,6 @@ const CheckIn = () => {
   const [scanError, setScanError] = useState(null);
   const [resolveLoading, setResolveLoading] = useState(false);
   const [showScanner, setShowScanner] = useState(false);
-
-  // ==================== TOAST ====================
-  const showToast = (message, type = "success") => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 4000);
-  };
 
   // Reset scan state when switching to manual tab
   useEffect(() => {
@@ -59,17 +57,14 @@ const CheckIn = () => {
           setSearchResults(res.data.members);
         }
       } catch (err) {
-        showToast(
-          err?.response?.data?.message || "Gagal mencari member",
-          "error",
-        );
+        toast.error(err?.response?.data?.message || "Gagal mencari member");
       } finally {
         setSearchLoading(false);
       }
     }, 300);
 
     return () => clearTimeout(searchTimeout.current);
-  }, [searchQuery, selectedMember]);
+  }, [searchQuery, selectedMember, toast]);
 
   // ==================== MANUAL HANDLERS ====================
   const handleSelectMember = (member) => {
@@ -149,9 +144,12 @@ const CheckIn = () => {
       });
 
       if (res.success) {
-        showToast(
-          `Check-in berhasil! ${res.data.arrival.member.name} (${res.data.arrival.member.tier})`,
-        );
+        setSuccessData({
+          name: res.data.arrival.member.name,
+          tier: res.data.arrival.member.tier,
+          id: res.data.arrival.member.id,
+          arrival_id: res.data.arrival.id,
+        });
 
         // Reset based on active tab
         if (activeTab === "manual") {
@@ -165,10 +163,7 @@ const CheckIn = () => {
         }
       }
     } catch (err) {
-      showToast(
-        err?.response?.data?.message || "Gagal melakukan check-in",
-        "error",
-      );
+      toast.error(err?.response?.data?.message || "Gagal melakukan check-in");
     } finally {
       setSubmitLoading(false);
     }
@@ -177,12 +172,38 @@ const CheckIn = () => {
   // ==================== RENDER ====================
   return (
     <div>
-      {/* Toast */}
-      {toast && (
+      <FormDialog
+        open={!!successData}
+        onClose={() => setSuccessData(null)}
+        title="Check-in Berhasil"
+        size="sm"
+      >
         <div>
-          [{toast.type === "success" ? "OK" : "ERROR"}] {toast.message}
+          <p>
+            Member <strong>{successData?.name}</strong> ({successData?.tier})
+            telah berhasil check-in.
+          </p>
+          <div style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
+            <button
+              onClick={() => {
+                setSuccessData(null);
+                if (onNavigateToAddOrder) {
+                  onNavigateToAddOrder(successData?.arrival_id);
+                }
+              }}
+              style={{ padding: "8px 16px" }}
+            >
+              Tambah Pesanan
+            </button>
+            <button
+              onClick={() => setSuccessData(null)}
+              style={{ padding: "8px 16px" }}
+            >
+              Tutup
+            </button>
+          </div>
         </div>
-      )}
+      </FormDialog>
 
       <h1>Check-in Member</h1>
 
@@ -386,12 +407,7 @@ const CheckIn = () => {
                 >
                   <p style={{ color: "#a16207", fontWeight: 500 }}>
                     ⚠️ Member sedang aktif, check-in pukul{" "}
-                    {new Date(
-                      scanResult.active_arrival.check_in_at,
-                    ).toLocaleTimeString("id-ID", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                    {formatDateTime(scanResult.active_arrival.check_in_at)}
                   </p>
                   <button disabled style={{ marginTop: 8, opacity: 0.5 }}>
                     Check-in (Tidak Tersedia)

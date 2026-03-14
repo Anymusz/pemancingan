@@ -10,7 +10,7 @@ import OwnerDashboard from "@/pages/owner/ownerDashboard";
 
 import ProtectedRoute from "@/routes/ProtectedRoute";
 
-import ClickSpark from "@/components/ui/ClickSpark";
+import ClickSpark from "@/components/layout/ClickSpark";
 import GradientBg from "@/components/layout/gradient-bg";
 import { FloatingNav } from "@/components/layout/floating-navbar";
 import { NAV_ITEMS } from "@/constants/navigation";

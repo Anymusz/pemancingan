@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import ownerService from "../../services/ownerService";
 import { useToast } from "@/hooks/useToast";
+import { formatDateTime } from "../../utils/utils";
+import FormDialog from "../../components/common/FormDialog";
+import ConfirmDialog from "../../components/common/ConfirmDialog";
 
 const FishTypeManagement = () => {
   const [fishTypes, setFishTypes] = useState([]);
@@ -288,6 +291,7 @@ const FishTypeManagement = () => {
       });
       toast.success("Restock berhasil");
       setRestockForm({ quantity_kg: "", notes: "" });
+      closeModals();
       fetchFishStocks();
       fetchAllHistory();
     } catch (err) {
@@ -298,14 +302,6 @@ const FishTypeManagement = () => {
   };
 
   // ---- Format helpers ----
-  const formatDate = (dateStr) =>
-    new Date(dateStr).toLocaleString("id-ID", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
 
   const filteredHistory = historyFishId
     ? allHistoryData.filter(
@@ -416,13 +412,12 @@ const FishTypeManagement = () => {
       )}
 
       {/* Form Modal */}
-      {modalState.form && (
-        <div style={{ border: "1px solid #000", padding: 16, marginTop: 16 }}>
-          <h2>
-            {modalState.mode === "edit"
-              ? "Edit Jenis Ikan"
-              : "Tambah Jenis Ikan"}
-          </h2>
+      <FormDialog
+        open={modalState.form}
+        onClose={closeModals}
+        title={modalState.mode === "edit" ? "Edit Jenis Ikan" : "Tambah Jenis Ikan"}
+      >
+        <div>
           <div>
             <label>Nama Ikan *</label>
             <br />
@@ -434,7 +429,7 @@ const FishTypeManagement = () => {
               <span style={{ color: "red" }}> {formErrors.name}</span>
             )}
           </div>
-          <div>
+          <div style={{ marginTop: 8 }}>
             <label>Harga per Kg (Rp) *</label>
             <br />
             <input
@@ -449,7 +444,7 @@ const FishTypeManagement = () => {
               <span style={{ color: "red" }}> {formErrors.price_per_kg}</span>
             )}
           </div>
-          <div>
+          <div style={{ marginTop: 8 }}>
             <label>Alert Threshold (Kg)</label>
             <br />
             <input
@@ -469,39 +464,43 @@ const FishTypeManagement = () => {
             )}
           </div>
           <br />
-          <button onClick={handleSubmit} disabled={submitLoading}>
-            {submitLoading
-              ? "Menyimpan..."
-              : modalState.mode === "edit"
-                ? "Simpan Perubahan"
-                : "Tambah"}
-          </button>{" "}
-          <button onClick={closeModals}>Batal</button>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button onClick={handleSubmit} disabled={submitLoading}>
+              {submitLoading
+                ? "Menyimpan..."
+                : modalState.mode === "edit"
+                  ? "Simpan Perubahan"
+                  : "Tambah"}
+            </button>
+            <button onClick={closeModals}>Batal</button>
+          </div>
         </div>
-      )}
+      </FormDialog>
 
       {/* Delete Modal */}
-      {modalState.delete && modalState.selectedFishType && (
-        <div style={{ border: "1px solid red", padding: 16, marginTop: 16 }}>
-          <p>
-            Hapus jenis ikan "{modalState.selectedFishType.name}"? Data historis
-            transaksi tetap tersimpan.
-          </p>
-          <button onClick={handleDelete} disabled={submitLoading}>
-            {submitLoading ? "Menghapus..." : "Ya, Hapus"}
-          </button>{" "}
-          <button onClick={closeModals}>Batal</button>
-        </div>
-      )}
+      <ConfirmDialog
+        open={modalState.delete && !!modalState.selectedFishType}
+        onClose={closeModals}
+        onConfirm={handleDelete}
+        title="Konfirmasi Hapus"
+        description={`Hapus jenis ikan "${modalState.selectedFishType?.name}"? Data historis transaksi tetap tersimpan.`}
+        variant="destructive"
+        confirmLabel="Ya, Hapus"
+        cancelLabel="Batal"
+        loading={submitLoading}
+      />
 
       {/* Restock Modal — include history */}
-      {modalState.restock && modalState.selectedFishType && (
-        <div style={{ border: "1px solid green", padding: 16, marginTop: 16 }}>
-          <h2>Restock — {modalState.selectedFishType.name}</h2>
+      <FormDialog
+        open={modalState.restock && !!modalState.selectedFishType}
+        onClose={closeModals}
+        title={`Restock — ${modalState.selectedFishType?.name}`}
+      >
+        <div>
           <p>
             Stok saat ini:{" "}
             <strong>
-              {fishStocks[modalState.selectedFishType.id]
+              {modalState.selectedFishType && fishStocks[modalState.selectedFishType.id]
                 ? Number(
                     fishStocks[modalState.selectedFishType.id].current_stock_kg,
                   ).toLocaleString("id-ID")
@@ -509,7 +508,7 @@ const FishTypeManagement = () => {
               Kg
             </strong>
           </p>
-          <div>
+          <div style={{ marginTop: 8 }}>
             <label>Jumlah Tambah (Kg) *</label>
             <br />
             <input
@@ -525,7 +524,7 @@ const FishTypeManagement = () => {
               <span style={{ color: "red" }}> {formErrors.quantity_kg}</span>
             )}
           </div>
-          <div>
+          <div style={{ marginTop: 8 }}>
             <label>Catatan (opsional)</label>
             <br />
             <input
@@ -536,12 +535,14 @@ const FishTypeManagement = () => {
             />
           </div>
           <br />
-          <button onClick={handleRestock} disabled={submitLoading}>
-            {submitLoading ? "Menyimpan..." : "Restock"}
-          </button>{" "}
-          <button onClick={closeModals}>Tutup</button>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button onClick={handleRestock} disabled={submitLoading}>
+              {submitLoading ? "Menyimpan..." : "Restock"}
+            </button>
+            <button onClick={closeModals}>Tutup</button>
+          </div>
         </div>
-      )}
+      </FormDialog>
 
       {/* ======================= RIWAYAT RESTOCK SECTION ======================= */}
       <div
@@ -584,7 +585,7 @@ const FishTypeManagement = () => {
               {filteredHistory.map((log) => (
                 <tr key={log.id}>
                   <td>{log.fish_type?.name ?? "-"}</td>
-                  <td>{formatDate(log.created_at)}</td>
+                  <td>{formatDateTime(log.created_at)}</td>
                   <td>+{Number(log.quantity_kg).toLocaleString("id-ID")}</td>
                   <td>{Number(log.stock_before).toLocaleString("id-ID")}</td>
                   <td>{Number(log.stock_after).toLocaleString("id-ID")}</td>

@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
 import employeeService from "../../services/employeeService";
+import { useToast } from "@/hooks/useToast";
 
 export default function MenuAvailability() {
   const [menus, setMenus] = useState([]);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState({});
-  const [toast, setToast] = useState(null);
   const [fishStocks, setFishStocks] = useState([]);
   const [fishStocksLoading, setFishStocksLoading] = useState(true);
-
-  const showToast = (message, type = "error") => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 3000);
-  };
+  const toast = useToast();
 
   useEffect(() => {
     const fetchMenus = async () => {
@@ -20,7 +16,7 @@ export default function MenuAvailability() {
         const res = await employeeService.getAllMenus();
         setMenus(res.data ?? []);
       } catch {
-        showToast("Gagal memuat data menu");
+        toast.error("Gagal memuat data menu");
       } finally {
         setLoading(false);
       }
@@ -39,7 +35,7 @@ export default function MenuAvailability() {
 
     fetchMenus();
     fetchFishStocks();
-  }, []);
+  }, [toast]);
 
   const handleToggle = async (menuId) => {
     setActionLoading((prev) => ({ ...prev, [menuId]: true }));
@@ -50,9 +46,9 @@ export default function MenuAvailability() {
           m.id === menuId ? { ...m, availability: res.data.availability } : m,
         ),
       );
-      showToast("Status menu berhasil diubah", "success");
+      toast.success("Status menu berhasil diubah");
     } catch {
-      showToast("Gagal mengubah status menu");
+      toast.error("Gagal mengubah status menu");
     } finally {
       setActionLoading((prev) => ({ ...prev, [menuId]: false }));
     }
@@ -63,18 +59,6 @@ export default function MenuAvailability() {
       <h1 className="text-xl font-semibold text-gray-800 mb-6">
         Ketersediaan Menu
       </h1>
-
-      {toast && (
-        <div
-          className={`mb-4 px-4 py-3 rounded text-sm font-medium ${
-            toast.type === "success"
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
-          }`}
-        >
-          {toast.message}
-        </div>
-      )}
 
       {loading ? (
         <p className="text-gray-500 text-sm">Memuat menu...</p>

@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import ownerService from "../../services/ownerService";
 import { useToast } from "@/hooks/useToast";
+import FormDialog from "../../components/common/FormDialog";
+import ConfirmDialog from "../../components/common/ConfirmDialog";
 
 const MenuManagement = () => {
   const [menus, setMenus] = useState([]);
@@ -321,9 +323,12 @@ const MenuManagement = () => {
       )}
 
       {/* Form Modal */}
-      {modalState.form && (
-        <div style={{ border: "1px solid #000", padding: 16, marginTop: 16 }}>
-          <h2>{modalState.mode === "edit" ? "Edit Menu" : "Tambah Menu"}</h2>
+      <FormDialog
+        open={modalState.form}
+        onClose={closeModals}
+        title={modalState.mode === "edit" ? "Edit Menu" : "Tambah Menu"}
+      >
+        <div>
           <div>
             <label>Nama *</label>
             <br />
@@ -335,7 +340,7 @@ const MenuManagement = () => {
               <span style={{ color: "red" }}> {formErrors.name}</span>
             )}
           </div>
-          <div>
+          <div style={{ marginTop: 8 }}>
             <label>Harga *</label>
             <br />
             <input
@@ -350,7 +355,7 @@ const MenuManagement = () => {
               <span style={{ color: "red" }}> {formErrors.price}</span>
             )}
           </div>
-          <div>
+          <div style={{ marginTop: 8 }}>
             <label>Kategori *</label>
             <br />
             <select
@@ -363,7 +368,7 @@ const MenuManagement = () => {
               <option value="beverage">Minuman</option>
             </select>
           </div>
-          <div>
+          <div style={{ marginTop: 8 }}>
             <label>Ketersediaan</label>
             <br />
             <select
@@ -376,7 +381,7 @@ const MenuManagement = () => {
               <option value="unavailable">Tidak Tersedia</option>
             </select>
           </div>
-          <div>
+          <div style={{ marginTop: 8 }}>
             <label>Deskripsi</label>
             <br />
             <textarea
@@ -391,30 +396,31 @@ const MenuManagement = () => {
             )}
           </div>
           <br />
-          <button onClick={handleSubmit} disabled={submitLoading}>
-            {submitLoading
-              ? "Menyimpan..."
-              : modalState.mode === "edit"
-                ? "Simpan Perubahan"
-                : "Tambah"}
-          </button>{" "}
-          <button onClick={closeModals}>Batal</button>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button onClick={handleSubmit} disabled={submitLoading}>
+              {submitLoading
+                ? "Menyimpan..."
+                : modalState.mode === "edit"
+                  ? "Simpan Perubahan"
+                  : "Tambah"}
+            </button>
+            <button onClick={closeModals}>Batal</button>
+          </div>
         </div>
-      )}
+      </FormDialog>
 
       {/* Delete Modal */}
-      {modalState.delete && modalState.selectedMenu && (
-        <div style={{ border: "1px solid red", padding: 16, marginTop: 16 }}>
-          <p>
-            Hapus menu "{modalState.selectedMenu.name}"? Tindakan ini tidak
-            dapat dibatalkan.
-          </p>
-          <button onClick={handleDelete} disabled={submitLoading}>
-            {submitLoading ? "Menghapus..." : "Ya, Hapus"}
-          </button>{" "}
-          <button onClick={closeModals}>Batal</button>
-        </div>
-      )}
+      <ConfirmDialog
+        open={modalState.delete && !!modalState.selectedMenu}
+        onClose={closeModals}
+        onConfirm={handleDelete}
+        title="Konfirmasi Hapus"
+        description={`Hapus menu "${modalState.selectedMenu?.name}"? Tindakan ini tidak dapat dibatalkan.`}
+        variant="destructive"
+        confirmLabel="Ya, Hapus"
+        cancelLabel="Batal"
+        loading={submitLoading}
+      />
     </div>
   );
 };

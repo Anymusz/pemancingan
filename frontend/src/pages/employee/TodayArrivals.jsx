@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useCallback } from "react";
 import employeeService from "../../services/employeeService";
+import { useToast } from "@/hooks/useToast";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
+import { formatDateTime } from "@/utils/utils";
 
 const TodayArrivals = () => {
   const [arrivals, setArrivals] = useState([]);
   const [loading, setLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
-  const [toast, setToast] = useState(null);
 
   const [statusFilter, setStatusFilter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,11 +19,7 @@ const TodayArrivals = () => {
     arrival: null,
     notes: "",
   });
-
-  const showToast = (message, type = "success") => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 4000);
-  };
+  const toast = useToast();
 
   const fetchArrivals = useCallback(async () => {
     setLoading(true);
@@ -29,11 +27,11 @@ const TodayArrivals = () => {
       const res = await employeeService.getTodayArrivals();
       if (res.success) setArrivals(res.data.arrivals);
     } catch {
-      showToast("Gagal memuat data kedatangan", "error");
+      toast.error("Gagal memuat data kedatangan");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     fetchArrivals();
@@ -65,15 +63,12 @@ const TodayArrivals = () => {
         checkoutModal.notes || null,
       );
       if (res.success) {
-        showToast(`${res.data.arrival.member_name} berhasil check-out`);
+        toast.success(`${res.data.arrival.member_name} berhasil check-out`);
         closeCheckoutModal();
         fetchArrivals();
       }
     } catch (err) {
-      showToast(
-        err?.response?.data?.message || "Gagal melakukan check-out",
-        "error",
-      );
+      toast.error(err?.response?.data?.message || "Gagal melakukan check-out");
     } finally {
       setSubmitLoading(false);
     }
@@ -81,11 +76,6 @@ const TodayArrivals = () => {
 
   return (
     <div>
-      {toast && (
-        <div>
-          [{toast.type === "success" ? "OK" : "ERROR"}] {toast.message}
-        </div>
-      )}
 
       <h1>Kedatangan Hari Ini</h1>
 
@@ -141,17 +131,11 @@ const TodayArrivals = () => {
                     {arrival.tier} ({arrival.discount_percentage ?? 0}%)
                   </td>
                   <td>
-                    {new Date(arrival.check_in_at).toLocaleTimeString("id-ID", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                    {formatDateTime(arrival.check_in_at)}
                   </td>
                   <td>
                     {arrival.check_out_at
-                      ? new Date(arrival.check_out_at).toLocaleTimeString(
-                          "id-ID",
-                          { hour: "2-digit", minute: "2-digit" },
-                        )
+                      ? formatDateTime(arrival.check_out_at)
                       : "-"}
                   </td>
                   <td>{arrival.duration ?? "-"}</td>
@@ -174,33 +158,22 @@ const TodayArrivals = () => {
         )}
       </section>
 
-      {checkoutModal.open && checkoutModal.arrival && (
-        <div style={{ border: "2px solid #000", padding: 16, marginTop: 16 }}>
-          <h2>Konfirmasi Check-out</h2>
-          <p>
-            Check-out member <strong>{checkoutModal.arrival.name}</strong> tanpa
-            transaksi?
-          </p>
-          <div>
-            <label>Alasan / Catatan (opsional)</label>
-            <br />
-            <textarea
-              value={checkoutModal.notes}
-              onChange={(e) =>
-                setCheckoutModal((p) => ({ ...p, notes: e.target.value }))
-              }
-              rows={3}
-              placeholder="Contoh: Member tidak jadi beli ikan"
-            />
-          </div>
-          <br />
-          <button onClick={handleManualCheckout} disabled={submitLoading}>
-            {submitLoading ? "Memproses..." : "Ya, Check-out"}
-          </button>{" "}
-          <button onClick={closeCheckoutModal} disabled={submitLoading}>
-            Batal
-          </button>
-        </div>
+      {checkoutModal.arrival && (
+        <ConfirmDialog
+          open={checkoutModal.open}
+          onClose={closeCheckoutModal}
+          onConfirm={handleManualCheckout}
+          variant="warning"
+          title="Konfirmasi Check-out"
+          description={`Check-out member ${checkoutModal.arrival.name} tanpa transaksi?`}
+          inputLabel="Catatan (opsional)"
+          inputValue={checkoutModal.notes}
+          onInputChange={(e) =>
+            setCheckoutModal((p) => ({ ...p, notes: e.target.value }))
+          }
+          confirmLabel="Ya, Check-out"
+          loading={submitLoading}
+        />
       )}
     </div>
   );

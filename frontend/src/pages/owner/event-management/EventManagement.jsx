@@ -5,6 +5,7 @@ import ownerService from "@/services/ownerService";
 import EventListItem from "./EventListItem";
 import EventFormModal from "./EventFormModal";
 import EventConfirmModal from "./EventConfirmModal";
+import { useToast } from "@/hooks/useToast";
 
 const EMPTY_FORM = {
   title: "",
@@ -24,7 +25,7 @@ const EventManagement = () => {
   });
   const [loading, setLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
-  const [toast, setToast] = useState(null);
+  const toast = useToast();
 
   const [filters, setFilters] = useState({
     status: "",
@@ -57,12 +58,6 @@ const EventManagement = () => {
   const [removeImage, setRemoveImage] = useState(false);
   const fileInputRef = useRef(null);
 
-  // ---- Toast ----
-  const showToast = (message, type = "success") => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 3000);
-  };
-
   // ---- Fetch ----
   const fetchEvents = useCallback(async (currentFilters) => {
     setLoading(true);
@@ -83,7 +78,7 @@ const EventManagement = () => {
         });
       }
     } catch {
-      showToast("Gagal memuat data event", "error");
+      toast.error("Gagal memuat data event");
     } finally {
       setLoading(false);
     }
@@ -113,12 +108,12 @@ const EventManagement = () => {
     if (!file) return;
 
     if (!file.type.startsWith("image/")) {
-      showToast("File harus berupa gambar", "error");
+      toast.error("File harus berupa gambar");
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      showToast("Ukuran gambar maksimal 5MB", "error");
+      toast.error("Ukuran gambar maksimal 5MB");
       return;
     }
 
@@ -254,18 +249,15 @@ const EventManagement = () => {
     try {
       if (formModal.mode === "edit") {
         await ownerService.updateEvent(formModal.selectedEvent.id, formData);
-        showToast("Event berhasil diperbarui");
+        toast.success("Event berhasil diperbarui");
       } else {
         await ownerService.createEvent(formData);
-        showToast("Event berhasil dibuat");
+        toast.success("Event berhasil dibuat");
       }
       closeFormModal();
       fetchEvents(filters);
     } catch (err) {
-      showToast(
-        err?.response?.data?.message || "Gagal menyimpan event",
-        "error",
-      );
+      toast.error(err?.response?.data?.message || "Gagal menyimpan event");
     } finally {
       setSubmitLoading(false);
     }
@@ -278,14 +270,11 @@ const EventManagement = () => {
       setSubmitLoading(true);
       try {
         await ownerService.deleteEvent(selectedEvent.id);
-        showToast("Event berhasil dihapus");
+        toast.success("Event berhasil dihapus");
         closeConfirmModal();
         fetchEvents(filters);
       } catch (err) {
-        showToast(
-          err?.response?.data?.message || "Gagal menghapus event",
-          "error",
-        );
+        toast.error(err?.response?.data?.message || "Gagal menghapus event");
       } finally {
         setSubmitLoading(false);
       }
@@ -297,9 +286,8 @@ const EventManagement = () => {
 
     if (newStatus === "published" && selectedEvent.category === "event") {
       if (!selectedEvent.start_date || !selectedEvent.end_date) {
-        showToast(
+        toast.error(
           "Event harus memiliki tanggal mulai dan berakhir sebelum dipublikasikan",
-          "error",
         );
         closeConfirmModal();
         return;
@@ -309,15 +297,14 @@ const EventManagement = () => {
     setSubmitLoading(true);
     try {
       await ownerService.toggleEventPublish(selectedEvent.id, newStatus);
-      showToast(
+      toast.success(
         `Event berhasil di-${newStatus === "published" ? "publikasikan" : "unpublish"}`,
       );
       closeConfirmModal();
       fetchEvents(filters);
     } catch (err) {
-      showToast(
+      toast.error(
         err?.response?.data?.message || "Gagal mengubah status publikasi",
-        "error",
       );
     } finally {
       setSubmitLoading(false);
@@ -327,17 +314,6 @@ const EventManagement = () => {
   // ==================== RENDER ====================
   return (
     <div>
-      {/* Toast */}
-      {toast && (
-        <div
-          className={`fixed top-4 right-4 z-50 px-4 py-3 rounded-lg shadow-lg text-white text-sm font-medium transition-all ${
-            toast.type === "success" ? "bg-green-500" : "bg-red-500"
-          }`}
-        >
-          {toast.message}
-        </div>
-      )}
-
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-xl font-bold text-gray-800">

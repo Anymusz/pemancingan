@@ -1,11 +1,12 @@
 // File: src/pages/employee/AddOrder.jsx
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import employeeService from "../../services/employeeService";
+import { useToast } from "@/hooks/useToast";
 
 const RENTAL_PRICE = 10000;
 
-const AddOrder = () => {
+const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
   const [arrivals, setArrivals] = useState([]);
   const [allArrivals, setAllArrivals] = useState([]); // cache semua active arrival
   const [menus, setMenus] = useState([]);
@@ -18,15 +19,10 @@ const AddOrder = () => {
   const [fetchLoading, setFetchLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [searchLoading, setSearchLoading] = useState(false);
-  const [toast, setToast] = useState(null);
+  const toast = useToast();
 
   const [searchQuery, setSearchQuery] = useState("");
   const searchTimeout = useRef(null);
-
-  const showToast = (message, type = "success") => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 4000);
-  };
 
   // ==================== FETCH MENUS ====================
   useEffect(() => {
@@ -36,16 +32,16 @@ const AddOrder = () => {
         const res = await employeeService.getMenus();
         if (res.success) setMenus(res.data);
       } catch {
-        showToast("Gagal memuat menu", "error");
+        toast.error("Gagal memuat menu");
       } finally {
         setFetchLoading(false);
       }
     };
     fetchMenus();
-  }, []);
+  }, [toast]);
 
   // ==================== FETCH SEMUA ARRIVAL SAAT FOCUS ====================
-  const fetchAllArrivals = async () => {
+  const fetchAllArrivals = useCallback(async () => {
     if (allArrivals.length > 0) return; // sudah di-cache
     setSearchLoading(true);
     try {
@@ -55,11 +51,39 @@ const AddOrder = () => {
         setAllArrivals(active);
       }
     } catch {
-      showToast("Gagal memuat data kedatangan", "error");
+      toast.error("Gagal memuat data kedatangan");
     } finally {
       setSearchLoading(false);
     }
-  };
+  }, [allArrivals.length, toast]);
+
+  // ==================== AUTO SELECT (DARI PROPS) ====================
+  useEffect(() => {
+    if (preselectArrivalId) {
+      const doPreselect = async () => {
+        // Fetch dulu ke backend jika list masih kosong
+        if (allArrivals.length === 0) {
+          await fetchAllArrivals();
+        }
+      };
+      doPreselect();
+    }
+  }, [preselectArrivalId, allArrivals.length, fetchAllArrivals]);
+
+  useEffect(() => {
+    // Jalankan seleksi bila kombinasi preselect ID ada dan allArrivals sudah sukses termuat
+    if (preselectArrivalId && allArrivals.length > 0) {
+      const found = allArrivals.find((a) => a.arrival_id === preselectArrivalId);
+      if (found) {
+        setSelectedArrival(found);
+        setSearchQuery(found.name);
+        if (onPreselectConsumed) onPreselectConsumed();
+      } else {
+        toast.error("Kedatangan member tersebut tidak ditemukan di hari ini");
+        if (onPreselectConsumed) onPreselectConsumed();
+      }
+    }
+  }, [allArrivals, preselectArrivalId, onPreselectConsumed]);
 
   // ==================== FILTER REALTIME (DEBOUNCE 300ms) ====================
   useEffect(() => {
@@ -72,14 +96,14 @@ const AddOrder = () => {
         const res = await employeeService.searchArrival(searchQuery);
         if (res.success) setArrivals(res.data.arrivals);
       } catch {
-        showToast("Gagal mencari arrival", "error");
+        toast.error("Gagal mencari arrival");
       } finally {
         setSearchLoading(false);
       }
     }, 300);
 
     return () => clearTimeout(searchTimeout.current);
-  }, [searchQuery, selectedArrival]);
+  }, [searchQuery, selectedArrival, toast]);
 
   // ==================== ARRIVAL HANDLERS ====================
   const handleFocus = async () => {
@@ -138,7 +162,7 @@ const AddOrder = () => {
   const handleSubmit = async () => {
     if (!selectedArrival) return;
     if (itemType === "menu" && !selectedMenuId) {
-      showToast("Pilih menu terlebih dahulu", "error");
+      toast.error("Pilih menu terlebih dahulu");
       return;
     }
 
@@ -153,7 +177,7 @@ const AddOrder = () => {
 
       const res = await employeeService.createPendingOrder(payload);
       if (res.success) {
-        showToast(
+        toast.success(
           `Order berhasil ditambahkan: ${res.data.order.name} ×${res.data.order.quantity}`,
         );
         setItemType("menu");
@@ -162,10 +186,7 @@ const AddOrder = () => {
         setRentalQty(1);
       }
     } catch (err) {
-      showToast(
-        err?.response?.data?.message || "Gagal menambahkan order",
-        "error",
-      );
+      toast.error(err?.response?.data?.message || "Gagal menambahkan order");
     } finally {
       setSubmitLoading(false);
     }
@@ -177,15 +198,8 @@ const AddOrder = () => {
     (itemType === "rental" && rentalQty < 1) ||
     submitLoading;
 
-  // ==================== RENDER ====================
   return (
     <div>
-      {/* Toast */}
-      {toast && (
-        <div>
-          [{toast.type === "success" ? "OK" : "ERROR"}] {toast.message}
-        </div>
-      )}
 
       <h1>Tambah Order</h1>
 

@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import employeeService from "../../services/employeeService";
+import { useToast } from "@/hooks/useToast";
+import ConfirmDialog from "../../components/common/ConfirmDialog";
 
 const PendingOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -13,12 +15,7 @@ const PendingOrder = () => {
     orderId: null,
     reason: "",
   });
-  const [toast, setToast] = useState(null);
-
-  const showToast = (message, type = "success") => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 4000);
-  };
+  const toast = useToast();
 
   // ==================== FETCH ====================
   const fetchOrders = useCallback(async () => {
@@ -27,11 +24,11 @@ const PendingOrder = () => {
       const res = await employeeService.getAllPendingOrders();
       if (res.success) setOrders(res.data.orders);
     } catch {
-      showToast("Gagal memuat pesanan masuk", "error");
+      toast.error("Gagal memuat pesanan masuk");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     fetchOrders();
@@ -68,13 +65,12 @@ const PendingOrder = () => {
         cancellation_reason: reason,
       });
       if (res.success) {
-        showToast(res.message);
+        toast.success(res.message);
         fetchOrders();
       }
     } catch (err) {
-      showToast(
+      toast.error(
         err?.response?.data?.message || "Gagal mengubah status pesanan",
-        "error",
       );
     } finally {
       setActionLoading((prev) => ({ ...prev, [orderId]: false }));
@@ -87,7 +83,7 @@ const PendingOrder = () => {
 
   const handleConfirmCancel = async () => {
     if (!cancelModal.reason.trim()) {
-      showToast("Alasan pembatalan wajib diisi", "error");
+      toast.error("Alasan pembatalan wajib diisi");
       return;
     }
     await handleUpdateStatus(
@@ -111,14 +107,19 @@ const PendingOrder = () => {
 
   return (
     <div>
-      {toast && (
-        <div>
-          [{toast.type === "success" ? "OK" : "ERROR"}] {toast.message}
-        </div>
-      )}
-
       <h1>Pesanan Masuk</h1>
       <p>Auto-refresh setiap 30 detik.</p>
+      <p
+        style={{
+          fontStyle: "italic",
+          fontSize: "14px",
+          color: "gray",
+          marginBottom: 16,
+        }}
+      >
+        Pesanan berstatus "Selesai" akan otomatis tercakup saat checkout member
+        terkait.
+      </p>
 
       {/* ===== FILTER ===== */}
       <div style={{ marginBottom: 12 }}>
@@ -162,7 +163,9 @@ const PendingOrder = () => {
                   <th>Subtotal</th>
                   <th>Sumber</th>
                   <th>Status</th>
-                  <th>Aksi</th>
+                  {group.items.some(
+                    (item) => item.production_status === "pending",
+                  ) && <th>Aksi</th>}
                 </tr>
               </thead>
               <tbody>
@@ -184,25 +187,31 @@ const PendingOrder = () => {
                           </span>
                         )}
                     </td>
-                    <td>
-                      {order.production_status === "pending" && (
-                        <>
-                          <button
-                            onClick={() => handleUpdateStatus(order.id, "done")}
-                            disabled={actionLoading[order.id]}
-                            style={{ marginRight: 4 }}
-                          >
-                            {actionLoading[order.id] ? "..." : "Selesai"}
-                          </button>
-                          <button
-                            onClick={() => handleOpenCancelModal(order.id)}
-                            disabled={actionLoading[order.id]}
-                          >
-                            Batalkan
-                          </button>
-                        </>
-                      )}
-                    </td>
+                    {group.items.some(
+                      (item) => item.production_status === "pending",
+                    ) && (
+                      <td>
+                        {order.production_status === "pending" && (
+                          <>
+                            <button
+                              onClick={() =>
+                                handleUpdateStatus(order.id, "done")
+                              }
+                              disabled={actionLoading[order.id]}
+                              style={{ marginRight: 4 }}
+                            >
+                              {actionLoading[order.id] ? "..." : "Selesai"}
+                            </button>
+                            <button
+                              onClick={() => handleOpenCancelModal(order.id)}
+                              disabled={actionLoading[order.id]}
+                            >
+                              Batalkan
+                            </button>
+                          </>
+                        )}
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>
@@ -212,47 +221,21 @@ const PendingOrder = () => {
       )}
 
       {/* ===== CANCEL MODAL ===== */}
-      {cancelModal.open && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "rgba(0,0,0,0.5)",
-            zIndex: 100,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <div style={{ background: "#fff", padding: 24, minWidth: 320 }}>
-            <h3>Alasan Pembatalan</h3>
-            <p>Masukkan alasan mengapa pesanan ini dibatalkan.</p>
-            <textarea
-              rows={3}
-              style={{ width: "100%" }}
-              value={cancelModal.reason}
-              onChange={(e) =>
-                setCancelModal((prev) => ({ ...prev, reason: e.target.value }))
-              }
-              placeholder="Contoh: Bahan habis"
-            />
-            <br />
-            <button
-              onClick={handleConfirmCancel}
-              disabled={actionLoading[cancelModal.orderId]}
-              style={{ marginRight: 8 }}
-            >
-              {actionLoading[cancelModal.orderId]
-                ? "Memproses..."
-                : "Konfirmasi Batalkan"}
-            </button>
-            <button onClick={handleCloseCancelModal}>Tutup</button>
-          </div>
-        </div>
-      )}
+      <ConfirmDialog
+        open={cancelModal.open}
+        onClose={handleCloseCancelModal}
+        title="Pembatalan Pesanan"
+        description="Masukkan alasan mengapa pesanan ini dibatalkan."
+        variant="destructive"
+        inputLabel="Alasan Pembatalan"
+        inputValue={cancelModal.reason}
+        onInputChange={(e) =>
+          setCancelModal((prev) => ({ ...prev, reason: e.target.value }))
+        }
+        confirmLabel="Konfirmasi Batalkan"
+        onConfirm={handleConfirmCancel}
+        loading={actionLoading[cancelModal.orderId]}
+      />
     </div>
   );
 };
