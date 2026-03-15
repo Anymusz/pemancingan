@@ -39,7 +39,6 @@ const employeeService = {
   // ==================== PENDING ORDERS ====================
 
   createPendingOrder: async (data) => {
-    // data: { arrival_id, item_type, item_id (jika menu), quantity }
     const response = await api.post("/employee/pending-orders", data);
     return response.data;
   },

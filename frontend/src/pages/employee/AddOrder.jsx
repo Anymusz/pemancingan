@@ -1,8 +1,9 @@
 // File: src/pages/employee/AddOrder.jsx
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import employeeService from "../../services/employeeService";
 import { useToast } from "@/hooks/useToast";
+import { formatDateTime } from "@/utils/utils";
 
 const RENTAL_PRICE = 10000;
 
@@ -12,10 +13,11 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
   const [menus, setMenus] = useState([]);
   const [selectedArrival, setSelectedArrival] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [itemType, setItemType] = useState("menu");
-  const [selectedMenuId, setSelectedMenuId] = useState("");
-  const [rentalQty, setRentalQty] = useState(1);
-  const [menuQty, setMenuQty] = useState(1);
+
+  // === MIGRATED: State untuk bulk submission
+  const [quantities, setQuantities] = useState({});
+  const [rentalQty, setRentalQty] = useState(0);
+
   const [fetchLoading, setFetchLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -140,50 +142,94 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
   // Hasil yang ditampilkan: jika ada query → hasil search, jika kosong → semua active
   const displayArrivals = searchQuery.trim() ? arrivals : allArrivals;
 
-  // ==================== ITEM HANDLERS ====================
-  const handleItemTypeChange = (val) => {
-    setItemType(val);
-    setSelectedMenuId("");
-    setMenuQty(1);
-    setRentalQty(1);
+  // ==================== BULK ITEM HANDLERS ====================
+  const handleMenuQtyChange = (menuId, change) => {
+    setQuantities((prev) => {
+      const currentQty = prev[menuId] || 0;
+      const newQty = Math.max(0, currentQty + change);
+      return { ...prev, [menuId]: newQty };
+    });
   };
 
-  // ==================== PREVIEW ====================
-  const previewSubtotal = () => {
-    if (itemType === "rental") return rentalQty * RENTAL_PRICE;
-    if (itemType === "menu" && selectedMenuId) {
-      const menu = menus.find((m) => m.id === Number(selectedMenuId));
-      return menu ? menuQty * menu.price : 0;
-    }
-    return 0;
+  const handleMenuQtyManualChange = (menuId, val) => {
+    let newQty = parseInt(val, 10);
+    if (isNaN(newQty)) newQty = 0;
+    setQuantities((prev) => ({
+      ...prev,
+      [menuId]: Math.max(0, newQty),
+    }));
   };
+
+  const handleRentalQtyChange = (change) => {
+    setRentalQty((prev) => Math.max(0, prev + change));
+  };
+
+  const handleRentalQtyManualChange = (val) => {
+    let newQty = parseInt(val, 10);
+    if (isNaN(newQty)) newQty = 0;
+    setRentalQty(Math.max(0, newQty));
+  };
+
+  // ==================== PREVIEW & HAS ITEMS ====================
+  const totalMenuQty = Object.values(quantities).reduce((acc, qty) => acc + qty, 0);
+  const totalItemQty = totalMenuQty + rentalQty;
+  const hasItems = totalItemQty > 0;
+
+  const previewSubtotal = useMemo(() => {
+    let total = 0;
+    Object.entries(quantities).forEach(([menuId, qty]) => {
+      if (qty > 0) {
+        const menu = menus.find((m) => m.id === Number(menuId));
+        if (menu) total += menu.price * qty;
+      }
+    });
+    total += rentalQty * RENTAL_PRICE;
+    return total;
+  }, [quantities, rentalQty, menus]);
 
   // ==================== SUBMIT ====================
   const handleSubmit = async () => {
     if (!selectedArrival) return;
-    if (itemType === "menu" && !selectedMenuId) {
-      toast.error("Pilih menu terlebih dahulu");
-      return;
-    }
+    if (!hasItems) return;
 
     setSubmitLoading(true);
     try {
+      const items = [];
+
+      // Susun item menu
+      Object.entries(quantities).forEach(([menuId, qty]) => {
+        if (qty > 0) {
+          items.push({
+            item_type: "menu",
+            item_id: Number(menuId),
+            quantity: qty,
+          });
+        }
+      });
+
+      // Susun item rental
+      if (rentalQty > 0) {
+        items.push({
+          item_type: "rental",
+          quantity: rentalQty,
+        });
+      }
+
       const payload = {
         arrival_id: selectedArrival.arrival_id,
-        item_type: itemType,
-        item_id: itemType === "menu" ? Number(selectedMenuId) : undefined,
-        quantity: itemType === "menu" ? menuQty : rentalQty,
+        items: items,
       };
 
       const res = await employeeService.createPendingOrder(payload);
       if (res.success) {
-        toast.success(
-          `Order berhasil ditambahkan: ${res.data.order.name} ×${res.data.order.quantity}`,
-        );
-        setItemType("menu");
-        setSelectedMenuId("");
-        setMenuQty(1);
-        setRentalQty(1);
+        toast.success(`Berhasil menambahkan ${items.length} jenis item ke order member`);
+        // Reset state item
+        setQuantities({});
+        setRentalQty(0);
+        // Reset arrival
+        setSelectedArrival(null);
+        setSearchQuery("");
+        setArrivals([]);
       }
     } catch (err) {
       toast.error(err?.response?.data?.message || "Gagal menambahkan order");
@@ -192,15 +238,10 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
     }
   };
 
-  const isSubmitDisabled =
-    !selectedArrival ||
-    (itemType === "menu" && (!selectedMenuId || menuQty < 1)) ||
-    (itemType === "rental" && rentalQty < 1) ||
-    submitLoading;
+  const isSubmitDisabled = !selectedArrival || !hasItems || submitLoading;
 
   return (
     <div>
-
       <h1>Tambah Order</h1>
 
       {/* ===== 1. PILIH ARRIVAL ===== */}
@@ -252,10 +293,7 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
                   >
                     <strong>{a.name}</strong> | {a.member_code} | {a.tier} |
                     Check-in:{" "}
-                    {new Date(a.check_in_at).toLocaleTimeString("id-ID", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                    {formatDateTime(a.check_in_at)}
                   </div>
                 ))
               )}
@@ -271,85 +309,118 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
         )}
       </section>
 
-      {/* ===== 2. PILIH ITEM TYPE ===== */}
+      {/* ===== 2. KANTIN / MENU ===== */}
       <section>
-        <h2>2. Jenis Order</h2>
-        <select
-          value={itemType}
-          onChange={(e) => handleItemTypeChange(e.target.value)}
-        >
-          <option value="menu">Makanan / Minuman</option>
-          <option value="rental">Sewa Alat Pancing</option>
-        </select>
+        <h2>2. Makanan & Minuman</h2>
+        {fetchLoading ? (
+          <p>Memuat menu...</p>
+        ) : menus.length === 0 ? (
+          <p>Tidak ada menu aktif saat ini.</p>
+        ) : (
+          <table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
+            <thead>
+              <tr style={{ textAlign: "left" }}>
+                <th>Nama Menu</th>
+                <th>Kategori</th>
+                <th>Harga</th>
+                <th>Qty</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {menus.map((m) => {
+                const qty = quantities[m.id] || 0;
+                const subtotal = qty * m.price;
+                return (
+                  <tr key={m.id}>
+                    <td><strong>{m.name}</strong></td>
+                    <td>{m.category}</td>
+                    <td>Rp {Number(m.price).toLocaleString("id-ID")}</td>
+                    <td>
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                        <button 
+                          onClick={() => handleMenuQtyChange(m.id, -1)} 
+                          disabled={qty <= 0}
+                          style={{ padding: "4px 8px" }}
+                        >-</button>
+                        <input
+                          type="number"
+                          min="0"
+                          value={qty}
+                          onChange={(e) => handleMenuQtyManualChange(m.id, e.target.value)}
+                          style={{ width: "50px", textAlign: "center" }}
+                        />
+                        <button 
+                          onClick={() => handleMenuQtyChange(m.id, 1)}
+                          style={{ padding: "4px 8px" }}
+                        >+</button>
+                      </div>
+                    </td>
+                    <td>{qty > 0 ? `Rp ${subtotal.toLocaleString("id-ID")}` : "-"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </section>
 
-      {/* ===== 3. DETAIL ITEM ===== */}
+      {/* ===== 3. RENTAL ALAT PANCING ===== */}
       <section>
-        <h2>3. Detail Item</h2>
-
-        {itemType === "menu" && (
+        <h2>3. Sewa Alat Pancing</h2>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px", padding: "16px", border: "1px solid #ddd" }}>
           <div>
-            {fetchLoading ? (
-              <p>Memuat menu...</p>
-            ) : (
-              <>
-                <select
-                  value={selectedMenuId}
-                  onChange={(e) => setSelectedMenuId(e.target.value)}
-                >
-                  <option value="">-- Pilih Menu --</option>
-                  {menus.map((m) => (
-                    <option key={m.id} value={m.id}>
-                      {m.name} ({m.category}) — Rp{" "}
-                      {Number(m.price).toLocaleString("id-ID")}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  type="number"
-                  min="1"
-                  value={menuQty}
-                  onChange={(e) =>
-                    setMenuQty(Math.max(1, parseInt(e.target.value) || 1))
-                  }
-                  style={{ width: 60 }}
-                />
-                <span> pcs</span>
-              </>
-            )}
-          </div>
-        )}
-
-        {itemType === "rental" && (
-          <div>
-            <span>
-              Sewa Alat Pancing — Rp {RENTAL_PRICE.toLocaleString("id-ID")}/stik
-            </span>
+            <strong>Sewa / Rental Stik Pancing</strong>
             <br />
+            Rp {RENTAL_PRICE.toLocaleString("id-ID")} / stik
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginLeft: "auto" }}>
+            <button 
+              onClick={() => handleRentalQtyChange(-1)} 
+              disabled={rentalQty <= 0}
+              style={{ padding: "4px 12px", fontSize: "16px" }}
+            >-</button>
             <input
               type="number"
-              min="1"
+              min="0"
               value={rentalQty}
-              onChange={(e) =>
-                setRentalQty(Math.max(1, parseInt(e.target.value) || 1))
-              }
-              style={{ width: 60 }}
+              onChange={(e) => handleRentalQtyManualChange(e.target.value)}
+              style={{ width: "60px", textAlign: "center", fontSize: "16px", padding: "4px" }}
             />
-            <span> stik</span>
+            <button 
+              onClick={() => handleRentalQtyChange(1)}
+              style={{ padding: "4px 12px", fontSize: "16px" }}
+            >+</button>
           </div>
-        )}
+          <div style={{ minWidth: "120px", textAlign: "right" }}>
+            {rentalQty > 0 
+              ? <strong>Rp {(rentalQty * RENTAL_PRICE).toLocaleString("id-ID")}</strong> 
+              : <span>-</span>}
+          </div>
+        </div>
       </section>
 
-      {/* ===== 4. PREVIEW & SUBMIT ===== */}
+      {/* ===== 4. RINGKASAN & SUBMIT ===== */}
       <section>
-        {previewSubtotal() > 0 && (
-          <p>
-            Subtotal: Rp {previewSubtotal().toLocaleString("id-ID")} (dibayar
-            saat checkout)
-          </p>
+        <h2>4. Ringkasan & Simpan</h2>
+        {hasItems ? (
+          <div style={{ padding: "16px", background: "#f9f9f9", border: "1px solid #ddd", marginBottom: "16px" }}>
+            <p style={{ margin: "0 0 8px 0" }}>Total Item Menu: <strong>{totalMenuQty} pcs</strong></p>
+            <p style={{ margin: "0 0 8px 0" }}>Total Sewa Stik: <strong>{rentalQty} stik</strong></p>
+            <hr style={{ margin: "12px 0" }} />
+            <h3 style={{ margin: 0 }}>Total Estimasi: Rp {previewSubtotal.toLocaleString("id-ID")}</h3>
+            <p style={{ fontSize: "12px", color: "#666", margin: "4px 0 0 0" }}>* Total estimasi ini akan ditambah dengan ikan dan penalti saat checkout.</p>
+          </div>
+        ) : (
+          <p style={{ color: "#666", fontStyle: "italic" }}>Silakan tambahkan kuantitas pada jenis makanan / sewa alat di atas.</p>
         )}
-        <button onClick={handleSubmit} disabled={isSubmitDisabled}>
-          {submitLoading ? "Menyimpan..." : "Simpan Order"}
+        
+        <button 
+          onClick={handleSubmit} 
+          disabled={isSubmitDisabled}
+          style={{ padding: "12px 24px", fontSize: "16px", fontWeight: "bold", background: isSubmitDisabled ? "#ccc" : "#0A66C2", color: "#fff", border: "none", borderRadius: "4px", cursor: isSubmitDisabled ? "not-allowed" : "pointer" }}
+        >
+          {submitLoading ? "Menyimpan..." : "Simpan Order Transaksi"}
         </button>
       </section>
     </div>
