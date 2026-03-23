@@ -18,8 +18,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/components/common/FormInput";
+import { Button } from "@/components/common/Button";
 import { Separator } from "@/components/ui/separator";
 
 import { RiDoorLockFill } from "@remixicon/react";

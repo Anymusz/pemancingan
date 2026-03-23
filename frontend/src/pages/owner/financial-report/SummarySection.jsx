@@ -31,15 +31,15 @@ const SummarySection = ({ data, loading }) => {
 
   return (
     <div className="mb-6">
-      <h3 className="text-sm font-semibold text-gray-700 mb-3">Ringkasan</h3>
+      <h3 className="text-sm font-semibold text-foreground mb-3">Ringkasan</h3>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {KPI_CARDS.map((card) => (
           <div
             key={card.key}
-            className="bg-white border border-gray-200 rounded-lg p-4"
+            className="font-medium bg-background border border-border rounded-lg p-4"
           >
-            <p className="text-xs text-gray-500 mb-1">{card.label}</p>
-            <p className="text-lg font-bold text-gray-800">
+            <p className="text-xs text-muted-foreground mb-1">{card.label}</p>
+            <p className="text-lg font-bold text-foreground">
               {card.format(data?.[card.key])}
             </p>
           </div>

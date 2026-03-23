@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CheckIn from "./CheckIn";
 import TodayArrivals from "./TodayArrivals";
-import Checkout from "./Checkout";
+import Checkout from "./checkout/Checkout";
 import TransactionHistory from "./TransactionHistory";
 import AddOrder from "./AddOrder";
 import PendingOrder from "./PendingOrder";

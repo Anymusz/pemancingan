@@ -16,6 +16,16 @@ export const formatDate = (dateStr) => {
   });
 };
 
+export const formatNumber = (value) => {
+  if (value === null || value === undefined || value === "") return "-";
+  return Number(value).toLocaleString("id-ID");
+};
+
+export const formatCurrency = (value) => {
+  if (value === null || value === undefined || value === "") return "-";
+  return `Rp ${Number(value).toLocaleString("id-ID")}`;
+};
+
 export const formatDateTime = (dateStr) => {
   if (!dateStr) return "";
   return new Date(dateStr).toLocaleString("id-ID", {

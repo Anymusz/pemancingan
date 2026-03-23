@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 // import { MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/Button";
 import { MovingBorderButton } from "@/components/ui/moving-border";
 import {
   Accordion,

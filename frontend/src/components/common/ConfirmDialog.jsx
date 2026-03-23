@@ -5,8 +5,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/common/Button";
+import { Textarea } from "@/components/common/FormTextarea";
 import { Info, AlertTriangle, Trash2, AlignCenter } from "lucide-react";
 
 const VARIANT_CONFIG = {

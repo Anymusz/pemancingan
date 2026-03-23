@@ -1,19 +1,7 @@
 import { useState, useEffect, useCallback, Fragment } from "react";
 import memberService from "../../services/memberService";
-
-const formatCurrency = (val) =>
-  `Rp ${Number(val || 0).toLocaleString("id-ID")}`;
-
-const formatDateTime = (dateStr) => {
-  if (!dateStr) return "-";
-  return new Date(dateStr).toLocaleString("id-ID", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-};
+import { formatCurrency, formatDateTime } from "@/utils/utils";
+import { Button } from "@/components/common/Button";
 
 const CATEGORY_LABELS = {
   fish: "Ikan",
@@ -69,15 +57,17 @@ const TransactionHistory = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold text-gray-800 mb-4">
+      <h2 className="text-xl font-bold text-foreground mb-4">
         Riwayat Transaksi
       </h2>
 
-      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+      <div className="bg-background border border-border rounded-lg overflow-hidden">
         {loading ? (
-          <p className="text-gray-500 text-sm p-4">Memuat transaksi...</p>
+          <p className="text-muted-foreground text-sm p-4">
+            Memuat transaksi...
+          </p>
         ) : transactions.length === 0 ? (
-          <p className="text-gray-400 text-sm p-4">
+          <p className="text-muted-foreground text-sm p-4">
             Belum ada riwayat transaksi.
           </p>
         ) : (
@@ -85,20 +75,20 @@ const TransactionHistory = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <th className="text-left px-4 py-3 text-gray-500 font-medium">
+                  <tr className="bg-muted/50 border-b border-border">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-medium">
                       Tanggal
                     </th>
-                    <th className="text-left px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-medium">
                       No. Transaksi
                     </th>
-                    <th className="text-right px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
                       Total Bayar
                     </th>
-                    <th className="text-center px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-center px-4 py-3 text-muted-foreground font-medium">
                       Metode Bayar
                     </th>
-                    <th className="text-right px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
                       Poin
                     </th>
                   </tr>
@@ -108,22 +98,22 @@ const TransactionHistory = () => {
                     <Fragment key={trx.transaction_code}>
                       <tr
                         onClick={() => handleRowClick(trx.transaction_code)}
-                        className="border-b border-gray-100 hover:bg-sky-50 cursor-pointer transition-colors"
+                        className="hover:bg-muted/30 cursor-pointer transition-colors"
                       >
-                        <td className="px-4 py-3 text-gray-700">
+                        <td className="px-4 py-3 text-foreground">
                           {formatDateTime(trx.transaction_date)}
                         </td>
-                        <td className="px-4 py-3 text-gray-700 font-mono text-xs">
+                        <td className="px-4 py-3 text-foreground font-mono text-xs">
                           {trx.transaction_code}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-foreground">
                           {formatCurrency(trx.final_amount)}
                         </td>
-                        <td className="px-4 py-3 text-center text-gray-700">
+                        <td className="px-4 py-3 text-center text-foreground">
                           {PAYMENT_LABELS[trx.payment_method] ||
                             trx.payment_method}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-foreground">
                           +{trx.points_earned ?? 0}
                         </td>
                       </tr>
@@ -131,50 +121,47 @@ const TransactionHistory = () => {
                       {/* Expanded Row */}
                       {expandedRow === trx.transaction_code && (
                         <tr>
-                          <td colSpan={5} className="bg-gray-50 px-6 py-4">
+                          <td colSpan={5} className="bg-muted/50 px-6 py-4">
                             {/* Bagian 1: Daftar Item */}
-                            <table className="w-full text-sm mb-3">
+                            <table className="w-full text-sm mb-1">
                               <thead>
-                                <tr className="border-b border-gray-200">
-                                  <th className="text-left py-1 text-gray-500 font-medium">
+                                <tr className="border-b border-border">
+                                  <th className="text-left py-1 text-muted-foreground font-medium">
                                     Item
                                   </th>
-                                  <th className="text-left py-1 text-gray-500 font-medium">
+                                  <th className="text-left py-1 text-muted-foreground font-medium">
                                     Kategori
                                   </th>
-                                  <th className="text-right py-1 text-gray-500 font-medium">
+                                  <th className="text-right py-1 text-muted-foreground font-medium">
                                     Qty
                                   </th>
-                                  <th className="text-right py-1 text-gray-500 font-medium">
+                                  <th className="text-right py-1 text-muted-foreground font-medium">
                                     Harga Satuan
                                   </th>
-                                  <th className="text-right py-1 text-gray-500 font-medium">
+                                  <th className="text-right py-1 text-muted-foreground font-medium">
                                     Subtotal
                                   </th>
                                 </tr>
                               </thead>
                               <tbody>
                                 {(trx.items || []).map((item, idx) => (
-                                  <tr
-                                    key={idx}
-                                    className="border-b border-gray-100"
-                                  >
-                                    <td className="py-1 text-gray-700">
+                                  <tr key={idx}>
+                                    <td className="py-1 text-foreground">
                                       {item.item_name_snapshot}
                                     </td>
-                                    <td className="py-1 text-gray-700">
+                                    <td className="py-1 text-foreground">
                                       {CATEGORY_LABELS[item.item_type] ||
                                         item.item_type}
                                     </td>
-                                    <td className="py-1 text-right text-gray-700">
+                                    <td className="py-1 text-right text-foreground">
                                       {item.item_type === "fish"
                                         ? `${Number(item.quantity).toFixed(2)} kg`
                                         : `${Number(item.quantity)} pcs`}
                                     </td>
-                                    <td className="py-1 text-right text-gray-700">
+                                    <td className="py-1 text-right text-foreground">
                                       {formatCurrency(item.unit_price_snapshot)}
                                     </td>
-                                    <td className="py-1 text-right text-gray-700">
+                                    <td className="py-1 text-right text-foreground">
                                       {formatCurrency(item.subtotal)}
                                     </td>
                                   </tr>
@@ -183,9 +170,9 @@ const TransactionHistory = () => {
                             </table>
 
                             {/* Bagian 2: Ringkasan Pembayaran */}
-                            <div className="border-t border-gray-200 pt-2 space-y-1 text-sm">
+                            <div className="border-t border-border pt-2 space-y-1 text-sm">
                               {trx.discount_tier > 0 && (
-                                <div className="flex justify-between text-gray-600">
+                                <div className="flex justify-between text-muted-foreground">
                                   <span>Diskon Tier</span>
                                   <span>
                                     - {formatCurrency(trx.discount_tier)}
@@ -193,14 +180,14 @@ const TransactionHistory = () => {
                                 </div>
                               )}
                               {trx.discount_voucher > 0 && (
-                                <div className="flex justify-between text-gray-600">
+                                <div className="flex justify-between text-muted-foreground">
                                   <span>Diskon Voucher</span>
                                   <span>
                                     - {formatCurrency(trx.discount_voucher)}
                                   </span>
                                 </div>
                               )}
-                              <div className="flex justify-between font-bold text-gray-800">
+                              <div className="flex justify-between font-bold text-foreground">
                                 <span>Total Bayar</span>
                                 <span>{formatCurrency(trx.final_amount)}</span>
                               </div>
@@ -220,25 +207,27 @@ const TransactionHistory = () => {
 
             {/* Pagination */}
             {meta && meta.last_page > 1 && (
-              <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200">
-                <p className="text-sm text-gray-500">
+              <div className="flex items-center justify-between px-4 py-3 border-t border-border">
+                <p className="text-sm text-muted-foreground">
                   Halaman {meta.current_page} dari {meta.last_page}
                 </p>
                 <div className="flex gap-2">
-                  <button
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={() => handlePageChange(page - 1)}
                     disabled={page <= 1}
-                    className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Sebelumnya
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={() => handlePageChange(page + 1)}
                     disabled={page >= meta.last_page}
-                    className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Selanjutnya
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}

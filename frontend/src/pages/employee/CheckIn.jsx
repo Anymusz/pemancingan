@@ -1,11 +1,55 @@
 // File: src/pages/employee/CheckIn.jsx
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import employeeService from "../../services/employeeService";
 import QRScanner from "../../components/employee/QRScanner";
 import FormDialog from "../../components/common/FormDialog";
 import { formatDateTime } from "../../utils/utils";
 import { useToast } from "@/hooks/useToast";
+import { TabsNav } from "@/components/common/TabsNav";
+import { SearchModal } from "@/components/common/SearchModal";
+import { Button } from "@/components/common/Button";
+import { Label } from "@/components/common/FormLabel";
+import { Textarea } from "@/components/common/FormTextarea";
+
+// ==================== HELPERS ====================
+
+const MemberCard = ({ member }) => (
+  <div className="rounded-lg border border-border bg-muted/30 p-4 space-y-1.5 text-sm">
+    <p className="font-semibold text-foreground text-base">{member.name}</p>
+    <p className="text-muted-foreground">
+      Member ID: <span className="text-foreground">{member.member_id}</span>
+    </p>
+    <p className="text-muted-foreground">
+      Tier: <span className="text-foreground">{member.tier}</span>
+    </p>
+    <p className="text-muted-foreground">
+      Total Poin: <span className="text-foreground">{member.total_points}</span>
+    </p>
+    <p className="text-muted-foreground">
+      No. HP: <span className="text-foreground">{member.phone}</span>
+    </p>
+  </div>
+);
+
+const NotesField = ({ value, onChange }) => (
+  <div className="grid gap-1.5">
+    <Label>Catatan (opsional)</Label>
+    <Textarea
+      rows={2}
+      value={value}
+      onChange={onChange}
+      placeholder="Catatan tambahan..."
+    />
+  </div>
+);
+
+// ==================== COMPONENT ====================
+
+const TAB_ITEMS = [
+  { value: "manual", label: "🔍 Cari Manual" },
+  { value: "scan", label: "📷 Scan QR" },
+];
 
 const CheckIn = ({ onNavigateToAddOrder }) => {
   // ==================== SHARED STATE ====================
@@ -16,11 +60,7 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
   const toast = useToast();
 
   // ==================== MANUAL TAB STATE ====================
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const [selectedMember, setSelectedMember] = useState(null);
-  const [searchLoading, setSearchLoading] = useState(false);
-  const searchTimeout = useRef(null);
 
   // ==================== SCAN TAB STATE ====================
   const [scanResult, setScanResult] = useState(null);
@@ -41,42 +81,20 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
     }
   }, [activeTab]);
 
-  // ==================== MANUAL: REALTIME SEARCH (DEBOUNCE 300ms) ====================
-  useEffect(() => {
-    if (selectedMember || !searchQuery.trim()) {
-      setSearchResults([]);
-      return;
-    }
-
-    clearTimeout(searchTimeout.current);
-    searchTimeout.current = setTimeout(async () => {
-      setSearchLoading(true);
-      try {
-        const res = await employeeService.searchMember(searchQuery);
-        if (res.success) {
-          setSearchResults(res.data.members);
-        }
-      } catch (err) {
-        toast.error(err?.response?.data?.message || "Gagal mencari member");
-      } finally {
-        setSearchLoading(false);
-      }
-    }, 300);
-
-    return () => clearTimeout(searchTimeout.current);
-  }, [searchQuery, selectedMember, toast]);
-
   // ==================== MANUAL HANDLERS ====================
+
+  const handleSearchMember = useCallback(async (query) => {
+    if (!query.trim()) return [];
+    const res = await employeeService.searchMember(query);
+    return res.data.members;
+  }, []);
+
   const handleSelectMember = (member) => {
     setSelectedMember(member);
-    setSearchResults([]);
-    setSearchQuery(member.name);
   };
 
   const handleClearSelection = () => {
     setSelectedMember(null);
-    setSearchQuery("");
-    setSearchResults([]);
     setNotes("");
   };
 
@@ -171,176 +189,117 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
 
   // ==================== RENDER ====================
   return (
-    <div>
+    <div className="space-y-6">
+      {/* Success Dialog */}
       <FormDialog
         open={!!successData}
         onClose={() => setSuccessData(null)}
         title="Check-in Berhasil"
         size="sm"
       >
-        <div>
-          <p>
-            Member <strong>{successData?.name}</strong> ({successData?.tier})
-            telah berhasil check-in.
+        <div className="space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Member{" "}
+            <span className="font-semibold text-foreground">
+              {successData?.name}
+            </span>{" "}
+            ({successData?.tier}) telah berhasil check-in.
           </p>
-          <div style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
-            <button
+          <div className="flex gap-2 justify-center sm:justify-end">
+            <Button variant="outline" onClick={() => setSuccessData(null)}>
+              Tutup
+            </Button>
+            <Button
               onClick={() => {
                 setSuccessData(null);
-                if (onNavigateToAddOrder) {
-                  onNavigateToAddOrder(successData?.arrival_id);
-                }
+                onNavigateToAddOrder?.(successData?.arrival_id);
               }}
-              style={{ padding: "8px 16px" }}
             >
               Tambah Pesanan
-            </button>
-            <button
-              onClick={() => setSuccessData(null)}
-              style={{ padding: "8px 16px" }}
-            >
-              Tutup
-            </button>
+            </Button>
           </div>
         </div>
       </FormDialog>
 
-      <h1>Check-in Member</h1>
+      <h1 className="text-2xl font-bold text-foreground">Check-in Member</h1>
 
-      {/* Tab Buttons */}
-      <div style={{ marginBottom: 16, display: "flex", gap: 8 }}>
-        <button
-          onClick={() => setActiveTab("manual")}
-          disabled={activeTab === "manual"}
-          style={{
-            padding: "8px 16px",
-            fontWeight: activeTab === "manual" ? "bold" : "normal",
-            background: activeTab === "manual" ? "#2563EB" : "#e5e7eb",
-            color: activeTab === "manual" ? "white" : "#374151",
-            border: "none",
-            borderRadius: 6,
-            cursor: activeTab === "manual" ? "default" : "pointer",
-          }}
-        >
-          🔍 Cari Manual
-        </button>
-        <button
-          onClick={() => setActiveTab("scan")}
-          disabled={activeTab === "scan"}
-          style={{
-            padding: "8px 16px",
-            fontWeight: activeTab === "scan" ? "bold" : "normal",
-            background: activeTab === "scan" ? "#2563EB" : "#e5e7eb",
-            color: activeTab === "scan" ? "white" : "#374151",
-            border: "none",
-            borderRadius: 6,
-            cursor: activeTab === "scan" ? "default" : "pointer",
-          }}
-        >
-          📷 Scan QR
-        </button>
-      </div>
+      {/* Tab Navigation */}
+      <TabsNav
+        items={TAB_ITEMS}
+        value={activeTab}
+        onValueChange={setActiveTab}
+      />
 
       {/* ===== MANUAL TAB ===== */}
       {activeTab === "manual" && (
-        <>
-          <section>
-            <h2>Cari Member</h2>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                if (selectedMember) setSelectedMember(null);
-              }}
+        <div className="space-y-4">
+          <section className="space-y-3">
+            <h2 className="text-lg font-semibold text-foreground">
+              Cari Member
+            </h2>
+            <SearchModal
+              triggerLabel="Cari Member"
               placeholder="Cari nama / nomor HP / member ID..."
+              title="Cari Member"
+              emptyMessage="Member tidak ditemukan"
+              onSearch={handleSearchMember}
+              onSelect={handleSelectMember}
+              getItemKey={(item) => item.id}
               disabled={!!selectedMember}
+              renderItem={(item) => (
+                <div>
+                  <p className="font-medium text-foreground">{item.name}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {item.member_id} · Tier {item.tier} · {item.phone}
+                  </p>
+                </div>
+              )}
             />
-            {searchLoading && <span> Mencari...</span>}
             {selectedMember && (
-              <button onClick={handleClearSelection}>Ganti Member</button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleClearSelection}
+              >
+                Ganti Member
+              </Button>
             )}
-
-            {/* Autocomplete Dropdown */}
-            {searchResults.length > 0 && !selectedMember && (
-              <div style={{ border: "1px solid #ccc", marginTop: 4 }}>
-                {searchResults.map((member) => (
-                  <div
-                    key={member.id}
-                    onClick={() => handleSelectMember(member)}
-                    style={{
-                      padding: 8,
-                      cursor: "pointer",
-                      borderBottom: "1px solid #eee",
-                    }}
-                  >
-                    <strong>{member.name}</strong> | {member.member_id} | Tier:{" "}
-                    {member.tier} | HP: {member.phone}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Tidak ditemukan */}
-            {!searchLoading &&
-              searchQuery.trim() &&
-              !selectedMember &&
-              searchResults.length === 0 && <p>Member tidak ditemukan</p>}
           </section>
 
-          {/* Member Preview (manual) */}
+          {/* Member Preview */}
           {selectedMember && (
-            <section>
-              <h2>Data Member</h2>
-              <div style={{ border: "1px solid #000", padding: 12 }}>
-                <p>
-                  <strong>Nama:</strong> {selectedMember.name}
-                </p>
-                <p>
-                  <strong>Member ID:</strong> {selectedMember.member_id}
-                </p>
-                <p>
-                  <strong>Tier:</strong> {selectedMember.tier}
-                </p>
-                <p>
-                  <strong>Total Poin:</strong> {selectedMember.total_points}
-                </p>
-                <p>
-                  <strong>No. HP:</strong> {selectedMember.phone}
-                </p>
-              </div>
-
-              <div style={{ marginTop: 12 }}>
-                <label>Catatan (opsional)</label>
-                <br />
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  rows={2}
-                  placeholder="Catatan tambahan..."
-                />
-              </div>
-
-              <button
+            <section className="space-y-4">
+              <h2 className="text-lg font-semibold text-foreground">
+                Data Member
+              </h2>
+              <MemberCard member={selectedMember} />
+              <NotesField
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+              />
+              <Button
+                loading={submitLoading}
+                fullWidth
                 onClick={() => handleCheckIn(selectedMember.id)}
-                disabled={submitLoading}
               >
-                {submitLoading ? "Memproses..." : "Check-in Sekarang"}
-              </button>
+                Check-in Sekarang
+              </Button>
             </section>
           )}
-        </>
+        </div>
       )}
 
       {/* ===== SCAN TAB ===== */}
       {activeTab === "scan" && (
-        <section>
-          <h2>Scan QR Code Member</h2>
+        <section className="space-y-4">
+          <h2 className="text-lg font-semibold text-foreground">
+            Scan QR Code Member
+          </h2>
 
           {/* Scanner active */}
           {showScanner && !scanResult && !scanError && (
-            <div>
-              <p style={{ color: "#6b7280", fontSize: 14, marginBottom: 12 }}>
+            <div className="space-y-3">
+              <p className="text-sm text-muted-foreground">
                 Arahkan kamera ke QR Code member...
               </p>
               <QRScanner
@@ -352,97 +311,61 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
 
           {/* Resolving loading */}
           {resolveLoading && (
-            <p style={{ color: "#6b7280" }}>Memverifikasi QR Code...</p>
+            <p className="text-sm text-muted-foreground">
+              Memverifikasi QR Code...
+            </p>
           )}
 
           {/* Scan Error */}
           {scanError && (
-            <div
-              style={{
-                border: "1px solid #f87171",
-                background: "#fef2f2",
-                padding: 12,
-                borderRadius: 8,
-                marginBottom: 12,
-              }}
-            >
-              <p style={{ color: "#dc2626", fontWeight: 500 }}>{scanError}</p>
-              <button onClick={handleRescan} style={{ marginTop: 8 }}>
+            <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 space-y-2">
+              <p className="text-destructive font-medium text-sm">
+                {scanError}
+              </p>
+              <Button variant="outline" size="sm" onClick={handleRescan}>
                 🔄 Scan Ulang
-              </button>
+              </Button>
             </div>
           )}
 
           {/* Scan Result — Member Preview */}
           {scanResult && (
-            <div>
-              <div style={{ border: "1px solid #000", padding: 12 }}>
-                <h3>Data Member</h3>
-                <p>
-                  <strong>Nama:</strong> {scanResult.name}
-                </p>
-                <p>
-                  <strong>Member ID:</strong> {scanResult.member_id}
-                </p>
-                <p>
-                  <strong>Tier:</strong> {scanResult.tier}
-                </p>
-                <p>
-                  <strong>Total Poin:</strong> {scanResult.total_points}
-                </p>
-                <p>
-                  <strong>No. HP:</strong> {scanResult.phone}
-                </p>
-              </div>
+            <div className="space-y-4">
+              <h3 className="text-base font-semibold text-foreground">
+                Data Member
+              </h3>
+              <MemberCard member={scanResult} />
 
               {scanResult.active_arrival?.exists ? (
-                <div
-                  style={{
-                    marginTop: 12,
-                    padding: 12,
-                    background: "#fefce8",
-                    border: "1px solid #facc15",
-                    borderRadius: 8,
-                  }}
-                >
-                  <p style={{ color: "#a16207", fontWeight: 500 }}>
+                <div className="rounded-lg border border-yellow-500/30 bg-yellow-500/10 p-4 space-y-2">
+                  <p className="text-yellow-600 font-medium text-sm">
                     ⚠️ Member sedang aktif, check-in pukul{" "}
                     {formatDateTime(scanResult.active_arrival.check_in_at)}
                   </p>
-                  <button disabled style={{ marginTop: 8, opacity: 0.5 }}>
-                    Check-in (Tidak Tersedia)
-                  </button>
-                  <button
-                    onClick={handleRescan}
-                    style={{ marginTop: 8, marginLeft: 8 }}
-                  >
-                    🔄 Scan Ulang
-                  </button>
+                  <div className="flex gap-2">
+                    <Button disabled>Check-in (Tidak Tersedia)</Button>
+                    <Button variant="outline" onClick={handleRescan}>
+                      🔄 Scan Ulang
+                    </Button>
+                  </div>
                 </div>
               ) : (
-                <div style={{ marginTop: 12 }}>
-                  <label>Catatan (opsional)</label>
-                  <br />
-                  <textarea
+                <div className="space-y-3">
+                  <NotesField
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
-                    rows={2}
-                    placeholder="Catatan tambahan..."
                   />
-                  <br />
-                  <button
-                    onClick={() => handleCheckIn(scanResult.id)}
-                    disabled={submitLoading}
-                    style={{ marginTop: 8 }}
-                  >
-                    {submitLoading ? "Memproses..." : "✅ Konfirmasi Check-in"}
-                  </button>
-                  <button
-                    onClick={handleRescan}
-                    style={{ marginTop: 8, marginLeft: 8 }}
-                  >
-                    🔄 Scan Ulang
-                  </button>
+                  <div className="flex gap-2">
+                    <Button
+                      loading={submitLoading}
+                      onClick={() => handleCheckIn(scanResult.id)}
+                    >
+                      ✅ Konfirmasi Check-in
+                    </Button>
+                    <Button variant="outline" onClick={handleRescan}>
+                      🔄 Scan Ulang
+                    </Button>
+                  </div>
                 </div>
               )}
             </div>

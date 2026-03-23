@@ -1,6 +1,6 @@
 // src/pages/landing/sections/HeroSection.jsx
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/Button";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import GradientBg from "@/components/layout/gradient-bg";
 

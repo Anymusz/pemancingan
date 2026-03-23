@@ -3,8 +3,26 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import ownerService from "../../services/ownerService";
 import { useToast } from "@/hooks/useToast";
+import { formatCurrency } from "@/utils/utils";
 import FormDialog from "../../components/common/FormDialog";
 import ConfirmDialog from "../../components/common/ConfirmDialog";
+import { DataTable } from "../../components/common/DataTable";
+import { StatusBadge } from "../../components/common/StatusBadge";
+import { Input } from "../../components/common/FormInput";
+import { Label } from "../../components/common/FormLabel";
+import { FormSelect } from "@/components/common/FormSelect";
+import { Textarea } from "../../components/common/FormTextarea";
+import { Button } from "@/components/common/Button";
+
+const CATEGORY_OPTIONS = [
+  { value: "food", label: "Makanan" },
+  { value: "beverage", label: "Minuman" },
+];
+
+const AVAILABILITY_OPTIONS = [
+  { value: "available", label: "Tersedia" },
+  { value: "unavailable", label: "Tidak Tersedia" },
+];
 
 const MenuManagement = () => {
   const [menus, setMenus] = useState([]);
@@ -43,31 +61,34 @@ const MenuManagement = () => {
   const [formErrors, setFormErrors] = useState({});
 
   // ---- Fetch ----
-  const fetchMenus = useCallback(async (currentFilters) => {
-    setLoading(true);
-    try {
-      const params = {};
-      if (currentFilters.category) params.category = currentFilters.category;
-      if (currentFilters.availability)
-        params.availability = currentFilters.availability;
-      if (currentFilters.search) params.search = currentFilters.search;
-      if (currentFilters.include_deleted) params.include_deleted = true;
+  const fetchMenus = useCallback(
+    async (currentFilters) => {
+      setLoading(true);
+      try {
+        const params = {};
+        if (currentFilters.category) params.category = currentFilters.category;
+        if (currentFilters.availability)
+          params.availability = currentFilters.availability;
+        if (currentFilters.search) params.search = currentFilters.search;
+        if (currentFilters.include_deleted) params.include_deleted = true;
 
-      const res = await ownerService.getMenus(params);
-      if (res.success) {
-        setMenus(res.data.menus);
-        setSummary({
-          total: res.data.total,
-          available_count: res.data.available_count,
-          unavailable_count: res.data.unavailable_count,
-        });
+        const res = await ownerService.getMenus(params);
+        if (res.success) {
+          setMenus(res.data.menus);
+          setSummary({
+            total: res.data.total,
+            available_count: res.data.available_count,
+            unavailable_count: res.data.unavailable_count,
+          });
+        }
+      } catch {
+        toast.error("Gagal memuat data menu");
+      } finally {
+        setLoading(false);
       }
-    } catch {
-      toast.error("Gagal memuat data menu");
-    } finally {
-      setLoading(false);
-    }
-  }, [toast]);
+    },
+    [toast],
+  );
 
   useEffect(() => {
     fetchMenus(filters);
@@ -188,9 +209,7 @@ const MenuManagement = () => {
       closeModals();
       fetchMenus(filters);
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message || "Gagal menghapus menu",
-      );
+      toast.error(err?.response?.data?.message || "Gagal menghapus menu");
     } finally {
       setSubmitLoading(false);
     }
@@ -219,46 +238,89 @@ const MenuManagement = () => {
     }
   };
 
+  // ---- Column & Action definitions ----
+  const menuColumns = [
+    { key: "name", header: "Nama", render: (row) => row.name },
+    {
+      key: "category",
+      header: "Kategori",
+      render: (row) => (row.category === "food" ? "Makanan" : "Minuman"),
+    },
+    {
+      key: "price",
+      header: "Harga",
+      render: (row) => formatCurrency(row.price),
+    },
+    {
+      key: "availability",
+      header: "Ketersediaan",
+      render: (row) =>
+        row.deleted_at ? "Dihapus" : <StatusBadge status={row.availability} />,
+    },
+    {
+      key: "description",
+      header: "Deskripsi",
+      render: (row) => row.description || "-",
+    },
+  ];
+
   // ==================== RENDER ====================
   return (
     <div>
       <h1>Manajemen Menu</h1>
 
       {/* Summary */}
-      <div>
-        <span>Total: {summary.total} | </span>
-        <span>Tersedia: {summary.available_count} | </span>
-        <span>Tidak Tersedia: {summary.unavailable_count}</span>
+      <div className="flex gap-4 text-sm text-muted-foreground mb-2">
+        <span>
+          Total: <strong>{summary.total}</strong>
+        </span>
+        <span>
+          Tersedia: <strong>{summary.available_count}</strong>
+        </span>
+        <span>
+          Tidak Tersedia: <strong>{summary.unavailable_count}</strong>
+        </span>
       </div>
 
       {/* Actions */}
-      <button onClick={openAddModal}>+ Tambah Menu</button>
+      <Button onClick={openAddModal} className="mb-4">
+        + Tambah Menu
+      </Button>
 
       {/* Filters */}
-      <div>
-        <input
+      <div className="flex flex-wrap gap-3 mb-4">
+        <Input
           type="text"
           value={searchInput}
           onChange={handleSearchChange}
           placeholder="Cari nama menu..."
+          className="w-48"
         />
-        <select
-          value={filters.category}
-          onChange={(e) => handleFilterChange("category", e.target.value)}
-        >
-          <option value="">Semua Kategori</option>
-          <option value="food">Makanan</option>
-          <option value="beverage">Minuman</option>
-        </select>
-        <select
-          value={filters.availability}
-          onChange={(e) => handleFilterChange("availability", e.target.value)}
-        >
-          <option value="">Semua Status</option>
-          <option value="available">Tersedia</option>
-          <option value="unavailable">Tidak Tersedia</option>
-        </select>
-        <label>
+        <FormSelect
+          value={filters.category || "all"}
+          onValueChange={(val) =>
+            handleFilterChange("category", val === "all" ? "" : val)
+          }
+          className="w-40"
+          placeholder="Semua Kategori"
+          options={[
+            { value: "all", label: "Semua Kategori" },
+            ...CATEGORY_OPTIONS,
+          ]}
+        />
+        <FormSelect
+          value={filters.availability || "all"}
+          onValueChange={(val) =>
+            handleFilterChange("availability", val === "all" ? "" : val)
+          }
+          className="w-40"
+          placeholder="Semua Status"
+          options={[
+            { value: "all", label: "Semua Status" },
+            ...AVAILABILITY_OPTIONS,
+          ]}
+        />
+        <label className="flex items-center gap-2 text-sm">
           <input
             type="checkbox"
             checked={filters.include_deleted}
@@ -271,140 +333,104 @@ const MenuManagement = () => {
       </div>
 
       {/* Table */}
-      {loading ? (
-        <p>Memuat data...</p>
-      ) : menus.length === 0 ? (
-        <p>Belum ada menu</p>
-      ) : (
-        <table border="1" width="100%">
-          <thead>
-            <tr>
-              <th>Nama</th>
-              <th>Kategori</th>
-              <th>Harga</th>
-              <th>Ketersediaan</th>
-              <th>Deskripsi</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {menus.map((menu) => (
-              <tr key={menu.id} style={{ opacity: menu.deleted_at ? 0.5 : 1 }}>
-                <td>{menu.name}</td>
-                <td>{menu.category === "food" ? "Makanan" : "Minuman"}</td>
-                <td>Rp {Number(menu.price).toLocaleString("id-ID")}</td>
-                <td>
-                  {!menu.deleted_at ? (
-                    <button onClick={() => handleToggleAvailability(menu)}>
-                      {menu.availability === "available"
-                        ? "Tersedia"
-                        : "Tidak Tersedia"}
-                    </button>
-                  ) : (
-                    <span>Dihapus</span>
-                  )}
-                </td>
-                <td>{menu.description || "-"}</td>
-                <td>
-                  {!menu.deleted_at && (
-                    <>
-                      <button onClick={() => openEditModal(menu)}>Edit</button>
-                      {" | "}
-                      <button onClick={() => openDeleteModal(menu)}>
-                        Hapus
-                      </button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      <DataTable
+        columns={menuColumns}
+        data={menus}
+        loading={loading}
+        emptyMessage="Belum ada menu"
+        getRowActions={(row) => {
+          if (row.deleted_at) return [];
+          return [
+            {
+              label: "Ubah Ketersediaan",
+              onClick: () => handleToggleAvailability(row),
+            },
+            { label: "Edit", onClick: () => openEditModal(row) },
+            {
+              label: "Hapus",
+              variant: "danger",
+              onClick: () => openDeleteModal(row),
+            },
+          ];
+        }}
+        rowClassName={(row) => (row.deleted_at ? "opacity-50" : "")}
+      />
 
       {/* Form Modal */}
       <FormDialog
         open={modalState.form}
         onClose={closeModals}
         title={modalState.mode === "edit" ? "Edit Menu" : "Tambah Menu"}
+        onSubmit={handleSubmit}
+        loading={submitLoading}
+        submitLabel={modalState.mode === "edit" ? "Simpan Perubahan" : "Tambah"}
+        cancelLabel="Batal"
       >
-        <div>
-          <div>
-            <label>Nama *</label>
-            <br />
-            <input
+        <div className="grid gap-4">
+          <div className="grid gap-1.5">
+            <Label>Nama *</Label>
+            <Input
               value={form.name}
               onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
+              disabled={submitLoading}
             />
             {formErrors.name && (
-              <span style={{ color: "red" }}> {formErrors.name}</span>
+              <p className="text-xs text-red-500">{formErrors.name}</p>
             )}
           </div>
-          <div style={{ marginTop: 8 }}>
-            <label>Harga *</label>
-            <br />
-            <input
+          <div className="grid gap-1.5">
+            <Label>Harga *</Label>
+            <Input
               type="number"
               min="0"
               value={form.price}
               onChange={(e) =>
                 setForm((p) => ({ ...p, price: e.target.value }))
               }
+              disabled={submitLoading}
             />
             {formErrors.price && (
-              <span style={{ color: "red" }}> {formErrors.price}</span>
+              <p className="text-xs text-red-500">{formErrors.price}</p>
             )}
           </div>
-          <div style={{ marginTop: 8 }}>
-            <label>Kategori *</label>
-            <br />
-            <select
+          <div className="grid gap-1.5">
+            <Label>Kategori *</Label>
+            <FormSelect
               value={form.category}
-              onChange={(e) =>
-                setForm((p) => ({ ...p, category: e.target.value }))
-              }
-            >
-              <option value="food">Makanan</option>
-              <option value="beverage">Minuman</option>
-            </select>
+              onValueChange={(val) => setForm((p) => ({ ...p, category: val }))}
+              placeholder="Pilih Kategori"
+              options={CATEGORY_OPTIONS}
+              disabled={submitLoading}
+            />
+            {formErrors.category && (
+              <p className="text-xs text-red-500">{formErrors.category}</p>
+            )}
           </div>
-          <div style={{ marginTop: 8 }}>
-            <label>Ketersediaan</label>
-            <br />
-            <select
+          <div className="grid gap-1.5">
+            <Label>Ketersediaan</Label>
+            <FormSelect
               value={form.availability}
-              onChange={(e) =>
-                setForm((p) => ({ ...p, availability: e.target.value }))
+              onValueChange={(val) =>
+                setForm((p) => ({ ...p, availability: val }))
               }
-            >
-              <option value="available">Tersedia</option>
-              <option value="unavailable">Tidak Tersedia</option>
-            </select>
+              placeholder="Pilih Ketersediaan"
+              options={AVAILABILITY_OPTIONS}
+              disabled={submitLoading}
+            />
           </div>
-          <div style={{ marginTop: 8 }}>
-            <label>Deskripsi</label>
-            <br />
-            <textarea
+          <div className="grid gap-1.5">
+            <Label>Deskripsi</Label>
+            <Textarea
               value={form.description}
               onChange={(e) =>
                 setForm((p) => ({ ...p, description: e.target.value }))
               }
               rows={3}
+              disabled={submitLoading}
             />
             {formErrors.description && (
-              <span style={{ color: "red" }}> {formErrors.description}</span>
+              <p className="text-xs text-red-500">{formErrors.description}</p>
             )}
-          </div>
-          <br />
-          <div style={{ display: "flex", gap: "8px" }}>
-            <button onClick={handleSubmit} disabled={submitLoading}>
-              {submitLoading
-                ? "Menyimpan..."
-                : modalState.mode === "edit"
-                  ? "Simpan Perubahan"
-                  : "Tambah"}
-            </button>
-            <button onClick={closeModals}>Batal</button>
           </div>
         </div>
       </FormDialog>

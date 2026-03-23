@@ -1,9 +1,19 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import ownerService from "../../services/ownerService";
 import { useToast } from "@/hooks/useToast";
-import { formatDateTime } from "../../utils/utils";
+import {
+  formatDateTime,
+  formatNumber,
+  formatCurrency,
+} from "../../utils/utils";
 import FormDialog from "../../components/common/FormDialog";
 import ConfirmDialog from "../../components/common/ConfirmDialog";
+import { DataTable } from "../../components/common/DataTable";
+import { StatusBadge } from "../../components/common/StatusBadge";
+import { Input } from "@/components/common/FormInput";
+import { Label } from "@/components/common/FormLabel";
+import { Button } from "@/components/common/Button";
+import { FormSelect } from "@/components/common/FormSelect";
 
 const FishTypeManagement = () => {
   const [fishTypes, setFishTypes] = useState([]);
@@ -12,7 +22,7 @@ const FishTypeManagement = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [allHistoryData, setAllHistoryData] = useState([]);
   const [allHistoryLoading, setAllHistoryLoading] = useState(false);
-  const [historyFishId, setHistoryFishId] = useState("");
+  const [historyFishId, setHistoryFishId] = useState("all");
   const toast = useToast();
 
   const [filters, setFilters] = useState({
@@ -303,28 +313,106 @@ const FishTypeManagement = () => {
 
   // ---- Format helpers ----
 
-  const filteredHistory = historyFishId
-    ? allHistoryData.filter(
-        (log) => Number(log.fish_type_id) === Number(historyFishId),
-      )
-    : allHistoryData;
+  const filteredHistory =
+    historyFishId === "all"
+      ? allHistoryData
+      : allHistoryData.filter(
+          (log) => Number(log.fish_type_id) === Number(historyFishId),
+        );
+
+  // ---- Column & Action definitions ----
+  const fishTypeColumns = [
+    { key: "name", header: "Nama Ikan", render: (row) => row.name },
+    {
+      key: "price_per_kg",
+      header: "Harga/Kg",
+      render: (row) => formatCurrency(row.price_per_kg),
+    },
+    {
+      key: "stock",
+      header: "Stok (Kg)",
+      render: (row) => {
+        const stock = fishStocks[row.id];
+        const value = stock ? formatNumber(stock.current_stock_kg) : "-";
+        return (
+          <div className="flex items-center gap-2">
+            <span>{value}</span>
+            {stock?.is_below_threshold && <StatusBadge status="low_stock" />}
+          </div>
+        );
+      },
+    },
+    {
+      key: "threshold",
+      header: "Threshold (Kg)",
+      render: (row) =>
+        fishStocks[row.id]
+          ? formatNumber(fishStocks[row.id].alert_threshold_kg)
+          : "-",
+    },
+    {
+      key: "availability",
+      header: "Ketersediaan",
+      render: (row) =>
+        row.deleted_at ? "Dihapus" : <StatusBadge status={row.is_active} />,
+    },
+  ];
+
+  const historyColumns = [
+    {
+      key: "fish_type",
+      header: "Jenis Ikan",
+      render: (row) => row.fish_type?.name ?? "-",
+    },
+    {
+      key: "created_at",
+      header: "Tanggal & Waktu",
+      render: (row) => formatDateTime(row.created_at),
+    },
+    {
+      key: "quantity_kg",
+      header: "Jumlah (Kg)",
+      render: (row) => `+${formatNumber(row.quantity_kg)}`,
+    },
+    {
+      key: "stock_before",
+      header: "Stok Sebelum",
+      render: (row) => formatNumber(row.stock_before),
+    },
+    {
+      key: "stock_after",
+      header: "Stok Sesudah",
+      render: (row) => formatNumber(row.stock_after),
+    },
+    {
+      key: "restocked_by",
+      header: "Dicatat Oleh",
+      render: (row) => row.restocked_by?.name ?? "-",
+    },
+    { key: "notes", header: "Catatan", render: (row) => row.notes ?? "-" },
+  ];
 
   // ==================== RENDER ====================
   return (
-    <div>
-      <h1>Manajemen Jenis Ikan</h1>
-
-      <button onClick={openAddModal}>+ Tambah Jenis Ikan</button>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-foreground">
+          Manajemen Jenis Ikan
+        </h1>
+        <Button onClick={openAddModal}>+ Tambah Jenis Ikan</Button>
+      </div>
 
       {/* Filters */}
-      <div>
-        <input
+      <div className="flex flex-wrap items-center gap-3">
+        <Input
           type="text"
           value={searchInput}
           onChange={handleSearchChange}
           placeholder="Cari nama ikan..."
+          className="max-w-xs"
         />
-        <label>
+        <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
           <input
             type="checkbox"
             checked={filters.include_deleted}
@@ -339,115 +427,70 @@ const FishTypeManagement = () => {
         </label>
       </div>
 
-      {/* Table */}
-      {loading ? (
-        <p>Memuat data...</p>
-      ) : fishTypes.length === 0 ? (
-        <p>Belum ada jenis ikan</p>
-      ) : (
-        <table border="1" width="100%">
-          <thead>
-            <tr>
-              <th>Nama Ikan</th>
-              <th>Harga/Kg</th>
-              <th>Stok (Kg)</th>
-              <th>Threshold (Kg)</th>
-              <th>Ketersediaan</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {fishTypes.map((ft) => {
-              const stock = fishStocks[ft.id];
-              return (
-                <tr key={ft.id} style={{ opacity: ft.deleted_at ? 0.5 : 1 }}>
-                  <td>{ft.name}</td>
-                  <td>Rp {Number(ft.price_per_kg).toLocaleString("id-ID")}</td>
-                  <td
-                    style={{
-                      color: stock?.is_below_threshold ? "red" : "inherit",
-                    }}
-                  >
-                    {stock
-                      ? Number(stock.current_stock_kg).toLocaleString("id-ID")
-                      : "-"}
-                    {stock?.is_below_threshold && " ⚠️"}
-                  </td>
-                  <td>
-                    {stock
-                      ? Number(stock.alert_threshold_kg).toLocaleString("id-ID")
-                      : "-"}
-                  </td>
-                  <td>
-                    {ft.deleted_at
-                      ? "Dihapus"
-                      : ft.is_active
-                        ? "Tersedia"
-                        : "Tidak Tersedia"}
-                  </td>
-                  <td>
-                    {!ft.deleted_at && (
-                      <>
-                        <button onClick={() => handleToggleActive(ft)}>
-                          {ft.is_active ? "Set Tidak Tersedia" : "Set Tersedia"}
-                        </button>
-                        {" | "}
-                        <button onClick={() => openEditModal(ft)}>Edit</button>
-                        {" | "}
-                        <button onClick={() => openRestockModal(ft)}>
-                          Restock
-                        </button>
-                        {" | "}
-                        <button onClick={() => openDeleteModal(ft)}>
-                          Hapus
-                        </button>
-                      </>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      )}
+      {/* Fish Type Table */}
+      <DataTable
+        columns={fishTypeColumns}
+        data={fishTypes}
+        loading={loading}
+        emptyMessage="Belum ada jenis ikan"
+        getRowActions={(row) => {
+          if (row.deleted_at) return [];
+          return [
+            { label: "Ubah Status", onClick: () => handleToggleActive(row) },
+            { label: "Edit", onClick: () => openEditModal(row) },
+            { label: "Restock", onClick: () => openRestockModal(row) },
+            {
+              label: "Hapus",
+              variant: "danger",
+              onClick: () => openDeleteModal(row),
+            },
+          ];
+        }}
+        rowClassName={(row) => (row.deleted_at ? "opacity-50" : "")}
+      />
 
       {/* Form Modal */}
       <FormDialog
         open={modalState.form}
         onClose={closeModals}
-        title={modalState.mode === "edit" ? "Edit Jenis Ikan" : "Tambah Jenis Ikan"}
+        title={
+          modalState.mode === "edit" ? "Edit Jenis Ikan" : "Tambah Jenis Ikan"
+        }
+        onSubmit={handleSubmit}
+        loading={submitLoading}
+        submitLabel={modalState.mode === "edit" ? "Simpan Perubahan" : "Tambah"}
+        cancelLabel="Batal"
       >
-        <div>
-          <div>
-            <label>Nama Ikan *</label>
-            <br />
-            <input
+        <div className="grid gap-4">
+          <div className="grid gap-1.5">
+            <Label>Nama Ikan *</Label>
+            <Input
               value={form.name}
               onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
+              disabled={submitLoading}
             />
             {formErrors.name && (
-              <span style={{ color: "red" }}> {formErrors.name}</span>
+              <p className="text-xs text-red-500">{formErrors.name}</p>
             )}
           </div>
-          <div style={{ marginTop: 8 }}>
-            <label>Harga per Kg (Rp) *</label>
-            <br />
-            <input
+          <div className="grid gap-1.5">
+            <Label>Harga per Kg (Rp) *</Label>
+            <Input
               type="number"
               min="1000"
               value={form.price_per_kg}
               onChange={(e) =>
                 setForm((p) => ({ ...p, price_per_kg: e.target.value }))
               }
+              disabled={submitLoading}
             />
             {formErrors.price_per_kg && (
-              <span style={{ color: "red" }}> {formErrors.price_per_kg}</span>
+              <p className="text-xs text-red-500">{formErrors.price_per_kg}</p>
             )}
           </div>
-          <div style={{ marginTop: 8 }}>
-            <label>Alert Threshold (Kg)</label>
-            <br />
-            <input
+          <div className="grid gap-1.5">
+            <Label>Alert Threshold (Kg)</Label>
+            <Input
               type="number"
               min="0"
               step="0.1"
@@ -455,24 +498,13 @@ const FishTypeManagement = () => {
               onChange={(e) =>
                 setForm((p) => ({ ...p, alert_threshold_kg: e.target.value }))
               }
+              disabled={submitLoading}
             />
             {formErrors.alert_threshold_kg && (
-              <span style={{ color: "red" }}>
-                {" "}
+              <p className="text-xs text-red-500">
                 {formErrors.alert_threshold_kg}
-              </span>
+              </p>
             )}
-          </div>
-          <br />
-          <div style={{ display: "flex", gap: "8px" }}>
-            <button onClick={handleSubmit} disabled={submitLoading}>
-              {submitLoading
-                ? "Menyimpan..."
-                : modalState.mode === "edit"
-                  ? "Simpan Perubahan"
-                  : "Tambah"}
-            </button>
-            <button onClick={closeModals}>Batal</button>
           </div>
         </div>
       </FormDialog>
@@ -490,28 +522,32 @@ const FishTypeManagement = () => {
         loading={submitLoading}
       />
 
-      {/* Restock Modal — include history */}
+      {/* Restock Modal */}
       <FormDialog
         open={modalState.restock && !!modalState.selectedFishType}
         onClose={closeModals}
         title={`Restock — ${modalState.selectedFishType?.name}`}
+        onSubmit={handleRestock}
+        loading={submitLoading}
+        submitLabel="Restock"
+        cancelLabel="Tutup"
       >
-        <div>
-          <p>
+        <div className="grid gap-4">
+          <div className="rounded-md bg-muted/50 px-3 py-2 text-sm">
             Stok saat ini:{" "}
-            <strong>
-              {modalState.selectedFishType && fishStocks[modalState.selectedFishType.id]
-                ? Number(
+            <span className="font-semibold">
+              {modalState.selectedFishType &&
+              fishStocks[modalState.selectedFishType.id]
+                ? formatNumber(
                     fishStocks[modalState.selectedFishType.id].current_stock_kg,
-                  ).toLocaleString("id-ID")
+                  )
                 : "-"}{" "}
               Kg
-            </strong>
-          </p>
-          <div style={{ marginTop: 8 }}>
-            <label>Jumlah Tambah (Kg) *</label>
-            <br />
-            <input
+            </span>
+          </div>
+          <div className="grid gap-1.5">
+            <Label>Jumlah Tambah (Kg) *</Label>
+            <Input
               type="number"
               min="0.1"
               step="0.1"
@@ -519,83 +555,53 @@ const FishTypeManagement = () => {
               onChange={(e) =>
                 setRestockForm((p) => ({ ...p, quantity_kg: e.target.value }))
               }
+              disabled={submitLoading}
             />
             {formErrors.quantity_kg && (
-              <span style={{ color: "red" }}> {formErrors.quantity_kg}</span>
+              <p className="text-xs text-red-500">{formErrors.quantity_kg}</p>
             )}
           </div>
-          <div style={{ marginTop: 8 }}>
-            <label>Catatan (opsional)</label>
-            <br />
-            <input
+          <div className="grid gap-1.5">
+            <Label>Catatan (opsional)</Label>
+            <Input
               value={restockForm.notes}
               onChange={(e) =>
                 setRestockForm((p) => ({ ...p, notes: e.target.value }))
               }
+              disabled={submitLoading}
             />
-          </div>
-          <br />
-          <div style={{ display: "flex", gap: "8px" }}>
-            <button onClick={handleRestock} disabled={submitLoading}>
-              {submitLoading ? "Menyimpan..." : "Restock"}
-            </button>
-            <button onClick={closeModals}>Tutup</button>
           </div>
         </div>
       </FormDialog>
 
       {/* ======================= RIWAYAT RESTOCK SECTION ======================= */}
-      <div
-        style={{ marginTop: 32, paddingTop: 16, borderTop: "2px solid #ccc" }}
-      >
-        <h2>Riwayat Restock</h2>
-        <div style={{ marginBottom: 16 }}>
-          <label style={{ marginRight: 8 }}>Pilih Jenis Ikan: </label>
-          <select
+      <div className="mt-8 pt-4 border-t border-border">
+        <h2 className="text-lg font-semibold text-foreground mb-4">
+          Riwayat Restock
+        </h2>
+        <div className="flex items-center gap-3 mb-4">
+          <Label>Pilih Jenis Ikan</Label>
+          <FormSelect
             value={historyFishId}
-            onChange={(e) => setHistoryFishId(e.target.value)}
-          >
-            <option value="">Semua Jenis Ikan</option>
-            {fishTypes.map((ft) => (
-              <option key={ft.id} value={ft.id}>
-                {ft.name}
-              </option>
-            ))}
-          </select>
+            onValueChange={setHistoryFishId}
+            placeholder="Semua Jenis Ikan"
+            options={[
+              { value: "all", label: "Semua Jenis Ikan" },
+              ...fishTypes.map((ft) => ({
+                value: String(ft.id),
+                label: ft.name,
+              })),
+            ]}
+            className="w-48"
+          />
         </div>
 
-        {allHistoryLoading ? (
-          <p>Memuat riwayat...</p>
-        ) : filteredHistory.length === 0 ? (
-          <p>Belum ada riwayat restock</p>
-        ) : (
-          <table border="1" width="100%">
-            <thead>
-              <tr>
-                <th>Jenis Ikan</th>
-                <th>Tanggal</th>
-                <th>Jumlah (Kg)</th>
-                <th>Stok Sebelum</th>
-                <th>Stok Sesudah</th>
-                <th>Dicatat oleh</th>
-                <th>Catatan</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredHistory.map((log) => (
-                <tr key={log.id}>
-                  <td>{log.fish_type?.name ?? "-"}</td>
-                  <td>{formatDateTime(log.created_at)}</td>
-                  <td>+{Number(log.quantity_kg).toLocaleString("id-ID")}</td>
-                  <td>{Number(log.stock_before).toLocaleString("id-ID")}</td>
-                  <td>{Number(log.stock_after).toLocaleString("id-ID")}</td>
-                  <td>{log.restocked_by?.name ?? "-"}</td>
-                  <td>{log.notes ?? "-"}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+        <DataTable
+          columns={historyColumns}
+          data={filteredHistory}
+          loading={allHistoryLoading}
+          emptyMessage="Belum ada riwayat restock"
+        />
       </div>
     </div>
   );

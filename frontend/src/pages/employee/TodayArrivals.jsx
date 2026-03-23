@@ -5,6 +5,11 @@ import employeeService from "../../services/employeeService";
 import { useToast } from "@/hooks/useToast";
 import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { formatDateTime } from "@/utils/utils";
+import { DataTable } from "@/components/common/DataTable";
+import { Button } from "@/components/common/Button";
+import { Input } from "@/components/common/FormInput";
+import { FormSelect } from "@/components/common/FormSelect";
+import { StatusBadge } from "@/components/common/StatusBadge";
 
 const TodayArrivals = () => {
   const [arrivals, setArrivals] = useState([]);
@@ -74,90 +79,101 @@ const TodayArrivals = () => {
     }
   };
 
+  const arrivalColumns = [
+    { key: "name", header: "Nama Member", render: (row) => row.name },
+    {
+      key: "member_code",
+      header: "Member ID",
+      render: (row) => row.member_code,
+    },
+    {
+      key: "tier",
+      header: "Tier",
+      render: (row) => `${row.tier} (${row.discount_percentage ?? 0}%)`,
+    },
+    {
+      key: "check_in_at",
+      header: "Check-in",
+      render: (row) => formatDateTime(row.check_in_at),
+    },
+    {
+      key: "check_out_at",
+      header: "Check-out",
+      render: (row) =>
+        row.check_out_at ? formatDateTime(row.check_out_at) : "-",
+    },
+    {
+      key: "duration",
+      header: "Durasi",
+      render: (row) => row.duration ?? "-",
+    },
+    {
+      key: "status",
+      header: "Status",
+      render: (row) => <StatusBadge status={row.status} />,
+    },
+  ];
+
   return (
-    <div>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-foreground">
+          Kedatangan Hari Ini
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          Total: {filteredArrivals.length} kedatangan
+        </p>
+      </div>
 
-      <h1>Kedatangan Hari Ini</h1>
-
-      <section>
-        <input
+      {/* Filter bar */}
+      <div className="flex flex-wrap items-center gap-3">
+        <Input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Cari nama / member ID..."
+          className="max-w-xs"
         />
-
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
+        <FormSelect
+          value={statusFilter || "__all__"}
+          onValueChange={(val) => setStatusFilter(val === "__all__" ? "" : val)}
+          placeholder="Semua Status"
+          options={[
+            { value: "__all__", label: "Semua Status" },
+            { value: "active", label: "Active" },
+            { value: "completed", label: "Completed" },
+          ]}
+          className="w-44"
+        />
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={fetchArrivals}
+          loading={loading}
         >
-          <option value="">Semua Status</option>
-          <option value="active">Active</option>
-          <option value="completed">Completed</option>
-        </select>
+          Refresh
+        </Button>
+      </div>
 
-        <button onClick={fetchArrivals} disabled={loading}>
-          {loading ? "Memuat..." : "Refresh"}
-        </button>
-      </section>
+      {/* Table */}
+      <DataTable
+        columns={arrivalColumns}
+        data={filteredArrivals}
+        loading={loading}
+        emptyMessage="Tidak ada data kedatangan"
+        getRowActions={(row) => {
+          if (row.status !== "active") return [];
+          return [
+            {
+              label: "Manual Check-out",
+              onClick: () => openCheckoutModal(row),
+            },
+          ];
+        }}
+      />
 
-      <section>
-        <p>Total: {filteredArrivals.length} kedatangan</p>
-
-        {loading ? (
-          <p>Memuat data...</p>
-        ) : filteredArrivals.length === 0 ? (
-          <p>Tidak ada data kedatangan</p>
-        ) : (
-          <table border="1" width="100%">
-            <thead>
-              <tr>
-                <th>Nama Member</th>
-                <th>Member ID</th>
-                <th>Tier</th>
-                <th>Check-in</th>
-                <th>Check-out</th>
-                <th>Durasi</th>
-                <th>Status</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredArrivals.map((arrival) => (
-                <tr key={arrival.arrival_id}>
-                  <td>{arrival.name}</td>
-                  <td>{arrival.member_code}</td>
-                  <td>
-                    {arrival.tier} ({arrival.discount_percentage ?? 0}%)
-                  </td>
-                  <td>
-                    {formatDateTime(arrival.check_in_at)}
-                  </td>
-                  <td>
-                    {arrival.check_out_at
-                      ? formatDateTime(arrival.check_out_at)
-                      : "-"}
-                  </td>
-                  <td>{arrival.duration ?? "-"}</td>
-                  <td>
-                    {arrival.status === "active" ? "Active" : "Completed"}
-                  </td>
-                  <td>
-                    {arrival.status === "active" ? (
-                      <button onClick={() => openCheckoutModal(arrival)}>
-                        Manual Check-out
-                      </button>
-                    ) : (
-                      <span>-</span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </section>
-
+      {/* Checkout Confirm Dialog */}
       {checkoutModal.arrival && (
         <ConfirmDialog
           open={checkoutModal.open}

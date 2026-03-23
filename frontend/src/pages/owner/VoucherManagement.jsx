@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import ownerService from "../../services/ownerService";
 import { useToast } from "@/hooks/useToast";
 import ConfirmDialog from "../../components/common/ConfirmDialog";
+import { DataTable } from "../../components/common/DataTable";
 
 const MONTH_NAMES = [
   "Januari",
@@ -133,12 +134,68 @@ const VoucherManagement = () => {
       toast.success("Konfigurasi voucher berhasil disimpan");
       fetchConfigs();
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Gagal menyimpan konfigurasi");
+      toast.error(
+        err?.response?.data?.message || "Gagal menyimpan konfigurasi",
+      );
     } finally {
       setConfigSaving(false);
       setConfirmOpen(false);
     }
   };
+
+  // ==================== COLUMNS ====================
+  const columns = [
+    {
+      key: "member",
+      header: "Nama Member",
+      render: (row) => row.member?.user?.name || "-",
+    },
+    {
+      key: "period",
+      header: "Periode",
+      render: (row) =>
+        row.period_year && row.period_month
+          ? formatPeriod(row.period_year, row.period_month)
+          : "-",
+    },
+    {
+      key: "rank",
+      header: "Rank",
+      align: "center",
+      width: "100px",
+      render: (row) => row.rank ?? "-",
+    },
+    {
+      key: "amount",
+      header: "Nilai",
+      render: (row) => (row.amount != null ? formatCurrency(row.amount) : "-"),
+    },
+    {
+      key: "status",
+      header: "Status",
+      render: (row) => (
+        <span
+          className={`inline-block px-2.5 py-0.5 rounded-full text-[12px] font-semibold ${
+            row.status === "used"
+              ? "bg-green-100 text-green-800"
+              : "bg-yellow-100 text-yellow-800"
+          }`}
+        >
+          {row.status === "used" ? "Sudah Digunakan" : "Belum Digunakan"}
+        </span>
+      ),
+    },
+    {
+      key: "issued_at",
+      header: "Tanggal Terbit",
+      render: (row) => formatDate(row.issued_at || row.created_at),
+    },
+    {
+      key: "used_at",
+      header: "Tanggal Digunakan",
+      render: (row) => formatDate(row.used_at),
+    },
+  ];
 
   // ==================== RENDER ====================
   return (
@@ -285,89 +342,12 @@ const VoucherManagement = () => {
         </div>
 
         {/* Table */}
-        {voucherLoading ? (
-          <p>Memuat daftar voucher...</p>
-        ) : vouchers.length === 0 ? (
-          <p>Belum ada data voucher.</p>
-        ) : (
-          <div style={{ overflowX: "auto" }}>
-            <table
-              border="1"
-              width="100%"
-              style={{ borderCollapse: "collapse" }}
-            >
-              <thead>
-                <tr style={{ backgroundColor: "#f9fafb" }}>
-                  <th style={{ padding: "8px 12px", textAlign: "left" }}>
-                    Nama Member
-                  </th>
-                  <th style={{ padding: "8px 12px", textAlign: "left" }}>
-                    Periode
-                  </th>
-                  <th style={{ padding: "8px 12px", textAlign: "center" }}>
-                    Rank
-                  </th>
-                  <th style={{ padding: "8px 12px", textAlign: "right" }}>
-                    Nilai
-                  </th>
-                  <th style={{ padding: "8px 12px", textAlign: "center" }}>
-                    Status
-                  </th>
-                  <th style={{ padding: "8px 12px", textAlign: "left" }}>
-                    Tanggal Terbit
-                  </th>
-                  <th style={{ padding: "8px 12px", textAlign: "left" }}>
-                    Tanggal Digunakan
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {vouchers.map((v) => (
-                  <tr key={v.id}>
-                    <td style={{ padding: "8px 12px" }}>
-                      {v.member?.user?.name || "-"}
-                    </td>
-                    <td style={{ padding: "8px 12px" }}>
-                      {v.period_year && v.period_month
-                        ? formatPeriod(v.period_year, v.period_month)
-                        : "-"}
-                    </td>
-                    <td style={{ padding: "8px 12px", textAlign: "center" }}>
-                      {v.rank ?? "-"}
-                    </td>
-                    <td style={{ padding: "8px 12px", textAlign: "right" }}>
-                      {v.amount != null ? formatCurrency(v.amount) : "-"}
-                    </td>
-                    <td style={{ padding: "8px 12px", textAlign: "center" }}>
-                      <span
-                        style={{
-                          display: "inline-block",
-                          padding: "2px 10px",
-                          borderRadius: 12,
-                          fontSize: 13,
-                          fontWeight: 600,
-                          backgroundColor:
-                            v.status === "used" ? "#dcfce7" : "#fef9c3",
-                          color: v.status === "used" ? "#166534" : "#854d0e",
-                        }}
-                      >
-                        {v.status === "used"
-                          ? "Sudah Digunakan"
-                          : "Belum Digunakan"}
-                      </span>
-                    </td>
-                    <td style={{ padding: "8px 12px" }}>
-                      {formatDate(v.issued_at || v.created_at)}
-                    </td>
-                    <td style={{ padding: "8px 12px" }}>
-                      {formatDate(v.used_at)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+        <DataTable
+          columns={columns}
+          data={vouchers}
+          loading={voucherLoading}
+          emptyMessage="Belum ada data voucher"
+        />
       </div>
     </div>
   );

@@ -3,9 +3,14 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import ownerService from "@/services/ownerService";
 import EventListItem from "./EventListItem";
-import EventFormModal from "./EventFormModal";
-import EventConfirmModal from "./EventConfirmModal";
 import { useToast } from "@/hooks/useToast";
+import FormDialog from "@/components/common/FormDialog";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
+import { Input } from "@/components/common/FormInput";
+import { Label } from "@/components/common/FormLabel";
+import { FormSelect } from "@/components/common/FormSelect";
+import { Textarea } from "@/components/common/FormTextarea";
+import { Button } from "@/components/common/Button";
 
 const EMPTY_FORM = {
   title: "",
@@ -14,6 +19,37 @@ const EMPTY_FORM = {
   start_date: "",
   end_date: "",
   status: "draft",
+};
+
+const CATEGORY_OPTIONS = [
+  { value: "event", label: "Acara" },
+  { value: "info", label: "Pengumuman" },
+];
+
+const STATUS_OPTIONS = [
+  { value: "draft", label: "Draft" },
+  { value: "published", label: "Published" },
+];
+
+const CONFIRM_CONFIG = {
+  publish: {
+    variant: "default",
+    confirmLabel: "Ya, Publikasikan",
+    getDescription: (title) =>
+      `Publikasikan event "${title}"? Event akan terlihat oleh semua pengguna.`,
+  },
+  unpublish: {
+    variant: "warning",
+    confirmLabel: "Ya, Unpublish",
+    getDescription: (title) =>
+      `Unpublish event "${title}"? Event tidak akan terlihat publik.`,
+  },
+  delete: {
+    variant: "destructive",
+    confirmLabel: "Ya, Hapus",
+    getDescription: (title) =>
+      `Hapus event "${title}"? Tindakan ini tidak dapat dibatalkan.`,
+  },
 };
 
 const EventManagement = () => {
@@ -311,77 +347,88 @@ const EventManagement = () => {
     }
   };
 
+  // Resolve confirm config
+  const confirmCfg = confirmModal.type
+    ? CONFIRM_CONFIG[confirmModal.type]
+    : null;
+
   // ==================== RENDER ====================
   return (
     <div>
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-xl font-bold text-gray-800">
-          Manajemen Acara & Pengumuman
+        <h1 className="text-xl font-bold text-foreground">
+          Manajemen Acara &amp; Pengumuman
         </h1>
-        <button
+        <Button
+          variant="outline"
+          size="sm"
           onClick={() => window.open("/events", "_blank")}
-          className="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors"
         >
           🌐 Lihat Tampilan Publik
-        </button>
+        </Button>
       </div>
 
       {/* Summary */}
       <div className="flex gap-4 mb-4">
-        <div className="px-4 py-2 bg-gray-50 rounded-lg text-sm">
-          <span className="text-gray-500">Total:</span>{" "}
-          <span className="font-semibold">{summary.total}</span>
+        <div className="px-4 py-2 bg-muted rounded-lg text-sm border border-border">
+          <span className="text-muted-foreground">Total:</span>{" "}
+          <span className="font-semibold text-foreground">{summary.total}</span>
         </div>
-        <div className="px-4 py-2 bg-green-50 rounded-lg text-sm">
-          <span className="text-gray-500">Published:</span>{" "}
+        <div className="px-4 py-2 bg-green-500/10 rounded-lg text-sm border border-green-500/20">
+          <span className="text-muted-foreground">Published:</span>{" "}
           <span className="font-semibold text-green-600">
             {summary.published_count}
           </span>
         </div>
-        <div className="px-4 py-2 bg-yellow-50 rounded-lg text-sm">
-          <span className="text-gray-500">Draft:</span>{" "}
+        <div className="px-4 py-2 bg-yellow-500/10 rounded-lg text-sm border border-yellow-500/20">
+          <span className="text-muted-foreground">Draft:</span>{" "}
           <span className="font-semibold text-yellow-600">
             {summary.draft_count}
           </span>
         </div>
       </div>
 
-      <button
-        onClick={openAddModal}
-        className="mb-4 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
-      >
+      <Button onClick={openAddModal} className="mb-4">
         + Tambah Acara/Pengumuman
-      </button>
+      </Button>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-4 items-center">
-        <input
+        <Input
           type="text"
           value={searchInput}
           onChange={handleSearchChange}
           placeholder="Cari judul event..."
-          className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-52"
         />
-        <select
+        <FormSelect
           value={filters.status}
-          onChange={(e) => handleFilterChange("status", e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="">Semua Status</option>
-          <option value="draft">Draft</option>
-          <option value="published">Published</option>
-        </select>
-        <select
+          onValueChange={(val) =>
+            handleFilterChange("status", val === "all" ? "" : val)
+          }
+          placeholder="Semua Status"
+          options={[
+            { value: "all", label: "Semua Status" },
+            { value: "draft", label: "Draft" },
+            { value: "published", label: "Published" },
+          ]}
+          className="w-40"
+        />
+        <FormSelect
           value={filters.category}
-          onChange={(e) => handleFilterChange("category", e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="">Semua Kategori</option>
-          <option value="event">Acara</option>
-          <option value="info">Pengumuman</option>
-        </select>
-        <label className="flex items-center gap-2 text-sm text-gray-600">
+          onValueChange={(val) =>
+            handleFilterChange("category", val === "all" ? "" : val)
+          }
+          placeholder="Semua Kategori"
+          options={[
+            { value: "all", label: "Semua Kategori" },
+            { value: "event", label: "Acara" },
+            { value: "info", label: "Pengumuman" },
+          ]}
+          className="w-44"
+        />
+        <label className="flex items-center gap-2 text-sm text-muted-foreground">
           <input
             type="checkbox"
             checked={filters.include_deleted}
@@ -396,9 +443,11 @@ const EventManagement = () => {
 
       {/* Event List */}
       {loading ? (
-        <p className="text-gray-500 py-8 text-center">Memuat data...</p>
+        <p className="text-muted-foreground py-8 text-center">Memuat data...</p>
       ) : events.length === 0 ? (
-        <p className="text-gray-500 py-8 text-center">Belum ada event</p>
+        <p className="text-muted-foreground py-8 text-center">
+          Belum ada event
+        </p>
       ) : (
         <div className="space-y-3">
           {events.map((event) => (
@@ -413,32 +462,211 @@ const EventManagement = () => {
         </div>
       )}
 
-      {/* Form Modal */}
-      {formModal.open && (
-        <EventFormModal
-          mode={formModal.mode}
-          form={form}
-          setForm={setForm}
-          formErrors={formErrors}
-          imagePreview={imagePreview}
-          fileInputRef={fileInputRef}
-          onImageChange={handleImageChange}
-          onRemoveImage={handleRemoveImage}
-          onResetImage={resetImageState}
-          onSubmit={handleSubmit}
-          onClose={closeFormModal}
-          submitLoading={submitLoading}
-        />
-      )}
+      {/* Form Dialog (Add / Edit) */}
+      <FormDialog
+        open={formModal.open}
+        onClose={closeFormModal}
+        title={
+          formModal.mode === "edit"
+            ? "Edit Acara/Pengumuman"
+            : "Tambah Acara/Pengumuman"
+        }
+        size="lg"
+        loading={submitLoading}
+        onSubmit={handleSubmit}
+        submitLabel={formModal.mode === "edit" ? "Simpan Perubahan" : "Buat"}
+        cancelLabel="Batal"
+      >
+        <div className="grid gap-4">
+          {/* Judul */}
+          <div className="grid gap-1.5">
+            <Label>Judul *</Label>
+            <Input
+              value={form.title}
+              onChange={(e) =>
+                setForm((p) => ({ ...p, title: e.target.value }))
+              }
+              placeholder="Judul acara atau pengumuman"
+            />
+            {formErrors.title && (
+              <p className="text-xs text-red-500">{formErrors.title}</p>
+            )}
+          </div>
 
-      {/* Confirm Modal (publish/unpublish/delete) */}
-      {confirmModal.open && (
-        <EventConfirmModal
-          type={confirmModal.type}
-          event={confirmModal.selectedEvent}
-          onConfirm={handleConfirm}
+          {/* Kategori */}
+          <div className="grid gap-1.5">
+            <Label>Kategori *</Label>
+            <FormSelect
+              value={form.category}
+              onValueChange={(val) => {
+                setForm((p) => ({ ...p, category: val }));
+                if (val === "info") resetImageState();
+              }}
+              options={CATEGORY_OPTIONS}
+              className="w-full"
+            />
+            {formErrors.category && (
+              <p className="text-xs text-red-500">{formErrors.category}</p>
+            )}
+          </div>
+
+          {/* Deskripsi */}
+          <div className="grid gap-1.5">
+            <Label>Deskripsi *</Label>
+            <Textarea
+              rows={5}
+              value={form.description}
+              onChange={(e) =>
+                setForm((p) => ({ ...p, description: e.target.value }))
+              }
+              placeholder="Deskripsi lengkap..."
+            />
+            {formErrors.description && (
+              <p className="text-xs text-red-500">{formErrors.description}</p>
+            )}
+          </div>
+
+          {/* Tanggal — Event (required) */}
+          {form.category === "event" && (
+            <>
+              <div className="grid gap-1.5">
+                <Label>Tanggal Mulai *</Label>
+                <Input
+                  type="date"
+                  value={form.start_date}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, start_date: e.target.value }))
+                  }
+                />
+                {formErrors.start_date && (
+                  <p className="text-xs text-red-500">
+                    {formErrors.start_date}
+                  </p>
+                )}
+              </div>
+              <div className="grid gap-1.5">
+                <Label>Tanggal Berakhir *</Label>
+                <Input
+                  type="date"
+                  value={form.end_date}
+                  min={form.start_date}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, end_date: e.target.value }))
+                  }
+                />
+                {formErrors.end_date && (
+                  <p className="text-xs text-red-500">{formErrors.end_date}</p>
+                )}
+              </div>
+            </>
+          )}
+
+          {/* Tanggal — Info (optional) */}
+          {form.category === "info" && (
+            <>
+              <div className="grid gap-1.5">
+                <Label>
+                  Tanggal Mulai{" "}
+                  <span className="text-muted-foreground font-normal">
+                    (opsional)
+                  </span>
+                </Label>
+                <Input
+                  type="date"
+                  value={form.start_date}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, start_date: e.target.value }))
+                  }
+                />
+              </div>
+              <div className="grid gap-1.5">
+                <Label>
+                  Masa Berlaku{" "}
+                  <span className="text-muted-foreground font-normal">
+                    (opsional)
+                  </span>
+                </Label>
+                <Input
+                  type="date"
+                  value={form.end_date}
+                  min={form.start_date}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, end_date: e.target.value }))
+                  }
+                />
+              </div>
+            </>
+          )}
+
+          {/* Gambar — hanya untuk event */}
+          {form.category === "event" && (
+            <div className="grid gap-1.5">
+              <Label>
+                Gambar{" "}
+                <span className="text-muted-foreground font-normal">
+                  (opsional, maks 5MB)
+                </span>
+              </Label>
+              {imagePreview && (
+                <div className="mb-1 relative inline-block">
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="w-full max-w-xs h-40 object-cover rounded-lg border border-gray-200"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemoveImage}
+                    className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600"
+                  >
+                    ✕
+                  </button>
+                </div>
+              )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              />
+            </div>
+          )}
+
+          {/* Status */}
+          <div className="grid gap-1.5">
+            <Label>Status</Label>
+            <FormSelect
+              value={form.status}
+              onValueChange={(val) => setForm((p) => ({ ...p, status: val }))}
+              options={STATUS_OPTIONS}
+              className="w-full"
+            />
+          </div>
+        </div>
+      </FormDialog>
+
+      {/* Confirm Dialog (publish/unpublish/delete) */}
+      {confirmCfg && (
+        <ConfirmDialog
+          open={confirmModal.open}
           onClose={closeConfirmModal}
-          submitLoading={submitLoading}
+          onConfirm={handleConfirm}
+          variant={confirmCfg.variant}
+          title={
+            confirmModal.type === "delete"
+              ? "Hapus Event"
+              : confirmModal.type === "publish"
+                ? "Publikasikan Event"
+                : "Unpublish Event"
+          }
+          description={
+            confirmModal.selectedEvent
+              ? confirmCfg.getDescription(confirmModal.selectedEvent.title)
+              : ""
+          }
+          confirmLabel={confirmCfg.confirmLabel}
+          loading={submitLoading}
         />
       )}
     </div>

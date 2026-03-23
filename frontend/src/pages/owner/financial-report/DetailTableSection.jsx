@@ -1,18 +1,6 @@
 import { useState, Fragment } from "react";
-
-const formatCurrency = (val) =>
-  `Rp ${Number(val || 0).toLocaleString("id-ID")}`;
-
-const formatDateTime = (dateStr) => {
-  if (!dateStr) return "-";
-  return new Date(dateStr).toLocaleString("id-ID", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-};
+import { formatCurrency, formatDateTime } from "@/utils/utils";
+import { Button } from "@/components/common/Button";
 
 const CATEGORY_LABELS = {
   fish: "Ikan",
@@ -32,47 +20,51 @@ const PAYMENT_LABELS = {
 const ExpandableRow = ({ items }) => {
   return (
     <tr>
-      <td colSpan={9} className="bg-gray-50 px-6 py-3">
+      <td colSpan={9} className="bg-muted/50 px-6 py-3">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-gray-200">
-              <th className="text-left py-1 text-gray-500 font-medium">Item</th>
-              <th className="text-left py-1 text-gray-500 font-medium">
+            <tr className="border-b border-border">
+              <th className="text-left py-1 text-muted-foreground font-medium">
+                Item
+              </th>
+              <th className="text-left py-1 text-muted-foreground font-medium">
                 Kategori
               </th>
-              <th className="text-right py-1 text-gray-500 font-medium">Qty</th>
-              <th className="text-right py-1 text-gray-500 font-medium">
+              <th className="text-right py-1 text-muted-foreground font-medium">
+                Qty
+              </th>
+              <th className="text-right py-1 text-muted-foreground font-medium">
                 Harga Satuan
               </th>
-              <th className="text-right py-1 text-gray-500 font-medium">
+              <th className="text-right py-1 text-muted-foreground font-medium">
                 Subtotal
               </th>
-              <th className="text-right py-1 text-gray-500 font-medium">
+              <th className="text-right py-1 text-muted-foreground font-medium">
                 Diskon Tier
               </th>
             </tr>
           </thead>
           <tbody>
             {items.map((item, idx) => (
-              <tr key={idx} className="border-b border-gray-100">
-                <td className="py-1 text-gray-700">
+              <tr key={idx}>
+                <td className="py-1 text-foreground">
                   {item.item_name_snapshot}
                 </td>
-                <td className="py-1 text-gray-700">
+                <td className="py-1 text-foreground">
                   {CATEGORY_LABELS[item.item_type] || item.item_type}
                 </td>
-                <td className="py-1 text-right text-gray-700">
+                <td className="py-1 text-right text-foreground">
                   {item.item_type === "fish"
                     ? `${Number(item.quantity).toFixed(2)} kg`
                     : Number(item.quantity)}
                 </td>
-                <td className="py-1 text-right text-gray-700">
+                <td className="py-1 text-right text-foreground">
                   {formatCurrency(item.unit_price_snapshot)}
                 </td>
-                <td className="py-1 text-right text-gray-700">
+                <td className="py-1 text-right text-foreground">
                   {formatCurrency(item.subtotal)}
                 </td>
-                <td className="py-1 text-right text-gray-700">
+                <td className="py-1 text-right text-foreground">
                   {formatCurrency(item.discount_tier_item)}
                 </td>
               </tr>
@@ -96,9 +88,6 @@ const DetailTableSection = ({
   exporting,
 }) => {
   const [expandedRow, setExpandedRow] = useState(null);
-  // useEffect(() => {
-  //   setExpandedRow(null);
-  // }, [data]);
 
   const transactions = data || [];
 
@@ -111,54 +100,59 @@ const DetailTableSection = ({
   return (
     <div className="mb-6">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-gray-700">
+        <h3 className="text-sm font-semibold text-foreground">
           Detail Transaksi
         </h3>
-        <button
+        <Button
+          variant="default"
+          size="sm"
           onClick={onExport}
           disabled={exporting}
-          className="px-4 py-2 text-sm bg-green-600 text-white rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {exporting ? "Mengunduh..." : "Export Excel"}
-        </button>
+        </Button>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+      <div className="bg-background border border-border rounded-lg overflow-hidden">
         {loading ? (
-          <p className="text-gray-500 text-sm p-4">Memuat transaksi...</p>
+          <p className="text-muted-foreground text-sm p-4">
+            Memuat transaksi...
+          </p>
         ) : transactions.length === 0 ? (
-          <p className="text-gray-400 text-sm p-4">Tidak ada transaksi.</p>
+          <p className="text-muted-foreground text-sm p-4">
+            Tidak ada transaksi.
+          </p>
         ) : (
           <>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <th className="text-left px-4 py-3 text-gray-500 font-medium">
+                  <tr className="bg-muted/50 border-b border-border">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-medium">
                       Tanggal
                     </th>
-                    <th className="text-left px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-medium">
                       No. Transaksi
                     </th>
-                    <th className="text-left px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-medium">
                       Member
                     </th>
-                    <th className="text-right px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
                       Total Bayar
                     </th>
-                    <th className="text-right px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
                       Diskon Tier
                     </th>
-                    <th className="text-right px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
                       Diskon Voucher
                     </th>
-                    <th className="text-center px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-center px-4 py-3 text-muted-foreground font-medium">
                       Metode
                     </th>
-                    <th className="text-right px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
                       Poin
                     </th>
-                    <th className="text-right px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
                       Tips
                     </th>
                   </tr>
@@ -168,34 +162,34 @@ const DetailTableSection = ({
                     <Fragment key={trx.transaction_code}>
                       <tr
                         onClick={() => handleRowClick(trx.transaction_code)}
-                        className="border-b border-gray-100 hover:bg-sky-50 cursor-pointer transition-colors"
+                        className="border-b border-border hover:bg-muted/30 cursor-pointer transition-colors"
                       >
-                        <td className="px-4 py-3 text-gray-700">
+                        <td className="px-4 py-3 text-foreground">
                           {formatDateTime(trx.transaction_date)}
                         </td>
-                        <td className="px-4 py-3 text-gray-700 font-mono text-xs">
+                        <td className="px-4 py-3 text-foreground font-mono text-xs">
                           {trx.transaction_code}
                         </td>
-                        <td className="px-4 py-3 text-gray-700">
+                        <td className="px-4 py-3 text-foreground">
                           {trx.member_name}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-foreground">
                           {formatCurrency(trx.final_amount)}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-foreground">
                           {formatCurrency(trx.discount_tier)}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-foreground">
                           {formatCurrency(trx.discount_voucher)}
                         </td>
-                        <td className="px-4 py-3 text-center text-gray-700">
+                        <td className="px-4 py-3 text-center text-foreground">
                           {PAYMENT_LABELS[trx.payment_method] ||
                             trx.payment_method}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-foreground">
                           {trx.points_earned ?? 0}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-foreground">
                           {formatCurrency(trx.tips)}
                         </td>
                       </tr>
@@ -210,26 +204,28 @@ const DetailTableSection = ({
 
             {/* Pagination */}
             {meta && meta.last_page > 1 && (
-              <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200">
-                <p className="text-sm text-gray-500">
+              <div className="flex items-center justify-between px-4 py-3 border-t border-border">
+                <p className="text-sm text-muted-foreground">
                   Halaman {meta.current_page} dari {meta.last_page} (
                   {meta.total} transaksi)
                 </p>
                 <div className="flex gap-2">
-                  <button
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={() => onPageChange(page - 1)}
                     disabled={page <= 1}
-                    className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Sebelumnya
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={() => onPageChange(page + 1)}
                     disabled={page >= meta.last_page}
-                    className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Selanjutnya
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}

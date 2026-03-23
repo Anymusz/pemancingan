@@ -1,30 +1,26 @@
 // File: src/pages/employee/AddOrder.jsx
 
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import employeeService from "../../services/employeeService";
 import { useToast } from "@/hooks/useToast";
-import { formatDateTime } from "@/utils/utils";
+import { formatDateTime, formatCurrency } from "@/utils/utils";
+import { DataTable } from "@/components/common/DataTable";
+import { Button } from "@/components/common/Button";
+import { Input } from "@/components/common/FormInput";
+import { SearchModal } from "@/components/common/SearchModal";
 
 const RENTAL_PRICE = 10000;
 
 const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
-  const [arrivals, setArrivals] = useState([]);
-  const [allArrivals, setAllArrivals] = useState([]); // cache semua active arrival
   const [menus, setMenus] = useState([]);
   const [selectedArrival, setSelectedArrival] = useState(null);
-  const [showDropdown, setShowDropdown] = useState(false);
 
-  // === MIGRATED: State untuk bulk submission
   const [quantities, setQuantities] = useState({});
   const [rentalQty, setRentalQty] = useState(0);
 
   const [fetchLoading, setFetchLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
-  const [searchLoading, setSearchLoading] = useState(false);
   const toast = useToast();
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const searchTimeout = useRef(null);
 
   // ==================== FETCH MENUS ====================
   useEffect(() => {
@@ -42,105 +38,51 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
     fetchMenus();
   }, [toast]);
 
-  // ==================== FETCH SEMUA ARRIVAL SAAT FOCUS ====================
-  const fetchAllArrivals = useCallback(async () => {
-    if (allArrivals.length > 0) return; // sudah di-cache
-    setSearchLoading(true);
-    try {
-      const res = await employeeService.getTodayArrivals();
-      if (res.success) {
-        const active = res.data.arrivals.filter((a) => a.status === "active");
-        setAllArrivals(active);
-      }
-    } catch {
-      toast.error("Gagal memuat data kedatangan");
-    } finally {
-      setSearchLoading(false);
-    }
-  }, [allArrivals.length, toast]);
-
-  // ==================== AUTO SELECT (DARI PROPS) ====================
+  // ==================== PRESELECT ARRIVAL (FROM PROPS) ====================
   useEffect(() => {
-    if (preselectArrivalId) {
-      const doPreselect = async () => {
-        // Fetch dulu ke backend jika list masih kosong
-        if (allArrivals.length === 0) {
-          await fetchAllArrivals();
-        }
-      };
-      doPreselect();
-    }
-  }, [preselectArrivalId, allArrivals.length, fetchAllArrivals]);
-
-  useEffect(() => {
-    // Jalankan seleksi bila kombinasi preselect ID ada dan allArrivals sudah sukses termuat
-    if (preselectArrivalId && allArrivals.length > 0) {
-      const found = allArrivals.find((a) => a.arrival_id === preselectArrivalId);
-      if (found) {
-        setSelectedArrival(found);
-        setSearchQuery(found.name);
-        if (onPreselectConsumed) onPreselectConsumed();
-      } else {
-        toast.error("Kedatangan member tersebut tidak ditemukan di hari ini");
-        if (onPreselectConsumed) onPreselectConsumed();
-      }
-    }
-  }, [allArrivals, preselectArrivalId, onPreselectConsumed]);
-
-  // ==================== FILTER REALTIME (DEBOUNCE 300ms) ====================
-  useEffect(() => {
-    if (selectedArrival || !searchQuery.trim()) return;
-
-    clearTimeout(searchTimeout.current);
-    searchTimeout.current = setTimeout(async () => {
-      setSearchLoading(true);
+    if (!preselectArrivalId) return;
+    const doPreselect = async () => {
       try {
-        const res = await employeeService.searchArrival(searchQuery);
-        if (res.success) setArrivals(res.data.arrivals);
+        const res = await employeeService.getTodayArrivals();
+        if (res.success) {
+          const found = res.data.arrivals.find(
+            (a) => a.arrival_id === preselectArrivalId,
+          );
+          if (found) {
+            setSelectedArrival(found);
+          } else {
+            toast.error(
+              "Kedatangan member tersebut tidak ditemukan di hari ini",
+            );
+          }
+        }
       } catch {
-        toast.error("Gagal mencari arrival");
+        toast.error("Gagal memuat data kedatangan");
       } finally {
-        setSearchLoading(false);
+        if (onPreselectConsumed) onPreselectConsumed();
       }
-    }, 300);
+    };
+    doPreselect();
+    // Only run once when preselectArrivalId changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preselectArrivalId]);
 
-    return () => clearTimeout(searchTimeout.current);
-  }, [searchQuery, selectedArrival, toast]);
-
-  // ==================== ARRIVAL HANDLERS ====================
-  const handleFocus = async () => {
-    await fetchAllArrivals();
-    setShowDropdown(true);
-  };
-
-  const handleBlur = () => {
-    setTimeout(() => setShowDropdown(false), 150);
-  };
-
-  const handleSearchChange = (e) => {
-    const val = e.target.value;
-    setSearchQuery(val);
-    if (selectedArrival && val !== selectedArrival.name) {
-      setSelectedArrival(null);
+  // ==================== SEARCH ARRIVAL (for SearchModal) ====================
+  const handleSearchArrival = useCallback(async (query) => {
+    if (query.trim()) {
+      const res = await employeeService.searchArrival(query);
+      return res.data.arrivals;
+    } else {
+      const res = await employeeService.getTodayArrivals();
+      return res.data.arrivals.filter((a) => a.status === "active");
     }
-    setShowDropdown(true);
-  };
-
-  const handleSelectArrival = (arrival) => {
-    setSelectedArrival(arrival);
-    setSearchQuery(arrival.name);
-    setShowDropdown(false);
-    setArrivals([]);
-  };
+  }, []);
 
   const handleClearArrival = () => {
     setSelectedArrival(null);
-    setSearchQuery("");
-    setArrivals([]);
+    setQuantities({});
+    setRentalQty(0);
   };
-
-  // Hasil yang ditampilkan: jika ada query → hasil search, jika kosong → semua active
-  const displayArrivals = searchQuery.trim() ? arrivals : allArrivals;
 
   // ==================== BULK ITEM HANDLERS ====================
   const handleMenuQtyChange = (menuId, change) => {
@@ -171,7 +113,10 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
   };
 
   // ==================== PREVIEW & HAS ITEMS ====================
-  const totalMenuQty = Object.values(quantities).reduce((acc, qty) => acc + qty, 0);
+  const totalMenuQty = Object.values(quantities).reduce(
+    (acc, qty) => acc + qty,
+    0,
+  );
   const totalItemQty = totalMenuQty + rentalQty;
   const hasItems = totalItemQty > 0;
 
@@ -196,7 +141,6 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
     try {
       const items = [];
 
-      // Susun item menu
       Object.entries(quantities).forEach(([menuId, qty]) => {
         if (qty > 0) {
           items.push({
@@ -207,7 +151,6 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
         }
       });
 
-      // Susun item rental
       if (rentalQty > 0) {
         items.push({
           item_type: "rental",
@@ -222,14 +165,12 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
 
       const res = await employeeService.createPendingOrder(payload);
       if (res.success) {
-        toast.success(`Berhasil menambahkan ${items.length} jenis item ke order member`);
-        // Reset state item
+        toast.success(
+          `Berhasil menambahkan ${items.length} jenis item ke order member`,
+        );
         setQuantities({});
         setRentalQty(0);
-        // Reset arrival
         setSelectedArrival(null);
-        setSearchQuery("");
-        setArrivals([]);
       }
     } catch (err) {
       toast.error(err?.response?.data?.message || "Gagal menambahkan order");
@@ -240,188 +181,227 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
 
   const isSubmitDisabled = !selectedArrival || !hasItems || submitLoading;
 
+  // ==================== MENU COLUMNS ====================
+  const menuColumns = [
+    {
+      key: "name",
+      header: "Nama Menu",
+      render: (row) => <span className="font-medium">{row.name}</span>,
+    },
+    { key: "category", header: "Kategori", render: (row) => row.category },
+    {
+      key: "price",
+      header: "Harga",
+      render: (row) => formatCurrency(row.price),
+    },
+    {
+      key: "qty",
+      header: "Qty",
+      render: (row) => {
+        const qty = quantities[row.id] || 0;
+        return (
+          <div className="flex items-center gap-1">
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 w-7 p-0"
+              disabled={qty <= 0}
+              onClick={() => handleMenuQtyChange(row.id, -1)}
+            >
+              −
+            </Button>
+            <Input
+              type="number"
+              min="0"
+              value={qty}
+              onChange={(e) =>
+                handleMenuQtyManualChange(row.id, e.target.value)
+              }
+              className="w-14 text-center h-7 px-1"
+            />
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 w-7 p-0"
+              onClick={() => handleMenuQtyChange(row.id, 1)}
+            >
+              +
+            </Button>
+          </div>
+        );
+      },
+    },
+    {
+      key: "subtotal",
+      header: "Subtotal",
+      render: (row) => {
+        const qty = quantities[row.id] || 0;
+        return qty > 0 ? formatCurrency(qty * row.price) : "-";
+      },
+    },
+  ];
+
+  // ==================== RENDER ====================
   return (
-    <div>
-      <h1>Tambah Order</h1>
+    <div className="space-y-8">
+      {/* Page header */}
+      <h1 className="text-2xl font-bold text-foreground">Tambah Order</h1>
 
       {/* ===== 1. PILIH ARRIVAL ===== */}
-      <section>
-        <h2>1. Pilih Member (Kedatangan Hari Ini)</h2>
-        <div style={{ position: "relative" }}>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            placeholder="Cari nama / member ID / HP..."
-            autoComplete="off"
-            disabled={!!selectedArrival}
-          />
-          {searchLoading && <span> Mencari...</span>}
-          {selectedArrival && (
-            <button onClick={handleClearArrival}>Ganti</button>
-          )}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-foreground">
+          1. Pilih Member (Kedatangan Hari Ini)
+        </h2>
 
-          {/* Autocomplete Dropdown */}
-          {showDropdown && !selectedArrival && (
-            <div
-              style={{
-                border: "1px solid #ccc",
-                position: "absolute",
-                background: "#fff",
-                width: "100%",
-                zIndex: 10,
-              }}
-            >
-              {displayArrivals.length === 0 ? (
-                <div style={{ padding: 8 }}>
-                  {allArrivals.length === 0
-                    ? "Belum ada member yang check-in hari ini"
-                    : "Tidak ada hasil untuk pencarian ini"}
-                </div>
-              ) : (
-                displayArrivals.map((a) => (
-                  <div
-                    key={a.arrival_id}
-                    onMouseDown={() => handleSelectArrival(a)}
-                    style={{
-                      padding: 8,
-                      cursor: "pointer",
-                      borderBottom: "1px solid #eee",
-                    }}
-                  >
-                    <strong>{a.name}</strong> | {a.member_code} | {a.tier} |
-                    Check-in:{" "}
-                    {formatDateTime(a.check_in_at)}
-                  </div>
-                ))
-              )}
+        {selectedArrival ? (
+          <div className="flex items-center justify-between rounded-lg border border-border bg-muted/30 p-3">
+            <div className="space-y-0.5">
+              <p className="font-semibold text-foreground">
+                {selectedArrival.name}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                {selectedArrival.member_code} · Tier {selectedArrival.tier} ·
+                Check-in {formatDateTime(selectedArrival.check_in_at)}
+              </p>
             </div>
-          )}
-        </div>
-
-        {selectedArrival && (
-          <div style={{ border: "1px solid #000", padding: 8, marginTop: 8 }}>
-            <strong>Member:</strong> {selectedArrival.name} |{" "}
-            {selectedArrival.member_code} | Tier: {selectedArrival.tier}
+            <Button variant="outline" size="sm" onClick={handleClearArrival}>
+              Ganti
+            </Button>
           </div>
+        ) : (
+          <SearchModal
+            triggerLabel="Pilih Member"
+            placeholder="Cari nama / member ID / HP..."
+            title="Pilih Member (Kedatangan Hari Ini)"
+            emptyMessage="Tidak ada member yang check-in aktif hari ini"
+            onSearch={handleSearchArrival}
+            onSelect={(arrival) => setSelectedArrival(arrival)}
+            getItemKey={(item) => item.arrival_id}
+            renderItem={(item) => (
+              <div className="flex flex-col gap-0.5 min-w-0">
+                <p className="font-medium text-foreground truncate">
+                  {item.name}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {item.member_code} · Tier {item.tier} · Check-in{" "}
+                  {formatDateTime(item.check_in_at)}
+                </p>
+              </div>
+            )}
+          />
         )}
       </section>
 
       {/* ===== 2. KANTIN / MENU ===== */}
-      <section>
-        <h2>2. Makanan & Minuman</h2>
-        {fetchLoading ? (
-          <p>Memuat menu...</p>
-        ) : menus.length === 0 ? (
-          <p>Tidak ada menu aktif saat ini.</p>
-        ) : (
-          <table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
-            <thead>
-              <tr style={{ textAlign: "left" }}>
-                <th>Nama Menu</th>
-                <th>Kategori</th>
-                <th>Harga</th>
-                <th>Qty</th>
-                <th>Subtotal</th>
-              </tr>
-            </thead>
-            <tbody>
-              {menus.map((m) => {
-                const qty = quantities[m.id] || 0;
-                const subtotal = qty * m.price;
-                return (
-                  <tr key={m.id}>
-                    <td><strong>{m.name}</strong></td>
-                    <td>{m.category}</td>
-                    <td>Rp {Number(m.price).toLocaleString("id-ID")}</td>
-                    <td>
-                      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                        <button 
-                          onClick={() => handleMenuQtyChange(m.id, -1)} 
-                          disabled={qty <= 0}
-                          style={{ padding: "4px 8px" }}
-                        >-</button>
-                        <input
-                          type="number"
-                          min="0"
-                          value={qty}
-                          onChange={(e) => handleMenuQtyManualChange(m.id, e.target.value)}
-                          style={{ width: "50px", textAlign: "center" }}
-                        />
-                        <button 
-                          onClick={() => handleMenuQtyChange(m.id, 1)}
-                          style={{ padding: "4px 8px" }}
-                        >+</button>
-                      </div>
-                    </td>
-                    <td>{qty > 0 ? `Rp ${subtotal.toLocaleString("id-ID")}` : "-"}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        )}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-foreground">
+          2. Makanan &amp; Minuman
+        </h2>
+        <DataTable
+          columns={menuColumns}
+          data={menus}
+          loading={fetchLoading}
+          emptyMessage="Tidak ada menu aktif saat ini."
+        />
       </section>
 
       {/* ===== 3. RENTAL ALAT PANCING ===== */}
-      <section>
-        <h2>3. Sewa Alat Pancing</h2>
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", padding: "16px", border: "1px solid #ddd" }}>
-          <div>
-            <strong>Sewa / Rental Stik Pancing</strong>
-            <br />
-            Rp {RENTAL_PRICE.toLocaleString("id-ID")} / stik
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-foreground">
+          3. Sewa Alat Pancing
+        </h2>
+        <div className="flex flex-wrap items-center gap-4 rounded-lg border border-border p-4">
+          <div className="space-y-0.5">
+            <p className="font-semibold text-foreground">
+              Sewa / Rental Stik Pancing
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {formatCurrency(RENTAL_PRICE)} / stik
+            </p>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginLeft: "auto" }}>
-            <button 
-              onClick={() => handleRentalQtyChange(-1)} 
+          <div className="ml-auto flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8 w-8 p-0"
               disabled={rentalQty <= 0}
-              style={{ padding: "4px 12px", fontSize: "16px" }}
-            >-</button>
-            <input
+              onClick={() => handleRentalQtyChange(-1)}
+            >
+              −
+            </Button>
+            <Input
               type="number"
               min="0"
               value={rentalQty}
               onChange={(e) => handleRentalQtyManualChange(e.target.value)}
-              style={{ width: "60px", textAlign: "center", fontSize: "16px", padding: "4px" }}
+              className="w-16 text-center h-8 px-1"
             />
-            <button 
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8 w-8 p-0"
               onClick={() => handleRentalQtyChange(1)}
-              style={{ padding: "4px 12px", fontSize: "16px" }}
-            >+</button>
+            >
+              +
+            </Button>
           </div>
-          <div style={{ minWidth: "120px", textAlign: "right" }}>
-            {rentalQty > 0 
-              ? <strong>Rp {(rentalQty * RENTAL_PRICE).toLocaleString("id-ID")}</strong> 
-              : <span>-</span>}
+          <div className="min-w-30 text-right">
+            {rentalQty > 0 ? (
+              <span className="font-semibold text-foreground">
+                {formatCurrency(rentalQty * RENTAL_PRICE)}
+              </span>
+            ) : (
+              <span className="text-muted-foreground">-</span>
+            )}
           </div>
         </div>
       </section>
 
       {/* ===== 4. RINGKASAN & SUBMIT ===== */}
-      <section>
-        <h2>4. Ringkasan & Simpan</h2>
-        {hasItems ? (
-          <div style={{ padding: "16px", background: "#f9f9f9", border: "1px solid #ddd", marginBottom: "16px" }}>
-            <p style={{ margin: "0 0 8px 0" }}>Total Item Menu: <strong>{totalMenuQty} pcs</strong></p>
-            <p style={{ margin: "0 0 8px 0" }}>Total Sewa Stik: <strong>{rentalQty} stik</strong></p>
-            <hr style={{ margin: "12px 0" }} />
-            <h3 style={{ margin: 0 }}>Total Estimasi: Rp {previewSubtotal.toLocaleString("id-ID")}</h3>
-            <p style={{ fontSize: "12px", color: "#666", margin: "4px 0 0 0" }}>* Total estimasi ini akan ditambah dengan ikan dan penalti saat checkout.</p>
+      <section className="space-y-4">
+        <h2 className="text-lg font-semibold text-foreground">
+          4. Ringkasan &amp; Simpan
+        </h2>
+
+        {hasItems && (
+          <div className="rounded-lg border border-border bg-muted/30 p-4 space-y-2">
+            <p className="text-sm text-foreground">
+              Total Item Menu:{" "}
+              <span className="font-semibold">{totalMenuQty} pcs</span>
+            </p>
+            <p className="text-sm text-foreground">
+              Total Sewa Stik:{" "}
+              <span className="font-semibold">{rentalQty} stik</span>
+            </p>
+            <div className="border-t border-border pt-2">
+              <p className="font-semibold text-foreground">
+                Total Estimasi:{" "}
+                <span className="text-primary">
+                  {formatCurrency(previewSubtotal)}
+                </span>
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                * Total estimasi ini akan ditambah dengan ikan dan penalti saat
+                checkout.
+              </p>
+            </div>
           </div>
-        ) : (
-          <p style={{ color: "#666", fontStyle: "italic" }}>Silakan tambahkan kuantitas pada jenis makanan / sewa alat di atas.</p>
         )}
-        
-        <button 
-          onClick={handleSubmit} 
+
+        {!hasItems && (
+          <p className="text-sm text-muted-foreground italic">
+            Silakan tambahkan kuantitas pada jenis makanan / sewa alat di atas.
+          </p>
+        )}
+
+        <Button
+          onClick={handleSubmit}
           disabled={isSubmitDisabled}
-          style={{ padding: "12px 24px", fontSize: "16px", fontWeight: "bold", background: isSubmitDisabled ? "#ccc" : "#0A66C2", color: "#fff", border: "none", borderRadius: "4px", cursor: isSubmitDisabled ? "not-allowed" : "pointer" }}
+          loading={submitLoading}
+          fullWidth
         >
-          {submitLoading ? "Menyimpan..." : "Simpan Order Transaksi"}
-        </button>
+          Simpan Order Transaksi
+        </Button>
       </section>
     </div>
   );

@@ -3,6 +3,11 @@
 import { useState, useEffect, useCallback } from "react";
 import memberService from "../../services/memberService";
 import { useToast } from "@/hooks/useToast";
+import { formatCurrency } from "@/utils/utils";
+import { DataTable } from "@/components/common/DataTable";
+import { Button } from "@/components/common/Button";
+import { Input } from "@/components/common/FormInput";
+import { StatusBadge } from "@/components/common/StatusBadge";
 
 const Order = () => {
   const [menus, setMenus] = useState([]);
@@ -107,7 +112,7 @@ const Order = () => {
       if (res.success) {
         setQuantities({});
         toast.success("Pesanan berhasil dikirim!");
-        fetchMyOrders(); // tambahkan ini
+        fetchMyOrders();
       }
     } catch (err) {
       toast.error(err?.response?.data?.message || "Gagal mengirim pesanan");
@@ -116,142 +121,161 @@ const Order = () => {
     }
   };
 
+  // ==================== COLUMN DEFINITIONS ====================
+  const menuColumns = [
+    { key: "name", header: "Nama", render: (row) => row.name },
+    { key: "category", header: "Kategori", render: (row) => row.category },
+    {
+      key: "price",
+      header: "Harga",
+      render: (row) => formatCurrency(row.price),
+    },
+    {
+      key: "qty",
+      header: "Qty",
+      render: (row) => {
+        const qty = quantities[row.id] || 0;
+        return (
+          <div className="flex items-center gap-1">
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 w-7 p-0"
+              onClick={() => decrement(row.id)}
+            >
+              −
+            </Button>
+            <Input
+              type="number"
+              min="0"
+              value={qty}
+              onChange={(e) => handleQtyChange(row.id, e.target.value)}
+              className="w-14 text-center h-7 px-1"
+            />
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 w-7 p-0"
+              onClick={() => increment(row.id)}
+            >
+              +
+            </Button>
+          </div>
+        );
+      },
+    },
+    {
+      key: "subtotal",
+      header: "Subtotal",
+      render: (row) => {
+        const qty = quantities[row.id] || 0;
+        return qty > 0 ? formatCurrency(qty * row.price) : "-";
+      },
+    },
+  ];
+
+  const orderColumns = [
+    {
+      key: "item_name_snapshot",
+      header: "Item",
+      render: (row) => row.item_name_snapshot,
+    },
+    { key: "quantity", header: "Qty", render: (row) => row.quantity },
+    {
+      key: "subtotal",
+      header: "Subtotal",
+      render: (row) => formatCurrency(row.subtotal),
+    },
+    {
+      key: "production_status",
+      header: "Status",
+      render: (row) => <StatusBadge status={row.production_status} />,
+    },
+    {
+      key: "cancellation_reason",
+      header: "Keterangan",
+      render: (row) =>
+        row.production_status === "cancelled" ? row.cancellation_reason : "-",
+    },
+  ];
+
   // ==================== RENDER ====================
   return (
-    <div>
-      <h1>Pesan Makanan & Minuman</h1>
-      <p>Pesanan akan dibayar saat checkout akhir bersama pembelian ikan.</p>
+    <div className="space-y-8">
+      {/* Page header */}
+      <div>
+        <h1 className="text-2xl font-bold text-foreground">
+          Pesan Makanan &amp; Minuman
+        </h1>
+        <p className="text-muted-foreground text-sm mt-1">
+          Pesanan akan dibayar saat checkout akhir bersama pembelian ikan.
+        </p>
+      </div>
 
       {/* ===== MENU LIST ===== */}
-      <>
-        {fetchLoading ? (
-          <p>Memuat menu...</p>
-        ) : menus.length === 0 ? (
-          <p>Tidak ada menu tersedia</p>
-        ) : (
-          <section>
-            <h2>Pilih Menu</h2>
-            <table border="1" width="100%">
-              <thead>
-                <tr>
-                  <th>Nama</th>
-                  <th>Kategori</th>
-                  <th>Harga</th>
-                  <th>Qty</th>
-                  <th>Subtotal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {menus.map((menu) => {
-                  const qty = quantities[menu.id] || 0;
-                  return (
-                    <tr key={menu.id}>
-                      <td>{menu.name}</td>
-                      <td>{menu.category}</td>
-                      <td>Rp {Number(menu.price).toLocaleString("id-ID")}</td>
-                      <td>
-                        <button onClick={() => decrement(menu.id)}>-</button>
-                        <input
-                          type="number"
-                          min="0"
-                          value={qty}
-                          onChange={(e) =>
-                            handleQtyChange(menu.id, e.target.value)
-                          }
-                          style={{ width: 50, textAlign: "center" }}
-                        />
-                        <button onClick={() => increment(menu.id)}>+</button>
-                      </td>
-                      <td>
-                        {qty > 0
-                          ? `Rp ${(qty * menu.price).toLocaleString("id-ID")}`
-                          : "-"}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </section>
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-foreground">Pilih Menu</h2>
+        <DataTable
+          columns={menuColumns}
+          data={menus}
+          loading={fetchLoading}
+          emptyMessage="Tidak ada menu tersedia"
+        />
+        {selectedItems.length === 0 && !fetchLoading && menus.length > 0 && (
+          <p className="text-sm text-muted-foreground">
+            Pilih minimal 1 item untuk memesan.
+          </p>
         )}
+      </section>
 
-        {/* ===== ORDER SUMMARY ===== */}
-        {selectedItems.length > 0 && (
-          <section style={{ marginTop: 16 }}>
-            <h2>Ringkasan Pesanan</h2>
+      {/* ===== ORDER SUMMARY ===== */}
+      {selectedItems.length > 0 && (
+        <section className="rounded-lg border border-border bg-muted/30 p-4 space-y-3">
+          <h2 className="text-lg font-semibold text-foreground">
+            Ringkasan Pesanan
+          </h2>
+          <div className="space-y-1">
             {selectedItems.map((item) => (
-              <p key={item.menu_id}>
-                {item.name} × {item.quantity} = Rp{" "}
-                {item.subtotal.toLocaleString("id-ID")}
+              <p key={item.menu_id} className="text-sm text-foreground">
+                {item.name} × {item.quantity} ={" "}
+                <span className="font-medium">{formatCurrency(item.subtotal)}</span>
               </p>
             ))}
-            <p>
-              <strong>Total: Rp {totalAmount.toLocaleString("id-ID")}</strong>{" "}
-              (dibayar saat checkout)
+          </div>
+          <div className="border-t border-border pt-3 flex items-center justify-between">
+            <p className="font-semibold text-foreground">
+              Total:{" "}
+              <span className="text-primary">{formatCurrency(totalAmount)}</span>
+              <span className="text-muted-foreground font-normal text-sm ml-1">
+                (dibayar saat checkout)
+              </span>
             </p>
-            <button onClick={handleSubmit} disabled={submitLoading}>
-              {submitLoading ? "Memproses..." : "Kirim Pesanan"}
-            </button>
-          </section>
-        )}
-
-        {selectedItems.length === 0 && !fetchLoading && menus.length > 0 && (
-          <p>Pilih minimal 1 item untuk memesan.</p>
-        )}
-      </>
+            <Button onClick={handleSubmit} loading={submitLoading}>
+              Kirim Pesanan
+            </Button>
+          </div>
+        </section>
+      )}
 
       {/* ===== STATUS PESANAN SAYA ===== */}
-      <section style={{ marginTop: 24 }}>
-        <h2>Status Pesanan Saya</h2>
-        {ordersLoading ? (
-          <p>Memuat status pesanan...</p>
-        ) : myOrders.length === 0 ? (
-          <p>Belum ada pesanan hari ini.</p>
-        ) : (
-          <table border="1" width="100%">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Qty</th>
-                <th>Subtotal</th>
-                <th>Status</th>
-                <th>Keterangan</th>
-              </tr>
-            </thead>
-            <tbody>
-              {myOrders.map((o) => (
-                <tr key={o.id}>
-                  <td>{o.item_name_snapshot}</td>
-                  <td>{o.quantity}</td>
-                  <td>Rp {Number(o.subtotal).toLocaleString("id-ID")}</td>
-                  <td>
-                    {o.production_status === "pending" && "Menunggu"}
-                    {o.production_status === "done" && "Selesai"}
-                    {o.production_status === "cancelled" && "Dibatalkan"}
-                  </td>
-                  <td>
-                    {o.production_status === "cancelled"
-                      ? o.cancellation_reason
-                      : "-"}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-foreground">
+          Status Pesanan Saya
+        </h2>
+        <DataTable
+          columns={orderColumns}
+          data={myOrders}
+          loading={ordersLoading}
+          emptyMessage="Belum ada pesanan hari ini."
+        />
 
         {unpaidTotal > 0 && (
-          <div
-            style={{
-              marginTop: 12,
-              borderTop: "1px solid #ccc",
-              paddingTop: 8,
-            }}
-          >
-            <strong>
-              Total Sementara: Rp {unpaidTotal.toLocaleString("id-ID")}
-            </strong>
-            <p style={{ fontSize: "14px", color: "gray", margin: "4px 0 0" }}>
+          <div className="border-t border-border pt-3 space-y-1">
+            <p className="font-semibold text-foreground">
+              Total Sementara:{" "}
+              <span className="text-primary">{formatCurrency(unpaidTotal)}</span>
+            </p>
+            <p className="text-sm text-muted-foreground">
               *Estimasi tagihan pesanan saat checkout nanti
             </p>
           </div>

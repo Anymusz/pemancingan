@@ -1,4 +1,4 @@
-// src/components/ui/button.jsx
+// src/components/common/Button.jsx
 
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";

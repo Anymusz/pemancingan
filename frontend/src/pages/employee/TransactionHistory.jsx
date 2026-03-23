@@ -1,19 +1,12 @@
 import { useState, useEffect, useCallback, Fragment } from "react";
 import employeeService from "../../services/employeeService";
+import { formatCurrency, formatDateTime } from "@/utils/utils";
+import { Label } from "@/components/common/FormLabel";
+import { Input } from "@/components/common/FormInput";
+import { FormSelect } from "@/components/common/FormSelect";
+import { Button } from "@/components/common/Button";
 
-const formatCurrency = (val) =>
-  `Rp ${Number(val || 0).toLocaleString("id-ID")}`;
-
-const formatDateTime = (dateStr) => {
-  if (!dateStr) return "-";
-  return new Date(dateStr).toLocaleString("id-ID", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-};
+// ==================== CONSTANTS ====================
 
 const CATEGORY_LABELS = {
   fish: "Ikan",
@@ -29,11 +22,13 @@ const PAYMENT_LABELS = {
 };
 
 const PAYMENT_OPTIONS = [
-  { value: "", label: "Semua" },
+  { value: "__all__", label: "Semua" },
   { value: "cash", label: "Cash" },
   { value: "transfer", label: "Transfer" },
   { value: "qris", label: "QRIS" },
 ];
+
+// ==================== COMPONENT ====================
 
 const TransactionHistory = () => {
   // ==================== STATE ====================
@@ -129,41 +124,35 @@ const TransactionHistory = () => {
   // ==================== RENDER ====================
 
   return (
-    <div>
-      <h2 className="text-xl font-bold text-gray-800 mb-4">
-        Riwayat Transaksi
-      </h2>
+    <div className="space-y-4">
+      <h2 className="text-2xl font-bold text-foreground">Riwayat Transaksi</h2>
 
       {/* Filter Section */}
-      <div className="mb-4 p-4 bg-white border border-gray-200 rounded-lg">
+      <div className="p-4 bg-background border border-border rounded-lg">
         <div className="flex flex-wrap items-end gap-3">
           <div>
-            <label className="block text-xs text-gray-500 mb-1">Dari</label>
-            <input
+            <Label className="block text-xs mb-1">Dari</Label>
+            <Input
               type="date"
               value={filterDraft.date_from}
               onChange={(e) =>
                 setFilterDraft((d) => ({ ...d, date_from: e.target.value }))
               }
-              className="px-3 py-2 text-sm border border-gray-300 rounded-md"
             />
           </div>
           <div>
-            <label className="block text-xs text-gray-500 mb-1">Sampai</label>
-            <input
+            <Label className="block text-xs mb-1">Sampai</Label>
+            <Input
               type="date"
               value={filterDraft.date_to}
               onChange={(e) =>
                 setFilterDraft((d) => ({ ...d, date_to: e.target.value }))
               }
-              className="px-3 py-2 text-sm border border-gray-300 rounded-md"
             />
           </div>
           <div>
-            <label className="block text-xs text-gray-500 mb-1">
-              Kode Transaksi
-            </label>
-            <input
+            <Label className="block text-xs mb-1">Kode Transaksi</Label>
+            <Input
               type="text"
               placeholder="TRX-..."
               value={filterDraft.transaction_code}
@@ -173,76 +162,67 @@ const TransactionHistory = () => {
                   transaction_code: e.target.value,
                 }))
               }
-              className="px-3 py-2 text-sm border border-gray-300 rounded-md"
             />
           </div>
           <div>
-            <label className="block text-xs text-gray-500 mb-1">
-              Metode Bayar
-            </label>
-            <select
-              value={filterDraft.payment_method}
-              onChange={(e) =>
+            <Label className="block text-xs mb-1">Metode Bayar</Label>
+            <FormSelect
+              options={PAYMENT_OPTIONS}
+              value={filterDraft.payment_method || "__all__"}
+              onValueChange={(val) =>
                 setFilterDraft((d) => ({
                   ...d,
-                  payment_method: e.target.value,
+                  payment_method: val === "__all__" ? "" : val,
                 }))
               }
-              className="px-3 py-2 text-sm border border-gray-300 rounded-md"
-            >
-              {PAYMENT_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
+            />
           </div>
           <div className="flex gap-2">
-            <button
-              onClick={handleApplyFilter}
-              className="px-4 py-2 text-sm bg-sky-500 text-white rounded-md hover:bg-sky-600 transition-colors"
-            >
+            <Button size="sm" onClick={handleApplyFilter}>
               Terapkan
-            </button>
-            <button
-              onClick={handleResetFilter}
-              className="px-4 py-2 text-sm bg-white text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-            >
+            </Button>
+            <Button variant="outline" size="sm" onClick={handleResetFilter}>
               Reset
-            </button>
+            </Button>
           </div>
         </div>
-        {dateError && <p className="text-red-500 text-xs mt-2">{dateError}</p>}
+        {dateError && (
+          <p className="text-destructive text-xs mt-2">{dateError}</p>
+        )}
       </div>
 
       {/* Table */}
-      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+      <div className="bg-background border border-border/50 rounded-lg overflow-hidden">
         {loading ? (
-          <p className="text-gray-500 text-sm p-4">Memuat transaksi...</p>
+          <p className="text-muted-foreground text-sm p-4">
+            Memuat transaksi...
+          </p>
         ) : transactions.length === 0 ? (
-          <p className="text-gray-400 text-sm p-4">Tidak ada transaksi.</p>
+          <p className="text-muted-foreground text-sm p-4">
+            Tidak ada transaksi.
+          </p>
         ) : (
           <>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <th className="text-left px-4 py-3 text-gray-500 font-medium">
+                  <tr className="bg-muted/60 border-b border-border">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Tanggal
                     </th>
-                    <th className="text-left px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       No. Transaksi
                     </th>
-                    <th className="text-left px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Nama Member
                     </th>
-                    <th className="text-right px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Total Bayar
                     </th>
-                    <th className="text-center px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-center px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Metode Bayar
                     </th>
-                    <th className="text-right px-4 py-3 text-gray-500 font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Poin
                     </th>
                   </tr>
@@ -252,25 +232,25 @@ const TransactionHistory = () => {
                     <Fragment key={trx.id}>
                       <tr
                         onClick={() => handleRowClick(trx.id)}
-                        className="border-b border-gray-100 hover:bg-sky-50 cursor-pointer transition-colors"
+                        className="border-b border-border bg-card hover:bg-muted/30 cursor-pointer transition-colors"
                       >
-                        <td className="px-4 py-3 text-gray-700">
+                        <td className="px-4 py-3 text-foreground">
                           {formatDateTime(trx.transaction_date)}
                         </td>
-                        <td className="px-4 py-3 text-gray-700 font-mono text-xs">
+                        <td className="px-4 py-3 text-foreground font-mono text-xs">
                           {trx.transaction_code}
                         </td>
-                        <td className="px-4 py-3 text-gray-700">
+                        <td className="px-4 py-3 text-foreground">
                           {trx.member_name}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-foreground">
                           {formatCurrency(trx.final_amount)}
                         </td>
-                        <td className="px-4 py-3 text-center text-gray-700">
+                        <td className="px-4 py-3 text-center text-foreground">
                           {PAYMENT_LABELS[trx.payment_method] ||
                             trx.payment_method}
                         </td>
-                        <td className="px-4 py-3 text-right text-gray-700">
+                        <td className="px-4 py-3 text-right text-foreground">
                           +{trx.points_earned ?? 0}
                         </td>
                       </tr>
@@ -278,50 +258,47 @@ const TransactionHistory = () => {
                       {/* Expanded Row */}
                       {expandedRow === trx.id && (
                         <tr>
-                          <td colSpan={6} className="bg-gray-50 px-6 py-4">
+                          <td colSpan={6} className="bg-muted/60 px-6 py-4">
                             {/* Bagian 1: Daftar Item */}
                             <table className="w-full text-sm mb-3">
                               <thead>
-                                <tr className="border-b border-gray-200">
-                                  <th className="text-left py-1 text-gray-500 font-medium">
+                                <tr className="border-b border-border">
+                                  <th className="text-left py-1 text-muted-foreground font-semibold text-xs sm:text-sm">
                                     Item
                                   </th>
-                                  <th className="text-left py-1 text-gray-500 font-medium">
+                                  <th className="text-left py-1 text-muted-foreground font-semibold text-xs sm:text-sm">
                                     Kategori
                                   </th>
-                                  <th className="text-right py-1 text-gray-500 font-medium">
+                                  <th className="text-right py-1 text-muted-foreground font-semibold text-xs sm:text-sm">
                                     Qty
                                   </th>
-                                  <th className="text-right py-1 text-gray-500 font-medium">
+                                  <th className="text-right py-1 text-muted-foreground font-semibold text-xs sm:text-sm">
                                     Harga Satuan
                                   </th>
-                                  <th className="text-right py-1 text-gray-500 font-medium">
+                                  <th className="text-right py-1 text-muted-foreground font-semibold text-xs sm:text-sm">
                                     Subtotal
                                   </th>
                                 </tr>
                               </thead>
                               <tbody>
                                 {(trx.items || []).map((item, idx) => (
-                                  <tr
-                                    key={idx}
-                                    className="border-b border-gray-100"
-                                  >
-                                    <td className="py-1 text-gray-700">
+                                  <tr key={idx}>
+                                    <td className="py-1 text-foreground">
                                       {item.item_name_snapshot}
                                     </td>
-                                    <td className="py-1 text-gray-700">
+                                    <td className="py-1 text-foreground">
                                       {CATEGORY_LABELS[item.item_type] ||
                                         item.item_type}
                                     </td>
-                                    <td className="py-1 text-right text-gray-700">
+                                    <td className="py-1.5 text-right text-foreground">
                                       {item.item_type === "fish"
                                         ? `${Number(item.quantity).toFixed(2)} kg`
                                         : `${Number(item.quantity)} pcs`}
                                     </td>
-                                    <td className="py-1 text-right text-gray-700">
+                                    <td className="py-1.5 text-right text-foreground">
                                       {formatCurrency(item.unit_price_snapshot)}
                                     </td>
-                                    <td className="py-1 text-right text-gray-700">
+                                    <td className="py-1.5 text-right text-foreground">
                                       {formatCurrency(item.subtotal)}
                                     </td>
                                   </tr>
@@ -330,38 +307,38 @@ const TransactionHistory = () => {
                             </table>
 
                             {/* Bagian 2: Ringkasan Pembayaran */}
-                            <div className="border-t border-gray-200 pt-2 space-y-1 text-sm">
-                              <div className="flex justify-between text-gray-600">
+                            <div className="border-t border-border pt-2 space-y-1 text-sm">
+                              <div className="flex justify-between text-muted-foreground">
                                 <span>Subtotal</span>
                                 <span>{formatCurrency(trx.total_amount)}</span>
                               </div>
                               {trx.discount_tier > 0 && (
-                                <div className="flex justify-between text-gray-600">
+                                <div className="flex justify-between text-muted-foreground">
                                   <span>Diskon Tier</span>
-                                  <span>
+                                  <span className="text-red-500">
                                     - {formatCurrency(trx.discount_tier)}
                                   </span>
                                 </div>
                               )}
                               {trx.discount_voucher > 0 && (
-                                <div className="flex justify-between text-gray-600">
+                                <div className="flex justify-between text-muted-foreground">
                                   <span>Diskon Voucher</span>
                                   <span>
                                     - {formatCurrency(trx.discount_voucher)}
                                   </span>
                                 </div>
                               )}
-                              <div className="flex justify-between font-bold text-gray-800">
+                              <div className="flex justify-between font-bold text-foreground">
                                 <span>Total Bayar</span>
                                 <span>{formatCurrency(trx.final_amount)}</span>
                               </div>
                               {trx.tips > 0 && (
-                                <div className="flex justify-between text-gray-600">
+                                <div className="flex justify-between text-muted-foreground">
                                   <span>Tips</span>
                                   <span>{formatCurrency(trx.tips)}</span>
                                 </div>
                               )}
-                              <div className="flex justify-between text-gray-500 text-xs pt-1">
+                              <div className="flex justify-between text-muted-foreground text-xs pt-1">
                                 <span>Diproses Oleh</span>
                                 <span>{trx.processed_by_name || "-"}</span>
                               </div>
@@ -377,26 +354,28 @@ const TransactionHistory = () => {
 
             {/* Pagination */}
             {meta && meta.last_page > 1 && (
-              <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200">
-                <p className="text-sm text-gray-500">
+              <div className="flex items-center justify-between px-4 py-3 border-t border-border">
+                <p className="text-sm text-muted-foreground">
                   Halaman {meta.current_page} dari {meta.last_page} (
                   {meta.total} transaksi)
                 </p>
                 <div className="flex gap-2">
-                  <button
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={() => handlePageChange(page - 1)}
                     disabled={page <= 1}
-                    className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Sebelumnya
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={() => handlePageChange(page + 1)}
                     disabled={page >= meta.last_page}
-                    className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Selanjutnya
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}

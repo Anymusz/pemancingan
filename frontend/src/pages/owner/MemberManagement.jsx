@@ -1,17 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import ownerService from "@/services/ownerService";
 import ConfirmDialog from "@/components/common/ConfirmDialog";
+import { DataTable } from "@/components/common/DataTable";
+import { TabsNav } from "@/components/common/TabsNav";
+import { StatusBadge } from "@/components/common/StatusBadge";
 import { useToast } from "@/hooks/useToast";
 import { formatDateTime } from "@/utils/utils";
 
-// ── Tab & Dialog Configuration ──────────────────────────────────────
-
-const TABS = [
-  { key: "pending", label: "Pending" },
-  { key: "active", label: "Active" },
-  { key: "rejected", label: "Rejected" },
-  { key: "deactivated", label: "Deactivated" },
-];
+// ── Dialog Configuration ─────────────────────────────────────────
 
 const EMPTY_MESSAGES = {
   pending: "Tidak ada member yang menunggu validasi",
@@ -53,12 +49,12 @@ const DIALOG_CONFIG = {
   },
 };
 
-// ── Component ───────────────────────────────────────────────────────
+// ── Component ───────────────────────────────────────────────────
 
 const MemberManagement = () => {
   const toast = useToast();
 
-  // ── State ───────────────────────────────────────────────────────
+  // ── State ─────────────────────────────────────────────────────
 
   const [activeTab, setActiveTab] = useState("pending");
 
@@ -218,142 +214,174 @@ const MemberManagement = () => {
     }
   };
 
-  // ── Tab Renderers ─────────────────────────────────────────────
+  // ── Column Definitions ────────────────────────────────────────
 
-  const renderPendingTable = () =>
-    data.pending.map((m) => (
-      <tr key={m.id}>
-        <td>{m.name}</td>
-        <td>{m.phone}</td>
-        <td>{m.email || "-"}</td>
-        <td>{m.address}</td>
-        <td>{formatDateTime(m.registered_at)}</td>
-        <td>
-          <button onClick={() => openDialog("approve", m)}>Approve</button>{" "}
-          <button onClick={() => openDialog("reject", m)}>Reject</button>
-        </td>
-      </tr>
-    ));
+  const pendingColumns = [
+    { key: "name", header: "Nama" },
+    { key: "phone", header: "No HP" },
+    {
+      key: "email",
+      header: "Email",
+      render: (row) =>
+        row.email ? (
+          <a
+            href={`mailto:${row.email}`}
+            className="text-blue-500 font-normal hover:text-blue-600 hover:underline transition"
+          >
+            {row.email}
+          </a>
+        ) : (
+          "-"
+        ),
+    },
+    { key: "address", header: "Alamat" },
+    {
+      key: "registered_at",
+      header: "Tanggal Daftar",
+      render: (row) => formatDateTime(row.registered_at),
+    },
+  ];
 
-  const renderActiveTable = () =>
-    data.active.map((m) => (
-      <tr key={m.user_id}>
-        <td>{m.name}</td>
-        <td>{m.phone}</td>
-        <td>{m.member_id}</td>
-        <td>{m.tier}</td>
-        <td>{m.total_points ?? "-"}</td>
-        <td>{m.total_fish_weight != null ? `${m.total_fish_weight}` : "-"}</td>
-        <td>{m.approved_at}</td>
-        <td>
-          <button onClick={() => openDialog("deactivate", m)}>
-            Deactivate
-          </button>
-        </td>
-      </tr>
-    ));
+  const activeColumns = [
+    { key: "name", header: "Nama" },
+    { key: "phone", header: "No HP" },
+    { key: "member_id", header: "Member ID" },
+    {
+      key: "tier",
+      header: "Tier",
+      render: (row) => <StatusBadge status={row.tier} />,
+    },
+    {
+      key: "total_points",
+      header: "Poin",
+      render: (row) => row.total_points ?? "-",
+    },
+    {
+      key: "total_fish_weight",
+      header: "Berat Ikan (kg)",
+      render: (row) => row.total_fish_weight ?? "-",
+    },
+    {
+      key: "approved_at",
+      header: "Tanggal Approve",
+      render: (row) => formatDateTime(row.approved_at),
+    },
+  ];
 
-  const renderRejectedTable = () =>
-    data.rejected.map((m, i) => (
-      <tr key={i}>
-        <td>{m.name}</td>
-        <td>{m.phone}</td>
-        <td>{m.rejected_at}</td>
-        <td>{m.rejection_reason || "-"}</td>
-      </tr>
-    ));
+  const rejectedColumns = [
+    { key: "name", header: "Nama" },
+    { key: "phone", header: "No HP" },
+    {
+      key: "rejected_at",
+      header: "Tanggal Tolak",
+      render: (row) => formatDateTime(row.rejected_at),
+    },
+    {
+      key: "rejection_reason",
+      header: "Alasan",
+      render: (row) => row.rejection_reason || "-",
+    },
+  ];
 
-  const renderDeactivatedTable = () =>
-    data.deactivated.map((m, i) => (
-      <tr key={m.user_id ?? i}>
-        <td>{m.name}</td>
-        <td>{m.phone}</td>
-        <td>{m.deactivated_at}</td>
-        <td>{m.deactivated_reason || "-"}</td>
-        <td>
-          <button onClick={() => openDialog("reactivate", m)}>
-            Reactivate
-          </button>
-        </td>
-      </tr>
-    ));
-
-  const TABLE_HEADERS = {
-    pending: ["Nama", "No HP", "Email", "Alamat", "Tanggal Daftar", "Aksi"],
-    active: [
-      "Nama",
-      "No HP",
-      "Member ID",
-      "Tier",
-      "Poin",
-      "Berat Ikan (kg)",
-      "Tanggal Approve",
-      "Aksi",
-    ],
-    rejected: ["Nama", "No HP", "Tanggal Tolak", "Alasan"],
-    deactivated: ["Nama", "No HP", "Tanggal Nonaktif", "Alasan", "Aksi"],
-  };
-
-  const TABLE_RENDERERS = {
-    pending: renderPendingTable,
-    active: renderActiveTable,
-    rejected: renderRejectedTable,
-    deactivated: renderDeactivatedTable,
-  };
+  const deactivatedColumns = [
+    { key: "name", header: "Nama" },
+    { key: "phone", header: "No HP" },
+    {
+      key: "deactivated_at",
+      header: "Tanggal Nonaktif",
+      render: (row) => formatDateTime(row.deactivated_at),
+    },
+    {
+      key: "deactivated_reason",
+      header: "Alasan",
+      render: (row) => row.deactivated_reason || "-",
+    },
+  ];
 
   // ── Dialog Props ──────────────────────────────────────────────
 
   const dialogConfig = dialog.type ? DIALOG_CONFIG[dialog.type] : null;
 
-  // ── Render ────────────────────────────────────────────────────
+  // ── Derived ───────────────────────────────────────────────────
 
   const tabData = data[activeTab];
   const isTabLoading = loading[activeTab];
 
+  // ── Render ────────────────────────────────────────────────────
+
   return (
     <div>
-      <h2>Manajemen Member</h2>
-
-      {/* ── Status Tabs ────────────────────────────────────────── */}
-      <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
-        {TABS.map((tab) => (
-          <button
-            key={tab.key}
-            onClick={() => handleTabChange(tab.key)}
-            disabled={activeTab === tab.key}
-            style={{
-              fontWeight: activeTab === tab.key ? "bold" : "normal",
-            }}
-          >
-            {tab.label} ({counts[tab.key] ?? 0})
-          </button>
-        ))}
+      {/* ── Header ──────────────────────────────────────────────── */}
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold tracking-tight text-foreground">
+          Manajemen Member
+        </h1>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Kelola pendaftaran, status, dan riwayat keanggotaan member.
+        </p>
       </div>
 
-      {/* ── Tab Content ────────────────────────────────────────── */}
-      {isTabLoading ? (
-        <p>Memuat data...</p>
-      ) : tabData.length === 0 ? (
-        <p>{EMPTY_MESSAGES[activeTab]}</p>
-      ) : (
-        <table
-          border="1"
-          cellPadding="8"
-          cellSpacing="0"
-          style={{ width: "100%", borderCollapse: "collapse" }}
-        >
-          <thead>
-            <tr>
-              {TABLE_HEADERS[activeTab].map((h) => (
-                <th key={h}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>{TABLE_RENDERERS[activeTab]()}</tbody>
-        </table>
-      )}
+      {/* ── Tabs ────────────────────────────────────────────────── */}
+      <TabsNav
+        value={activeTab}
+        onValueChange={handleTabChange}
+        className="mb-6"
+        items={[
+          { value: "pending", label: "Pending", badge: counts.pending },
+          { value: "active", label: "Active", badge: counts.active },
+          { value: "rejected", label: "Rejected", badge: counts.rejected },
+          {
+            value: "deactivated",
+            label: "Deactivated",
+            badge: counts.deactivated,
+          },
+        ]}
+      />
 
-      {/* ── Confirm Dialog ─────────────────────────────────────── */}
+      {/* ── Table ───────────────────────────────────────────────── */}
+      <DataTable
+        columns={
+          activeTab === "pending"
+            ? pendingColumns
+            : activeTab === "active"
+              ? activeColumns
+              : activeTab === "rejected"
+                ? rejectedColumns
+                : deactivatedColumns
+        }
+        data={tabData}
+        loading={isTabLoading}
+        emptyMessage={EMPTY_MESSAGES[activeTab]}
+        getRowActions={(row) => {
+          if (activeTab === "pending")
+            return [
+              { label: "Approve", onClick: () => openDialog("approve", row) },
+              {
+                label: "Reject",
+                variant: "danger",
+                onClick: () => openDialog("reject", row),
+              },
+            ];
+          if (activeTab === "active")
+            return [
+              {
+                label: "Deactivate",
+                variant: "danger",
+                onClick: () => openDialog("deactivate", row),
+              },
+            ];
+          if (activeTab === "deactivated")
+            return [
+              {
+                label: "Reactivate",
+                onClick: () => openDialog("reactivate", row),
+              },
+            ];
+          return [];
+        }}
+      />
+
+      {/* ── Confirm Dialog ──────────────────────────────────────── */}
       {dialogConfig && (
         <ConfirmDialog
           open={dialog.open}
@@ -363,6 +391,7 @@ const MemberManagement = () => {
           description={dialogConfig.description(dialog.member?.name)}
           variant={dialogConfig.variant}
           confirmLabel={dialogConfig.confirmLabel}
+          cancelLabel="Batal"
           loading={actionLoading}
           inputLabel={dialogConfig.inputLabel}
           inputValue={dialog.inputValue}

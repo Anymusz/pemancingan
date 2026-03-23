@@ -1,7 +1,7 @@
 // src/pages/landing/sections/FooterSection.jsx
 
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/Button";
 import { Facebook, MapPin, ArrowRight } from "lucide-react";
 
 const FooterBlock = () => {

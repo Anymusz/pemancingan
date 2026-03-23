@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import memberService from "../services/memberService";
 import { useToast } from "../hooks/useToast";
 import { getUser } from "../utils/tokenManager";
+import { DataTable } from "../components/common/DataTable";
 
 const LeaderboardPublic = () => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -46,22 +47,29 @@ const LeaderboardPublic = () => {
     return rank;
   };
 
-  if (loading) {
-    return <div>Loading leaderboard...</div>;
-  }
-
-  if (error) {
-    return (
-      <div>
-        <p>Error: {error}</p>
-        <button onClick={fetchLeaderboard}>Retry</button>
-      </div>
-    );
-  }
+  const columns = [
+    {
+      key: "rank",
+      header: "Rank",
+      align: "center",
+      width: "80px",
+      render: (row) => (
+        <div className="w-full text-center">{getMedalEmoji(row.rank)}</div>
+      ),
+    },
+    { key: "name", header: "Nama", flex: true, render: (row) => row.name },
+    {
+      key: "total_fish_weight",
+      header: "Berat Ikan (kg)",
+      align: "right",
+      render: (row) => row.total_fish_weight,
+    },
+    { key: "tier", header: "Tier", align: "center", render: (row) => row.tier },
+  ];
 
   return (
     <div>
-      <h1>🏆 Leaderboard Pemancingan S</h1>
+      <h1>🏆 Leaderboard Pemancingan Sutoyo</h1>
       <p>Top pemancing berdasarkan total berat ikan tangkapan</p>
 
       {meta && (
@@ -72,41 +80,25 @@ const LeaderboardPublic = () => {
 
       <button onClick={fetchLeaderboard}>Refresh</button>
 
-      {leaderboard.length === 0 ? (
-        <p>Belum ada member yang masuk peringkat. Jadilah yang pertama!</p>
+      {error ? (
+        <div className="text-red-500 my-4 text-sm font-medium">
+          Error: {error}
+        </div>
       ) : (
-        <table border="1" cellPadding="10">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Nama</th>
-              <th>Berat Ikan (kg)</th>
-              <th>Tier</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaderboard.map((member) => {
-              const isCurrentMember = currentMemberId === member.member_id;
-
-              return (
-                <tr
-                  key={member.member_id}
-                  style={{
-                    backgroundColor: isCurrentMember
-                      ? "#fffacd"
-                      : "transparent",
-                    fontWeight: isCurrentMember ? "bold" : "normal",
-                  }}
-                >
-                  <td>{getMedalEmoji(member.rank)}</td>
-                  <td>{member.name}</td>
-                  <td>{member.total_fish_weight}</td>
-                  <td>{member.tier}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className="mt-4">
+          <DataTable
+            className="bg-white/80 backdrop-blur-sm"
+            columns={columns}
+            data={leaderboard}
+            loading={loading}
+            emptyMessage="Belum ada member yang masuk peringkat. Jadilah yang pertama!"
+            rowClassName={(row) =>
+              row.member_id === currentMemberId
+                ? "bg-yellow-500/10 font-medium"
+                : ""
+            }
+          />
+        </div>
       )}
     </div>
   );

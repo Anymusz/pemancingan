@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ownerService from "../../services/ownerService";
 import { useToast } from "../../hooks/useToast";
+import { DataTable } from "../../components/common/DataTable";
 
 const OwnerLeaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -42,20 +43,40 @@ const OwnerLeaderboard = () => {
     return rank;
   };
 
-  const isTopThree = (rank) => rank >= 1 && rank <= 3;
-
-  if (loading) {
-    return <div>Loading leaderboard...</div>;
-  }
-
-  if (error) {
-    return (
-      <div>
-        <p>Error: {error}</p>
-        <button onClick={fetchLeaderboard}>Retry</button>
-      </div>
-    );
-  }
+  const columns = [
+    {
+      key: "rank",
+      header: "Rank",
+      align: "center",
+      width: "50px",
+      render: (row) => getMedalEmoji(row.rank),
+    },
+    { key: "name", header: "Nama Lengkap", render: (row) => row.name },
+    { key: "member_id", header: "Member ID", render: (row) => row.member_id },
+    { key: "tier", header: "Tier", render: (row) => row.tier },
+    {
+      key: "total_fish_weight",
+      header: "Berat Ikan (kg)",
+      align: "right",
+      render: (row) => row.total_fish_weight,
+    },
+    {
+      key: "total_points",
+      header: "Total Poin",
+      align: "right",
+      render: (row) => row.total_points || "-",
+    },
+    {
+      key: "voucher",
+      header: "Status Voucher",
+      render: (row) => {
+        if (row.rank === 1) return "Voucher Rp100.000";
+        if (row.rank === 2) return "Voucher Rp50.000";
+        if (row.rank === 3) return "Voucher Rp20.000";
+        return "-";
+      },
+    },
+  ];
 
   return (
     <div>
@@ -66,48 +87,22 @@ const OwnerLeaderboard = () => {
 
       <button onClick={fetchLeaderboard}>Refresh</button>
 
-      {leaderboard.length === 0 ? (
-        <p>Belum ada member yang masuk peringkat.</p>
+      {error ? (
+        <div className="text-red-500 my-4 text-sm font-medium">
+          Error: {error}
+        </div>
       ) : (
-        <table border="1" cellPadding="10">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Nama Lengkap</th>
-              <th>Member ID</th>
-              <th>Tier</th>
-              <th>Berat Ikan (kg)</th>
-              <th>Total Poin</th>
-              <th>Status Voucher</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaderboard.map((member) => (
-              <tr
-                key={member.member_id}
-                style={{
-                  backgroundColor: isTopThree(member.rank)
-                    ? "#fff3cd"
-                    : "transparent",
-                  fontWeight: isTopThree(member.rank) ? "bold" : "normal",
-                }}
-              >
-                <td>{getMedalEmoji(member.rank)}</td>
-                <td>{member.name}</td>
-                <td>{member.member_id}</td>
-                <td>{member.tier}</td>
-                <td>{member.total_fish_weight}</td>
-                <td>-</td>
-                <td>
-                  {member.rank === 1 && "Voucher Rp100.000"}
-                  {member.rank === 2 && "Voucher Rp50.000"}
-                  {member.rank === 3 && "Voucher Rp20.000"}
-                  {member.rank > 3 && "-"}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="mt-4">
+          <DataTable
+            columns={columns}
+            data={leaderboard}
+            loading={loading}
+            emptyMessage="Belum ada member yang masuk peringkat"
+            rowClassName={(row) =>
+              row.rank <= 3 ? "bg-yellow-500/10 font-medium" : ""
+            }
+          />
+        </div>
       )}
     </div>
   );

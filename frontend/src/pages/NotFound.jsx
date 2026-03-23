@@ -1,7 +1,7 @@
 // FILE 5: src/pages/NotFound.jsx (EXAMPLE)
 // ============================================
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/common/Button";
 
 export default function NotFound() {
   return (

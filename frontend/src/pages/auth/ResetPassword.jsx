@@ -12,8 +12,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/components/common/FormInput";
+import { Button } from "@/components/common/Button";
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({

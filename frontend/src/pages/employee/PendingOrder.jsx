@@ -4,6 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import employeeService from "../../services/employeeService";
 import { useToast } from "@/hooks/useToast";
 import ConfirmDialog from "../../components/common/ConfirmDialog";
+import { formatCurrency } from "@/utils/utils";
+import { DataTable } from "@/components/common/DataTable";
+import { Button } from "@/components/common/Button";
+import { StatusBadge } from "@/components/common/StatusBadge";
+import { TabsNav } from "@/components/common/TabsNav";
 
 const PendingOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -99,125 +104,133 @@ const PendingOrder = () => {
   };
 
   // ==================== RENDER ====================
-  const statusLabel = {
-    pending: "Pending",
-    done: "Selesai",
-    cancelled: "Dibatalkan",
-  };
+  const tabItems = [
+    { value: "all", label: "Semua", badge: orders.length },
+    {
+      value: "pending",
+      label: "Pending",
+      badge: orders.filter((o) => o.production_status === "pending").length,
+    },
+    {
+      value: "done",
+      label: "Selesai",
+      badge: orders.filter((o) => o.production_status === "done").length,
+    },
+    {
+      value: "cancelled",
+      label: "Dibatalkan",
+      badge: orders.filter((o) => o.production_status === "cancelled").length,
+    },
+  ];
+
+  const orderItemColumns = [
+    {
+      key: "item_name_snapshot",
+      header: "Item",
+      render: (row) => row.item_name_snapshot,
+    },
+    { key: "quantity", header: "Qty", render: (row) => row.quantity },
+    {
+      key: "subtotal",
+      header: "Subtotal",
+      render: (row) => formatCurrency(row.subtotal),
+    },
+    {
+      key: "order_source",
+      header: "Sumber",
+      render: (row) => (row.order_source === "self" ? "Self-order" : "Manual"),
+    },
+    {
+      key: "production_status",
+      header: "Status",
+      render: (row) => (
+        <div className="space-y-0.5">
+          <StatusBadge status={row.production_status} />
+          {row.production_status === "cancelled" && row.cancellation_reason && (
+            <p className="text-xs text-muted-foreground">
+              {row.cancellation_reason}
+            </p>
+          )}
+        </div>
+      ),
+    },
+  ];
 
   return (
-    <div>
-      <h1>Pesanan Masuk</h1>
-      <p>Auto-refresh setiap 30 detik.</p>
-      <p
-        style={{
-          fontStyle: "italic",
-          fontSize: "14px",
-          color: "gray",
-          marginBottom: 16,
-        }}
-      >
-        Pesanan berstatus "Selesai" akan otomatis tercakup saat checkout member
-        terkait.
-      </p>
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-bold text-foreground">Pesanan Masuk</h1>
+        <p className="text-sm text-muted-foreground">
+          Auto-refresh setiap 30 detik.
+        </p>
+        <p className="text-sm text-muted-foreground italic">
+          Pesanan berstatus &quot;Selesai&quot; akan otomatis tercakup saat
+          checkout member terkait.
+        </p>
+      </div>
 
       {/* ===== FILTER ===== */}
-      <div style={{ marginBottom: 12 }}>
-        {["all", "pending", "done", "cancelled"].map((s) => (
-          <button
-            key={s}
-            onClick={() => setFilterStatus(s)}
-            disabled={filterStatus === s}
-            style={{ marginRight: 8 }}
-          >
-            {s === "all" ? "Semua" : statusLabel[s]}
-          </button>
-        ))}
-        <button onClick={fetchOrders} style={{ marginLeft: 16 }}>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <TabsNav
+          items={tabItems}
+          value={filterStatus}
+          onValueChange={setFilterStatus}
+        />
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={fetchOrders}
+          loading={loading}
+        >
           Refresh Manual
-        </button>
+        </Button>
       </div>
 
       {/* ===== CONTENT ===== */}
       {loading ? (
-        <p>Memuat pesanan...</p>
+        <p className="text-sm text-muted-foreground">Memuat pesanan...</p>
       ) : Object.keys(grouped).length === 0 ? (
-        <p>Tidak ada pesanan masuk saat ini.</p>
+        <p className="text-sm text-muted-foreground">
+          Tidak ada pesanan masuk saat ini.
+        </p>
       ) : (
-        Object.values(grouped).map((group) => (
-          <div
-            key={group.arrival_id}
-            style={{ border: "1px solid #000", padding: 12, marginBottom: 16 }}
-          >
-            <h3>
-              {group.member_name} —{" "}
-              <span style={{ fontWeight: "normal", fontSize: 14 }}>
-                {group.items.length} item
-              </span>
-            </h3>
-            <table border="1" width="100%">
-              <thead>
-                <tr>
-                  <th>Item</th>
-                  <th>Qty</th>
-                  <th>Subtotal</th>
-                  <th>Sumber</th>
-                  <th>Status</th>
-                  {group.items.some(
-                    (item) => item.production_status === "pending",
-                  ) && <th>Aksi</th>}
-                </tr>
-              </thead>
-              <tbody>
-                {group.items.map((order) => (
-                  <tr key={order.id}>
-                    <td>{order.item_name_snapshot}</td>
-                    <td>{order.quantity}</td>
-                    <td>Rp {Number(order.subtotal).toLocaleString("id-ID")}</td>
-                    <td>
-                      {order.order_source === "self" ? "Self-order" : "Manual"}
-                    </td>
-                    <td>
-                      {statusLabel[order.production_status]}
-                      {order.production_status === "cancelled" &&
-                        order.cancellation_reason && (
-                          <span style={{ color: "red", fontSize: 12 }}>
-                            {" "}
-                            — {order.cancellation_reason}
-                          </span>
-                        )}
-                    </td>
-                    {group.items.some(
-                      (item) => item.production_status === "pending",
-                    ) && (
-                      <td>
-                        {order.production_status === "pending" && (
-                          <>
-                            <button
-                              onClick={() =>
-                                handleUpdateStatus(order.id, "done")
-                              }
-                              disabled={actionLoading[order.id]}
-                              style={{ marginRight: 4 }}
-                            >
-                              {actionLoading[order.id] ? "..." : "Selesai"}
-                            </button>
-                            <button
-                              onClick={() => handleOpenCancelModal(order.id)}
-                              disabled={actionLoading[order.id]}
-                            >
-                              Batalkan
-                            </button>
-                          </>
-                        )}
-                      </td>
-                    )}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ))
+        <div className="space-y-4">
+          {Object.values(grouped).map((group) => (
+            <div
+              key={group.arrival_id}
+              className="rounded-lg border border-border p-4 space-y-3"
+            >
+              <div className="flex items-center gap-2">
+                <h3 className="font-semibold text-foreground">
+                  {group.member_name}
+                </h3>
+                <span className="text-sm text-muted-foreground">
+                  {group.items.length} item
+                </span>
+              </div>
+              <DataTable
+                columns={orderItemColumns}
+                data={group.items}
+                emptyMessage="Tidak ada item"
+                getRowActions={(row) => {
+                  if (row.production_status !== "pending") return [];
+                  return [
+                    {
+                      label: "Selesai",
+                      onClick: () => handleUpdateStatus(row.id, "done"),
+                    },
+                    {
+                      label: "Batalkan",
+                      variant: "danger",
+                      onClick: () => handleOpenCancelModal(row.id),
+                    },
+                  ];
+                }}
+              />
+            </div>
+          ))}
+        </div>
       )}
 
       {/* ===== CANCEL MODAL ===== */}
@@ -232,7 +245,7 @@ const PendingOrder = () => {
         onInputChange={(e) =>
           setCancelModal((prev) => ({ ...prev, reason: e.target.value }))
         }
-        confirmLabel="Konfirmasi Batalkan"
+        confirmLabel="Konfirmasi"
         onConfirm={handleConfirmCancel}
         loading={actionLoading[cancelModal.orderId]}
       />
