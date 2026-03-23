@@ -180,7 +180,10 @@ class TransactionController extends Controller
         // Step 4: Get tier
         $currentTier = DB::table('member_tiers')
             ->where('min_points', '<=', $member->total_points)
-            ->where('max_points', '>=', $member->total_points)
+            ->where(function ($q) use ($member) {
+                $q->whereNull('max_points')
+                  ->orWhere('max_points', '>=', $member->total_points);
+            })
             ->first();
         $tierDiscount = $currentTier?->discount_percentage ?? 0;
 
@@ -215,7 +218,7 @@ class TransactionController extends Controller
                 ], 422);
             }
 
-            $subtotal      = $item['quantity'] * $fishType->price_per_kg;
+            $subtotal      = round($item['quantity'] * $fishType->price_per_kg, 2);
             $subtotalFish  += $subtotal;
             $totalFishWeight += $item['quantity'];
 
@@ -265,7 +268,7 @@ class TransactionController extends Controller
 
         $subtotalNonFish   = $subtotalPending + $subtotalPenalty;
         $totalAmount       = $subtotalFish + $subtotalNonFish;
-        $discountTier      = $subtotalFish * ($tierDiscount / 100);
+        $discountTier      = round($subtotalFish * ($tierDiscount / 100), 2);
         $afterTierDiscount = $totalAmount - $discountTier;
 
         // Terapkan voucher pada total setelah diskon tier
@@ -364,7 +367,10 @@ class TransactionController extends Controller
 
         $newTier = DB::table('member_tiers')
             ->where('min_points', '<=', $newPoints)
-            ->where('max_points', '>=', $newPoints)
+            ->where(function ($q) use ($newPoints) {
+                $q->whereNull('max_points')
+                  ->orWhere('max_points', '>=', $newPoints);
+            })
             ->first();
 
         $tierUpgraded = $newTier && $currentTier && $newTier->id !== $currentTier->id;

@@ -97,9 +97,10 @@ class PendingOrderController extends Controller
     {
         $request->validate([
             'arrival_id' => 'required|integer|exists:arrivals,id',
-            'item_type' => 'required|in:menu,rental',
-            'item_id' => 'required_if:item_type,menu|nullable|integer|exists:menus,id',
-            'quantity' => 'required|integer|min:1',
+            'items' => 'required|array|min:1',
+            'items.*.item_type' => 'required|in:menu,rental',
+            'items.*.item_id' => 'required_if:items.*.item_type,menu|nullable|integer|exists:menus,id',
+            'items.*.quantity' => 'required|integer|min:1',
         ]);
 
         $arrival = Arrival::find($request->arrival_id);
@@ -118,55 +119,61 @@ class PendingOrderController extends Controller
             ], 422);
         }
 
-        $itemName = '';
-        $unitPrice = 0;
+        $createdOrders = [];
 
-        if ($request->item_type === 'menu') {
-            $menu = Menu::whereNull('deleted_at')
-                ->where('availability', 'available')
-                ->find($request->item_id);
+        foreach ($request->items as $item) {
+            $itemName = '';
+            $unitPrice = 0;
 
-            if (!$menu) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Menu tidak tersedia',
-                ], 422);
+            if ($item['item_type'] === 'menu') {
+                $menu = Menu::whereNull('deleted_at')
+                    ->where('availability', 'available')
+                    ->find($item['item_id']);
+
+                if (!$menu) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Menu tidak tersedia',
+                    ], 422);
+                }
+
+                $itemName = $menu->name;
+                $unitPrice = $menu->price;
+
+            } elseif ($item['item_type'] === 'rental') {
+                $itemName = 'Sewa Alat Pancing';
+                $unitPrice = config('rental.fishing_rod_price');
             }
 
-            $itemName = $menu->name;
-            $unitPrice = $menu->price;
+            $subtotal = $item['quantity'] * $unitPrice;
 
-        } elseif ($request->item_type === 'rental') {
-            $itemName = 'Sewa Alat Pancing';
-            $unitPrice = config('rental.fishing_rod_price');
+            $order = PendingOrder::create([
+                'arrival_id' => $arrival->id,
+                'item_type' => $item['item_type'],
+                'item_id' => $item['item_type'] === 'menu' ? $item['item_id'] : null,
+                'item_name_snapshot' => $itemName,
+                'quantity' => $item['quantity'],
+                'unit_price_snapshot' => $unitPrice,
+                'subtotal' => $subtotal,
+                'payment_status' => 'unpaid',
+                'order_source' => 'manual',
+                'created_by' => $request->user()->id,
+            ]);
+
+            $createdOrders[] = [
+                'id' => $order->id,
+                'item_type' => $order->item_type,
+                'name' => $order->item_name_snapshot,
+                'quantity' => $order->quantity,
+                'subtotal' => $order->subtotal,
+            ];
         }
-
-        $subtotal = $request->quantity * $unitPrice;
-
-        $order = PendingOrder::create([
-            'arrival_id' => $arrival->id,
-            'item_type' => $request->item_type,
-            'item_id' => $request->item_type === 'menu' ? $request->item_id : null,
-            'item_name_snapshot' => $itemName,
-            'quantity' => $request->quantity,
-            'unit_price_snapshot' => $unitPrice,
-            'subtotal' => $subtotal,
-            'payment_status' => 'unpaid',
-            'order_source' => 'manual',
-            'created_by' => $request->user()->id,
-        ]);
 
         return response()->json([
             'success' => true,
             'message' => 'Order berhasil ditambahkan',
             'data' => [
-                'order' => [
-                    'id' => $order->id,
-                    'item_type' => $order->item_type,
-                    'name' => $order->item_name_snapshot,
-                    'quantity' => $order->quantity,
-                    'subtotal' => $order->subtotal,
-                ],
+                'orders' => $createdOrders,
             ],
         ], 201);
     }
