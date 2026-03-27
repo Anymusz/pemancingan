@@ -8,6 +8,8 @@ use App\Models\Menu;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class MenuController extends Controller
@@ -69,16 +71,25 @@ class MenuController extends Controller
             'category' => 'required|in:food,beverage',
             'availability' => 'sometimes|in:available,unavailable',
             'description' => 'nullable|string|max:500',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
         try {
-            $menu = DB::transaction(function () use ($validated) {
+            $imageFilename = null;
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $imageFilename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('menus', $imageFilename, 'public');
+            }
+
+            $menu = DB::transaction(function () use ($validated, $imageFilename) {
                 return Menu::create([
                     'name' => $validated['name'],
                     'price' => $validated['price'],
                     'category' => $validated['category'],
                     'availability' => $validated['availability'] ?? 'available',
                     'description' => $validated['description'] ?? null,
+                    'image' => $imageFilename,
                 ]);
             });
 
@@ -115,9 +126,26 @@ class MenuController extends Controller
             'category' => 'required|in:food,beverage',
             'availability' => 'sometimes|in:available,unavailable',
             'description' => 'nullable|string|max:500',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'remove_image' => 'sometimes|boolean',
         ]);
 
         try {
+            if ($request->boolean('remove_image') && $menu->image) {
+                Storage::disk('public')->delete('menus/' . $menu->image);
+                $validated['image'] = null;
+            } elseif ($request->hasFile('image')) {
+                if ($menu->image) {
+                    Storage::disk('public')->delete('menus/' . $menu->image);
+                }
+                $file = $request->file('image');
+                $imageFilename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('menus', $imageFilename, 'public');
+                $validated['image'] = $imageFilename;
+            } else {
+                unset($validated['image']);
+            }
+
             $menu->update($validated);
 
             return response()->json([

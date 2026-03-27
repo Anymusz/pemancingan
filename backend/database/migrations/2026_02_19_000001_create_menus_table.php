@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->enum('category', ['food', 'beverage']);
             $table->enum('availability', ['available', 'unavailable'])->default('available');
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

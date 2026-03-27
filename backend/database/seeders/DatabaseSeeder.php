@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             TransactionItemSeeder::class,
             VoucherSeeder::class,
             NotificationSeeder::class,
+            RentalItemSeeder::class,
         ]);
     }
 }

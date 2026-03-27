@@ -23,6 +23,8 @@ use App\Http\Controllers\Api\Owner\FishStockController as OwnerFishStockControll
 use App\Http\Controllers\Api\Owner\VoucherController as OwnerVoucherController;
 use App\Http\Controllers\Api\Owner\VoucherConfigController as OwnerVoucherConfigController;
 use App\Http\Controllers\Api\Owner\ReportController as OwnerReportController;
+use App\Http\Controllers\Api\Owner\RentalItemController as OwnerRentalItemController;
+use App\Http\Controllers\Api\Employee\RentalItemController as EmployeeRentalItemController;
 
 // ========================================
 // PUBLIC ROUTES
@@ -127,6 +129,13 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     Route::get('/reports/transactions', [OwnerReportController::class, 'transactions']);
     Route::get('/reports/export', [OwnerReportController::class, 'export']);
     Route::get('/reports/stock-summary', [OwnerReportController::class, 'stockSummary']);
+
+    // Rental Item Management
+    Route::get('/rental-items', [OwnerRentalItemController::class, 'index']);
+    Route::post('/rental-items', [OwnerRentalItemController::class, 'store']);
+    Route::put('/rental-items/{id}', [OwnerRentalItemController::class, 'update']);
+    Route::delete('/rental-items/{id}', [OwnerRentalItemController::class, 'destroy']);
+    Route::patch('/rental-items/{id}/toggle-active', [OwnerRentalItemController::class, 'toggleActive']);
 });
 
 // ========================================
@@ -161,4 +170,8 @@ Route::prefix('employee')->middleware(['auth:sanctum', 'role:employee'])->group(
 
     // Fish Stocks
     Route::get('/fish-stocks', [EmployeeFishStockController::class, 'index']);
+
+    // Rental Items
+    Route::get('/rental-items', [EmployeeRentalItemController::class, 'index']);
+    Route::patch('/rental-items/{id}/toggle-active', [EmployeeRentalItemController::class, 'toggleActive']);
 });

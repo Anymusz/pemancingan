@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Arrival;
 use App\Models\Menu;
 use App\Models\PendingOrder;
+use App\Models\RentalItem;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -27,25 +28,25 @@ class PendingOrderController extends Controller
             ->orderBy('created_at', 'asc')
             ->get()
             ->map(fn($o) => [
-                'id' => $o->id,
-                'arrival_id' => $o->arrival_id,
-                'member_name' => $o->arrival?->member?->user?->name ?? '-',
-                'item_type' => $o->item_type,
-                'item_name_snapshot' => $o->item_name_snapshot,
-                'quantity' => $o->quantity,
+                'id'                  => $o->id,
+                'arrival_id'          => $o->arrival_id,
+                'member_name'         => $o->arrival?->member?->user?->name ?? '-',
+                'item_type'           => $o->item_type,
+                'item_name_snapshot'  => $o->item_name_snapshot,
+                'quantity'            => $o->quantity,
                 'unit_price_snapshot' => $o->unit_price_snapshot,
-                'subtotal' => $o->subtotal,
-                'order_source' => $o->order_source,
-                'production_status' => $o->production_status,
+                'subtotal'            => $o->subtotal,
+                'order_source'        => $o->order_source,
+                'production_status'   => $o->production_status,
                 'cancellation_reason' => $o->cancellation_reason,
-                'created_at' => $o->created_at,
+                'created_at'          => $o->created_at,
             ]);
 
         return response()->json([
             'success' => true,
-            'data' => [
+            'data'    => [
                 'orders' => $orders,
-                'total' => $orders->count(),
+                'total'  => $orders->count(),
             ],
         ]);
     }
@@ -56,7 +57,7 @@ class PendingOrderController extends Controller
     public function updateStatus(Request $request, int $id): JsonResponse
     {
         $request->validate([
-            'status' => 'required|in:pending,done,cancelled',
+            'status'              => 'required|in:pending,done,cancelled',
             'cancellation_reason' => 'required_if:status,cancelled|nullable|string|max:255',
         ]);
 
@@ -73,17 +74,17 @@ class PendingOrderController extends Controller
             ], 422);
         }
 
-        $order->production_status = $request->status;
+        $order->production_status   = $request->status;
         $order->cancellation_reason = $request->status === 'cancelled' ? $request->cancellation_reason : null;
         $order->save();
 
         return response()->json([
             'success' => true,
             'message' => 'Status order berhasil diperbarui',
-            'data' => [
+            'data'    => [
                 'order' => [
-                    'id' => $order->id,
-                    'production_status' => $order->production_status,
+                    'id'                  => $order->id,
+                    'production_status'   => $order->production_status,
                     'cancellation_reason' => $order->cancellation_reason,
                 ],
             ],
@@ -96,11 +97,11 @@ class PendingOrderController extends Controller
     public function store(Request $request): JsonResponse
     {
         $request->validate([
-            'arrival_id' => 'required|integer|exists:arrivals,id',
-            'items' => 'required|array|min:1',
+            'arrival_id'        => 'required|integer|exists:arrivals,id',
+            'items'             => 'required|array|min:1',
             'items.*.item_type' => 'required|in:menu,rental',
-            'items.*.item_id' => 'required_if:items.*.item_type,menu|nullable|integer|exists:menus,id',
-            'items.*.quantity' => 'required|integer|min:1',
+            'items.*.item_id'   => 'nullable|integer',
+            'items.*.quantity'  => 'required|integer|min:1',
         ]);
 
         $arrival = Arrival::find($request->arrival_id);
@@ -121,11 +122,19 @@ class PendingOrderController extends Controller
 
         $createdOrders = [];
 
-        foreach ($request->items as $item) {
-            $itemName = '';
+        foreach ($request->items as $index => $item) {
+            $itemName  = '';
             $unitPrice = 0;
+            $itemId    = null;
 
             if ($item['item_type'] === 'menu') {
+                if (empty($item['item_id'])) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => "items.{$index}.item_id wajib diisi untuk item_type menu",
+                    ], 422);
+                }
+
                 $menu = Menu::whereNull('deleted_at')
                     ->where('availability', 'available')
                     ->find($item['item_id']);
@@ -137,42 +146,67 @@ class PendingOrderController extends Controller
                     ], 422);
                 }
 
-                $itemName = $menu->name;
+                $itemName  = $menu->name;
                 $unitPrice = $menu->price;
+                $itemId    = $menu->id;
 
             } elseif ($item['item_type'] === 'rental') {
-                $itemName = 'Sewa Alat Pancing';
-                $unitPrice = config('rental.fishing_rod_price');
+                if (empty($item['item_id'])) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => "items.{$index}.item_id wajib diisi untuk item_type rental",
+                    ], 422);
+                }
+
+                $rentalItem = RentalItem::find($item['item_id']);
+
+                if (!$rentalItem) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Rental item tidak ditemukan',
+                    ], 422);
+                }
+
+                if (!$rentalItem->is_active) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => "Rental item '{$rentalItem->name}' tidak aktif",
+                    ], 422);
+                }
+
+                $itemName  = $rentalItem->name;
+                $unitPrice = $rentalItem->price_per_unit;
+                $itemId    = $rentalItem->id;
             }
 
             $subtotal = $item['quantity'] * $unitPrice;
 
             $order = PendingOrder::create([
-                'arrival_id' => $arrival->id,
-                'item_type' => $item['item_type'],
-                'item_id' => $item['item_type'] === 'menu' ? $item['item_id'] : null,
-                'item_name_snapshot' => $itemName,
-                'quantity' => $item['quantity'],
+                'arrival_id'          => $arrival->id,
+                'item_type'           => $item['item_type'],
+                'item_id'             => $itemId,
+                'item_name_snapshot'  => $itemName,
+                'quantity'            => $item['quantity'],
                 'unit_price_snapshot' => $unitPrice,
-                'subtotal' => $subtotal,
-                'payment_status' => 'unpaid',
-                'order_source' => 'manual',
-                'created_by' => $request->user()->id,
+                'subtotal'            => $subtotal,
+                'payment_status'      => 'unpaid',
+                'order_source'        => 'manual',
+                'created_by'          => $request->user()->id,
             ]);
 
             $createdOrders[] = [
-                'id' => $order->id,
+                'id'        => $order->id,
                 'item_type' => $order->item_type,
-                'name' => $order->item_name_snapshot,
-                'quantity' => $order->quantity,
-                'subtotal' => $order->subtotal,
+                'name'      => $order->item_name_snapshot,
+                'quantity'  => $order->quantity,
+                'subtotal'  => $order->subtotal,
             ];
         }
 
         return response()->json([
             'success' => true,
             'message' => 'Order berhasil ditambahkan',
-            'data' => [
+            'data'    => [
                 'orders' => $createdOrders,
             ],
         ], 201);
@@ -193,22 +227,22 @@ class PendingOrderController extends Controller
             ->where('payment_status', 'unpaid')
             ->get()
             ->map(fn($o) => [
-                'id' => $o->id,
-                'item_type' => $o->item_type,
-                'name' => $o->item_name_snapshot,
-                'quantity' => $o->quantity,
+                'id'         => $o->id,
+                'item_type'  => $o->item_type,
+                'name'       => $o->item_name_snapshot,
+                'quantity'   => $o->quantity,
                 'unit_price' => $o->unit_price_snapshot,
-                'subtotal' => $o->subtotal,
-                'source' => $o->order_source,
+                'subtotal'   => $o->subtotal,
+                'source'     => $o->order_source,
             ]);
 
         return response()->json([
             'success' => true,
-            'data' => [
-                'arrival_id' => $arrivalId,
+            'data'    => [
+                'arrival_id'     => $arrivalId,
                 'arrival_status' => $arrival->status,
-                'orders' => $orders,
-                'total' => $orders->sum('subtotal'),
+                'orders'         => $orders,
+                'total'          => $orders->sum('subtotal'),
             ],
         ]);
     }
