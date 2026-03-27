@@ -6,6 +6,7 @@ import MemberManagement from "./MemberManagement";
 import OwnerLeaderboard from "./OwnerLeaderboard";
 import MenuManagement from "./MenuManagement";
 import FishTypeManagement from "./FishTypeManagement";
+import RentalManagement from "./RentalManagement";
 import EventManagement from "./event-management/EventManagement";
 import VoucherManagement from "./VoucherManagement";
 import FinancialReport from "./FinancialReport";
@@ -23,6 +24,7 @@ import {
   BarChart3,
   Ticket,
   Trophy,
+  Package,
 } from "lucide-react";
 
 const OwnerDashboard = () => {
@@ -68,6 +70,7 @@ const OwnerDashboard = () => {
       items: [
         { key: "menus", label: "Menu", icon: UtensilsCrossed },
         { key: "fish-types", label: "Fish Types", icon: Fish },
+        { key: "rental-items", label: "Rental Items", icon: Package },
         { key: "events", label: "Events & Info", icon: CalendarDays },
       ],
     },
@@ -97,6 +100,7 @@ const OwnerDashboard = () => {
       {activeMenu === "leaderboard" && <OwnerLeaderboard />}
       {activeMenu === "menus" && <MenuManagement />}
       {activeMenu === "fish-types" && <FishTypeManagement />}
+      {activeMenu === "rental-items" && <RentalManagement />}
       {activeMenu === "events" && <EventManagement />}
       {activeMenu === "vouchers" && <VoucherManagement />}
       {activeMenu === "financial-report" && <FinancialReport />}

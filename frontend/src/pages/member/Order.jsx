@@ -1,6 +1,6 @@
 // File: src/pages/member/Order.jsx
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import memberService from "../../services/memberService";
 import { useToast } from "@/hooks/useToast";
 import { formatCurrency } from "@/utils/utils";
@@ -8,10 +8,11 @@ import { DataTable } from "@/components/common/DataTable";
 import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/FormInput";
 import { StatusBadge } from "@/components/common/StatusBadge";
+import { imageCell } from "@/components/common/ImageCell";
 
 const Order = () => {
   const [menus, setMenus] = useState([]);
-  const [quantities, setQuantities] = useState({}); // { menu_id: qty }
+  const [quantities, setQuantities] = useState({});
   const [fetchLoading, setFetchLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [myOrders, setMyOrders] = useState([]);
@@ -122,57 +123,61 @@ const Order = () => {
   };
 
   // ==================== COLUMN DEFINITIONS ====================
-  const menuColumns = [
-    { key: "name", header: "Nama", render: (row) => row.name },
-    { key: "category", header: "Kategori", render: (row) => row.category },
-    {
-      key: "price",
-      header: "Harga",
-      render: (row) => formatCurrency(row.price),
-    },
-    {
-      key: "qty",
-      header: "Qty",
-      render: (row) => {
-        const qty = quantities[row.id] || 0;
-        return (
-          <div className="flex items-center gap-1">
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-7 w-7 p-0"
-              onClick={() => decrement(row.id)}
-            >
-              −
-            </Button>
-            <Input
-              type="number"
-              min="0"
-              value={qty}
-              onChange={(e) => handleQtyChange(row.id, e.target.value)}
-              className="w-14 text-center h-7 px-1"
-            />
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-7 w-7 p-0"
-              onClick={() => increment(row.id)}
-            >
-              +
-            </Button>
-          </div>
-        );
+  const menuColumns = useMemo(
+    () => [
+      imageCell,
+      { key: "name", header: "Nama", render: (row) => row.name },
+      { key: "category", header: "Kategori", render: (row) => row.category },
+      {
+        key: "price",
+        header: "Harga",
+        render: (row) => formatCurrency(row.price),
       },
-    },
-    {
-      key: "subtotal",
-      header: "Subtotal",
-      render: (row) => {
-        const qty = quantities[row.id] || 0;
-        return qty > 0 ? formatCurrency(qty * row.price) : "-";
+      {
+        key: "qty",
+        header: "Qty",
+        render: (row) => {
+          const qty = quantities[row.id] || 0;
+          return (
+            <div className="flex items-center gap-1">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 w-7 p-0"
+                onClick={() => decrement(row.id)}
+              >
+                −
+              </Button>
+              <Input
+                type="number"
+                min="0"
+                value={qty}
+                onChange={(e) => handleQtyChange(row.id, e.target.value)}
+                className="w-14 text-center h-7 px-1"
+              />
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 w-7 p-0"
+                onClick={() => increment(row.id)}
+              >
+                +
+              </Button>
+            </div>
+          );
+        },
       },
-    },
-  ];
+      {
+        key: "subtotal",
+        header: "Subtotal",
+        render: (row) => {
+          const qty = quantities[row.id] || 0;
+          return qty > 0 ? formatCurrency(qty * row.price) : "-";
+        },
+      },
+    ],
+    [quantities],
+  );
 
   const orderColumns = [
     {
@@ -238,14 +243,18 @@ const Order = () => {
             {selectedItems.map((item) => (
               <p key={item.menu_id} className="text-sm text-foreground">
                 {item.name} × {item.quantity} ={" "}
-                <span className="font-medium">{formatCurrency(item.subtotal)}</span>
+                <span className="font-medium">
+                  {formatCurrency(item.subtotal)}
+                </span>
               </p>
             ))}
           </div>
           <div className="border-t border-border pt-3 flex items-center justify-between">
             <p className="font-semibold text-foreground">
               Total:{" "}
-              <span className="text-primary">{formatCurrency(totalAmount)}</span>
+              <span className="text-primary">
+                {formatCurrency(totalAmount)}
+              </span>
               <span className="text-muted-foreground font-normal text-sm ml-1">
                 (dibayar saat checkout)
               </span>
@@ -273,7 +282,9 @@ const Order = () => {
           <div className="border-t border-border pt-3 space-y-1">
             <p className="font-semibold text-foreground">
               Total Sementara:{" "}
-              <span className="text-primary">{formatCurrency(unpaidTotal)}</span>
+              <span className="text-primary">
+                {formatCurrency(unpaidTotal)}
+              </span>
             </p>
             <p className="text-sm text-muted-foreground">
               *Estimasi tagihan pesanan saat checkout nanti

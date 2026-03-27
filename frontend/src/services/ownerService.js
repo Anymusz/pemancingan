@@ -69,35 +69,6 @@ const ownerService = {
     return response.data;
   },
 
-  // ==================== MENU MANAGEMENT ====================
-
-  getMenus: async (filters = {}) => {
-    const response = await api.get("/owner/menus", { params: filters });
-    return response.data;
-  },
-
-  createMenu: async (data) => {
-    const response = await api.post("/owner/menus", data);
-    return response.data;
-  },
-
-  updateMenu: async (id, data) => {
-    const response = await api.put(`/owner/menus/${id}`, data);
-    return response.data;
-  },
-
-  deleteMenu: async (id) => {
-    const response = await api.delete(`/owner/menus/${id}`);
-    return response.data;
-  },
-
-  toggleMenuAvailability: async (id, availability) => {
-    const response = await api.patch(`/owner/menus/${id}/availability`, {
-      availability,
-    });
-    return response.data;
-  },
-
   // ==================== FISH TYPE MANAGEMENT ====================
 
   getOwnerFishTypes: async (filters = {}) => {

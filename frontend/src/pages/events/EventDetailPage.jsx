@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getEventDetail } from "@/services/eventService";
+import ImageLightbox from "@/components/common/ImageLightbox";
 
 const STATUS_LABELS = {
   ongoing: { text: "Berlangsung", color: "bg-green-100 text-green-700" },
@@ -32,14 +33,7 @@ export default function EventDetailPage() {
   const [error, setError] = useState(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  // Close lightbox on ESC
-  useEffect(() => {
-    const handler = (e) => {
-      if (e.key === "Escape") setLightboxOpen(false);
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, []);
+
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -182,20 +176,13 @@ export default function EventDetailPage() {
         </div>
       </div>
 
-      {/* Lightbox — di luar semua container */}
-      {lightboxOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 cursor-zoom-out"
-          onClick={() => setLightboxOpen(false)}
-        >
-          <img
-            src={event.image_url || placeholderImage}
-            alt={event.title}
-            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+      {/* Lightbox */}
+      <ImageLightbox
+        open={lightboxOpen}
+        src={event.image_url || placeholderImage}
+        alt={event.title}
+        onClose={() => setLightboxOpen(false)}
+      />
     </>
   );
 }

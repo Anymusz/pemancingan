@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import employeeService from "../../services/employeeService";
+import rentalService from "../../services/rentalService";
 import { useToast } from "@/hooks/useToast";
 import { formatCurrency } from "@/utils/utils";
 import { DataTable } from "@/components/common/DataTable";
 import { StatusBadge } from "@/components/common/StatusBadge";
+import { imageCell } from "@/components/common/ImageCell";
 
 // ==================== COLUMN DEFINITIONS ====================
 
 const menuColumns = [
+  imageCell,
   {
     key: "name",
     header: "Nama",
@@ -44,6 +47,32 @@ const fishStockColumns = [
   },
 ];
 
+const rentalColumns = [
+  imageCell,
+  {
+    key: "name",
+    header: "Nama Item",
+    render: (row) => <span className="font-medium">{row.name}</span>,
+  },
+  {
+    key: "unit_label",
+    header: "Satuan",
+    render: (row) => row.unit_label,
+  },
+  {
+    key: "price_per_unit",
+    header: "Harga",
+    render: (row) => formatCurrency(row.price_per_unit),
+  },
+  {
+    key: "is_active",
+    header: "Status",
+    render: (row) => (
+      <StatusBadge status={row.is_active ? "active" : "deactivated"} />
+    ),
+  },
+];
+
 // ==================== COMPONENT ====================
 
 export default function MenuAvailability() {
@@ -52,6 +81,9 @@ export default function MenuAvailability() {
   const [actionLoading, setActionLoading] = useState({});
   const [fishStocks, setFishStocks] = useState([]);
   const [fishStocksLoading, setFishStocksLoading] = useState(true);
+  const [rentalItems, setRentalItems] = useState([]);
+  const [rentalLoading, setRentalLoading] = useState(true);
+  const [rentalActionLoading, setRentalActionLoading] = useState({});
   const toast = useToast();
 
   useEffect(() => {
@@ -77,8 +109,18 @@ export default function MenuAvailability() {
       }
     };
 
-    fetchMenus();
-    fetchFishStocks();
+    const fetchRentalItems = async () => {
+      try {
+        const res = await rentalService.getActiveRentalItems();
+        setRentalItems(res.data?.rental_items ?? []);
+      } catch {
+        toast.error("Gagal memuat data rental item");
+      } finally {
+        setRentalLoading(false);
+      }
+    };
+
+    Promise.all([fetchMenus(), fetchRentalItems(), fetchFishStocks()]);
   }, [toast]);
 
   const handleToggle = async (menuId) => {
@@ -95,6 +137,23 @@ export default function MenuAvailability() {
       toast.error("Gagal mengubah status menu");
     } finally {
       setActionLoading((prev) => ({ ...prev, [menuId]: false }));
+    }
+  };
+
+  const handleToggleRental = async (itemId) => {
+    setRentalActionLoading((prev) => ({ ...prev, [itemId]: true }));
+    try {
+      await rentalService.employeeToggleRentalActive(itemId);
+      setRentalItems((prev) =>
+        prev.map((i) =>
+          i.id === itemId ? { ...i, is_active: !i.is_active } : i,
+        ),
+      );
+      toast.success("Status rental item berhasil diubah");
+    } catch {
+      toast.error("Gagal mengubah status rental item");
+    } finally {
+      setRentalActionLoading((prev) => ({ ...prev, [itemId]: false }));
     }
   };
 
@@ -122,6 +181,33 @@ export default function MenuAvailability() {
                   row.availability === "available" ? "danger" : "default",
                 onClick: () => handleToggle(row.id),
                 loading: actionLoading[row.id],
+              },
+            ]}
+          />
+        )}
+      </section>
+
+      {/* ===== Rental Items ===== */}
+      <section className="space-y-4">
+        <h2 className="text-lg font-semibold text-foreground">
+          🎣 Ketersediaan Rental
+        </h2>
+        {rentalLoading ? (
+          <p className="text-sm text-muted-foreground">Memuat rental item...</p>
+        ) : rentalItems.length === 0 ? (
+          <p className="text-sm text-muted-foreground">
+            Tidak ada data rental item.
+          </p>
+        ) : (
+          <DataTable
+            columns={rentalColumns}
+            data={rentalItems}
+            getRowActions={(row) => [
+              {
+                label: row.is_active ? "Nonaktifkan" : "Aktifkan",
+                variant: row.is_active ? "danger" : "default",
+                onClick: () => handleToggleRental(row.id),
+                loading: rentalActionLoading[row.id],
               },
             ]}
           />

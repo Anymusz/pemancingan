@@ -1,7 +1,7 @@
-// File: src/pages/owner/MenuManagement.jsx
+// File: src/pages/owner/RentalManagement.jsx
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import menuService from "../../services/menuService";
+import rentalService from "../../services/rentalService";
 import { useToast } from "@/hooks/useToast";
 import { formatCurrency } from "@/utils/utils";
 import FormDialog from "../../components/common/FormDialog";
@@ -10,36 +10,23 @@ import { DataTable } from "../../components/common/DataTable";
 import { StatusBadge } from "../../components/common/StatusBadge";
 import { Input } from "../../components/common/FormInput";
 import { Label } from "../../components/common/FormLabel";
-import { FormSelect } from "@/components/common/FormSelect";
-import { Textarea } from "../../components/common/FormTextarea";
 import { Button } from "@/components/common/Button";
+import { Textarea } from "../../components/common/FormTextarea";
 import { ImageOff } from "lucide-react";
 import { imageCell } from "@/components/common/ImageCell";
 
-const CATEGORY_OPTIONS = [
-  { value: "food", label: "Makanan" },
-  { value: "beverage", label: "Minuman" },
-];
-
-const AVAILABILITY_OPTIONS = [
-  { value: "available", label: "Tersedia" },
-  { value: "unavailable", label: "Tidak Tersedia" },
-];
-
-const MenuManagement = () => {
-  const [menus, setMenus] = useState([]);
+const RentalManagement = () => {
+  const [items, setItems] = useState([]);
   const [summary, setSummary] = useState({
     total: 0,
-    available_count: 0,
-    unavailable_count: 0,
+    active_count: 0,
+    inactive_count: 0,
   });
   const [loading, setLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const toast = useToast();
 
   const [filters, setFilters] = useState({
-    category: "",
-    availability: "",
     search: "",
     include_deleted: false,
   });
@@ -50,14 +37,13 @@ const MenuManagement = () => {
     form: false,
     delete: false,
     mode: "add", // 'add' | 'edit'
-    selectedMenu: null,
+    selectedItem: null,
   });
 
   const [form, setForm] = useState({
     name: "",
-    price: "",
-    category: "food",
-    availability: "available",
+    price_per_unit: "",
+    unit_label: "",
     description: "",
   });
   const [formErrors, setFormErrors] = useState({});
@@ -69,28 +55,25 @@ const MenuManagement = () => {
   const fileInputRef = useRef(null);
 
   // ---- Fetch ----
-  const fetchMenus = useCallback(
+  const fetchItems = useCallback(
     async (currentFilters) => {
       setLoading(true);
       try {
         const params = {};
-        if (currentFilters.category) params.category = currentFilters.category;
-        if (currentFilters.availability)
-          params.availability = currentFilters.availability;
         if (currentFilters.search) params.search = currentFilters.search;
         if (currentFilters.include_deleted) params.include_deleted = true;
 
-        const res = await menuService.getMenus(params);
+        const res = await rentalService.getRentalItems(params);
         if (res.success) {
-          setMenus(res.data.menus);
+          setItems(res.data.rental_items);
           setSummary({
             total: res.data.total,
-            available_count: res.data.available_count,
-            unavailable_count: res.data.unavailable_count,
+            active_count: res.data.active_count,
+            inactive_count: res.data.inactive_count,
           });
         }
       } catch {
-        toast.error("Gagal memuat data menu");
+        toast.error("Gagal memuat data rental item");
       } finally {
         setLoading(false);
       }
@@ -99,8 +82,8 @@ const MenuManagement = () => {
   );
 
   useEffect(() => {
-    fetchMenus(filters);
-  }, [filters, fetchMenus]);
+    fetchItems(filters);
+  }, [filters, fetchItems]);
 
   // ---- Filter Handlers ----
   const handleFilterChange = (key, value) => {
@@ -135,7 +118,7 @@ const MenuManagement = () => {
       return;
     }
     if (file.size > 5 * 1024 * 1024) {
-      toast.error("Ukuran gambar maksimal 5MB");
+      toast.error("Ukuran gambar maksimal 5 MB");
       return;
     }
     setImageFile(file);
@@ -155,48 +138,41 @@ const MenuManagement = () => {
 
   // ---- Modal Handlers ----
   const openAddModal = () => {
-    setForm({
-      name: "",
-      price: "",
-      category: "food",
-      availability: "available",
-      description: "",
-    });
+    setForm({ name: "", price_per_unit: "", unit_label: "", description: "" });
     setFormErrors({});
     resetImageState();
     setModalState({
       form: true,
       delete: false,
       mode: "add",
-      selectedMenu: null,
+      selectedItem: null,
     });
   };
 
-  const openEditModal = (menu) => {
+  const openEditModal = (item) => {
     setForm({
-      name: menu.name,
-      price: menu.price,
-      category: menu.category,
-      availability: menu.availability,
-      description: menu.description || "",
+      name: item.name,
+      price_per_unit: item.price_per_unit,
+      unit_label: item.unit_label,
+      description: item.description || "",
     });
     setFormErrors({});
     resetImageState();
-    if (menu.image_url) setImagePreview(menu.image_url);
+    if (item.image_url) setImagePreview(item.image_url);
     setModalState({
       form: true,
       delete: false,
       mode: "edit",
-      selectedMenu: menu,
+      selectedItem: item,
     });
   };
 
-  const openDeleteModal = (menu) => {
+  const openDeleteModal = (item) => {
     setModalState({
       form: false,
       delete: true,
       mode: "edit",
-      selectedMenu: menu,
+      selectedItem: item,
     });
   };
 
@@ -206,7 +182,7 @@ const MenuManagement = () => {
       form: false,
       delete: false,
       mode: "add",
-      selectedMenu: null,
+      selectedItem: null,
     });
   };
 
@@ -215,12 +191,15 @@ const MenuManagement = () => {
     const errors = {};
     if (!form.name.trim()) errors.name = "Nama wajib diisi";
     else if (form.name.length > 100) errors.name = "Nama maksimal 100 karakter";
-    if (form.price === "" || form.price === null)
-      errors.price = "Harga wajib diisi";
-    else if (Number(form.price) < 0) errors.price = "Harga tidak boleh negatif";
-    if (!form.category) errors.category = "Kategori wajib dipilih";
-    if (form.description && form.description.length > 500)
-      errors.description = "Maks 500 karakter";
+    if (form.price_per_unit === "" || form.price_per_unit === null)
+      errors.price_per_unit = "Harga wajib diisi";
+    else if (Number(form.price_per_unit) < 1000)
+      errors.price_per_unit = "Harga minimal Rp 1.000";
+    if (!form.unit_label.trim()) errors.unit_label = "Satuan wajib diisi";
+    else if (form.unit_label.length > 50)
+      errors.unit_label = "Satuan maksimal 50 karakter";
+    if (form.description && form.description.length > 1000)
+      errors.description = "Maks 1000 karakter";
     return errors;
   };
 
@@ -234,9 +213,8 @@ const MenuManagement = () => {
 
     const formData = new FormData();
     formData.append("name", form.name);
-    formData.append("price", form.price);
-    formData.append("category", form.category);
-    formData.append("availability", form.availability);
+    formData.append("price_per_unit", form.price_per_unit);
+    formData.append("unit_label", form.unit_label);
     formData.append("description", form.description || "");
     if (imageFile) {
       formData.append("image", imageFile);
@@ -247,16 +225,21 @@ const MenuManagement = () => {
     setSubmitLoading(true);
     try {
       if (modalState.mode === "edit") {
-        await menuService.updateMenu(modalState.selectedMenu.id, formData);
-        toast.success("Menu berhasil diperbarui");
+        await rentalService.updateRentalItem(
+          modalState.selectedItem.id,
+          formData,
+        );
+        toast.success("Rental item berhasil diperbarui");
       } else {
-        await menuService.createMenu(formData);
-        toast.success("Menu berhasil ditambahkan");
+        await rentalService.createRentalItem(formData);
+        toast.success("Rental item berhasil ditambahkan");
       }
       closeModals();
-      fetchMenus(filters);
+      fetchItems(filters);
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Gagal menyimpan menu");
+      toast.error(
+        err?.response?.data?.message || "Gagal menyimpan rental item",
+      );
     } finally {
       setSubmitLoading(false);
     }
@@ -265,64 +248,67 @@ const MenuManagement = () => {
   const handleDelete = async () => {
     setSubmitLoading(true);
     try {
-      await menuService.deleteMenu(modalState.selectedMenu.id);
-      toast.success("Menu berhasil dihapus");
+      await rentalService.deleteRentalItem(modalState.selectedItem.id);
+      toast.success("Rental item berhasil dihapus");
       closeModals();
-      fetchMenus(filters);
+      fetchItems(filters);
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Gagal menghapus menu");
+      toast.error(
+        err?.response?.data?.message || "Gagal menghapus rental item",
+      );
     } finally {
       setSubmitLoading(false);
     }
   };
 
-  const handleToggleAvailability = async (menu) => {
-    const newAvailability =
-      menu.availability === "available" ? "unavailable" : "available";
+  const handleToggleActive = async (item) => {
+    const newActive = !item.is_active;
     // Optimistic update
-    setMenus((prev) =>
-      prev.map((m) =>
-        m.id === menu.id ? { ...m, availability: newAvailability } : m,
-      ),
+    setItems((prev) =>
+      prev.map((i) => (i.id === item.id ? { ...i, is_active: newActive } : i)),
     );
     try {
-      await menuService.toggleMenuAvailability(menu.id, newAvailability);
-      toast.success(`Status "${menu.name}" berhasil diubah`);
+      await rentalService.toggleRentalActive(item.id);
+      toast.success(`Status "${item.name}" berhasil diubah`);
     } catch {
       // Revert
-      setMenus((prev) =>
-        prev.map((m) =>
-          m.id === menu.id ? { ...m, availability: menu.availability } : m,
+      setItems((prev) =>
+        prev.map((i) =>
+          i.id === item.id ? { ...i, is_active: item.is_active } : i,
         ),
       );
-      toast.error("Gagal mengubah status ketersediaan");
+      toast.error("Gagal mengubah status rental item");
     }
   };
 
-  // ---- Column & Action definitions ----
-  const menuColumns = [
+  // ---- Column definitions ----
+  const columns = [
     imageCell,
     { key: "name", header: "Nama", render: (row) => row.name },
     {
-      key: "category",
-      header: "Kategori",
-      render: (row) => (row.category === "food" ? "Makanan" : "Minuman"),
-    },
-    {
-      key: "price",
+      key: "price_per_unit",
       header: "Harga",
-      render: (row) => formatCurrency(row.price),
+      render: (row) => formatCurrency(row.price_per_unit),
     },
     {
-      key: "availability",
-      header: "Ketersediaan",
-      render: (row) =>
-        row.deleted_at ? "Dihapus" : <StatusBadge status={row.availability} />,
+      key: "unit_label",
+      header: "Satuan",
+      render: (row) => row.unit_label,
     },
     {
       key: "description",
       header: "Deskripsi",
       render: (row) => row.description || "-",
+    },
+    {
+      key: "is_active",
+      header: "Status",
+      render: (row) =>
+        row.deleted_at ? (
+          "Dihapus"
+        ) : (
+          <StatusBadge status={row.is_active ? "active" : "deactivated"} />
+        ),
     },
   ];
 
@@ -330,7 +316,7 @@ const MenuManagement = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold text-foreground mb-4">
-        Manajemen Menu
+        Manajemen Rental Item
       </h1>
 
       {/* Summary */}
@@ -339,16 +325,16 @@ const MenuManagement = () => {
           Total: <strong>{summary.total}</strong>
         </span>
         <span>
-          Tersedia: <strong>{summary.available_count}</strong>
+          Aktif: <strong>{summary.active_count}</strong>
         </span>
         <span>
-          Tidak Tersedia: <strong>{summary.unavailable_count}</strong>
+          Nonaktif: <strong>{summary.inactive_count}</strong>
         </span>
       </div>
 
       {/* Actions */}
       <Button onClick={openAddModal} className="mb-4">
-        + Tambah Menu
+        + Tambah Rental Item
       </Button>
 
       {/* Filters */}
@@ -357,32 +343,8 @@ const MenuManagement = () => {
           type="text"
           value={searchInput}
           onChange={handleSearchChange}
-          placeholder="Cari nama menu..."
+          placeholder="Cari nama item..."
           className="w-48"
-        />
-        <FormSelect
-          value={filters.category || "all"}
-          onValueChange={(val) =>
-            handleFilterChange("category", val === "all" ? "" : val)
-          }
-          className="w-40"
-          placeholder="Semua Kategori"
-          options={[
-            { value: "all", label: "Semua Kategori" },
-            ...CATEGORY_OPTIONS,
-          ]}
-        />
-        <FormSelect
-          value={filters.availability || "all"}
-          onValueChange={(val) =>
-            handleFilterChange("availability", val === "all" ? "" : val)
-          }
-          className="w-40"
-          placeholder="Semua Status"
-          options={[
-            { value: "all", label: "Semua Status" },
-            ...AVAILABILITY_OPTIONS,
-          ]}
         />
         <label className="flex items-center gap-2 text-sm text-muted-foreground">
           <input
@@ -399,16 +361,16 @@ const MenuManagement = () => {
 
       {/* Table */}
       <DataTable
-        columns={menuColumns}
-        data={menus}
+        columns={columns}
+        data={items}
         loading={loading}
-        emptyMessage="Belum ada menu"
+        emptyMessage="Belum ada rental item"
         getRowActions={(row) => {
           if (row.deleted_at) return [];
           return [
             {
-              label: "Ubah Ketersediaan",
-              onClick: () => handleToggleAvailability(row),
+              label: row.is_active ? "Nonaktifkan" : "Aktifkan",
+              onClick: () => handleToggleActive(row),
             },
             { label: "Edit", onClick: () => openEditModal(row) },
             {
@@ -425,7 +387,9 @@ const MenuManagement = () => {
       <FormDialog
         open={modalState.form}
         onClose={closeModals}
-        title={modalState.mode === "edit" ? "Edit Menu" : "Tambah Menu"}
+        title={
+          modalState.mode === "edit" ? "Edit Rental Item" : "Tambah Rental Item"
+        }
         onSubmit={handleSubmit}
         loading={submitLoading}
         submitLabel={modalState.mode === "edit" ? "Simpan Perubahan" : "Tambah"}
@@ -444,47 +408,50 @@ const MenuManagement = () => {
             )}
           </div>
           <div className="grid gap-1.5">
-            <Label>Harga *</Label>
+            <Label>Harga per Satuan *</Label>
             <Input
               type="number"
-              min="0"
-              value={form.price}
+              min="1000"
+              value={form.price_per_unit}
               onChange={(e) =>
-                setForm((p) => ({ ...p, price: e.target.value }))
+                setForm((p) => ({ ...p, price_per_unit: e.target.value }))
               }
               disabled={submitLoading}
             />
-            {formErrors.price && (
-              <p className="text-xs text-destructive">{formErrors.price}</p>
+            {formErrors.price_per_unit && (
+              <p className="text-xs text-destructive">
+                {formErrors.price_per_unit}
+              </p>
             )}
           </div>
           <div className="grid gap-1.5">
-            <Label>Kategori *</Label>
-            <FormSelect
-              value={form.category}
-              onValueChange={(val) => setForm((p) => ({ ...p, category: val }))}
-              placeholder="Pilih Kategori"
-              options={CATEGORY_OPTIONS}
-              disabled={submitLoading}
-            />
-            {formErrors.category && (
-              <p className="text-xs text-destructive">{formErrors.category}</p>
-            )}
-          </div>
-          <div className="grid gap-1.5">
-            <Label>Ketersediaan</Label>
-            <FormSelect
-              value={form.availability}
-              onValueChange={(val) =>
-                setForm((p) => ({ ...p, availability: val }))
+            <Label>
+              Satuan *{" "}
+              <span className="text-muted-foreground font-normal">
+                (cth: jam, hari, unit)
+              </span>
+            </Label>
+            <Input
+              value={form.unit_label}
+              onChange={(e) =>
+                setForm((p) => ({ ...p, unit_label: e.target.value }))
               }
-              placeholder="Pilih Ketersediaan"
-              options={AVAILABILITY_OPTIONS}
               disabled={submitLoading}
+              placeholder="contoh: jam"
             />
+            {formErrors.unit_label && (
+              <p className="text-xs text-destructive">
+                {formErrors.unit_label}
+              </p>
+            )}
           </div>
           <div className="grid gap-1.5">
-            <Label>Deskripsi</Label>
+            <Label>
+              Deskripsi{" "}
+              <span className="text-muted-foreground font-normal">
+                (opsional)
+              </span>
+            </Label>
             <Textarea
               value={form.description}
               onChange={(e) =>
@@ -492,6 +459,7 @@ const MenuManagement = () => {
               }
               rows={3}
               disabled={submitLoading}
+              placeholder="Contoh: Kapasitas 6 orang, sewa per hari..."
             />
             {formErrors.description && (
               <p className="text-xs text-destructive">
@@ -542,11 +510,11 @@ const MenuManagement = () => {
 
       {/* Delete Modal */}
       <ConfirmDialog
-        open={modalState.delete && !!modalState.selectedMenu}
+        open={modalState.delete && !!modalState.selectedItem}
         onClose={closeModals}
         onConfirm={handleDelete}
         title="Konfirmasi Hapus"
-        description={`Hapus menu "${modalState.selectedMenu?.name}"? Tindakan ini tidak dapat dibatalkan.`}
+        description={`Hapus rental item "${modalState.selectedItem?.name}"? Tindakan ini tidak dapat dibatalkan.`}
         variant="destructive"
         confirmLabel="Ya, Hapus"
         cancelLabel="Batal"
@@ -556,4 +524,4 @@ const MenuManagement = () => {
   );
 };
 
-export default MenuManagement;
+export default RentalManagement;

@@ -2,27 +2,29 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import employeeService from "../../services/employeeService";
+import rentalService from "../../services/rentalService";
 import { useToast } from "@/hooks/useToast";
 import { formatDateTime, formatCurrency } from "@/utils/utils";
 import { DataTable } from "@/components/common/DataTable";
 import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/FormInput";
 import { SearchModal } from "@/components/common/SearchModal";
-
-const RENTAL_PRICE = 10000;
+import { imageCell } from "@/components/common/ImageCell";
 
 const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
   const [menus, setMenus] = useState([]);
+  const [rentalItems, setRentalItems] = useState([]);
   const [selectedArrival, setSelectedArrival] = useState(null);
 
   const [quantities, setQuantities] = useState({});
-  const [rentalQty, setRentalQty] = useState(0);
+  const [rentalQuantities, setRentalQuantities] = useState({});
 
   const [fetchLoading, setFetchLoading] = useState(false);
+  const [rentalLoading, setRentalLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const toast = useToast();
 
-  // ==================== FETCH MENUS ====================
+  // ==================== FETCH MENUS & RENTAL ITEMS ====================
   useEffect(() => {
     const fetchMenus = async () => {
       setFetchLoading(true);
@@ -35,7 +37,20 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
         setFetchLoading(false);
       }
     };
-    fetchMenus();
+
+    const fetchRentalItems = async () => {
+      setRentalLoading(true);
+      try {
+        const res = await rentalService.getActiveRentalItems();
+        if (res.success) setRentalItems(res.data.rental_items ?? []);
+      } catch {
+        toast.error("Gagal memuat rental item");
+      } finally {
+        setRentalLoading(false);
+      }
+    };
+
+    Promise.all([fetchMenus(), fetchRentalItems()]);
   }, [toast]);
 
   // ==================== PRESELECT ARRIVAL (FROM PROPS) ====================
@@ -63,7 +78,6 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
       }
     };
     doPreselect();
-    // Only run once when preselectArrivalId changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preselectArrivalId]);
 
@@ -81,7 +95,7 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
   const handleClearArrival = () => {
     setSelectedArrival(null);
     setQuantities({});
-    setRentalQty(0);
+    setRentalQuantities({});
   };
 
   // ==================== BULK ITEM HANDLERS ====================
@@ -102,14 +116,17 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
     }));
   };
 
-  const handleRentalQtyChange = (change) => {
-    setRentalQty((prev) => Math.max(0, prev + change));
+  const handleRentalQtyChange = (itemId, change) => {
+    setRentalQuantities((prev) => {
+      const current = prev[itemId] || 0;
+      return { ...prev, [itemId]: Math.max(0, current + change) };
+    });
   };
 
-  const handleRentalQtyManualChange = (val) => {
+  const handleRentalQtyManualChange = (itemId, val) => {
     let newQty = parseInt(val, 10);
     if (isNaN(newQty)) newQty = 0;
-    setRentalQty(Math.max(0, newQty));
+    setRentalQuantities((prev) => ({ ...prev, [itemId]: Math.max(0, newQty) }));
   };
 
   // ==================== PREVIEW & HAS ITEMS ====================
@@ -117,7 +134,11 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
     (acc, qty) => acc + qty,
     0,
   );
-  const totalItemQty = totalMenuQty + rentalQty;
+  const totalRentalQty = Object.values(rentalQuantities).reduce(
+    (acc, qty) => acc + qty,
+    0,
+  );
+  const totalItemQty = totalMenuQty + totalRentalQty;
   const hasItems = totalItemQty > 0;
 
   const previewSubtotal = useMemo(() => {
@@ -128,9 +149,14 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
         if (menu) total += menu.price * qty;
       }
     });
-    total += rentalQty * RENTAL_PRICE;
+    Object.entries(rentalQuantities).forEach(([itemId, qty]) => {
+      if (qty > 0) {
+        const item = rentalItems.find((r) => r.id === Number(itemId));
+        if (item) total += item.price_per_unit * qty;
+      }
+    });
     return total;
-  }, [quantities, rentalQty, menus]);
+  }, [quantities, rentalQuantities, menus, rentalItems]);
 
   // ==================== SUBMIT ====================
   const handleSubmit = async () => {
@@ -151,12 +177,15 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
         }
       });
 
-      if (rentalQty > 0) {
-        items.push({
-          item_type: "rental",
-          quantity: rentalQty,
-        });
-      }
+      Object.entries(rentalQuantities).forEach(([itemId, qty]) => {
+        if (qty > 0) {
+          items.push({
+            item_type: "rental",
+            item_id: Number(itemId),
+            quantity: qty,
+          });
+        }
+      });
 
       const payload = {
         arrival_id: selectedArrival.arrival_id,
@@ -169,7 +198,7 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
           `Berhasil menambahkan ${items.length} jenis item ke order member`,
         );
         setQuantities({});
-        setRentalQty(0);
+        setRentalQuantities({});
         setSelectedArrival(null);
       }
     } catch (err) {
@@ -182,7 +211,8 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
   const isSubmitDisabled = !selectedArrival || !hasItems || submitLoading;
 
   // ==================== MENU COLUMNS ====================
-  const menuColumns = [
+  const menuColumns = useMemo(() => [
+    imageCell,
     {
       key: "name",
       header: "Nama Menu",
@@ -239,7 +269,72 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
         return qty > 0 ? formatCurrency(qty * row.price) : "-";
       },
     },
-  ];
+  ], [quantities]);
+
+  // ==================== RENTAL COLUMNS ====================
+  const rentalColumns = useMemo(() => [
+    imageCell,
+    {
+      key: "name",
+      header: "Item Rental",
+      render: (row) => <span className="font-medium">{row.name}</span>,
+    },
+    {
+      key: "unit_label",
+      header: "Satuan",
+      render: (row) => row.unit_label,
+    },
+    {
+      key: "price_per_unit",
+      header: "Harga",
+      render: (row) => formatCurrency(row.price_per_unit),
+    },
+    {
+      key: "qty",
+      header: "Qty",
+      render: (row) => {
+        const qty = rentalQuantities[row.id] || 0;
+        return (
+          <div className="flex items-center gap-1">
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 w-7 p-0"
+              disabled={qty <= 0}
+              onClick={() => handleRentalQtyChange(row.id, -1)}
+            >
+              −
+            </Button>
+            <Input
+              type="number"
+              min="0"
+              value={qty}
+              onChange={(e) =>
+                handleRentalQtyManualChange(row.id, e.target.value)
+              }
+              className="w-14 text-center h-7 px-1"
+            />
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 w-7 p-0"
+              onClick={() => handleRentalQtyChange(row.id, 1)}
+            >
+              +
+            </Button>
+          </div>
+        );
+      },
+    },
+    {
+      key: "subtotal",
+      header: "Subtotal",
+      render: (row) => {
+        const qty = rentalQuantities[row.id] || 0;
+        return qty > 0 ? formatCurrency(qty * row.price_per_unit) : "-";
+      },
+    },
+  ], [rentalQuantities]);
 
   // ==================== RENDER ====================
   return (
@@ -292,7 +387,7 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
         )}
       </section>
 
-      {/* ===== 2. KANTIN / MENU ===== */}
+      {/* ===== 2. MENU ===== */}
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-foreground">
           2. Makanan &amp; Minuman
@@ -305,56 +400,15 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
         />
       </section>
 
-      {/* ===== 3. RENTAL ALAT PANCING ===== */}
+      {/* ===== 3. RENTAL ===== */}
       <section className="space-y-3">
-        <h2 className="text-lg font-semibold text-foreground">
-          3. Sewa Alat Pancing
-        </h2>
-        <div className="flex flex-wrap items-center gap-4 rounded-lg border border-border p-4">
-          <div className="space-y-0.5">
-            <p className="font-semibold text-foreground">
-              Sewa / Rental Stik Pancing
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {formatCurrency(RENTAL_PRICE)} / stik
-            </p>
-          </div>
-          <div className="ml-auto flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-8 w-8 p-0"
-              disabled={rentalQty <= 0}
-              onClick={() => handleRentalQtyChange(-1)}
-            >
-              −
-            </Button>
-            <Input
-              type="number"
-              min="0"
-              value={rentalQty}
-              onChange={(e) => handleRentalQtyManualChange(e.target.value)}
-              className="w-16 text-center h-8 px-1"
-            />
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-8 w-8 p-0"
-              onClick={() => handleRentalQtyChange(1)}
-            >
-              +
-            </Button>
-          </div>
-          <div className="min-w-30 text-right">
-            {rentalQty > 0 ? (
-              <span className="font-semibold text-foreground">
-                {formatCurrency(rentalQty * RENTAL_PRICE)}
-              </span>
-            ) : (
-              <span className="text-muted-foreground">-</span>
-            )}
-          </div>
-        </div>
+        <h2 className="text-lg font-semibold text-foreground">3. Sewa Alat</h2>
+        <DataTable
+          columns={rentalColumns}
+          data={rentalItems}
+          loading={rentalLoading}
+          emptyMessage="Tidak ada rental item aktif saat ini."
+        />
       </section>
 
       {/* ===== 4. RINGKASAN & SUBMIT ===== */}
@@ -370,8 +424,8 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
               <span className="font-semibold">{totalMenuQty} pcs</span>
             </p>
             <p className="text-sm text-foreground">
-              Total Sewa Stik:{" "}
-              <span className="font-semibold">{rentalQty} stik</span>
+              Total Sewa:{" "}
+              <span className="font-semibold">{totalRentalQty} unit</span>
             </p>
             <div className="border-t border-border pt-2">
               <p className="font-semibold text-foreground">
@@ -400,7 +454,7 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
           loading={submitLoading}
           fullWidth
         >
-          Simpan Order Transaksi
+          Order Transaksi
         </Button>
       </section>
     </div>
