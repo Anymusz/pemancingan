@@ -129,6 +129,7 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     Route::get('/reports/transactions', [OwnerReportController::class, 'transactions']);
     Route::get('/reports/export', [OwnerReportController::class, 'export']);
     Route::get('/reports/stock-summary', [OwnerReportController::class, 'stockSummary']);
+    Route::get('/reports/daily-trend', [OwnerReportController::class, 'dailyTrend']);
 
     // Rental Item Management
     Route::get('/rental-items', [OwnerRentalItemController::class, 'index']);

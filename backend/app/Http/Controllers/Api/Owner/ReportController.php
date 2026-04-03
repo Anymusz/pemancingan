@@ -228,6 +228,44 @@ class ReportController extends Controller
     }
 
     /**
+     * GET /api/owner/reports/daily-trend
+     */
+    public function dailyTrend(Request $request): JsonResponse
+    {
+        $end = Carbon::today()->endOfDay();
+        $start = Carbon::today()->subDays(6)->startOfDay();
+
+        $transactions = Transaction::whereBetween('transaction_date', [$start, $end])
+            ->select(
+                DB::raw('DATE(transaction_date) as date'),
+                DB::raw('COUNT(*) as total_transactions'),
+                DB::raw('COALESCE(SUM(final_amount), 0) as net_revenue')
+            )
+            ->groupBy(DB::raw('DATE(transaction_date)'))
+            ->get()
+            ->keyBy('date');
+
+        $period = \Carbon\CarbonPeriod::create($start, '1 day', $end);
+        $data = [];
+
+        foreach ($period as $date) {
+            $dateString = $date->format('Y-m-d');
+            $stat = $transactions->get($dateString);
+
+            $data[] = [
+                'date'               => $dateString,
+                'net_revenue'        => $stat ? (float) $stat->net_revenue : 0.0,
+                'total_transactions' => $stat ? (int) $stat->total_transactions : 0,
+            ];
+        }
+
+        return response()->json([
+            'success' => true,
+            'data'    => $data,
+        ]);
+    }
+
+    /**
      * GET /api/owner/reports/stock-summary
      */
     public function stockSummary(Request $request): JsonResponse
