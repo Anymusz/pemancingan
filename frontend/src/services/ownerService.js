@@ -207,6 +207,11 @@ const ownerService = {
     return response.data;
   },
 
+  getDailyTrend: async () => {
+    const response = await api.get("/owner/reports/daily-trend");
+    return response.data;
+  },
+
   exportReportExcel: async (filters = {}) => {
     const response = await api.get("/owner/reports/export", {
       params: filters,

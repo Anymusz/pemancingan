@@ -1,15 +1,15 @@
-// File: src/pages/employee/checkout/PaymentSection.jsx
+// File: src/pages/employee/checkout/v2/PaymentSection.jsx
 
+import { Banknote, ArrowLeftRight, Smartphone } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/FormInput";
 import { Label } from "@/components/common/FormLabel";
-import { FormSelect } from "@/components/common/FormSelect";
 import { Textarea } from "@/components/common/FormTextarea";
 
 const PAYMENT_OPTIONS = [
-  { value: "cash", label: "Cash" },
-  { value: "transfer", label: "Transfer" },
-  { value: "qris", label: "QRIS" },
+  { value: "cash", label: "Cash", icon: Banknote },
+  { value: "transfer", label: "Transfer", icon: ArrowLeftRight },
+  { value: "qris", label: "QRIS", icon: Smartphone },
 ];
 
 /**
@@ -37,20 +37,38 @@ export function PaymentSection({
 }) {
   return (
     <>
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold">6. Pembayaran</h2>
+      <div className="rounded-lg border border-border bg-muted/30 p-4 space-y-4">
+        <h2 className="text-sm font-semibold text-foreground mb-4">
+          Pembayaran
+        </h2>
 
+        {/* Payment Method Cards */}
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="payment-method">Metode Pembayaran *</Label>
-          <FormSelect
-            value={paymentMethod}
-            onValueChange={onPaymentMethodChange}
-            placeholder="-- Pilih Metode --"
-            options={PAYMENT_OPTIONS}
-            className="w-56"
-          />
+          <Label>Metode Pembayaran *</Label>
+          <div className="grid grid-cols-3 gap-2">
+            {PAYMENT_OPTIONS.map((method) => {
+              const Icon = method.icon;
+              const isSelected = paymentMethod === method.value;
+              return (
+                <button
+                  key={method.value}
+                  type="button"
+                  onClick={() => onPaymentMethodChange(method.value)}
+                  className={`rounded-lg border p-3 cursor-pointer text-center transition-colors ${
+                    isSelected
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/50 hover:bg-muted/40"
+                  }`}
+                >
+                  <Icon className="h-5 w-5 mx-auto mb-1" />
+                  <span className="text-sm font-medium">{method.label}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
+        {/* Tips */}
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="tips">Tips (Rp) — Opsional</Label>
           <Input
@@ -64,6 +82,7 @@ export function PaymentSection({
           />
         </div>
 
+        {/* Notes */}
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="notes">Catatan — Opsional</Label>
           <Textarea
@@ -71,22 +90,19 @@ export function PaymentSection({
             value={notes}
             onChange={onNotesChange}
             rows={2}
-            className="max-w-md"
           />
         </div>
-      </section>
+      </div>
 
-      {/* ===== 7. SUBMIT ===== */}
-      <section>
-        <Button
-          onClick={onSubmit}
-          disabled={isSubmitDisabled}
-          loading={loading}
-          fullWidth
-        >
-          {loading ? "Memproses..." : "Proses Checkout"}
-        </Button>
-      </section>
+      {/* Submit */}
+      <Button
+        onClick={onSubmit}
+        disabled={isSubmitDisabled}
+        loading={loading}
+        fullWidth
+      >
+        {loading ? "Memproses..." : "Proses Checkout"}
+      </Button>
     </>
   );
 }

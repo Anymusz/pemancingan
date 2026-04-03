@@ -1,21 +1,22 @@
-// File: src/pages/employee/checkout/Checkout.jsx
+// File: src/pages/employee/checkout/v2/Checkout.jsx
 
 import { useState, useEffect, useMemo, useCallback } from "react";
+import { TrendingUp } from "lucide-react";
 import employeeService from "../../../services/employeeService";
 import { useToast } from "@/hooks/useToast";
 import { formatCurrency } from "@/utils/utils";
 import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { MemberSection } from "./MemberSection";
-import { PendingOrderSection } from "./PendingOrderSection";
 import { FishSection } from "./FishSection";
-import { PenaltySection } from "./PenaltySection";
 import { SummarySection } from "./SummarySection";
 import { PaymentSection } from "./PaymentSection";
+import { PendingOrderSection } from "./PendingOrderSection";
+import { PenaltySection } from "./PenaltySection";
 
 const TIER_DISCOUNT_FALLBACK = 0;
 
-const Checkout = () => {
-  // ==================== STATE ====================
+const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
+  // ===== STATE =====
   const [arrivals, setArrivals] = useState([]);
   const [fishTypes, setFishTypes] = useState([]);
   const [selectedArrival, setSelectedArrival] = useState(null);
@@ -33,7 +34,7 @@ const Checkout = () => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const toast = useToast();
 
-  // ==================== KALKULASI ====================
+  // ===== KALKULASI =====
   const subtotalFish = useMemo(
     () => fishItems.reduce((sum, i) => sum + i.subtotal, 0),
     [fishItems],
@@ -73,7 +74,7 @@ const Checkout = () => {
     [totalAmount, subtotalPenalty],
   );
 
-  // ==================== HELPERS ====================
+  // ===== HELPERS =====
   const resetForm = () => {
     setSelectedArrival(null);
     setPendingOrders([]);
@@ -85,7 +86,7 @@ const Checkout = () => {
     setActiveVoucher(null);
   };
 
-  // ==================== FETCH ====================
+  // ===== FETCH =====
   const fetchArrivals = useCallback(async () => {
     setFetchLoading(true);
     try {
@@ -114,6 +115,15 @@ const Checkout = () => {
     fetchFishTypes();
   }, [fetchArrivals, fetchFishTypes]);
 
+  useEffect(() => {
+    if (!preselectArrivalId || arrivals.length === 0) return;
+    const match = arrivals.find((a) => a.arrival_id === preselectArrivalId);
+    if (match) {
+      handlePickArrival(match);
+      onPreselectConsumed?.();
+    }
+  }, [preselectArrivalId, arrivals]);
+
   const fetchPendingOrders = async (arrivalId) => {
     setPendingLoading(true);
     try {
@@ -135,7 +145,7 @@ const Checkout = () => {
     }
   };
 
-  // ==================== ARRIVAL HANDLER ====================
+  // ===== ARRIVAL HANDLER =====
   const handlePickArrival = (arrival) => {
     setSelectedArrival(arrival);
     setFishItems([]);
@@ -153,43 +163,29 @@ const Checkout = () => {
     setActiveVoucher(null);
   };
 
-  // ==================== FISH ITEM HANDLERS ====================
-  const handleAddFish = ({ fish, quantity }) => {
-    const existing = fishItems.find((i) => i.item_id === fish.id);
-    if (existing) {
-      setFishItems((prev) =>
-        prev.map((i) => {
-          if (i.item_id === fish.id) {
-            const newQty = parseFloat(i.quantity) + quantity;
-            return {
-              ...i,
-              quantity: newQty,
-              subtotal: newQty * i.unit_price_snapshot,
-            };
-          }
-          return i;
-        }),
-      );
-    } else {
-      setFishItems((prev) => [
-        ...prev,
-        {
-          item_type: "fish",
-          item_id: fish.id,
-          name: fish.name,
-          quantity,
-          unit_price_snapshot: parseFloat(fish.price_per_kg),
-          subtotal: quantity * parseFloat(fish.price_per_kg),
-        },
-      ]);
+  // ===== FISH HANDLER =====
+  const handleFishWeightChange = (fish, weightStr) => {
+    const weight = parseFloat(weightStr);
+    if (!weightStr || isNaN(weight) || weight <= 0) {
+      setFishItems((prev) => prev.filter((i) => i.item_id !== fish.id));
+      return;
     }
+    setFishItems((prev) => {
+      const existing = prev.find((i) => i.item_id === fish.id);
+      const item = {
+        item_type: "fish",
+        item_id: fish.id,
+        name: fish.name,
+        quantity: weight,
+        unit_price_snapshot: parseFloat(fish.price_per_kg),
+        subtotal: weight * parseFloat(fish.price_per_kg),
+      };
+      if (existing) return prev.map((i) => (i.item_id === fish.id ? item : i));
+      return [...prev, item];
+    });
   };
 
-  // ✅ Fixed: id-based instead of index-based
-  const handleRemoveFish = (itemId) =>
-    setFishItems((prev) => prev.filter((i) => i.item_id !== itemId));
-
-  // ==================== PENALTY HANDLERS ====================
+  // ===== PENALTY HANDLERS =====
   const handleAddPenalty = (penaltyType) => {
     setPenaltyItems((prev) => {
       const existing = prev.find((p) => p.name === penaltyType.label);
@@ -216,11 +212,22 @@ const Checkout = () => {
     });
   };
 
-  // ✅ Fixed: name-based instead of index-based
   const handleRemovePenalty = (name) =>
-    setPenaltyItems((prev) => prev.filter((p) => p.name !== name));
+    setPenaltyItems((prev) =>
+      prev
+        .map((p) =>
+          p.name === name
+            ? {
+                ...p,
+                quantity: p.quantity - 1,
+                subtotal: (p.quantity - 1) * p.unit_price,
+              }
+            : p,
+        )
+        .filter((p) => p.quantity > 0),
+    );
 
-  // ==================== SUBMIT ====================
+  // ===== SUBMIT =====
   const handleSubmit = async () => {
     if (!selectedArrival || !paymentMethod) return;
 
@@ -283,66 +290,84 @@ const Checkout = () => {
   const isSubmitDisabled =
     !selectedArrival || !paymentMethod || !hasAnyItem || loading;
 
-  // ==================== RENDER ====================
+  // ===== SHARED SECTION PROPS =====
+  const summaryProps = {
+    subtotalFish,
+    subtotalPending,
+    subtotalPenalty,
+    discountTier,
+    discountPercentage: selectedArrival?.discount_percentage,
+    activeVoucher,
+    finalAmount,
+    pointsPreview,
+  };
+
+  const paymentProps = {
+    paymentMethod,
+    onPaymentMethodChange: setPaymentMethod,
+    tips,
+    onTipsChange: (e) => setTips(e.target.value),
+    notes,
+    onNotesChange: (e) => setNotes(e.target.value),
+    onSubmit: () => setConfirmOpen(true),
+    loading,
+    isSubmitDisabled,
+  };
+
+  // ===== RENDER =====
   return (
-    <div className="space-y-6 p-1">
+    <div className="space-y-6">
       {tierUpgradeAlert && (
-        <div className="rounded-lg border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-600">
-          🎉 {tierUpgradeAlert}
+        <div className="flex items-center gap-2 rounded-lg border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-600">
+          <TrendingUp className="h-4 w-4 flex-shrink-0" />
+          {tierUpgradeAlert}
         </div>
       )}
 
-      <h1 className="text-2xl font-bold">Checkout Transaksi</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        {/* Left: main sections */}
+        <div className="lg:col-span-2 space-y-6">
+          <MemberSection
+            fetchLoading={fetchLoading}
+            selectedArrival={selectedArrival}
+            arrivals={arrivals}
+            onSelect={handlePickArrival}
+            onClear={handleClearArrival}
+          />
 
-      <MemberSection
-        fetchLoading={fetchLoading}
-        selectedArrival={selectedArrival}
-        arrivals={arrivals}
-        onSelect={handlePickArrival}
-        onClear={handleClearArrival}
-      />
+          <PendingOrderSection
+            pendingLoading={pendingLoading}
+            selectedArrival={selectedArrival}
+            pendingOrders={pendingOrders}
+          />
 
-      <PendingOrderSection
-        pendingLoading={pendingLoading}
-        selectedArrival={selectedArrival}
-        pendingOrders={pendingOrders}
-      />
+          <FishSection
+            fishTypes={fishTypes}
+            fishItems={fishItems}
+            onWeightChange={handleFishWeightChange}
+          />
 
-      <FishSection
-        fishTypes={fishTypes}
-        fishItems={fishItems}
-        onAdd={handleAddFish}
-        onRemove={handleRemoveFish}
-      />
+          <PenaltySection
+            penaltyItems={penaltyItems}
+            onAdd={handleAddPenalty}
+            onRemove={handleRemovePenalty}
+          />
+        </div>
 
-      <PenaltySection
-        penaltyItems={penaltyItems}
-        onAdd={handleAddPenalty}
-        onRemove={handleRemovePenalty}
-      />
+        {/* Right: sticky sidebar — desktop only */}
+        <div className="hidden lg:block">
+          <div className="sticky top-6 space-y-4">
+            <SummarySection {...summaryProps} />
+            <PaymentSection {...paymentProps} />
+          </div>
+        </div>
+      </div>
 
-      <SummarySection
-        subtotalFish={subtotalFish}
-        subtotalPending={subtotalPending}
-        subtotalPenalty={subtotalPenalty}
-        discountTier={discountTier}
-        discountPercentage={selectedArrival?.discount_percentage}
-        activeVoucher={activeVoucher}
-        finalAmount={finalAmount}
-        pointsPreview={pointsPreview}
-      />
-
-      <PaymentSection
-        paymentMethod={paymentMethod}
-        onPaymentMethodChange={setPaymentMethod}
-        tips={tips}
-        onTipsChange={(e) => setTips(e.target.value)}
-        notes={notes}
-        onNotesChange={(e) => setNotes(e.target.value)}
-        onSubmit={() => setConfirmOpen(true)}
-        loading={loading}
-        isSubmitDisabled={isSubmitDisabled}
-      />
+      {/* Mobile: summary + payment below sections */}
+      <div className="lg:hidden space-y-4">
+        <SummarySection {...summaryProps} />
+        <PaymentSection {...paymentProps} />
+      </div>
 
       <ConfirmDialog
         open={confirmOpen}

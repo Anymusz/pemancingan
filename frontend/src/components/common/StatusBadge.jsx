@@ -169,6 +169,31 @@ const STATUS_MAP = {
       "bg-purple-500/10 text-purple-600 border-purple-500/20 hover:bg-purple-500/20",
     label: "Acara",
   },
+
+  regular: {
+    icon: DotIcon,
+    classNames:
+      "bg-slate-500/10 text-slate-600 border-slate-500/20 hover:bg-slate-500/20",
+    label: "Regular",
+  },
+  bronze: {
+    icon: DotIcon,
+    classNames:
+      "bg-orange-500/10 text-orange-600 border-orange-500/20 hover:bg-orange-500/20",
+    label: "Bronze",
+  },
+  silver: {
+    icon: DotIcon,
+    classNames:
+      "bg-blue-400/10 text-blue-500 border-blue-400/20 hover:bg-blue-400/20",
+    label: "Silver",
+  },
+  gold: {
+    icon: DotIcon,
+    classNames:
+      "bg-amber-500/10 text-amber-600 border-amber-500/20 hover:bg-amber-500/20",
+    label: "Gold",
+  },
 };
 
 // Fallback for unrecognized status values
@@ -181,6 +206,7 @@ const FALLBACK_CONFIG = {
 // ── Resolve boolean is_active to a string key ────────────────────
 function resolveStatus(status) {
   if (typeof status === "boolean") return status ? "active" : "deactivated";
+  if (typeof status === "string") return status.toLowerCase();
   return status;
 }
 

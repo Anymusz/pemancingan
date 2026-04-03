@@ -37,3 +37,10 @@ export const formatDateTime = (dateStr) => {
     timeZone: "Asia/Jakarta",
   });
 };
+
+export const formatShortDay = (dateStr) => {
+  if (!dateStr) return "";
+  const dayNames = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
+  const d = new Date(dateStr + "T00:00:00+07:00"); // explicit Jakarta offset
+  return `${dayNames[d.getDay()]} ${d.getDate()}`;
+};

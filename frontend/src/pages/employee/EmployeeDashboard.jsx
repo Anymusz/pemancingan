@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import EmployeeDashboardHome from "./EmployeeDashboardHome";
 import CheckIn from "./CheckIn";
 import TodayArrivals from "./TodayArrivals";
 import Checkout from "./checkout/Checkout";
@@ -20,17 +21,19 @@ import {
   ShoppingCart,
   UtensilsCrossed,
   History,
+  LayoutDashboard,
 } from "lucide-react";
 
 const EmployeeDashboard = () => {
   const initialTab = (() => {
     const params = new URLSearchParams(window.location.search);
-    return params.get("tab") || "checkin";
+    return params.get("tab") || "dashboard";
   })();
   const [activeMenu, setActiveMenu] = useState(initialTab);
   const [mountedTabs, setMountedTabs] = useState(new Set([initialTab]));
   const [preselectArrivalId, setPreselectArrivalId] = useState(null);
-  const [preselectAddOrderArrivalId, setPreselectAddOrderArrivalId] = useState(null);
+  const [preselectAddOrderArrivalId, setPreselectAddOrderArrivalId] =
+    useState(null);
   const [unreadCount, setUnreadCount] = useState(0);
   const navigate = useNavigate();
 
@@ -67,6 +70,9 @@ const EmployeeDashboard = () => {
   };
 
   const employeeNavGroups = [
+    {
+      items: [{ key: "dashboard", label: "Dashboard", icon: LayoutDashboard }],
+    },
     {
       label: "Kedatangan",
       items: [
@@ -108,6 +114,7 @@ const EmployeeDashboard = () => {
       onLogout={handleLogout}
     >
       {[
+        "dashboard",
         "pendingorder",
         "addorder",
         "checkin",
@@ -120,6 +127,12 @@ const EmployeeDashboard = () => {
 
         return (
           <div key={menu} className={activeMenu === menu ? "block" : "hidden"}>
+            {menu === "dashboard" && (
+              <EmployeeDashboardHome
+                onGoToCheckout={handleGoToCheckout}
+                onNavigate={handleMenuChange}
+              />
+            )}
             {menu === "pendingorder" && <PendingOrder />}
             {menu === "addorder" && (
               <AddOrder

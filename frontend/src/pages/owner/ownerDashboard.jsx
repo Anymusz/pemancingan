@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import OwnerDashboardHome from "./OwnerDashboardHome";
 import MemberManagement from "./MemberManagement";
 import OwnerLeaderboard from "./OwnerLeaderboard";
 import MenuManagement from "./MenuManagement";
@@ -30,7 +31,7 @@ import {
 const OwnerDashboard = () => {
   const [activeMenu, setActiveMenu] = useState(() => {
     const params = new URLSearchParams(window.location.search);
-    return params.get("tab") || "members";
+    return params.get("tab") || "dashboard";
   });
   const [unreadCount, setUnreadCount] = useState(0);
   const navigate = useNavigate();
@@ -96,6 +97,7 @@ const OwnerDashboard = () => {
       unreadCount={unreadCount}
       onLogout={handleLogout}
     >
+      {activeMenu === "dashboard" && <OwnerDashboardHome onNavigate={setActiveMenu} />}
       {activeMenu === "members" && <MemberManagement />}
       {activeMenu === "leaderboard" && <OwnerLeaderboard />}
       {activeMenu === "menus" && <MenuManagement />}

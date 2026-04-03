@@ -249,7 +249,7 @@ const MemberManagement = () => {
     {
       key: "tier",
       header: "Tier",
-      render: (row) => <StatusBadge status={row.tier} />,
+      render: (row) => <StatusBadge status={row.tier?.toLowerCase()} />,
     },
     {
       key: "total_points",

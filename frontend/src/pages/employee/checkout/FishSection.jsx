@@ -1,128 +1,78 @@
-// File: src/pages/employee/checkout/FishSection.jsx
+// File: src/pages/employee/checkout/v2/FishSection.jsx
 
-import { useState } from "react";
 import { formatCurrency } from "@/utils/utils";
 import { DataTable } from "@/components/common/DataTable";
-import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/FormInput";
-
-// ==================== COLUMNS ====================
-
-const buildAvailableColumns = (weights, setWeights) => [
-  { key: "name", header: "Nama Ikan" },
-  {
-    key: "price_per_kg",
-    header: "Harga/kg",
-    render: (row) => formatCurrency(row.price_per_kg),
-  },
-  {
-    key: "weight",
-    header: "Berat (kg)",
-    render: (row) => (
-      <Input
-        type="number"
-        min="0.01"
-        step="0.01"
-        value={weights[row.id] || ""}
-        onChange={(e) =>
-          setWeights((prev) => ({ ...prev, [row.id]: e.target.value }))
-        }
-        placeholder="0.00"
-        className="w-28"
-      />
-    ),
-  },
-  {
-    key: "subtotal",
-    header: "Subtotal",
-    render: (row) => {
-      const w = parseFloat(weights[row.id]);
-      return w > 0 ? formatCurrency(w * parseFloat(row.price_per_kg)) : "-";
-    },
-  },
-];
-
-const fishItemColumns = [
-  { key: "name", header: "Nama Ikan" },
-  {
-    key: "quantity",
-    header: "Berat (kg)",
-    render: (row) => Number(row.quantity).toFixed(2),
-  },
-  {
-    key: "unit_price_snapshot",
-    header: "Harga/kg",
-    render: (row) => formatCurrency(row.unit_price_snapshot),
-  },
-  {
-    key: "subtotal",
-    header: "Subtotal",
-    render: (row) => formatCurrency(row.subtotal),
-  },
-];
-
-// ==================== COMPONENT ====================
 
 /**
  * Props:
- *   fishTypes    — array of available fish types from the server
- *   fishItems    — current fish item list (state owned by Checkout.jsx)
- *   onAdd({ fish, quantity }) — called once per fish type to add/merge
- *   onRemove(itemId)          — removes a fish item by item_id
+ *   fishTypes          — array of available fish types from the server
+ *   fishItems          — current fish item list (state owned by Checkout.jsx)
+ *   onWeightChange(fish, weightStr) — called on every input change
  */
-export function FishSection({ fishTypes, fishItems, onAdd, onRemove }) {
-  const [weights, setWeights] = useState({}); // { fish_id: weight_string }
-
-  const hasAnyWeight = fishTypes.some((f) => parseFloat(weights[f.id]) > 0);
-
-  const handleAddAll = () => {
-    fishTypes
-      .filter((f) => parseFloat(weights[f.id]) > 0)
-      .forEach((fish) => {
-        onAdd({ fish, quantity: parseFloat(weights[fish.id]) });
-      });
-    setWeights({});
-  };
-
-  const availableColumns = buildAvailableColumns(weights, setWeights);
+export function FishSection({ fishTypes, fishItems, onWeightChange }) {
+  const columns = [
+    { key: "name", header: "Nama Ikan" },
+    {
+      key: "price_per_kg",
+      header: "Harga/kg",
+      render: (row) => formatCurrency(row.price_per_kg),
+    },
+    {
+      key: "weight",
+      header: "Berat (kg)",
+      render: (row) => (
+        <Input
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="0.00"
+          className="w-28"
+          value={fishItems.find((i) => i.item_id === row.id)?.quantity ?? ""}
+          onChange={(e) => onWeightChange(row, e.target.value)}
+        />
+      ),
+    },
+    {
+      key: "subtotal",
+      header: "Subtotal",
+      render: (row) => {
+        const item = fishItems.find((i) => i.item_id === row.id);
+        return item ? (
+          formatCurrency(item.subtotal)
+        ) : (
+          <span className="text-muted-foreground">Rp 0</span>
+        );
+      },
+    },
+  ];
 
   return (
     <section className="space-y-4">
-      <h2 className="text-lg font-semibold">3. Tambah Item Ikan (Opsional)</h2>
+      {/* Section header */}
+      <div className="flex items-center gap-2">
+        <span className="w-5 h-5 rounded-full bg-muted flex items-center justify-center text-xs font-medium text-muted-foreground shrink-0">
+          3
+        </span>
+        <span className="text-sm font-medium text-foreground">
+          Tambah Item Ikan
+        </span>
+        <span className="px-2 py-0.5 rounded-full bg-muted text-xs text-muted-foreground">
+          Opsional
+        </span>
+      </div>
 
       {fishTypes.length === 0 ? (
-        <p className="text-sm text-muted-foreground">
-          Memuat daftar ikan...
-        </p>
+        <p className="text-sm text-muted-foreground">Memuat daftar ikan...</p>
       ) : (
-        <>
-          <DataTable columns={availableColumns} data={fishTypes} />
-
-          {hasAnyWeight && (
-            <Button variant="outline" onClick={handleAddAll}>
-              Tambah Semua
-            </Button>
-          )}
-        </>
-      )}
-
-      {fishItems.length > 0 && (
-        <div className="space-y-2">
-          <p className="text-sm font-medium text-muted-foreground">
-            Ikan Dipilih
-          </p>
-          <DataTable
-            columns={fishItemColumns}
-            data={fishItems}
-            getRowActions={(row) => [
-              {
-                label: "Hapus",
-                variant: "danger",
-                onClick: () => onRemove(row.item_id),
-              },
-            ]}
-          />
-        </div>
+        <DataTable
+          columns={columns}
+          data={fishTypes}
+          rowClassName={(row) => {
+            const hasWeight = fishItems.some((i) => i.item_id === row.id);
+            return hasWeight ? "bg-primary/5 border-l-2 border-l-primary" : "";
+          }}
+        />
       )}
     </section>
   );
