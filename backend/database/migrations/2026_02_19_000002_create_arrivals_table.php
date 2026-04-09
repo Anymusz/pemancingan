@@ -10,7 +10,9 @@ return new class extends Migration {
     {
         Schema::create('arrivals', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('member_id');
+            $table->unsignedBigInteger('member_id')->nullable();
+            $table->string('guest_name')->nullable();
+            $table->decimal('deposit_amount', 10, 2)->default(0);
             $table->timestamp('check_in_at');
             $table->timestamp('check_out_at')->nullable();
             $table->enum('status', ['active', 'completed'])->default('active');
@@ -18,14 +20,12 @@ return new class extends Migration {
             $table->text('notes')->nullable();
             $table->timestamps();
 
-            // Indexes
             $table->index('member_id');
             $table->index('check_in_at');
             $table->index('status');
             $table->index('checked_in_by');
-            $table->index(['member_id', 'status']); // Composite index, enforcement di level aplikasi
+            $table->index(['member_id', 'status']);
 
-            // Foreign Keys
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->foreign('checked_in_by')->references('id')->on('users');
         });

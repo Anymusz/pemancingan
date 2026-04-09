@@ -14,14 +14,10 @@ use Illuminate\Support\Str;
 class AuthController extends Controller
 {
     /**
-     * Register new user account
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * POST /register
      */
     public function register(Request $request)
     {
-        // Validation
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'phone' => 'required|string|unique:users,phone',
@@ -73,10 +69,8 @@ class AuthController extends Controller
     }
 
     /**
+     * POST /login
      * Login user with phone or email
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request)
 {
@@ -105,7 +99,6 @@ class AuthController extends Controller
         ], 401);
     }
 
-    // Get authenticated user
     $user = Auth::user();
 
     // Check user status - PENDING
@@ -169,17 +162,16 @@ class AuthController extends Controller
                 'address' => $user->address,
                 'role' => $user->role,
                 'status' => $user->status,
+                'created_at' => $user->created_at,
             ],
             'token' => $token
         ]
     ], 200);
 }
 
-    /**
+/**
+ * POST /logout
  * Logout user (revoke current token)
- *
- * @param Request $request
- * @return \Illuminate\Http\JsonResponse
  */
 public function logout(Request $request)
 {
@@ -195,10 +187,8 @@ public function logout(Request $request)
 }
 
     /**
+     * GET /me
      * Get authenticated user data
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function me(Request $request)
     {
@@ -221,10 +211,7 @@ public function logout(Request $request)
     }
 
     /**
-     * Send password reset link to email
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * POST /api/forgot-password
      */
     public function forgotPassword(Request $request)
     {
@@ -248,7 +235,6 @@ public function logout(Request $request)
             $request->only('email')
         );
 
-        // Selalu return pesan generik — tidak membocorkan apakah email terdaftar
         return response()->json([
             'success' => true,
             'message' => 'Jika email terdaftar, link reset password akan dikirim.'
@@ -256,10 +242,7 @@ public function logout(Request $request)
     }
 
     /**
-     * Reset password using token from email link
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * POST /api/reset-password
      */
     public function resetPassword(Request $request)
     {

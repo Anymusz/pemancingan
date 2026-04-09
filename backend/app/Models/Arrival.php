@@ -9,6 +9,8 @@ class Arrival extends Model
 {
     protected $fillable = [
         'member_id',
+        'guest_name',
+        'deposit_amount',
         'check_in_at',
         'check_out_at',
         'status',
@@ -16,12 +18,14 @@ class Arrival extends Model
         'notes',
     ];
 
+    protected $appends = ['is_guest', 'display_name'];
+
     protected $casts = [
         'check_in_at' => 'datetime',
         'check_out_at' => 'datetime',
     ];
 
-    // ==================== RELATIONSHIPS ====================
+    // ===== RELATIONSHIPS =====
 
     public function member()
     {
@@ -38,7 +42,7 @@ class Arrival extends Model
         return $this->hasOne(Transaction::class);
     }
 
-    // ==================== METHODS ====================
+    // ===== METHODS =====
 
     public function isActive(): bool
     {
@@ -54,7 +58,7 @@ class Arrival extends Model
         ]);
     }
 
-    // ==================== ACCESSORS ====================
+    // ===== ACCESSORS =====
 
     public function getDurationAttribute(): string
     {
@@ -66,5 +70,18 @@ class Arrival extends Model
         $minutes = $diff % 60;
 
         return "{$hours} jam {$minutes} menit";
+    }
+
+    public function getIsGuestAttribute(): bool
+    {
+        return $this->member_id === null;
+    }
+
+    public function getDisplayNameAttribute(): string
+    {
+        if ($this->relationLoaded('member') && $this->member) {
+            return $this->member->user->name ?? $this->guest_name ?? 'Tamu';
+        }
+        return $this->guest_name ?? 'Tamu';
     }
 }

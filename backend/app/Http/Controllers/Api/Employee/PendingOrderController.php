@@ -30,7 +30,8 @@ class PendingOrderController extends Controller
             ->map(fn($o) => [
                 'id'                  => $o->id,
                 'arrival_id'          => $o->arrival_id,
-                'member_name'         => $o->arrival?->member?->user?->name ?? '-',
+                'customer_name'       => $o->arrival?->display_name ?? '-',
+                'is_guest'            => is_null($o->arrival?->member_id),
                 'item_type'           => $o->item_type,
                 'item_name_snapshot'  => $o->item_name_snapshot,
                 'quantity'            => $o->quantity,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Models\Arrival;
+use App\Models\GuestConfig;
 use App\Models\Member;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -19,25 +20,58 @@ class ArrivalController extends Controller
     public function checkIn(Request $request): JsonResponse
     {
         $request->validate([
-            'member_id' => 'required|integer|exists:members,id',
-            'notes' => 'nullable|string|max:500',
+            'type'      => 'required|in:member,guest',
+            'member_id' => 'required_if:type,member|integer|exists:members,id',
+            'guest_name' => 'required_if:type,guest|string|max:255',
+            'notes'     => 'nullable|string|max:500',
         ]);
-
-        $member = Member::with('user')->find($request->member_id);
-
-        if ($member->user->status !== 'active') {
-            return response()->json(['success' => false, 'message' => 'Member tidak aktif'], 422);
-        }
 
         try {
             DB::beginTransaction();
+
+            // ── GUEST check-in ──────────────────────────────────────────────
+            if ($request->type === 'guest') {
+                $arrival = Arrival::create([
+                    'member_id'      => null,
+                    'guest_name'     => $request->guest_name,
+                    'deposit_amount' => GuestConfig::current()->deposit_amount,
+                    'check_in_at'    => Carbon::now(),
+                    'status'         => 'active',
+                    'checked_in_by'  => $request->user()->id,
+                    'notes'          => $request->notes,
+                ]);
+
+                DB::commit();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Check-in tamu berhasil',
+                    'data'    => [
+                        'arrival' => [
+                            'id'             => $arrival->id,
+                            'guest_name'     => $arrival->guest_name,
+                            'deposit_amount' => (float) $arrival->deposit_amount,
+                            'check_in_at'    => $arrival->check_in_at,
+                            'status'         => $arrival->status,
+                            'is_guest'       => true,
+                        ],
+                    ],
+                ], 201);
+            }
+
+            // ── MEMBER check-in ─────────────────────────────────────────────
+            $member = Member::with('user')->find($request->member_id);
+
+            if ($member->user->status !== 'active') {
+                return response()->json(['success' => false, 'message' => 'Member tidak aktif'], 422);
+            }
 
             // Step 1: Auto-close arrival dari hari sebelumnya yang masih active
             Arrival::where('member_id', $request->member_id)
                 ->where('status', 'active')
                 ->whereDate('check_in_at', '<', Carbon::today())
                 ->update([
-                    'status' => 'completed',
+                    'status'       => 'completed',
                     'check_out_at' => Carbon::now(),
                 ]);
 
@@ -57,11 +91,11 @@ class ArrivalController extends Controller
 
             // Step 3: Buat arrival baru
             $arrival = Arrival::create([
-                'member_id' => $request->member_id,
-                'check_in_at' => Carbon::now(),
-                'status' => 'active',
+                'member_id'     => $request->member_id,
+                'check_in_at'   => Carbon::now(),
+                'status'        => 'active',
                 'checked_in_by' => $request->user()->id,
-                'notes' => $request->notes,
+                'notes'         => $request->notes,
             ]);
 
             DB::commit();
@@ -71,18 +105,19 @@ class ArrivalController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Check-in berhasil',
-                'data' => [
+                'data'    => [
                     'arrival' => [
-                        'id' => $arrival->id,
+                        'id'     => $arrival->id,
                         'member' => [
-                            'id' => $member->id,
-                            'name' => $member->user->name,
-                            'member_id' => $member->member_id,
-                            'tier' => $tier?->name ?? 'REGULAR',
+                            'id'           => $member->id,
+                            'name'         => $member->user->name,
+                            'member_id'    => $member->member_id,
+                            'tier'         => $tier?->name ?? 'REGULAR',
                             'total_points' => $member->total_points,
                         ],
                         'check_in_at' => $arrival->check_in_at,
-                        'status' => $arrival->status,
+                        'status'      => $arrival->status,
+                        'is_guest'    => false,
                     ],
                 ],
             ], 201);
@@ -103,28 +138,49 @@ class ArrivalController extends Controller
             ->orderBy('check_in_at', 'desc')
             ->get()
             ->map(function ($arrival) {
+                if ($arrival->is_guest) {
+                    return [
+                        'arrival_id'     => $arrival->id,
+                        'is_guest'       => true,
+                        'guest_name'     => $arrival->guest_name,
+                        'name'           => $arrival->guest_name ?? 'Tamu',
+                        'deposit_amount' => (float) $arrival->deposit_amount,
+                        'member_id'      => null,
+                        'member_code'    => null,
+                        'tier'           => null,
+                        'discount_percentage' => 0,
+                        'total_points'   => 0,
+                        'check_in_at'    => $arrival->check_in_at,
+                        'check_out_at'   => $arrival->check_out_at,
+                        'status'         => $arrival->status,
+                        'duration'       => $arrival->duration,
+                    ];
+                }
+
                 $tier = $arrival->member->getCurrentTier();
 
                 return [
-                    'arrival_id' => $arrival->id,
-                    'member_id' => $arrival->member->id,
-                    'member_code' => $arrival->member->member_id,
-                    'name' => $arrival->member->user->name,
-                    'tier' => $tier?->name ?? 'REGULAR',
+                    'arrival_id'     => $arrival->id,
+                    'is_guest'       => false,
+                    'deposit_amount' => 0,
+                    'member_id'      => $arrival->member->id,
+                    'member_code'    => $arrival->member->member_id,
+                    'name'           => $arrival->member->user->name,
+                    'tier'           => $tier?->name ?? 'REGULAR',
                     'discount_percentage' => $tier?->discount_percentage ?? 0,
-                    'total_points' => $arrival->member->total_points,
-                    'check_in_at' => $arrival->check_in_at,
-                    'check_out_at' => $arrival->check_out_at,
-                    'status' => $arrival->status,
-                    'duration' => $arrival->duration,
+                    'total_points'   => $arrival->member->total_points,
+                    'check_in_at'    => $arrival->check_in_at,
+                    'check_out_at'   => $arrival->check_out_at,
+                    'status'         => $arrival->status,
+                    'duration'       => $arrival->duration,
                 ];
             });
 
         return response()->json([
             'success' => true,
-            'data' => [
+            'data'    => [
                 'arrivals' => $arrivals,
-                'total' => $arrivals->count(),
+                'total'    => $arrivals->count(),
             ],
         ]);
     }
@@ -153,14 +209,14 @@ class ArrivalController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Member berhasil check-out',
-            'data' => [
+            'message' => 'Berhasil check-out',
+            'data'    => [
                 'arrival' => [
-                    'id' => $arrival->id,
-                    'member_name' => $arrival->member->user->name,
-                    'check_in_at' => $arrival->check_in_at,
+                    'id'           => $arrival->id,
+                    'display_name' => $arrival->display_name,
+                    'check_in_at'  => $arrival->check_in_at,
                     'check_out_at' => $arrival->check_out_at,
-                    'duration' => $arrival->duration,
+                    'duration'     => $arrival->duration,
                 ],
             ],
         ]);
@@ -232,22 +288,39 @@ class ArrivalController extends Controller
                         fn($q2) => $q2
                             ->where('name', 'like', "%{$query}%")
                             ->orWhere('phone', 'like', "%{$query}%")
-                    );
+                    )
+                    ->orWhere('guest_name', 'like', "%{$query}%");
             })
             ->limit(10)
             ->get()
             ->map(function ($arrival) {
+                if ($arrival->is_guest) {
+                    return [
+                        'arrival_id'     => $arrival->id,
+                        'is_guest'       => true,
+                        'name'           => $arrival->guest_name ?? 'Tamu',
+                        'member_id'      => null,
+                        'member_code'    => null,
+                        'phone'          => null,
+                        'tier'           => null,
+                        'total_points'   => 0,
+                        'check_in_at'    => $arrival->check_in_at,
+                        'deposit_amount' => (float) $arrival->deposit_amount,
+                    ];
+                }
+
                 $tier = $arrival->member->getCurrentTier();
 
                 return [
-                    'arrival_id' => $arrival->id,
-                    'member_id' => $arrival->member->id,
-                    'member_code' => $arrival->member->member_id,
-                    'name' => $arrival->member->user->name,
-                    'phone' => $arrival->member->user->phone,
-                    'tier' => $tier?->name ?? 'REGULAR',
+                    'arrival_id'   => $arrival->id,
+                    'is_guest'     => false,
+                    'member_id'    => $arrival->member->id,
+                    'member_code'  => $arrival->member->member_id,
+                    'name'         => $arrival->member->user->name,
+                    'phone'        => $arrival->member->user->phone,
+                    'tier'         => $tier?->name ?? 'REGULAR',
                     'total_points' => $arrival->member->total_points,
-                    'check_in_at' => $arrival->check_in_at,
+                    'check_in_at'  => $arrival->check_in_at,
                 ];
             });
 

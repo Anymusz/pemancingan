@@ -20,7 +20,7 @@ class ReportController extends Controller
 {
     use CalculatesDiscountTier;
 
-    // ==================== HELPER ====================
+    // ===== HELPER =====
 
     /**
      * Parse period parameter and return [startDate, endDate] as Carbon instances.
@@ -58,8 +58,6 @@ class ReportController extends Controller
 
         return [$start, $end];
     }
-
-    // ==================== ENDPOINTS ====================
 
     /**
      * GET /api/owner/reports/summary
@@ -179,7 +177,7 @@ class ReportController extends Controller
             return [
                 'transaction_code'  => $trx->transaction_code,
                 'transaction_date'  => $trx->transaction_date->toDateTimeString(),
-                'member_name'       => $trx->arrival->member->user->name ?? null,
+                'customer_name'     => $trx->arrival?->display_name ?? '-',
                 'total_amount'      => (float) $trx->total_amount,
                 'discount_tier'     => (float) $trx->discount_tier,
                 'discount_voucher'  => (float) $trx->discount_voucher,

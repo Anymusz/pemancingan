@@ -47,7 +47,7 @@ class TransactionController extends Controller
         $data = collect($paginator->items())->map(fn (Transaction $trx) => [
             'id'                => $trx->id,
             'transaction_code'  => $trx->transaction_code,
-            'member_name'       => $trx->arrival?->member?->user?->name ?? '-',
+            'customer_name'     => $trx->arrival?->display_name ?? '-',
             'member_code'       => $trx->arrival?->member?->member_id ?? '-',
             'total_amount'      => (float) $trx->total_amount,
             'discount_tier'     => (float) $trx->discount_tier,
@@ -56,6 +56,9 @@ class TransactionController extends Controller
             'tips'              => (float) $trx->tips,
             'payment_method'    => $trx->payment_method,
             'points_earned'     => $trx->points_earned,
+            'is_guest'          => is_null($trx->arrival?->member_id),
+            'deposit_used'      => (float) ($trx->arrival?->deposit_amount > 0 ? min($trx->arrival->deposit_amount, $trx->total_amount - $trx->discount_tier - $trx->discount_voucher) : 0),
+            'deposit_change'    => (float) max(0, ($trx->arrival?->deposit_amount ?? 0) - ((float)$trx->total_amount - (float)$trx->discount_tier - (float)$trx->discount_voucher)),
             'transaction_date'  => $trx->transaction_date,
             'processed_by_name' => $trx->processedBy?->name ?? '-',
             'items'             => $trx->items->map(fn ($item) => [
@@ -95,10 +98,8 @@ class TransactionController extends Controller
             'data' => [
                 'transaction' => [
                     'transaction_code' => $transaction->transaction_code,
-                    'member' => [
-                        'name' => $transaction->arrival?->member?->user?->name ?? '-',
-                        'member_id' => $transaction->arrival?->member?->member_id ?? '-',
-                    ],
+                    'customer_name'    => $transaction->arrival?->display_name ?? '-',
+                    'member_code'      => $transaction->arrival?->member?->member_id ?? '-',
                     'items' => $transaction->items->map(fn($item) => [
                         'item_type' => $item->item_type,
                         'name' => $item->item_name_snapshot,
@@ -135,7 +136,7 @@ class TransactionController extends Controller
         'penalty_items.*.name'        => 'required|string|max:100',
         'penalty_items.*.quantity'    => 'required|integer|min:1',
         'penalty_items.*.unit_price'  => 'required|numeric|min:0',
-        'payment_method'              => 'required|in:cash,transfer,qris',
+        'payment_method'              => 'nullable|in:cash,transfer,qris',
         'tips'                        => 'nullable|numeric|min:0',
         'notes'                       => 'nullable|string|max:500',
     ]);
@@ -156,12 +157,18 @@ class TransactionController extends Controller
             return response()->json(['success' => false, 'message' => 'Member sudah check-out.'], 422);
         }
 
-        // Step 2: Get member
-        $member = \App\Models\Member::with('user')->find($arrival->member_id);
+        // Step 2: Determine if guest
+        $isGuest = $arrival->is_guest;
 
-        if (!$member || $member->user->status !== 'active') {
-            DB::rollBack();
-            return response()->json(['success' => false, 'message' => 'Member tidak aktif'], 422);
+        // For member arrivals, validate member is active
+        $member = null;
+        if (!$isGuest) {
+            $member = \App\Models\Member::with('user')->find($arrival->member_id);
+
+            if (!$member || $member->user->status !== 'active') {
+                DB::rollBack();
+                return response()->json(['success' => false, 'message' => 'Member tidak aktif'], 422);
+            }
         }
 
         // Step 3: Fetch pending orders (menu + rental) milik arrival
@@ -177,25 +184,33 @@ class TransactionController extends Controller
             return response()->json(['success' => false, 'message' => 'Tidak ada item untuk di-checkout'], 422);
         }
 
-        // Step 4: Get tier
-        $currentTier = DB::table('member_tiers')
-            ->where('min_points', '<=', $member->total_points)
-            ->where(function ($q) use ($member) {
-                $q->whereNull('max_points')
-                  ->orWhere('max_points', '>=', $member->total_points);
-            })
-            ->first();
-        $tierDiscount = $currentTier?->discount_percentage ?? 0;
+        // Step 4: Tier & voucher (member only)
+        $currentTier  = null;
+        $tierDiscount = 0;
+        $activeVoucher = null;
 
-        // Step 4b: Ambil voucher aktif member (FIFO)
-        $activeVoucher = Voucher::where('member_id', $member->id)
-            ->where('status', 'unused')
-            ->orderBy('issued_at', 'asc')
-            ->first();
+        if (!$isGuest) {
+            $currentTier = DB::table('member_tiers')
+                ->where('min_points', '<=', $member->total_points)
+                ->where(function ($q) use ($member) {
+                    $q->whereNull('max_points')
+                      ->orWhere('max_points', '>=', $member->total_points);
+                })
+                ->first();
+            $tierDiscount = $currentTier?->discount_percentage ?? 0;
+
+            $activeVoucher = Voucher::where('member_id', $member->id)
+                ->where('status', 'unused')
+                ->orderBy('issued_at', 'asc')
+                ->first();
+        }
 
         // Step 5: Generate transaction code
+        $codeIdentifier = $isGuest
+            ? ('G' . str_pad($arrival->id, 4, '0', STR_PAD_LEFT))
+            : str_pad($arrival->member_id, 4, '0', STR_PAD_LEFT);
         $transactionCode = 'TRX-' . Carbon::now()->format('Ymd') . '-'
-            . str_pad($arrival->member_id, 4, '0', STR_PAD_LEFT) . '-'
+            . $codeIdentifier . '-'
             . Carbon::now()->format('His') . '-'
             . rand(100, 999);
 
@@ -271,19 +286,25 @@ class TransactionController extends Controller
         $discountTier      = round($subtotalFish * ($tierDiscount / 100), 2);
         $afterTierDiscount = $totalAmount - $discountTier;
 
-        // Terapkan voucher pada total setelah diskon tier
+        // Terapkan voucher pada total setelah diskon tier (member only)
         $discountVoucher = 0;
-        if ($activeVoucher) {
+        if (!$isGuest && $activeVoucher) {
             $discountVoucher = $activeVoucher->amount;
             $finalAmount     = max(0, $afterTierDiscount - $discountVoucher);
         } else {
             $finalAmount = $afterTierDiscount;
         }
 
+        // Deposit deduction (guest)
+        $deposit             = $isGuest ? (float) $arrival->deposit_amount : 0;
+        $depositUsed         = min($deposit, $finalAmount);
+        $depositChange       = max(0, $deposit - $finalAmount);
+        $finalAmountAfterDeposit = max(0, $finalAmount - $deposit);
+
         $tips = $request->tips ?? 0;
 
-        // Poin: penalty tidak ikut hitungan poin
-        $pointsEarned = (int) floor(($subtotalFish + $subtotalPending) / 10000);
+        // Poin: penalty tidak ikut hitungan poin; guest selalu 0
+        $pointsEarned = $isGuest ? 0 : (int) floor(($subtotalFish + $subtotalPending) / 10000);
 
         // Step 7: Insert transaction
         $transaction = Transaction::create([
@@ -292,9 +313,9 @@ class TransactionController extends Controller
             'total_amount'     => $totalAmount,
             'discount_tier'    => $discountTier,
             'discount_voucher' => $discountVoucher,
-            'final_amount'     => $finalAmount,
+            'final_amount'     => $finalAmountAfterDeposit,
             'tips'             => $tips,
-            'payment_method'   => $request->payment_method,
+            'payment_method'   => $request->payment_method ?? 'cash',
             'points_earned'    => $pointsEarned,
             'status'           => 'paid',
             'processed_by'     => $request->user()->id,
@@ -361,48 +382,52 @@ class TransactionController extends Controller
             }
         }
 
-        // Step 11: Update member (points, fish weight, last_transaction_date, tier)
-        $newPoints     = $member->total_points + $pointsEarned;
-        $newFishWeight = $member->total_fish_weight + $totalFishWeight;
+        // Step 11: Update member (points, fish weight, last_transaction_date, tier) — skip for guests
+        $newPoints    = 0;
+        $newFishWeight = 0;
+        $tierUpgraded  = false;
+        $newTier       = $currentTier;
 
-        $newTier = DB::table('member_tiers')
-            ->where('min_points', '<=', $newPoints)
-            ->where(function ($q) use ($newPoints) {
-                $q->whereNull('max_points')
-                  ->orWhere('max_points', '>=', $newPoints);
-            })
-            ->first();
+        if (!$isGuest && $member) {
+            $newPoints     = $member->total_points + $pointsEarned;
+            $newFishWeight = $member->total_fish_weight + $totalFishWeight;
 
-        $tierUpgraded = $newTier && $currentTier && $newTier->id !== $currentTier->id;
+            $newTier = DB::table('member_tiers')
+                ->where('min_points', '<=', $newPoints)
+                ->where(function ($q) use ($newPoints) {
+                    $q->whereNull('max_points')
+                      ->orWhere('max_points', '>=', $newPoints);
+                })
+                ->first();
 
-        $member->update([
-            'total_points'          => $newPoints,
-            'total_fish_weight'     => $newFishWeight,
-            'last_transaction_date' => Carbon::now(),
-            'tier_id'               => $newTier?->id ?? $currentTier?->id,
-        ]);
+            $tierUpgraded = $newTier && $currentTier && $newTier->id !== $currentTier->id;
 
-        // Notifikasi: Tier Upgraded
-        if ($tierUpgraded) {
-            NotificationService::send(
-                $member->user_id,
-                'tier_upgraded',
-                'Selamat! Tier Anda Naik',
-                "Tier Anda telah naik menjadi {$newTier->name}. Nikmati benefit baru!",
-                ['new_tier' => $newTier->name]
-            );
+            $member->update([
+                'total_points'          => $newPoints,
+                'total_fish_weight'     => $newFishWeight,
+                'last_transaction_date' => Carbon::now(),
+                'tier_id'               => $newTier?->id ?? $currentTier?->id,
+            ]);
+
+            if ($tierUpgraded) {
+                NotificationService::send(
+                    $member->user_id,
+                    'tier_upgraded',
+                    'Selamat! Tier Anda Naik',
+                    "Tier Anda telah naik menjadi {$newTier->name}. Nikmati benefit baru!",
+                    ['new_tier' => $newTier->name]
+                );
+            }
         }
 
         // Step 12: Close arrival
         $arrival->update([
             'status'       => 'completed',
             'check_out_at' => Carbon::now(),
-            'active_token' => null,
         ]);
 
-
-        // Tandai voucher sebagai used (sebelum commit agar masuk transaksi DB)
-        if ($activeVoucher) {
+        // Tandai voucher sebagai used (member only)
+        if (!$isGuest && $activeVoucher) {
             $activeVoucher->update([
                 'status'         => 'used',
                 'used_at'        => Carbon::now(),
@@ -420,20 +445,25 @@ class TransactionController extends Controller
                     'total_amount'     => $totalAmount,
                     'discount_tier'    => $discountTier,
                     'discount_voucher' => $discountVoucher,
-                    'final_amount'     => $finalAmount,
+                    'final_amount'     => $finalAmountAfterDeposit,
+                    'deposit_used'     => $depositUsed,
+                    'deposit_change'   => $depositChange,
                     'tips'             => $tips,
                     'points_earned'    => $pointsEarned,
                     'payment_method'   => $transaction->payment_method,
                 ],
-                'member' => [
-                    'name'         => $member->user->name,
-                    'total_points' => $newPoints,
-                    'current_tier' => $newTier?->name ?? 'REGULAR',
-                    'fish_weight'  => $newFishWeight,
-                ],
+                'customer' => $isGuest
+                    ? ['name' => $arrival->guest_name ?? 'Tamu', 'is_guest' => true]
+                    : [
+                        'name'         => $member->user->name,
+                        'total_points' => $newPoints,
+                        'current_tier' => $newTier?->name ?? 'REGULAR',
+                        'fish_weight'  => $newFishWeight,
+                        'is_guest'     => false,
+                    ],
                 'tier_upgraded' => $tierUpgraded,
                 'new_tier'      => $tierUpgraded ? $newTier->name : null,
-                'voucher_used'  => $activeVoucher !== null,
+                'voucher_used'  => !$isGuest && $activeVoucher !== null,
             ],
         ], 201);
 

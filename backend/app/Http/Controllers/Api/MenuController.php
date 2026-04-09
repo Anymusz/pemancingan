@@ -17,7 +17,13 @@ class MenuController extends Controller
         $menus = Menu::where('availability', 'available')
             ->orderBy('category')
             ->orderBy('name')
-            ->get(['id', 'name', 'price', 'category']);
+            ->get()->map(fn($menu) => [
+                'id'        => $menu->id,
+                'name'      => $menu->name,
+                'price'     => $menu->price,
+                'category'  => $menu->category,
+                'image_url' => $menu->image_url,
+            ]);
 
         return response()->json([
             'success' => true,

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\FishTypeController;
 use App\Http\Controllers\Api\MemberTierController;
@@ -24,7 +25,9 @@ use App\Http\Controllers\Api\Owner\VoucherController as OwnerVoucherController;
 use App\Http\Controllers\Api\Owner\VoucherConfigController as OwnerVoucherConfigController;
 use App\Http\Controllers\Api\Owner\ReportController as OwnerReportController;
 use App\Http\Controllers\Api\Owner\RentalItemController as OwnerRentalItemController;
+use App\Http\Controllers\Api\Owner\GuestConfigController as OwnerGuestConfigController;
 use App\Http\Controllers\Api\Employee\RentalItemController as EmployeeRentalItemController;
+use App\Http\Controllers\Api\Employee\GuestConfigController as EmployeeGuestConfigController;
 
 // ========================================
 // PUBLIC ROUTES
@@ -52,6 +55,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/menus', [MenuController::class, 'index']); // member & employee: hanya menu available
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
+    Route::put('/user/profile', [UserController::class, 'updateProfile']);
+    Route::put('/user/password', [UserController::class, 'updatePassword']);
 
     // Notifications (semua role)
     Route::prefix('notifications')->group(function () {
@@ -137,6 +142,10 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     Route::put('/rental-items/{id}', [OwnerRentalItemController::class, 'update']);
     Route::delete('/rental-items/{id}', [OwnerRentalItemController::class, 'destroy']);
     Route::patch('/rental-items/{id}/toggle-active', [OwnerRentalItemController::class, 'toggleActive']);
+
+    // Guest Config
+    Route::get('/guest-config', [OwnerGuestConfigController::class, 'show']);
+    Route::put('/guest-config', [OwnerGuestConfigController::class, 'update']);
 });
 
 // ========================================
@@ -175,4 +184,7 @@ Route::prefix('employee')->middleware(['auth:sanctum', 'role:employee'])->group(
     // Rental Items
     Route::get('/rental-items', [EmployeeRentalItemController::class, 'index']);
     Route::patch('/rental-items/{id}/toggle-active', [EmployeeRentalItemController::class, 'toggleActive']);
+
+    // Guest Config
+    Route::get('/guest-config', [EmployeeGuestConfigController::class, 'show']);
 });

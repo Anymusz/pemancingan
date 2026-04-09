@@ -22,7 +22,7 @@ class TransactionReportExport implements FromCollection, WithHeadings
         return [
             'Tanggal',
             'No_Transaksi',
-            'Member',
+            'Pelanggan',
             'Item',
             'Qty',
             'Harga_Satuan',
@@ -44,7 +44,7 @@ class TransactionReportExport implements FromCollection, WithHeadings
             $items = $trx->items->map(fn ($i) => $i->toArray())->toArray();
             $items = $this->calculateDiscountTierItems($items, (float) $trx->discount_tier);
 
-            $memberName      = $trx->arrival->member->user->name ?? '-';
+            $customerName    = $trx->arrival?->display_name ?? '-';
             $discountVoucher = (float) $trx->discount_voucher;
 
             foreach ($items as $item) {
@@ -54,7 +54,7 @@ class TransactionReportExport implements FromCollection, WithHeadings
                 $rows[] = [
                     $trx->transaction_date->format('Y-m-d H:i:s'),
                     $trx->transaction_code,
-                    $memberName,
+                    $customerName,
                     $item['item_name_snapshot'],
                     (float) $item['quantity'],
                     (float) $item['unit_price_snapshot'],
