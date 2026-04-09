@@ -8,6 +8,11 @@ const employeeService = {
     return response.data;
   },
 
+  getGuestConfig: async () => {
+    const response = await api.get("/employee/guest-config");
+    return response.data;
+  },
+
   getTodayArrivals: async (filters = {}) => {
     const response = await api.get("/employee/today-arrivals", {
       params: filters,

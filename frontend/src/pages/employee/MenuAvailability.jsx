@@ -3,6 +3,7 @@ import employeeService from "../../services/employeeService";
 import rentalService from "../../services/rentalService";
 import { useToast } from "@/hooks/useToast";
 import { formatCurrency } from "@/utils/utils";
+import { Package, Fish, UtensilsCrossed } from "lucide-react";
 import { DataTable } from "@/components/common/DataTable";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import { imageCell } from "@/components/common/ImageCell";
@@ -19,7 +20,7 @@ const menuColumns = [
   {
     key: "category",
     header: "Kategori",
-    render: (row) => <span className="capitalize">{row.category}</span>,
+    render: (row) => <StatusBadge status={row.category} />,
   },
   {
     key: "price",
@@ -161,9 +162,12 @@ export default function MenuAvailability() {
     <div className="space-y-10 p-1">
       {/* ===== Menu Availability ===== */}
       <section className="space-y-4">
-        <h1 className="text-2xl font-bold text-foreground">
-          Ketersediaan Menu
-        </h1>
+        <div className="flex items-center gap-2">
+          <UtensilsCrossed className="w-5 h-5" />
+          <h2 className="text-lg font-semibold text-foreground">
+            Ketersediaan Menu
+          </h2>
+        </div>
 
         {loading ? (
           <p className="text-sm text-muted-foreground">Memuat menu...</p>
@@ -189,9 +193,12 @@ export default function MenuAvailability() {
 
       {/* ===== Rental Items ===== */}
       <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-foreground">
-          🎣 Ketersediaan Rental
-        </h2>
+        <div className="flex items-center gap-2">
+          <Package className="w-5 h-5" />
+          <h2 className="text-lg font-semibold text-foreground">
+            Ketersediaan Rental
+          </h2>
+        </div>
         {rentalLoading ? (
           <p className="text-sm text-muted-foreground">Memuat rental item...</p>
         ) : rentalItems.length === 0 ? (
@@ -216,7 +223,10 @@ export default function MenuAvailability() {
 
       {/* ===== Stok Ikan ===== */}
       <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-foreground">📦 Stok Ikan</h2>
+        <div className="flex items-center gap-2">
+          <Fish className="w-5 h-5" />
+          <h2 className="text-lg font-semibold text-foreground">Stok Ikan</h2>
+        </div>
 
         {fishStocksLoading ? (
           <p className="text-sm text-muted-foreground">

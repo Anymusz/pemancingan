@@ -29,6 +29,7 @@ import { cn } from "@/utils/utils";
  *   emptyMessage?: string                    — shown when results are empty (default "Tidak ada hasil")
  *   disabled?: boolean                       — disables the trigger Button
  *   getItemKey?(item): string|number         — unique key per item; falls back to array index
+ *   triggerContent?: ReactNode               — optional JSX to use as trigger (bypasses default Button)
  *   title?: string                           — accessible modal title (default "Cari")
  */
 export function SearchModal({
@@ -37,6 +38,7 @@ export function SearchModal({
   renderItem,
   placeholder = "Cari...",
   triggerLabel = "Cari",
+  triggerContent = null,
   emptyMessage = "Tidak ada hasil",
   disabled = false,
   getItemKey,
@@ -90,10 +92,14 @@ export function SearchModal({
   return (
     <Modal open={open} onOpenChange={handleOpenChange}>
       <ModalTrigger asChild>
-        <Button variant="outline" disabled={disabled}>
-          <SearchIcon className="size-4" />
-          {triggerLabel}
-        </Button>
+        {triggerContent ? (
+          triggerContent
+        ) : (
+          <Button variant="outline" disabled={disabled}>
+            <SearchIcon className="size-4" />
+            {triggerLabel}
+          </Button>
+        )}
       </ModalTrigger>
 
       <ModalContent className="p-1">
@@ -155,7 +161,7 @@ export function SearchModal({
                       key={key}
                       value={String(key)}
                       onSelect={() => handleSelect(item)}
-                      className="flex cursor-pointer items-center gap-3 rounded-md px-2 py-2"
+                      className="flex cursor-pointer items-center gap-3 rounded-md px-2 py-2 data-[selected=true]:bg-primary/10 aria-selected:bg-primary/10"
                     >
                       {renderItem(item)}
                     </CommandItem>

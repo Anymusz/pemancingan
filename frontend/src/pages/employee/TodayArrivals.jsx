@@ -10,6 +10,13 @@ import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/FormInput";
 import { FormSelect } from "@/components/common/FormSelect";
 import { StatusBadge } from "@/components/common/StatusBadge";
+import { TabsNav } from "@/components/common/TabsNav";
+
+const TYPE_FILTERS = [
+  { value: "all", label: "Semua" },
+  { value: "member", label: "Member" },
+  { value: "guest", label: "Tamu" },
+];
 
 const TodayArrivals = () => {
   const [arrivals, setArrivals] = useState([]);
@@ -17,6 +24,7 @@ const TodayArrivals = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
 
   const [statusFilter, setStatusFilter] = useState("");
+  const [typeFilter, setTypeFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
   const [checkoutModal, setCheckoutModal] = useState({
@@ -43,12 +51,19 @@ const TodayArrivals = () => {
   }, [fetchArrivals]);
 
   const filteredArrivals = arrivals.filter((a) => {
+    const q = searchQuery.toLowerCase();
     const matchStatus = statusFilter ? a.status === statusFilter : true;
+    const matchType =
+      typeFilter === "all"
+        ? true
+        : typeFilter === "guest"
+          ? a.is_guest
+          : !a.is_guest;
     const matchSearch = searchQuery
-      ? a.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        a.member_code.toLowerCase().includes(searchQuery.toLowerCase())
+      ? a.name?.toLowerCase().includes(q) ||
+        a.member_code?.toLowerCase()?.includes(q)
       : true;
-    return matchStatus && matchSearch;
+    return matchStatus && matchType && matchSearch;
   });
 
   const openCheckoutModal = (arrival) => {
@@ -68,7 +83,7 @@ const TodayArrivals = () => {
         checkoutModal.notes || null,
       );
       if (res.success) {
-        toast.success(`${res.data.arrival.member_name} berhasil check-out`);
+        toast.success(`${res.data.arrival.display_name} berhasil check-out`);
         closeCheckoutModal();
         fetchArrivals();
       }
@@ -80,27 +95,29 @@ const TodayArrivals = () => {
   };
 
   const arrivalColumns = [
-    { key: "name", header: "Nama Member", render: (row) => row.name },
+    { key: "name", header: "Nama", render: (row) => row.name },
+    {
+      key: "is_guest",
+      header: "Tipe",
+      render: (row) => (
+        <StatusBadge status={row.is_guest ? "guest" : "member"} />
+      ),
+    },
     {
       key: "member_code",
       header: "Member ID",
-      render: (row) => row.member_code,
+      render: (row) => row.member_code ?? "-",
     },
     {
       key: "tier",
       header: "Tier",
-      render: (row) => `${row.tier} (${row.discount_percentage ?? 0}%)`,
+      render: (row) =>
+        row.tier ? <StatusBadge status={row.tier.toLowerCase()} /> : "-",
     },
     {
       key: "check_in_at",
       header: "Check-in",
       render: (row) => formatDateTime(row.check_in_at),
-    },
-    {
-      key: "check_out_at",
-      header: "Check-out",
-      render: (row) =>
-        row.check_out_at ? formatDateTime(row.check_out_at) : "-",
     },
     {
       key: "duration",
@@ -118,13 +135,17 @@ const TodayArrivals = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-foreground">
-          Kedatangan Hari Ini
-        </h1>
         <p className="text-sm text-muted-foreground">
           Total: {filteredArrivals.length} kedatangan
         </p>
       </div>
+
+      {/* Type filter */}
+      <TabsNav
+        value={typeFilter}
+        onValueChange={setTypeFilter}
+        items={TYPE_FILTERS}
+      />
 
       {/* Filter bar */}
       <div className="flex flex-wrap items-center gap-3">
@@ -141,8 +162,8 @@ const TodayArrivals = () => {
           placeholder="Semua Status"
           options={[
             { value: "__all__", label: "Semua Status" },
-            { value: "active", label: "Active" },
-            { value: "completed", label: "Completed" },
+            { value: "active", label: "Aktif" },
+            { value: "completed", label: "Selesai" },
           ]}
           className="w-44"
         />
@@ -181,7 +202,7 @@ const TodayArrivals = () => {
           onConfirm={handleManualCheckout}
           variant="warning"
           title="Konfirmasi Check-out"
-          description={`Check-out member ${checkoutModal.arrival.name} tanpa transaksi?`}
+          description={`Check-out ${checkoutModal.arrival.is_guest ? "tamu" : "member"} ${checkoutModal.arrival.name} tanpa transaksi?`}
           inputLabel="Catatan (opsional)"
           inputValue={checkoutModal.notes}
           onInputChange={(e) =>

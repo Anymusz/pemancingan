@@ -1,4 +1,4 @@
-// File: src/pages/employee/checkout/v2/PenaltySection.jsx
+// File: src/pages/employee/checkout/PenaltySection.jsx
 
 import { Minus, Plus } from "lucide-react";
 import { formatCurrency } from "@/utils/utils";

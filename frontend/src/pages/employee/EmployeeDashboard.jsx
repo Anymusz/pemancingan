@@ -10,9 +10,10 @@ import TransactionHistory from "./TransactionHistory";
 import AddOrder from "./AddOrder";
 import PendingOrder from "./PendingOrder";
 import MenuAvailability from "./MenuAvailability";
-import { removeToken, removeUser, getUser } from "@/utils/tokenManager";
+import { removeToken, removeUser, getUser, setUser } from "@/utils/tokenManager";
 import notificationService from "@/services/notificationService";
 import DashboardLayout from "@/components/layout/DashboardLayout";
+import ProfilePage from "@/pages/profile/ProfilePage";
 import {
   QrCode,
   CalendarCheck,
@@ -122,6 +123,7 @@ const EmployeeDashboard = () => {
         "checkout",
         "history",
         "menuavailability",
+        "profile",
       ].map((menu) => {
         if (activeMenu !== menu && !mountedTabs.has(menu)) return null;
 
@@ -159,6 +161,14 @@ const EmployeeDashboard = () => {
               />
             )}
             {menu === "history" && <TransactionHistory />}
+            {menu === "profile" && (
+              <ProfilePage
+                user={currentUser}
+                onUserUpdate={(updatedUser) => {
+                  setUser(updatedUser);
+                }}
+              />
+            )}
           </div>
         );
       })}

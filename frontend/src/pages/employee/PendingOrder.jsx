@@ -53,7 +53,8 @@ const PendingOrder = () => {
     if (!acc[key]) {
       acc[key] = {
         arrival_id: order.arrival_id,
-        member_name: order.member_name,
+        customer_name: order.customer_name,
+        is_guest: order.is_guest,
         items: [],
       };
     }
@@ -183,7 +184,7 @@ const PendingOrder = () => {
           onClick={fetchOrders}
           loading={loading}
         >
-          Refresh Manual
+          Refresh
         </Button>
       </div>
 
@@ -202,9 +203,10 @@ const PendingOrder = () => {
               className="rounded-lg border border-border p-4 space-y-3"
             >
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold text-foreground">
-                  {group.member_name}
+                <h3 className="font-medium text-foreground">
+                  {group.customer_name}
                 </h3>
+                <StatusBadge status={group.is_guest ? "guest" : "member"} />
                 <span className="text-sm text-muted-foreground">
                   {group.items.length} item
                 </span>

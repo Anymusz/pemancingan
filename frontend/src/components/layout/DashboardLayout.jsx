@@ -83,7 +83,11 @@ export default function DashboardLayout({
         <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton size="lg" className="pointer-events-none">
+              <SidebarMenuButton
+                size="lg"
+                className="cursor-pointer"
+                onClick={() => onNavChange('profile')}
+              >
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sky-500 text-white text-xs font-bold">
                   {user?.name?.charAt(0)?.toUpperCase() ?? "?"}
                 </div>

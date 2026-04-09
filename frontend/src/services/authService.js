@@ -20,7 +20,18 @@ export const login = async (credentials) => {
 
   if (response.data.success && response.data.data.token) {
     setToken(response.data.data.token);
-    setUser(response.data.data.user);
+    
+    try {
+      // Fetch full profile via /me to ensure created_at and updated_at are retrieved
+      const meResponse = await api.get("/me");
+      if (meResponse.data.success) {
+        setUser(meResponse.data.data);
+      } else {
+        setUser(response.data.data.user);
+      }
+    } catch {
+      setUser(response.data.data.user);
+    }
   }
 
   return response.data;

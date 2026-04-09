@@ -1,4 +1,4 @@
-// File: src/pages/employee/checkout/v2/PaymentSection.jsx
+// File: src/pages/employee/checkout/PaymentSection.jsx
 
 import { Banknote, ArrowLeftRight, Smartphone } from "lucide-react";
 import { Button } from "@/components/common/Button";
@@ -34,6 +34,7 @@ export function PaymentSection({
   onSubmit,
   loading,
   isSubmitDisabled,
+  isFullyCoveredByDeposit = false,
 }) {
   return (
     <>
@@ -44,28 +45,34 @@ export function PaymentSection({
 
         {/* Payment Method Cards */}
         <div className="flex flex-col gap-1.5">
-          <Label>Metode Pembayaran *</Label>
-          <div className="grid grid-cols-3 gap-2">
-            {PAYMENT_OPTIONS.map((method) => {
-              const Icon = method.icon;
-              const isSelected = paymentMethod === method.value;
-              return (
-                <button
-                  key={method.value}
-                  type="button"
-                  onClick={() => onPaymentMethodChange(method.value)}
-                  className={`rounded-lg border p-3 cursor-pointer text-center transition-colors ${
-                    isSelected
-                      ? "border-primary bg-primary/5"
-                      : "border-border hover:border-primary/50 hover:bg-muted/40"
-                  }`}
-                >
-                  <Icon className="h-5 w-5 mx-auto mb-1" />
-                  <span className="text-sm font-medium">{method.label}</span>
-                </button>
-              );
-            })}
-          </div>
+          <Label>Metode Pembayaran {!isFullyCoveredByDeposit && "*"}</Label>
+          {isFullyCoveredByDeposit ? (
+            <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 text-sm text-emerald-700">
+              Total telah tertutup oleh deposit. Tidak ada pembayaran tambahan.
+            </div>
+          ) : (
+            <div className="grid grid-cols-3 gap-2">
+              {PAYMENT_OPTIONS.map((method) => {
+                const Icon = method.icon;
+                const isSelected = paymentMethod === method.value;
+                return (
+                  <button
+                    key={method.value}
+                    type="button"
+                    onClick={() => onPaymentMethodChange(method.value)}
+                    className={`rounded-lg border p-3 cursor-pointer text-center transition-colors ${
+                      isSelected
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:border-primary/50 hover:bg-muted/40"
+                    }`}
+                  >
+                    <Icon className="h-5 w-5 mx-auto mb-1" />
+                    <span className="text-sm font-medium">{method.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Tips */}
@@ -78,7 +85,6 @@ export function PaymentSection({
             value={tips}
             onChange={onTipsChange}
             placeholder="0"
-            className="w-40"
           />
         </div>
 

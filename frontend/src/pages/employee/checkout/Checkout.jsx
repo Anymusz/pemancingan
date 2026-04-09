@@ -1,4 +1,4 @@
-// File: src/pages/employee/checkout/v2/Checkout.jsx
+// File: src/pages/employee/checkout/Checkout.jsx
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { TrendingUp } from "lucide-react";
@@ -50,11 +50,13 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     [penaltyItems],
   );
 
+  const isGuest = selectedArrival?.is_guest ?? false;
+
   const discountTier = useMemo(() => {
-    if (!selectedArrival) return 0;
+    if (!selectedArrival || isGuest) return 0;
     const pct = selectedArrival.discount_percentage ?? TIER_DISCOUNT_FALLBACK;
     return Math.floor(subtotalFish * (pct / 100));
-  }, [subtotalFish, selectedArrival]);
+  }, [subtotalFish, selectedArrival, isGuest]);
 
   const totalAmount = useMemo(
     () => subtotalFish + subtotalPending + subtotalPenalty,
@@ -68,10 +70,16 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     [totalAmount, discountTier, discountVoucher],
   );
 
-  // Poin: penalty tidak ikut
+  const depositAmount = isGuest ? (selectedArrival?.deposit_amount ?? 0) : 0;
+  const depositChange = Math.max(0, depositAmount - finalAmount);
+  const finalAmountAfterDeposit = Math.max(0, finalAmount - depositAmount);
+  const isFullyCoveredByDeposit =
+    depositAmount > 0 && finalAmountAfterDeposit === 0;
+
+  // Poin: penalty tidak ikut; guest selalu 0
   const pointsPreview = useMemo(
-    () => Math.floor((totalAmount - subtotalPenalty) / 10000),
-    [totalAmount, subtotalPenalty],
+    () => (isGuest ? 0 : Math.floor((totalAmount - subtotalPenalty) / 10000)),
+    [totalAmount, subtotalPenalty, isGuest],
   );
 
   // ===== HELPERS =====
@@ -152,7 +160,9 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     setPenaltyItems([]);
     setActiveVoucher(null);
     fetchPendingOrders(arrival.arrival_id);
-    fetchMemberVoucher(arrival.member_id);
+    if (!arrival.is_guest) {
+      fetchMemberVoucher(arrival.member_id);
+    }
   };
 
   const handleClearArrival = () => {
@@ -229,7 +239,8 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
 
   // ===== SUBMIT =====
   const handleSubmit = async () => {
-    if (!selectedArrival || !paymentMethod) return;
+    if (!selectedArrival || (!isFullyCoveredByDeposit && !paymentMethod))
+      return;
 
     const hasAnyItem =
       fishItems.length > 0 ||
@@ -253,7 +264,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
           quantity: p.quantity,
           unit_price: p.unit_price,
         })),
-        payment_method: paymentMethod,
+        payment_method: isFullyCoveredByDeposit ? null : paymentMethod,
         tips: Number(tips) || 0,
         notes: notes || null,
       };
@@ -288,7 +299,10 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
   const hasAnyItem =
     fishItems.length > 0 || pendingOrders.length > 0 || penaltyItems.length > 0;
   const isSubmitDisabled =
-    !selectedArrival || !paymentMethod || !hasAnyItem || loading;
+    !selectedArrival ||
+    (!isFullyCoveredByDeposit && !paymentMethod) ||
+    !hasAnyItem ||
+    loading;
 
   // ===== SHARED SECTION PROPS =====
   const summaryProps = {
@@ -300,6 +314,10 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     activeVoucher,
     finalAmount,
     pointsPreview,
+    isGuest,
+    depositAmount,
+    depositChange,
+    finalAmountAfterDeposit,
   };
 
   const paymentProps = {
@@ -312,6 +330,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     onSubmit: () => setConfirmOpen(true),
     loading,
     isSubmitDisabled,
+    isFullyCoveredByDeposit,
   };
 
   // ===== RENDER =====
@@ -378,7 +397,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
         }}
         variant="default"
         title="Konfirmasi Checkout"
-        description={`Proses checkout untuk ${selectedArrival?.name}? Total: ${formatCurrency(finalAmount)} via ${paymentMethod ? paymentMethod.toUpperCase() : "-"}.`}
+        description={`Proses checkout untuk ${selectedArrival?.name}? Total: ${formatCurrency(finalAmountAfterDeposit)} via ${isFullyCoveredByDeposit ? "Deposit" : paymentMethod ? paymentMethod.toUpperCase() : "-"}.`}
         confirmLabel="Ya, Proses"
         cancelLabel="Batal"
         loading={loading}

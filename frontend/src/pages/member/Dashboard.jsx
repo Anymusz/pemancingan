@@ -8,10 +8,12 @@ import { useToast } from "../../hooks/useToast";
 import Order from "./Order";
 import TransactionHistory from "./TransactionHistory";
 import DashboardLayout from "@/components/layout/DashboardLayout";
-import { removeToken, removeUser, getUser } from "@/utils/tokenManager";
-import { LayoutDashboard, ShoppingBag, History } from "lucide-react";
+import { removeToken, removeUser, getUser, setUser } from "@/utils/tokenManager";
+import { LayoutDashboard, ShoppingBag, History, Trophy } from "lucide-react";
 
 import MemberDashboardHome from "./MemberDashboardHome";
+import Leaderboard from "./Leaderboard";
+import ProfilePage from "@/pages/profile/ProfilePage";
 
 const Dashboard = () => {
   const [profile, setProfile] = useState(null);
@@ -94,6 +96,7 @@ const Dashboard = () => {
         { key: "home", label: "Dashboard", icon: LayoutDashboard },
         { key: "order", label: "Pesan", icon: ShoppingBag },
         { key: "history", label: "Riwayat", icon: History },
+        { key: "leaderboard", label: "Klasemen", icon: Trophy },
       ],
     },
   ];
@@ -141,6 +144,19 @@ const Dashboard = () => {
             <div>
               <TransactionHistory />
             </div>
+          )}
+
+          {activeTab === "leaderboard" && <Leaderboard />}
+
+          {activeTab === "profile" && (
+            <ProfilePage
+              user={currentUser}
+              memberSince={profile?.member?.approved_at}
+              onUserUpdate={(updatedUser) => {
+                removeUser();
+                setUser(updatedUser);
+              }}
+            />
           )}
         </>
       )}

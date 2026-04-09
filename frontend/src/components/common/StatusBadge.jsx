@@ -7,6 +7,12 @@ import {
   MinusCircle,
   Info,
   Calendar,
+  UserCheck,
+  UserRound,
+  UtensilsCrossed,
+  Coffee,
+  Package,
+  Shield,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -171,28 +177,68 @@ const STATUS_MAP = {
   },
 
   regular: {
-    icon: DotIcon,
+    icon: Shield,
     classNames:
       "bg-slate-500/10 text-slate-600 border-slate-500/20 hover:bg-slate-500/20",
     label: "Regular",
   },
   bronze: {
-    icon: DotIcon,
+    icon: Shield,
     classNames:
       "bg-orange-500/10 text-orange-600 border-orange-500/20 hover:bg-orange-500/20",
     label: "Bronze",
   },
   silver: {
-    icon: DotIcon,
+    icon: Shield,
     classNames:
       "bg-blue-400/10 text-blue-500 border-blue-400/20 hover:bg-blue-400/20",
     label: "Silver",
   },
   gold: {
-    icon: DotIcon,
+    icon: Shield,
     classNames:
       "bg-amber-500/10 text-amber-600 border-amber-500/20 hover:bg-amber-500/20",
     label: "Gold",
+  },
+
+  // Tipe kedatangan
+  member: {
+    icon: UserCheck,
+    classNames:
+      "bg-blue-500/10 text-blue-600 border-blue-500/20 hover:bg-blue-500/20",
+    label: "Member",
+  },
+  guest: {
+    icon: UserRound,
+    classNames:
+      "bg-orange-500/10 text-orange-600 border-orange-500/20 hover:bg-orange-500/20",
+    label: "Tamu",
+  },
+
+  // Tipe item transaksi
+  food: {
+    icon: UtensilsCrossed,
+    classNames:
+      "bg-amber-500/10 text-amber-600 border-amber-500/20 hover:bg-amber-500/20",
+    label: "Makanan",
+  },
+  beverage: {
+    icon: Coffee,
+    classNames:
+      "bg-cyan-500/10 text-cyan-600 border-cyan-500/20 hover:bg-cyan-500/20",
+    label: "Minuman",
+  },
+  rental: {
+    icon: Package,
+    classNames:
+      "bg-teal-500/10 text-teal-600 border-teal-500/20 hover:bg-teal-500/20",
+    label: "Rental",
+  },
+  menu: {
+    icon: UtensilsCrossed,
+    classNames:
+      "bg-blue-500/10 text-blue-600 border-blue-500/20 hover:bg-blue-500/20",
+    label: "Menu",
   },
 };
 

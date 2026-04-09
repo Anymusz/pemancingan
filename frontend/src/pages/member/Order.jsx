@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import memberService from "../../services/memberService";
 import { useToast } from "@/hooks/useToast";
-import { formatCurrency } from "@/utils/utils";
+import { formatCurrency, formatMenuCategory } from "@/utils/utils";
 import { DataTable } from "@/components/common/DataTable";
 import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/FormInput";
@@ -127,7 +127,7 @@ const Order = () => {
     () => [
       imageCell,
       { key: "name", header: "Nama", render: (row) => row.name },
-      { key: "category", header: "Kategori", render: (row) => row.category },
+      { key: "category", header: "Kategori", render: (row) => formatMenuCategory(row.category) },
       {
         key: "price",
         header: "Harga",

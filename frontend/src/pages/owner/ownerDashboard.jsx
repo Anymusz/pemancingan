@@ -11,9 +11,10 @@ import RentalManagement from "./RentalManagement";
 import EventManagement from "./event-management/EventManagement";
 import VoucherManagement from "./VoucherManagement";
 import FinancialReport from "./FinancialReport";
-import { removeToken, getUser } from "@/utils/tokenManager";
+import { removeToken, getUser, setUser } from "@/utils/tokenManager";
 import notificationService from "@/services/notificationService";
 import DashboardLayout from "@/components/layout/DashboardLayout";
+import ProfilePage from "@/pages/profile/ProfilePage";
 import {
   LayoutDashboard,
   Users,
@@ -106,6 +107,14 @@ const OwnerDashboard = () => {
       {activeMenu === "events" && <EventManagement />}
       {activeMenu === "vouchers" && <VoucherManagement />}
       {activeMenu === "financial-report" && <FinancialReport />}
+      {activeMenu === "profile" && (
+        <ProfilePage
+          user={currentUser}
+          onUserUpdate={(updatedUser) => {
+            setUser(updatedUser);
+          }}
+        />
+      )}
     </DashboardLayout>
   );
 };

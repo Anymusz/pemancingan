@@ -1,19 +1,21 @@
 // File: src/pages/employee/AddOrder.jsx
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { Minus, Plus } from "lucide-react";
 import employeeService from "../../services/employeeService";
 import rentalService from "../../services/rentalService";
 import { useToast } from "@/hooks/useToast";
-import { formatDateTime, formatCurrency } from "@/utils/utils";
+import { formatCurrency } from "@/utils/utils";
 import { DataTable } from "@/components/common/DataTable";
 import { Button } from "@/components/common/Button";
-import { Input } from "@/components/common/FormInput";
-import { SearchModal } from "@/components/common/SearchModal";
 import { imageCell } from "@/components/common/ImageCell";
+import { StatusBadge } from "@/components/common/StatusBadge";
+import { ArrivalPicker } from "@/components/common/ArrivalPicker";
 
 const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
   const [menus, setMenus] = useState([]);
   const [rentalItems, setRentalItems] = useState([]);
+  const [arrivals, setArrivals] = useState([]);
   const [selectedArrival, setSelectedArrival] = useState(null);
 
   const [quantities, setQuantities] = useState({});
@@ -21,10 +23,11 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
 
   const [fetchLoading, setFetchLoading] = useState(false);
   const [rentalLoading, setRentalLoading] = useState(false);
+  const [arrivalsLoading, setArrivalsLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const toast = useToast();
 
-  // ==================== FETCH MENUS & RENTAL ITEMS ====================
+  // ===== FETCH MENUS & RENTAL ITEMS =====
   useEffect(() => {
     const fetchMenus = async () => {
       setFetchLoading(true);
@@ -50,10 +53,24 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
       }
     };
 
-    Promise.all([fetchMenus(), fetchRentalItems()]);
+    const fetchArrivals = async () => {
+      setArrivalsLoading(true);
+      try {
+        const res = await employeeService.getTodayArrivals();
+        if (res.success) {
+          setArrivals(res.data.arrivals.filter((a) => a.status === "active"));
+        }
+      } catch {
+        toast.error("Gagal memuat data kedatangan");
+      } finally {
+        setArrivalsLoading(false);
+      }
+    };
+
+    Promise.all([fetchMenus(), fetchRentalItems(), fetchArrivals()]);
   }, [toast]);
 
-  // ==================== PRESELECT ARRIVAL (FROM PROPS) ====================
+  // ===== PRESELECT ARRIVAL (FROM PROPS) =====
   useEffect(() => {
     if (!preselectArrivalId) return;
     const doPreselect = async () => {
@@ -81,39 +98,19 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preselectArrivalId]);
 
-  // ==================== SEARCH ARRIVAL (for SearchModal) ====================
-  const handleSearchArrival = useCallback(async (query) => {
-    if (query.trim()) {
-      const res = await employeeService.searchArrival(query);
-      return res.data.arrivals;
-    } else {
-      const res = await employeeService.getTodayArrivals();
-      return res.data.arrivals.filter((a) => a.status === "active");
-    }
-  }, []);
-
   const handleClearArrival = () => {
     setSelectedArrival(null);
     setQuantities({});
     setRentalQuantities({});
   };
 
-  // ==================== BULK ITEM HANDLERS ====================
+  // ===== BULK ITEM HANDLERS =====
   const handleMenuQtyChange = (menuId, change) => {
     setQuantities((prev) => {
       const currentQty = prev[menuId] || 0;
       const newQty = Math.max(0, currentQty + change);
       return { ...prev, [menuId]: newQty };
     });
-  };
-
-  const handleMenuQtyManualChange = (menuId, val) => {
-    let newQty = parseInt(val, 10);
-    if (isNaN(newQty)) newQty = 0;
-    setQuantities((prev) => ({
-      ...prev,
-      [menuId]: Math.max(0, newQty),
-    }));
   };
 
   const handleRentalQtyChange = (itemId, change) => {
@@ -123,13 +120,7 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
     });
   };
 
-  const handleRentalQtyManualChange = (itemId, val) => {
-    let newQty = parseInt(val, 10);
-    if (isNaN(newQty)) newQty = 0;
-    setRentalQuantities((prev) => ({ ...prev, [itemId]: Math.max(0, newQty) }));
-  };
-
-  // ==================== PREVIEW & HAS ITEMS ====================
+  // ===== PREVIEW & HAS ITEMS =====
   const totalMenuQty = Object.values(quantities).reduce(
     (acc, qty) => acc + qty,
     0,
@@ -158,7 +149,7 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
     return total;
   }, [quantities, rentalQuantities, menus, rentalItems]);
 
-  // ==================== SUBMIT ====================
+  // ===== SUBMIT =====
   const handleSubmit = async () => {
     if (!selectedArrival) return;
     if (!hasItems) return;
@@ -210,212 +201,186 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
 
   const isSubmitDisabled = !selectedArrival || !hasItems || submitLoading;
 
-  // ==================== MENU COLUMNS ====================
-  const menuColumns = useMemo(() => [
-    imageCell,
-    {
-      key: "name",
-      header: "Nama Menu",
-      render: (row) => <span className="font-medium">{row.name}</span>,
-    },
-    { key: "category", header: "Kategori", render: (row) => row.category },
-    {
-      key: "price",
-      header: "Harga",
-      render: (row) => formatCurrency(row.price),
-    },
-    {
-      key: "qty",
-      header: "Qty",
-      render: (row) => {
-        const qty = quantities[row.id] || 0;
-        return (
-          <div className="flex items-center gap-1">
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-7 w-7 p-0"
-              disabled={qty <= 0}
-              onClick={() => handleMenuQtyChange(row.id, -1)}
-            >
-              −
-            </Button>
-            <Input
-              type="number"
-              min="0"
-              value={qty}
-              onChange={(e) =>
-                handleMenuQtyManualChange(row.id, e.target.value)
-              }
-              className="w-14 text-center h-7 px-1"
-            />
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-7 w-7 p-0"
-              onClick={() => handleMenuQtyChange(row.id, 1)}
-            >
-              +
-            </Button>
-          </div>
-        );
-      },
-    },
-    {
-      key: "subtotal",
-      header: "Subtotal",
-      render: (row) => {
-        const qty = quantities[row.id] || 0;
-        return qty > 0 ? formatCurrency(qty * row.price) : "-";
-      },
-    },
-  ], [quantities]);
+  // ===== STEPPER RENDERER =====
+  const renderStepper = (qty, onDecrement, onIncrement) => (
+    <div className="flex items-center gap-2">
+      <button
+        className="w-7 h-7 rounded-md border border-border flex items-center justify-center hover:bg-muted transition-colors disabled:opacity-40"
+        onClick={onDecrement}
+        disabled={qty <= 0}
+      >
+        <Minus className="w-3.5 h-3.5" />
+      </button>
+      <span
+        className={`w-6 text-center text-sm font-medium ${
+          qty > 0 ? "text-foreground" : "text-muted-foreground"
+        }`}
+      >
+        {qty}
+      </span>
+      <button
+        className="w-7 h-7 rounded-md border border-border flex items-center justify-center hover:bg-muted transition-colors"
+        onClick={onIncrement}
+      >
+        <Plus className="w-3.5 h-3.5" />
+      </button>
+    </div>
+  );
 
-  // ==================== RENTAL COLUMNS ====================
-  const rentalColumns = useMemo(() => [
-    imageCell,
-    {
-      key: "name",
-      header: "Item Rental",
-      render: (row) => <span className="font-medium">{row.name}</span>,
-    },
-    {
-      key: "unit_label",
-      header: "Satuan",
-      render: (row) => row.unit_label,
-    },
-    {
-      key: "price_per_unit",
-      header: "Harga",
-      render: (row) => formatCurrency(row.price_per_unit),
-    },
-    {
-      key: "qty",
-      header: "Qty",
-      render: (row) => {
-        const qty = rentalQuantities[row.id] || 0;
-        return (
-          <div className="flex items-center gap-1">
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-7 w-7 p-0"
-              disabled={qty <= 0}
-              onClick={() => handleRentalQtyChange(row.id, -1)}
-            >
-              −
-            </Button>
-            <Input
-              type="number"
-              min="0"
-              value={qty}
-              onChange={(e) =>
-                handleRentalQtyManualChange(row.id, e.target.value)
-              }
-              className="w-14 text-center h-7 px-1"
-            />
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-7 w-7 p-0"
-              onClick={() => handleRentalQtyChange(row.id, 1)}
-            >
-              +
-            </Button>
-          </div>
-        );
+  // ===== MENU COLUMNS =====
+  const menuColumns = useMemo(
+    () => [
+      imageCell,
+      {
+        key: "name",
+        header: "Nama Menu",
+        render: (row) => <span className="font-medium">{row.name}</span>,
       },
-    },
-    {
-      key: "subtotal",
-      header: "Subtotal",
-      render: (row) => {
-        const qty = rentalQuantities[row.id] || 0;
-        return qty > 0 ? formatCurrency(qty * row.price_per_unit) : "-";
+      {
+        key: "category",
+        header: "Kategori",
+        render: (row) => <StatusBadge status={row.category} />,
       },
-    },
-  ], [rentalQuantities]);
+      {
+        key: "price",
+        header: "Harga",
+        render: (row) => formatCurrency(row.price),
+      },
+      {
+        key: "qty",
+        header: "Qty",
+        render: (row) => {
+          const qty = quantities[row.id] || 0;
+          return renderStepper(
+            qty,
+            () => handleMenuQtyChange(row.id, -1),
+            () => handleMenuQtyChange(row.id, 1),
+          );
+        },
+      },
+      {
+        key: "subtotal",
+        header: "Subtotal",
+        render: (row) => {
+          const qty = quantities[row.id] || 0;
+          return qty > 0 ? (
+            formatCurrency(qty * row.price)
+          ) : (
+            <span className="text-muted-foreground">Rp 0</span>
+          );
+        },
+      },
+    ],
+    [quantities],
+  );
 
-  // ==================== RENDER ====================
+  // ===== RENTAL COLUMNS =====
+  const rentalColumns = useMemo(
+    () => [
+      imageCell,
+      {
+        key: "name",
+        header: "Item Rental",
+        render: (row) => <span className="font-medium">{row.name}</span>,
+      },
+      {
+        key: "unit_label",
+        header: "Satuan",
+        render: (row) => row.unit_label,
+      },
+      {
+        key: "price_per_unit",
+        header: "Harga",
+        render: (row) => formatCurrency(row.price_per_unit),
+      },
+      {
+        key: "qty",
+        header: "Qty",
+        render: (row) => {
+          const qty = rentalQuantities[row.id] || 0;
+          return renderStepper(
+            qty,
+            () => handleRentalQtyChange(row.id, -1),
+            () => handleRentalQtyChange(row.id, 1),
+          );
+        },
+      },
+      {
+        key: "subtotal",
+        header: "Subtotal",
+        render: (row) => {
+          const qty = rentalQuantities[row.id] || 0;
+          return qty > 0 ? (
+            formatCurrency(qty * row.price_per_unit)
+          ) : (
+            <span className="text-muted-foreground">Rp 0</span>
+          );
+        },
+      },
+    ],
+    [rentalQuantities],
+  );
+
+  // ===== SECTION HEADER HELPER =====
+  const SectionHeader = ({ n, label, chip }) => (
+    <div className="flex items-center gap-2">
+      <span className="w-5 h-5 rounded-full bg-muted flex items-center justify-center text-xs font-medium text-muted-foreground shrink-0">
+        {n}
+      </span>
+      <span className="text-sm font-medium text-foreground">{label}</span>
+      {chip}
+    </div>
+  );
+
+  // ===== RENDER =====
   return (
     <div className="space-y-8">
-      {/* Page header */}
-      <h1 className="text-2xl font-bold text-foreground">Tambah Order</h1>
-
       {/* ===== 1. PILIH ARRIVAL ===== */}
       <section className="space-y-3">
-        <h2 className="text-lg font-semibold text-foreground">
-          1. Pilih Member (Kedatangan Hari Ini)
-        </h2>
+        <SectionHeader n={1} label="Pilih Member (Kedatangan Hari Ini)" />
 
-        {selectedArrival ? (
-          <div className="flex items-center justify-between rounded-lg border border-border bg-muted/30 p-3">
-            <div className="space-y-0.5">
-              <p className="font-semibold text-foreground">
-                {selectedArrival.name}
-              </p>
-              <p className="text-xs text-muted-foreground">
-                {selectedArrival.member_code} · Tier {selectedArrival.tier} ·
-                Check-in {formatDateTime(selectedArrival.check_in_at)}
-              </p>
-            </div>
-            <Button variant="outline" size="sm" onClick={handleClearArrival}>
-              Ganti
-            </Button>
-          </div>
-        ) : (
-          <SearchModal
-            triggerLabel="Pilih Member"
-            placeholder="Cari nama / member ID / HP..."
-            title="Pilih Member (Kedatangan Hari Ini)"
-            emptyMessage="Tidak ada member yang check-in aktif hari ini"
-            onSearch={handleSearchArrival}
-            onSelect={(arrival) => setSelectedArrival(arrival)}
-            getItemKey={(item) => item.arrival_id}
-            renderItem={(item) => (
-              <div className="flex flex-col gap-0.5 min-w-0">
-                <p className="font-medium text-foreground truncate">
-                  {item.name}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {item.member_code} · Tier {item.tier} · Check-in{" "}
-                  {formatDateTime(item.check_in_at)}
-                </p>
-              </div>
-            )}
-          />
-        )}
+        <ArrivalPicker
+          arrivals={arrivals}
+          selectedArrival={selectedArrival}
+          onSelect={(arrival) => setSelectedArrival(arrival)}
+          onClear={handleClearArrival}
+          fetchLoading={arrivalsLoading}
+        />
       </section>
 
       {/* ===== 2. MENU ===== */}
       <section className="space-y-3">
-        <h2 className="text-lg font-semibold text-foreground">
-          2. Makanan &amp; Minuman
-        </h2>
+        <SectionHeader n={2} label="Makanan & Minuman" />
         <DataTable
           columns={menuColumns}
           data={menus}
           loading={fetchLoading}
           emptyMessage="Tidak ada menu aktif saat ini."
+          rowClassName={(row) => {
+            const qty = quantities[row.id] || 0;
+            return qty > 0 ? "bg-primary/5 border-l-2 border-l-primary" : "";
+          }}
         />
       </section>
 
       {/* ===== 3. RENTAL ===== */}
       <section className="space-y-3">
-        <h2 className="text-lg font-semibold text-foreground">3. Sewa Alat</h2>
+        <SectionHeader n={3} label="Sewa Alat" />
         <DataTable
           columns={rentalColumns}
           data={rentalItems}
           loading={rentalLoading}
           emptyMessage="Tidak ada rental item aktif saat ini."
+          rowClassName={(row) => {
+            const qty = rentalQuantities[row.id] || 0;
+            return qty > 0 ? "bg-primary/5 border-l-2 border-l-primary" : "";
+          }}
         />
       </section>
 
       {/* ===== 4. RINGKASAN & SUBMIT ===== */}
       <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-foreground">
-          4. Ringkasan &amp; Simpan
-        </h2>
+        <SectionHeader n={4} label="Ringkasan & Simpan" />
 
         {hasItems && (
           <div className="rounded-lg border border-border bg-muted/30 p-4 space-y-2">

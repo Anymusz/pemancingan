@@ -5,6 +5,7 @@ import { Label } from "@/components/common/FormLabel";
 import { Input } from "@/components/common/FormInput";
 import { FormSelect } from "@/components/common/FormSelect";
 import { Button } from "@/components/common/Button";
+import { StatusBadge } from "@/components/common/StatusBadge";
 
 // ==================== CONSTANTS ====================
 
@@ -19,6 +20,7 @@ const PAYMENT_LABELS = {
   cash: "Cash",
   transfer: "Transfer",
   qris: "QRIS",
+  null: "Deposit",
 };
 
 const PAYMENT_OPTIONS = [
@@ -125,8 +127,6 @@ const TransactionHistory = () => {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold text-foreground">Riwayat Transaksi</h2>
-
       {/* Filter Section */}
       <div className="p-4 bg-background border border-border rounded-lg">
         <div className="flex flex-wrap items-end gap-3">
@@ -214,7 +214,10 @@ const TransactionHistory = () => {
                       No. Transaksi
                     </th>
                     <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
-                      Nama Member
+                      Pelanggan
+                    </th>
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                      Tipe
                     </th>
                     <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Total Bayar
@@ -241,24 +244,30 @@ const TransactionHistory = () => {
                           {trx.transaction_code}
                         </td>
                         <td className="px-4 py-3 text-foreground">
-                          {trx.member_name}
+                          {trx.customer_name}
+                        </td>
+                        <td className="px-4 py-3">
+                          <StatusBadge
+                            status={trx.is_guest ? "guest" : "member"}
+                          />
                         </td>
                         <td className="px-4 py-3 text-right text-foreground">
                           {formatCurrency(trx.final_amount)}
                         </td>
                         <td className="px-4 py-3 text-center text-foreground">
-                          {PAYMENT_LABELS[trx.payment_method] ||
-                            trx.payment_method}
+                          {PAYMENT_LABELS[trx.payment_method ?? "null"] ??
+                            trx.payment_method ??
+                            "-"}
                         </td>
-                        <td className="px-4 py-3 text-right text-foreground">
-                          +{trx.points_earned ?? 0}
+                        <td className="px-4 py-3 text-right text-emerald-600">
+                          {trx.is_guest ? "-" : `+${trx.points_earned ?? 0}`}
                         </td>
                       </tr>
 
                       {/* Expanded Row */}
                       {expandedRow === trx.id && (
                         <tr>
-                          <td colSpan={6} className="bg-muted/60 px-6 py-4">
+                          <td colSpan={7} className="bg-muted/60 px-6 py-4">
                             {/* Bagian 1: Daftar Item */}
                             <table className="w-full text-sm mb-3">
                               <thead>
@@ -332,6 +341,22 @@ const TransactionHistory = () => {
                                 <span>Total Bayar</span>
                                 <span>{formatCurrency(trx.final_amount)}</span>
                               </div>
+                              {trx.is_guest && trx.deposit_used > 0 && (
+                                <div className="flex justify-between text-emerald-600">
+                                  <span>Deposit Tamu</span>
+                                  <span>
+                                    - {formatCurrency(trx.deposit_used)}
+                                  </span>
+                                </div>
+                              )}
+                              {trx.is_guest && trx.deposit_change > 0 && (
+                                <div className="flex justify-between text-amber-600 font-medium">
+                                  <span>Kembalian Deposit</span>
+                                  <span>
+                                    {formatCurrency(trx.deposit_change)}
+                                  </span>
+                                </div>
+                              )}
                               {trx.tips > 0 && (
                                 <div className="flex justify-between text-muted-foreground">
                                   <span>Tips</span>

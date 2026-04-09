@@ -44,3 +44,8 @@ export const formatShortDay = (dateStr) => {
   const d = new Date(dateStr + "T00:00:00+07:00"); // explicit Jakarta offset
   return `${dayNames[d.getDay()]} ${d.getDate()}`;
 };
+
+export const formatMenuCategory = (category) => {
+  const map = { food: "Makanan", beverage: "Minuman" };
+  return map[category] ?? category;
+};

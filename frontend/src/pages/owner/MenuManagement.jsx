@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import menuService from "../../services/menuService";
 import { useToast } from "@/hooks/useToast";
-import { formatCurrency } from "@/utils/utils";
+import { formatCurrency, formatMenuCategory } from "@/utils/utils";
 import FormDialog from "../../components/common/FormDialog";
 import ConfirmDialog from "../../components/common/ConfirmDialog";
 import { DataTable } from "../../components/common/DataTable";
@@ -306,7 +306,7 @@ const MenuManagement = () => {
     {
       key: "category",
       header: "Kategori",
-      render: (row) => (row.category === "food" ? "Makanan" : "Minuman"),
+      render: (row) => formatMenuCategory(row.category),
     },
     {
       key: "price",
@@ -329,10 +329,6 @@ const MenuManagement = () => {
   // ==================== RENDER ====================
   return (
     <div>
-      <h1 className="text-2xl font-bold text-foreground mb-4">
-        Manajemen Menu
-      </h1>
-
       {/* Summary */}
       <div className="flex gap-4 text-sm text-muted-foreground mb-2">
         <span>

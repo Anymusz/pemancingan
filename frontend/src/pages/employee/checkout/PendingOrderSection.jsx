@@ -1,24 +1,15 @@
-// File: src/pages/employee/checkout/v2/PendingOrderSection.jsx
+// File: src/pages/employee/checkout/PendingOrderSection.jsx
 
 import { formatCurrency } from "@/utils/utils";
 import { DataTable } from "@/components/common/DataTable";
+import { StatusBadge } from "@/components/common/StatusBadge";
 
 const pendingOrderColumns = [
   { key: "name", header: "Item" },
   {
     key: "item_type",
     header: "Tipe",
-    render: (row) => {
-      const config =
-        row.item_type === "menu"
-          ? "bg-blue-500/10 text-blue-600"
-          : "bg-orange-500/10 text-orange-600";
-      return (
-        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${config}`}>
-          {row.item_type}
-        </span>
-      );
-    },
+    render: (row) => <StatusBadge status={row.item_type} />,
   },
   { key: "quantity", header: "Qty" },
   {
@@ -56,7 +47,7 @@ export function PendingOrderSection({
         </p>
       ) : !selectedArrival ? (
         <p className="text-sm text-muted-foreground">
-          Pilih member terlebih dahulu
+          Pilih kedatangan terlebih dahulu
         </p>
       ) : pendingOrders.length === 0 ? (
         <p className="text-sm text-muted-foreground">Tidak ada pending order</p>

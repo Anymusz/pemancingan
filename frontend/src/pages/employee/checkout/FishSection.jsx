@@ -1,4 +1,4 @@
-// File: src/pages/employee/checkout/v2/FishSection.jsx
+// File: src/pages/employee/checkout/FishSection.jsx
 
 import { formatCurrency } from "@/utils/utils";
 import { DataTable } from "@/components/common/DataTable";
