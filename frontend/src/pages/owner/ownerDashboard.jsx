@@ -11,6 +11,7 @@ import RentalManagement from "./RentalManagement";
 import EventManagement from "./event-management/EventManagement";
 import VoucherManagement from "./VoucherManagement";
 import FinancialReport from "./FinancialReport";
+import Settings from "./Settings";
 import { removeToken, getUser, setUser } from "@/utils/tokenManager";
 import notificationService from "@/services/notificationService";
 import DashboardLayout from "@/components/layout/DashboardLayout";
@@ -27,6 +28,7 @@ import {
   Ticket,
   Trophy,
   Package,
+  SlidersHorizontal,
 } from "lucide-react";
 
 const OwnerDashboard = () => {
@@ -71,17 +73,18 @@ const OwnerDashboard = () => {
       label: "Kelola Produk",
       items: [
         { key: "menus", label: "Menu", icon: UtensilsCrossed },
-        { key: "fish-types", label: "Fish Types", icon: Fish },
-        { key: "rental-items", label: "Rental Items", icon: Package },
-        { key: "events", label: "Events & Info", icon: CalendarDays },
+        { key: "fish-types", label: "Jenis Ikan", icon: Fish },
+        { key: "rental-items", label: "Rental Item", icon: Package },
+        { key: "events", label: "Acara & Info", icon: CalendarDays },
       ],
     },
     {
       label: "Laporan & Sistem",
       items: [
-        { key: "financial-report", label: "Financial Report", icon: BarChart3 },
+        { key: "financial-report", label: "Laporan Keuangan", icon: BarChart3 },
         { key: "vouchers", label: "Voucher", icon: Ticket },
         { key: "leaderboard", label: "Leaderboard", icon: Trophy },
+        { key: "settings", label: "Pengaturan", icon: SlidersHorizontal },
       ],
     },
   ];
@@ -107,6 +110,7 @@ const OwnerDashboard = () => {
       {activeMenu === "events" && <EventManagement />}
       {activeMenu === "vouchers" && <VoucherManagement />}
       {activeMenu === "financial-report" && <FinancialReport />}
+      {activeMenu === "settings" && <Settings />}
       {activeMenu === "profile" && (
         <ProfilePage
           user={currentUser}

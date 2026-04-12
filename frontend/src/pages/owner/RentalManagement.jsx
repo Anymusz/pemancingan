@@ -12,7 +12,7 @@ import { Input } from "../../components/common/FormInput";
 import { Label } from "../../components/common/FormLabel";
 import { Button } from "@/components/common/Button";
 import { Textarea } from "../../components/common/FormTextarea";
-import { ImageOff } from "lucide-react";
+import { ImageOff, Plus } from "lucide-react";
 import { imageCell } from "@/components/common/ImageCell";
 
 const RentalManagement = () => {
@@ -36,7 +36,7 @@ const RentalManagement = () => {
   const [modalState, setModalState] = useState({
     form: false,
     delete: false,
-    mode: "add", // 'add' | 'edit'
+    mode: "add",
     selectedItem: null,
   });
 
@@ -314,37 +314,30 @@ const RentalManagement = () => {
 
   // ==================== RENDER ====================
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-foreground mb-4">
-        Manajemen Rental Item
-      </h1>
-
-      {/* Summary */}
-      <div className="flex gap-4 text-sm text-muted-foreground mb-2">
-        <span>
-          Total: <strong>{summary.total}</strong>
-        </span>
-        <span>
-          Aktif: <strong>{summary.active_count}</strong>
-        </span>
-        <span>
-          Nonaktif: <strong>{summary.inactive_count}</strong>
-        </span>
+    <div className="space-y-4">
+      {/* Header row */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">Rental Item</h1>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            Total: <strong>{summary.total}</strong> · Aktif:{" "}
+            <strong>{summary.active_count}</strong> · Nonaktif:{" "}
+            <strong>{summary.inactive_count}</strong>
+          </p>
+        </div>
+        <Button onClick={openAddModal}>
+          <Plus className="w-4 h-4" />
+        </Button>
       </div>
 
-      {/* Actions */}
-      <Button onClick={openAddModal} className="mb-4">
-        + Tambah Rental Item
-      </Button>
-
-      {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-4">
+      {/* Filter toolbar */}
+      <div className="flex flex-wrap items-center gap-3 p-3 rounded-lg border border-border bg-card">
         <Input
           type="text"
           value={searchInput}
           onChange={handleSearchChange}
           placeholder="Cari nama item..."
-          className="w-48"
+          className="w-full sm:w-48 text-sm"
         />
         <label className="flex items-center gap-2 text-sm text-muted-foreground">
           <input

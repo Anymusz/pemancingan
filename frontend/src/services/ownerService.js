@@ -226,6 +226,33 @@ const ownerService = {
     link.remove();
     window.URL.revokeObjectURL(url);
   },
+
+  //  =================== GUEST CONFIGURATION ====================
+
+  getGuestConfig: async () => {
+    const res = await api.get("/owner/guest-config");
+    return res.data;
+  },
+
+  updateGuestConfig: async (data) => {
+    const res = await api.put("/owner/guest-config", data);
+    return res.data;
+  },
+
+  // ==================== QRIS CONFIGURATION ====================
+
+  getQrisConfig: async () => {
+    const res = await api.get("/owner/qris-config");
+    return res.data;
+  },
+
+  updateQrisConfig: async (formData) => {
+    formData.append("_method", "PUT");
+    const res = await api.post("/owner/qris-config", formData, {
+      headers: { "Content-Type": undefined },
+    });
+    return res.data;
+  },
 };
 
 export default ownerService;

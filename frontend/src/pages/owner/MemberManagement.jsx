@@ -298,20 +298,12 @@ const MemberManagement = () => {
     },
   ];
 
-  // ── Dialog Props ──────────────────────────────────────────────
-
   const dialogConfig = dialog.type ? DIALOG_CONFIG[dialog.type] : null;
-
-  // ── Derived ───────────────────────────────────────────────────
-
   const tabData = data[activeTab];
   const isTabLoading = loading[activeTab];
 
-  // ── Render ────────────────────────────────────────────────────
-
   return (
     <div>
-      {/* ── Header ──────────────────────────────────────────────── */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold tracking-tight text-foreground">
           Manajemen Member
@@ -321,7 +313,6 @@ const MemberManagement = () => {
         </p>
       </div>
 
-      {/* ── Tabs ────────────────────────────────────────────────── */}
       <TabsNav
         value={activeTab}
         onValueChange={handleTabChange}
@@ -338,7 +329,6 @@ const MemberManagement = () => {
         ]}
       />
 
-      {/* ── Table ───────────────────────────────────────────────── */}
       <DataTable
         columns={
           activeTab === "pending"
@@ -381,7 +371,6 @@ const MemberManagement = () => {
         }}
       />
 
-      {/* ── Confirm Dialog ──────────────────────────────────────── */}
       {dialogConfig && (
         <ConfirmDialog
           open={dialog.open}

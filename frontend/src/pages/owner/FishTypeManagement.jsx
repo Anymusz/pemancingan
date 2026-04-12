@@ -13,6 +13,7 @@ import { StatusBadge } from "../../components/common/StatusBadge";
 import { Input } from "@/components/common/FormInput";
 import { Label } from "@/components/common/FormLabel";
 import { Button } from "@/components/common/Button";
+import { Plus } from "lucide-react";
 import { FormSelect } from "@/components/common/FormSelect";
 
 const FishTypeManagement = () => {
@@ -344,7 +345,7 @@ const FishTypeManagement = () => {
     },
     {
       key: "threshold",
-      header: "Threshold (Kg)",
+      header: "Batas (Kg)",
       render: (row) =>
         fishStocks[row.id]
           ? formatNumber(fishStocks[row.id].alert_threshold_kg)
@@ -394,23 +395,25 @@ const FishTypeManagement = () => {
 
   // ==================== RENDER ====================
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-foreground">
           Manajemen Jenis Ikan
         </h1>
-        <Button onClick={openAddModal}>+ Tambah Jenis Ikan</Button>
+        <Button onClick={openAddModal}>
+          <Plus className="w-4 h-4" />
+        </Button>
       </div>
 
-      {/* Filters */}
-      <div className="flex flex-wrap items-center gap-3">
+      {/* Filter toolbar */}
+      <div className="flex flex-wrap items-center gap-3 p-3 rounded-lg border border-border bg-card">
         <Input
           type="text"
           value={searchInput}
           onChange={handleSearchChange}
           placeholder="Cari nama ikan..."
-          className="max-w-xs"
+          className="w-full sm:w-48 text-sm"
         />
         <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
           <input
@@ -489,7 +492,7 @@ const FishTypeManagement = () => {
             )}
           </div>
           <div className="grid gap-1.5">
-            <Label>Alert Threshold (Kg)</Label>
+            <Label>Batas Peringatan (Kg)</Label>
             <Input
               type="number"
               min="0"

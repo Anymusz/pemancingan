@@ -337,10 +337,6 @@ const TransactionHistory = () => {
                                   </span>
                                 </div>
                               )}
-                              <div className="flex justify-between font-bold text-foreground">
-                                <span>Total Bayar</span>
-                                <span>{formatCurrency(trx.final_amount)}</span>
-                              </div>
                               {trx.is_guest && trx.deposit_used > 0 && (
                                 <div className="flex justify-between text-emerald-600">
                                   <span>Deposit Tamu</span>
@@ -349,6 +345,10 @@ const TransactionHistory = () => {
                                   </span>
                                 </div>
                               )}
+                              <div className="flex justify-between font-bold text-foreground">
+                                <span>Total Bayar</span>
+                                <span>{formatCurrency(trx.final_amount)}</span>
+                              </div>
                               {trx.is_guest && trx.deposit_change > 0 && (
                                 <div className="flex justify-between text-amber-600 font-medium">
                                   <span>Kembalian Deposit</span>

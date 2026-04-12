@@ -122,6 +122,11 @@ const employeeService = {
     const response = await api.post("/employee/resolve-qr", payload);
     return response.data;
   },
+
+  getQrisConfig: async () => {
+    const response = await api.get("/employee/qris-config");
+    return response.data;
+  },
 };
 
 export default employeeService;

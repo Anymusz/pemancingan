@@ -3,6 +3,12 @@ import ownerService from "../../services/ownerService";
 import { useToast } from "@/hooks/useToast";
 import ConfirmDialog from "../../components/common/ConfirmDialog";
 import { DataTable } from "../../components/common/DataTable";
+import { Button } from "@/components/common/Button";
+import { Input } from "@/components/common/FormInput";
+import { Label } from "@/components/common/FormLabel";
+import { FormSelect } from "@/components/common/FormSelect";
+import { StatusBadge } from "@/components/common/StatusBadge";
+import { formatCurrency, formatDateTime } from "@/utils/utils";
 
 const MONTH_NAMES = [
   "Januari",
@@ -19,10 +25,29 @@ const MONTH_NAMES = [
   "Desember",
 ];
 
+const MONTH_OPTIONS = [
+  { value: "all", label: "Semua" },
+  ...MONTH_NAMES.map((name, idx) => ({ value: String(idx + 1), label: name })),
+];
+
+const currentYear = new Date().getFullYear();
+const YEAR_OPTIONS = [
+  { value: "all", label: "Semua" },
+  ...Array.from({ length: 5 }, (_, i) => {
+    const year = String(currentYear - i);
+    return { value: year, label: year };
+  }),
+];
+
+const STATUS_OPTIONS = [
+  { value: "semua", label: "Semua" },
+  { value: "unused", label: "Belum Digunakan" },
+  { value: "used", label: "Sudah Digunakan" },
+];
+
 const VoucherManagement = () => {
   // ==================== STATE ====================
 
-  // Section 1 — Konfigurasi Voucher
   const [configs, setConfigs] = useState({
     rank_1: "",
     rank_2: "",
@@ -32,34 +57,17 @@ const VoucherManagement = () => {
   const [configSaving, setConfigSaving] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
 
-  // Section 3 — Daftar Voucher
   const [vouchers, setVouchers] = useState([]);
   const [voucherLoading, setVoucherLoading] = useState(false);
   const [filterStatus, setFilterStatus] = useState("semua");
   const [filterYear, setFilterYear] = useState("");
   const [filterMonth, setFilterMonth] = useState("");
 
-  // Toast
   const toast = useToast();
 
   // ==================== HELPERS ====================
 
-  const formatCurrency = (val) => `Rp ${Number(val).toLocaleString("id-ID")}`;
-
-  const formatDate = (dateStr) => {
-    if (!dateStr) return "-";
-    return new Date(dateStr).toLocaleString("id-ID", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
-
-  const formatPeriod = (year, month) => {
-    return `${MONTH_NAMES[month - 1]} ${year}`;
-  };
+  const formatPeriod = (year, month) => `${MONTH_NAMES[month - 1]} ${year}`;
 
   // ==================== FETCH ====================
 
@@ -120,7 +128,6 @@ const VoucherManagement = () => {
 
   // ==================== HANDLERS ====================
 
-  // Section 1 — Simpan Konfigurasi
   const handleSaveConfig = async () => {
     setConfigSaving(true);
     try {
@@ -173,61 +180,42 @@ const VoucherManagement = () => {
     {
       key: "status",
       header: "Status",
-      render: (row) => (
-        <span
-          className={`inline-block px-2.5 py-0.5 rounded-full text-[12px] font-semibold ${
-            row.status === "used"
-              ? "bg-green-100 text-green-800"
-              : "bg-yellow-100 text-yellow-800"
-          }`}
-        >
-          {row.status === "used" ? "Sudah Digunakan" : "Belum Digunakan"}
-        </span>
-      ),
+      render: (row) => <StatusBadge status={row.status} />,
     },
     {
       key: "issued_at",
       header: "Tanggal Terbit",
-      render: (row) => formatDate(row.issued_at || row.created_at),
+      render: (row) => formatDateTime(row.issued_at || row.created_at),
     },
     {
       key: "used_at",
       header: "Tanggal Digunakan",
-      render: (row) => formatDate(row.used_at),
+      render: (row) => formatDateTime(row.used_at),
     },
   ];
 
   // ==================== RENDER ====================
   return (
-    <div>
-      <h1>Manajemen Voucher</h1>
+    <div className="space-y-6">
+      <h1 className="text-2xl font-bold text-foreground">Manajemen Voucher</h1>
 
-      {/* ======================== SECTION 1 ======================== */}
-      <div
-        style={{
-          border: "1px solid #e5e7eb",
-          borderRadius: 8,
-          padding: 20,
-          marginBottom: 24,
-        }}
-      >
-        <h2 style={{ marginTop: 0 }}>Konfigurasi Nilai Voucher</h2>
+      {/* ===== SECTION 1: Konfigurasi Voucher ===== */}
+      <div className="rounded-lg border border-border bg-muted/30 p-4 space-y-4">
+        <h2 className="text-sm font-semibold text-foreground">
+          Konfigurasi Nilai Voucher
+        </h2>
 
         {configLoading ? (
-          <p>Memuat konfigurasi...</p>
+          <p className="text-sm text-muted-foreground">Memuat konfigurasi...</p>
         ) : (
           <>
-            <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+            <div className="flex flex-wrap gap-4">
               {[1, 2, 3].map((rank) => (
-                <div key={rank} style={{ minWidth: 180 }}>
-                  <label>
-                    <strong>Rank {rank}</strong> (Rp)
-                  </label>
-                  <br />
-                  <input
+                <div key={rank} className="grid gap-1.5 min-w-[180px]">
+                  <Label>Rank {rank} (Rp)</Label>
+                  <Input
                     type="number"
                     min="0"
-                    style={{ width: "100%", padding: "6px 8px", marginTop: 4 }}
                     value={configs[`rank_${rank}`]}
                     onChange={(e) =>
                       setConfigs((prev) => ({
@@ -240,28 +228,18 @@ const VoucherManagement = () => {
               ))}
             </div>
 
-            <p style={{ color: "#6b7280", fontSize: 13, marginTop: 12 }}>
-              <em>
-                ⓘ Perubahan hanya berlaku untuk periode yang belum diterbitkan.
-                Voucher yang sudah diterbitkan tidak dapat diubah
-              </em>
+            <p className="text-xs text-muted-foreground italic">
+              ⓘ Perubahan hanya berlaku untuk periode yang belum diterbitkan.
+              Voucher yang sudah diterbitkan tidak dapat diubah.
             </p>
 
-            <button
+            <Button
               onClick={() => setConfirmOpen(true)}
+              loading={configSaving}
               disabled={configSaving}
-              style={{
-                marginTop: 8,
-                padding: "8px 20px",
-                backgroundColor: "#2563eb",
-                color: "#fff",
-                border: "none",
-                borderRadius: 6,
-                cursor: configSaving ? "not-allowed" : "pointer",
-              }}
             >
-              {configSaving ? "Menyimpan..." : "Simpan Konfigurasi"}
-            </button>
+              Simpan Konfigurasi
+            </Button>
 
             <ConfirmDialog
               open={confirmOpen}
@@ -277,67 +255,39 @@ const VoucherManagement = () => {
         )}
       </div>
 
-      {/* ======================== SECTION 2 ======================== */}
-      <div
-        style={{
-          border: "1px solid #e5e7eb",
-          borderRadius: 8,
-          padding: 20,
-        }}
-      >
-        <h2 style={{ marginTop: 0 }}>Daftar Voucher</h2>
+      {/* ===== SECTION 2 (Deposit Tamu) — moved to Pengaturan page ===== */}
+
+      {/* ===== SECTION 3: Daftar Voucher ===== */}
+      <div className="rounded-lg border border-border bg-muted/30 p-4 space-y-4">
+        <h2 className="text-sm font-semibold text-foreground">
+          Daftar Voucher
+        </h2>
 
         {/* Filters */}
-        <div
-          style={{
-            display: "flex",
-            gap: 16,
-            marginBottom: 16,
-            flexWrap: "wrap",
-            alignItems: "flex-end",
-          }}
-        >
-          <div>
-            <label>Status</label>
-            <br />
-            <select
+        <div className="flex flex-wrap items-end gap-3">
+          <div className="grid gap-1.5">
+            <Label>Status</Label>
+            <FormSelect
+              options={STATUS_OPTIONS}
               value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-              style={{ padding: "6px 8px" }}
-            >
-              <option value="semua">Semua</option>
-              <option value="unused">Belum Digunakan</option>
-              <option value="used">Sudah Digunakan</option>
-            </select>
-          </div>
-          <div>
-            <label>Tahun</label>
-            <br />
-            <input
-              type="number"
-              min="2020"
-              max="2099"
-              placeholder="Semua"
-              value={filterYear}
-              onChange={(e) => setFilterYear(e.target.value)}
-              style={{ padding: "6px 8px", width: 100 }}
+              onValueChange={setFilterStatus}
             />
           </div>
-          <div>
-            <label>Bulan</label>
-            <br />
-            <select
-              value={filterMonth}
-              onChange={(e) => setFilterMonth(e.target.value)}
-              style={{ padding: "6px 8px" }}
-            >
-              <option value="">Semua</option>
-              {MONTH_NAMES.map((name, idx) => (
-                <option key={idx + 1} value={idx + 1}>
-                  {name}
-                </option>
-              ))}
-            </select>
+          <div className="grid gap-1.5">
+            <Label>Bulan</Label>
+            <FormSelect
+              options={MONTH_OPTIONS}
+              value={filterMonth || "all"}
+              onValueChange={(val) => setFilterMonth(val === "all" ? "" : val)}
+            />
+          </div>
+          <div className="grid gap-1.5">
+            <Label>Tahun</Label>
+            <FormSelect
+              options={YEAR_OPTIONS}
+              value={filterYear || "all"}
+              onValueChange={(val) => setFilterYear(val === "all" ? "" : val)}
+            />
           </div>
         </div>
 

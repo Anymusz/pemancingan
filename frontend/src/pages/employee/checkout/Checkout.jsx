@@ -32,6 +32,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
   const [tierUpgradeAlert, setTierUpgradeAlert] = useState(null);
   const [activeVoucher, setActiveVoucher] = useState(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [qrisImageUrl, setQrisImageUrl] = useState(null);
   const toast = useToast();
 
   // ===== KALKULASI =====
@@ -109,19 +110,27 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     }
   }, [toast]);
 
-  const fetchFishTypes = useCallback(async () => {
-    try {
-      const res = await employeeService.getFishTypes();
-      if (res.success) setFishTypes(res.data);
-    } catch {
-      toast.error("Gagal memuat data jenis ikan");
-    }
-  }, [toast]);
-
   useEffect(() => {
-    fetchArrivals();
-    fetchFishTypes();
-  }, [fetchArrivals, fetchFishTypes]);
+    const init = async () => {
+      setFetchLoading(true);
+      try {
+        const [arrivalsRes, fishRes, qrisRes] = await Promise.all([
+          employeeService.getTodayArrivals(),
+          employeeService.getFishTypes(),
+          employeeService.getQrisConfig(),
+        ]);
+        if (arrivalsRes.success)
+          setArrivals(arrivalsRes.data.arrivals.filter((a) => a.status === "active"));
+        if (fishRes.success) setFishTypes(fishRes.data);
+        if (qrisRes.success) setQrisImageUrl(qrisRes.data?.image_url ?? null);
+      } catch {
+        toast.error("Gagal memuat data checkout");
+      } finally {
+        setFetchLoading(false);
+      }
+    };
+    init();
+  }, [toast]);
 
   useEffect(() => {
     if (!preselectArrivalId || arrivals.length === 0) return;
@@ -331,6 +340,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     loading,
     isSubmitDisabled,
     isFullyCoveredByDeposit,
+    qrisImageUrl,
   };
 
   // ===== RENDER =====

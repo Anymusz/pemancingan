@@ -13,7 +13,7 @@ import { Label } from "../../components/common/FormLabel";
 import { FormSelect } from "@/components/common/FormSelect";
 import { Textarea } from "../../components/common/FormTextarea";
 import { Button } from "@/components/common/Button";
-import { ImageOff } from "lucide-react";
+import { ImageOff, Plus } from "lucide-react";
 import { imageCell } from "@/components/common/ImageCell";
 
 const CATEGORY_OPTIONS = [
@@ -328,58 +328,55 @@ const MenuManagement = () => {
 
   // ==================== RENDER ====================
   return (
-    <div>
-      {/* Summary */}
-      <div className="flex gap-4 text-sm text-muted-foreground mb-2">
-        <span>
-          Total: <strong>{summary.total}</strong>
-        </span>
-        <span>
-          Tersedia: <strong>{summary.available_count}</strong>
-        </span>
-        <span>
-          Tidak Tersedia: <strong>{summary.unavailable_count}</strong>
-        </span>
+    <div className="space-y-4">
+      {/* Header row */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">Manajemen Menu</h1>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            Total: <strong>{summary.total}</strong> · Tersedia:{" "}
+            <strong>{summary.available_count}</strong> · Tidak Tersedia:{" "}
+            <strong>{summary.unavailable_count}</strong>
+          </p>
+        </div>
+        <Button onClick={openAddModal}>
+          <Plus className="w-4 h-4" />
+        </Button>
       </div>
 
-      {/* Actions */}
-      <Button onClick={openAddModal} className="mb-4">
-        + Tambah Menu
-      </Button>
-
-      {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-4">
+      {/* Filter toolbar */}
+      <div className="flex flex-wrap items-center gap-3 p-3 rounded-lg border border-border bg-card">
         <Input
           type="text"
           value={searchInput}
           onChange={handleSearchChange}
           placeholder="Cari nama menu..."
-          className="w-48"
+          className="w-full sm:w-48"
         />
-        <FormSelect
-          value={filters.category || "all"}
-          onValueChange={(val) =>
-            handleFilterChange("category", val === "all" ? "" : val)
-          }
-          className="w-40"
-          placeholder="Semua Kategori"
-          options={[
-            { value: "all", label: "Semua Kategori" },
-            ...CATEGORY_OPTIONS,
-          ]}
-        />
-        <FormSelect
-          value={filters.availability || "all"}
-          onValueChange={(val) =>
-            handleFilterChange("availability", val === "all" ? "" : val)
-          }
-          className="w-40"
-          placeholder="Semua Status"
-          options={[
-            { value: "all", label: "Semua Status" },
-            ...AVAILABILITY_OPTIONS,
-          ]}
-        />
+        <div className="grid grid-cols-2 gap-3 w-full sm:w-auto sm:flex sm:gap-3 text-sm">
+          <FormSelect
+            value={filters.category || "all"}
+            onValueChange={(val) =>
+              handleFilterChange("category", val === "all" ? "" : val)
+            }
+            placeholder="Semua Kategori"
+            options={[
+              { value: "all", label: "Semua Kategori" },
+              ...CATEGORY_OPTIONS,
+            ]}
+          />
+          <FormSelect
+            value={filters.availability || "all"}
+            onValueChange={(val) =>
+              handleFilterChange("availability", val === "all" ? "" : val)
+            }
+            placeholder="Semua Status"
+            options={[
+              { value: "all", label: "Semua Status" },
+              ...AVAILABILITY_OPTIONS,
+            ]}
+          />
+        </div>
         <label className="flex items-center gap-2 text-sm text-muted-foreground">
           <input
             type="checkbox"

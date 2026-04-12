@@ -5,6 +5,8 @@ import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/FormInput";
 import { Label } from "@/components/common/FormLabel";
 import { Textarea } from "@/components/common/FormTextarea";
+import ImageLightbox from "@/components/common/ImageLightbox";
+import { useState } from "react";
 
 const PAYMENT_OPTIONS = [
   { value: "cash", label: "Cash", icon: Banknote },
@@ -35,7 +37,9 @@ export function PaymentSection({
   loading,
   isSubmitDisabled,
   isFullyCoveredByDeposit = false,
+  qrisImageUrl = null,
 }) {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   return (
     <>
       <div className="rounded-lg border border-border bg-muted/30 p-4 space-y-4">
@@ -75,6 +79,29 @@ export function PaymentSection({
           )}
         </div>
 
+        {/* QRIS Image */}
+        {!isFullyCoveredByDeposit && paymentMethod === "qris" && (
+          <div className="space-y-1.5">
+            {qrisImageUrl ? (
+              <>
+                <img
+                  src={qrisImageUrl}
+                  alt="QRIS"
+                  className="max-h-32 object-contain rounded-lg border border-border cursor-zoom-in"
+                  onClick={() => setLightboxOpen(true)}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Tunjukkan QR ini ke member
+                </p>
+              </>
+            ) : (
+              <p className="text-xs text-amber-600">
+                QRIS belum dikonfigurasi. Hubungi owner.
+              </p>
+            )}
+          </div>
+        )}
+
         {/* Tips */}
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="tips">Tips (Rp) — Opsional</Label>
@@ -99,6 +126,14 @@ export function PaymentSection({
           />
         </div>
       </div>
+
+      {/* Lightbox */}
+      <ImageLightbox
+        open={lightboxOpen}
+        src={qrisImageUrl}
+        alt="QRIS"
+        onClose={() => setLightboxOpen(false)}
+      />
 
       {/* Submit */}
       <Button

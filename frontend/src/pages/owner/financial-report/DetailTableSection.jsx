@@ -1,6 +1,7 @@
 import { useState, Fragment } from "react";
 import { formatCurrency, formatDateTime } from "@/utils/utils";
 import { Button } from "@/components/common/Button";
+import { StatusBadge } from "@/components/common/StatusBadge";
 
 const CATEGORY_LABELS = {
   fish: "Ikan",
@@ -13,15 +14,18 @@ const PAYMENT_LABELS = {
   cash: "Cash",
   transfer: "Transfer",
   qris: "QRIS",
+  null: "Deposit",
 };
 
 // ======================== EXPANDABLE ROW ========================
 
-const ExpandableRow = ({ items }) => {
+const ExpandableRow = ({ trx }) => {
+  const items = trx.items || [];
   return (
     <tr>
-      <td colSpan={9} className="bg-muted/50 px-6 py-3">
-        <table className="w-full text-sm">
+      <td colSpan={10} className="bg-muted/60 px-6 py-4">
+        {/* Items sub-table */}
+        <table className="w-full text-sm mb-3">
           <thead>
             <tr className="border-b border-border">
               <th className="text-left py-1 text-muted-foreground font-medium">
@@ -71,6 +75,48 @@ const ExpandableRow = ({ items }) => {
             ))}
           </tbody>
         </table>
+
+        {/* Payment summary */}
+        <div className="border-t border-border pt-2 space-y-1 text-sm">
+          <div className="flex justify-between text-muted-foreground">
+            <span>Subtotal</span>
+            <span>{formatCurrency(trx.total_amount)}</span>
+          </div>
+          {trx.discount_tier > 0 && (
+            <div className="flex justify-between text-red-600">
+              <span>Diskon Tier</span>
+              <span>- {formatCurrency(trx.discount_tier)}</span>
+            </div>
+          )}
+          {trx.discount_voucher > 0 && (
+            <div className="flex justify-between text-muted-foreground">
+              <span>Diskon Voucher</span>
+              <span>- {formatCurrency(trx.discount_voucher)}</span>
+            </div>
+          )}
+          {trx.is_guest && trx.deposit_used > 0 && (
+            <div className="flex justify-between text-emerald-600">
+              <span>Deposit Tamu</span>
+              <span>- {formatCurrency(trx.deposit_used)}</span>
+            </div>
+          )}
+          <div className="flex justify-between font-bold text-foreground">
+            <span>Total Bayar</span>
+            <span>{formatCurrency(trx.final_amount)}</span>
+          </div>
+          {trx.is_guest && trx.deposit_change > 0 && (
+            <div className="flex justify-between text-amber-600 font-medium">
+              <span>Kembalian Deposit</span>
+              <span>{formatCurrency(trx.deposit_change)}</span>
+            </div>
+          )}
+          {trx.tips > 0 && (
+            <div className="flex justify-between text-muted-foreground">
+              <span>Tips</span>
+              <span>{formatCurrency(trx.tips)}</span>
+            </div>
+          )}
+        </div>
       </td>
     </tr>
   );
@@ -127,32 +173,35 @@ const DetailTableSection = ({
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-muted/50 border-b border-border">
-                    <th className="text-left px-4 py-3 text-muted-foreground font-medium">
+                  <tr className="bg-muted/60 border-b border-border">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Tanggal
                     </th>
-                    <th className="text-left px-4 py-3 text-muted-foreground font-medium">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       No. Transaksi
                     </th>
-                    <th className="text-left px-4 py-3 text-muted-foreground font-medium">
-                      Member
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                      Pelanggan
                     </th>
-                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                      Tipe
+                    </th>
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Total Bayar
                     </th>
-                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Diskon Tier
                     </th>
-                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Diskon Voucher
                     </th>
-                    <th className="text-center px-4 py-3 text-muted-foreground font-medium">
+                    <th className="text-center px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Metode
                     </th>
-                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Poin
                     </th>
-                    <th className="text-right px-4 py-3 text-muted-foreground font-medium">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
                       Tips
                     </th>
                   </tr>
@@ -162,7 +211,7 @@ const DetailTableSection = ({
                     <Fragment key={trx.transaction_code}>
                       <tr
                         onClick={() => handleRowClick(trx.transaction_code)}
-                        className="border-b border-border hover:bg-muted/30 cursor-pointer transition-colors"
+                        className="border-b border-border bg-card hover:bg-muted/30 cursor-pointer transition-colors"
                       >
                         <td className="px-4 py-3 text-foreground">
                           {formatDateTime(trx.transaction_date)}
@@ -171,7 +220,12 @@ const DetailTableSection = ({
                           {trx.transaction_code}
                         </td>
                         <td className="px-4 py-3 text-foreground">
-                          {trx.member_name}
+                          {trx.customer_name}
+                        </td>
+                        <td className="px-4 py-3">
+                          <StatusBadge
+                            status={trx.is_guest ? "guest" : "member"}
+                          />
                         </td>
                         <td className="px-4 py-3 text-right text-foreground">
                           {formatCurrency(trx.final_amount)}
@@ -183,18 +237,17 @@ const DetailTableSection = ({
                           {formatCurrency(trx.discount_voucher)}
                         </td>
                         <td className="px-4 py-3 text-center text-foreground">
-                          {PAYMENT_LABELS[trx.payment_method] ||
-                            trx.payment_method}
+                          {PAYMENT_LABELS[trx.payment_method ?? "null"] ?? "-"}
                         </td>
-                        <td className="px-4 py-3 text-right text-foreground">
-                          {trx.points_earned ?? 0}
+                        <td className="px-4 py-3 text-right text-emerald-600">
+                          {trx.is_guest ? "-" : `+${trx.points_earned ?? 0}`}
                         </td>
                         <td className="px-4 py-3 text-right text-foreground">
                           {formatCurrency(trx.tips)}
                         </td>
                       </tr>
                       {expandedRow === trx.transaction_code && (
-                        <ExpandableRow items={trx.items || []} />
+                        <ExpandableRow trx={trx} />
                       )}
                     </Fragment>
                   ))}

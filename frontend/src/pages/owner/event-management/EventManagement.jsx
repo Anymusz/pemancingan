@@ -10,6 +10,7 @@ import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { Input } from "@/components/common/FormInput";
 import { FormSelect } from "@/components/common/FormSelect";
 import { Button } from "@/components/common/Button";
+import { Plus } from "lucide-react";
 import { TabsNav } from "@/components/common/TabsNav";
 
 // ==================== CONSTANTS ====================
@@ -212,8 +213,9 @@ const EventManagement = () => {
             Manajemen Acara &amp; Pengumuman
           </h1>
           <p className="text-sm text-muted-foreground mt-0.5">
-            {summary.total} total · {summary.published_count} published ·{" "}
-            {summary.draft_count} draft
+            Total: <strong>{summary.total}</strong> · Dipublikasi:{" "}
+            <strong>{summary.published_count}</strong> · Draft:{" "}
+            <strong>{summary.draft_count}</strong>
           </p>
         </div>
         <div className="flex flex-wrap gap-2 shrink-0">
@@ -225,7 +227,7 @@ const EventManagement = () => {
             🌐 Tampilan Publik
           </Button>
           <Button size="sm" onClick={openAddModal}>
-            + Tambah Acara
+            <Plus className="w-4 h-4" />
           </Button>
         </div>
       </div>
@@ -239,13 +241,13 @@ const EventManagement = () => {
       />
 
       {/* Filter bar */}
-      <div className="flex flex-wrap gap-3 items-center">
+      <div className="flex flex-wrap items-center gap-3 p-3 rounded-lg border border-border bg-card">
         <Input
           type="text"
           value={searchInput}
           onChange={handleSearchChange}
           placeholder="Cari judul event..."
-          className="w-52"
+          className="w-full sm:w-52"
         />
         <FormSelect
           value={filters.status || "all"}
@@ -256,9 +258,9 @@ const EventManagement = () => {
           options={[
             { value: "all", label: "Semua Status" },
             { value: "draft", label: "Draft" },
-            { value: "published", label: "Published" },
+            { value: "published", label: "Dipublikasi" },
           ]}
-          className="w-40"
+          className="w-full sm:w-40"
         />
         <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer select-none">
           <input

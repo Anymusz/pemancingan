@@ -77,15 +77,15 @@ const EmployeeDashboard = () => {
     {
       label: "Kedatangan",
       items: [
-        { key: "checkin", label: "Check In", icon: QrCode },
-        { key: "arrivals", label: "Today Arrivals", icon: CalendarCheck },
+        { key: "checkin", label: "Check-in", icon: QrCode },
+        { key: "arrivals", label: "Kedatangan Hari Ini", icon: CalendarCheck },
       ],
     },
     {
       label: "Pesanan",
       items: [
-        { key: "addorder", label: "Add Order", icon: PlusCircle },
-        { key: "pendingorder", label: "Pending Orders", icon: ClipboardList },
+        { key: "addorder", label: "Tambah Pesanan", icon: PlusCircle },
+        { key: "pendingorder", label: "Pesanan Masuk", icon: ClipboardList },
         { key: "checkout", label: "Checkout", icon: ShoppingCart },
       ],
     },
@@ -94,10 +94,10 @@ const EmployeeDashboard = () => {
       items: [
         {
           key: "menuavailability",
-          label: "Menu Availability",
+          label: "Ketersediaan Menu",
           icon: UtensilsCrossed,
         },
-        { key: "history", label: "Transactions", icon: History },
+        { key: "history", label: "Riwayat Transaksi", icon: History },
       ],
     },
   ];
