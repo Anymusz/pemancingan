@@ -26,8 +26,10 @@ use App\Http\Controllers\Api\Owner\VoucherConfigController as OwnerVoucherConfig
 use App\Http\Controllers\Api\Owner\ReportController as OwnerReportController;
 use App\Http\Controllers\Api\Owner\RentalItemController as OwnerRentalItemController;
 use App\Http\Controllers\Api\Owner\GuestConfigController as OwnerGuestConfigController;
+use App\Http\Controllers\Api\Owner\QrisConfigController as OwnerQrisConfigController;
 use App\Http\Controllers\Api\Employee\RentalItemController as EmployeeRentalItemController;
 use App\Http\Controllers\Api\Employee\GuestConfigController as EmployeeGuestConfigController;
+use App\Http\Controllers\Api\Employee\QrisConfigController as EmployeeQrisConfigController;
 
 // ========================================
 // PUBLIC ROUTES
@@ -146,6 +148,10 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     // Guest Config
     Route::get('/guest-config', [OwnerGuestConfigController::class, 'show']);
     Route::put('/guest-config', [OwnerGuestConfigController::class, 'update']);
+
+    // QRIS Config
+    Route::get('/qris-config', [OwnerQrisConfigController::class, 'show']);
+    Route::put('/qris-config', [OwnerQrisConfigController::class, 'update']);
 });
 
 // ========================================
@@ -187,4 +193,7 @@ Route::prefix('employee')->middleware(['auth:sanctum', 'role:employee'])->group(
 
     // Guest Config
     Route::get('/guest-config', [EmployeeGuestConfigController::class, 'show']);
+
+    // QRIS Config
+    Route::get('/qris-config', [EmployeeQrisConfigController::class, 'show']);
 });

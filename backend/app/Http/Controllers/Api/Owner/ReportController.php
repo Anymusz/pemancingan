@@ -21,10 +21,6 @@ class ReportController extends Controller
     use CalculatesDiscountTier;
 
     // ===== HELPER =====
-
-    /**
-     * Parse period parameter and return [startDate, endDate] as Carbon instances.
-     */
     private function getDateRange(Request $request): array
     {
         $period = $request->input('period', 'daily');
@@ -158,55 +154,60 @@ class ReportController extends Controller
      * GET /api/owner/reports/transactions
      */
     public function transactions(Request $request): JsonResponse
-    {
-        [$start, $end] = $this->getDateRange($request);
+{
+    [$start, $end] = $this->getDateRange($request);
 
-        $perPage = min((int) $request->input('per_page', 10), 50);
+    $perPage = min((int) $request->input('per_page', 10), 50);
 
-        $paginator = Transaction::with(['arrival.member.user', 'items'])
-            ->whereBetween('transaction_date', [$start, $end])
-            ->orderByDesc('transaction_date')
-            ->paginate($perPage);
+    $paginator = Transaction::with(['arrival.member.user', 'items'])
+        ->whereBetween('transaction_date', [$start, $end])
+        ->orderByDesc('transaction_date')
+        ->paginate($perPage);
 
-        $data = collect($paginator->items())->map(function (Transaction $trx) {
-            $items = $trx->items->map(fn ($i) => $i->toArray())->toArray();
+    $data = collect($paginator->items())->map(function (Transaction $trx) {
+        $items = $trx->items->map(fn ($i) => $i->toArray())->toArray();
 
-            // Apply discount_tier_item calculation
-            $items = $this->calculateDiscountTierItems($items, (float) $trx->discount_tier);
+        $items = $this->calculateDiscountTierItems($items, (float) $trx->discount_tier);
 
-            return [
-                'transaction_code'  => $trx->transaction_code,
-                'transaction_date'  => $trx->transaction_date->toDateTimeString(),
-                'customer_name'     => $trx->arrival?->display_name ?? '-',
-                'total_amount'      => (float) $trx->total_amount,
-                'discount_tier'     => (float) $trx->discount_tier,
-                'discount_voucher'  => (float) $trx->discount_voucher,
-                'final_amount'      => (float) $trx->final_amount,
-                'tips'              => (float) $trx->tips,
-                'payment_method'    => $trx->payment_method,
-                'points_earned'     => $trx->points_earned,
-                'items'             => collect($items)->map(fn ($item) => [
-                    'item_type'           => $item['item_type'],
-                    'item_name_snapshot'  => $item['item_name_snapshot'],
-                    'quantity'            => (float) $item['quantity'],
-                    'unit_price_snapshot' => (float) $item['unit_price_snapshot'],
-                    'subtotal'            => (float) $item['subtotal'],
-                    'discount_tier_item'  => (float) $item['discount_tier_item'],
-                ])->toArray(),
-            ];
-        });
+        $finalBeforeDeposit = max(0, (float)$trx->total_amount - (float)$trx->discount_tier - (float)$trx->discount_voucher);
+        $depositAmount      = (float) ($trx->arrival?->deposit_amount ?? 0);
 
-        return response()->json([
-            'success' => true,
-            'data'    => $data,
-            'meta'    => [
-                'current_page' => $paginator->currentPage(),
-                'last_page'    => $paginator->lastPage(),
-                'total'        => $paginator->total(),
-                'per_page'     => $paginator->perPage(),
-            ],
-        ]);
-    }
+        return [
+            'transaction_code'  => $trx->transaction_code,
+            'transaction_date'  => $trx->transaction_date->toDateTimeString(),
+            'customer_name'     => $trx->arrival?->display_name ?? '-',
+            'is_guest'          => is_null($trx->arrival?->member_id),
+            'total_amount'      => (float) $trx->total_amount,
+            'discount_tier'     => (float) $trx->discount_tier,
+            'discount_voucher'  => (float) $trx->discount_voucher,
+            'final_amount'      => (float) $trx->final_amount,
+            'deposit_used'      => min($depositAmount, $finalBeforeDeposit),
+            'deposit_change'    => max(0, $depositAmount - $finalBeforeDeposit),
+            'tips'              => (float) $trx->tips,
+            'payment_method'    => $trx->payment_method,
+            'points_earned'     => $trx->points_earned,
+            'items'             => collect($items)->map(fn ($item) => [
+                'item_type'           => $item['item_type'],
+                'item_name_snapshot'  => $item['item_name_snapshot'],
+                'quantity'            => (float) $item['quantity'],
+                'unit_price_snapshot' => (float) $item['unit_price_snapshot'],
+                'subtotal'            => (float) $item['subtotal'],
+                'discount_tier_item'  => (float) $item['discount_tier_item'],
+            ])->toArray(),
+        ];
+    });
+
+    return response()->json([
+        'success' => true,
+        'data'    => $data,
+        'meta'    => [
+            'current_page' => $paginator->currentPage(),
+            'last_page'    => $paginator->lastPage(),
+            'total'        => $paginator->total(),
+            'per_page'     => $paginator->perPage(),
+        ],
+    ]);
+}
 
     /**
      * GET /api/owner/reports/export

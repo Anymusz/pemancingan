@@ -226,6 +226,7 @@ class PendingOrderController extends Controller
 
         $orders = PendingOrder::where('arrival_id', $arrivalId)
             ->where('payment_status', 'unpaid')
+            ->where('production_status', '!=', 'cancelled')
             ->get()
             ->map(fn($o) => [
                 'id'         => $o->id,

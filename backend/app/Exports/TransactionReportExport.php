@@ -23,6 +23,7 @@ class TransactionReportExport implements FromCollection, WithHeadings
             'Tanggal',
             'No_Transaksi',
             'Pelanggan',
+            'Tipe',
             'Item',
             'Qty',
             'Harga_Satuan',
@@ -33,6 +34,7 @@ class TransactionReportExport implements FromCollection, WithHeadings
             'Poin',
             'Tips',
             'Metode_Bayar',
+            'Deposit',
         ];
     }
 
@@ -45,9 +47,13 @@ class TransactionReportExport implements FromCollection, WithHeadings
             $items = $this->calculateDiscountTierItems($items, (float) $trx->discount_tier);
 
             $customerName    = $trx->arrival?->display_name ?? '-';
+            $isGuest         = is_null($trx->arrival?->member_id);
+            $customerType    = $isGuest ? 'Tamu' : 'Member';
+            $depositAmount   = $isGuest ? (float) ($trx->arrival?->deposit_amount ?? 0) : '';
             $discountVoucher = (float) $trx->discount_voucher;
 
-            foreach ($items as $item) {
+            foreach ($items as $index => $item) {
+                $isFirstRow                = $index === 0;
                 $discountTierItem          = (float) $item['discount_tier_item'];
                 $subtotalAfterDiscountTier = round((float) $item['subtotal'] - $discountTierItem, 2);
 
@@ -55,16 +61,18 @@ class TransactionReportExport implements FromCollection, WithHeadings
                     $trx->transaction_date->format('Y-m-d H:i:s'),
                     $trx->transaction_code,
                     $customerName,
+                    $customerType,
                     $item['item_name_snapshot'],
                     (float) $item['quantity'],
                     (float) $item['unit_price_snapshot'],
                     (float) $item['subtotal'],
                     $discountTierItem,
                     $subtotalAfterDiscountTier,
-                    $discountVoucher,
-                    $trx->points_earned,
-                    (float) $trx->tips,
-                    $trx->payment_method,
+                    $isFirstRow ? $discountVoucher : '',
+                    $isFirstRow ? $trx->points_earned : '',
+                    $isFirstRow ? (float) $trx->tips : '',
+                    $isFirstRow ? ($trx->payment_method ?? 'deposit') : '',
+                    $isFirstRow ? $depositAmount : '',
                 ];
             }
         }

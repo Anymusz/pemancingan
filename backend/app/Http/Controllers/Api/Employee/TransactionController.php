@@ -173,7 +173,7 @@ class TransactionController extends Controller
 
         // Step 3: Fetch pending orders (menu + rental) milik arrival
         $pendingOrders = PendingOrder::where('arrival_id', $arrival->id)
-            ->where('payment_status', 'unpaid')
+            ->where('production_status', '!=', 'cancelled')
             ->get();
 
         $fishItems    = $request->fish_items ?? [];
