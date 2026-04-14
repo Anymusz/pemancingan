@@ -32,7 +32,6 @@ class EventController extends Controller
             return true;
         });
 
-        // Sorting: ongoing → upcoming → finished → active info
         $statusOrder = [
             'ongoing' => 0,
             'upcoming' => 1,

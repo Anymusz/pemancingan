@@ -171,18 +171,20 @@ class MemberController extends Controller
     public function getLeaderboard(Request $request)
     {
         try {
-            $limit = $request->query('limit', 10);
-            $limit = min(max((int) $limit, 1), 100);
+            $page = max((int) $request->query('page', 1), 1);
+            $perPage = min(max((int) $request->query('per_page', 50), 1), 100);
+            $offset = ($page - 1) * $perPage;
 
             $leaderboard = Member::with(['user', 'tier'])
                 ->where('total_fish_weight', '>', 0)
                 ->orderBy('total_fish_weight', 'desc')
                 ->orderBy('id', 'asc')
-                ->limit($limit)
+                ->skip($offset)
+                ->take($perPage)
                 ->get()
-                ->map(function ($member, $index) {
+                ->map(function ($member, $index) use ($offset) {
                     return [
-                        'rank' => $index + 1,
+                        'rank' => $offset + $index + 1,
                         'member_id' => $member->member_id,
                         'name' => $this->maskName($member->user->name),
                         'total_fish_weight' => (float) $member->total_fish_weight,
@@ -199,6 +201,9 @@ class MemberController extends Controller
                     'meta' => [
                         'total_ranked_members' => $totalRanked,
                         'showing' => $leaderboard->count(),
+                        'current_page' => $page,
+                        'per_page' => $perPage,
+                        'total_pages' => ceil($totalRanked / $perPage),
                         'last_updated' => now()->toISOString(),
                     ],
                 ],
