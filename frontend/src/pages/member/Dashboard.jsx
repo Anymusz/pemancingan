@@ -99,8 +99,8 @@ const Dashboard = () => {
       label: "",
       items: [
         { key: "home", label: "Dashboard", icon: LayoutDashboard },
-        { key: "order", label: "Pesan", icon: ShoppingBag },
-        { key: "history", label: "Riwayat", icon: History },
+        { key: "order", label: "Pesanan", icon: ShoppingBag },
+        { key: "history", label: "Riwayat Transaksi", icon: History },
         { key: "leaderboard", label: "Leaderboard", icon: Trophy },
       ],
     },

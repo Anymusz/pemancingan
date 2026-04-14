@@ -71,7 +71,7 @@ const FooterBlock = () => {
                   href="#tentang"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Tentang Pemancingan S
+                  Tentang Pemancingan
                 </a>
               </li>
               <li>

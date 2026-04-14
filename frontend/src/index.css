@@ -4,9 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ========================================
-   BASE STYLES
-======================================== */
+/* === BASE STYLES === */
 :root {
   font-family:
     system-ui,
@@ -27,10 +25,8 @@
   /* Border Radius */
   --radius: 0.5rem;
 
-  /* ========================================
-   COLOR SYSTEM - LIGHT MODE (Default)
-======================================== */
-  --background: oklch(99% 0.003 247.858); /* ✅ slate-50 (#f8fafc) */
+  /* === COLOR SYSTEM - LIGHT MODE === */
+  --background: oklch(99% 0.003 247.858); /* slate-50 (#f8fafc) */
   --foreground: oklch(0.282 0.013 256.8); /* slate-800 */
 
   --card: oklch(1 0 0); /* white */
@@ -82,9 +78,7 @@
   --sidebar-ring: oklch(0.697 0.133 231.7);
 }
 
-/* ========================================
-   THEME COLORS - Tailwind v4 Format
-======================================== */
+/* === THEME COLORS - Tailwind v4 Format === */
 @theme {
   /* PRIMARY SYSTEM - sky colors */
   --color-primary: oklch(68.5% 0.169 237.323); /* sky-500 */
@@ -115,9 +109,7 @@
   --color-border-default: #cbd5e1; /* slate-300 */
 }
 
-/* ========================================
-   RADIUS UTILITIES
-======================================== */
+/* === RADIUS UTILITIES === */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -161,9 +153,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* ========================================
-   DARK MODE (Optional - jika dibutuhkan nanti)
-======================================== */
+/* === DARK MODE === */
 .dark {
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
@@ -193,9 +183,7 @@
   --sidebar-ring: oklch(0.756 0.144 232.6);
 }
 
-/* ========================================
-   BASE LAYER - Apply defaults
-======================================== */
+/* === BASE LAYER - Apply defaults === */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -214,7 +202,6 @@
     display: block;
   }
 
-  /* Typography defaults */
   h1 {
     @apply text-text-primary;
     font-size: 2.5rem;
@@ -240,7 +227,6 @@
     @apply text-text-body;
   }
 
-  /* Link defaults (flexible - dapat di-override) */
   a {
     @apply text-primary hover:text-primary-dark transition-colors;
     font-weight: 500;
@@ -248,11 +234,7 @@
   }
 }
 
-/* Tambahkan di paling bawah src/index.css */
-
-/* ========================================
-   ACCORDION ANIMATIONS (Radix UI)
-======================================== */
+/* === ACCORDION ANIMATIONS (Radix UI) === */
 @keyframes accordion-down {
   from {
     height: 0;

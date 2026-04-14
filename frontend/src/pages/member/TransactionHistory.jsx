@@ -98,7 +98,7 @@ const TransactionHistory = () => {
                     <Fragment key={trx.transaction_code}>
                       <tr
                         onClick={() => handleRowClick(trx.transaction_code)}
-                        className="hover:bg-muted/30 cursor-pointer transition-colors"
+                        className="hover:bg-muted/30 bg-white cursor-pointer transition-colors"
                       >
                         <td className="px-4 py-3 text-foreground">
                           {formatDateTime(trx.transaction_date)}
@@ -113,7 +113,7 @@ const TransactionHistory = () => {
                           {PAYMENT_LABELS[trx.payment_method] ||
                             trx.payment_method}
                         </td>
-                        <td className="px-4 py-3 text-right text-foreground">
+                        <td className="px-4 py-3 text-right text-emerald-600">
                           +{trx.points_earned ?? 0}
                         </td>
                       </tr>

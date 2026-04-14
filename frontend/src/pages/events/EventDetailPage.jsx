@@ -1,28 +1,31 @@
+// File: src/pages/events/EventDetailPage.jsx
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import {
+  ChevronLeft,
+  Calendar,
+  Megaphone,
+  AlertTriangle,
+  Loader2,
+  Clock,
+} from "lucide-react";
 import { getEventDetail } from "@/services/eventService";
 import ImageLightbox from "@/components/common/ImageLightbox";
+import { StatusBadge } from "@/components/common/StatusBadge";
+import { Button } from "@/components/common/Button";
+import { formatDate } from "@/utils/utils";
+import { WarningAlert } from "@/components/feedback/inlineAlert";
 
-const STATUS_LABELS = {
-  ongoing: { text: "Berlangsung", color: "bg-green-100 text-green-700" },
-  upcoming: { text: "Akan Datang", color: "bg-blue-100 text-blue-700" },
-  finished: { text: "Selesai", color: "bg-gray-100 text-gray-600" },
-  expired: { text: "Kedaluwarsa", color: "bg-red-100 text-red-600" },
-};
-
-const CATEGORY_LABELS = {
-  event: { text: "Acara", color: "bg-purple-100 text-purple-700" },
-  info: { text: "Pengumuman", color: "bg-amber-100 text-amber-700" },
-};
-
-const formatDateLong = (dateStr) => {
-  if (!dateStr) return "";
-  return new Date(dateStr).toLocaleDateString("id-ID", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+const CATEGORY_FALLBACK = {
+  event: {
+    gradient: "from-sky-400 to-sky-500",
+    Icon: Calendar,
+  },
+  info: {
+    gradient: "from-amber-400 to-amber-500",
+    Icon: Megaphone,
+  },
 };
 
 export default function EventDetailPage() {
@@ -32,8 +35,6 @@ export default function EventDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-
-
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -60,10 +61,7 @@ export default function EventDetailPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center text-gray-400">
-          <div className="text-4xl mb-3">📡</div>
-          <p>Memuat detail event...</p>
-        </div>
+        <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
       </div>
     );
   }
@@ -71,15 +69,17 @@ export default function EventDetailPage() {
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-4xl mb-3">😕</div>
-          <p className="text-gray-500 mb-4">{error}</p>
-          <button
+        <div className="flex flex-col items-center gap-4">
+          <AlertTriangle className="w-10 h-10 text-muted-foreground" />
+          <p className="text-sm text-muted-foreground">{error}</p>
+          <Button
+            variant="outline"
             onClick={() => navigate("/events")}
-            className="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+            className="gap-1.5"
           >
-            ← Kembali ke Daftar
-          </button>
+            <ChevronLeft className="w-4 h-4" />
+            Kembali ke Daftar
+          </Button>
         </div>
       </div>
     );
@@ -87,102 +87,130 @@ export default function EventDetailPage() {
 
   if (!event) return null;
 
-  const placeholderImage =
-    event.category === "event"
-      ? "/images/placeholder-event.jpg"
-      : "/images/placeholder-info.jpg";
+  const fallback = CATEGORY_FALLBACK[event.category] ?? CATEGORY_FALLBACK.info;
+  const { gradient, Icon: FallbackIcon } = fallback;
 
-  const categoryLabel = CATEGORY_LABELS[event.category];
-  const statusLabel = STATUS_LABELS[event.display_status];
+  // Duration calculation
+  let duration = "—";
+  if (event.start_date && event.end_date) {
+    const diff =
+      Math.ceil(
+        (new Date(event.end_date) - new Date(event.start_date)) /
+          (1000 * 60 * 60 * 24),
+      ) + 1;
+    duration = `${diff} hari`;
+  }
 
   return (
     <>
-      <div className="min-h-screen py-8 px-4">
-        <div className="max-w-3xl mx-auto">
+      <div className="min-h-screen bg-background py-10 px-4">
+        <div className="max-w-3xl mx-auto flex flex-col gap-6">
           {/* Back button */}
-          <button
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-1.5 w-fit"
             onClick={() => navigate("/events")}
-            className="mb-6 px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors"
           >
-            ← Kembali ke Daftar
-          </button>
+            <ChevronLeft className="w-4 h-4" />
+            Kembali
+          </Button>
 
-          {/* Expired Banner */}
-          {event.display_status === "expired" && (
-            <div className="mb-4 px-4 py-3 bg-amber-50 border border-amber-200 rounded-lg">
-              <p className="text-sm text-amber-700 font-medium">
-                ⚠️ Pengumuman ini sudah tidak berlaku
-              </p>
-            </div>
+          {/* Expired banner */}
+          {event.display_status === "finished" && (
+            <WarningAlert description="Acara ini telah selesai diselenggarakan." />
           )}
 
-          {/* Card */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 overflow-hidden">
-            {/* Image */}
-            <div className="w-full h-64 md:h-80 bg-gray-100 overflow-hidden">
+          {/* Title block */}
+          <div className="flex flex-col gap-1">
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground">
+              {event.title}
+            </h1>
+            <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+              <Calendar className="w-4 h-4" />
+              <span>Dipublikasikan {formatDate(event.created_at)}</span>
+            </div>
+          </div>
+
+          {/* Image */}
+          <div className="w-full h-64 md:h-90 rounded-2xl overflow-hidden border border-border">
+            {event.image_url ? (
               <img
-                src={event.image_url || placeholderImage}
+                src={event.image_url}
                 alt={event.title}
-                className="w-full h-full object-cover cursor-zoom-in"
+                className="object-cover w-full h-full cursor-zoom-in"
                 onClick={() => setLightboxOpen(true)}
               />
+            ) : (
+              <div
+                className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${gradient}`}
+              >
+                <FallbackIcon className="w-12 h-12 text-white/30" />
+              </div>
+            )}
+          </div>
+
+          {/* Badges + date grid block */}
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-wrap gap-2">
+              <StatusBadge status={event.category} />
+              {event.category === "event" && (
+                <StatusBadge status={event.display_status} />
+              )}
             </div>
 
-            {/* Content */}
-            <div className="p-6 md:p-8">
-              {/* Badges */}
-              <div className="flex gap-2 mb-4 flex-wrap">
-                {categoryLabel && (
-                  <span
-                    className={`text-xs px-3 py-1 rounded-full font-medium ${categoryLabel.color}`}
-                  >
-                    {categoryLabel.text}
-                  </span>
-                )}
-                {statusLabel && (
-                  <span
-                    className={`text-xs px-3 py-1 rounded-full font-medium ${statusLabel.color}`}
-                  >
-                    {statusLabel.text}
-                  </span>
-                )}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-muted/50 border border-border">
+              {/* Start date */}
+              <div className="flex sm:flex-col items-center sm:items-start justify-between gap-2">
+                <span className="text-xs text-muted-foreground">
+                  Tanggal mulai
+                </span>
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground">
+                  <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
+                  <span>{formatDate(event.start_date)}</span>
+                </div>
               </div>
 
-              {/* Title */}
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-                {event.title}
-              </h1>
-
-              {/* Date */}
-              <div className="mb-6 text-sm text-gray-500">
-                {event.category === "event" && event.start_date ? (
-                  <>
-                    📅 {formatDateLong(event.start_date)}
-                    {event.end_date && ` — ${formatDateLong(event.end_date)}`}
-                  </>
-                ) : (
-                  <>📅 {formatDateLong(event.created_at)}</>
-                )}
+              {/* End date */}
+              <div className="flex sm:flex-col items-center sm:items-start justify-between gap-2">
+                <span className="text-xs text-muted-foreground">
+                  Tanggal berakhir
+                </span>
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground">
+                  <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
+                  <span>
+                    {event.end_date ? formatDate(event.end_date) : "—"}
+                  </span>
+                </div>
               </div>
 
-              {/* Description */}
-              <div className="prose prose-gray max-w-none">
-                <p className="text-gray-600 leading-relaxed whitespace-pre-line">
-                  {event.description}
-                </p>
+              {/* Duration */}
+              <div className="flex sm:flex-col items-center sm:items-start justify-between gap-2">
+                <span className="text-xs text-muted-foreground">Durasi</span>
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground">
+                  <Clock className="w-3.5 h-3.5 text-muted-foreground" />
+                  <span>{duration}</span>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Description */}
+          <p className="text-sm text-foreground leading-relaxed whitespace-pre-line">
+            {event.description}
+          </p>
         </div>
       </div>
 
-      {/* Lightbox */}
-      <ImageLightbox
-        open={lightboxOpen}
-        src={event.image_url || placeholderImage}
-        alt={event.title}
-        onClose={() => setLightboxOpen(false)}
-      />
+      {/* Lightbox — only if image exists */}
+      {event.image_url && (
+        <ImageLightbox
+          open={lightboxOpen}
+          src={event.image_url}
+          alt={event.title}
+          onClose={() => setLightboxOpen(false)}
+        />
+      )}
     </>
   );
 }

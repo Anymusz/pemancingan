@@ -46,7 +46,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-background" ref={ref}>
+    <section className="w-full py-12 md:py-24 lg:py-32" ref={ref}>
       <div className="container mx-auto px-4 md:px-6">
         {/* Header */}
         <motion.div
@@ -59,10 +59,10 @@ export default function FAQSection() {
             <div className="inline-block rounded-lg bg-primary/10 text-primary px-3 py-1 text-sm font-medium">
               FAQ
             </div>
-            <h2 className="text-3xl font-bold tracking-tighter text-text-primary md:text-4xl/tight">
+            <h1 className="text-4xl font-bold tracking-tighter text-text-primary md:text-4xl/tight">
               Pertanyaan yang Sering Diajukan
-            </h2>
-            <p className="mx-auto max-w-[700px] text-text-body md:text-xl">
+            </h1>
+            <p className="mx-auto max-w-[700px] text-md text-text-body md:text-md">
               Temukan jawaban untuk pertanyaan umum seputar layanan, membership,
               dan operasional Pemancingan S.
             </p>

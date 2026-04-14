@@ -2,19 +2,36 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Calendar, Megaphone, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Card } from "@/components/ui/card";
+import { StatusBadge } from "@/components/common/StatusBadge";
 import { getEvents } from "@/services/eventService";
 import { formatDate } from "@/utils/utils";
+import { Button } from "@/components/common/Button";
 
-const STATUS_LABELS = {
-  ongoing: { text: "Berlangsung", color: "bg-green-100 text-green-700" },
-  upcoming: { text: "Akan Datang", color: "bg-blue-100 text-blue-700" },
-  finished: { text: "Selesai", color: "bg-gray-100 text-gray-600" },
+const CATEGORY_CONFIG = {
+  event: {
+    gradient: "from-sky-400 to-sky-500",
+    PlaceholderIcon: Calendar,
+  },
+  info: {
+    gradient: "from-amber-400 to-amber-500",
+    PlaceholderIcon: Megaphone,
+  },
 };
 
-const CATEGORY_LABELS = {
-  event: { text: "Acara", color: "bg-purple-100 text-purple-700" },
-  info: { text: "Pengumuman", color: "bg-amber-100 text-amber-700" },
-};
+function SkeletonCard() {
+  return (
+    <div className="rounded-2xl border border-border overflow-hidden">
+      <div className="aspect-video bg-muted animate-pulse" />
+      <div className="p-4 space-y-2">
+        <div className="h-4 bg-muted animate-pulse rounded" />
+        <div className="h-3 bg-muted animate-pulse rounded w-3/4" />
+      </div>
+    </div>
+  );
+}
 
 export default function EventsSection() {
   const [events, setEvents] = useState([]);
@@ -25,7 +42,6 @@ export default function EventsSection() {
     const fetchEvents = async () => {
       try {
         const res = await getEvents(1);
-        // Take first 3 items (API already priorities ongoing & upcoming)
         setEvents((res.data ?? []).slice(0, 3));
       } catch (error) {
         console.error("Gagal memuat events", error);
@@ -36,108 +52,108 @@ export default function EventsSection() {
     fetchEvents();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="py-20 bg-background dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 text-center text-gray-400">
-          Memuat acara & pengumuman...
-        </div>
-      </div>
-    );
-  }
-
-  if (events.length === 0) return null;
+  if (!loading && events.length === 0) return null;
 
   return (
-    <div className="py-20 bg-background dark:bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4">
+    <div className="py-20">
+      <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary dark:text-foreground mb-3">
-            Acara & Pengumuman
-          </h2>
-          <p className="text-text-body dark:text-muted-foreground max-w-2xl mx-auto md:text-xl">
-            Info terbaru seputar acara dan pengumuman dari kami
+          <span className="inline-block px-4 py-1.5 text-sm font-medium rounded-full bg-primary/10 text-primary mb-3">
+            Terbaru dari Kami
+          </span>
+          <h1 className="text-4xl font-bold text-foreground">
+            Acara &amp; Pengumuman
+          </h1>
+          <p className="text-md text-muted-foreground mt-2">
+            Info terkini seputar acara dan pengumuman dari Pemancingan Sutoyo
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {events.map((event) => {
-            const placeholderImage =
-              event.category === "event"
-                ? "/images/placeholder-event.jpg"
-                : "/images/placeholder-info.jpg";
-            const categoryLabel = CATEGORY_LABELS[event.category];
-            const statusLabel =
-              event.category === "event"
-                ? STATUS_LABELS[event.display_status]
-                : null;
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {loading
+            ? [1, 2, 3].map((i) => <SkeletonCard key={i} />)
+            : events.map((event) => {
+                const catConfig =
+                  CATEGORY_CONFIG[event.category] ?? CATEGORY_CONFIG.info;
+                const { PlaceholderIcon, gradient } = catConfig;
 
-            return (
-              <div
-                key={event.id}
-                onClick={() => navigate(`/events/${event.id}`)}
-                className="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 overflow-hidden cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
-              >
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden bg-gray-100">
-                  <img
-                    src={event.image_url || placeholderImage}
-                    alt={event.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-3 left-3 flex gap-1.5">
-                    {categoryLabel && (
-                      <span
-                        className={`text-xs px-2.5 py-1 rounded-full font-medium ${categoryLabel.color}`}
-                      >
-                        {categoryLabel.text}
-                      </span>
-                    )}
-                    {statusLabel && (
-                      <span
-                        className={`text-xs px-2.5 py-1 rounded-full font-medium ${statusLabel.color}`}
-                      >
-                        {statusLabel.text}
-                      </span>
-                    )}
-                  </div>
-                </div>
+                return (
+                  <motion.div
+                    key={event.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="w-full"
+                  >
+                    <Card
+                      className="group relative h-full flex flex-col p-0 gap-0 overflow-hidden rounded-2xl border-border/50 bg-card/30 backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 cursor-pointer"
+                      onClick={() => navigate(`/events/${event.id}`)}
+                    >
+                      {/* Image zone */}
+                      <div className="relative aspect-video overflow-hidden">
+                        {event.image_url ? (
+                          <>
+                            <motion.img
+                              src={event.image_url}
+                              alt={event.title}
+                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-linear-to-t from-background/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40 pointer-events-none" />
+                          </>
+                        ) : (
+                          <div
+                            className={`h-full w-full flex items-center justify-center bg-gradient-to-br ${gradient}`}
+                          >
+                            <PlaceholderIcon className="w-10 h-10 text-white/40" />
+                          </div>
+                        )}
+                      </div>
 
-                {/* Content */}
-                <div className="p-4">
-                  <h3 className="text-base font-semibold text-gray-800 mb-1.5 line-clamp-1">
-                    {event.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 mb-3 line-clamp-2">
-                    {event.description}
-                  </p>
-                  <div className="text-xs text-gray-400">
-                    {event.category === "event" && event.start_date ? (
-                      <>
-                        📅 {formatDate(event.start_date)}
-                        {event.end_date &&
-                          ` — ${formatDate(event.end_date)}`}
-                      </>
-                    ) : (
-                      <>📅 {formatDate(event.created_at)}</>
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+                      {/* Content zone */}
+                      <div className="flex flex-1 flex-col p-4">
+                        <div className="flex flex-wrap gap-1.5 mb-2">
+                          {event.category === "event" && (
+                            <StatusBadge status={event.display_status} />
+                          )}
+                          <StatusBadge status={event.category} />
+                        </div>
+                        <h3 className="mb-1 text-base font-semibold leading-tight tracking-tight text-foreground transition-colors group-hover:text-primary line-clamp-2">
+                          {event.title}
+                        </h3>
+                        <p className="line-clamp-2 text-sm text-muted-foreground mb-3">
+                          {event.description}
+                        </p>
+                        <div className="mt-auto flex items-center justify-between border-t border-border/50 pt-3">
+                          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                            <Calendar className="w-3 h-3" />
+                            <span>
+                              {event.category === "event" && event.start_date
+                                ? `${formatDate(event.start_date)}${event.end_date ? ` - ${formatDate(event.end_date)}` : ""}`
+                                : formatDate(event.created_at)}
+                            </span>
+                          </div>
+                          <ArrowRight className="w-4 h-4 text-primary" />
+                        </div>
+                      </div>
+                    </Card>
+                  </motion.div>
+                );
+              })}
         </div>
 
-        {/* See All Button */}
+        {/* CTA */}
         <div className="text-center mt-10">
-          <button
+          <Button
+            variant="outline"
+            size="lg"
+            className="gap-2"
             onClick={() => navigate("/events")}
-            className="px-6 py-3 text-sm font-medium text-white bg-blue-600 rounded-xl hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
           >
-            Lihat Semua Acara & Pengumuman →
-          </button>
+            Lihat Semua
+            <ArrowRight className="w-4 h-4" />
+          </Button>
         </div>
       </div>
     </div>

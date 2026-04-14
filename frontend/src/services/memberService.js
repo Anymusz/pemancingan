@@ -6,8 +6,8 @@ const memberService = {
     return response.data;
   },
 
-  async getLeaderboard(limit = 10) {
-    const response = await api.get("/leaderboard", { params: { limit } });
+  async getLeaderboard({ page = 1, per_page = 50 } = {}) {
+    const response = await api.get("/leaderboard", { params: { page, per_page } });
     return response.data;
   },
 

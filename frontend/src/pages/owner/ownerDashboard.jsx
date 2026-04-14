@@ -73,7 +73,7 @@ const OwnerDashboard = () => {
       label: "Kelola Produk",
       items: [
         { key: "menus", label: "Menu", icon: UtensilsCrossed },
-        { key: "fish-types", label: "Jenis Ikan", icon: Fish },
+        { key: "fish-types", label: "Ikan", icon: Fish },
         { key: "rental-items", label: "Rental Item", icon: Package },
         { key: "events", label: "Acara & Info", icon: CalendarDays },
       ],
@@ -101,7 +101,9 @@ const OwnerDashboard = () => {
       unreadCount={unreadCount}
       onLogout={handleLogout}
     >
-      {activeMenu === "dashboard" && <OwnerDashboardHome onNavigate={setActiveMenu} />}
+      {activeMenu === "dashboard" && (
+        <OwnerDashboardHome onNavigate={setActiveMenu} />
+      )}
       {activeMenu === "members" && <MemberManagement />}
       {activeMenu === "leaderboard" && <OwnerLeaderboard />}
       {activeMenu === "menus" && <MenuManagement />}

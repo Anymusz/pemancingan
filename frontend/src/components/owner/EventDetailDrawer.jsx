@@ -24,6 +24,7 @@ import {
   Globe,
   EyeOff,
 } from "lucide-react";
+import { WarningAlert } from "@/components/feedback/inlineAlert";
 
 /**
  * Right-side detail drawer for an event.
@@ -119,11 +120,7 @@ export default function EventDetailDrawer({
 
             {/* Expired banner */}
             {event.display_status === "expired" && (
-              <div className="px-3 py-2 bg-amber-50 border border-amber-200 rounded-lg">
-                <p className="text-xs text-amber-700 font-medium">
-                  ⚠️ Pengumuman ini sudah tidak berlaku
-                </p>
-              </div>
+              <WarningAlert description="Pengumuman ini sudah tidak berlaku." />
             )}
 
             {/* Description */}

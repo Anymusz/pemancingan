@@ -22,7 +22,6 @@ import EmployeeDashboard from "@/pages/employee/EmployeeDashboard";
 import Notifications from "@/pages/Notifications";
 import EventsPage from "@/pages/events/EventsPage";
 import EventDetailPage from "@/pages/events/EventDetailPage";
-import ComponentsTest from "@/pages/dev/ComponentsTest";
 
 // ===============================
 // Layout Wrapper
@@ -110,9 +109,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
-            {/* Dev */}
-            <Route path="/dev/components" element={<ComponentsTest />} />
 
             {/* Misc */}
             <Route

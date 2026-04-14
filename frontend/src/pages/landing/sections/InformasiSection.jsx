@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getFishTypes } from "@/services/fishService";
 import { LoaderOne } from "@/components/ui/loader";
 import { ErrorAlert } from "@/components/feedback/inlineAlert";
+import { formatCurrency } from "@/utils/utils";
 
 const InformationSection = () => {
   // State untuk fish types
@@ -43,7 +44,7 @@ const InformationSection = () => {
         <ErrorAlert
           description={error}
           dismissible
-          onDismiss={() => setError(null)} // Clear error dari parent state
+          onDismiss={() => setError(null)}
         />
       );
     }
@@ -55,12 +56,7 @@ const InformationSection = () => {
     // Format: "Ikan Patin Rp25.000, Nila Rp35.000, ..."
     const formattedPrices = fishTypes
       .map((fish) => {
-        const price = new Intl.NumberFormat("id-ID", {
-          style: "currency",
-          currency: "IDR",
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        }).format(fish.price_per_kg);
+        const price = formatCurrency(fish.price_per_kg);
 
         return `${fish.name} ${price}`;
       })
@@ -78,9 +74,9 @@ const InformationSection = () => {
     },
     {
       title: "Harga Ikan Per Kilogram",
-      description: formatFishPrices(), // Dynamic data dari API
+      description: formatFishPrices(),
       icon: <Fish />,
-      isDynamic: true, // Flag untuk styling khusus jika loading/error
+      isDynamic: true,
     },
     {
       title: "Deposit & Pengunjung",
@@ -109,15 +105,18 @@ const InformationSection = () => {
   ];
 
   return (
-    <div className="py-20 bg-background dark:bg-slate-900">
+    <div className="py-20">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary dark:text-foreground mb-3">
+        <div className="text-center mb-12 flex flex-col items-center gap-2">
+          <span className="inline-block px-4 py-1.5 text-sm font-medium rounded-full bg-primary/10 text-primary">
             Informasi Pemancingan
-          </h2>
-          <p className="text-text-body dark:text-muted-foreground max-w-2xl mx-auto md:text-xl">
-            Segala yang perlu Anda ketahui sebelum berkunjung
+          </span>
+          <h1 className="text-4xl font-bold text-foreground">
+            Semua yang Perlu Kamu Tahu
+          </h1>
+          <p className="text-md text-muted-foreground max-w-2xl mx-auto">
+            Segala yang perlu diketahui sebelum berkunjung ke Pemancingan Sutoyo
           </p>
         </div>
 
@@ -136,33 +135,32 @@ const Feature = ({ title, description, icon, index, isDynamic }) => {
   return (
     <div
       className={cn(
-        "flex flex-col lg:border-r py-10 relative group/feature border-border dark:border-slate-700",
-        (index === 0 || index === 3) &&
-          "lg:border-l border-border dark:border-slate-700",
-        index < 3 && "lg:border-b border-border dark:border-slate-700",
+        "flex flex-col lg:border-r py-10 relative group/feature border-border",
+        (index === 0 || index === 3) && "lg:border-l border-border",
+        index < 3 && "lg:border-b border-border",
       )}
     >
       {/* Hover gradient effect - top */}
       {index < 3 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-secondary/50 dark:from-slate-800/80 to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-secondary/50 to-transparent pointer-events-none" />
       )}
 
       {/* Hover gradient effect - bottom */}
       {index >= 3 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-secondary/50 dark:from-slate-800/80 to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-secondary/50 to-transparent pointer-events-none" />
       )}
 
       {/* Icon */}
-      <div className="mb-4 relative z-10 px-10 text-text-body dark:text-muted-foreground group-hover/feature:text-primary dark:group-hover/feature:text-primary transition-colors duration-200">
+      <div className="mb-4 relative z-10 px-10 text-text-body group-hover/feature:text-primary transition-colors duration-200">
         {icon}
       </div>
 
       {/* Title */}
       <div className="text-lg font-bold mb-2 relative z-10 px-10">
         {/* Animated left border */}
-        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-border dark:bg-slate-600 group-hover/feature:bg-primary transition-all duration-200 origin-center" />
+        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-border group-hover/feature:bg-primary transition-all duration-200 origin-center" />
 
-        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-text-primary dark:text-foreground">
+        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-text-primary">
           {title}
         </span>
       </div>
@@ -170,8 +168,8 @@ const Feature = ({ title, description, icon, index, isDynamic }) => {
       {/* Description */}
       <div
         className={cn(
-          "text-sm text-text-body dark:text-muted-foreground max-w-md relative z-10 px-10",
-          isDynamic && "min-h-[60px] flex items-center", // Min height untuk loading state
+          "text-sm text-text-body max-w-md relative z-10 px-10",
+          isDynamic && "min-h-[60px] flex items-center",
         )}
       >
         {description}

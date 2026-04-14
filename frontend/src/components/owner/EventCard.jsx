@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import { motion } from "framer-motion";
-import { ImageOff, Megaphone, Calendar, Eye } from "lucide-react";
+import { ImageOff, Megaphone, Calendar, Eye, ArrowRight } from "lucide-react";
 import { formatDate } from "@/utils/utils";
 import ImageLightbox from "@/components/common/ImageLightbox";
 
@@ -39,9 +39,7 @@ export default function EventCard({ event, onClick }) {
                       setLightboxOpen(true);
                     }}
                   />
-                  {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-linear-to-t from-background/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40 pointer-events-none" />
-                  {/* Hover overlay — "Lihat Gambar" button */}
                   <div className="absolute inset-0 flex items-center justify-center bg-background/20 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
                     <motion.span className="flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 pointer-events-none">
                       <Eye className="h-4 w-4" />
@@ -50,35 +48,30 @@ export default function EventCard({ event, onClick }) {
                   </div>
                 </>
               ) : (
-                <div className="h-full w-full flex items-center justify-center bg-muted">
-                  <ImageOff className="w-10 h-10 text-muted-foreground/40" />
+                <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-sky-400 to-sky-500">
+                  <Calendar className="w-10 h-10 text-white/40" />
                 </div>
               )
             ) : (
-              // info category
-              <div className="h-full w-full flex items-center justify-center bg-blue-500/10">
-                <Megaphone className="w-10 h-10 text-blue-500/70" />
+              <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-amber-400 to-amber-500">
+                <Megaphone className="w-10 h-10 text-white/40" />
               </div>
             )}
-
-            {/* Badge overlay — bottom-left */}
-            <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5 z-10">
-              <StatusBadge status={event.display_status} />
-              <StatusBadge status={event.category} />
-              {event.deleted_at && <StatusBadge status="deactivated" />}
-            </div>
           </div>
 
           {/* ── Content zone ── */}
           <div className="flex flex-1 flex-col p-4">
+            <div className="flex flex-wrap gap-1.5 mb-2">
+              <StatusBadge status={event.display_status} />
+              <StatusBadge status={event.category} />
+              {event.deleted_at && <StatusBadge status="deactivated" />}
+            </div>
             <h3 className="mb-1 text-base font-semibold leading-tight tracking-tight text-foreground transition-colors group-hover:text-primary line-clamp-2">
               {event.title}
             </h3>
             <p className="line-clamp-2 text-sm text-muted-foreground mb-3">
               {event.description}
             </p>
-
-            {/* ── Card footer ── */}
             <div className="mt-auto flex items-center justify-between border-t border-border/50 pt-3">
               {event.start_date ? (
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -88,9 +81,7 @@ export default function EventCard({ event, onClick }) {
               ) : (
                 <StatusBadge status={event.status} />
               )}
-              <span className="text-xs text-muted-foreground/60 select-none">
-                Lihat Detail →
-              </span>
+              <ArrowRight className="w-4 h-4 text-primary" />
             </div>
           </div>
         </Card>
