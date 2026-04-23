@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import memberService from "../../services/memberService";
-import notificationService from "../../services/notificationService";
+import { useNotification } from "@/hooks/useNotification";
 import { useToast } from "../../hooks/useToast";
 import Order from "./Order";
 import TransactionHistory from "./TransactionHistory";
@@ -24,7 +24,7 @@ const Dashboard = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [unreadCount, setUnreadCount] = useState(0);
+  const { unreadCount } = useNotification();
   const [vouchers, setVouchers] = useState([]);
   const [vouchersLoading, setVouchersLoading] = useState(true);
   const toast = useToast();
@@ -37,22 +37,6 @@ const Dashboard = () => {
   useEffect(() => {
     fetchProfile();
     fetchVouchers();
-  }, []);
-
-  // Fetch unread count on mount + polling every 30s
-  useEffect(() => {
-    const fetchUnreadCount = async () => {
-      try {
-        const res = await notificationService.getUnreadCount();
-        setUnreadCount(res.data?.unread_count ?? 0);
-      } catch {
-        // silent fail
-      }
-    };
-
-    fetchUnreadCount();
-    const interval = setInterval(fetchUnreadCount, 30000);
-    return () => clearInterval(interval);
   }, []);
 
   const fetchProfile = async () => {

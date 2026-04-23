@@ -15,6 +15,7 @@ import GradientBg from "@/components/layout/gradient-bg";
 import { FloatingNav } from "@/components/layout/floating-navbar";
 import { NAV_ITEMS } from "@/constants/navigation";
 import { ToastProvider } from "@/contexts/ToastContext";
+import { NotificationProvider } from "@/contexts/NotificationContext";
 
 import MemberDashboard from "./pages/member/Dashboard";
 import LeaderboardPublic from "./pages/LeaderboardPublic";
@@ -22,6 +23,7 @@ import EmployeeDashboard from "@/pages/employee/EmployeeDashboard";
 import Notifications from "@/pages/Notifications";
 import EventsPage from "@/pages/events/EventsPage";
 import EventDetailPage from "@/pages/events/EventDetailPage";
+import Unauthorized from "@/pages/Unauthorized";
 
 // ===============================
 // Layout Wrapper
@@ -58,8 +60,9 @@ function App() {
   return (
     <BrowserRouter>
       <ToastProvider>
-        <AppLayout>
-          <Routes>
+        <NotificationProvider>
+          <AppLayout>
+            <Routes>
             {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
@@ -110,14 +113,11 @@ function App() {
               }
             />
 
-            {/* Misc */}
-            <Route
-              path="/unauthorized"
-              element={<div>Unauthorized Access</div>}
-            />
+            <Route path="/unauthorized" element={<Unauthorized />} />
             <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AppLayout>
+            </Routes>
+          </AppLayout>
+        </NotificationProvider>
       </ToastProvider>
     </BrowserRouter>
   );

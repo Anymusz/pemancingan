@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import notificationService from "@/services/notificationService";
 import { getUser } from "@/utils/tokenManager";
+import { useNotification } from "@/hooks/useNotification";
 import { Button } from "@/components/common/Button";
 import {
   Bell,
@@ -80,6 +81,7 @@ export default function Notifications() {
 
   const navigate = useNavigate();
   const role = getUser()?.role;
+  const { refreshUnreadCount } = useNotification();
   const sentinelRef = useRef(null);
   const pageRef = useRef(1);
   const isFetchingRef = useRef(false);
@@ -159,6 +161,7 @@ export default function Notifications() {
         setNotifications((prev) =>
           prev.map((n) => (n.id === notif.id ? { ...n, is_read: true } : n)),
         );
+        refreshUnreadCount();
       } catch (error) {
         console.error("Gagal menandai notifikasi sebagai dibaca", error);
       }
@@ -173,6 +176,7 @@ export default function Notifications() {
     try {
       await notificationService.markAllAsRead();
       setNotifications((prev) => prev.map((n) => ({ ...n, is_read: true })));
+      refreshUnreadCount();
     } catch (error) {
       console.error("Gagal menandai semua notifikasi sebagai dibaca", error);
     } finally {

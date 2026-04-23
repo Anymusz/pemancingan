@@ -1,6 +1,6 @@
 // File: src/pages/owner/ownerDashboard.jsx
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import OwnerDashboardHome from "./OwnerDashboardHome";
 import MemberManagement from "./MemberManagement";
@@ -13,14 +13,12 @@ import VoucherManagement from "./VoucherManagement";
 import FinancialReport from "./FinancialReport";
 import Settings from "./Settings";
 import { removeToken, getUser, setUser } from "@/utils/tokenManager";
-import notificationService from "@/services/notificationService";
+import { useNotification } from "@/hooks/useNotification";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import ProfilePage from "@/pages/profile/ProfilePage";
 import {
   LayoutDashboard,
   Users,
-  UserCheck,
-  ClipboardList,
   UtensilsCrossed,
   Fish,
   CalendarDays,
@@ -36,24 +34,8 @@ const OwnerDashboard = () => {
     const params = new URLSearchParams(window.location.search);
     return params.get("tab") || "dashboard";
   });
-  const [unreadCount, setUnreadCount] = useState(0);
+  const { unreadCount } = useNotification();
   const navigate = useNavigate();
-
-  // Fetch unread count on mount + polling every 30s
-  useEffect(() => {
-    const fetchUnreadCount = async () => {
-      try {
-        const res = await notificationService.getUnreadCount();
-        setUnreadCount(res.data?.unread_count ?? 0);
-      } catch {
-        // silent fail
-      }
-    };
-
-    fetchUnreadCount();
-    const interval = setInterval(fetchUnreadCount, 30000);
-    return () => clearInterval(interval);
-  }, []);
 
   const handleLogout = () => {
     removeToken();

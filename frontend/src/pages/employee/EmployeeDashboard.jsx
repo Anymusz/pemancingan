@@ -1,6 +1,6 @@
 // File: src/pages/employee/EmployeeDashboard.jsx
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmployeeDashboardHome from "./EmployeeDashboardHome";
 import CheckIn from "./CheckIn";
@@ -10,8 +10,13 @@ import TransactionHistory from "./TransactionHistory";
 import AddOrder from "./AddOrder";
 import PendingOrder from "./PendingOrder";
 import MenuAvailability from "./MenuAvailability";
-import { removeToken, removeUser, getUser, setUser } from "@/utils/tokenManager";
-import notificationService from "@/services/notificationService";
+import {
+  removeToken,
+  removeUser,
+  getUser,
+  setUser,
+} from "@/utils/tokenManager";
+import { useNotification } from "@/hooks/useNotification";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import ProfilePage from "@/pages/profile/ProfilePage";
 import {
@@ -35,24 +40,8 @@ const EmployeeDashboard = () => {
   const [preselectArrivalId, setPreselectArrivalId] = useState(null);
   const [preselectAddOrderArrivalId, setPreselectAddOrderArrivalId] =
     useState(null);
-  const [unreadCount, setUnreadCount] = useState(0);
+  const { unreadCount } = useNotification();
   const navigate = useNavigate();
-
-  // Fetch unread count on mount + polling every 30s
-  useEffect(() => {
-    const fetchUnreadCount = async () => {
-      try {
-        const res = await notificationService.getUnreadCount();
-        setUnreadCount(res.data?.unread_count ?? 0);
-      } catch (err) {
-        console.error("Gagal memuat stok ikan:", err);
-      }
-    };
-
-    fetchUnreadCount();
-    const interval = setInterval(fetchUnreadCount, 30000);
-    return () => clearInterval(interval);
-  }, []);
 
   const handleLogout = () => {
     removeToken();
