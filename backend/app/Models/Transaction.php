@@ -16,6 +16,7 @@ class Transaction extends Model
         'discount_voucher',
         'tips',
         'payment_method',
+        'payment_proof',
         'points_earned',
         'status',
         'processed_by',

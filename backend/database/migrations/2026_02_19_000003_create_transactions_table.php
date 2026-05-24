@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->decimal('final_amount', 10, 2);
             $table->decimal('tips', 10, 2)->default(0);
             $table->enum('payment_method', ['cash', 'transfer', 'qris']);
+            $table->string('payment_proof')->nullable();
             $table->integer('points_earned')->default(0);
             $table->string('status')->default('paid');
             $table->unsignedBigInteger('processed_by');

@@ -35,6 +35,7 @@ class TransactionReportExport implements FromCollection, WithHeadings
             'Tips',
             'Metode_Bayar',
             'Deposit',
+            'Bukti_Pembayaran',
         ];
     }
 
@@ -73,10 +74,19 @@ class TransactionReportExport implements FromCollection, WithHeadings
                     $isFirstRow ? (float) $trx->tips : '',
                     $isFirstRow ? ($trx->payment_method ?? 'deposit') : '',
                     $isFirstRow ? $depositAmount : '',
+                    $isFirstRow ? $this->getProofLabel($trx->payment_method, $trx->payment_proof) : '',
                 ];
             }
         }
 
         return collect($rows);
+    }
+
+    private function getProofLabel(?string $paymentMethod, ?string $paymentProof): string
+    {
+        if ($paymentMethod === 'cash' || is_null($paymentMethod)) {
+            return 'Tidak perlu';
+        }
+        return $paymentProof ? 'Ada' : 'Tidak ada';
     }
 }

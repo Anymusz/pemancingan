@@ -14,6 +14,8 @@ use App\Services\NotificationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Models\Voucher;
 
@@ -54,13 +56,14 @@ class TransactionController extends Controller
             'discount_voucher'  => (float) $trx->discount_voucher,
             'final_amount'      => (float) $trx->final_amount,
             'tips'              => (float) $trx->tips,
-            'payment_method'    => $trx->payment_method,
-            'points_earned'     => $trx->points_earned,
-            'is_guest'          => is_null($trx->arrival?->member_id),
-            'deposit_used'      => (float) ($trx->arrival?->deposit_amount > 0 ? min($trx->arrival->deposit_amount, $trx->total_amount - $trx->discount_tier - $trx->discount_voucher) : 0),
-            'deposit_change'    => (float) max(0, ($trx->arrival?->deposit_amount ?? 0) - ((float)$trx->total_amount - (float)$trx->discount_tier - (float)$trx->discount_voucher)),
-            'transaction_date'  => $trx->transaction_date,
-            'processed_by_name' => $trx->processedBy?->name ?? '-',
+            'payment_method'      => $trx->payment_method,
+            'payment_proof_url'   => $trx->payment_proof ? Storage::disk('public')->url('payment-proofs/' . $trx->payment_proof) : null,
+            'points_earned'       => $trx->points_earned,
+            'is_guest'            => is_null($trx->arrival?->member_id),
+            'deposit_used'        => (float) ($trx->arrival?->deposit_amount > 0 ? min($trx->arrival->deposit_amount, $trx->total_amount - $trx->discount_tier - $trx->discount_voucher) : 0),
+            'deposit_change'      => (float) max(0, ($trx->arrival?->deposit_amount ?? 0) - ((float)$trx->total_amount - (float)$trx->discount_tier - (float)$trx->discount_voucher)),
+            'transaction_date'    => $trx->transaction_date,
+            'processed_by_name'   => $trx->processedBy?->name ?? '-',
             'items'             => $trx->items->map(fn ($item) => [
                 'item_type'           => $item->item_type,
                 'item_name_snapshot'  => $item->item_name_snapshot,
@@ -112,11 +115,12 @@ class TransactionController extends Controller
                     'discount_voucher' => $transaction->discount_voucher,
                     'final_amount' => $transaction->final_amount,
                     'tips' => $transaction->tips,
-                    'payment_method' => $transaction->payment_method,
-                    'points_earned' => $transaction->points_earned,
-                    'transaction_date' => $transaction->transaction_date,
-                    'processed_by' => $transaction->processedBy?->name ?? '-',
-                    'notes' => $transaction->notes,
+                    'payment_method'    => $transaction->payment_method,
+                    'payment_proof_url' => $transaction->payment_proof ? Storage::disk('public')->url('payment-proofs/' . $transaction->payment_proof) : null,
+                    'points_earned'     => $transaction->points_earned,
+                    'transaction_date'  => $transaction->transaction_date,
+                    'processed_by'      => $transaction->processedBy?->name ?? '-',
+                    'notes'             => $transaction->notes,
                 ],
             ],
         ]);
@@ -139,6 +143,7 @@ class TransactionController extends Controller
         'payment_method'              => 'nullable|in:cash,transfer,qris',
         'tips'                        => 'nullable|numeric|min:0',
         'notes'                       => 'nullable|string|max:500',
+        'payment_proof'               => 'nullable|file|mimes:jpg,jpeg,png,webp|max:5120',
     ]);
 
     try {
@@ -303,6 +308,28 @@ class TransactionController extends Controller
 
         $tips = $request->tips ?? 0;
 
+        // Validate payment proof requirement:
+        // Required when payment_method is transfer/qris AND final amount after deposit > 0
+        $paymentMethod = $request->payment_method ?? 'cash';
+        $requiresProof = in_array($paymentMethod, ['transfer', 'qris']) && $finalAmountAfterDeposit > 0;
+
+        if ($requiresProof && !$request->hasFile('payment_proof')) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Bukti pembayaran wajib diupload untuk transaksi transfer atau QRIS.',
+            ], 422);
+        }
+
+        // Handle payment proof upload
+        $paymentProofPath = null;
+        if ($request->hasFile('payment_proof')) {
+            $file             = $request->file('payment_proof');
+            $filename         = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('payment-proofs', $filename, 'public');
+            $paymentProofPath = $filename; // simpan filename saja ke DB
+        }
+
         // Poin: penalty tidak ikut hitungan poin; guest selalu 0
         $pointsEarned = $isGuest ? 0 : (int) floor(($subtotalFish + $subtotalPending) / 10000);
 
@@ -315,7 +342,8 @@ class TransactionController extends Controller
             'discount_voucher' => $discountVoucher,
             'final_amount'     => $finalAmountAfterDeposit,
             'tips'             => $tips,
-            'payment_method'   => $request->payment_method ?? 'cash',
+            'payment_method'   => $paymentMethod,
+            'payment_proof'    => $paymentProofPath,
             'points_earned'    => $pointsEarned,
             'status'           => 'paid',
             'processed_by'     => $request->user()->id,
@@ -441,16 +469,17 @@ class TransactionController extends Controller
             'message' => 'Transaksi berhasil disimpan',
             'data'    => [
                 'transaction' => [
-                    'transaction_code' => $transaction->transaction_code,
-                    'total_amount'     => $totalAmount,
-                    'discount_tier'    => $discountTier,
-                    'discount_voucher' => $discountVoucher,
-                    'final_amount'     => $finalAmountAfterDeposit,
-                    'deposit_used'     => $depositUsed,
-                    'deposit_change'   => $depositChange,
-                    'tips'             => $tips,
-                    'points_earned'    => $pointsEarned,
-                    'payment_method'   => $transaction->payment_method,
+                    'transaction_code'  => $transaction->transaction_code,
+                    'total_amount'      => $totalAmount,
+                    'discount_tier'     => $discountTier,
+                    'discount_voucher'  => $discountVoucher,
+                    'final_amount'      => $finalAmountAfterDeposit,
+                    'deposit_used'      => $depositUsed,
+                    'deposit_change'    => $depositChange,
+                    'tips'              => $tips,
+                    'points_earned'     => $pointsEarned,
+                    'payment_method'    => $transaction->payment_method,
+                    'payment_proof_url' => $paymentProofPath ? Storage::disk('public')->url('payment-proofs/' . $paymentProofPath) : null,
                 ],
                 'customer' => $isGuest
                     ? ['name' => $arrival->guest_name ?? 'Tamu', 'is_guest' => true]

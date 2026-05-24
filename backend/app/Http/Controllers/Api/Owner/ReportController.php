@@ -13,6 +13,7 @@ use App\Traits\CalculatesDiscountTier;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -185,6 +186,7 @@ class ReportController extends Controller
             'deposit_change'    => max(0, $depositAmount - $finalBeforeDeposit),
             'tips'              => (float) $trx->tips,
             'payment_method'    => $trx->payment_method,
+            'payment_proof_url' => $trx->payment_proof ? Storage::disk('public')->url('payment-proofs/' . $trx->payment_proof) : null,
             'points_earned'     => $trx->points_earned,
             'items'             => collect($items)->map(fn ($item) => [
                 'item_type'           => $item['item_type'],
