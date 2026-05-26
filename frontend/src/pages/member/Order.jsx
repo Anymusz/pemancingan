@@ -127,7 +127,11 @@ const Order = () => {
     () => [
       imageCell,
       { key: "name", header: "Nama", render: (row) => row.name },
-      { key: "category", header: "Kategori", render: (row) => formatMenuCategory(row.category) },
+      {
+        key: "category",
+        header: "Kategori",
+        render: (row) => formatMenuCategory(row.category),
+      },
       {
         key: "price",
         header: "Harga",
@@ -213,7 +217,8 @@ const Order = () => {
           Pesan Makanan &amp; Minuman
         </h1>
         <p className="text-muted-foreground text-sm mt-1">
-          Pesanan akan dibayar saat checkout akhir bersama pembelian ikan.
+          Pesanan akan dibayar saat pembayaran akhir bersama hasil tangkapan
+          ikan.
         </p>
       </div>
 
@@ -256,7 +261,7 @@ const Order = () => {
                 {formatCurrency(totalAmount)}
               </span>
               <span className="text-muted-foreground font-normal text-sm ml-1">
-                (dibayar saat checkout)
+                (dibayar saat pembayaran akhir)
               </span>
             </p>
             <Button onClick={handleSubmit} loading={submitLoading}>
@@ -287,7 +292,7 @@ const Order = () => {
               </span>
             </p>
             <p className="text-sm text-muted-foreground">
-              *Estimasi tagihan pesanan saat checkout nanti
+              *Estimasi tagihan pesanan saat pembayaran nanti
             </p>
           </div>
         )}

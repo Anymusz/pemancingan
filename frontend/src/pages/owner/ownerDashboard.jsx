@@ -1,7 +1,7 @@
 // File: src/pages/owner/ownerDashboard.jsx
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import OwnerDashboardHome from "./OwnerDashboardHome";
 import MemberManagement from "./MemberManagement";
 import OwnerLeaderboard from "./OwnerLeaderboard";
@@ -35,6 +35,7 @@ const OwnerDashboard = () => {
     return params.get("tab") || "dashboard";
   });
   const { unreadCount } = useNotification();
+  const [, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -42,26 +43,30 @@ const OwnerDashboard = () => {
     navigate("/login");
   };
 
+  const handleTabChange = (tab) => {
+    setActiveMenu(tab);
+    setSearchParams({ tab }, { replace: true });
+  };
+
   const ownerNavGroups = [
     {
-      // label: "Dashboard",
       items: [{ key: "dashboard", label: "Dashboard", icon: LayoutDashboard }],
     },
     {
-      label: "Kelola Member",
-      items: [{ key: "members", label: "Kelola Member", icon: Users }],
+      label: "Manajemen Member",
+      items: [{ key: "members", label: "Member", icon: Users }],
     },
     {
-      label: "Kelola Produk",
+      label: "Manajemen Produk",
       items: [
         { key: "menus", label: "Menu", icon: UtensilsCrossed },
         { key: "fish-types", label: "Ikan", icon: Fish },
-        { key: "rental-items", label: "Rental Item", icon: Package },
-        { key: "events", label: "Acara & Info", icon: CalendarDays },
+        { key: "rental-items", label: "Alat Rental", icon: Package },
+        { key: "events", label: "Event & Informasi", icon: CalendarDays },
       ],
     },
     {
-      label: "Laporan & Sistem",
+      label: "Operasional & Laporan",
       items: [
         { key: "financial-report", label: "Laporan Keuangan", icon: BarChart3 },
         { key: "vouchers", label: "Voucher", icon: Ticket },
@@ -77,14 +82,14 @@ const OwnerDashboard = () => {
     <DashboardLayout
       navGroups={ownerNavGroups}
       activeItem={activeMenu}
-      onNavChange={setActiveMenu}
+      onNavChange={handleTabChange}
       title="Sistem Pemancingan"
       user={{ name: currentUser?.name, role: "Owner" }}
       unreadCount={unreadCount}
       onLogout={handleLogout}
     >
       {activeMenu === "dashboard" && (
-        <OwnerDashboardHome onNavigate={setActiveMenu} />
+        <OwnerDashboardHome onNavigate={handleTabChange} />
       )}
       {activeMenu === "members" && <MemberManagement />}
       {activeMenu === "leaderboard" && <OwnerLeaderboard />}

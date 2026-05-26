@@ -147,10 +147,6 @@ const FinancialReport = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-foreground mb-4">
-        Laporan Keuangan
-      </h1>
-
       <FilterSection filters={filters} onFilterChange={handleFilterChange} />
 
       <SummarySection data={summaryData} loading={loadingSummary} />

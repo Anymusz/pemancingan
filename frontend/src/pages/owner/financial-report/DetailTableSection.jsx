@@ -2,6 +2,7 @@ import { useState, Fragment } from "react";
 import { formatCurrency, formatDateTime } from "@/utils/utils";
 import { Button } from "@/components/common/Button";
 import { StatusBadge } from "@/components/common/StatusBadge";
+import ImageLightbox from "@/components/common/ImageLightbox";
 
 const CATEGORY_LABELS = {
   fish: "Ikan",
@@ -21,6 +22,7 @@ const PAYMENT_LABELS = {
 
 const ExpandableRow = ({ trx }) => {
   const items = trx.items || [];
+  const [proofLightboxSrc, setProofLightboxSrc] = useState(null);
   return (
     <tr>
       <td colSpan={10} className="bg-muted/60 px-6 py-4">
@@ -116,8 +118,31 @@ const ExpandableRow = ({ trx }) => {
               <span>{formatCurrency(trx.tips)}</span>
             </div>
           )}
+          <div className="flex justify-between text-muted-foreground text-xs items-start">
+            <span>Bukti Pembayaran</span>
+            {trx.payment_proof_url ? (
+              <img
+                src={trx.payment_proof_url}
+                alt="Bukti pembayaran"
+                className="h-16 w-auto object-contain rounded border border-border cursor-zoom-in"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setProofLightboxSrc(trx.payment_proof_url);
+                }}
+              />
+            ) : (
+              <span className="text-xs text-muted-foreground">Tidak ada</span>
+            )}
+          </div>
         </div>
       </td>
+
+      <ImageLightbox
+        open={proofLightboxSrc !== null}
+        src={proofLightboxSrc ?? ""}
+        alt="Bukti pembayaran"
+        onClose={() => setProofLightboxSrc(null)}
+      />
     </tr>
   );
 };

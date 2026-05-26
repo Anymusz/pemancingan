@@ -60,7 +60,9 @@ const employeeService = {
   // ==================== TRANSACTION ====================
 
   checkout: async (data) => {
-    const response = await api.post("/employee/checkout", data);
+    const response = await api.post("/employee/checkout", data, {
+      headers: { "Content-Type": undefined },
+    });
     return response.data;
   },
 

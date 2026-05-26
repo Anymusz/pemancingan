@@ -1,7 +1,7 @@
 // File: src/pages/member/Dashboard.jsx
 
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import memberService from "../../services/memberService";
 import { useNotification } from "@/hooks/useNotification";
 import { useToast } from "../../hooks/useToast";
@@ -29,6 +29,7 @@ const Dashboard = () => {
   const [vouchersLoading, setVouchersLoading] = useState(true);
   const toast = useToast();
   const navigate = useNavigate();
+  const [, setSearchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     return params.get("tab") || "home";
@@ -96,7 +97,7 @@ const Dashboard = () => {
     <DashboardLayout
       navGroups={memberNavGroups}
       activeItem={activeTab}
-      onNavChange={setActiveTab}
+      onNavChange={(tab) => { setActiveTab(tab); setSearchParams({ tab }, { replace: true }); }}
       title="Sistem Pemancingan"
       user={{ name: currentUser?.name, role: "Member" }}
       unreadCount={unreadCount}

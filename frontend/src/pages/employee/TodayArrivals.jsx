@@ -116,7 +116,7 @@ const TodayArrivals = () => {
     },
     {
       key: "check_in_at",
-      header: "Check-in",
+      header: "Registrasi",
       render: (row) => formatDateTime(row.check_in_at),
     },
     {

@@ -25,6 +25,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
   const [penaltyItems, setPenaltyItems] = useState([]);
   const [tips, setTips] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentProof, setPaymentProof] = useState(null);
   const [notes, setNotes] = useState("");
   const [loading, setLoading] = useState(false);
   const [fetchLoading, setFetchLoading] = useState(false);
@@ -91,6 +92,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     setPenaltyItems([]);
     setTips(0);
     setPaymentMethod("");
+    setPaymentProof(null);
     setNotes("");
     setActiveVoucher(null);
   };
@@ -120,11 +122,13 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
           employeeService.getQrisConfig(),
         ]);
         if (arrivalsRes.success)
-          setArrivals(arrivalsRes.data.arrivals.filter((a) => a.status === "active"));
+          setArrivals(
+            arrivalsRes.data.arrivals.filter((a) => a.status === "active"),
+          );
         if (fishRes.success) setFishTypes(fishRes.data);
         if (qrisRes.success) setQrisImageUrl(qrisRes.data?.image_url ?? null);
       } catch {
-        toast.error("Gagal memuat data checkout");
+        toast.error("Gagal memuat data");
       } finally {
         setFetchLoading(false);
       }
@@ -256,29 +260,31 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
       pendingOrders.length > 0 ||
       penaltyItems.length > 0;
     if (!hasAnyItem) {
-      toast.error("Tidak ada item untuk di-checkout");
+      toast.error("Tidak ada item");
       return;
     }
 
     setLoading(true);
     try {
-      const payload = {
-        arrival_id: selectedArrival.arrival_id,
-        fish_items: fishItems.map((i) => ({
-          item_id: i.item_id,
-          quantity: i.quantity,
-        })),
-        penalty_items: penaltyItems.map((p) => ({
-          name: p.name,
-          quantity: p.quantity,
-          unit_price: p.unit_price,
-        })),
-        payment_method: isFullyCoveredByDeposit ? null : paymentMethod,
-        tips: Number(tips) || 0,
-        notes: notes || null,
-      };
+      const formData = new FormData();
+      formData.append("arrival_id", selectedArrival.arrival_id);
+      fishItems.forEach((i, idx) => {
+        formData.append(`fish_items[${idx}][item_id]`, i.item_id);
+        formData.append(`fish_items[${idx}][quantity]`, i.quantity);
+      });
+      penaltyItems.forEach((p, idx) => {
+        formData.append(`penalty_items[${idx}][name]`, p.name);
+        formData.append(`penalty_items[${idx}][quantity]`, p.quantity);
+        formData.append(`penalty_items[${idx}][unit_price]`, p.unit_price);
+      });
+      if (!isFullyCoveredByDeposit && paymentMethod) {
+        formData.append("payment_method", paymentMethod);
+      }
+      formData.append("tips", Number(tips) || 0);
+      if (notes) formData.append("notes", notes);
+      if (paymentProof) formData.append("payment_proof", paymentProof);
 
-      const res = await employeeService.checkout(payload);
+      const res = await employeeService.checkout(formData);
 
       if (res.success) {
         const voucherInfo =
@@ -286,7 +292,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
             ? ` | Voucher digunakan: ${formatCurrency(res.data.transaction.discount_voucher)}`
             : "";
         toast.success(
-          `Checkout berhasil! Kode: ${res.data.transaction.transaction_code}${voucherInfo}`,
+          `Pembayaran berhasil! Kode: ${res.data.transaction.transaction_code}${voucherInfo}`,
         );
 
         if (res.data.tier_upgraded) {
@@ -299,7 +305,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
         fetchArrivals();
       }
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Gagal memproses checkout");
+      toast.error(err?.response?.data?.message || "Gagal memproses pembayaran");
     } finally {
       setLoading(false);
     }
@@ -307,10 +313,16 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
 
   const hasAnyItem =
     fishItems.length > 0 || pendingOrders.length > 0 || penaltyItems.length > 0;
+  const requiresProof =
+    !isFullyCoveredByDeposit &&
+    (paymentMethod === "transfer" || paymentMethod === "qris") &&
+    finalAmountAfterDeposit > 0;
+
   const isSubmitDisabled =
     !selectedArrival ||
     (!isFullyCoveredByDeposit && !paymentMethod) ||
     !hasAnyItem ||
+    (requiresProof && !paymentProof) ||
     loading;
 
   // ===== SHARED SECTION PROPS =====
@@ -341,6 +353,9 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     isSubmitDisabled,
     isFullyCoveredByDeposit,
     qrisImageUrl,
+    paymentProof,
+    onPaymentProofChange: setPaymentProof,
+    finalAmountAfterDeposit,
   };
 
   // ===== RENDER =====
@@ -406,8 +421,8 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
           handleSubmit();
         }}
         variant="default"
-        title="Konfirmasi Checkout"
-        description={`Proses checkout untuk ${selectedArrival?.name}? Total: ${formatCurrency(finalAmountAfterDeposit)} via ${isFullyCoveredByDeposit ? "Deposit" : paymentMethod ? paymentMethod.toUpperCase() : "-"}.`}
+        title="Konfirmasi Pembayaran"
+        description={`Proses pembayaran untuk ${selectedArrival?.name}? Total: ${formatCurrency(finalAmountAfterDeposit)} via ${isFullyCoveredByDeposit ? "Deposit" : paymentMethod ? paymentMethod.toUpperCase() : "-"}.`}
         confirmLabel="Ya, Proses"
         cancelLabel="Batal"
         loading={loading}

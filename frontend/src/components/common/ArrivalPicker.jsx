@@ -41,9 +41,7 @@ export function ArrivalPicker({
   // ── Loading state ──────────────────────────────────────────────
   if (fetchLoading) {
     return (
-      <p className="text-sm text-muted-foreground">
-        Memuat data kedatangan...
-      </p>
+      <p className="text-sm text-muted-foreground">Memuat data kedatangan...</p>
     );
   }
 
@@ -89,7 +87,9 @@ export function ArrivalPicker({
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Check-in</span>
+                  <span className="text-sm text-muted-foreground">
+                    Registrasi
+                  </span>
                   <span className="text-sm font-medium text-foreground">
                     {formatDateTime(selectedArrival.check_in_at)}
                   </span>
@@ -124,7 +124,9 @@ export function ArrivalPicker({
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Check-in</span>
+                  <span className="text-sm text-muted-foreground">
+                    Registrasi
+                  </span>
                   <span className="text-sm font-medium text-foreground">
                     {formatDateTime(selectedArrival.check_in_at)}
                   </span>

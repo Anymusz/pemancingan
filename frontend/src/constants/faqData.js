@@ -16,7 +16,7 @@ export const FAQ_DATA = [
     id: "pengembalian-deposit",
     question: "Bagaimana sistem pengembalian deposit?",
     answer:
-      "Deposit akan digunakan sebagai saldo awal transaksi. Jika total transaksi lebih kecil dari deposit, sisa deposit akan dikembalikan. Jika total transaksi lebih besar dari deposit, pelanggan hanya membayar selisihnya saat checkout.",
+      "Deposit akan digunakan sebagai saldo awal transaksi. Jika total transaksi lebih kecil dari deposit, sisa deposit akan dikembalikan. Jika total transaksi lebih besar dari deposit, pelanggan hanya membayar selisihnya saat akhir transaksi.",
   },
   {
     id: "keuntungan-member",
@@ -34,7 +34,7 @@ export const FAQ_DATA = [
     id: "metode-pembayaran",
     question: "Metode pembayaran apa saja yang tersedia?",
     answer:
-      "Pemancingan S menerima pembayaran melalui tunai (cash), transfer bank, dan QRIS (e-wallet). Pembayaran dilakukan saat checkout akhir setelah seluruh transaksi selesai.",
+      "Pemancingan S menerima pembayaran melalui tunai (cash), transfer bank, dan QRIS (e-wallet). Pembayaran dilakukan saat akhir transaksi selesai.",
   },
   {
     id: "perhitungan-harga",

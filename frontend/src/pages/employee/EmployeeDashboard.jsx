@@ -1,7 +1,7 @@
 // File: src/pages/employee/EmployeeDashboard.jsx
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import EmployeeDashboardHome from "./EmployeeDashboardHome";
 import CheckIn from "./CheckIn";
 import TodayArrivals from "./TodayArrivals";
@@ -41,6 +41,7 @@ const EmployeeDashboard = () => {
   const [preselectAddOrderArrivalId, setPreselectAddOrderArrivalId] =
     useState(null);
   const { unreadCount } = useNotification();
+  const [, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -52,6 +53,7 @@ const EmployeeDashboard = () => {
   const handleMenuChange = (menu) => {
     setMountedTabs((prev) => new Set([...prev, menu]));
     setActiveMenu(menu);
+    setSearchParams({ tab: menu }, { replace: true });
   };
 
   const handleGoToCheckout = (arrivalId) => {
@@ -66,7 +68,7 @@ const EmployeeDashboard = () => {
     {
       label: "Kedatangan",
       items: [
-        { key: "checkin", label: "Check-in", icon: QrCode },
+        { key: "checkin", label: "Registrasi Kedatangan", icon: QrCode },
         { key: "arrivals", label: "Kedatangan Hari Ini", icon: CalendarCheck },
       ],
     },
@@ -75,7 +77,7 @@ const EmployeeDashboard = () => {
       items: [
         { key: "addorder", label: "Tambah Pesanan", icon: PlusCircle },
         { key: "pendingorder", label: "Pesanan Masuk", icon: ClipboardList },
-        { key: "checkout", label: "Checkout", icon: ShoppingCart },
+        { key: "checkout", label: "Pembayaran", icon: ShoppingCart },
       ],
     },
     {

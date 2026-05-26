@@ -401,7 +401,7 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 * Total estimasi ini akan ditambah dengan ikan dan penalti saat
-                checkout.
+                pembayaran.
               </p>
             </div>
           </div>

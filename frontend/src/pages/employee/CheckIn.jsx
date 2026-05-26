@@ -200,7 +200,7 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
         }
       }
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Gagal melakukan check-in");
+      toast.error(err?.response?.data?.message || "Gagal melakukan registrasi");
     } finally {
       setSubmitLoading(false);
     }
@@ -228,7 +228,7 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
       }
     } catch (err) {
       toast.error(
-        err?.response?.data?.message || "Gagal melakukan check-in tamu",
+        err?.response?.data?.message || "Gagal melakukan registrasi tamu",
       );
     } finally {
       setGuestLoading(false);
@@ -242,7 +242,7 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
       <FormDialog
         open={!!successData}
         onClose={() => setSuccessData(null)}
-        title="Check-in Berhasil"
+        title="Registrasi Berhasil"
         size="sm"
       >
         <div className="space-y-4">
@@ -253,7 +253,7 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
                 <span className="font-semibold text-foreground">
                   {successData?.name}
                 </span>{" "}
-                telah berhasil check-in.
+                telah berhasil registrasi.
               </p>
               <p className="text-sm text-muted-foreground">
                 Deposit:{" "}
@@ -268,7 +268,7 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
               <span className="font-semibold text-foreground">
                 {successData?.name}
               </span>{" "}
-              ({successData?.tier}) telah berhasil check-in.
+              ({successData?.tier}) telah berhasil registrasi.
             </p>
           )}
           <div className="flex gap-2 justify-center sm:justify-end">
@@ -304,7 +304,7 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
                 <button className="w-full rounded-lg border-2 border-dashed border-border hover:border-primary/50 hover:bg-muted/30 transition-colors p-6 flex flex-col items-center gap-2 text-muted-foreground">
                   <UserCircle className="w-8 h-8" />
                   <span className="text-sm font-medium">
-                    Cari member yang belum check-in
+                    Cari member yang belum registrasi
                   </span>
                   <span className="text-xs">Klik untuk mencari</span>
                 </button>
@@ -392,7 +392,7 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
                 fullWidth
                 onClick={() => handleCheckIn(selectedMember.id)}
               >
-                Check-in Sekarang
+                Registrasi Sekarang
               </Button>
             </section>
           )}
@@ -449,11 +449,11 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
               {scanResult.active_arrival?.exists ? (
                 <div className="rounded-lg border border-yellow-500/30 bg-yellow-500/10 p-4 space-y-2">
                   <p className="text-yellow-600 font-medium text-sm">
-                    Member sedang aktif, check-in pukul{" "}
+                    Member sedang aktif, registrasi pukul{" "}
                     {formatDateTime(scanResult.active_arrival.check_in_at)}
                   </p>
                   <div className="flex gap-2">
-                    <Button disabled>Check-in (Tidak Tersedia)</Button>
+                    <Button disabled>Registrasi (Tidak Tersedia)</Button>
                     <Button variant="outline" onClick={handleRescan}>
                       Scan Ulang
                     </Button>
@@ -470,7 +470,7 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
                       loading={submitLoading}
                       onClick={() => handleCheckIn(scanResult.id)}
                     >
-                      Konfirmasi Check-in
+                      Konfirmasi Registrasi
                     </Button>
                     <Button variant="outline" onClick={handleRescan}>
                       Scan Ulang
@@ -488,10 +488,10 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
         <div className="rounded-xl border border-border bg-card p-5 space-y-4">
           <div>
             <p className="text-sm font-semibold text-foreground">
-              Check-in Tamu
+              Registrasi Tamu
             </p>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Isi nama pengunjung dan konfirmasi deposit sebelum check-in
+              Isi nama pengunjung dan konfirmasi deposit sebelum registrasi
             </p>
           </div>
 
@@ -540,7 +540,7 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
             disabled={!guestName.trim() || guestLoading}
             onClick={handleGuestCheckIn}
           >
-            Check-in Tamu
+            Registrasi Tamu
           </Button>
         </div>
       )}

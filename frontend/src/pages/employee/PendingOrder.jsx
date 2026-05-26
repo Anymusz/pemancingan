@@ -167,7 +167,7 @@ const PendingOrder = () => {
         </p>
         <p className="text-sm text-muted-foreground italic">
           Pesanan berstatus &quot;Selesai&quot; akan otomatis tercakup saat
-          checkout member terkait.
+          pembayaran member terkait.
         </p>
       </div>
 

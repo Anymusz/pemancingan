@@ -6,6 +6,7 @@ import { Input } from "@/components/common/FormInput";
 import { FormSelect } from "@/components/common/FormSelect";
 import { Button } from "@/components/common/Button";
 import { StatusBadge } from "@/components/common/StatusBadge";
+import ImageLightbox from "@/components/common/ImageLightbox";
 
 // ==================== CONSTANTS ====================
 
@@ -39,6 +40,7 @@ const TransactionHistory = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [expandedRow, setExpandedRow] = useState(null);
+  const [proofLightboxSrc, setProofLightboxSrc] = useState(null);
 
   // Filter state (draft — applied on "Terapkan")
   const [filterDraft, setFilterDraft] = useState({
@@ -363,6 +365,19 @@ const TransactionHistory = () => {
                                   <span>{formatCurrency(trx.tips)}</span>
                                 </div>
                               )}
+                              <div className="flex justify-between text-muted-foreground text-xs items-start">
+                                <span>Bukti Pembayaran</span>
+                                {trx.payment_proof_url ? (
+                                  <img
+                                    src={trx.payment_proof_url}
+                                    alt="Bukti pembayaran"
+                                    className="h-16 w-auto object-contain rounded border border-border cursor-zoom-in"
+                                    onClick={(e) => { e.stopPropagation(); setProofLightboxSrc(trx.payment_proof_url); }}
+                                  />
+                                ) : (
+                                  <span className="text-xs text-muted-foreground">Tidak ada</span>
+                                )}
+                              </div>
                               <div className="flex justify-between text-muted-foreground text-xs pt-1">
                                 <span>Diproses Oleh</span>
                                 <span>{trx.processed_by_name || "-"}</span>
@@ -407,6 +422,14 @@ const TransactionHistory = () => {
           </>
         )}
       </div>
+
+      {/* Lightbox */}
+      <ImageLightbox
+        open={proofLightboxSrc !== null}
+        src={proofLightboxSrc ?? ""}
+        alt="Bukti pembayaran"
+        onClose={() => setProofLightboxSrc(null)}
+      />
     </div>
   );
 };

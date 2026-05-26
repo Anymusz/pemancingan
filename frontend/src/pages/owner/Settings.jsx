@@ -247,7 +247,7 @@ const Settings = () => {
                 onChange={(e) => setDepositAmount(e.target.value)}
               />
               <p className="text-xs text-muted-foreground">
-                Nominal deposit berlaku untuk semua tamu yang check-in
+                Nominal deposit berlaku untuk semua tamu yang telah registrasi
               </p>
             </div>
 
@@ -264,7 +264,7 @@ const Settings = () => {
               onClose={() => setDepositConfirmOpen(false)}
               onConfirm={handleSaveDeposit}
               title="Konfirmasi Simpan Deposit"
-              description={`Nominal deposit tamu akan diubah menjadi ${formatCurrency(Number(depositAmount) || 0)}. Perubahan berlaku untuk check-in berikutnya. Lanjutkan?`}
+              description={`Nominal deposit tamu akan diubah menjadi ${formatCurrency(Number(depositAmount) || 0)}. Perubahan berlaku untuk registrasi berikutnya. Lanjutkan?`}
               confirmLabel="Ya, Simpan"
               cancelLabel="Batal"
               loading={depositSaving}
