@@ -13,7 +13,8 @@ class MenuController extends Controller
      */
     public function index(): JsonResponse
     {
-        $menus = Menu::orderBy('category')
+        $menus = Menu::orderBy('is_special', 'desc')
+            ->orderBy('category')
             ->orderBy('name')
             ->get()->map(fn($menu) => [
                 'id'           => $menu->id,
@@ -22,6 +23,7 @@ class MenuController extends Controller
                 'category'     => $menu->category,
                 'availability' => $menu->availability,
                 'image_url'    => $menu->image_url,
+                'is_special'   => (bool) $menu->is_special,
             ]);
 
         return response()->json([
@@ -46,7 +48,12 @@ class MenuController extends Controller
 
         $newStatus = $menu->availability === 'available' ? 'unavailable' : 'available';
 
-        $menu->update(['availability' => $newStatus]);
+        $updateData = ['availability' => $newStatus];
+        if ($newStatus === 'unavailable') {
+            $updateData['is_special'] = false;
+        }
+
+        $menu->update($updateData);
 
         return response()->json([
             'success' => true,

@@ -12,72 +12,93 @@ class ProcessMemberDowngrade extends Command
 {
     protected $signature = 'members:process-downgrade';
 
-    protected $description = 'Process tier downgrade for inactive members (>180 days no transaction)';
+    protected $description = 'Expire points after 180 days of inactivity; send H-7 warning notification once.';
 
     public function handle(): void
     {
-        $members = Member::with(['tier', 'user'])
-            ->whereNotNull('last_transaction_date')
+        $now = now()->setTimezone('Asia/Jakarta');
+
+        // Query: members with points > 0 and at least one transaction — no tier filter
+        $members = Member::with(['user'])
             ->where('total_points', '>', 0)
-            ->whereHas('tier', function ($q) {
-                $q->where('name', '!=', 'REGULAR');
-            })
-            ->whereDate('last_transaction_date', '<=', now()->subDays(180))
+            ->whereNotNull('last_transaction_date')
             ->get();
 
         if ($members->isEmpty()) {
-            Log::info('[Downgrade] Tidak ada member yang perlu diproses.');
+            Log::info('[PointsExpiry] Tidak ada member yang perlu diproses.');
             $this->info('Tidak ada member yang perlu diproses.');
             return;
         }
 
         $this->info("Memproses {$members->count()} member...");
 
+        $expiredCount = 0;
+        $warnedCount  = 0;
+
         foreach ($members as $member) {
             try {
-                $oldPoints = $member->total_points;
-                $newPoints = max(0, $oldPoints - 10);
+                $daysInactive = (int) $member->last_transaction_date
+                    ->setTimezone('Asia/Jakarta')
+                    ->diffInDays($now, true);
 
-                $newTier = DB::table('member_tiers')
-                    ->where('min_points', '<=', $newPoints)
-                    ->where(function ($q) use ($newPoints) {
-                        $q->where('max_points', '>=', $newPoints)
-                          ->orWhereNull('max_points');
-                    })
-                    ->first();
+                // ── 3a: Expiry (>= 180 days inactive) ─────────────────────────
+                if ($daysInactive >= 180) {
+                    $oldPoints = $member->total_points;
 
-                $tierChanged  = $newTier && $newTier->id !== $member->tier_id;
-                $oldTierName  = $member->tier->name; // simpan sebelum update
+                    // Resolve REGULAR tier via DB (covers 0 points)
+                    $regularTier = DB::table('member_tiers')
+                        ->where('min_points', '<=', 0)
+                        ->where(function ($q) {
+                            $q->where('max_points', '>=', 0)
+                              ->orWhereNull('max_points');
+                        })
+                        ->first();
 
-                $member->update([
-                    'total_points' => $newPoints,
-                    'tier_id'      => $newTier?->id ?? $member->tier_id,
-                ]);
+                    $member->update([
+                        'total_points'            => 0,
+                        'tier_id'                 => $regularTier?->id ?? $member->tier_id,
+                        'points_expiry_warned_at' => null,
+                    ]);
 
-                    if ($tierChanged) {
-                        // Notifikasi: Tier Downgraded
-                        NotificationService::send(
-                            $member->user_id,
-                            'tier_downgraded',
-                            'Tier Anda Turun',
-                            "Tier Anda turun dari {$oldTierName} menjadi {$newTier->name} karena tidak ada transaksi selama 180 hari.",
-                            ['old_tier' => $oldTierName, 'new_tier' => $newTier->name]
-                        );
+                    NotificationService::send(
+                        $member->user_id,
+                        'points_expired',
+                        'Poin Anda Telah Hangus',
+                        'Poin Anda hangus karena tidak ada transaksi selama 180 hari.',
+                        ['old_points' => $oldPoints]
+                    );
 
-                        Log::info("[Downgrade] {$member->user->name} | Poin: {$oldPoints} → {$newPoints} | Tier: {$oldTierName} → {$newTier->name}");
-                        $this->info("  ↓ {$member->user->name}: {$oldPoints} → {$newPoints} poin | {$oldTierName} → {$newTier->name}");
-                    } else {
-                    Log::info("[Downgrade] {$member->user->name} | Poin: {$oldPoints} → {$newPoints} | Tier tidak berubah");
-                    $this->line("  · {$member->user->name}: {$oldPoints} → {$newPoints} poin | Tier tetap {$member->tier->name}");
+                    Log::info("[PointsExpiry] Poin hangus | {$member->user->name} | Poin: {$oldPoints} → 0 | Tidak aktif: {$daysInactive} hari");
+                    $this->info("  💀 {$member->user->name}: {$oldPoints} poin hangus (tidak aktif {$daysInactive} hari)");
+                    $expiredCount++;
+
+                // ── 3b: H-7 Warning (>= 173 days, belum pernah diperingatkan) ─
+                } elseif ($daysInactive >= 173 && is_null($member->points_expiry_warned_at)) {
+                    $member->update([
+                        'points_expiry_warned_at' => $now,
+                    ]);
+
+                    NotificationService::send(
+                        $member->user_id,
+                        'points_expiry_warning',
+                        'Poin Anda Akan Segera Hangus',
+                        'Poin Anda akan hangus dalam 7 hari jika tidak ada transaksi baru.',
+                        ['points' => $member->total_points]
+                    );
+
+                    Log::info("[PointsExpiry] Peringatan H-7 | {$member->user->name} | Poin: {$member->total_points} | Tidak aktif: {$daysInactive} hari");
+                    $this->line("  ⚠ {$member->user->name}: peringatan H-7 dikirim ({$member->total_points} poin, tidak aktif {$daysInactive} hari)");
+                    $warnedCount++;
                 }
+                // Else: tidak memenuhi kondisi apapun — skip silently
 
             } catch (\Exception $e) {
-                Log::error("[Downgrade] Gagal memproses member ID {$member->id}: {$e->getMessage()}");
+                Log::error("[PointsExpiry] Gagal memproses member ID {$member->id}: {$e->getMessage()}");
                 $this->error("  ✗ Gagal memproses member ID {$member->id}: {$e->getMessage()}");
             }
         }
 
-        Log::info("[Downgrade] Selesai. Total diproses: {$members->count()} member.");
-        $this->info("Selesai. Total diproses: {$members->count()} member.");
+        Log::info("[PointsExpiry] Selesai. Hangus: {$expiredCount} | Peringatan: {$warnedCount} | Total dicek: {$members->count()}");
+        $this->info("Selesai. Hangus: {$expiredCount} | Peringatan: {$warnedCount} | Total dicek: {$members->count()}");
     }
 }

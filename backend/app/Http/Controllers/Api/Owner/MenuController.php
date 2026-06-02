@@ -39,7 +39,10 @@ class MenuController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $menus = $query->orderBy('category')->orderBy('name')->get();
+        $menus = $query->orderBy('is_special', 'desc')->orderBy('category')->orderBy('name')->get()->map(function ($menu) {
+            $menu->is_special = (bool) $menu->is_special;
+            return $menu;
+        });
 
         // Count summary (tanpa filter availability untuk summary global)
         $baseQuery = $request->boolean('include_deleted')
@@ -208,12 +211,67 @@ class MenuController extends Controller
             'availability' => 'required|in:available,unavailable',
         ]);
 
-        $menu->update(['availability' => $request->availability]);
+        $updateData = ['availability' => $request->availability];
+        if ($request->availability === 'unavailable') {
+            $updateData['is_special'] = false;
+        }
+
+        $menu->update($updateData);
 
         return response()->json([
             'success' => true,
             'message' => 'Status ketersediaan berhasil diubah',
             'data' => ['menu' => $menu->fresh()],
+        ]);
+    }
+
+    /**
+     * PATCH /api/owner/menus/{id}/toggle-special
+     */
+    public function toggleSpecial(int $id): JsonResponse
+    {
+        $menu = Menu::withTrashed()->find($id);
+
+        if (!$menu) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Menu tidak ditemukan',
+            ], 404);
+        }
+
+        if ($menu->trashed()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Menu sudah dihapus sebelumnya',
+            ], 400);
+        }
+
+        if (!$menu->is_special) {
+            if ($menu->availability !== 'available') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Menu harus tersedia untuk dijadikan spesial.',
+                ], 422);
+            }
+
+            $count = Menu::where('is_special', true)->where('id', '!=', $id)->count();
+            if ($count >= 3) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Maksimal 3 menu spesial aktif. Nonaktifkan salah satu terlebih dahulu.',
+                ], 422);
+            }
+        }
+
+        $menu->update(['is_special' => !$menu->is_special]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Status spesial menu berhasil diubah',
+            'data' => [
+                'id' => $menu->id,
+                'is_special' => $menu->is_special,
+            ],
         ]);
     }
 }

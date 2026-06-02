@@ -431,10 +431,11 @@ class TransactionController extends Controller
             $tierUpgraded = $newTier && $currentTier && $newTier->id !== $currentTier->id;
 
             $member->update([
-                'total_points'          => $newPoints,
-                'total_fish_weight'     => $newFishWeight,
-                'last_transaction_date' => Carbon::now(),
-                'tier_id'               => $newTier?->id ?? $currentTier?->id,
+                'total_points'              => $newPoints,
+                'total_fish_weight'         => $newFishWeight,
+                'last_transaction_date'     => Carbon::now(),
+                'tier_id'                   => $newTier?->id ?? $currentTier?->id,
+                'points_expiry_warned_at'   => null,
             ]);
 
             if ($tierUpgraded) {
@@ -470,6 +471,8 @@ class TransactionController extends Controller
             'data'    => [
                 'transaction' => [
                     'transaction_code'  => $transaction->transaction_code,
+                    'transaction_date'  => $transaction->transaction_date->toDateTimeString(),
+                    'employee_name'     => $request->user()->name,
                     'total_amount'      => $totalAmount,
                     'discount_tier'     => $discountTier,
                     'discount_voucher'  => $discountVoucher,
@@ -480,11 +483,19 @@ class TransactionController extends Controller
                     'points_earned'     => $pointsEarned,
                     'payment_method'    => $transaction->payment_method,
                     'payment_proof_url' => $paymentProofPath ? Storage::disk('public')->url('payment-proofs/' . $paymentProofPath) : null,
+                    'items'             => collect($transactionItems)->map(fn ($item) => [
+                        'item_type'           => $item['item_type'],
+                        'item_name_snapshot'  => $item['item_name_snapshot'],
+                        'quantity'            => $item['quantity'],
+                        'unit_price_snapshot' => $item['unit_price_snapshot'],
+                        'subtotal'            => $item['subtotal'],
+                    ])->values(),
                 ],
                 'customer' => $isGuest
                     ? ['name' => $arrival->guest_name ?? 'Tamu', 'is_guest' => true]
                     : [
                         'name'         => $member->user->name,
+                        'phone'        => $member->user->phone ?? null,
                         'total_points' => $newPoints,
                         'current_tier' => $newTier?->name ?? 'REGULAR',
                         'fish_weight'  => $newFishWeight,

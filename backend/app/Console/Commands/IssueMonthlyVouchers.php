@@ -17,7 +17,7 @@ class IssueMonthlyVouchers extends Command
 
     public function handle(): void
     {
-        $targetDate = now()->subMonth();
+        $targetDate = now()->startOfMonth()->subMonth();
         $year  = $targetDate->year;
         $month = $targetDate->month;
 
@@ -37,6 +37,7 @@ class IssueMonthlyVouchers extends Command
         $topMembers = Member::where('total_fish_weight', '>', 0)
             ->whereHas('user', fn($q) => $q->where('status', 'active'))
             ->orderBy('total_fish_weight', 'desc')
+            ->orderBy('id', 'asc')
             ->limit(3)
             ->get();
 

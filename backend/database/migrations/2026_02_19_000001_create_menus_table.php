@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->decimal('price', 10, 2);
             $table->enum('category', ['food', 'beverage']);
             $table->enum('availability', ['available', 'unavailable'])->default('available');
+            $table->boolean('is_special')->default(false);
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();

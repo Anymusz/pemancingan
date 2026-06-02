@@ -24,6 +24,7 @@ class Member extends Model
         'total_fish_weight',
         'qr_code_hash',
         'last_transaction_date',
+        'points_expiry_warned_at',
         'approved_at',
     ];
 
@@ -37,6 +38,7 @@ class Member extends Model
         'total_fish_weight' => 'decimal:2',
         'last_transaction_date' => 'datetime',
         'approved_at' => 'datetime',
+        'points_expiry_warned_at' => 'datetime',
     ];
 
     /**

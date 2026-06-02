@@ -49,6 +49,7 @@ Route::get('/events/{id}', [EventController::class, 'show']);
 Route::get('/fish-types', [FishTypeController::class, 'index']);
 Route::get('/member-tiers', [MemberTierController::class, 'index']);
 Route::get('/leaderboard', [MemberController::class, 'getLeaderboard']);
+Route::get('/special-menus', [MenuController::class, 'specialMenus']);
 
 // ========================================
 // PROTECTED ROUTES
@@ -101,6 +102,7 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     Route::put('/menus/{id}', [OwnerMenuController::class, 'update']);
     Route::delete('/menus/{id}', [OwnerMenuController::class, 'destroy']);
     Route::patch('/menus/{id}/availability', [OwnerMenuController::class, 'updateAvailability']);
+    Route::patch('/menus/{id}/toggle-special', [OwnerMenuController::class, 'toggleSpecial']);
 
     // Fish Type Management
     Route::get('/fish-types', [OwnerFishTypeController::class, 'index']);

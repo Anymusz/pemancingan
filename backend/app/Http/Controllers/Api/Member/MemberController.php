@@ -31,7 +31,7 @@ class MemberController extends Controller
         $memberId = $user->member->id;
         $perPage  = min((int) $request->input('per_page', 10), 50);
 
-        $query = Transaction::with('items')
+        $query = Transaction::with(['items', 'processedBy'])
             ->whereHas('arrival', fn ($q) => $q->where('member_id', $memberId))
             ->orderByDesc('transaction_date');
 
@@ -52,8 +52,9 @@ class MemberController extends Controller
             'discount_tier'    => (float) $trx->discount_tier,
             'discount_voucher' => (float) $trx->discount_voucher,
             'final_amount'     => (float) $trx->final_amount,
-            'points_earned'    => $trx->points_earned,
-            'items'            => $trx->items->map(fn ($item) => [
+            'points_earned'     => $trx->points_earned,
+            'processed_by_name' => $trx->processedBy?->name ?? null,
+            'items'             => $trx->items->map(fn ($item) => [
                 'item_type'           => $item->item_type,
                 'item_name_snapshot'  => $item->item_name_snapshot,
                 'quantity'            => $item->quantity,

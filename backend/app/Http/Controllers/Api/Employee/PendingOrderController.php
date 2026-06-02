@@ -58,7 +58,7 @@ class PendingOrderController extends Controller
     public function updateStatus(Request $request, int $id): JsonResponse
     {
         $request->validate([
-            'status'              => 'required|in:pending,done,cancelled',
+            'status'              => 'required|in:pending,processing,done,cancelled',
             'cancellation_reason' => 'required_if:status,cancelled|nullable|string|max:255',
         ]);
 

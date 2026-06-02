@@ -15,12 +15,14 @@ class Menu extends Model
         'price',
         'category',
         'availability',
+        'is_special',
         'description',
         'image',
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
+        'is_special' => 'boolean',
     ];
 
     protected $appends = ['image_url'];

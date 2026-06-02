@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->decimal('subtotal', 10, 2);
 
             $table->enum('payment_status', ['unpaid', 'paid'])->default('unpaid');
-            $table->enum('production_status', ['pending', 'done', 'cancelled'])->default('pending');
+            $table->enum('production_status', ['pending', 'processing', 'done', 'cancelled'])->default('pending');
             $table->string('cancellation_reason')->nullable();
             $table->enum('order_source', ['self', 'manual']);
 

@@ -12,16 +12,19 @@ class VoucherSeeder extends Seeder
 {
     public function run(): void
     {
-        $silver = DB::table('member_tiers')->where('name', 'SILVER')->value('id');
-        $gold = DB::table('member_tiers')->where('name', 'GOLD')->value('id');
-
-        $eligibleMembers = Member::whereIn('tier_id', [$silver, $gold])
+        $topMembers = Member::where('total_fish_weight', '>', 0)
+            ->whereHas('user', fn($q) => $q->where('status', 'active'))
             ->orderBy('total_fish_weight', 'desc')
+            ->orderBy('id', 'asc')
+            ->limit(3)
             ->get();
             
         $configs = DB::table('voucher_configs')->get()->keyBy('rank');
 
-        foreach ($eligibleMembers as $index => $member) {
+        $currentDate = Carbon::now()->startOfMonth();
+        $previousDate = Carbon::now()->startOfMonth()->subMonth();
+
+        foreach ($topMembers as $index => $member) {
             $currentRank = $index + 1;
             
             if ($currentRank > 3) continue;
@@ -33,10 +36,10 @@ class VoucherSeeder extends Seeder
                 'amount' => $amount,
                 'source' => 'leaderboard',
                 'rank' => $currentRank,
-                'period_year' => Carbon::now()->year,
-                'period_month' => Carbon::now()->month,
+                'period_year' => $currentDate->year,
+                'period_month' => $currentDate->month,
                 'status' => 'unused',
-                'issued_at' => Carbon::now()->startOfMonth(),
+                'issued_at' => $currentDate,
             ]);
             
             Voucher::create([
@@ -44,10 +47,10 @@ class VoucherSeeder extends Seeder
                 'amount' => $amount,
                 'source' => 'leaderboard',
                 'rank' => $currentRank,
-                'period_year' => Carbon::now()->subMonth()->year,
-                'period_month' => Carbon::now()->subMonth()->month,
+                'period_year' => $previousDate->year,
+                'period_month' => $previousDate->month,
                 'status' => 'unused',
-                'issued_at' => Carbon::now()->subMonth()->startOfMonth(),
+                'issued_at' => $previousDate,
             ]);
         }
     }
