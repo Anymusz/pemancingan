@@ -113,6 +113,7 @@ const Register = () => {
                     type="text"
                     value={formData.name}
                     onChange={handleChange}
+                    placeholder="Masukkan nama lengkap"
                     required
                   />
                 </Field>
@@ -151,6 +152,7 @@ const Register = () => {
                     type="password"
                     value={formData.password}
                     onChange={handleChange}
+                    placeholder="Masukkan password"
                     required
                   />
                   <span className="text-sm text-muted-foreground">
@@ -168,6 +170,7 @@ const Register = () => {
                     type="password"
                     value={formData.password_confirmation}
                     onChange={handleChange}
+                    placeholder="Ulangi password"
                     required
                   />
                 </Field>
@@ -180,6 +183,7 @@ const Register = () => {
                     rows={3}
                     value={formData.address}
                     onChange={handleChange}
+                    placeholder="Masukkan alamat lengkap"
                     required
                     className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   />
@@ -192,7 +196,7 @@ const Register = () => {
                   <FieldDescription className="text-center">
                     Sudah punya akun?{" "}
                     <Link to="/login" className="underline underline-offset-4">
-                      Login di sini
+                      Login
                     </Link>
                   </FieldDescription>
                 </Field>

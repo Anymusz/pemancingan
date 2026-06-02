@@ -1,7 +1,7 @@
 // File: src/pages/employee/AddOrder.jsx
 
 import { useState, useEffect, useMemo } from "react";
-import { Minus, Plus } from "lucide-react";
+import { Minus, Plus, Star } from "lucide-react";
 import employeeService from "../../services/employeeService";
 import rentalService from "../../services/rentalService";
 import { useToast } from "@/hooks/useToast";
@@ -234,7 +234,14 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
       {
         key: "name",
         header: "Nama Menu",
-        render: (row) => <span className="font-medium">{row.name}</span>,
+        render: (row) => (
+          <div className="flex items-center gap-1.5">
+            {row.is_special && (
+              <Star className="size-3.5 text-amber-500 shrink-0" />
+            )}
+            <span className="font-medium">{row.name}</span>
+          </div>
+        ),
       },
       {
         key: "category",
@@ -358,7 +365,8 @@ const AddOrder = ({ preselectArrivalId, onPreselectConsumed }) => {
           emptyMessage="Tidak ada menu aktif saat ini."
           rowClassName={(row) => {
             const qty = quantities[row.id] || 0;
-            return qty > 0 ? "bg-primary/5 border-l-2 border-l-primary" : "";
+            if (qty > 0) return "bg-primary/5 border-l-2 border-l-primary";
+            return row.is_special ? "bg-amber-500/5 border-l-2 border-l-amber-500" : "";
           }}
         />
       </section>

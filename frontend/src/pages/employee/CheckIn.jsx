@@ -37,7 +37,12 @@ const MemberCard = ({ member }) => (
 
 const NotesField = ({ value, onChange }) => (
   <div className="grid gap-1.5">
-    <Label>Catatan (opsional)</Label>
+    <Label>
+      Catatan
+      <span className="px-2 py-0.5 rounded-full bg-muted text-xs text-muted-foreground">
+        Opsional
+      </span>
+    </Label>
     <Textarea
       rows={2}
       value={value}
@@ -525,7 +530,12 @@ const CheckIn = ({ onNavigateToAddOrder }) => {
 
           {/* Notes */}
           <div className="grid gap-1.5">
-            <Label>Catatan (opsional)</Label>
+            <Label>
+              Catatan
+              <span className="px-2 py-0.5 rounded-full bg-muted text-xs text-muted-foreground">
+                Opsional
+              </span>
+            </Label>
             <Textarea
               rows={2}
               value={guestNotes}

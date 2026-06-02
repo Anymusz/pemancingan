@@ -6,6 +6,7 @@ import employeeService from "../../../services/employeeService";
 import { useToast } from "@/hooks/useToast";
 import { formatCurrency } from "@/utils/utils";
 import ConfirmDialog from "@/components/common/ConfirmDialog";
+import ReceiptModal from "../../../components/common/ReceiptModal";
 import { MemberSection } from "./MemberSection";
 import { FishSection } from "./FishSection";
 import { SummarySection } from "./SummarySection";
@@ -34,6 +35,9 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
   const [activeVoucher, setActiveVoucher] = useState(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [qrisImageUrl, setQrisImageUrl] = useState(null);
+  const [receiptData, setReceiptData] = useState(null);
+  const [showReceipt, setShowReceipt] = useState(false);
+  const [memberPhoneForReceipt, setMemberPhoneForReceipt] = useState(null);
   const toast = useToast();
 
   // ===== KALKULASI =====
@@ -166,6 +170,20 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     }
   };
 
+  const handleCancelOrder = async (orderId) => {
+    try {
+      const res = await employeeService.updateOrderStatus(orderId, {
+        status: 'cancelled',
+        cancellation_reason: 'Dibatalkan saat checkout',
+      });
+      if (res.success) {
+        setPendingOrders((prev) => prev.filter((o) => o.id !== orderId));
+      }
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Gagal membatalkan pesanan");
+    }
+  };
+
   // ===== ARRIVAL HANDLER =====
   const handlePickArrival = (arrival) => {
     setSelectedArrival(arrival);
@@ -295,20 +313,37 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
           `Pembayaran berhasil! Kode: ${res.data.transaction.transaction_code}${voucherInfo}`,
         );
 
-        if (res.data.tier_upgraded) {
-          setTierUpgradeAlert(
-            `Selamat! Tier member naik ke ${res.data.new_tier}!`,
-          );
-          setTimeout(() => setTierUpgradeAlert(null), 6000);
-        }
-        resetForm();
-        fetchArrivals();
+        const mapped = {
+          ...res.data.transaction,
+          customer:      res.data.customer,
+          tier_upgraded: res.data.tier_upgraded,
+          voucher_used:  res.data.voucher_used,
+          total_points:  res.data.customer?.is_guest ? undefined : res.data.customer?.total_points,
+          current_tier:  res.data.customer?.is_guest ? undefined : res.data.customer?.current_tier,
+        };
+        setReceiptData(mapped);
+        setMemberPhoneForReceipt(res.data.customer?.phone ?? null);
+        setShowReceipt(true);
       }
     } catch (err) {
       toast.error(err?.response?.data?.message || "Gagal memproses pembayaran");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleReceiptClose = () => {
+    const wasTierUpgraded = receiptData?.tier_upgraded;
+    const newTierName     = receiptData?.current_tier;
+    setShowReceipt(false);
+    setReceiptData(null);
+    setMemberPhoneForReceipt(null);
+    if (wasTierUpgraded && newTierName) {
+      setTierUpgradeAlert(`Selamat! Tier member naik ke ${newTierName}!`);
+      setTimeout(() => setTierUpgradeAlert(null), 6000);
+    }
+    resetForm();
+    fetchArrivals();
   };
 
   const hasAnyItem =
@@ -383,6 +418,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
             pendingLoading={pendingLoading}
             selectedArrival={selectedArrival}
             pendingOrders={pendingOrders}
+            onCancelOrder={handleCancelOrder}
           />
 
           <FishSection
@@ -426,6 +462,13 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
         confirmLabel="Ya, Proses"
         cancelLabel="Batal"
         loading={loading}
+      />
+
+      <ReceiptModal
+        isOpen={showReceipt}
+        onClose={handleReceiptClose}
+        receipt={receiptData}
+        memberPhone={memberPhoneForReceipt}
       />
     </div>
   );

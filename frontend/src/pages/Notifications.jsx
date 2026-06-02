@@ -54,7 +54,7 @@ const getNotificationIcon = (type) => {
 const getRedirectPath = (notifType, role, data = null) => {
   switch (notifType) {
     case "member_pending":
-      return "/owner/dashboard?tab=pending";
+      return "/owner/dashboard?tab=members";
     case "low_stock":
       if (role === "owner") return "/owner/dashboard?tab=fish-types";
       if (role === "employee")

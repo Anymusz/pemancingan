@@ -6,6 +6,7 @@ import FooterSection from "./sections/FooterSection";
 import LeaderboardSection from "./sections/LeaderboardSection";
 import InformasiSection from "./sections/InformasiSection";
 import EventsSection from "./sections/EventsSection";
+import SpecialMenuPopup from "./SpecialMenuPopup";
 
 export default function LandingPage() {
   return (
@@ -44,6 +45,7 @@ export default function LandingPage() {
           <FooterSection />
         </section>
       </main>
+      <SpecialMenuPopup />
     </div>
   );
 }

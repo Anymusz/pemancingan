@@ -3,12 +3,12 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import memberService from "../../services/memberService";
 import { useToast } from "@/hooks/useToast";
-import { formatCurrency, formatMenuCategory } from "@/utils/utils";
+import { formatCurrency } from "@/utils/utils";
 import { DataTable } from "@/components/common/DataTable";
 import { Button } from "@/components/common/Button";
-import { Input } from "@/components/common/FormInput";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import { imageCell } from "@/components/common/ImageCell";
+import { Star, Minus, Plus } from "lucide-react";
 
 const Order = () => {
   const [menus, setMenus] = useState([]);
@@ -60,11 +60,6 @@ const Order = () => {
   }, [myOrders, fetchMyOrders]);
 
   // ==================== QUANTITY HANDLERS ====================
-  const handleQtyChange = (menuId, value) => {
-    const qty = Math.max(0, parseInt(value) || 0);
-    setQuantities((prev) => ({ ...prev, [menuId]: qty }));
-  };
-
   const increment = (menuId) => {
     setQuantities((prev) => ({ ...prev, [menuId]: (prev[menuId] || 0) + 1 }));
   };
@@ -90,10 +85,7 @@ const Order = () => {
 
   // ==================== MY ORDERS SUBTOTAL ====================
   const unpaidTotal = myOrders
-    .filter(
-      (o) =>
-        o.production_status === "pending" || o.production_status === "done",
-    )
+    .filter((o) => o.production_status !== "cancelled")
     .reduce((sum, o) => sum + Number(o.subtotal), 0);
 
   // ==================== SUBMIT ====================
@@ -126,11 +118,22 @@ const Order = () => {
   const menuColumns = useMemo(
     () => [
       imageCell,
-      { key: "name", header: "Nama", render: (row) => row.name },
+      {
+        key: "name",
+        header: "Nama",
+        render: (row) => (
+          <div className="flex items-center gap-1.5">
+            {row.is_special && (
+              <Star className="size-3.5 text-amber-500 shrink-0" />
+            )}
+            <span className="font-medium">{row.name}</span>
+          </div>
+        ),
+      },
       {
         key: "category",
         header: "Kategori",
-        render: (row) => formatMenuCategory(row.category),
+        render: (row) => <StatusBadge status={row.category} />,
       },
       {
         key: "price",
@@ -143,30 +146,27 @@ const Order = () => {
         render: (row) => {
           const qty = quantities[row.id] || 0;
           return (
-            <div className="flex items-center gap-1">
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-7 w-7 p-0"
+            <div className="flex items-center gap-2">
+              <button
+                className="w-7 h-7 rounded-md border border-border flex items-center justify-center hover:bg-muted transition-colors disabled:opacity-40"
                 onClick={() => decrement(row.id)}
+                disabled={qty <= 0}
               >
-                −
-              </Button>
-              <Input
-                type="number"
-                min="0"
-                value={qty}
-                onChange={(e) => handleQtyChange(row.id, e.target.value)}
-                className="w-14 text-center h-7 px-1"
-              />
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-7 w-7 p-0"
+                <Minus className="w-3.5 h-3.5" />
+              </button>
+              <span
+                className={`w-6 text-center text-sm font-medium ${
+                  qty > 0 ? "text-foreground" : "text-muted-foreground"
+                }`}
+              >
+                {qty}
+              </span>
+              <button
+                className="w-7 h-7 rounded-md border border-border flex items-center justify-center hover:bg-muted transition-colors"
                 onClick={() => increment(row.id)}
               >
-                +
-              </Button>
+                <Plus className="w-3.5 h-3.5" />
+              </button>
             </div>
           );
         },
@@ -230,6 +230,13 @@ const Order = () => {
           data={menus}
           loading={fetchLoading}
           emptyMessage="Tidak ada menu tersedia"
+          rowClassName={(row) => {
+            if ((quantities[row.id] || 0) > 0)
+              return "bg-primary/5 border-l-2 border-l-primary";
+            if (row.is_special)
+              return "bg-amber-500/5 border-l-2 border-l-amber-500";
+            return "";
+          }}
         />
         {selectedItems.length === 0 && !fetchLoading && menus.length > 0 && (
           <p className="text-sm text-muted-foreground">

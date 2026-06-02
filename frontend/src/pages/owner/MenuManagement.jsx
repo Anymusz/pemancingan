@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import menuService from "../../services/menuService";
 import { useToast } from "@/hooks/useToast";
-import { formatCurrency, formatMenuCategory } from "@/utils/utils";
+import { formatCurrency } from "@/utils/utils";
 import FormDialog from "../../components/common/FormDialog";
 import ConfirmDialog from "../../components/common/ConfirmDialog";
 import { DataTable } from "../../components/common/DataTable";
@@ -299,6 +299,32 @@ const MenuManagement = () => {
     }
   };
 
+  const handleToggleSpecial = async (menu) => {
+    const newIsSpecial = !menu.is_special;
+    // Optimistic update
+    setMenus((prev) =>
+      prev.map((m) =>
+        m.id === menu.id ? { ...m, is_special: newIsSpecial } : m,
+      ),
+    );
+    try {
+      const res = await menuService.toggleMenuSpecial(menu.id);
+      toast.success(
+        res.message || `Status spesial "${menu.name}" berhasil diubah`,
+      );
+    } catch (err) {
+      // Revert
+      setMenus((prev) =>
+        prev.map((m) =>
+          m.id === menu.id ? { ...m, is_special: menu.is_special } : m,
+        ),
+      );
+      toast.error(
+        err?.response?.data?.message || "Gagal mengubah status spesial",
+      );
+    }
+  };
+
   // ---- Column & Action definitions ----
   const menuColumns = [
     imageCell,
@@ -306,7 +332,7 @@ const MenuManagement = () => {
     {
       key: "category",
       header: "Kategori",
-      render: (row) => formatMenuCategory(row.category),
+      render: (row) => <StatusBadge status={row.category} />,
     },
     {
       key: "price",
@@ -317,7 +343,14 @@ const MenuManagement = () => {
       key: "availability",
       header: "Ketersediaan",
       render: (row) =>
-        row.deleted_at ? "Dihapus" : <StatusBadge status={row.availability} />,
+        row.deleted_at ? (
+          "Dihapus"
+        ) : (
+          <div className="flex flex-wrap gap-1">
+            <StatusBadge status={row.availability} />
+            {row.is_special && <StatusBadge status="special" />}
+          </div>
+        ),
     },
     {
       key: "description",
@@ -402,6 +435,10 @@ const MenuManagement = () => {
             {
               label: "Ubah Ketersediaan",
               onClick: () => handleToggleAvailability(row),
+            },
+            {
+              label: row.is_special ? "Nonaktifkan Spesial" : "Jadikan Spesial",
+              onClick: () => handleToggleSpecial(row),
             },
             { label: "Edit", onClick: () => openEditModal(row) },
             {

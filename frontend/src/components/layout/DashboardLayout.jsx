@@ -1,8 +1,10 @@
 // File: src/components/layout/DashboardLayout.jsx
 
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Bell, Fish, LogOut } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 import {
   Sidebar,
   SidebarContent,
@@ -30,6 +32,7 @@ export default function DashboardLayout({
   children,
 }) {
   const navigate = useNavigate();
+  const [logoutConfirmOpen, setLogoutConfirmOpen] = useState(false);
 
   const activeLabel =
     navGroups.flatMap((g) => g.items).find((i) => i.key === activeItem)
@@ -103,7 +106,7 @@ export default function DashboardLayout({
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton
-                onClick={onLogout}
+                onClick={() => setLogoutConfirmOpen(true)}
                 tooltip="Logout"
                 className="text-red-500 hover:text-red-600 hover:bg-red-50"
               >
@@ -145,6 +148,17 @@ export default function DashboardLayout({
         {/* Page content */}
         <div className="p-4">{children}</div>
       </SidebarInset>
+
+      <ConfirmDialog
+        open={logoutConfirmOpen}
+        onClose={() => setLogoutConfirmOpen(false)}
+        onConfirm={onLogout}
+        variant="destructive"
+        title="Konfirmasi Logout"
+        description="Apakah Anda yakin ingin keluar?"
+        confirmLabel="Logout"
+        cancelLabel="Batal"
+      />
     </SidebarProvider>
   );
 }

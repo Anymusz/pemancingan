@@ -113,6 +113,11 @@ const PendingOrder = () => {
       badge: orders.filter((o) => o.production_status === "pending").length,
     },
     {
+      value: "processing",
+      label: "Diproses",
+      badge: orders.filter((o) => o.production_status === "processing").length,
+    },
+    {
       value: "done",
       label: "Selesai",
       badge: orders.filter((o) => o.production_status === "done").length,
@@ -216,18 +221,50 @@ const PendingOrder = () => {
                 data={group.items}
                 emptyMessage="Tidak ada item"
                 getRowActions={(row) => {
-                  if (row.production_status !== "pending") return [];
-                  return [
-                    {
-                      label: "Selesai",
-                      onClick: () => handleUpdateStatus(row.id, "done"),
-                    },
-                    {
-                      label: "Batalkan",
-                      variant: "danger",
-                      onClick: () => handleOpenCancelModal(row.id),
-                    },
-                  ];
+                  const { production_status: status, item_type } = row;
+                  const actions = [];
+
+                  if (item_type === "menu") {
+                    if (status === "pending") {
+                      actions.push({
+                        label: "Proses",
+                        onClick: () => handleUpdateStatus(row.id, "processing"),
+                      });
+                      actions.push({
+                        label: "Selesai",
+                        onClick: () => handleUpdateStatus(row.id, "done"),
+                      });
+                      actions.push({
+                        label: "Batalkan",
+                        variant: "danger",
+                        onClick: () => handleOpenCancelModal(row.id),
+                      });
+                    } else if (status === "processing") {
+                      actions.push({
+                        label: "Selesai",
+                        onClick: () => handleUpdateStatus(row.id, "done"),
+                      });
+                      actions.push({
+                        label: "Batalkan",
+                        variant: "danger",
+                        onClick: () => handleOpenCancelModal(row.id),
+                      });
+                    }
+                  } else if (item_type === "rental") {
+                    if (status === "pending") {
+                      actions.push({
+                        label: "Selesai",
+                        onClick: () => handleUpdateStatus(row.id, "done"),
+                      });
+                      actions.push({
+                        label: "Batalkan",
+                        variant: "danger",
+                        onClick: () => handleOpenCancelModal(row.id),
+                      });
+                    }
+                  }
+
+                  return actions;
                 }}
               />
             </div>

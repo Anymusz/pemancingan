@@ -1,8 +1,10 @@
+// src/components/common/StatusBadge.jsx
 import { useMemo } from "react";
 import { cn } from "@/utils/utils";
 import {
   CheckCircle,
   Clock,
+  CookingPot,
   XCircle,
   MinusCircle,
   Info,
@@ -13,6 +15,7 @@ import {
   Coffee,
   Package,
   Shield,
+  Star,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -122,6 +125,14 @@ const STATUS_MAP = {
     label: "Stok Rendah",
   },
 
+  // Biru muda — CookingPot
+  processing: {
+    icon: CookingPot,
+    classNames:
+      "bg-sky-500/10 text-sky-600 border-sky-500/20 hover:bg-sky-500/20",
+    label: "Sedang Diproses",
+  },
+
   // Merah — XCircle
   cancelled: {
     icon: XCircle,
@@ -174,6 +185,13 @@ const STATUS_MAP = {
     classNames:
       "bg-purple-500/10 text-purple-600 border-purple-500/20 hover:bg-purple-500/20",
     label: "Acara",
+  },
+
+  special: {
+    icon: Star,
+    classNames:
+      "bg-amber-500/10 text-amber-600 border-amber-500/20 hover:bg-amber-500/20",
+    label: "Spesial",
   },
 
   regular: {

@@ -32,6 +32,16 @@ const menuService = {
     });
     return response.data;
   },
+
+  getSpecialMenus: async () => {
+    const response = await api.get("/special-menus");
+    return response.data;
+  },
+
+  toggleMenuSpecial: async (id) => {
+    const response = await api.patch(`/owner/menus/${id}/toggle-special`);
+    return response.data;
+  },
 };
 
 export default menuService;

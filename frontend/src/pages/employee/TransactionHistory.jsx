@@ -7,6 +7,9 @@ import { FormSelect } from "@/components/common/FormSelect";
 import { Button } from "@/components/common/Button";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import ImageLightbox from "@/components/common/ImageLightbox";
+import ReceiptModal from "@/components/common/ReceiptModal";
+import { getUser } from "@/utils/tokenManager";
+import { FileText } from "lucide-react";
 
 // ==================== CONSTANTS ====================
 
@@ -41,6 +44,8 @@ const TransactionHistory = () => {
   const [loading, setLoading] = useState(false);
   const [expandedRow, setExpandedRow] = useState(null);
   const [proofLightboxSrc, setProofLightboxSrc] = useState(null);
+  const [selectedReceipt, setSelectedReceipt] = useState(null);
+  const [showReceipt, setShowReceipt] = useState(false);
 
   // Filter state (draft — applied on "Terapkan")
   const [filterDraft, setFilterDraft] = useState({
@@ -383,6 +388,43 @@ const TransactionHistory = () => {
                                 <span>{trx.processed_by_name || "-"}</span>
                               </div>
                             </div>
+
+                            <div className="mt-4 flex justify-end">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="gap-2"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedReceipt({
+                                    transaction_code: trx.transaction_code,
+                                    transaction_date: trx.transaction_date,
+                                    employee_name: getUser()?.name ?? '-',
+                                    customer: {
+                                      name: trx.customer_name ?? (trx.is_guest ? 'Tamu' : 'Member'),
+                                      is_guest: trx.is_guest ?? false
+                                    },
+                                    items: trx.items ?? [],
+                                    total_amount: trx.total_amount,
+                                    discount_tier: trx.discount_tier ?? 0,
+                                    discount_voucher: trx.discount_voucher ?? 0,
+                                    final_amount: trx.final_amount,
+                                    deposit_used: trx.deposit_used ?? 0,
+                                    deposit_change: trx.deposit_change ?? 0,
+                                    tips: trx.tips ?? 0,
+                                    payment_method: trx.payment_method,
+                                    points_earned: trx.points_earned ?? 0,
+                                    total_points: undefined,
+                                    tier_upgraded: false,
+                                    voucher_used: (trx.discount_voucher ?? 0) > 0,
+                                  });
+                                  setShowReceipt(true);
+                                }}
+                              >
+                                <FileText className="w-4 h-4" />
+                                Lihat Nota
+                              </Button>
+                            </div>
                           </td>
                         </tr>
                       )}
@@ -423,12 +465,21 @@ const TransactionHistory = () => {
         )}
       </div>
 
-      {/* Lightbox */}
       <ImageLightbox
         open={proofLightboxSrc !== null}
         src={proofLightboxSrc ?? ""}
         alt="Bukti pembayaran"
         onClose={() => setProofLightboxSrc(null)}
+      />
+
+      <ReceiptModal
+        isOpen={showReceipt}
+        onClose={() => {
+          setShowReceipt(false);
+          setSelectedReceipt(null);
+        }}
+        receipt={selectedReceipt}
+        memberPhone={null}
       />
     </div>
   );
