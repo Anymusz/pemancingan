@@ -117,6 +117,11 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
   }, [toast]);
 
   useEffect(() => {
+    if (!preselectArrivalId) return;
+    fetchArrivals();
+  }, [preselectArrivalId, fetchArrivals]);
+
+  useEffect(() => {
     const init = async () => {
       setFetchLoading(true);
       try {

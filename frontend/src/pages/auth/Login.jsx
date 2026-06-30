@@ -151,7 +151,7 @@ const Login = () => {
                       to="/register"
                       className="underline underline-offset-4"
                     >
-                      Daftar di sini
+                      Daftar
                     </Link>
                   </FieldDescription>
                 </Field>
