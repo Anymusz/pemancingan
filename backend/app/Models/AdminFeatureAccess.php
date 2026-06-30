@@ -13,6 +13,12 @@ class AdminFeatureAccess extends Model
         'delete' => 'can_delete',
     ];
 
+    public const ACTION_PERMISSION_COLUMNS = [
+        'create' => 'can_create',
+        'update' => 'can_update',
+        'delete' => 'can_delete',
+    ];
+
     protected $fillable = [
         'user_id',
         'feature_id',
@@ -54,7 +60,7 @@ class AdminFeatureAccess extends Model
 
     public function permissionList(): array
     {
-        return collect(self::PERMISSION_COLUMNS)
+        return collect(self::ACTION_PERMISSION_COLUMNS)
             ->filter(fn (string $column) => (bool) $this->{$column})
             ->keys()
             ->values()

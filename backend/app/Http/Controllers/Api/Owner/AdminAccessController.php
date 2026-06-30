@@ -104,8 +104,8 @@ class AdminAccessController extends Controller
         $validated = $request->validate([
             'feature_id' => ['required_without:feature_slug', 'integer', 'exists:features,id'],
             'feature_slug' => ['required_without:feature_id', 'string', 'exists:features,slug'],
-            'permissions' => ['sometimes', 'array', 'min:1'],
-            'permissions.*' => ['string', Rule::in(array_keys(AdminFeatureAccess::PERMISSION_COLUMNS))],
+            'permissions' => ['sometimes', 'array'],
+            'permissions.*' => ['string', Rule::in(array_keys(AdminFeatureAccess::ACTION_PERMISSION_COLUMNS))],
         ]);
 
         $feature = $this->resolveFeature($validated['feature_id'] ?? null, $validated['feature_slug'] ?? null);
@@ -128,7 +128,7 @@ class AdminAccessController extends Controller
         $access = AdminFeatureAccess::create([
             'user_id' => $adminUser->id,
             'feature_id' => $feature->id,
-            ...$this->permissionData($validated['permissions'] ?? ['view']),
+            ...$this->permissionData($validated['permissions'] ?? []),
             'granted_by' => $request->user()->id,
         ]);
 
@@ -155,8 +155,8 @@ class AdminAccessController extends Controller
         }
 
         $validated = $request->validate([
-            'permissions' => ['required', 'array', 'min:1'],
-            'permissions.*' => ['string', Rule::in(array_keys(AdminFeatureAccess::PERMISSION_COLUMNS))],
+            'permissions' => ['sometimes', 'array'],
+            'permissions.*' => ['string', Rule::in(array_keys(AdminFeatureAccess::ACTION_PERMISSION_COLUMNS))],
         ]);
 
         $featureModel = $this->resolveFeatureIdentifier($feature);
@@ -176,7 +176,7 @@ class AdminAccessController extends Controller
             ], 404);
         }
 
-        $access->update($this->permissionData($validated['permissions']));
+        $access->update($this->permissionData($validated['permissions'] ?? []));
 
         return response()->json([
             'success' => true,
@@ -254,12 +254,8 @@ class AdminAccessController extends Controller
     {
         $permissions = array_values(array_unique($permissions));
 
-        if (array_diff($permissions, ['view']) && !in_array('view', $permissions, true)) {
-            $permissions[] = 'view';
-        }
-
         return [
-            'can_view' => in_array('view', $permissions, true),
+            'can_view' => true,
             'can_create' => in_array('create', $permissions, true),
             'can_update' => in_array('update', $permissions, true),
             'can_delete' => in_array('delete', $permissions, true),
@@ -298,7 +294,6 @@ class AdminAccessController extends Controller
         return [
             'feature' => $this->formatFeature($access->feature),
             'permissions' => $access->permissionList(),
-            'can_view' => $access->can_view,
             'can_create' => $access->can_create,
             'can_update' => $access->can_update,
             'can_delete' => $access->can_delete,
@@ -311,8 +306,7 @@ class AdminAccessController extends Controller
         if ($admin->role === 'owner') {
             return [
                 'feature' => $this->formatFeature($feature),
-                'permissions' => array_keys(AdminFeatureAccess::PERMISSION_COLUMNS),
-                'can_view' => true,
+                'permissions' => array_keys(AdminFeatureAccess::ACTION_PERMISSION_COLUMNS),
                 'can_create' => true,
                 'can_update' => true,
                 'can_delete' => true,
@@ -324,7 +318,6 @@ class AdminAccessController extends Controller
             return [
                 'feature' => $this->formatFeature($feature),
                 'permissions' => [],
-                'can_view' => false,
                 'can_create' => false,
                 'can_update' => false,
                 'can_delete' => false,

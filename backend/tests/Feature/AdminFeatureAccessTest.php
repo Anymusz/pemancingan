@@ -23,15 +23,18 @@ class AdminFeatureAccessTest extends TestCase
 
         Sanctum::actingAs($owner);
 
-        $this->postJson("/api/owner/admin-access/admins/{$employee->id}/accesses", [
+        $grantResponse = $this->postJson("/api/owner/admin-access/admins/{$employee->id}/accesses", [
             'feature_id' => $feature->id,
-            'permissions' => ['view', 'update'],
+            'permissions' => ['update'],
         ])
             ->assertCreated()
             ->assertJsonPath('success', true)
             ->assertJsonPath('data.feature.slug', 'employee.menu_availability')
-            ->assertJsonPath('data.can_view', true)
+            ->assertJsonPath('data.permissions', ['update'])
             ->assertJsonPath('data.can_update', true);
+
+        $this->assertArrayNotHasKey('can_view', $grantResponse->json('data'));
+        $this->assertNotContains('view', $grantResponse->json('data.permissions'));
 
         $this->assertDatabaseHas('admin_feature_accesses', [
             'user_id' => $employee->id,
@@ -43,19 +46,19 @@ class AdminFeatureAccessTest extends TestCase
             'granted_by' => $owner->id,
         ]);
 
-        $this->putJson("/api/owner/admin-access/admins/{$employee->id}/accesses/{$feature->slug}", [
-            'permissions' => ['create'],
-        ])
+        $updateResponse = $this->putJson("/api/owner/admin-access/admins/{$employee->id}/accesses/{$feature->slug}", [])
             ->assertOk()
-            ->assertJsonPath('data.can_view', true)
-            ->assertJsonPath('data.can_create', true)
+            ->assertJsonPath('data.permissions', [])
+            ->assertJsonPath('data.can_create', false)
             ->assertJsonPath('data.can_update', false);
+
+        $this->assertArrayNotHasKey('can_view', $updateResponse->json('data'));
 
         $this->assertDatabaseHas('admin_feature_accesses', [
             'user_id' => $employee->id,
             'feature_id' => $feature->id,
             'can_view' => 1,
-            'can_create' => 1,
+            'can_create' => 0,
             'can_update' => 0,
             'can_delete' => 0,
         ]);
@@ -80,7 +83,7 @@ class AdminFeatureAccessTest extends TestCase
 
         $this->postJson("/api/owner/admin-access/admins/{$member->id}/accesses", [
             'feature_id' => $feature->id,
-            'permissions' => ['view'],
+            'permissions' => ['create'],
         ])
             ->assertNotFound()
             ->assertJsonPath('message', 'Admin tidak ditemukan');
@@ -124,11 +127,14 @@ class AdminFeatureAccessTest extends TestCase
 
         Sanctum::actingAs($employee);
 
-        $this->getJson('/api/me')
+        $response = $this->getJson('/api/me')
             ->assertOk()
             ->assertJsonPath('data.feature_accesses.0.slug', 'employee.checkout')
-            ->assertJsonPath('data.feature_accesses.0.can_view', true)
+            ->assertJsonPath('data.feature_accesses.0.permissions', ['create'])
             ->assertJsonPath('data.feature_accesses.0.can_create', true);
+
+        $this->assertArrayNotHasKey('can_view', $response->json('data.feature_accesses.0'));
+        $this->assertNotContains('view', $response->json('data.feature_accesses.0.permissions'));
     }
 
     private function createUser(string $role): User
