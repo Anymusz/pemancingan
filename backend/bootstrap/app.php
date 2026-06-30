@@ -20,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Register middleware alias
         $middleware->alias([
             'role' => \App\Http\Middleware\CheckRole::class,
+            'feature.access' => \App\Http\Middleware\CheckFeatureAccess::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

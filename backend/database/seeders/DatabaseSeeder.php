@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            FeatureSeeder::class,
+            AdminFeatureAccessSeeder::class,
             GuestConfigSeeder::class,
             MemberTierSeeder::class,
             FishTypeSeeder::class,

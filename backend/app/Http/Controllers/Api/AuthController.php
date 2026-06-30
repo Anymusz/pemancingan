@@ -163,6 +163,7 @@ class AuthController extends Controller
                 'role' => $user->role,
                 'status' => $user->status,
                 'created_at' => $user->created_at,
+                'feature_accesses' => $user->featureAccessPayload(),
             ],
             'token' => $token
         ]
@@ -206,6 +207,7 @@ public function logout(Request $request)
                 'status' => $user->status,
                 'created_at' => $user->created_at,
                 'updated_at' => $user->updated_at,
+                'feature_accesses' => $user->featureAccessPayload(),
             ]
         ], 200);
     }
