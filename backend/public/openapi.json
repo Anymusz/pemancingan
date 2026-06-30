@@ -1,0 +1,6454 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Sistem Informasi Pemancingan Sutoyo API",
+    "version": "1.0.0",
+    "description": "Dokumentasi Swagger/OpenAPI untuk seluruh route API Laravel. Semua parameter dan request body diberi contoh agar Swagger Try it out langsung terisi nilai contoh."
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Same-origin backend"
+    },
+    {
+      "url": "http://127.0.0.1:8000",
+      "description": "Laravel local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Public"
+    },
+    {
+      "name": "Member"
+    },
+    {
+      "name": "Notifications"
+    },
+    {
+      "name": "Owner"
+    },
+    {
+      "name": "Owner - Admin Access"
+    },
+    {
+      "name": "Owner - Reports"
+    },
+    {
+      "name": "Owner - Menus"
+    },
+    {
+      "name": "Owner - Fish Types"
+    },
+    {
+      "name": "Owner - Fish Stocks"
+    },
+    {
+      "name": "Owner - Events"
+    },
+    {
+      "name": "Owner - Rental Items"
+    },
+    {
+      "name": "Owner - Vouchers"
+    },
+    {
+      "name": "Employee"
+    }
+  ],
+  "paths": {
+    "/api/employee/check-in": {
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Check-in member atau tamu",
+        "operationId": "post_api_employee_check_in",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.checkin,create`.\nButuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "member",
+                    "enum": [
+                      "member",
+                      "guest"
+                    ]
+                  },
+                  "member_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "guest_name": {
+                    "type": "string",
+                    "example": "Tamu Harian"
+                  },
+                  "notes": {
+                    "type": "string",
+                    "example": "Datang pagi."
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employee/check-out/{arrival_id}": {
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Check-out kedatangan",
+        "operationId": "post_api_employee_check_out_arrival_id",
+        "parameters": [
+          {
+            "name": "arrival_id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh arrival_id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.arrivals,update`.\nButuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "notes": {
+                    "type": "string",
+                    "example": "Selesai memancing."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employee/checkout": {
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Checkout transaksi",
+        "operationId": "post_api_employee_checkout",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.checkout,create`.\nButuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "arrival_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "fish_items[0][item_id]": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "fish_items[0][quantity]": {
+                    "type": "number",
+                    "example": 1.5,
+                    "minimum": 0.01
+                  },
+                  "penalty_items[0][name]": {
+                    "type": "string",
+                    "example": "Denda alat rusak"
+                  },
+                  "penalty_items[0][quantity]": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "penalty_items[0][unit_price]": {
+                    "type": "number",
+                    "example": 10000
+                  },
+                  "payment_method": {
+                    "type": "string",
+                    "example": "cash",
+                    "enum": [
+                      "cash",
+                      "transfer",
+                      "qris"
+                    ]
+                  },
+                  "tips": {
+                    "type": "number",
+                    "example": 5000
+                  },
+                  "notes": {
+                    "type": "string",
+                    "example": "Pembayaran lunas."
+                  },
+                  "payment_proof": {
+                    "type": "string",
+                    "example": null,
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "arrival_id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employee/fish-stocks": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "GET employee fish stocks",
+        "operationId": "get_api_employee_fish_stocks",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.fish_stocks,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/guest-config": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "GET employee guest config",
+        "operationId": "get_api_employee_guest_config",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.guest_config,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/member-voucher/{memberId}": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "GET employee member voucher {memberId}",
+        "operationId": "get_api_employee_member_voucher_memberId",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "description": "Contoh memberId siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.checkout,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/menus": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "GET employee menus",
+        "operationId": "get_api_employee_menus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.menu_availability,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/menus/{id}/availability": {
+      "patch": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "PATCH employee menus {id} availability",
+        "operationId": "patch_api_employee_menus_id_availability",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.menu_availability,update`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/pending-orders": {
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Tambah pending order",
+        "operationId": "post_api_employee_pending_orders",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.add_order,create`.\nButuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "arrival_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "item_type": {
+                          "type": "string",
+                          "example": "menu",
+                          "enum": [
+                            "menu",
+                            "rental"
+                          ]
+                        },
+                        "item_id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "example": 2,
+                          "minimum": 1
+                        }
+                      },
+                      "required": [
+                        "item_type",
+                        "quantity"
+                      ]
+                    },
+                    "example": [
+                      {
+                        "item_type": "menu",
+                        "item_id": 1,
+                        "quantity": 2
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "arrival_id",
+                  "items"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "GET employee pending orders",
+        "operationId": "get_api_employee_pending_orders",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.pending_orders,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/pending-orders/{arrival_id}": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "GET employee pending orders {arrival_id}",
+        "operationId": "get_api_employee_pending_orders_arrival_id",
+        "parameters": [
+          {
+            "name": "arrival_id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh arrival_id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.pending_orders,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/pending-orders/{id}/status": {
+      "patch": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Update status produksi pending order",
+        "operationId": "patch_api_employee_pending_orders_id_status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.pending_orders,update`.\nButuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "processing",
+                    "enum": [
+                      "pending",
+                      "processing",
+                      "done",
+                      "cancelled"
+                    ]
+                  },
+                  "cancellation_reason": {
+                    "type": "string",
+                    "example": "Customer batal pesan."
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employee/qris-config": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "GET employee qris config",
+        "operationId": "get_api_employee_qris_config",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.qris_config,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/rental-items": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "GET employee rental items",
+        "operationId": "get_api_employee_rental_items",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.rental_items,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/rental-items/{id}/toggle-active": {
+      "patch": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "PATCH employee rental items {id} toggle active",
+        "operationId": "patch_api_employee_rental_items_id_toggle_active",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.rental_items,update`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/resolve-qr": {
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Resolve QR member",
+        "operationId": "post_api_employee_resolve_qr",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.checkin,view`.\nButuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "qr_hash": {
+                    "type": "string",
+                    "example": "qr_hash_contoh"
+                  },
+                  "member_id": {
+                    "type": "string",
+                    "example": "MBR-0001"
+                  }
+                },
+                "required": [
+                  "qr_hash",
+                  "member_id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/employee/search-arrival": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Cari kedatangan aktif",
+        "operationId": "get_api_employee_search_arrival",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Budi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.checkout,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/search-member": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Cari member aktif",
+        "operationId": "get_api_employee_search_member",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Budi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.checkin,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/today-arrivals": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "GET employee today arrivals",
+        "operationId": "get_api_employee_today_arrivals",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.arrivals,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/transactions": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Riwayat transaksi employee",
+        "operationId": "get_api_employee_transactions",
+        "parameters": [
+          {
+            "name": "date_from",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-01"
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-30"
+          },
+          {
+            "name": "payment_method",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cash",
+                "transfer",
+                "qris"
+              ]
+            },
+            "example": "cash"
+          },
+          {
+            "name": "transaction_code",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            },
+            "example": "TRX-20260630"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.transaction_history,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/employee/transactions/{id}": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "GET employee transactions {id}",
+        "operationId": "get_api_employee_transactions_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Feature access: `employee.transaction_history,view`.\nButuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/events": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "List event/info publik",
+        "operationId": "get_api_events",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Halaman data.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "description": "Jumlah data per halaman.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 6
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "description": "Filter kategori.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "event",
+                "info"
+              ]
+            },
+            "example": "event"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/events/{id}": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "GET events {id}",
+        "operationId": "get_api_events_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/fish-types": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "GET fish types",
+        "operationId": "get_api_fish_types",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/forgot-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Kirim link reset password",
+        "operationId": "post_api_forgot_password",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "member@example.com",
+                    "format": "email"
+                  }
+                },
+                "required": [
+                  "email"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/leaderboard": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Leaderboard publik",
+        "operationId": "get_api_leaderboard",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 50
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login menggunakan email atau nomor telepon",
+        "operationId": "post_api_login",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "login": {
+                    "type": "string",
+                    "example": "owner@pemancingan.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "password",
+                    "format": "password"
+                  }
+                },
+                "required": [
+                  "login",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "POST logout",
+        "operationId": "post_api_logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/me": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "GET me",
+        "operationId": "get_api_me",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/member-tiers": {
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "summary": "GET member tiers",
+        "operationId": "get_api_member_tiers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/member/orders": {
+      "post": {
+        "tags": [
+          "Member"
+        ],
+        "summary": "Member membuat pesanan menu",
+        "operationId": "post_api_member_orders",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "menu_id": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "example": 2,
+                          "minimum": 1
+                        }
+                      },
+                      "required": [
+                        "menu_id",
+                        "quantity"
+                      ]
+                    },
+                    "example": [
+                      {
+                        "menu_id": 1,
+                        "quantity": 2
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "items"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "summary": "GET member orders",
+        "operationId": "get_api_member_orders",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/member/profile": {
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "summary": "GET member profile",
+        "operationId": "get_api_member_profile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/member/transactions": {
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "summary": "Riwayat transaksi member login",
+        "operationId": "get_api_member_transactions",
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-01"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-30"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/member/vouchers": {
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "summary": "GET member vouchers",
+        "operationId": "get_api_member_vouchers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/menus": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "GET menus",
+        "operationId": "get_api_menus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/notifications": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "List notifikasi user login",
+        "operationId": "get_api_notifications",
+        "parameters": [
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 15
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/notifications/read-all": {
+      "patch": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "PATCH notifications read all",
+        "operationId": "patch_api_notifications_read_all",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/notifications/unread-count": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "GET notifications unread count",
+        "operationId": "get_api_notifications_unread_count",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/notifications/{id}/read": {
+      "patch": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "PATCH notifications {id} read",
+        "operationId": "patch_api_notifications_id_read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/admin-access/admins": {
+      "get": {
+        "tags": [
+          "Owner - Admin Access"
+        ],
+        "summary": "GET owner admin access admins",
+        "operationId": "get_api_owner_admin_access_admins",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/admin-access/admins/{admin}/accesses": {
+      "get": {
+        "tags": [
+          "Owner - Admin Access"
+        ],
+        "summary": "GET owner admin access admins {admin} accesses",
+        "operationId": "get_api_owner_admin_access_admins_admin_accesses",
+        "parameters": [
+          {
+            "name": "admin",
+            "in": "path",
+            "required": true,
+            "description": "Contoh admin siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      },
+      "post": {
+        "tags": [
+          "Owner - Admin Access"
+        ],
+        "summary": "Tambah akses fitur ke admin/pegawai",
+        "operationId": "post_api_owner_admin_access_admins_admin_accesses",
+        "parameters": [
+          {
+            "name": "admin",
+            "in": "path",
+            "required": true,
+            "description": "Contoh admin siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "feature_slug": {
+                    "type": "string",
+                    "example": "employee.menu_availability"
+                  },
+                  "permissions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "view",
+                      "enum": [
+                        "view",
+                        "create",
+                        "update",
+                        "delete"
+                      ]
+                    },
+                    "example": [
+                      "view",
+                      "update"
+                    ]
+                  }
+                },
+                "required": [
+                  "feature_slug"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/admin-access/admins/{admin}/accesses/{feature}": {
+      "put": {
+        "tags": [
+          "Owner - Admin Access"
+        ],
+        "summary": "Edit permission akses fitur admin/pegawai",
+        "operationId": "put_api_owner_admin_access_admins_admin_accesses_feature",
+        "parameters": [
+          {
+            "name": "admin",
+            "in": "path",
+            "required": true,
+            "description": "Contoh admin siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          },
+          {
+            "name": "feature",
+            "in": "path",
+            "required": true,
+            "description": "Contoh feature siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "employee.menu_availability"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "permissions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "view",
+                      "enum": [
+                        "view",
+                        "create",
+                        "update",
+                        "delete"
+                      ]
+                    },
+                    "example": [
+                      "view",
+                      "create",
+                      "update"
+                    ]
+                  }
+                },
+                "required": [
+                  "permissions"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Owner - Admin Access"
+        ],
+        "summary": "DELETE owner admin access admins {admin} accesses {feature}",
+        "operationId": "delete_api_owner_admin_access_admins_admin_accesses_feature",
+        "parameters": [
+          {
+            "name": "admin",
+            "in": "path",
+            "required": true,
+            "description": "Contoh admin siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          },
+          {
+            "name": "feature",
+            "in": "path",
+            "required": true,
+            "description": "Contoh feature siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "employee.menu_availability"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/admin-access/features": {
+      "get": {
+        "tags": [
+          "Owner - Admin Access"
+        ],
+        "summary": "List fitur yang bisa diatur aksesnya",
+        "operationId": "get_api_owner_admin_access_features",
+        "parameters": [
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/approve-member": {
+      "post": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "Owner approve member pending",
+        "operationId": "post_api_owner_approve_member",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "example": 3
+                  }
+                },
+                "required": [
+                  "user_id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/deactivate-member": {
+      "delete": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "Owner nonaktifkan member aktif",
+        "operationId": "delete_api_owner_deactivate_member",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "example": 3
+                  },
+                  "deactivated_reason": {
+                    "type": "string",
+                    "example": "Permintaan deaktivasi dari member."
+                  }
+                },
+                "required": [
+                  "user_id",
+                  "deactivated_reason"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/events": {
+      "get": {
+        "tags": [
+          "Owner - Events"
+        ],
+        "summary": "List event owner",
+        "operationId": "get_api_owner_events",
+        "parameters": [
+          {
+            "name": "include_deleted",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": false
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "published"
+              ]
+            },
+            "example": "published"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "event",
+                "info"
+              ]
+            },
+            "example": "event"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            },
+            "example": "lomba"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      },
+      "post": {
+        "tags": [
+          "Owner - Events"
+        ],
+        "summary": "Tambah event/info",
+        "operationId": "post_api_owner_events",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Lomba Mancing Mingguan"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Lomba mancing untuk semua member."
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "event",
+                    "enum": [
+                      "event",
+                      "info"
+                    ]
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "example": "2026-07-05",
+                    "format": "date"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "example": "2026-07-05",
+                    "format": "date"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "draft",
+                    "enum": [
+                      "draft",
+                      "published"
+                    ]
+                  },
+                  "image": {
+                    "type": "string",
+                    "example": null,
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "title",
+                  "description",
+                  "category"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/events/{id}": {
+      "post": {
+        "tags": [
+          "Owner - Events"
+        ],
+        "summary": "Update event/info",
+        "operationId": "post_api_owner_events_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Lomba Mancing Mingguan Update"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Deskripsi event terbaru."
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "event",
+                    "enum": [
+                      "event",
+                      "info"
+                    ]
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "example": "2026-07-05",
+                    "format": "date"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "example": "2026-07-05",
+                    "format": "date"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "published",
+                    "enum": [
+                      "draft",
+                      "published"
+                    ]
+                  },
+                  "remove_image": {
+                    "type": "string",
+                    "example": "0",
+                    "enum": [
+                      "0",
+                      "1"
+                    ]
+                  },
+                  "image": {
+                    "type": "string",
+                    "example": null,
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "title",
+                  "description",
+                  "category"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Owner - Events"
+        ],
+        "summary": "DELETE owner events {id}",
+        "operationId": "delete_api_owner_events_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/events/{id}/publish": {
+      "patch": {
+        "tags": [
+          "Owner - Events"
+        ],
+        "summary": "Ubah status publish event",
+        "operationId": "patch_api_owner_events_id_publish",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "published",
+                    "enum": [
+                      "draft",
+                      "published"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/fish-stocks": {
+      "get": {
+        "tags": [
+          "Owner - Fish Stocks"
+        ],
+        "summary": "GET owner fish stocks",
+        "operationId": "get_api_owner_fish_stocks",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/fish-stocks/history": {
+      "get": {
+        "tags": [
+          "Owner - Fish Stocks"
+        ],
+        "summary": "GET owner fish stocks history",
+        "operationId": "get_api_owner_fish_stocks_history",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/fish-stocks/{fishTypeId}/history": {
+      "get": {
+        "tags": [
+          "Owner - Fish Stocks"
+        ],
+        "summary": "GET owner fish stocks {fishTypeId} history",
+        "operationId": "get_api_owner_fish_stocks_fishTypeId_history",
+        "parameters": [
+          {
+            "name": "fishTypeId",
+            "in": "path",
+            "required": true,
+            "description": "Contoh fishTypeId siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/fish-stocks/{fishTypeId}/restock": {
+      "post": {
+        "tags": [
+          "Owner - Fish Stocks"
+        ],
+        "summary": "Restock ikan",
+        "operationId": "post_api_owner_fish_stocks_fishTypeId_restock",
+        "parameters": [
+          {
+            "name": "fishTypeId",
+            "in": "path",
+            "required": true,
+            "description": "Contoh fishTypeId siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "quantity_kg": {
+                    "type": "number",
+                    "example": 20.5,
+                    "minimum": 0.1
+                  },
+                  "notes": {
+                    "type": "string",
+                    "example": "Restock pagi."
+                  }
+                },
+                "required": [
+                  "quantity_kg"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/fish-stocks/{fishTypeId}/threshold": {
+      "patch": {
+        "tags": [
+          "Owner - Fish Stocks"
+        ],
+        "summary": "Update threshold stok ikan",
+        "operationId": "patch_api_owner_fish_stocks_fishTypeId_threshold",
+        "parameters": [
+          {
+            "name": "fishTypeId",
+            "in": "path",
+            "required": true,
+            "description": "Contoh fishTypeId siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "alert_threshold_kg": {
+                    "type": "number",
+                    "example": 5,
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "alert_threshold_kg"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/fish-types": {
+      "get": {
+        "tags": [
+          "Owner - Fish Types"
+        ],
+        "summary": "List jenis ikan owner",
+        "operationId": "get_api_owner_fish_types",
+        "parameters": [
+          {
+            "name": "include_deleted",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": false
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            },
+            "example": "nila"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      },
+      "post": {
+        "tags": [
+          "Owner - Fish Types"
+        ],
+        "summary": "Tambah jenis ikan",
+        "operationId": "post_api_owner_fish_types",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Nila"
+                  },
+                  "price_per_kg": {
+                    "type": "number",
+                    "example": 30000,
+                    "minimum": 1000
+                  }
+                },
+                "required": [
+                  "name",
+                  "price_per_kg"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/fish-types/{id}": {
+      "put": {
+        "tags": [
+          "Owner - Fish Types"
+        ],
+        "summary": "Update jenis ikan",
+        "operationId": "put_api_owner_fish_types_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Nila Super"
+                  },
+                  "price_per_kg": {
+                    "type": "number",
+                    "example": 35000,
+                    "minimum": 1000
+                  }
+                },
+                "required": [
+                  "name",
+                  "price_per_kg"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Owner - Fish Types"
+        ],
+        "summary": "DELETE owner fish types {id}",
+        "operationId": "delete_api_owner_fish_types_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/fish-types/{id}/toggle-active": {
+      "patch": {
+        "tags": [
+          "Owner - Fish Types"
+        ],
+        "summary": "PATCH owner fish types {id} toggle active",
+        "operationId": "patch_api_owner_fish_types_id_toggle_active",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/guest-config": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "GET owner guest config",
+        "operationId": "get_api_owner_guest_config",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      },
+      "put": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "Update deposit tamu",
+        "operationId": "put_api_owner_guest_config",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deposit_amount": {
+                    "type": "number",
+                    "example": 50000,
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "deposit_amount"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/leaderboard": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "Leaderboard versi owner",
+        "operationId": "get_api_owner_leaderboard",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 100
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/members/active": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "GET owner members active",
+        "operationId": "get_api_owner_members_active",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/members/counts": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "GET owner members counts",
+        "operationId": "get_api_owner_members_counts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/members/deactivated": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "GET owner members deactivated",
+        "operationId": "get_api_owner_members_deactivated",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/menus": {
+      "get": {
+        "tags": [
+          "Owner - Menus"
+        ],
+        "summary": "List menu owner",
+        "operationId": "get_api_owner_menus",
+        "parameters": [
+          {
+            "name": "include_deleted",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": false
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "food",
+                "beverage"
+              ]
+            },
+            "example": "food"
+          },
+          {
+            "name": "availability",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "available",
+                "unavailable"
+              ]
+            },
+            "example": "available"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Cari nama menu.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "nasi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      },
+      "post": {
+        "tags": [
+          "Owner - Menus"
+        ],
+        "summary": "Tambah menu",
+        "operationId": "post_api_owner_menus",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Nasi Goreng"
+                  },
+                  "price": {
+                    "type": "number",
+                    "example": 18000,
+                    "minimum": 0
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "food",
+                    "enum": [
+                      "food",
+                      "beverage"
+                    ]
+                  },
+                  "availability": {
+                    "type": "string",
+                    "example": "available",
+                    "enum": [
+                      "available",
+                      "unavailable"
+                    ]
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Menu nasi goreng spesial."
+                  },
+                  "image": {
+                    "type": "string",
+                    "example": null,
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "name",
+                  "price",
+                  "category"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/menus/{id}": {
+      "put": {
+        "tags": [
+          "Owner - Menus"
+        ],
+        "summary": "Update menu",
+        "operationId": "put_api_owner_menus_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Nasi Goreng Spesial"
+                  },
+                  "price": {
+                    "type": "number",
+                    "example": 20000,
+                    "minimum": 0
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "food",
+                    "enum": [
+                      "food",
+                      "beverage"
+                    ]
+                  },
+                  "availability": {
+                    "type": "string",
+                    "example": "available",
+                    "enum": [
+                      "available",
+                      "unavailable"
+                    ]
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Menu nasi goreng spesial update."
+                  },
+                  "remove_image": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "image": {
+                    "type": "string",
+                    "example": null,
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "name",
+                  "price",
+                  "category"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Owner - Menus"
+        ],
+        "summary": "DELETE owner menus {id}",
+        "operationId": "delete_api_owner_menus_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/menus/{id}/availability": {
+      "patch": {
+        "tags": [
+          "Owner - Menus"
+        ],
+        "summary": "Update status ketersediaan menu",
+        "operationId": "patch_api_owner_menus_id_availability",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "availability": {
+                    "type": "string",
+                    "example": "available",
+                    "enum": [
+                      "available",
+                      "unavailable"
+                    ]
+                  }
+                },
+                "required": [
+                  "availability"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/menus/{id}/toggle-special": {
+      "patch": {
+        "tags": [
+          "Owner - Menus"
+        ],
+        "summary": "PATCH owner menus {id} toggle special",
+        "operationId": "patch_api_owner_menus_id_toggle_special",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/pending-members": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "GET owner pending members",
+        "operationId": "get_api_owner_pending_members",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/qris-config": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "GET owner qris config",
+        "operationId": "get_api_owner_qris_config",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      },
+      "put": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "Update gambar QRIS",
+        "operationId": "put_api_owner_qris_config",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "example": null,
+                    "format": "binary",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/reactivate-rejected": {
+      "post": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "Owner reaktivasi member deactivated",
+        "operationId": "post_api_owner_reactivate_rejected",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "example": 3
+                  }
+                },
+                "required": [
+                  "user_id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/reject-member": {
+      "post": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "Owner reject member pending",
+        "operationId": "post_api_owner_reject_member",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "example": 3
+                  },
+                  "rejection_reason": {
+                    "type": "string",
+                    "example": "Data pendaftaran belum lengkap."
+                  }
+                },
+                "required": [
+                  "user_id",
+                  "rejection_reason"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/rental-items": {
+      "get": {
+        "tags": [
+          "Owner - Rental Items"
+        ],
+        "summary": "List alat rental owner",
+        "operationId": "get_api_owner_rental_items",
+        "parameters": [
+          {
+            "name": "include_deleted",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": false
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string"
+            },
+            "example": "joran"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      },
+      "post": {
+        "tags": [
+          "Owner - Rental Items"
+        ],
+        "summary": "Tambah alat rental",
+        "operationId": "post_api_owner_rental_items",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Joran Premium"
+                  },
+                  "price_per_unit": {
+                    "type": "number",
+                    "example": 15000,
+                    "minimum": 1000
+                  },
+                  "unit_label": {
+                    "type": "string",
+                    "example": "jam"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Joran untuk disewa."
+                  },
+                  "is_active": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "image": {
+                    "type": "string",
+                    "example": null,
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "name",
+                  "price_per_unit",
+                  "unit_label"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/rental-items/{id}": {
+      "put": {
+        "tags": [
+          "Owner - Rental Items"
+        ],
+        "summary": "Update alat rental",
+        "operationId": "put_api_owner_rental_items_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Joran Premium Update"
+                  },
+                  "price_per_unit": {
+                    "type": "number",
+                    "example": 18000,
+                    "minimum": 1000
+                  },
+                  "unit_label": {
+                    "type": "string",
+                    "example": "jam"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Joran rental update."
+                  },
+                  "is_active": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "remove_image": {
+                    "type": "boolean",
+                    "example": false
+                  },
+                  "image": {
+                    "type": "string",
+                    "example": null,
+                    "format": "binary",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "name",
+                  "price_per_unit",
+                  "unit_label"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Owner - Rental Items"
+        ],
+        "summary": "DELETE owner rental items {id}",
+        "operationId": "delete_api_owner_rental_items_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/rental-items/{id}/toggle-active": {
+      "patch": {
+        "tags": [
+          "Owner - Rental Items"
+        ],
+        "summary": "PATCH owner rental items {id} toggle active",
+        "operationId": "patch_api_owner_rental_items_id_toggle_active",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/reports/breakdown": {
+      "get": {
+        "tags": [
+          "Owner - Reports"
+        ],
+        "summary": "Breakdown laporan",
+        "operationId": "get_api_owner_reports_breakdown",
+        "parameters": [
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "description": "Periode laporan.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "daily",
+                "weekly",
+                "monthly",
+                "custom"
+              ]
+            },
+            "example": "daily"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Wajib jika period=custom.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-01"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Wajib jika period=custom.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-30"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/reports/daily-trend": {
+      "get": {
+        "tags": [
+          "Owner - Reports"
+        ],
+        "summary": "GET owner reports daily trend",
+        "operationId": "get_api_owner_reports_daily_trend",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/reports/export": {
+      "get": {
+        "tags": [
+          "Owner - Reports"
+        ],
+        "summary": "Export laporan Excel",
+        "operationId": "get_api_owner_reports_export",
+        "parameters": [
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "description": "Periode laporan.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "daily",
+                "weekly",
+                "monthly",
+                "custom"
+              ]
+            },
+            "example": "daily"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Wajib jika period=custom.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-01"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Wajib jika period=custom.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-30"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "File berhasil dibuat",
+            "content": {
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/reports/stock-summary": {
+      "get": {
+        "tags": [
+          "Owner - Reports"
+        ],
+        "summary": "Ringkasan stok laporan",
+        "operationId": "get_api_owner_reports_stock_summary",
+        "parameters": [
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "description": "Periode laporan.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "daily",
+                "weekly",
+                "monthly",
+                "custom"
+              ]
+            },
+            "example": "daily"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Wajib jika period=custom.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-01"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Wajib jika period=custom.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-30"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/reports/summary": {
+      "get": {
+        "tags": [
+          "Owner - Reports"
+        ],
+        "summary": "Ringkasan laporan",
+        "operationId": "get_api_owner_reports_summary",
+        "parameters": [
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "description": "Periode laporan.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "daily",
+                "weekly",
+                "monthly",
+                "custom"
+              ]
+            },
+            "example": "daily"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Wajib jika period=custom.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-01"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Wajib jika period=custom.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-30"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/reports/transactions": {
+      "get": {
+        "tags": [
+          "Owner - Reports"
+        ],
+        "summary": "Detail transaksi laporan",
+        "operationId": "get_api_owner_reports_transactions",
+        "parameters": [
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "description": "Periode laporan.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "daily",
+                "weekly",
+                "monthly",
+                "custom"
+              ]
+            },
+            "example": "daily"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "description": "Wajib jika period=custom.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-01"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "description": "Wajib jika period=custom.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "example": "2026-06-30"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/validation-history": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "summary": "GET owner validation history",
+        "operationId": "get_api_owner_validation_history",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/voucher-configs": {
+      "get": {
+        "tags": [
+          "Owner - Vouchers"
+        ],
+        "summary": "GET owner voucher configs",
+        "operationId": "get_api_owner_voucher_configs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      },
+      "put": {
+        "tags": [
+          "Owner - Vouchers"
+        ],
+        "summary": "Update konfigurasi voucher leaderboard",
+        "operationId": "put_api_owner_voucher_configs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "configs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "rank": {
+                          "type": "integer",
+                          "example": 1,
+                          "enum": [
+                            1,
+                            2,
+                            3
+                          ]
+                        },
+                        "amount": {
+                          "type": "number",
+                          "example": 50000,
+                          "minimum": 1000
+                        }
+                      },
+                      "required": [
+                        "rank",
+                        "amount"
+                      ]
+                    },
+                    "example": [
+                      {
+                        "rank": 1,
+                        "amount": 50000
+                      },
+                      {
+                        "rank": 2,
+                        "amount": 30000
+                      },
+                      {
+                        "rank": 3,
+                        "amount": 20000
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "configs"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/vouchers": {
+      "get": {
+        "tags": [
+          "Owner - Vouchers"
+        ],
+        "summary": "List voucher owner",
+        "operationId": "get_api_owner_vouchers",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "unused",
+                "used",
+                "expired"
+              ]
+            },
+            "example": "unused"
+          },
+          {
+            "name": "period_year",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2026
+          },
+          {
+            "name": "period_month",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 6
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Registrasi member baru",
+        "operationId": "post_api_register",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Budi Santoso"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "081234567899"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "budi@example.com",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "password123",
+                    "format": "password"
+                  },
+                  "password_confirmation": {
+                    "type": "string",
+                    "example": "password123",
+                    "format": "password"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Jl. Pemancingan No. 10"
+                  }
+                },
+                "required": [
+                  "name",
+                  "phone",
+                  "email",
+                  "password",
+                  "password_confirmation",
+                  "address"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reset-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Reset password menggunakan token",
+        "operationId": "post_api_reset_password",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "example": "reset-token-contoh"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "member@example.com",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "password123",
+                    "format": "password"
+                  },
+                  "password_confirmation": {
+                    "type": "string",
+                    "example": "password123",
+                    "format": "password"
+                  }
+                },
+                "required": [
+                  "token",
+                  "email",
+                  "password",
+                  "password_confirmation"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/special-menus": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "GET special menus",
+        "operationId": "get_api_special_menus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/api/user/password": {
+      "put": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Update password user login",
+        "operationId": "put_api_user_password",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "current_password": {
+                    "type": "string",
+                    "example": "password",
+                    "format": "password"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "password123",
+                    "format": "password"
+                  },
+                  "password_confirmation": {
+                    "type": "string",
+                    "example": "password123",
+                    "format": "password"
+                  }
+                },
+                "required": [
+                  "current_password",
+                  "password",
+                  "password_confirmation"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/profile": {
+      "put": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Update profil user login",
+        "operationId": "put_api_user_profile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Sutoyo Owner"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "owner@pemancingan.com",
+                    "format": "email"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "081234567890"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Jl. Pemancingan Indah No. 1"
+                  }
+                },
+                "required": [
+                  "name",
+                  "email",
+                  "phone",
+                  "address"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "Sanctum token",
+        "description": "Masukkan token dari POST /api/login. Contoh: Bearer 1|sanctum-token"
+      }
+    },
+    "schemas": {
+      "ApiSuccess": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "example": "Operasi berhasil"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "example": {}
+          }
+        }
+      },
+      "ApiError": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Terjadi kesalahan"
+          }
+        },
+        "required": [
+          "success",
+          "message"
+        ]
+      },
+      "ValidationError": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Validation error"
+          },
+          "errors": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "Field wajib diisi."
+                },
+                "example": [
+                  "Field wajib diisi."
+                ]
+              }
+            },
+            "example": {
+              "field": [
+                "Field wajib diisi."
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "message"
+        ]
+      }
+    },
+    "responses": {
+      "Success": {
+        "description": "Response sukses",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiSuccess"
+            },
+            "example": {
+              "success": true,
+              "message": "Operasi berhasil",
+              "data": {}
+            }
+          }
+        }
+      },
+      "BadRequest": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthenticated",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            },
+            "example": {
+              "success": false,
+              "message": "Unauthenticated"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            },
+            "example": {
+              "success": false,
+              "message": "Anda tidak memiliki akses ke fitur ini"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Data tidak ditemukan",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "Conflict",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "ValidationError": {
+        "description": "Validasi gagal",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "example": {
+              "success": false,
+              "message": "Validation error",
+              "errors": {
+                "field": [
+                  "Field wajib diisi."
+                ]
+              }
+            }
+          }
+        }
+      },
+      "ServerError": {
+        "description": "Server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      }
+    }
+  }
+}
