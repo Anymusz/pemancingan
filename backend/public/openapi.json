@@ -32,7 +32,7 @@
       "name": "Owner"
     },
     {
-      "name": "Owner - Admin Access"
+      "name": "Owner - Admin / Employee"
     },
     {
       "name": "Owner - Reports"
@@ -99,7 +99,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.checkin,create`.\nButuh Bearer token dari endpoint login.",
+        "description": "Butuh Bearer token dari endpoint login.",
         "requestBody": {
           "required": true,
           "content": {
@@ -187,7 +187,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.arrivals,update`.\nButuh Bearer token dari endpoint login.",
+        "description": "Butuh Bearer token dari endpoint login.",
         "requestBody": {
           "required": true,
           "content": {
@@ -245,7 +245,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.checkout,create`.\nButuh Bearer token dari endpoint login.",
+        "description": "Butuh Bearer token dari endpoint login.",
         "requestBody": {
           "required": true,
           "content": {
@@ -350,7 +350,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.fish_stocks,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/guest-config": {
@@ -392,7 +392,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.guest_config,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/member-voucher/{memberId}": {
@@ -445,7 +445,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.checkout,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/menus": {
@@ -487,7 +487,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.menu_availability,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/menus/{id}/availability": {
@@ -540,7 +540,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.menu_availability,update`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/pending-orders": {
@@ -582,7 +582,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.add_order,create`.\nButuh Bearer token dari endpoint login.",
+        "description": "Butuh Bearer token dari endpoint login.",
         "requestBody": {
           "required": true,
           "content": {
@@ -678,7 +678,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.pending_orders,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/pending-orders/{arrival_id}": {
@@ -731,7 +731,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.pending_orders,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/pending-orders/{id}/status": {
@@ -784,7 +784,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.pending_orders,update`.\nButuh Bearer token dari endpoint login.",
+        "description": "Butuh Bearer token dari endpoint login.",
         "requestBody": {
           "required": true,
           "content": {
@@ -855,7 +855,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.qris_config,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/rental-items": {
@@ -897,7 +897,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.rental_items,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/rental-items/{id}/toggle-active": {
@@ -950,7 +950,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.rental_items,update`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/resolve-qr": {
@@ -992,7 +992,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.checkin,view`.\nButuh Bearer token dari endpoint login.",
+        "description": "Butuh Bearer token dari endpoint login.",
         "requestBody": {
           "required": true,
           "content": {
@@ -1069,7 +1069,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.checkout,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/search-member": {
@@ -1122,7 +1122,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.checkin,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/today-arrivals": {
@@ -1164,7 +1164,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.arrivals,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/transactions": {
@@ -1264,7 +1264,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.transaction_history,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/employee/transactions/{id}": {
@@ -1317,7 +1317,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Feature access: `employee.transaction_history,view`.\nButuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/events": {
@@ -2286,7 +2286,7 @@
     "/api/owner/admin-access/admins": {
       "get": {
         "tags": [
-          "Owner - Admin Access"
+          "Owner - Admin / Employee"
         ],
         "summary": "GET owner admin access admins",
         "operationId": "get_api_owner_admin_access_admins",
@@ -2323,78 +2323,14 @@
           }
         ],
         "description": "Butuh Bearer token dari endpoint login."
-      }
-    },
-    "/api/owner/admin-access/admins/{admin}/accesses": {
-      "get": {
-        "tags": [
-          "Owner - Admin Access"
-        ],
-        "summary": "GET owner admin access admins {admin} accesses",
-        "operationId": "get_api_owner_admin_access_admins_admin_accesses",
-        "parameters": [
-          {
-            "name": "admin",
-            "in": "path",
-            "required": true,
-            "description": "Contoh admin siap pakai untuk Swagger Try it out.",
-            "schema": {
-              "type": "integer"
-            },
-            "example": 2
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/Success"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          },
-          "500": {
-            "$ref": "#/components/responses/ServerError"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "description": "Butuh Bearer token dari endpoint login."
       },
       "post": {
         "tags": [
-          "Owner - Admin Access"
+          "Owner - Admin / Employee"
         ],
-        "summary": "Tambah akses fitur ke admin/pegawai",
-        "operationId": "post_api_owner_admin_access_admins_admin_accesses",
-        "parameters": [
-          {
-            "name": "admin",
-            "in": "path",
-            "required": true,
-            "description": "Contoh admin siap pakai untuk Swagger Try it out.",
-            "schema": {
-              "type": "integer"
-            },
-            "example": 2
-          }
-        ],
+        "summary": "Owner membuat akun admin/pegawai",
+        "operationId": "post_api_owner_admin_access_admins",
+        "parameters": [],
         "responses": {
           "201": {
             "$ref": "#/components/responses/Success"
@@ -2434,30 +2370,34 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "feature_slug": {
+                  "name": {
                     "type": "string",
-                    "example": "employee.menu_availability"
+                    "example": "Admin Kolam"
                   },
-                  "permissions": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "example": "view",
-                      "enum": [
-                        "view",
-                        "create",
-                        "update",
-                        "delete"
-                      ]
-                    },
-                    "example": [
-                      "view",
-                      "update"
-                    ]
+                  "phone": {
+                    "type": "string",
+                    "example": "089911122233"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "admin.kolam@example.com",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Password123",
+                    "format": "password"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Jl. Kolam No. 1"
                   }
                 },
                 "required": [
-                  "feature_slug"
+                  "name",
+                  "phone",
+                  "email",
+                  "password"
                 ]
               }
             }
@@ -2465,13 +2405,13 @@
         }
       }
     },
-    "/api/owner/admin-access/admins/{admin}/accesses/{feature}": {
+    "/api/owner/admin-access/admins/{admin}": {
       "put": {
         "tags": [
-          "Owner - Admin Access"
+          "Owner - Admin / Employee"
         ],
-        "summary": "Edit permission akses fitur admin/pegawai",
-        "operationId": "put_api_owner_admin_access_admins_admin_accesses_feature",
+        "summary": "Owner mengubah akun admin/pegawai",
+        "operationId": "put_api_owner_admin_access_admins_admin",
         "parameters": [
           {
             "name": "admin",
@@ -2482,16 +2422,6 @@
               "type": "integer"
             },
             "example": 2
-          },
-          {
-            "name": "feature",
-            "in": "path",
-            "required": true,
-            "description": "Contoh feature siap pakai untuk Swagger Try it out.",
-            "schema": {
-              "type": "string"
-            },
-            "example": "employee.menu_availability"
           }
         ],
         "responses": {
@@ -2533,28 +2463,29 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "permissions": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "example": "view",
-                      "enum": [
-                        "view",
-                        "create",
-                        "update",
-                        "delete"
-                      ]
-                    },
-                    "example": [
-                      "view",
-                      "create",
-                      "update"
-                    ]
+                  "name": {
+                    "type": "string",
+                    "example": "Admin Kolam Updated"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "089944455566"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "admin.updated@example.com",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Password456",
+                    "format": "password"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Jl. Admin Baru"
                   }
-                },
-                "required": [
-                  "permissions"
-                ]
+                }
               }
             }
           }
@@ -2562,10 +2493,10 @@
       },
       "delete": {
         "tags": [
-          "Owner - Admin Access"
+          "Owner - Admin / Employee"
         ],
-        "summary": "DELETE owner admin access admins {admin} accesses {feature}",
-        "operationId": "delete_api_owner_admin_access_admins_admin_accesses_feature",
+        "summary": "Owner menghapus akun admin/pegawai",
+        "operationId": "delete_api_owner_admin_access_admins_admin",
         "parameters": [
           {
             "name": "admin",
@@ -2576,69 +2507,6 @@
               "type": "integer"
             },
             "example": 2
-          },
-          {
-            "name": "feature",
-            "in": "path",
-            "required": true,
-            "description": "Contoh feature siap pakai untuk Swagger Try it out.",
-            "schema": {
-              "type": "string"
-            },
-            "example": "employee.menu_availability"
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/Success"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          },
-          "500": {
-            "$ref": "#/components/responses/ServerError"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "description": "Butuh Bearer token dari endpoint login."
-      }
-    },
-    "/api/owner/admin-access/features": {
-      "get": {
-        "tags": [
-          "Owner - Admin Access"
-        ],
-        "summary": "List fitur yang bisa diatur aksesnya",
-        "operationId": "get_api_owner_admin_access_features",
-        "parameters": [
-          {
-            "name": "include_inactive",
-            "in": "query",
-            "required": false,
-            "description": "",
-            "schema": {
-              "type": "boolean"
-            },
-            "example": false
           }
         ],
         "responses": {

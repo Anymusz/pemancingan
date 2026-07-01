@@ -83,14 +83,12 @@ Route::middleware('auth:sanctum')->group(function () {
 // OWNER ROUTES
 // ========================================
 Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(function () {
-    // Admin Feature Access
+    // Admin / Employee Account Management
     Route::prefix('admin-access')->group(function () {
-        Route::get('/features', [AdminAccessController::class, 'features']);
         Route::get('/admins', [AdminAccessController::class, 'admins']);
-        Route::get('/admins/{admin}/accesses', [AdminAccessController::class, 'accesses']);
-        Route::post('/admins/{admin}/accesses', [AdminAccessController::class, 'store']);
-        Route::put('/admins/{admin}/accesses/{feature}', [AdminAccessController::class, 'update']);
-        Route::delete('/admins/{admin}/accesses/{feature}', [AdminAccessController::class, 'destroy']);
+        Route::post('/admins', [AdminAccessController::class, 'storeAdmin']);
+        Route::put('/admins/{admin}', [AdminAccessController::class, 'updateAdmin']);
+        Route::delete('/admins/{admin}', [AdminAccessController::class, 'destroyAdmin']);
     });
 
     // Member Validation
@@ -172,41 +170,41 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
 // ========================================
 Route::prefix('employee')->middleware(['auth:sanctum', 'role:employee'])->group(function () {
     // Arrival
-    Route::post('/check-in', [ArrivalController::class, 'checkIn'])->middleware('feature.access:employee.checkin,create');
-    Route::get('/today-arrivals', [ArrivalController::class, 'todayArrivals'])->middleware('feature.access:employee.arrivals,view');
-    Route::post('/check-out/{arrival_id}', [ArrivalController::class, 'checkOut'])->middleware('feature.access:employee.arrivals,update');
-    Route::get('/search-member', [ArrivalController::class, 'searchMember'])->middleware('feature.access:employee.checkin,view');
-    Route::get('/search-arrival', [ArrivalController::class, 'searchArrival'])->middleware('feature.access:employee.checkout,view');
-    Route::post('/resolve-qr', [ArrivalController::class, 'resolveQR'])->middleware('feature.access:employee.checkin,view');
+    Route::post('/check-in', [ArrivalController::class, 'checkIn']);
+    Route::get('/today-arrivals', [ArrivalController::class, 'todayArrivals']);
+    Route::post('/check-out/{arrival_id}', [ArrivalController::class, 'checkOut']);
+    Route::get('/search-member', [ArrivalController::class, 'searchMember']);
+    Route::get('/search-arrival', [ArrivalController::class, 'searchArrival']);
+    Route::post('/resolve-qr', [ArrivalController::class, 'resolveQR']);
 
     // Pending Orders
-    Route::post('/pending-orders', [PendingOrderController::class, 'store'])->middleware('feature.access:employee.add_order,create');
-    Route::get('/pending-orders', [PendingOrderController::class, 'all'])->middleware('feature.access:employee.pending_orders,view');
-    Route::get('/pending-orders/{arrival_id}', [PendingOrderController::class, 'index'])->middleware('feature.access:employee.pending_orders,view');
-    Route::patch('/pending-orders/{id}/status', [PendingOrderController::class, 'updateStatus'])->middleware('feature.access:employee.pending_orders,update');
+    Route::post('/pending-orders', [PendingOrderController::class, 'store']);
+    Route::get('/pending-orders', [PendingOrderController::class, 'all']);
+    Route::get('/pending-orders/{arrival_id}', [PendingOrderController::class, 'index']);
+    Route::patch('/pending-orders/{id}/status', [PendingOrderController::class, 'updateStatus']);
 
     // Transactions
-    Route::post('/checkout', [TransactionController::class, 'checkout'])->middleware('feature.access:employee.checkout,create');
-    Route::get('/transactions', [TransactionController::class, 'index'])->middleware('feature.access:employee.transaction_history,view');
-    Route::get('/transactions/{id}', [TransactionController::class, 'show'])->middleware('feature.access:employee.transaction_history,view');
+    Route::post('/checkout', [TransactionController::class, 'checkout']);
+    Route::get('/transactions', [TransactionController::class, 'index']);
+    Route::get('/transactions/{id}', [TransactionController::class, 'show']);
 
     // Menu Availability
-    Route::get('/menus', [EmployeeMenuController::class, 'index'])->middleware('feature.access:employee.menu_availability,view');
-    Route::patch('/menus/{id}/availability', [EmployeeMenuController::class, 'updateAvailability'])->middleware('feature.access:employee.menu_availability,update');
+    Route::get('/menus', [EmployeeMenuController::class, 'index']);
+    Route::patch('/menus/{id}/availability', [EmployeeMenuController::class, 'updateAvailability']);
 
     // Voucher
-    Route::get('/member-voucher/{memberId}', [TransactionController::class, 'getMemberVoucher'])->middleware('feature.access:employee.checkout,view');
+    Route::get('/member-voucher/{memberId}', [TransactionController::class, 'getMemberVoucher']);
 
     // Fish Stocks
-    Route::get('/fish-stocks', [EmployeeFishStockController::class, 'index'])->middleware('feature.access:employee.fish_stocks,view');
+    Route::get('/fish-stocks', [EmployeeFishStockController::class, 'index']);
 
     // Rental Items
-    Route::get('/rental-items', [EmployeeRentalItemController::class, 'index'])->middleware('feature.access:employee.rental_items,view');
-    Route::patch('/rental-items/{id}/toggle-active', [EmployeeRentalItemController::class, 'toggleActive'])->middleware('feature.access:employee.rental_items,update');
+    Route::get('/rental-items', [EmployeeRentalItemController::class, 'index']);
+    Route::patch('/rental-items/{id}/toggle-active', [EmployeeRentalItemController::class, 'toggleActive']);
 
     // Guest Config
-    Route::get('/guest-config', [EmployeeGuestConfigController::class, 'show'])->middleware('feature.access:employee.guest_config,view');
+    Route::get('/guest-config', [EmployeeGuestConfigController::class, 'show']);
 
     // QRIS Config
-    Route::get('/qris-config', [EmployeeQrisConfigController::class, 'show'])->middleware('feature.access:employee.qris_config,view');
+    Route::get('/qris-config', [EmployeeQrisConfigController::class, 'show']);
 });
