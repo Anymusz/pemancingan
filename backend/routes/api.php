@@ -27,6 +27,7 @@ use App\Http\Controllers\Api\Owner\ReportController as OwnerReportController;
 use App\Http\Controllers\Api\Owner\RentalItemController as OwnerRentalItemController;
 use App\Http\Controllers\Api\Owner\GuestConfigController as OwnerGuestConfigController;
 use App\Http\Controllers\Api\Owner\QrisConfigController as OwnerQrisConfigController;
+use App\Http\Controllers\Api\Owner\EmployeeController as OwnerEmployeeController;
 use App\Http\Controllers\Api\Employee\RentalItemController as EmployeeRentalItemController;
 use App\Http\Controllers\Api\Employee\GuestConfigController as EmployeeGuestConfigController;
 use App\Http\Controllers\Api\Employee\QrisConfigController as EmployeeQrisConfigController;
@@ -154,6 +155,14 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     // QRIS Config
     Route::get('/qris-config', [OwnerQrisConfigController::class, 'show']);
     Route::put('/qris-config', [OwnerQrisConfigController::class, 'update']);
+
+    // Employee Management
+    Route::get('/employees', [OwnerEmployeeController::class, 'index']);
+    Route::post('/employees', [OwnerEmployeeController::class, 'store']);
+    Route::put('/employees/{id}', [OwnerEmployeeController::class, 'update']);
+    Route::put('/employees/{id}/password', [OwnerEmployeeController::class, 'updatePassword']);
+    Route::patch('/employees/{id}/deactivate', [OwnerEmployeeController::class, 'deactivate']);
+    Route::patch('/employees/{id}/reactivate', [OwnerEmployeeController::class, 'reactivate']);
 });
 
 // ========================================
