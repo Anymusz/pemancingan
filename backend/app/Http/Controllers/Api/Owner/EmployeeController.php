@@ -10,29 +10,29 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
-class AdminAccessController extends Controller
+class EmployeeController extends Controller
 {
     /**
-     * GET /api/owner/admin-access/admins
+     * GET /api/owner/employees
      */
-    public function admins(): JsonResponse
+    public function index(): JsonResponse
     {
-        $admins = User::whereIn('role', ['owner', 'employee'])
+        $employees = User::whereIn('role', ['owner', 'employee'])
             ->orderBy('role')
             ->orderBy('name')
             ->get()
-            ->map(fn (User $admin) => $this->formatAdmin($admin));
+            ->map(fn (User $employee) => $this->formatEmployee($employee));
 
         return response()->json([
             'success' => true,
-            'data' => $admins,
+            'data' => $employees,
         ]);
     }
 
     /**
-     * POST /api/owner/admin-access/admins
+     * POST /api/owner/employees
      */
-    public function storeAdmin(Request $request): JsonResponse
+    public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -42,7 +42,7 @@ class AdminAccessController extends Controller
             'address' => ['sometimes', 'nullable', 'string'],
         ]);
 
-        $adminUser = User::create([
+        $employee = User::create([
             'name' => $validated['name'],
             'phone' => $validated['phone'],
             'email' => $validated['email'],
@@ -56,26 +56,26 @@ class AdminAccessController extends Controller
             'success' => true,
             'message' => 'Akun pegawai berhasil dibuat',
             'data' => [
-                'admin' => $this->formatAdmin($adminUser),
+                'employee' => $this->formatEmployee($employee),
             ],
         ], 201);
     }
 
     /**
-     * PUT /api/owner/admin-access/admins/{admin}
+     * PUT /api/owner/employees/{employee}
      */
-    public function updateAdmin(Request $request, int $admin): JsonResponse
+    public function update(Request $request, int $employee): JsonResponse
     {
-        $adminUser = $this->findEmployeeAdmin($admin);
+        $employeeUser = $this->findEmployee($employee);
 
-        if (!$adminUser) {
-            return $this->adminNotFoundResponse();
+        if (!$employeeUser) {
+            return $this->employeeNotFoundResponse();
         }
 
         $validated = $request->validate([
             'name' => ['sometimes', 'string', 'max:255'],
-            'phone' => ['sometimes', 'string', 'max:30', Rule::unique('users', 'phone')->ignore($adminUser->id)],
-            'email' => ['sometimes', 'email', 'max:255', Rule::unique('users', 'email')->ignore($adminUser->id)],
+            'phone' => ['sometimes', 'string', 'max:30', Rule::unique('users', 'phone')->ignore($employeeUser->id)],
+            'email' => ['sometimes', 'email', 'max:255', Rule::unique('users', 'email')->ignore($employeeUser->id)],
             'password' => ['sometimes', 'string', 'min:8'],
             'address' => ['sometimes', 'nullable', 'string'],
         ]);
@@ -91,32 +91,32 @@ class AdminAccessController extends Controller
             $validated['address'] = $validated['address'] ?: '-';
         }
 
-        $adminUser->update($validated);
+        $employeeUser->update($validated);
 
         return response()->json([
             'success' => true,
             'message' => 'Akun pegawai berhasil diperbarui',
             'data' => [
-                'admin' => $this->formatAdmin($adminUser->fresh()),
+                'employee' => $this->formatEmployee($employeeUser->fresh()),
             ],
         ]);
     }
 
     /**
-     * DELETE /api/owner/admin-access/admins/{admin}
+     * DELETE /api/owner/employees/{employee}
      */
-    public function destroyAdmin(int $admin): JsonResponse
+    public function destroy(int $employee): JsonResponse
     {
-        $adminUser = $this->findEmployeeAdmin($admin);
+        $employeeUser = $this->findEmployee($employee);
 
-        if (!$adminUser) {
-            return $this->adminNotFoundResponse();
+        if (!$employeeUser) {
+            return $this->employeeNotFoundResponse();
         }
 
         try {
-            DB::transaction(function () use ($adminUser) {
-                $adminUser->tokens()->delete();
-                $adminUser->delete();
+            DB::transaction(function () use ($employeeUser) {
+                $employeeUser->tokens()->delete();
+                $employeeUser->delete();
             });
         } catch (QueryException) {
             return response()->json([
@@ -131,29 +131,29 @@ class AdminAccessController extends Controller
         ]);
     }
 
-    private function findEmployeeAdmin(int $adminId): ?User
+    private function findEmployee(int $employeeId): ?User
     {
-        return User::where('id', $adminId)
+        return User::where('id', $employeeId)
             ->where('role', 'employee')
             ->first();
     }
 
-    private function formatAdmin(User $admin): array
+    private function formatEmployee(User $employee): array
     {
         return [
-            'id' => $admin->id,
-            'name' => $admin->name,
-            'phone' => $admin->phone,
-            'email' => $admin->email,
-            'address' => $admin->address,
-            'role' => $admin->role,
-            'status' => $admin->status,
-            'created_at' => $admin->created_at,
-            'updated_at' => $admin->updated_at,
+            'id' => $employee->id,
+            'name' => $employee->name,
+            'phone' => $employee->phone,
+            'email' => $employee->email,
+            'address' => $employee->address,
+            'role' => $employee->role,
+            'status' => $employee->status,
+            'created_at' => $employee->created_at,
+            'updated_at' => $employee->updated_at,
         ];
     }
 
-    private function adminNotFoundResponse(): JsonResponse
+    private function employeeNotFoundResponse(): JsonResponse
     {
         return response()->json([
             'success' => false,

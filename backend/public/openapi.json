@@ -32,7 +32,7 @@
       "name": "Owner"
     },
     {
-      "name": "Owner - Admin / Employee"
+      "name": "Owner - Employees"
     },
     {
       "name": "Owner - Reports"
@@ -2283,266 +2283,6 @@
         "description": "Butuh Bearer token dari endpoint login."
       }
     },
-    "/api/owner/admin-access/admins": {
-      "get": {
-        "tags": [
-          "Owner - Admin / Employee"
-        ],
-        "summary": "GET owner admin access admins",
-        "operationId": "get_api_owner_admin_access_admins",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/Success"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          },
-          "500": {
-            "$ref": "#/components/responses/ServerError"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "description": "Butuh Bearer token dari endpoint login."
-      },
-      "post": {
-        "tags": [
-          "Owner - Admin / Employee"
-        ],
-        "summary": "Owner membuat akun admin/pegawai",
-        "operationId": "post_api_owner_admin_access_admins",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "$ref": "#/components/responses/Success"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          },
-          "500": {
-            "$ref": "#/components/responses/ServerError"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "description": "Butuh Bearer token dari endpoint login.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "example": "Admin Kolam"
-                  },
-                  "phone": {
-                    "type": "string",
-                    "example": "089911122233"
-                  },
-                  "email": {
-                    "type": "string",
-                    "example": "admin.kolam@example.com",
-                    "format": "email"
-                  },
-                  "password": {
-                    "type": "string",
-                    "example": "Password123",
-                    "format": "password"
-                  },
-                  "address": {
-                    "type": "string",
-                    "example": "Jl. Kolam No. 1"
-                  }
-                },
-                "required": [
-                  "name",
-                  "phone",
-                  "email",
-                  "password"
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/owner/admin-access/admins/{admin}": {
-      "put": {
-        "tags": [
-          "Owner - Admin / Employee"
-        ],
-        "summary": "Owner mengubah akun admin/pegawai",
-        "operationId": "put_api_owner_admin_access_admins_admin",
-        "parameters": [
-          {
-            "name": "admin",
-            "in": "path",
-            "required": true,
-            "description": "Contoh admin siap pakai untuk Swagger Try it out.",
-            "schema": {
-              "type": "integer"
-            },
-            "example": 2
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/Success"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          },
-          "500": {
-            "$ref": "#/components/responses/ServerError"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "description": "Butuh Bearer token dari endpoint login.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "example": "Admin Kolam Updated"
-                  },
-                  "phone": {
-                    "type": "string",
-                    "example": "089944455566"
-                  },
-                  "email": {
-                    "type": "string",
-                    "example": "admin.updated@example.com",
-                    "format": "email"
-                  },
-                  "password": {
-                    "type": "string",
-                    "example": "Password456",
-                    "format": "password"
-                  },
-                  "address": {
-                    "type": "string",
-                    "example": "Jl. Admin Baru"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Owner - Admin / Employee"
-        ],
-        "summary": "Owner menghapus akun admin/pegawai",
-        "operationId": "delete_api_owner_admin_access_admins_admin",
-        "parameters": [
-          {
-            "name": "admin",
-            "in": "path",
-            "required": true,
-            "description": "Contoh admin siap pakai untuk Swagger Try it out.",
-            "schema": {
-              "type": "integer"
-            },
-            "example": 2
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/Success"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "422": {
-            "$ref": "#/components/responses/ValidationError"
-          },
-          "500": {
-            "$ref": "#/components/responses/ServerError"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "description": "Butuh Bearer token dari endpoint login."
-      }
-    },
     "/api/owner/approve-member": {
       "post": {
         "tags": [
@@ -2668,6 +2408,266 @@
             }
           }
         }
+      }
+    },
+    "/api/owner/employees": {
+      "get": {
+        "tags": [
+          "Owner - Employees"
+        ],
+        "summary": "GET owner employees",
+        "operationId": "get_api_owner_employees",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      },
+      "post": {
+        "tags": [
+          "Owner - Employees"
+        ],
+        "summary": "Owner membuat akun pegawai",
+        "operationId": "post_api_owner_employees",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Pegawai Kolam"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "089911122233"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "pegawai.kolam@example.com",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Password123",
+                    "format": "password"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Jl. Kolam No. 1"
+                  }
+                },
+                "required": [
+                  "name",
+                  "phone",
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/owner/employees/{employee}": {
+      "put": {
+        "tags": [
+          "Owner - Employees"
+        ],
+        "summary": "Owner mengubah akun pegawai",
+        "operationId": "put_api_owner_employees_employee",
+        "parameters": [
+          {
+            "name": "employee",
+            "in": "path",
+            "required": true,
+            "description": "Contoh employee siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Pegawai Kolam Updated"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "089944455566"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "pegawai.updated@example.com",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Password456",
+                    "format": "password"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Jl. Pegawai Baru"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Owner - Employees"
+        ],
+        "summary": "Owner menghapus akun pegawai",
+        "operationId": "delete_api_owner_employees_employee",
+        "parameters": [
+          {
+            "name": "employee",
+            "in": "path",
+            "required": true,
+            "description": "Contoh employee siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
       }
     },
     "/api/owner/events": {

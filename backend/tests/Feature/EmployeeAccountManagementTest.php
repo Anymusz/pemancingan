@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
-class AdminAccountManagementTest extends TestCase
+class EmployeeAccountManagementTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -20,7 +20,7 @@ class AdminAccountManagementTest extends TestCase
 
         Sanctum::actingAs($owner);
 
-        $response = $this->postJson('/api/owner/admin-access/admins', [
+        $response = $this->postJson('/api/owner/employees', [
             'name' => 'Pegawai Kolam',
             'phone' => '089911122233',
             'email' => 'pegawai.kolam@example.com',
@@ -30,19 +30,19 @@ class AdminAccountManagementTest extends TestCase
             ->assertCreated()
             ->assertJsonPath('success', true)
             ->assertJsonPath('message', 'Akun pegawai berhasil dibuat')
-            ->assertJsonPath('data.admin.name', 'Pegawai Kolam')
-            ->assertJsonPath('data.admin.phone', '089911122233')
-            ->assertJsonPath('data.admin.email', 'pegawai.kolam@example.com')
-            ->assertJsonPath('data.admin.address', 'Jl. Kolam No. 1')
-            ->assertJsonPath('data.admin.role', 'employee')
-            ->assertJsonPath('data.admin.status', 'active');
+            ->assertJsonPath('data.employee.name', 'Pegawai Kolam')
+            ->assertJsonPath('data.employee.phone', '089911122233')
+            ->assertJsonPath('data.employee.email', 'pegawai.kolam@example.com')
+            ->assertJsonPath('data.employee.address', 'Jl. Kolam No. 1')
+            ->assertJsonPath('data.employee.role', 'employee')
+            ->assertJsonPath('data.employee.status', 'active');
 
-        $employeeId = $response->json('data.admin.id');
+        $employeeId = $response->json('data.employee.id');
         $createdEmployee = User::find($employeeId);
 
         $this->assertNotNull($createdEmployee);
         $this->assertTrue(Hash::check('Password123', $createdEmployee->password));
-        $this->assertArrayNotHasKey('password', $response->json('data.admin'));
+        $this->assertArrayNotHasKey('password', $response->json('data.employee'));
     }
 
     public function test_owner_can_list_owner_and_employee_accounts(): void
@@ -53,7 +53,7 @@ class AdminAccountManagementTest extends TestCase
 
         Sanctum::actingAs($owner);
 
-        $response = $this->getJson('/api/owner/admin-access/admins')
+        $response = $this->getJson('/api/owner/employees')
             ->assertOk()
             ->assertJsonPath('success', true);
 
@@ -72,7 +72,7 @@ class AdminAccountManagementTest extends TestCase
 
         Sanctum::actingAs($owner);
 
-        $this->putJson("/api/owner/admin-access/admins/{$employee->id}", [
+        $this->putJson("/api/owner/employees/{$employee->id}", [
             'name' => 'Pegawai Baru',
             'phone' => '089944455566',
             'email' => 'pegawai.baru@example.com',
@@ -82,10 +82,10 @@ class AdminAccountManagementTest extends TestCase
             ->assertOk()
             ->assertJsonPath('success', true)
             ->assertJsonPath('message', 'Akun pegawai berhasil diperbarui')
-            ->assertJsonPath('data.admin.name', 'Pegawai Baru')
-            ->assertJsonPath('data.admin.phone', '089944455566')
-            ->assertJsonPath('data.admin.email', 'pegawai.baru@example.com')
-            ->assertJsonPath('data.admin.role', 'employee');
+            ->assertJsonPath('data.employee.name', 'Pegawai Baru')
+            ->assertJsonPath('data.employee.phone', '089944455566')
+            ->assertJsonPath('data.employee.email', 'pegawai.baru@example.com')
+            ->assertJsonPath('data.employee.role', 'employee');
 
         $updatedEmployee = $employee->fresh();
 
@@ -101,7 +101,7 @@ class AdminAccountManagementTest extends TestCase
 
         Sanctum::actingAs($owner);
 
-        $this->deleteJson("/api/owner/admin-access/admins/{$employee->id}")
+        $this->deleteJson("/api/owner/employees/{$employee->id}")
             ->assertOk()
             ->assertJsonPath('success', true)
             ->assertJsonPath('message', 'Akun pegawai berhasil dihapus');

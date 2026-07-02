@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\Member\MemberController;
 use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Owner\MemberValidationController;
-use App\Http\Controllers\Api\Owner\AdminAccessController;
+use App\Http\Controllers\Api\Owner\EmployeeController;
 use App\Http\Controllers\Api\Owner\LeaderboardController;
 use App\Http\Controllers\Api\Owner\MenuController as OwnerMenuController;
 use App\Http\Controllers\Api\Owner\FishTypeController as OwnerFishTypeController;
@@ -83,12 +83,12 @@ Route::middleware('auth:sanctum')->group(function () {
 // OWNER ROUTES
 // ========================================
 Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(function () {
-    // Admin / Employee Account Management
-    Route::prefix('admin-access')->group(function () {
-        Route::get('/admins', [AdminAccessController::class, 'admins']);
-        Route::post('/admins', [AdminAccessController::class, 'storeAdmin']);
-        Route::put('/admins/{admin}', [AdminAccessController::class, 'updateAdmin']);
-        Route::delete('/admins/{admin}', [AdminAccessController::class, 'destroyAdmin']);
+    // Employee Account Management
+    Route::prefix('employees')->group(function () {
+        Route::get('/', [EmployeeController::class, 'index']);
+        Route::post('/', [EmployeeController::class, 'store']);
+        Route::put('/{employee}', [EmployeeController::class, 'update']);
+        Route::delete('/{employee}', [EmployeeController::class, 'destroy']);
     });
 
     // Member Validation
