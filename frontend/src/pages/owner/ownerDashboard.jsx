@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import OwnerDashboardHome from "./OwnerDashboardHome";
 import MemberManagement from "./MemberManagement";
+import EmployeeManagement from "./EmployeeManagement";
 import OwnerLeaderboard from "./OwnerLeaderboard";
 import MenuManagement from "./MenuManagement";
 import FishTypeManagement from "./FishTypeManagement";
@@ -19,6 +20,7 @@ import ProfilePage from "@/pages/profile/ProfilePage";
 import {
   LayoutDashboard,
   Users,
+  UserCog,
   UtensilsCrossed,
   Fish,
   CalendarDays,
@@ -54,7 +56,10 @@ const OwnerDashboard = () => {
     },
     {
       label: "Manajemen Member",
-      items: [{ key: "members", label: "Member", icon: Users }],
+      items: [
+        { key: "members", label: "Member", icon: Users },
+        { key: "employees", label: "Pegawai", icon: UserCog },
+      ],
     },
     {
       label: "Manajemen Produk",
@@ -92,6 +97,7 @@ const OwnerDashboard = () => {
         <OwnerDashboardHome onNavigate={handleTabChange} />
       )}
       {activeMenu === "members" && <MemberManagement />}
+      {activeMenu === "employees" && <EmployeeManagement />}
       {activeMenu === "leaderboard" && <OwnerLeaderboard />}
       {activeMenu === "menus" && <MenuManagement />}
       {activeMenu === "fish-types" && <FishTypeManagement />}

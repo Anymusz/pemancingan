@@ -253,6 +253,38 @@ const ownerService = {
     });
     return res.data;
   },
+
+  // ==================== EMPLOYEE MANAGEMENT ====================
+
+  getEmployees: async () => {
+    const response = await api.get("/owner/employees");
+    return response.data;
+  },
+
+  createEmployee: async (data) => {
+    const response = await api.post("/owner/employees", data);
+    return response.data;
+  },
+
+  updateEmployee: async (id, data) => {
+    const response = await api.put(`/owner/employees/${id}`, data);
+    return response.data;
+  },
+
+  updateEmployeePassword: async (id, data) => {
+    const response = await api.put(`/owner/employees/${id}/password`, data);
+    return response.data;
+  },
+
+  deactivateEmployee: async (id, data) => {
+    const response = await api.patch(`/owner/employees/${id}/deactivate`, data);
+    return response.data;
+  },
+
+  reactivateEmployee: async (id) => {
+    const response = await api.patch(`/owner/employees/${id}/reactivate`);
+    return response.data;
+  },
 };
 
 export default ownerService;

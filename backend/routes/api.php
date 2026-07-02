@@ -10,7 +10,6 @@ use App\Http\Controllers\Api\Member\MemberController;
 use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Owner\MemberValidationController;
-use App\Http\Controllers\Api\Owner\EmployeeController;
 use App\Http\Controllers\Api\Owner\LeaderboardController;
 use App\Http\Controllers\Api\Owner\MenuController as OwnerMenuController;
 use App\Http\Controllers\Api\Owner\FishTypeController as OwnerFishTypeController;
@@ -28,6 +27,7 @@ use App\Http\Controllers\Api\Owner\ReportController as OwnerReportController;
 use App\Http\Controllers\Api\Owner\RentalItemController as OwnerRentalItemController;
 use App\Http\Controllers\Api\Owner\GuestConfigController as OwnerGuestConfigController;
 use App\Http\Controllers\Api\Owner\QrisConfigController as OwnerQrisConfigController;
+use App\Http\Controllers\Api\Owner\EmployeeController as OwnerEmployeeController;
 use App\Http\Controllers\Api\Employee\RentalItemController as EmployeeRentalItemController;
 use App\Http\Controllers\Api\Employee\GuestConfigController as EmployeeGuestConfigController;
 use App\Http\Controllers\Api\Employee\QrisConfigController as EmployeeQrisConfigController;
@@ -83,14 +83,6 @@ Route::middleware('auth:sanctum')->group(function () {
 // OWNER ROUTES
 // ========================================
 Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(function () {
-    // Employee Account Management
-    Route::prefix('employees')->group(function () {
-        Route::get('/', [EmployeeController::class, 'index']);
-        Route::post('/', [EmployeeController::class, 'store']);
-        Route::put('/{employee}', [EmployeeController::class, 'update']);
-        Route::delete('/{employee}', [EmployeeController::class, 'destroy']);
-    });
-
     // Member Validation
     Route::get('/pending-members', [MemberValidationController::class, 'getPendingMembers']);
     Route::post('/approve-member', [MemberValidationController::class, 'approveMember']);
@@ -163,6 +155,15 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     // QRIS Config
     Route::get('/qris-config', [OwnerQrisConfigController::class, 'show']);
     Route::put('/qris-config', [OwnerQrisConfigController::class, 'update']);
+
+    // Employee Management
+    Route::get('/employees', [OwnerEmployeeController::class, 'index']);
+    Route::post('/employees', [OwnerEmployeeController::class, 'store']);
+    Route::put('/employees/{id}', [OwnerEmployeeController::class, 'update']);
+    Route::put('/employees/{id}/password', [OwnerEmployeeController::class, 'updatePassword']);
+    Route::patch('/employees/{id}/deactivate', [OwnerEmployeeController::class, 'deactivate']);
+    Route::patch('/employees/{id}/reactivate', [OwnerEmployeeController::class, 'reactivate']);
+    Route::delete('/employees/{id}', [OwnerEmployeeController::class, 'destroy']);
 });
 
 // ========================================
