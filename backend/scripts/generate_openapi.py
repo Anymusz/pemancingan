@@ -362,13 +362,14 @@ META = {
                 "phone": field("string", "089911122233"),
                 "email": field("string", "pegawai.kolam@example.com", format="email"),
                 "password": field("string", "Password123", format="password"),
+                "password_confirmation": field("string", "Password123", format="password"),
                 "address": field("string", "Jl. Kolam No. 1"),
             },
-            ["name", "phone", "email", "password"],
+            ["name", "phone", "email", "address", "password"],
         ),
         "created": True,
     },
-    "PUT /api/owner/employees/{employee}": {
+    "PUT /api/owner/employees/{id}": {
         "summary": "Owner mengubah akun pegawai",
         "body": json_body(
             {
@@ -376,12 +377,35 @@ META = {
                 "phone": field("string", "089944455566"),
                 "email": field("string", "pegawai.updated@example.com", format="email"),
                 "password": field("string", "Password456", format="password"),
+                "password_confirmation": field("string", "Password456", format="password"),
                 "address": field("string", "Jl. Pegawai Baru"),
             },
             [],
         ),
     },
-    "DELETE /api/owner/employees/{employee}": {
+    "PUT /api/owner/employees/{id}/password": {
+        "summary": "Owner reset password pegawai",
+        "body": json_body(
+            {
+                "password": field("string", "Password456", format="password"),
+                "password_confirmation": field("string", "Password456", format="password"),
+            },
+            ["password"],
+        ),
+    },
+    "PATCH /api/owner/employees/{id}/deactivate": {
+        "summary": "Owner nonaktifkan akun pegawai",
+        "body": json_body(
+            {
+                "reason": field("string", "testing"),
+            },
+            ["reason"],
+        ),
+    },
+    "PATCH /api/owner/employees/{id}/reactivate": {
+        "summary": "Owner aktifkan kembali akun pegawai",
+    },
+    "DELETE /api/owner/employees/{id}": {
         "summary": "Owner menghapus akun pegawai",
     },
     "GET /api/owner/leaderboard": {

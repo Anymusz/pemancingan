@@ -2515,6 +2515,11 @@
                     "example": "Password123",
                     "format": "password"
                   },
+                  "password_confirmation": {
+                    "type": "string",
+                    "example": "Password123",
+                    "format": "password"
+                  },
                   "address": {
                     "type": "string",
                     "example": "Jl. Kolam No. 1"
@@ -2524,6 +2529,7 @@
                   "name",
                   "phone",
                   "email",
+                  "address",
                   "password"
                 ]
               }
@@ -2537,7 +2543,7 @@
         "tags": [
           "Owner - Employees"
         ],
-        "summary": "PUT owner employees {id}",
+        "summary": "Owner mengubah akun pegawai",
         "operationId": "put_api_owner_employees_id",
         "parameters": [
           {
@@ -2582,13 +2588,52 @@
             "bearerAuth": []
           }
         ],
-        "description": "Butuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Pegawai Kolam Updated"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "089944455566"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "pegawai.updated@example.com",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Password456",
+                    "format": "password"
+                  },
+                  "password_confirmation": {
+                    "type": "string",
+                    "example": "Password456",
+                    "format": "password"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Jl. Pegawai Baru"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
           "Owner - Employees"
         ],
-        "summary": "DELETE owner employees {id}",
+        "summary": "Owner menghapus akun pegawai",
         "operationId": "delete_api_owner_employees_id",
         "parameters": [
           {
@@ -2641,7 +2686,7 @@
         "tags": [
           "Owner - Employees"
         ],
-        "summary": "PATCH owner employees {id} deactivate",
+        "summary": "Owner nonaktifkan akun pegawai",
         "operationId": "patch_api_owner_employees_id_deactivate",
         "parameters": [
           {
@@ -2686,7 +2731,26 @@
             "bearerAuth": []
           }
         ],
-        "description": "Butuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "example": "testing"
+                  }
+                },
+                "required": [
+                  "reason"
+                ]
+              }
+            }
+          }
+        }
       }
     },
     "/api/owner/employees/{id}/password": {
@@ -2694,7 +2758,7 @@
         "tags": [
           "Owner - Employees"
         ],
-        "summary": "PUT owner employees {id} password",
+        "summary": "Owner reset password pegawai",
         "operationId": "put_api_owner_employees_id_password",
         "parameters": [
           {
@@ -2739,7 +2803,32 @@
             "bearerAuth": []
           }
         ],
-        "description": "Butuh Bearer token dari endpoint login."
+        "description": "Butuh Bearer token dari endpoint login.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "example": "Password456",
+                    "format": "password"
+                  },
+                  "password_confirmation": {
+                    "type": "string",
+                    "example": "Password456",
+                    "format": "password"
+                  }
+                },
+                "required": [
+                  "password"
+                ]
+              }
+            }
+          }
+        }
       }
     },
     "/api/owner/employees/{id}/reactivate": {
@@ -2747,7 +2836,7 @@
         "tags": [
           "Owner - Employees"
         ],
-        "summary": "PATCH owner employees {id} reactivate",
+        "summary": "Owner aktifkan kembali akun pegawai",
         "operationId": "patch_api_owner_employees_id_reactivate",
         "parameters": [
           {
