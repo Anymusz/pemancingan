@@ -122,14 +122,14 @@ const Login = () => {
                       Lupa password?
                     </Link>
                   </div>
-                  {/* <div style={{ textAlign: "center" }}>
+                  <div style={{ textAlign: "center" }}>
                     <p>Testing Accounts:</p>
                     <small>Owner: 081234567890 / password</small>
                     <br />
                     <small>Employee: 081234567891 / password</small>
                     <br />
                     <small>Member: 081234567892 / password</small>
-                  </div> */}
+                  </div>
                   <Input
                     id="password"
                     name="password"
