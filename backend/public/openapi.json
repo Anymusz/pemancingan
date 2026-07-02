@@ -2532,23 +2532,23 @@
         }
       }
     },
-    "/api/owner/employees/{employee}": {
+    "/api/owner/employees/{id}": {
       "put": {
         "tags": [
           "Owner - Employees"
         ],
-        "summary": "Owner mengubah akun pegawai",
-        "operationId": "put_api_owner_employees_employee",
+        "summary": "PUT owner employees {id}",
+        "operationId": "put_api_owner_employees_id",
         "parameters": [
           {
-            "name": "employee",
+            "name": "id",
             "in": "path",
             "required": true,
-            "description": "Contoh employee siap pakai untuk Swagger Try it out.",
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
             "schema": {
               "type": "integer"
             },
-            "example": 2
+            "example": 1
           }
         ],
         "responses": {
@@ -2582,58 +2582,183 @@
             "bearerAuth": []
           }
         ],
-        "description": "Butuh Bearer token dari endpoint login.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "example": "Pegawai Kolam Updated"
-                  },
-                  "phone": {
-                    "type": "string",
-                    "example": "089944455566"
-                  },
-                  "email": {
-                    "type": "string",
-                    "example": "pegawai.updated@example.com",
-                    "format": "email"
-                  },
-                  "password": {
-                    "type": "string",
-                    "example": "Password456",
-                    "format": "password"
-                  },
-                  "address": {
-                    "type": "string",
-                    "example": "Jl. Pegawai Baru"
-                  }
-                }
-              }
-            }
-          }
-        }
+        "description": "Butuh Bearer token dari endpoint login."
       },
       "delete": {
         "tags": [
           "Owner - Employees"
         ],
-        "summary": "Owner menghapus akun pegawai",
-        "operationId": "delete_api_owner_employees_employee",
+        "summary": "DELETE owner employees {id}",
+        "operationId": "delete_api_owner_employees_id",
         "parameters": [
           {
-            "name": "employee",
+            "name": "id",
             "in": "path",
             "required": true,
-            "description": "Contoh employee siap pakai untuk Swagger Try it out.",
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
             "schema": {
               "type": "integer"
             },
-            "example": 2
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/employees/{id}/deactivate": {
+      "patch": {
+        "tags": [
+          "Owner - Employees"
+        ],
+        "summary": "PATCH owner employees {id} deactivate",
+        "operationId": "patch_api_owner_employees_id_deactivate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/employees/{id}/password": {
+      "put": {
+        "tags": [
+          "Owner - Employees"
+        ],
+        "summary": "PUT owner employees {id} password",
+        "operationId": "put_api_owner_employees_id_password",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Success"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Butuh Bearer token dari endpoint login."
+      }
+    },
+    "/api/owner/employees/{id}/reactivate": {
+      "patch": {
+        "tags": [
+          "Owner - Employees"
+        ],
+        "summary": "PATCH owner employees {id} reactivate",
+        "operationId": "patch_api_owner_employees_id_reactivate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Contoh id siap pakai untuk Swagger Try it out.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
           }
         ],
         "responses": {
