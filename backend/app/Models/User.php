@@ -60,4 +60,9 @@ class User extends Authenticatable
         return $query->where('role', 'member')
                      ->where('status', 'deactivated');
     }
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new \App\Notifications\ResetPasswordNotification($token));
+    }
 }
