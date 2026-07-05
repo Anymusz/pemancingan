@@ -12,32 +12,27 @@ class FishStockSeeder extends Seeder
      */
     public function run(): void
     {
-        // Ambil semua fish_type_id yang sudah ada, diurutkan berdasarkan id
         $fishTypes = DB::table('fish_types')->orderBy('id')->get();
 
-        $stocks = [];
-        
-        // Threshold alert dan volume restock berdasarkan dokumentasi
-        $stockConfig = [
-            'Patin' => ['threshold' => 50, 'stock' => 150],
-            'Nila' => ['threshold' => 25, 'stock' => 50],
-            'Gurame' => ['threshold' => 10, 'stock' => 30],
-            'Bawal' => ['threshold' => 5, 'stock' => 100],
-            'Lele' => ['threshold' => 20, 'stock' => 50],
+        // Alert thresholds are real config values — owner will manage actual stock via dashboard
+        $thresholds = [
+            'Patin'  => 50,
+            'Nila'   => 25,
+            'Gurame' => 10,
+            'Bawal'  => 5,
+            'Lele'   => 20,
         ];
 
         foreach ($fishTypes as $fishType) {
-            $config = $stockConfig[$fishType->name] ?? ['threshold' => 20, 'stock' => 50];
-            
-            $stocks[] = [
-                'fish_type_id' => $fishType->id,
-                'current_stock_kg' => $config['stock'], // Stok awal sesuai volume restock
-                'alert_threshold_kg' => $config['threshold'],
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
+            DB::table('fish_stocks')->updateOrInsert(
+                ['fish_type_id' => $fishType->id],
+                [
+                    'current_stock_kg'   => 0, // Owner akan restock via dashboard
+                    'alert_threshold_kg' => $thresholds[$fishType->name] ?? 20,
+                    'created_at'         => now(),
+                    'updated_at'         => now(),
+                ]
+            );
         }
-
-        DB::table('fish_stocks')->insert($stocks);
     }
 }

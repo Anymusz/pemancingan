@@ -13,43 +13,21 @@ class FishTypeSeeder extends Seeder
     public function run(): void
     {
         $fishTypes = [
-            [
-                'name' => 'Patin',
-                'price_per_kg' => 25000.00,
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Nila',
-                'price_per_kg' => 35000.00,
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Gurame',
-                'price_per_kg' => 60000.00,
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Bawal',
-                'price_per_kg' => 40000.00,
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Lele',
-                'price_per_kg' => 20000.00,
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            ['name' => 'Patin',  'price_per_kg' => 25000.00, 'is_active' => true],
+            ['name' => 'Nila',   'price_per_kg' => 35000.00, 'is_active' => true],
+            ['name' => 'Gurame', 'price_per_kg' => 60000.00, 'is_active' => true],
+            ['name' => 'Bawal',  'price_per_kg' => 40000.00, 'is_active' => true],
+            ['name' => 'Lele',   'price_per_kg' => 20000.00, 'is_active' => true],
         ];
 
-        DB::table('fish_types')->insert($fishTypes);
+        foreach ($fishTypes as $fishType) {
+            DB::table('fish_types')->updateOrInsert(
+                ['name' => $fishType['name']],
+                array_merge($fishType, [
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ])
+            );
+        }
     }
 }
