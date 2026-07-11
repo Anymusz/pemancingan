@@ -1,0 +1,254 @@
+{
+  "removed_table_of_figures_entries": [
+    "Gambar 69. Request Pesanan Member163",
+    "Gambar 71. Response Endpoint GET Events165",
+    "Gambar 72. Response Login Owner166",
+    "Gambar 73. Response Endpoint Protected167",
+    "Gambar 74. Response Pesanan Member168"
+  ],
+  "caption_updates": [
+    {
+      "old": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+      "new": "Gambar 69. Request Checkout dan Bukti Pembayaran"
+    },
+    {
+      "old": "Gambar 75. Response Checkout Pegawai",
+      "new": "Gambar 70. Response Checkout Pegawai"
+    },
+    {
+      "old": "Gambar 76. Halaman Utama Prototype",
+      "new": "Gambar 71. Halaman Utama Prototype"
+    },
+    {
+      "old": "Gambar 77. Halaman Login Prototype",
+      "new": "Gambar 72. Halaman Login Prototype"
+    },
+    {
+      "old": "Gambar 78. Dashboard Member",
+      "new": "Gambar 73. Dashboard Member"
+    },
+    {
+      "old": "Gambar 79. Halaman Pesanan Member",
+      "new": "Gambar 74. Halaman Pesanan Member"
+    },
+    {
+      "old": "Gambar 80. Halaman Riwayat Transaksi Member",
+      "new": "Gambar 75. Halaman Riwayat Transaksi Member"
+    },
+    {
+      "old": "Gambar 81. Halaman Leaderboard Member",
+      "new": "Gambar 76. Halaman Leaderboard Member"
+    },
+    {
+      "old": "Gambar 82. Dashboard Pegawai",
+      "new": "Gambar 77. Dashboard Pegawai"
+    },
+    {
+      "old": "Gambar 83. Pencarian Member pada Registrasi Kedatangan",
+      "new": "Gambar 78. Pencarian Member pada Registrasi Kedatangan"
+    },
+    {
+      "old": "Gambar 84. Scan QR Code Member pada Registrasi Kedatangan",
+      "new": "Gambar 79. Scan QR Code Member pada Registrasi Kedatangan"
+    },
+    {
+      "old": "Gambar 85. Registrasi Tamu pada Registrasi Kedatangan",
+      "new": "Gambar 80. Registrasi Tamu pada Registrasi Kedatangan"
+    },
+    {
+      "old": "Gambar 86. Halaman Kedatangan Hari Ini",
+      "new": "Gambar 81. Halaman Kedatangan Hari Ini"
+    },
+    {
+      "old": "Gambar 87. Halaman Tambah Pesanan",
+      "new": "Gambar 82. Halaman Tambah Pesanan"
+    },
+    {
+      "old": "Gambar 88. Halaman Pesanan Masuk",
+      "new": "Gambar 83. Halaman Pesanan Masuk"
+    },
+    {
+      "old": "Gambar 89. Halaman Pembayaran",
+      "new": "Gambar 84. Halaman Pembayaran"
+    },
+    {
+      "old": "Gambar 90. Nota Digital Transaksi",
+      "new": "Gambar 85. Nota Digital Transaksi"
+    },
+    {
+      "old": "Gambar 91. Halaman Riwayat Transaksi Pegawai",
+      "new": "Gambar 86. Halaman Riwayat Transaksi Pegawai"
+    },
+    {
+      "old": "Gambar 92. Dashboard Pemilik",
+      "new": "Gambar 87. Dashboard Pemilik"
+    },
+    {
+      "old": "Gambar 93. Halaman Manajemen Member",
+      "new": "Gambar 88. Halaman Manajemen Member"
+    },
+    {
+      "old": "Gambar 94. Halaman Manajemen Menu",
+      "new": "Gambar 89. Halaman Manajemen Menu"
+    },
+    {
+      "old": "Gambar 95. Halaman Manajemen Jenis Ikan",
+      "new": "Gambar 90. Halaman Manajemen Jenis Ikan"
+    },
+    {
+      "old": "Gambar 96. Halaman Laporan Keuangan",
+      "new": "Gambar 91. Halaman Laporan Keuangan"
+    },
+    {
+      "old": "Gambar 97. Halaman Manajemen Voucher",
+      "new": "Gambar 92. Halaman Manajemen Voucher"
+    },
+    {
+      "old": "Gambar 98. Evaluasi Iterasi Pertama Tambah Pesanan",
+      "new": "Gambar 93. Evaluasi Iterasi Pertama Tambah Pesanan"
+    },
+    {
+      "old": "Gambar 99. Evaluasi Iterasi Kedua pada Halaman Pesanan Masuk",
+      "new": "Gambar 94. Evaluasi Iterasi Kedua pada Halaman Pesanan Masuk"
+    },
+    {
+      "old": "Gambar 100. Pembatalan Pending Order pada Checkout",
+      "new": "Gambar 95. Pembatalan Pending Order pada Checkout"
+    },
+    {
+      "old": "Gambar 101. Evaluasi Fitur Menu Spesial",
+      "new": "Gambar 96. Evaluasi Fitur Menu Spesial"
+    },
+    {
+      "old": "Gambar 102. Tampilan Popup Menu Spesial pada Halaman Utama",
+      "new": "Gambar 97. Tampilan Popup Menu Spesial pada Halaman Utama"
+    },
+    {
+      "old": "Gambar 103. Interpretasi Skor SUS Hasil Pengujian",
+      "new": "Gambar 98. Interpretasi Skor SUS Hasil Pengujian"
+    }
+  ],
+  "table_of_figures_updates": [
+    {
+      "old": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+      "new": "Gambar 69. Request Checkout dan Bukti Pembayaran164"
+    },
+    {
+      "old": "Gambar 75. Response Checkout Pegawai169",
+      "new": "Gambar 70. Response Checkout Pegawai169"
+    },
+    {
+      "old": "Gambar 76. Halaman Utama Prototype171",
+      "new": "Gambar 71. Halaman Utama Prototype171"
+    },
+    {
+      "old": "Gambar 77. Halaman Login Prototype172",
+      "new": "Gambar 72. Halaman Login Prototype172"
+    },
+    {
+      "old": "Gambar 78. Dashboard Member174",
+      "new": "Gambar 73. Dashboard Member174"
+    },
+    {
+      "old": "Gambar 79. Halaman Pesanan Member175",
+      "new": "Gambar 74. Halaman Pesanan Member175"
+    },
+    {
+      "old": "Gambar 80. Halaman Riwayat Transaksi Member176",
+      "new": "Gambar 75. Halaman Riwayat Transaksi Member176"
+    },
+    {
+      "old": "Gambar 81. Halaman Leaderboard Member177",
+      "new": "Gambar 76. Halaman Leaderboard Member177"
+    },
+    {
+      "old": "Gambar 82. Dashboard Pegawai178",
+      "new": "Gambar 77. Dashboard Pegawai178"
+    },
+    {
+      "old": "Gambar 83. Pencarian Member pada Registrasi Kedatangan179",
+      "new": "Gambar 78. Pencarian Member pada Registrasi Kedatangan179"
+    },
+    {
+      "old": "Gambar 84. Scan QR Code Member pada Registrasi Kedatangan179",
+      "new": "Gambar 79. Scan QR Code Member pada Registrasi Kedatangan179"
+    },
+    {
+      "old": "Gambar 85. Registrasi Tamu pada Registrasi Kedatangan180",
+      "new": "Gambar 80. Registrasi Tamu pada Registrasi Kedatangan180"
+    },
+    {
+      "old": "Gambar 86. Halaman Kedatangan Hari Ini181",
+      "new": "Gambar 81. Halaman Kedatangan Hari Ini181"
+    },
+    {
+      "old": "Gambar 87. Halaman Tambah Pesanan182",
+      "new": "Gambar 82. Halaman Tambah Pesanan182"
+    },
+    {
+      "old": "Gambar 88. Halaman Pesanan Masuk183",
+      "new": "Gambar 83. Halaman Pesanan Masuk183"
+    },
+    {
+      "old": "Gambar 89. Halaman Pembayaran185",
+      "new": "Gambar 84. Halaman Pembayaran185"
+    },
+    {
+      "old": "Gambar 90. Nota Digital Transaksi186",
+      "new": "Gambar 85. Nota Digital Transaksi186"
+    },
+    {
+      "old": "Gambar 91. Halaman Riwayat Transaksi Pegawai187",
+      "new": "Gambar 86. Halaman Riwayat Transaksi Pegawai187"
+    },
+    {
+      "old": "Gambar 92. Dashboard Pemilik188",
+      "new": "Gambar 87. Dashboard Pemilik188"
+    },
+    {
+      "old": "Gambar 93. Halaman Manajemen Member189",
+      "new": "Gambar 88. Halaman Manajemen Member189"
+    },
+    {
+      "old": "Gambar 94. Halaman Manajemen Menu190",
+      "new": "Gambar 89. Halaman Manajemen Menu190"
+    },
+    {
+      "old": "Gambar 95. Halaman Manajemen Jenis Ikan191",
+      "new": "Gambar 90. Halaman Manajemen Jenis Ikan191"
+    },
+    {
+      "old": "Gambar 96. Halaman Laporan Keuangan192",
+      "new": "Gambar 91. Halaman Laporan Keuangan192"
+    },
+    {
+      "old": "Gambar 97. Halaman Manajemen Voucher193",
+      "new": "Gambar 92. Halaman Manajemen Voucher193"
+    },
+    {
+      "old": "Gambar 98. Evaluasi Iterasi Pertama Tambah Pesanan196",
+      "new": "Gambar 93. Evaluasi Iterasi Pertama Tambah Pesanan196"
+    },
+    {
+      "old": "Gambar 99. Evaluasi Iterasi Kedua pada Halaman Pesanan Masuk197",
+      "new": "Gambar 94. Evaluasi Iterasi Kedua pada Halaman Pesanan Masuk197"
+    },
+    {
+      "old": "Gambar 100. Pembatalan Pending Order pada Checkout198",
+      "new": "Gambar 95. Pembatalan Pending Order pada Checkout198"
+    },
+    {
+      "old": "Gambar 101. Evaluasi Fitur Menu Spesial200",
+      "new": "Gambar 96. Evaluasi Fitur Menu Spesial200"
+    },
+    {
+      "old": "Gambar 102. Tampilan Popup Menu Spesial pada Halaman Utama201",
+      "new": "Gambar 97. Tampilan Popup Menu Spesial pada Halaman Utama201"
+    },
+    {
+      "old": "Gambar 103. Interpretasi Skor SUS Hasil Pengujian224",
+      "new": "Gambar 98. Interpretasi Skor SUS Hasil Pengujian224"
+    }
+  ],
+  "plain_reference_paragraphs_updated": 28
+}

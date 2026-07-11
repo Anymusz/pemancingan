@@ -1,0 +1,17 @@
+Test ID,Rincian Pengujian,Hasil yang Diharapkan,Hasil Pengujian,Status
+C01,Pengujian tampilan dashboard member.,"Sistem menampilkan profil, tier, poin, total berat ikan, voucher, dan QR code member.",Sistem berhasil menampilkan dashboard member.,Valid
+C02,Pengujian tampilan voucher member.,Sistem menampilkan daftar voucher milik member.,Sistem berhasil menampilkan daftar voucher member.,Valid
+C03,Pengujian tampilan leaderboard pada role member.,Sistem menampilkan leaderboard dan posisi member.,Sistem berhasil menampilkan leaderboard member.,Valid
+C04,Pengujian daftar menu untuk member.,Sistem menampilkan menu yang tersedia.,Sistem berhasil menampilkan daftar menu.,Valid
+C05,Pengujian pembuatan pesanan member dengan menu valid.,Sistem menyimpan pesanan ke tabel pending_orders dengan sumber pesanan self.,Sistem berhasil menyimpan pesanan member.,Valid
+C06,Pengujian pembuatan pesanan member dengan beberapa item menu.,Sistem menyimpan seluruh item pesanan dan menghitung subtotal.,Sistem berhasil menyimpan beberapa item pesanan.,Valid
+C07,Pengujian pembuatan pesanan member ketika belum check-in.,Sistem menolak pesanan dan menampilkan pesan bahwa member belum check-in.,Sistem menolak pesanan karena tidak terdapat kedatangan aktif.,Valid
+C08,Pengujian pembuatan pesanan member dengan jumlah 0.,Sistem menolak pesanan karena jumlah minimal 1.,Sistem menampilkan validasi jumlah pesanan.,Valid
+C09,Pengujian pembuatan pesanan member dengan menu tidak tersedia.,Sistem menolak pesanan menu yang tidak tersedia.,Sistem menolak pesanan untuk menu yang tidak tersedia.,Valid
+C10,Pengujian daftar pesanan member.,Sistem menampilkan pesanan member yang belum dibayar.,Sistem berhasil menampilkan daftar pesanan member.,Valid
+C11,Pengujian daftar pesanan member saat tidak ada pesanan.,Sistem menampilkan daftar kosong tanpa error.,Sistem berhasil menampilkan daftar kosong.,Valid
+C12,Pengujian riwayat transaksi member.,Sistem menampilkan transaksi yang pernah dilakukan member.,Sistem berhasil menampilkan riwayat transaksi member.,Valid
+C13,Pengujian update profil member dengan data valid.,Sistem memperbarui data profil pengguna.,Sistem berhasil memperbarui profil pengguna.,Valid
+C14,Pengujian update profil member dengan format email tidak valid.,Sistem menolak pembaruan dan menampilkan validasi email.,Sistem menampilkan validasi format email.,Valid
+C15,Pengujian update password member dengan password valid.,Sistem memperbarui password pengguna.,Sistem berhasil memperbarui password pengguna.,Valid
+C16,Pengujian update password member dengan password kurang dari batas minimal.,Sistem menolak perubahan password.,Sistem menampilkan validasi password.,Valid

@@ -1,0 +1,10 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,fish_type_id,Bigint,20,FK
+3,quantity_kg,Decimal,"10,2",
+4,stock_before,Decimal,"10,2",
+5,stock_after,Decimal,"10,2",
+6,restocked_by,Bigint,20,FK
+7,notes,Varchar,255,
+8,created_at,Timestamp,,
+9,updated_at,Timestamp,,

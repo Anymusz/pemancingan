@@ -1,0 +1,28 @@
+No,Kelompok,Nama Tabel,Penjelasan Implementasi
+1,Tabel utama,users,"Tabel users berhasil dibuat melalui migration Laravel. Menyimpan akun pengguna sistem, role akses, status akun, dan data kontak."
+2,Tabel utama,members,"Tabel members berhasil dibuat melalui migration Laravel. Menyimpan data keanggotaan pelanggan, poin, tier, QR code, dan riwayat aktivitas member."
+3,Tabel utama,member_tiers,"Tabel member_tiers berhasil dibuat melalui migration Laravel. Menyimpan tingkatan member, batas poin, dan persentase diskon setiap tier."
+4,Tabel utama,arrivals,"Tabel arrivals berhasil dibuat melalui migration Laravel. Mencatat kedatangan pelanggan member maupun tamu, deposit, check-in, check-out, dan petugas pencatat."
+5,Tabel utama,pending_orders,"Tabel pending_orders berhasil dibuat melalui migration Laravel. Menyimpan pesanan sementara sebelum transaksi final, termasuk status pembayaran dan proses pesanan."
+6,Tabel utama,transactions,"Tabel transactions berhasil dibuat melalui migration Laravel. Menyimpan transaksi utama, nilai pembayaran, diskon, metode bayar, poin, dan petugas pemroses."
+7,Tabel utama,transaction_items,"Tabel transaction_items berhasil dibuat melalui migration Laravel. Menyimpan rincian item transaksi seperti ikan, menu, rental, atau denda beserta harga snapshot."
+8,Tabel utama,fish_types,"Tabel fish_types berhasil dibuat melalui migration Laravel. Menyimpan master jenis ikan, harga per kilogram, dan status ketersediaan."
+9,Tabel utama,fish_stocks,Tabel fish_stocks berhasil dibuat melalui migration Laravel. Menyimpan stok ikan per jenis ikan serta batas minimum untuk peringatan stok.
+10,Tabel utama,restock_logs,"Tabel restock_logs berhasil dibuat melalui migration Laravel. Mencatat aktivitas penambahan stok ikan, stok sebelum-sesudah, dan petugas restok."
+11,Tabel utama,menus,"Tabel menus berhasil dibuat melalui migration Laravel. Menyimpan menu makanan dan minuman, kategori, harga, ketersediaan, deskripsi, dan gambar."
+12,Tabel utama,rental_items,"Tabel rental_items berhasil dibuat melalui migration Laravel. Menyimpan item rental atau alat pancing, harga sewa, satuan, deskripsi, gambar, dan status aktif."
+13,Tabel utama,voucher_configs,Tabel voucher_configs berhasil dibuat melalui migration Laravel. Menyimpan konfigurasi nominal voucher berdasarkan peringkat leaderboard.
+14,Tabel utama,vouchers,"Tabel vouchers berhasil dibuat melalui migration Laravel. Menyimpan voucher member, nominal, sumber, periode, status penggunaan, dan transaksi pemakaian."
+15,Tabel utama,notifications,"Tabel notifications berhasil dibuat melalui migration Laravel. Menyimpan pesan notifikasi pengguna, tipe, judul, isi, data tambahan, dan status baca."
+16,Tabel utama,events,"Tabel events berhasil dibuat melalui migration Laravel. Menyimpan informasi event atau pengumuman, periode, status publikasi, dan gambar pendukung."
+17,Tabel utama,guest_configs,Tabel guest_configs berhasil dibuat melalui migration Laravel. Menyimpan konfigurasi nominal deposit untuk pelanggan tamu atau non-member.
+18,Tabel utama,qris_configs,Tabel qris_configs berhasil dibuat melalui migration Laravel. Menyimpan konfigurasi gambar QRIS yang digunakan untuk pembayaran.
+19,Tabel pendukung,migrations,Tabel migrations terbentuk sebagai tabel pendukung Laravel. Mencatat migration Laravel yang sudah dijalankan agar perubahan skema basis data dapat dikontrol.
+20,Tabel pendukung,password_reset_tokens,Tabel password_reset_tokens terbentuk sebagai tabel pendukung Laravel. Menyimpan token reset password untuk kebutuhan autentikasi pengguna.
+21,Tabel pendukung,personal_access_tokens,Tabel personal_access_tokens terbentuk sebagai tabel pendukung Laravel. Menyimpan token autentikasi Laravel Sanctum untuk akses API.
+22,Tabel pendukung,sessions,Tabel sessions terbentuk sebagai tabel pendukung Laravel. Menyimpan data sesi pengguna ketika mekanisme session digunakan oleh aplikasi.
+23,Tabel pendukung,cache,Tabel cache terbentuk sebagai tabel pendukung Laravel. Menyimpan data cache aplikasi untuk mempercepat proses tertentu.
+24,Tabel pendukung,cache_locks,Tabel cache_locks terbentuk sebagai tabel pendukung Laravel. Menyimpan lock cache agar proses yang membutuhkan penguncian dapat berjalan aman.
+25,Tabel pendukung,jobs,Tabel jobs terbentuk sebagai tabel pendukung Laravel. Menyimpan antrean job yang akan diproses secara asynchronous.
+26,Tabel pendukung,job_batches,Tabel job_batches terbentuk sebagai tabel pendukung Laravel. Menyimpan informasi batch job Laravel.
+27,Tabel pendukung,failed_jobs,Tabel failed_jobs terbentuk sebagai tabel pendukung Laravel. Menyimpan job yang gagal diproses agar dapat dianalisis atau dijalankan ulang.

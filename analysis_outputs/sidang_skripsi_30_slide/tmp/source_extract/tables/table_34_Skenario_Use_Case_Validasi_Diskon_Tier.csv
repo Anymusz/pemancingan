@@ -1,0 +1,14 @@
+Nama Use Case,Validasi Diskon Tier
+ID Use Case,UC-17
+Aktor,Pegawai
+Deskripsi,Penerapan pemotongan persentase harga ikan sesuai tier pelanggan
+Precondition,Subtotal harga ikan asli telah dikalkulasi
+Aktor,Sistem
+Skenario Utama
+,1. Sistem mengecek status tier milik pelanggan
+,2. Sistem memotong nominal tagihan sesuai persentase diskon tier
+,3. Sistem menetapkan subtotal tagihan ikan yang baru
+Skenario Alternatif
+,1. Sistem mendeteksi pelanggan berstatus Tier Regular atau Guest
+,2. Sistem melewati pemotongan dan menetapkan harga normal
+Post Condition,Tagihan harga ikan yang memperhitungkan hak keanggotaan ditetapkan

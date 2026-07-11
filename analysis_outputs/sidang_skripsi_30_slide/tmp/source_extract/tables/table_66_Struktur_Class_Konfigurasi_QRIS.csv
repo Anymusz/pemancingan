@@ -1,0 +1,5 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,image,Varchar,255,
+3,created_at,Timestamp,,
+4,updated_at,Timestamp,,

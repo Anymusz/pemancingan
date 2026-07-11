@@ -1,0 +1,11 @@
+Test ID,Rincian Pengujian,Hasil yang Diharapkan,Hasil Pengujian,Status
+A01,Pengujian registrasi member dengan data valid.,Sistem menyimpan user baru dengan status pending.,Sistem berhasil menyimpan data registrasi member dengan status pending.,Valid
+A02,Pengujian registrasi member dengan email yang sudah terdaftar.,Sistem menolak registrasi dan menampilkan pesan validasi.,Sistem menolak registrasi karena email sudah terdaftar.,Valid
+A03,Pengujian registrasi member dengan password kurang dari 8 karakter.,Sistem menolak registrasi dan menampilkan validasi password.,Sistem menampilkan pesan validasi password.,Valid
+A04,Pengujian login pemilik dengan data valid.,"Sistem menerima login, menghasilkan token, dan mengarahkan pengguna ke dashboard pemilik.",Sistem berhasil menerima login sebagai pemilik.,Valid
+A05,Pengujian login pegawai dengan data valid.,"Sistem menerima login, menghasilkan token, dan mengarahkan pengguna ke dashboard pegawai.",Sistem berhasil menerima login sebagai pegawai.,Valid
+A06,Pengujian login member aktif dengan data valid.,"Sistem menerima login, menghasilkan token, dan mengarahkan pengguna ke dashboard member.",Sistem berhasil menerima login sebagai member.,Valid
+A07,Pengujian login dengan password salah.,Sistem menolak login dan menampilkan pesan kesalahan.,Sistem menolak login karena password tidak sesuai.,Valid
+A08,Pengujian login akun member berstatus pending.,Sistem menolak login dan menampilkan pesan akun masih menunggu validasi pemilik.,Sistem menolak login akun member yang masih berstatus pending.,Valid
+A09,Pengujian akses data pengguna setelah login.,Sistem menampilkan data user yang sedang login.,Sistem berhasil menampilkan data pengguna yang sedang login.,Valid
+A10,Pengujian logout pengguna.,Sistem menghapus token akses dan mengakhiri sesi pengguna.,Sistem berhasil menghapus token akses dan logout pengguna.,Valid

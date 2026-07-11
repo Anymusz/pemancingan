@@ -1,0 +1,8 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,name,Varchar,20,UNIQUE
+3,min_points,Int,10,INDEX
+4,max_points,Int,10,
+5,discount_percentage,Decimal,"5,2",
+6,created_at,Timestamp,,
+7,updated_at,Timestamp,,

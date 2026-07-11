@@ -1,0 +1,18 @@
+Nama Use Case,Checkout Transaksi
+ID Use Case,UC-14
+Aktor,Pegawai
+Deskripsi,"Proses penyelesaian pembayaran akhir di kasir untuk ikan, menu F&B, penyewaan alat, dan menampilkan nota digital transaksi."
+Precondition,Aktor telah login sebagai pegawai dan terdapat pesanan atau data pembayaran pelanggan yang akan diselesaikan.
+Aktor,Sistem
+Skenario Utama
+1. Aktor memilih pelanggan atau pesanan yang akan di-checkout,
+,"2. Sistem menampilkan rincian tagihan ikan, menu F&B, penyewaan alat, dan total pembayaran"
+3. Aktor memasukkan data pembayaran,
+,4. Sistem memvalidasi data pembayaran
+,5. Sistem memproses checkout transaksi
+,6. Sistem memperbarui data transaksi dan poin member jika pelanggan adalah member
+,7. Sistem menampilkan nota digital transaksi
+Skenario Alternatif
+1. Aktor memasukkan data pembayaran yang tidak valid,
+,2. Sistem menolak checkout dan menampilkan pesan kesalahan
+Post Condition,Transaksi berhasil diselesaikan dan nota digital transaksi tersedia pada sistem.

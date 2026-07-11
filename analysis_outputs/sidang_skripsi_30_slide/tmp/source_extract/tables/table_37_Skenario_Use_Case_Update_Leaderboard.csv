@@ -1,0 +1,15 @@
+Nama Use Case,Update Leaderboard
+ID Use Case,UC-20
+Aktor,Pegawai
+Deskripsi,Pembaruan akumulasi berat ikan pada klasemen peringkat
+Precondition,Transaksi LUNAS telah berhasil disimpan
+Aktor,Sistem
+Skenario Utama
+,1. Sistem mengambil variabel berat ikan dari transaksi yang baru terjadi
+,2. Sistem menjumlahkan kilogram tersebut ke rekam jejak pelanggan
+,3. Sistem merotasi dan mengurutkan ulang peringkat klasemen
+,4. Sistem menembakkan alert notifikasi jika pelanggan naik peringkat
+Skenario Alternatif
+,1. Sistem memproses transaksi yang tidak mengandung pembelian ikan
+,2. Sistem mendeteksi nilai 0 kg dan melewati tahapan pembaruan ini
+Post Condition,Tabel peringkat Leaderboard termutakhirkan secara akurat

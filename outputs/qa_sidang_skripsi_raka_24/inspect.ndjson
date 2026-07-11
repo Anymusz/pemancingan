@@ -1,0 +1,673 @@
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/2x4nap4r","slide":1,"title":"Perancangan dan Implementasi Back-End Sistem Informasi untuk Mendukung Digita...","textShapes":5}
+{"kind":"shape","id":"sh/nap4r65w","slide":1,"bbox":[0,0,1280,12]}
+{"kind":"shape","id":"sh/cvixczed","slide":1,"bbox":[0,12,260,9]}
+{"kind":"shape","id":"sh/5gbq1ory","slide":1,"bbox":[77,69,106,106]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":1,"text":"Perancangan dan Implementasi Back-End Sistem Informasi untuk Mendukung Digitalisasi Bisnis Pemancingan S Menggunakan Metodologi Rapid Application Development (RAD)","textPreview":"Perancangan dan Implementasi Back-End Sistem Informasi untuk Mendukung Digitalisasi Bisnis Pemancingan S Menggunakan Metodologi Rapid App...","textChars":163,"textLines":1,"bbox":[78,160,1060,305]}
+{"kind":"shape","id":"sh/cj6tovah","slide":1,"bbox":[80,486,170,6]}
+{"kind":"textbox","id":"sh/54zidony","slide":1,"text":"Raka Bagaskara Putra","textPreview":"Raka Bagaskara Putra","textChars":20,"textLines":1,"bbox":[80,516,520,32]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":1,"text":"F1E122183","textPreview":"F1E122183","textChars":9,"textLines":1,"bbox":[80,552,260,26]}
+{"kind":"textbox","id":"sh/judg7ads","slide":1,"text":"Program Studi Sistem Informasi\nJurusan Teknik Elektro dan Informatika\nFakultas Sains dan Teknologi\nUniversitas Jambi, 2026","textPreview":"Program Studi Sistem Informasi | Jurusan Teknik Elektro dan Informatika | Fakultas Sains dan Teknologi | Universitas Jambi, 2026","textChars":122,"textLines":4,"bbox":[80,586,560,96]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":1,"text":"Sidang Skripsi","textPreview":"Sidang Skripsi","textChars":14,"textLines":1,"bbox":[1010,620,170,26]}
+{"kind":"image","id":"im/1032lszq","slide":1,"name":"","bbox":[78.2,70,103.6,104]}
+{"kind":"notes","id":"nt/2x4nap4r","slide":1,"text":""}
+{"kind":"slide","id":"sl/pg3ex0nu","slide":2,"title":"KONTEKS MASALAH","textShapes":17}
+{"kind":"shape","id":"sh/yxobm58z","slide":2,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":2,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":2,"text":"KONTEKS MASALAH","textPreview":"KONTEKS MASALAH","textChars":15,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":2,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":2,"text":"Operasional masih bertumpu pada catatan manual","textPreview":"Operasional masih bertumpu pada catatan manual","textChars":46,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":2,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":2,"bbox":[86,218,12,12]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":2,"text":"Transaksi dicatat di buku tulis tanpa format standar.","textPreview":"Transaksi dicatat di buku tulis tanpa format standar.","textChars":53,"textLines":1,"bbox":[112,210,494,52]}
+{"kind":"shape","id":"sh/wb2hwfyx","slide":2,"bbox":[86,274,12,12]}
+{"kind":"textbox","id":"sh/lwval87e","slide":2,"text":"Data diinput ulang ke aplikasi pihak ketiga oleh pemilik.","textPreview":"Data diinput ulang ke aplikasi pihak ketiga oleh pemilik.","textChars":57,"textLines":1,"bbox":[112,266,494,52]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":2,"bbox":[86,330,12,12]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":2,"text":"Verifikasi pelanggan masih bergantung pada hafalan pegawai.","textPreview":"Verifikasi pelanggan masih bergantung pada hafalan pegawai.","textChars":59,"textLines":1,"bbox":[112,322,494,52]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":2,"bbox":[86,386,12,12]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":2,"text":"Data transaksi, stok, rental, dan laporan belum berada di satu sistem.","textPreview":"Data transaksi, stok, rental, dan laporan belum berada di satu sistem.","textChars":70,"textLines":1,"bbox":[112,378,494,52]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":2,"bbox":[680,246,144.67,78]}
+{"kind":"shape","id":"sh/3itgfmlk","slide":2,"bbox":[680,246,144.67,7]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":2,"text":"Buku tulis","textPreview":"Buku tulis","textChars":10,"textLines":1,"bbox":[692,270,120.67,36]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":2,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[826.67,273,32,24]}
+{"kind":"shape","id":"sh/lc7u54zi","slide":2,"bbox":[842.67,246,144.67,78]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":2,"bbox":[842.67,246,144.67,7]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":2,"text":"Input ulang","textPreview":"Input ulang","textChars":11,"textLines":1,"bbox":[854.67,270,120.67,36]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":2,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[989.33,273,32,24]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":2,"bbox":[1005.33,246,144.67,78]}
+{"kind":"shape","id":"sh/wfyxobm5","slide":2,"bbox":[1005.33,246,144.67,7]}
+{"kind":"textbox","id":"sh/7u54zido","slide":2,"text":"Rekap terlambat","textPreview":"Rekap terlambat","textChars":15,"textLines":1,"bbox":[1017.33,270,120.67,36]}
+{"kind":"shape","id":"sh/ed8bat47","slide":2,"bbox":[700,390,200,118]}
+{"kind":"shape","id":"sh/psfil0rq","slide":2,"bbox":[700,390,8,118]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":2,"text":"1-3 hari","textPreview":"1-3 hari","textChars":8,"textLines":1,"bbox":[726,406,160,48]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":2,"text":"Jeda rekap transaksi","textPreview":"Jeda rekap transaksi","textChars":20,"textLines":1,"bbox":[728,458,160,26]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":2,"bbox":[930,390,210,118]}
+{"kind":"shape","id":"sh/obm58z25","slide":2,"bbox":[930,390,8,118]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":2,"text":"Terpisah","textPreview":"Terpisah","textChars":8,"textLines":1,"bbox":[956,406,170,48]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":2,"text":"Sumber data operasional","textPreview":"Sumber data operasional","textChars":23,"textLines":1,"bbox":[958,458,170,26]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":2,"text":"Sumber: Latar Belakang dan Ringkasan skripsi.","textPreview":"Sumber: Latar Belakang dan Ringkasan skripsi.","textChars":45,"textLines":1,"bbox":[72,650,850,20]}
+{"kind":"notes","id":"nt/pg3ex0nu","slide":2,"text":""}
+{"kind":"slide","id":"sl/s72x4nap","slide":3,"title":"ARAH PENELITIAN","textShapes":14}
+{"kind":"shape","id":"sh/vmtwra5g","slide":3,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":3,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":3,"text":"ARAH PENELITIAN","textPreview":"ARAH PENELITIAN","textChars":15,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/vy90je9c","slide":3,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":3,"text":"Penelitian menjawab kebutuhan back-end yang terintegrasi","textPreview":"Penelitian menjawab kebutuhan back-end yang terintegrasi","textChars":56,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":3,"bbox":[72,156,120,5]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":3,"text":"Rumusan masalah","textPreview":"Rumusan masalah","textChars":15,"textLines":1,"bbox":[86,200,360,32]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":3,"bbox":[86,258,12,12]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":3,"text":"Bagaimana analisis kebutuhan back-end mendukung operasional Pemancingan S?","textPreview":"Bagaimana analisis kebutuhan back-end mendukung operasional Pemancingan S?","textChars":74,"textLines":1,"bbox":[112,250,474,60]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":3,"bbox":[86,322,12,12]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":3,"text":"Bagaimana rancangan dan implementasi back-end menggunakan RAD?","textPreview":"Bagaimana rancangan dan implementasi back-end menggunakan RAD?","textChars":62,"textLines":1,"bbox":[112,314,474,60]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":3,"text":"Tujuan penelitian","textPreview":"Tujuan penelitian","textChars":17,"textLines":1,"bbox":[700,200,360,32]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":3,"bbox":[700,258,12,12]}
+{"kind":"textbox","id":"sh/61032lsz","slide":3,"text":"Menganalisis kebutuhan sistem sesuai proses operasional.","textPreview":"Menganalisis kebutuhan sistem sesuai proses operasional.","textChars":56,"textLines":1,"bbox":[726,250,444,60]}
+{"kind":"shape","id":"sh/dsji5sne","slide":3,"bbox":[700,322,12,12]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":3,"text":"Merancang dan mengimplementasikan back-end berbasis web yang terintegrasi.","textPreview":"Merancang dan mengimplementasikan back-end berbasis web yang terintegrasi.","textChars":74,"textLines":1,"bbox":[726,314,444,60]}
+{"kind":"shape","id":"sh/vahoza1g","slide":3,"bbox":[230,500,261.33,78]}
+{"kind":"shape","id":"sh/6tovahoz","slide":3,"bbox":[230,500,261.33,7]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":3,"text":"Analisis kebutuhan","textPreview":"Analisis kebutuhan","textChars":18,"textLines":1,"bbox":[242,524,237.33,36]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":3,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[493.33,527,32,24]}
+{"kind":"shape","id":"sh/wval87ed","slide":3,"bbox":[509.33,500,261.33,78]}
+{"kind":"shape","id":"sh/pg3ex0nu","slide":3,"bbox":[509.33,500,261.33,7]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":3,"text":"Rancangan back-end","textPreview":"Rancangan back-end","textChars":18,"textLines":1,"bbox":[521.33,524,237.33,36]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":3,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[772.67,527,32,24]}
+{"kind":"shape","id":"sh/w7mp0bi9","slide":3,"bbox":[788.67,500,261.33,78]}
+{"kind":"shape","id":"sh/psfil0rq","slide":3,"bbox":[788.67,500,261.33,7]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":3,"text":"Implementasi API","textPreview":"Implementasi API","textChars":16,"textLines":1,"bbox":[800.67,524,237.33,36]}
+{"kind":"notes","id":"nt/s72x4nap","slide":3,"text":""}
+{"kind":"slide","id":"sl/val87ed8","slide":4,"title":"RUANG LINGKUP","textShapes":8}
+{"kind":"shape","id":"sh/1gvy90je","slide":4,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/qtcj6tov","slide":4,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":4,"text":"RUANG LINGKUP","textPreview":"RUANG LINGKUP","textChars":13,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/xs72x4na","slide":4,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":4,"text":"Batasan menjaga fokus pada layanan back-end","textPreview":"Batasan menjaga fokus pada layanan back-end","textChars":43,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/fmlkjm1c","slide":4,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":4,"bbox":[130,218,12,12]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":4,"text":"Fokus pada analisis kebutuhan, perancangan, dan implementasi back-end.","textPreview":"Fokus pada analisis kebutuhan, perancangan, dan implementasi back-end.","textChars":70,"textLines":1,"bbox":[156,210,954,56]}
+{"kind":"shape","id":"sh/1w7mp0bi","slide":4,"bbox":[130,278,12,12]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":4,"text":"Metode pengembangan: RAD dengan model System Prototyping.","textPreview":"Metode pengembangan: RAD dengan model System Prototyping.","textChars":57,"textLines":1,"bbox":[156,270,954,56]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":4,"bbox":[130,338,12,12]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":4,"text":"Fitur inti: transaksi, stok ikan, penyewaan alat, dan laporan.","textPreview":"Fitur inti: transaksi, stok ikan, penyewaan alat, dan laporan.","textChars":62,"textLines":1,"bbox":[156,330,954,56]}
+{"kind":"shape","id":"sh/18jqh0fe","slide":4,"bbox":[130,398,12,12]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":4,"text":"Fitur pendukung: autentikasi, role, member, voucher, notifikasi, konfigurasi, API.","textPreview":"Fitur pendukung: autentikasi, role, member, voucher, notifikasi, konfigurasi, API.","textChars":82,"textLines":1,"bbox":[156,390,954,56]}
+{"kind":"shape","id":"sh/j2t83itg","slide":4,"bbox":[130,458,12,12]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":4,"text":"Front-end dibahas sebagai prototype integrasi dari penelitian sebelumnya.","textPreview":"Front-end dibahas sebagai prototype integrasi dari penelitian sebelumnya.","textChars":73,"textLines":1,"bbox":[156,450,954,56]}
+{"kind":"notes","id":"nt/val87ed8","slide":4,"text":""}
+{"kind":"slide","id":"sl/mlkjm1cf","slide":5,"title":"METODOLOGI","textShapes":9}
+{"kind":"shape","id":"sh/vahoza1g","slide":5,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/ovahoza1","slide":5,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":5,"text":"METODOLOGI","textPreview":"METODOLOGI","textChars":10,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":5,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":5,"text":"RAD dipakai untuk mengembangkan prototype secara iteratif","textPreview":"RAD dipakai untuk mengembangkan prototype secara iteratif","textChars":57,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":5,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":5,"bbox":[83,189,512,212]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":5,"text":"Gambar 2. Tahapan System Prototyping dalam RAD","textPreview":"Gambar 2. Tahapan System Prototyping dalam RAD","textChars":46,"textLines":1,"bbox":[84,408,510,22]}
+{"kind":"shape","id":"sh/y90je9cv","slide":5,"bbox":[741,174,232,412]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":5,"text":"Gambar 4. Kerangka kerja penelitian","textPreview":"Gambar 4. Kerangka kerja penelitian","textChars":35,"textLines":1,"bbox":[742,593,230,22]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":5,"bbox":[84,463,12,12]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":5,"text":"Planning mengidentifikasi masalah dan ruang lingkup.","textPreview":"Planning mengidentifikasi masalah dan ruang lingkup.","textChars":52,"textLines":1,"bbox":[110,455,534,38]}
+{"kind":"shape","id":"sh/58z25kb6","slide":5,"bbox":[84,505,12,12]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":5,"text":"Analysis memetakan kebutuhan, aktor, data, serta proses bisnis.","textPreview":"Analysis memetakan kebutuhan, aktor, data, serta proses bisnis.","textChars":63,"textLines":1,"bbox":[110,497,534,38]}
+{"kind":"shape","id":"sh/neloj2t8","slide":5,"bbox":[84,547,12,12]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":5,"text":"Design menerjemahkan kebutuhan ke UML, database, dan API.","textPreview":"Design menerjemahkan kebutuhan ke UML, database, dan API.","textChars":57,"textLines":1,"bbox":[110,539,534,38]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":5,"bbox":[84,589,12,12]}
+{"kind":"textbox","id":"sh/vixczed8","slide":5,"text":"Implementation membangun Laravel, MySQL, integrasi, dan evaluasi.","textPreview":"Implementation membangun Laravel, MySQL, integrasi, dan evaluasi.","textChars":65,"textLines":1,"bbox":[110,581,534,38]}
+{"kind":"image","id":"im/b2hwfyxo","slide":5,"name":"","bbox":[84,190.71,510,208.58]}
+{"kind":"image","id":"im/mhk3q5o7","slide":5,"name":"","bbox":[778.22,175,157.56,410]}
+{"kind":"notes","id":"nt/mlkjm1cf","slide":5,"text":""}
+{"kind":"slide","id":"sl/58z25kb6","slide":6,"title":"PENGUMPULAN DATA","textShapes":13}
+{"kind":"shape","id":"sh/9cvixcze","slide":6,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":6,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":6,"text":"PENGUMPULAN DATA","textPreview":"PENGUMPULAN DATA","textChars":16,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":6,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":6,"text":"Data lapangan dikumpulkan dari proses nyata Pemancingan S","textPreview":"Data lapangan dikumpulkan dari proses nyata Pemancingan S","textChars":57,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/nih4byhg","slide":6,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/g7adsji5","slide":6,"bbox":[90,210,230,118]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":6,"bbox":[90,210,8,118]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":6,"text":"The Hok","textPreview":"The Hok","textChars":7,"textLines":1,"bbox":[116,226,190,48]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":6,"text":"Lokasi","textPreview":"Lokasi","textChars":6,"textLines":1,"bbox":[118,278,190,26]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":6,"text":"Kec. Jambi Selatan","textPreview":"Kec. Jambi Selatan","textChars":18,"textLines":1,"bbox":[118,304,190,18]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":6,"bbox":[360,210,290,118]}
+{"kind":"shape","id":"sh/dg7adsji","slide":6,"bbox":[360,210,8,118]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":6,"text":"Nov 2025-Mar 2026","textPreview":"Nov 2025-Mar 2026","textChars":17,"textLines":1,"bbox":[386,226,250,48]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":6,"text":"Periode","textPreview":"Periode","textChars":7,"textLines":1,"bbox":[388,278,250,26]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":6,"text":"Teknik pengumpulan data","textPreview":"Teknik pengumpulan data","textChars":23,"textLines":1,"bbox":[90,382,430,34]}
+{"kind":"shape","id":"sh/dsji5sne","slide":6,"bbox":[90,446,12,12]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":6,"text":"Studi literatur untuk teori sistem informasi, RAD, Laravel, MySQL, dan evaluasi.","textPreview":"Studi literatur untuk teori sistem informasi, RAD, Laravel, MySQL, dan evaluasi.","textChars":80,"textLines":1,"bbox":[116,438,954,41]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":6,"bbox":[90,491,12,12]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":6,"text":"Observasi aktivitas transaksi, stok, penyewaan, dan laporan.","textPreview":"Observasi aktivitas transaksi, stok, penyewaan, dan laporan.","textChars":60,"textLines":1,"bbox":[116,483,954,41]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":6,"bbox":[90,536,12,12]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":6,"text":"Wawancara pemilik dan pegawai untuk menggali masalah dan kebutuhan.","textPreview":"Wawancara pemilik dan pegawai untuk menggali masalah dan kebutuhan.","textChars":67,"textLines":1,"bbox":[116,528,954,41]}
+{"kind":"shape","id":"sh/gvy90je9","slide":6,"bbox":[90,581,12,12]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":6,"text":"Wawancara terbatas pelanggan untuk memahami alur layanan.","textPreview":"Wawancara terbatas pelanggan untuk memahami alur layanan.","textChars":57,"textLines":1,"bbox":[116,573,954,41]}
+{"kind":"notes","id":"nt/58z25kb6","slide":6,"text":""}
+{"kind":"slide","id":"sl/0z61032l","slide":7,"title":"PLANNING","textShapes":15}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":7,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":7,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":7,"text":"PLANNING","textPreview":"PLANNING","textChars":8,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/qpg3ex0n","slide":7,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":7,"text":"Planning menetapkan masalah, ruang lingkup, dan kebutuhan awal","textPreview":"Planning menetapkan masalah, ruang lingkup, dan kebutuhan awal","textChars":62,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/8v6psfil","slide":7,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/je9cvixc","slide":7,"bbox":[105,210,231.5,78]}
+{"kind":"shape","id":"sh/qtcj6tov","slide":7,"bbox":[105,210,231.5,7]}
+{"kind":"textbox","id":"sh/svu9knih","slide":7,"text":"Observasi","textPreview":"Observasi","textChars":9,"textLines":1,"bbox":[117,234,207.5,36]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":7,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[338.5,237,32,24]}
+{"kind":"shape","id":"sh/ap4r65wj","slide":7,"bbox":[354.5,210,231.5,78]}
+{"kind":"shape","id":"sh/za1gvy90","slide":7,"bbox":[354.5,210,231.5,7]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":7,"text":"Wawancara","textPreview":"Wawancara","textChars":9,"textLines":1,"bbox":[366.5,234,207.5,36]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":7,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[588,237,32,24]}
+{"kind":"shape","id":"sh/a1gvy90j","slide":7,"bbox":[604,210,231.5,78]}
+{"kind":"shape","id":"sh/zidonyd0","slide":7,"bbox":[604,210,231.5,7]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":7,"text":"Identifikasi masalah","textPreview":"Identifikasi masalah","textChars":20,"textLines":1,"bbox":[616,234,207.5,36]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":7,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[837.5,237,32,24]}
+{"kind":"shape","id":"sh/pg3ex0nu","slide":7,"bbox":[853.5,210,231.5,78]}
+{"kind":"shape","id":"sh/wval87ed","slide":7,"bbox":[853.5,210,231.5,7]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":7,"text":"Rencana kerja","textPreview":"Rencana kerja","textChars":13,"textLines":1,"bbox":[865.5,234,207.5,36]}
+{"kind":"shape","id":"sh/epkzupwb","slide":7,"bbox":[125,368,12,12]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":7,"text":"Masalah utama: transaksi manual, stok belum terhubung, laporan kurang efektif.","textPreview":"Masalah utama: transaksi manual, stok belum terhubung, laporan kurang efektif.","textChars":78,"textLines":1,"bbox":[151,360,914,50]}
+{"kind":"shape","id":"sh/w7mp0bi9","slide":7,"bbox":[125,422,12,12]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":7,"text":"Ruang lingkup ditetapkan pada back-end dan integrasi dengan prototype UI.","textPreview":"Ruang lingkup ditetapkan pada back-end dan integrasi dengan prototype UI.","textChars":73,"textLines":1,"bbox":[151,414,914,50]}
+{"kind":"shape","id":"sh/e1w7mp0b","slide":7,"bbox":[125,476,12,12]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":7,"text":"Aktor awal: Owner, Employee, Member.","textPreview":"Aktor awal: Owner, Employee, Member.","textChars":36,"textLines":1,"bbox":[151,468,914,50]}
+{"kind":"shape","id":"sh/wfyxobm5","slide":7,"bbox":[125,530,12,12]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":7,"text":"Output tahap: kebutuhan awal, proses utama, dan acuan pengembangan berikutnya.","textPreview":"Output tahap: kebutuhan awal, proses utama, dan acuan pengembangan berikutnya.","textChars":78,"textLines":1,"bbox":[151,522,914,50]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":7,"text":"Sumber: Tahap Perencanaan (Planning), BAB IV.","textPreview":"Sumber: Tahap Perencanaan (Planning), BAB IV.","textChars":45,"textLines":1,"bbox":[72,650,850,20]}
+{"kind":"notes","id":"nt/0z61032l","slide":7,"text":""}
+{"kind":"slide","id":"sl/fu18jqh0","slide":8,"title":"ANALYSIS","textShapes":18}
+{"kind":"shape","id":"sh/1032lszq","slide":8,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/u9knih4b","slide":8,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/judg7ads","slide":8,"text":"ANALYSIS","textPreview":"ANALYSIS","textChars":8,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/1orytsvu","slide":8,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":8,"text":"Analysis mengubah temuan lapangan menjadi kebutuhan sistem","textPreview":"Analysis mengubah temuan lapangan menjadi kebutuhan sistem","textChars":58,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":8,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/cvixczed","slide":8,"bbox":[90,200,250,118]}
+{"kind":"shape","id":"sh/5gbq1ory","slide":8,"bbox":[90,200,8,118]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":8,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[116,216,210,48]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":8,"text":"Kebutuhan fungsional","textPreview":"Kebutuhan fungsional","textChars":20,"textLines":1,"bbox":[118,268,210,26]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":8,"text":"Tabel 13","textPreview":"Tabel 13","textChars":8,"textLines":1,"bbox":[118,294,210,18]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":8,"bbox":[372,200,270,118]}
+{"kind":"shape","id":"sh/1w7mp0bi","slide":8,"bbox":[372,200,8,118]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":8,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[398,216,230,48]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":8,"text":"Kebutuhan non-fungsional","textPreview":"Kebutuhan non-fungsional","textChars":24,"textLines":1,"bbox":[400,268,230,26]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":8,"text":"Tabel 14","textPreview":"Tabel 14","textChars":8,"textLines":1,"bbox":[400,294,230,18]}
+{"kind":"shape","id":"sh/1kre1w7m","slide":8,"bbox":[674,200,230,118]}
+{"kind":"shape","id":"sh/c3ylc7u5","slide":8,"bbox":[674,200,8,118]}
+{"kind":"textbox","id":"sh/orytsvu9","slide":8,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[700,216,190,48]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":8,"text":"Kebutuhan data","textPreview":"Kebutuhan data","textChars":14,"textLines":1,"bbox":[702,268,190,26]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":8,"text":"Tabel 15","textPreview":"Tabel 15","textChars":8,"textLines":1,"bbox":[702,294,190,18]}
+{"kind":"shape","id":"sh/z61032ls","slide":8,"bbox":[936,200,210,118]}
+{"kind":"shape","id":"sh/sfil0rqd","slide":8,"bbox":[936,200,8,118]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":8,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[962,216,170,48]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":8,"text":"Aktor sistem","textPreview":"Aktor sistem","textChars":12,"textLines":1,"bbox":[964,268,170,26]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":8,"text":"Tabel 16","textPreview":"Tabel 16","textChars":8,"textLines":1,"bbox":[964,294,170,18]}
+{"kind":"shape","id":"sh/obm58z25","slide":8,"bbox":[110,403,12,12]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":8,"text":"Fungsi inti mencakup autentikasi, member, kedatangan, pesanan, checkout, stok, voucher, laporan, dan API.","textPreview":"Fungsi inti mencakup autentikasi, member, kedatangan, pesanan, checkout, stok, voucher, laporan, dan API.","textChars":105,"textLines":1,"bbox":[136,395,954,51]}
+{"kind":"shape","id":"sh/7u54zido","slide":8,"bbox":[110,458,12,12]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":8,"text":"Kualitas sistem menekankan autentikasi, pembatasan role, validasi, integritas data, dan integrasi API.","textPreview":"Kualitas sistem menekankan autentikasi, pembatasan role, validasi, integritas data, dan integrasi API.","textChars":102,"textLines":1,"bbox":[136,450,954,51]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":8,"bbox":[110,513,12,12]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":8,"text":"Data utama meliputi pengguna, member, ikan, stok, menu, rental, transaksi, voucher, notifikasi, dan konfigurasi.","textPreview":"Data utama meliputi pengguna, member, ikan, stok, menu, rental, transaksi, voucher, notifikasi, dan konfigurasi.","textChars":112,"textLines":1,"bbox":[136,505,954,51]}
+{"kind":"notes","id":"nt/fu18jqh0","slide":8,"text":""}
+{"kind":"slide","id":"sl/qh0fepkz","slide":9,"title":"ANALYSIS","textShapes":13}
+{"kind":"shape","id":"sh/vahoza1g","slide":9,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/ovahoza1","slide":9,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":9,"text":"ANALYSIS","textPreview":"ANALYSIS","textChars":8,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":9,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":9,"text":"Sistem usulan menyatukan alur yang sebelumnya terpisah","textPreview":"Sistem usulan menyatukan alur yang sebelumnya terpisah","textChars":54,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":9,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":9,"bbox":[72,178,540,385]}
+{"kind":"shape","id":"sh/vy90je9c","slide":9,"bbox":[668,178,540,385]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":9,"bbox":[72,178,540,8]}
+{"kind":"shape","id":"sh/y90je9cv","slide":9,"bbox":[668,178,540,8]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":9,"text":"Sistem Berjalan","textPreview":"Sistem Berjalan","textChars":15,"textLines":1,"bbox":[100,206,470,34]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":9,"text":"Sistem Usulan","textPreview":"Sistem Usulan","textChars":13,"textLines":1,"bbox":[696,206,470,34]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":9,"bbox":[100,270,12,12]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":9,"text":"Transaksi dicatat di buku tulis.","textPreview":"Transaksi dicatat di buku tulis.","textChars":32,"textLines":1,"bbox":[126,262,444,44]}
+{"kind":"shape","id":"sh/58z25kb6","slide":9,"bbox":[100,318,12,12]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":9,"text":"Pemilik melakukan input ulang.","textPreview":"Pemilik melakukan input ulang.","textChars":30,"textLines":1,"bbox":[126,310,444,44]}
+{"kind":"shape","id":"sh/neloj2t8","slide":9,"bbox":[100,366,12,12]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":9,"text":"Member divalidasi dari ingatan pegawai.","textPreview":"Member divalidasi dari ingatan pegawai.","textChars":39,"textLines":1,"bbox":[126,358,444,44]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":9,"bbox":[100,414,12,12]}
+{"kind":"textbox","id":"sh/vixczed8","slide":9,"text":"Stok dan laporan tidak otomatis terhubung.","textPreview":"Stok dan laporan tidak otomatis terhubung.","textChars":42,"textLines":1,"bbox":[126,406,444,44]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":9,"bbox":[696,270,12,12]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":9,"text":"Data masuk melalui layanan back-end.","textPreview":"Data masuk melalui layanan back-end.","textChars":36,"textLines":1,"bbox":[722,262,444,44]}
+{"kind":"shape","id":"sh/6psfil0r","slide":9,"bbox":[696,318,12,12]}
+{"kind":"textbox","id":"sh/val87ed8","slide":9,"text":"Role menentukan hak akses setiap aktor.","textPreview":"Role menentukan hak akses setiap aktor.","textChars":39,"textLines":1,"bbox":[722,310,444,44]}
+{"kind":"shape","id":"sh/kre1w7mp","slide":9,"bbox":[696,366,12,12]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":9,"text":"Member, transaksi, stok, voucher, dan laporan memakai basis data yang sama.","textPreview":"Member, transaksi, stok, voucher, dan laporan memakai basis data yang sama.","textChars":75,"textLines":1,"bbox":[722,358,444,44]}
+{"kind":"shape","id":"sh/2lszqtcj","slide":9,"bbox":[696,414,12,12]}
+{"kind":"textbox","id":"sh/v6psfil0","slide":9,"text":"Dashboard dan laporan mengambil data operasional terkini.","textPreview":"Dashboard dan laporan mengambil data operasional terkini.","textChars":57,"textLines":1,"bbox":[722,406,444,44]}
+{"kind":"notes","id":"nt/qh0fepkz","slide":9,"text":""}
+{"kind":"slide","id":"sl/29gr2p8n","slide":10,"title":"DESIGN","textShapes":5}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":10,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/9gr2p8nq","slide":10,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":10,"text":"DESIGN","textPreview":"DESIGN","textChars":6,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":10,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":10,"text":"Use case memusatkan tiga aktor pada proses operasional inti","textPreview":"Use case memusatkan tiga aktor pada proses operasional inti","textChars":59,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":10,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/rqd4vmtw","slide":10,"bbox":[264,164,752,457]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":10,"text":"Gambar 5. Use Case Diagram Umum Sistem Informasi Pemancingan S","textPreview":"Gambar 5. Use Case Diagram Umum Sistem Informasi Pemancingan S","textChars":62,"textLines":1,"bbox":[265,628,750,22]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":10,"text":"Aktor: Pemilik, Pegawai, Member.","textPreview":"Aktor: Pemilik, Pegawai, Member.","textChars":32,"textLines":1,"bbox":[72,650,850,20]}
+{"kind":"image","id":"im/hk3q5o7q","slide":10,"name":"","bbox":[480.64,165,318.73,455]}
+{"kind":"notes","id":"nt/29gr2p8n","slide":10,"text":""}
+{"kind":"slide","id":"sl/re1w7mp0","slide":11,"title":"DESIGN","textShapes":4}
+{"kind":"shape","id":"sh/dg7adsji","slide":11,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/6tovahoz","slide":11,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":11,"text":"DESIGN","textPreview":"DESIGN","textChars":6,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":11,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":11,"text":"Class diagram menggambarkan relasi data dan logika domain","textPreview":"Class diagram menggambarkan relasi data dan logika domain","textChars":57,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":11,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/oj2t83it","slide":11,"bbox":[89,164,1102,457]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":11,"text":"Gambar 39. Class Diagram Sistem Informasi Pemancingan S - Revisi Layout","textPreview":"Gambar 39. Class Diagram Sistem Informasi Pemancingan S - Revisi Layout","textChars":71,"textLines":1,"bbox":[90,628,1100,22]}
+{"kind":"image","id":"im/v6psfil0","slide":11,"name":"","bbox":[245.67,165,788.67,455]}
+{"kind":"notes","id":"nt/re1w7mp0","slide":11,"text":""}
+{"kind":"slide","id":"sl/4fu18jqh","slide":12,"title":"DESIGN DATABASE","textShapes":24}
+{"kind":"shape","id":"sh/3m94fu18","slide":12,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/s72x4nap","slide":12,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":12,"text":"DESIGN DATABASE","textPreview":"DESIGN DATABASE","textChars":15,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/3ylc7u54","slide":12,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/sji5snel","slide":12,"text":"Rancangan database menata entitas utama operasional","textPreview":"Rancangan database menata entitas utama operasional","textChars":51,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":12,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/ap4r65wj","slide":12,"bbox":[88,190,230,118]}
+{"kind":"shape","id":"sh/za1gvy90","slide":12,"bbox":[88,190,8,118]}
+{"kind":"textbox","id":"sh/z61032ls","slide":12,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[114,206,190,48]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":12,"text":"Entitas rancangan","textPreview":"Entitas rancangan","textChars":17,"textLines":1,"bbox":[116,258,190,26]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":12,"text":"Tabel 48","textPreview":"Tabel 48","textChars":8,"textLines":1,"bbox":[116,284,190,18]}
+{"kind":"shape","id":"sh/orytsvu9","slide":12,"bbox":[350,190,220,118]}
+{"kind":"shape","id":"sh/zupwb2hw","slide":12,"bbox":[350,190,8,118]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":12,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[376,206,180,48]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":12,"text":"Kelompok data","textPreview":"Kelompok data","textChars":13,"textLines":1,"bbox":[378,258,180,26]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":12,"text":"Pengguna, transaksi, stok, layanan, konfigurasi","textPreview":"Pengguna, transaksi, stok, layanan, konfigurasi","textChars":47,"textLines":1,"bbox":[378,284,180,18]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":12,"text":"Entitas kunci","textPreview":"Entitas kunci","textChars":13,"textLines":1,"bbox":[90,360,260,30]}
+{"kind":"shape","id":"sh/65wjudg7","slide":12,"bbox":[90,418,12,12]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":12,"text":"User, Member, Member Tier","textPreview":"User, Member, Member Tier","textChars":25,"textLines":1,"bbox":[116,410,494,36]}
+{"kind":"shape","id":"sh/7u54zido","slide":12,"bbox":[90,458,12,12]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":12,"text":"Arrival, Pending Order, Transaksi, Transaction Item","textPreview":"Arrival, Pending Order, Transaksi, Transaction Item","textChars":51,"textLines":1,"bbox":[116,450,494,36]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":12,"bbox":[90,498,12,12]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":12,"text":"Tipe Ikan, Stok Ikan, Riwayat Restok","textPreview":"Tipe Ikan, Stok Ikan, Riwayat Restok","textChars":36,"textLines":1,"bbox":[116,490,494,36]}
+{"kind":"shape","id":"sh/36hcrmhk","slide":12,"bbox":[90,538,12,12]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":12,"text":"Menu, Rental Item, Voucher, Notifikasi, Event","textPreview":"Menu, Rental Item, Voucher, Notifikasi, Event","textChars":45,"textLines":1,"bbox":[116,530,494,36]}
+{"kind":"shape","id":"sh/lc7u54zi","slide":12,"bbox":[90,578,12,12]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":12,"text":"Konfigurasi Guest dan QRIS","textPreview":"Konfigurasi Guest dan QRIS","textChars":26,"textLines":1,"bbox":[116,570,494,36]}
+{"kind":"shape","id":"sh/7adsji5s","slide":12,"bbox":[665,325,83.6,78]}
+{"kind":"shape","id":"sh/tgfmlkjm","slide":12,"bbox":[665,325,83.6,7]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":12,"text":"Member","textPreview":"Member","textChars":6,"textLines":1,"bbox":[677,349,59.6,36]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":12,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[750.6,352,32,24]}
+{"kind":"shape","id":"sh/mp0bi9s3","slide":12,"bbox":[766.6,325,83.6,78]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":12,"bbox":[766.6,325,83.6,7]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":12,"text":"Kedatangan","textPreview":"Kedatangan","textChars":10,"textLines":1,"bbox":[778.6,349,59.6,36]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":12,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[852.2,352,32,24]}
+{"kind":"shape","id":"sh/m1cfa9w3","slide":12,"bbox":[868.2,325,83.6,78]}
+{"kind":"shape","id":"sh/twra5gbq","slide":12,"bbox":[868.2,325,83.6,7]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":12,"text":"Pesanan","textPreview":"Pesanan","textChars":7,"textLines":1,"bbox":[880.2,349,59.6,36]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":12,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[953.8,352,32,24]}
+{"kind":"shape","id":"sh/18jqh0fe","slide":12,"bbox":[969.8,325,83.6,78]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":12,"bbox":[969.8,325,83.6,7]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":12,"text":"Transaksi","textPreview":"Transaksi","textChars":9,"textLines":1,"bbox":[981.8,349,59.6,36]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":12,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[1055.4,352,32,24]}
+{"kind":"shape","id":"sh/1w7mp0bi","slide":12,"bbox":[1071.4,325,83.6,78]}
+{"kind":"shape","id":"sh/q5o7qpg3","slide":12,"bbox":[1071.4,325,83.6,7]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":12,"text":"Laporan","textPreview":"Laporan","textChars":7,"textLines":1,"bbox":[1083.4,349,59.6,36]}
+{"kind":"notes","id":"nt/4fu18jqh","slide":12,"text":""}
+{"kind":"slide","id":"sl/lwval87e","slide":13,"title":"DESIGN API","textShapes":13}
+{"kind":"shape","id":"sh/ed8bat47","slide":13,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":13,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":13,"text":"DESIGN API","textPreview":"DESIGN API","textChars":10,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/eloj2t83","slide":13,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":13,"text":"Endpoint API dirancang sebagai jembatan data antarmuka dan back-end","textPreview":"Endpoint API dirancang sebagai jembatan data antarmuka dan back-end","textChars":67,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":13,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/7adsji5s","slide":13,"bbox":[86,190,280,118]}
+{"kind":"shape","id":"sh/epkzupwb","slide":13,"bbox":[86,190,8,118]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":13,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[112,206,240,48]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":13,"text":"Endpoint rancangan utama","textPreview":"Endpoint rancangan utama","textChars":24,"textLines":1,"bbox":[114,258,240,26]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":13,"text":"Tabel 67","textPreview":"Tabel 67","textChars":8,"textLines":1,"bbox":[114,284,240,18]}
+{"kind":"shape","id":"sh/fyxobm58","slide":13,"bbox":[430,198,12,12]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":13,"text":"POST /api/login untuk autentikasi pengguna.","textPreview":"POST /api/login untuk autentikasi pengguna.","textChars":43,"textLines":1,"bbox":[456,190,674,41]}
+{"kind":"shape","id":"sh/xczed8v6","slide":13,"bbox":[430,243,12,12]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":13,"text":"POST /api/register untuk registrasi member.","textPreview":"POST /api/register untuk registrasi member.","textChars":43,"textLines":1,"bbox":[456,235,674,41]}
+{"kind":"shape","id":"sh/fa9w3m94","slide":13,"bbox":[430,288,12,12]}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":13,"text":"GET /api/member/profile untuk profil dan dashboard member.","textPreview":"GET /api/member/profile untuk profil dan dashboard member.","textChars":58,"textLines":1,"bbox":[456,280,674,41]}
+{"kind":"shape","id":"sh/1gvy90je","slide":13,"bbox":[430,333,12,12]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":13,"text":"POST /api/employee/check-in untuk mencatat kedatangan.","textPreview":"POST /api/employee/check-in untuk mencatat kedatangan.","textChars":54,"textLines":1,"bbox":[456,325,674,41]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":13,"bbox":[430,378,12,12]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":13,"text":"POST /api/employee/checkout untuk menyelesaikan transaksi.","textPreview":"POST /api/employee/checkout untuk menyelesaikan transaksi.","textChars":58,"textLines":1,"bbox":[456,370,674,41]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":13,"bbox":[430,423,12,12]}
+{"kind":"textbox","id":"sh/lwval87e","slide":13,"text":"GET /api/owner/reports/summary untuk laporan pemilik.","textPreview":"GET /api/owner/reports/summary untuk laporan pemilik.","textChars":53,"textLines":1,"bbox":[456,415,674,41]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":13,"text":"Swagger hanya diposisikan sebagai dokumentasi endpoint, bukan fokus pembahasan utama.","textPreview":"Swagger hanya diposisikan sebagai dokumentasi endpoint, bukan fokus pembahasan utama.","textChars":85,"textLines":1,"bbox":[72,650,850,20]}
+{"kind":"notes","id":"nt/lwval87e","slide":13,"text":""}
+{"kind":"slide","id":"sl/25kb6xkf","slide":14,"title":"ARSITEKTUR","textShapes":14}
+{"kind":"shape","id":"sh/val87ed8","slide":14,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/kre1w7mp","slide":14,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":14,"text":"ARSITEKTUR","textPreview":"ARSITEKTUR","textChars":10,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/vixczed8","slide":14,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":14,"text":"Back-end menjadi pusat integrasi antara UI dan data operasional","textPreview":"Back-end menjadi pusat integrasi antara UI dan data operasional","textChars":63,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/donyd0z6","slide":14,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/29gr2p8n","slide":14,"bbox":[175,260,219,78]}
+{"kind":"shape","id":"sh/vu9knih4","slide":14,"bbox":[175,260,219,7]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":14,"text":"Prototype UI","textPreview":"Prototype UI","textChars":12,"textLines":1,"bbox":[187,284,195,36]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":14,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[396,287,32,24]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":14,"bbox":[412,260,219,78]}
+{"kind":"shape","id":"sh/sji5snel","slide":14,"bbox":[412,260,219,7]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":14,"text":"REST API","textPreview":"REST API","textChars":8,"textLines":1,"bbox":[424,284,195,36]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":14,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[633,287,32,24]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":14,"bbox":[649,260,219,78]}
+{"kind":"shape","id":"sh/s72x4nap","slide":14,"bbox":[649,260,219,7]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":14,"text":"Laravel Controller","textPreview":"Laravel Controller","textChars":18,"textLines":1,"bbox":[661,284,195,36]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":14,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[870,287,32,24]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":14,"bbox":[886,260,219,78]}
+{"kind":"shape","id":"sh/r65wjudg","slide":14,"bbox":[886,260,219,7]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":14,"text":"MySQL","textPreview":"MySQL","textChars":5,"textLines":1,"bbox":[898,284,195,36]}
+{"kind":"shape","id":"sh/9cvixcze","slide":14,"bbox":[160,428,12,12]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":14,"text":"Frontend mengirim request untuk login, member, kedatangan, pesanan, checkout, dan laporan.","textPreview":"Frontend mengirim request untuk login, member, kedatangan, pesanan, checkout, dan laporan.","textChars":90,"textLines":1,"bbox":[186,420,914,40]}
+{"kind":"shape","id":"sh/nih4byhg","slide":14,"bbox":[160,472,12,12]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":14,"text":"REST API menjaga format komunikasi data dalam JSON.","textPreview":"REST API menjaga format komunikasi data dalam JSON.","textChars":51,"textLines":1,"bbox":[186,464,914,40]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":14,"bbox":[160,516,12,12]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":14,"text":"Laravel memproses autentikasi, validasi, role, dan logika bisnis.","textPreview":"Laravel memproses autentikasi, validasi, role, dan logika bisnis.","textChars":65,"textLines":1,"bbox":[186,508,914,40]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":14,"bbox":[160,560,12,12]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":14,"text":"MySQL menyimpan data operasional sebagai sumber data terpusat.","textPreview":"MySQL menyimpan data operasional sebagai sumber data terpusat.","textChars":62,"textLines":1,"bbox":[186,552,914,40]}
+{"kind":"notes","id":"nt/25kb6xkf","slide":14,"text":""}
+{"kind":"slide","id":"sl/7y1kre1w","slide":15,"title":"TEKNOLOGI","textShapes":13}
+{"kind":"shape","id":"sh/90je9cvi","slide":15,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/yd0z6103","slide":15,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":15,"text":"TEKNOLOGI","textPreview":"TEKNOLOGI","textChars":9,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":15,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":15,"text":"Teknologi dipilih untuk back-end API yang terstruktur","textPreview":"Teknologi dipilih untuk back-end API yang terstruktur","textChars":53,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":15,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":15,"bbox":[869,159,212,432]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":15,"text":"Gambar 58. Struktur Folder Controller Laravel","textPreview":"Gambar 58. Struktur Folder Controller Laravel","textChars":45,"textLines":1,"bbox":[870,598,210,22]}
+{"kind":"shape","id":"sh/cvixczed","slide":15,"bbox":[90,190,250,118]}
+{"kind":"shape","id":"sh/nap4r65w","slide":15,"bbox":[90,190,8,118]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":15,"text":"Laravel","textPreview":"Laravel","textChars":7,"textLines":1,"bbox":[116,206,210,48]}
+{"kind":"textbox","id":"sh/54zidony","slide":15,"text":"Framework","textPreview":"Framework","textChars":9,"textLines":1,"bbox":[118,258,210,26]}
+{"kind":"shape","id":"sh/cj6tovah","slide":15,"bbox":[370,190,230,118]}
+{"kind":"shape","id":"sh/nyd0z610","slide":15,"bbox":[370,190,8,118]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":15,"text":"MySQL","textPreview":"MySQL","textChars":5,"textLines":1,"bbox":[396,206,190,48]}
+{"kind":"textbox","id":"sh/1032lszq","slide":15,"text":"Database","textPreview":"Database","textChars":8,"textLines":1,"bbox":[398,258,190,26]}
+{"kind":"shape","id":"sh/cfa9w3m9","slide":15,"bbox":[90,350,250,118]}
+{"kind":"shape","id":"sh/obm58z25","slide":15,"bbox":[90,350,8,118]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":15,"text":"Sanctum","textPreview":"Sanctum","textChars":7,"textLines":1,"bbox":[116,366,210,48]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":15,"text":"Keamanan API","textPreview":"Keamanan API","textChars":12,"textLines":1,"bbox":[118,418,210,26]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":15,"bbox":[370,350,230,118]}
+{"kind":"shape","id":"sh/oza1gvy9","slide":15,"bbox":[370,350,8,118]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":15,"text":"REST API","textPreview":"REST API","textChars":8,"textLines":1,"bbox":[396,366,190,48]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":15,"text":"Komunikasi","textPreview":"Komunikasi","textChars":10,"textLines":1,"bbox":[398,418,190,26]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":15,"text":"Controller dipisahkan berdasarkan domain agar logika autentikasi, member, operasional pegawai, dan pemilik lebih mudah dipelihara.","textPreview":"Controller dipisahkan berdasarkan domain agar logika autentikasi, member, operasional pegawai, dan pemilik lebih mudah dipelihara.","textChars":130,"textLines":1,"bbox":[90,530,620,60]}
+{"kind":"image","id":"im/3ex0nuxc","slide":15,"name":"","bbox":[895.31,160,159.37,430]}
+{"kind":"notes","id":"nt/7y1kre1w","slide":15,"text":""}
+{"kind":"slide","id":"sl/8z25kb6x","slide":16,"title":"IMPLEMENTASI DATABASE","textShapes":12}
+{"kind":"shape","id":"sh/epkzupwb","slide":16,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/pg3ex0nu","slide":16,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/wval87ed","slide":16,"text":"IMPLEMENTASI DATABASE","textPreview":"IMPLEMENTASI DATABASE","textChars":21,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/e1w7mp0b","slide":16,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":16,"text":"Implementasi MySQL menghasilkan 27 tabel operasional","textPreview":"Implementasi MySQL menghasilkan 27 tabel operasional","textChars":52,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/w7mp0bi9","slide":16,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/7u54zido","slide":16,"bbox":[664,159,432,432]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":16,"text":"Gambar 40. Daftar tabel pada database pemancingan","textPreview":"Gambar 40. Daftar tabel pada database pemancingan","textChars":49,"textLines":1,"bbox":[665,598,430,22]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":16,"bbox":[90,190,230,118]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":16,"bbox":[90,190,8,118]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":16,"text":"27","textPreview":"27","textChars":2,"textLines":1,"bbox":[116,206,190,48]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":16,"text":"Total tabel","textPreview":"Total tabel","textChars":11,"textLines":1,"bbox":[118,258,190,26]}
+{"kind":"shape","id":"sh/dg7adsji","slide":16,"bbox":[350,190,230,118]}
+{"kind":"shape","id":"sh/6tovahoz","slide":16,"bbox":[350,190,8,118]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":16,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[376,206,190,48]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":16,"text":"Tabel utama","textPreview":"Tabel utama","textChars":11,"textLines":1,"bbox":[378,258,190,26]}
+{"kind":"shape","id":"sh/dsji5sne","slide":16,"bbox":[90,350,230,118]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":16,"bbox":[90,350,8,118]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":16,"text":"9","textPreview":"9","textChars":1,"textLines":1,"bbox":[116,366,190,48]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":16,"text":"Tabel pendukung","textPreview":"Tabel pendukung","textChars":15,"textLines":1,"bbox":[118,418,190,26]}
+{"kind":"shape","id":"sh/6xkf6dcb","slide":16,"bbox":[350,363,12,12]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":16,"text":"Tabel utama menyimpan domain pengguna, member, kedatangan, transaksi, stok, menu, voucher, event, dan konfigurasi.","textPreview":"Tabel utama menyimpan domain pengguna, member, kedatangan, transaksi, stok, menu, voucher, event, dan konfigurasi.","textChars":114,"textLines":1,"bbox":[376,355,224,68]}
+{"kind":"shape","id":"sh/obm58z25","slide":16,"bbox":[350,435,12,12]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":16,"text":"Tabel pendukung berasal dari Laravel untuk migration, token, session, cache, dan job queue.","textPreview":"Tabel pendukung berasal dari Laravel untuk migration, token, session, cache, dan job queue.","textChars":91,"textLines":1,"bbox":[376,427,224,68]}
+{"kind":"image","id":"im/d4vmtwra","slide":16,"name":"","bbox":[665,190.46,430,369.08]}
+{"kind":"notes","id":"nt/8z25kb6x","slide":16,"text":""}
+{"kind":"slide","id":"sl/54zidony","slide":17,"title":"AUTENTIKASI","textShapes":10}
+{"kind":"shape","id":"sh/m94fu18j","slide":17,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":17,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":17,"text":"AUTENTIKASI","textPreview":"AUTENTIKASI","textChars":11,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/qxs72x4n","slide":17,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":17,"text":"Sanctum dan middleware role menjaga akses tiap pengguna","textPreview":"Sanctum dan middleware role menjaga akses tiap pengguna","textChars":55,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/83itgfml","slide":17,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/fepkzupw","slide":17,"bbox":[61,174,262,222]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":17,"text":"Gambar 59. Login dan token Sanctum","textPreview":"Gambar 59. Login dan token Sanctum","textChars":34,"textLines":1,"bbox":[62,403,260,22]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":17,"bbox":[349,174,262,222]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":17,"text":"Gambar 64. Middleware CheckRole","textPreview":"Gambar 64. Middleware CheckRole","textChars":31,"textLines":1,"bbox":[350,403,260,22]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":17,"bbox":[637,174,262,222]}
+{"kind":"textbox","id":"sh/61032lsz","slide":17,"text":"Gambar 65. Alias middleware role","textPreview":"Gambar 65. Alias middleware role","textChars":32,"textLines":1,"bbox":[638,403,260,22]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":17,"bbox":[925,174,262,222]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":17,"text":"Gambar 66. Route group API berdasarkan role","textPreview":"Gambar 66. Route group API berdasarkan role","textChars":43,"textLines":1,"bbox":[926,403,260,22]}
+{"kind":"shape","id":"sh/1kre1w7m","slide":17,"bbox":[100,508,12,12]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":17,"text":"Login membuat token akses untuk request API berikutnya.","textPreview":"Login membuat token akses untuk request API berikutnya.","textChars":55,"textLines":1,"bbox":[126,500,984,34]}
+{"kind":"shape","id":"sh/ji5snelo","slide":17,"bbox":[100,546,12,12]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":17,"text":"Middleware CheckRole membatasi akses berdasarkan Owner, Employee, dan Member.","textPreview":"Middleware CheckRole membatasi akses berdasarkan Owner, Employee, dan Member.","textChars":77,"textLines":1,"bbox":[126,538,984,34]}
+{"kind":"shape","id":"sh/1cfa9w3m","slide":17,"bbox":[100,584,12,12]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":17,"text":"Route group mengelompokkan endpoint sesuai tanggung jawab aktor.","textPreview":"Route group mengelompokkan endpoint sesuai tanggung jawab aktor.","textChars":64,"textLines":1,"bbox":[126,576,984,34]}
+{"kind":"image","id":"im/wjudg7ad","slide":17,"name":"","bbox":[62,189.07,260,191.85]}
+{"kind":"image","id":"im/p4r65wju","slide":17,"name":"","bbox":[350,222.94,260,124.12]}
+{"kind":"image","id":"im/ih4byhgn","slide":17,"name":"","bbox":[638,250.11,260,69.79]}
+{"kind":"image","id":"im/72x4nap4","slide":17,"name":"","bbox":[926,175.53,260,218.95]}
+{"kind":"notes","id":"nt/54zidony","slide":17,"text":""}
+{"kind":"slide","id":"sl/m58z25kb","slide":18,"title":"LOGIKA BISNIS","textShapes":9}
+{"kind":"shape","id":"sh/mhk3q5o7","slide":18,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/t83itgfm","slide":18,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":18,"text":"LOGIKA BISNIS","textPreview":"LOGIKA BISNIS","textChars":13,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":18,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/m58z25kb","slide":18,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":18,"text":"Controller menangani alur operasional, bukan sekadar CRUD","textPreview":"Controller menangani alur operasional, bukan sekadar CRUD","textChars":57,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/4byhgn29","slide":18,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/bm58z25k","slide":18,"bbox":[69,164,257,272]}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":18,"text":"Gambar 60. Check-in pelanggan","textPreview":"Gambar 60. Check-in pelanggan","textChars":29,"textLines":1,"bbox":[70,443,255,22]}
+{"kind":"shape","id":"sh/1032lszq","slide":18,"bbox":[349,164,257,272]}
+{"kind":"textbox","id":"sh/judg7ads","slide":18,"text":"Gambar 61. Validasi checkout","textPreview":"Gambar 61. Validasi checkout","textChars":28,"textLines":1,"bbox":[350,443,255,22]}
+{"kind":"shape","id":"sh/c7u54zid","slide":18,"bbox":[629,164,257,272]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":18,"text":"Gambar 62. Perhitungan pembayaran","textPreview":"Gambar 62. Perhitungan pembayaran","textChars":33,"textLines":1,"bbox":[630,443,255,22]}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":18,"bbox":[909,164,257,272]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":18,"text":"Gambar 63. Update stok dan member","textPreview":"Gambar 63. Update stok dan member","textChars":33,"textLines":1,"bbox":[910,443,255,22]}
+{"kind":"shape","id":"sh/90je9cvi","slide":18,"bbox":[120,513,12,12]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":18,"text":"ArrivalController mencatat pelanggan member/tamu dan status kedatangan.","textPreview":"ArrivalController mencatat pelanggan member/tamu dan status kedatangan.","textChars":71,"textLines":1,"bbox":[146,505,954,40]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":18,"bbox":[120,557,12,12]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":18,"text":"TransactionController memvalidasi checkout, menghitung pembayaran, memperbarui stok, serta poin member.","textPreview":"TransactionController memvalidasi checkout, menghitung pembayaran, memperbarui stok, serta poin member.","textChars":103,"textLines":1,"bbox":[146,549,954,40]}
+{"kind":"image","id":"im/qd4vmtwr","slide":18,"name":"","bbox":[70,165,255,270]}
+{"kind":"image","id":"im/fyxobm58","slide":18,"name":"","bbox":[350,165,255,270]}
+{"kind":"image","id":"im/8jqh0fep","slide":18,"name":"","bbox":[630,165,255,270]}
+{"kind":"image","id":"im/x4nap4r6","slide":18,"name":"","bbox":[910,165,255,270]}
+{"kind":"notes","id":"nt/m58z25kb","slide":18,"text":""}
+{"kind":"slide","id":"sl/bat47y1k","slide":19,"title":"ENDPOINT API","textShapes":15}
+{"kind":"shape","id":"sh/1gvy90je","slide":19,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/qtcj6tov","slide":19,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":19,"text":"ENDPOINT API","textPreview":"ENDPOINT API","textChars":12,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":19,"text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/xs72x4na","slide":19,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":19,"text":"Endpoint utama mengikuti alur kerja tiap role","textPreview":"Endpoint utama mengikuti alur kerja tiap role","textChars":45,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/fmlkjm1c","slide":19,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":19,"bbox":[135,195,239,78]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":19,"bbox":[135,195,239,7]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":19,"text":"Public","textPreview":"Public","textChars":6,"textLines":1,"bbox":[147,219,215,36]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":19,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[376,222,32,24]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":19,"bbox":[392,195,239,78]}
+{"kind":"shape","id":"sh/q5o7qpg3","slide":19,"bbox":[392,195,239,7]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":19,"text":"Member","textPreview":"Member","textChars":6,"textLines":1,"bbox":[404,219,215,36]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":19,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[633,222,32,24]}
+{"kind":"shape","id":"sh/j2t83itg","slide":19,"bbox":[649,195,239,78]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":19,"bbox":[649,195,239,7]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":19,"text":"Employee","textPreview":"Employee","textChars":8,"textLines":1,"bbox":[661,219,215,36]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":19,"text":"->","textPreview":"->","textChars":2,"textLines":1,"bbox":[890,222,32,24]}
+{"kind":"shape","id":"sh/sfil0rqd","slide":19,"bbox":[906,195,239,78]}
+{"kind":"shape","id":"sh/h0fepkzu","slide":19,"bbox":[906,195,239,7]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":19,"text":"Owner","textPreview":"Owner","textChars":5,"textLines":1,"bbox":[918,219,215,36]}
+{"kind":"shape","id":"sh/zupwb2hw","slide":19,"bbox":[160,348,12,12]}
+{"kind":"textbox","id":"sh/orytsvu9","slide":19,"text":"Public: leaderboard, event, informasi, dan menu spesial.","textPreview":"Public: leaderboard, event, informasi, dan menu spesial.","textChars":56,"textLines":1,"bbox":[186,340,854,48]}
+{"kind":"shape","id":"sh/hcrmhk3q","slide":19,"bbox":[160,400,12,12]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":19,"text":"Member: register, profile, dashboard, pesanan, riwayat transaksi.","textPreview":"Member: register, profile, dashboard, pesanan, riwayat transaksi.","textChars":65,"textLines":1,"bbox":[186,392,854,48]}
+{"kind":"shape","id":"sh/z61032ls","slide":19,"bbox":[160,452,12,12]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":19,"text":"Employee: check-in, kedatangan hari ini, pending order, checkout, stok.","textPreview":"Employee: check-in, kedatangan hari ini, pending order, checkout, stok.","textChars":71,"textLines":1,"bbox":[186,444,854,48]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":19,"bbox":[160,504,12,12]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":19,"text":"Owner: laporan ringkas, member, menu, ikan, voucher, konfigurasi.","textPreview":"Owner: laporan ringkas, member, menu, ikan, voucher, konfigurasi.","textChars":65,"textLines":1,"bbox":[186,496,854,48]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":19,"text":"Pembahasan Swagger diringkas pada fungsi dokumentasi endpoint.","textPreview":"Pembahasan Swagger diringkas pada fungsi dokumentasi endpoint.","textChars":62,"textLines":1,"bbox":[72,650,850,20]}
+{"kind":"notes","id":"nt/bat47y1k","slide":19,"text":""}
+{"kind":"slide","id":"sl/j2t83itg","slide":20,"title":"INTEGRASI UI","textShapes":11}
+{"kind":"shape","id":"sh/t83itgfm","slide":20,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/mhk3q5o7","slide":20,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":20,"text":"INTEGRASI UI","textPreview":"INTEGRASI UI","textChars":12,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":20,"text":"20","textPreview":"20","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/twra5gbq","slide":20,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":20,"text":"Prototype antarmuka membuktikan API dapat dipakai lintas role","textPreview":"Prototype antarmuka membuktikan API dapat dipakai lintas role","textChars":61,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/bq1oryts","slide":20,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/47y1kre1","slide":20,"bbox":[67,174,182,272]}
+{"kind":"textbox","id":"sh/90je9cvi","slide":20,"text":"Gambar 76. Halaman utama","textPreview":"Gambar 76. Halaman utama","textChars":24,"textLines":1,"bbox":[68,453,180,22]}
+{"kind":"shape","id":"sh/gfmlkjm1","slide":20,"bbox":[274,174,212,152]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":20,"text":"Gambar 78. Dashboard member","textPreview":"Gambar 78. Dashboard member","textChars":27,"textLines":1,"bbox":[275,333,210,22]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":20,"bbox":[509,174,212,152]}
+{"kind":"textbox","id":"sh/rmhk3q5o","slide":20,"text":"Gambar 82. Dashboard pegawai","textPreview":"Gambar 82. Dashboard pegawai","textChars":28,"textLines":1,"bbox":[510,333,210,22]}
+{"kind":"shape","id":"sh/y1kre1w7","slide":20,"bbox":[744,174,212,152]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":20,"text":"Gambar 92. Dashboard pemilik","textPreview":"Gambar 92. Dashboard pemilik","textChars":28,"textLines":1,"bbox":[745,333,210,22]}
+{"kind":"shape","id":"sh/cfa9w3m9","slide":20,"bbox":[979,174,182,272]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":20,"text":"Gambar 96. Laporan keuangan","textPreview":"Gambar 96. Laporan keuangan","textChars":27,"textLines":1,"bbox":[980,453,180,22]}
+{"kind":"shape","id":"sh/judg7ads","slide":20,"bbox":[140,518,12,12]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":20,"text":"Data publik, member, pegawai, dan pemilik mengambil sumber dari layanan back-end.","textPreview":"Data publik, member, pegawai, dan pemilik mengambil sumber dari layanan back-end.","textChars":81,"textLines":1,"bbox":[166,510,934,34]}
+{"kind":"shape","id":"sh/1orytsvu","slide":20,"bbox":[140,556,12,12]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":20,"text":"Setiap tampilan menguji hubungan API dengan data operasional yang sama.","textPreview":"Setiap tampilan menguji hubungan API dengan data operasional yang sama.","textChars":71,"textLines":1,"bbox":[166,548,934,34]}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":20,"bbox":[140,594,12,12]}
+{"kind":"textbox","id":"sh/cvixczed","slide":20,"text":"Integrasi menunjukkan dampak pada informasi pelanggan, pesanan, transaksi, stok, dan laporan.","textPreview":"Integrasi menunjukkan dampak pada informasi pelanggan, pesanan, transaksi, stok, dan laporan.","textChars":93,"textLines":1,"bbox":[166,586,934,34]}
+{"kind":"image","id":"im/ed8v6psf","slide":20,"name":"","bbox":[68,175,180,270]}
+{"kind":"image","id":"im/crmhk3q5","slide":20,"name":"","bbox":[275,175,210,150]}
+{"kind":"image","id":"im/1cfa9w3m","slide":20,"name":"","bbox":[510,175,210,150]}
+{"kind":"image","id":"im/ulwval87","slide":20,"name":"","bbox":[745,175,210,150]}
+{"kind":"image","id":"im/j6tovaho","slide":20,"name":"","bbox":[980,175,180,270]}
+{"kind":"notes","id":"nt/j2t83itg","slide":20,"text":""}
+{"kind":"slide","id":"sl/mhk3q5o7","slide":21,"title":"PENGUJIAN","textShapes":16}
+{"kind":"shape","id":"sh/z25kb6xk","slide":21,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/onyd0z61","slide":21,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":21,"text":"PENGUJIAN","textPreview":"PENGUJIAN","textChars":9,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":21,"text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/vahoza1g","slide":21,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":21,"text":"Black Box Testing membuktikan fungsi utama valid","textPreview":"Black Box Testing membuktikan fungsi utama valid","textChars":48,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/dg7adsji","slide":21,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/61032lsz","slide":21,"bbox":[90,195,250,118]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":21,"bbox":[90,195,8,118]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":21,"text":"105","textPreview":"105","textChars":3,"textLines":1,"bbox":[116,211,210,48]}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":21,"text":"Total test case","textPreview":"Total test case","textChars":15,"textLines":1,"bbox":[118,263,210,26]}
+{"kind":"textbox","id":"sh/t83itgfm","slide":21,"text":"Tabel 71","textPreview":"Tabel 71","textChars":8,"textLines":1,"bbox":[118,289,210,18]}
+{"kind":"shape","id":"sh/4nap4r65","slide":21,"bbox":[370,195,250,118]}
+{"kind":"shape","id":"sh/bq1oryts","slide":21,"bbox":[370,195,8,118]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":21,"text":"105","textPreview":"105","textChars":3,"textLines":1,"bbox":[396,211,210,48]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":21,"text":"Status valid","textPreview":"Status valid","textChars":12,"textLines":1,"bbox":[398,263,210,26]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":21,"text":"100%","textPreview":"100%","textChars":4,"textLines":1,"bbox":[398,289,210,18]}
+{"kind":"shape","id":"sh/bm58z25k","slide":21,"bbox":[650,195,250,118]}
+{"kind":"shape","id":"sh/m1cfa9w3","slide":21,"bbox":[650,195,8,118]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":21,"text":"0","textPreview":"0","textChars":1,"textLines":1,"bbox":[676,211,210,48]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":21,"text":"Status tidak valid","textPreview":"Status tidak valid","textChars":18,"textLines":1,"bbox":[678,263,210,26]}
+{"kind":"shape","id":"sh/8bat47y1","slide":21,"bbox":[130,398,12,12]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":21,"text":"Login dan autentikasi: 10/10 valid.","textPreview":"Login dan autentikasi: 10/10 valid.","textChars":35,"textLines":1,"bbox":[156,390,874,36]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":21,"bbox":[130,438,12,12]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":21,"text":"Halaman utama: 7/7 valid.","textPreview":"Halaman utama: 7/7 valid.","textChars":25,"textLines":1,"bbox":[156,430,874,36]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":21,"bbox":[130,478,12,12]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":21,"text":"Fitur Member: 16/16 valid.","textPreview":"Fitur Member: 16/16 valid.","textChars":26,"textLines":1,"bbox":[156,470,874,36]}
+{"kind":"shape","id":"sh/ulwval87","slide":21,"bbox":[130,518,12,12]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":21,"text":"Fitur Employee: 42/42 valid.","textPreview":"Fitur Employee: 42/42 valid.","textChars":28,"textLines":1,"bbox":[156,510,874,36]}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":21,"bbox":[130,558,12,12]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":21,"text":"Fitur Owner: 30/30 valid.","textPreview":"Fitur Owner: 30/30 valid.","textChars":25,"textLines":1,"bbox":[156,550,874,36]}
+{"kind":"notes","id":"nt/mhk3q5o7","slide":21,"text":""}
+{"kind":"slide","id":"sl/5wjudg7a","slide":22,"title":"HASIL SUS","textShapes":13}
+{"kind":"shape","id":"sh/yxobm58z","slide":22,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":22,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":22,"text":"HASIL SUS","textPreview":"HASIL SUS","textChars":9,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":22,"text":"22","textPreview":"22","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":22,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":22,"text":"Skor SUS 89,6 menunjukkan sistem diterima sangat baik","textPreview":"Skor SUS 89,6 menunjukkan sistem diterima sangat baik","textChars":53,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":22,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":22,"bbox":[89,189,662,222]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":22,"text":"Gambar 103. Interpretasi Skor SUS Hasil Pengujian","textPreview":"Gambar 103. Interpretasi Skor SUS Hasil Pengujian","textChars":49,"textLines":1,"bbox":[90,418,660,22]}
+{"kind":"shape","id":"sh/lwval87e","slide":22,"bbox":[815,190,260,118]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":22,"bbox":[815,190,8,118]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":22,"text":"89,6","textPreview":"89,6","textChars":4,"textLines":1,"bbox":[841,206,220,48]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":22,"text":"Rata-rata SUS","textPreview":"Rata-rata SUS","textChars":13,"textLines":1,"bbox":[843,258,220,26]}
+{"kind":"shape","id":"sh/loj2t83i","slide":22,"bbox":[815,335,260,118]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":22,"bbox":[815,335,8,118]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":22,"text":"Excellent","textPreview":"Excellent","textChars":9,"textLines":1,"bbox":[841,351,220,48]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":22,"text":"Adjective rating","textPreview":"Adjective rating","textChars":16,"textLines":1,"bbox":[843,403,220,26]}
+{"kind":"shape","id":"sh/lkjm1cfa","slide":22,"bbox":[815,480,260,118]}
+{"kind":"shape","id":"sh/lc7u54zi","slide":22,"bbox":[815,480,8,118]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":22,"text":"A","textPreview":"A","textChars":1,"textLines":1,"bbox":[841,496,220,48]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":22,"text":"Grade scale","textPreview":"Grade scale","textChars":11,"textLines":1,"bbox":[843,548,220,26]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":22,"text":"Acceptable","textPreview":"Acceptable","textChars":10,"textLines":1,"bbox":[843,574,220,18]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":22,"bbox":[115,473,12,12]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":22,"text":"Enam responden berada pada interpretasi Excellent.","textPreview":"Enam responden berada pada interpretasi Excellent.","textChars":50,"textLines":1,"bbox":[141,465,584,36]}
+{"kind":"shape","id":"sh/7u54zido","slide":22,"bbox":[115,513,12,12]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":22,"text":"Satu responden berada pada interpretasi Good.","textPreview":"Satu responden berada pada interpretasi Good.","textChars":45,"textLines":1,"bbox":[141,505,584,36]}
+{"kind":"image","id":"im/e1w7mp0b","slide":22,"name":"","bbox":[90,190.07,660,219.86]}
+{"kind":"notes","id":"nt/5wjudg7a","slide":22,"text":""}
+{"kind":"slide","id":"sl/crmhk3q5","slide":23,"title":"KESIMPULAN","textShapes":15}
+{"kind":"shape","id":"sh/m1cfa9w3","slide":23,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":23,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":23,"text":"KESIMPULAN","textPreview":"KESIMPULAN","textChars":10,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":23,"text":"23","textPreview":"23","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/mp0bi9s3","slide":23,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":23,"text":"Pain point utama berhasil dijawab oleh back-end terintegrasi","textPreview":"Pain point utama berhasil dijawab oleh back-end terintegrasi","textChars":60,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/4vmtwra5","slide":23,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/b2hwfyxo","slide":23,"bbox":[98,205,300,118]}
+{"kind":"shape","id":"sh/mhk3q5o7","slide":23,"bbox":[98,205,8,118]}
+{"kind":"textbox","id":"sh/0z61032l","slide":23,"text":"Analisis kebutuhan","textPreview":"Analisis kebutuhan","textChars":18,"textLines":1,"bbox":[124,221,260,48]}
+{"kind":"textbox","id":"sh/pkzupwb2","slide":23,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[126,273,260,26]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":23,"text":"Masalah manual diterjemahkan menjadi kebutuhan sistem.","textPreview":"Masalah manual diterjemahkan menjadi kebutuhan sistem.","textChars":54,"textLines":1,"bbox":[126,299,260,18]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":23,"bbox":[488,205,300,118]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":23,"bbox":[488,205,8,118]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":23,"text":"Design dan implementasi","textPreview":"Design dan implementasi","textChars":23,"textLines":1,"bbox":[514,221,260,48]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":23,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[516,273,260,26]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":23,"text":"Laravel, MySQL, Sanctum, REST API, role, validasi.","textPreview":"Laravel, MySQL, Sanctum, REST API, role, validasi.","textChars":50,"textLines":1,"bbox":[516,299,260,18]}
+{"kind":"shape","id":"sh/wjudg7ad","slide":23,"bbox":[878,205,300,118]}
+{"kind":"shape","id":"sh/p4r65wju","slide":23,"bbox":[878,205,8,118]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":23,"text":"Pengujian dan evaluasi","textPreview":"Pengujian dan evaluasi","textChars":22,"textLines":1,"bbox":[904,221,260,48]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":23,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[906,273,260,26]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":23,"text":"105 test case valid dan SUS 89,6.","textPreview":"105 test case valid dan SUS 89,6.","textChars":33,"textLines":1,"bbox":[906,299,260,18]}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":23,"bbox":[135,438,12,12]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":23,"text":"Back-end mendukung pengelolaan data pengguna, kedatangan, pesanan, checkout, stok, voucher, notifikasi, konfigurasi, dan laporan.","textPreview":"Back-end mendukung pengelolaan data pengguna, kedatangan, pesanan, checkout, stok, voucher, notifikasi, konfigurasi, dan laporan.","textChars":129,"textLines":1,"bbox":[161,430,954,40]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":23,"bbox":[135,482,12,12]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":23,"text":"Integrasi API membuat prototype antarmuka memakai data operasional yang sama.","textPreview":"Integrasi API membuat prototype antarmuka memakai data operasional yang sama.","textChars":77,"textLines":1,"bbox":[161,474,954,40]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":23,"bbox":[135,526,12,12]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":23,"text":"Hasil pengujian menunjukkan fungsi valid dan alur sistem diterima pengguna.","textPreview":"Hasil pengujian menunjukkan fungsi valid dan alur sistem diterima pengguna.","textChars":75,"textLines":1,"bbox":[161,518,954,40]}
+{"kind":"notes","id":"nt/crmhk3q5","slide":23,"text":""}
+{"kind":"slide","id":"sl/bq1oryts","slide":24,"title":"SARAN","textShapes":11}
+{"kind":"shape","id":"sh/9s36hcrm","slide":24,"bbox":[0,0,1280,10]}
+{"kind":"shape","id":"sh/y1kre1w7","slide":24,"bbox":[0,10,200,8]}
+{"kind":"textbox","id":"sh/rmhk3q5o","slide":24,"text":"SARAN","textPreview":"SARAN","textChars":5,"textLines":1,"bbox":[72,30,420,24]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":24,"text":"24","textPreview":"24","textChars":2,"textLines":1,"bbox":[1160,650,48,24]}
+{"kind":"shape","id":"sh/90je9cvi","slide":24,"bbox":[72,682,1136,1]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":24,"text":"Pengembangan berikutnya memperkuat adopsi dan kesiapan produksi","textPreview":"Pengembangan berikutnya memperkuat adopsi dan kesiapan produksi","textChars":63,"textLines":1,"bbox":[72,58,900,80]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":24,"bbox":[72,156,120,5]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":24,"bbox":[72,178,540,385]}
+{"kind":"shape","id":"sh/9cvixcze","slide":24,"bbox":[668,178,540,385]}
+{"kind":"shape","id":"sh/tovahoza","slide":24,"bbox":[72,178,540,8]}
+{"kind":"shape","id":"sh/032lszqt","slide":24,"bbox":[668,178,540,8]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":24,"text":"Untuk Pemancingan S","textPreview":"Untuk Pemancingan S","textChars":19,"textLines":1,"bbox":[100,206,470,34]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":24,"text":"Untuk Penelitian Selanjutnya","textPreview":"Untuk Penelitian Selanjutnya","textChars":28,"textLines":1,"bbox":[696,206,470,34]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":24,"bbox":[100,270,12,12]}
+{"kind":"textbox","id":"sh/0fepkzup","slide":24,"text":"Terapkan sistem secara bertahap di operasional nyata.","textPreview":"Terapkan sistem secara bertahap di operasional nyata.","textChars":53,"textLines":1,"bbox":[126,262,444,44]}
+{"kind":"shape","id":"sh/bulwval8","slide":24,"bbox":[100,318,12,12]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":24,"text":"Lakukan demonstrasi dan pelatihan untuk pemilik, pegawai, dan member.","textPreview":"Lakukan demonstrasi dan pelatihan untuk pemilik, pegawai, dan member.","textChars":69,"textLines":1,"bbox":[126,310,444,44]}
+{"kind":"shape","id":"sh/t47y1kre","slide":24,"bbox":[100,366,12,12]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":24,"text":"Mulai dari alur login, kedatangan, pemesanan, checkout, stok, menu, dan laporan.","textPreview":"Mulai dari alur login, kedatangan, pemesanan, checkout, stok, menu, dan laporan.","textChars":80,"textLines":1,"bbox":[126,358,444,44]}
+{"kind":"shape","id":"sh/g7adsji5","slide":24,"bbox":[696,270,12,12]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":24,"text":"Integrasikan payment gateway atau QRIS dinamis.","textPreview":"Integrasikan payment gateway atau QRIS dinamis.","textChars":47,"textLines":1,"bbox":[722,262,444,44]}
+{"kind":"shape","id":"sh/y1kre1w7","slide":24,"bbox":[696,318,12,12]}
+{"kind":"textbox","id":"sh/rmhk3q5o","slide":24,"text":"Uji performa, keamanan, deployment, monitoring, dan backup.","textPreview":"Uji performa, keamanan, deployment, monitoring, dan backup.","textChars":59,"textLines":1,"bbox":[722,310,444,44]}
+{"kind":"shape","id":"sh/gfmlkjm1","slide":24,"bbox":[696,366,12,12]}
+{"kind":"textbox","id":"sh/90je9cvi","slide":24,"text":"Kembangkan aplikasi mobile, analitik bisnis, serta pengujian dengan periode lebih panjang.","textPreview":"Kembangkan aplikasi mobile, analitik bisnis, serta pengujian dengan periode lebih panjang.","textChars":90,"textLines":1,"bbox":[722,358,444,44]}
+{"kind":"notes","id":"nt/bq1oryts","slide":24,"text":""}

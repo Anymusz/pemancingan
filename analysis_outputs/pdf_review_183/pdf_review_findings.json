@@ -1,0 +1,337 @@
+{
+  "source": "D:\\Semester\\Semester7\\Skripsi\\BAB1-5\\183-Raka Bagaskara Putra.pdf",
+  "pdf_page_count": 269,
+  "caption_count": 373,
+  "table_detection_count": 387,
+  "image_detection_count": 167,
+  "layout_findings": [
+    {
+      "kind": "caption_object_split",
+      "object": "table",
+      "pdf_page": 54,
+      "printed_page": "37",
+      "next_pdf_page": 55,
+      "next_printed_page": "38",
+      "caption": "Tabel 8. Format Kebutuhan Non-Fungsional",
+      "caption_y": 725.34,
+      "lines_after_caption_same_page": [],
+      "next_page_first_lines": [
+        "38",
+        "No Kode Deskripsi Kebutuhan Non-Fungsional",
+        "1 KNF-1 Uraian singkat aspek kualitas",
+        "2 KNF-2 ...",
+        "Tahap Analysis juga mencakup identifikasi kebutuhan data, yaitu proses",
+        "menentukan jenis data dan entitas yang akan dikelola oleh back-end sistem",
+        "informasi. Data yang diidentifikasi meliputi data pengguna, data member, data",
+        "kedatangan pelanggan, data transaksi, data pesanan, data stok ikan, data"
+      ]
+    },
+    {
+      "kind": "caption_object_split",
+      "object": "table",
+      "pdf_page": 60,
+      "printed_page": "43",
+      "next_pdf_page": 61,
+      "next_printed_page": "44",
+      "caption": "Tabel 12. Instrumen Pertanyaan SUS",
+      "caption_y": 732.54,
+      "lines_after_caption_same_page": [],
+      "next_page_first_lines": [
+        "44",
+        "No Komponen/Pernyataan Skala Penilaian",
+        "1 Saya berpikir akan menggunakan sistem ini lagi. 1 2 3 4 5",
+        "2 Saya merasa sistem ini rumit untuk digunakan. 1 2 3 4 5",
+        "3 Saya merasa sistem ini mudah digunakan. 1 2 3 4 5",
+        "Saya membutuhkan bantuan dari orang lain atau teknisi",
+        "4 1 2 3 4 5",
+        "dalam menggunakan sistem ini."
+      ]
+    },
+    {
+      "kind": "caption_object_split",
+      "object": "table",
+      "pdf_page": 65,
+      "printed_page": "48",
+      "next_pdf_page": 66,
+      "next_printed_page": "49",
+      "caption": "Tabel 14. Kebutuhan Non-Fungsional",
+      "caption_y": 718.98,
+      "lines_after_caption_same_page": [
+        "No Kode Deskripsi Kebutuhan Non-Fungsional"
+      ],
+      "next_page_first_lines": [
+        "49",
+        "1 KNF-01 Sistem harus menyediakan autentikasi pengguna agar hanya",
+        "pengguna terdaftar yang dapat mengakses sistem.",
+        "2 KNF-02 Sistem harus membatasi akses fitur berdasarkan role pemilik,",
+        "pegawai, dan member.",
+        "3 KNF-03 Sistem harus melakukan validasi data sebelum data",
+        "disimpan ke dalam basis data.",
+        "4 KNF-04 Sistem harus menjaga integritas data melalui relasi antar"
+      ]
+    }
+  ],
+  "typo_findings": [
+    {
+      "kind": "duplicate_word_candidate",
+      "suggestion": "cek apakah kata/nama berulang memang benar",
+      "hits": [
+        {
+          "pdf_page": 29,
+          "match": "Mardi Mardi",
+          "context": "oduk dapat disesuaikan secara berkelanjutan (Nico Abrarsyah Atallah & Mardi Mardi, 2024). • Mendorong kerja sama tim, komunikasi intensif, dan adaptasi"
+        },
+        {
+          "pdf_page": 34,
+          "match": "Aktor Aktor",
+          "context": "2. Simbol-simbol dalam Use Case Diagram Nama Simbol Gambar Keterangan Aktor Aktor menggambarkan pihak luar seperti pengguna, sistem lain, atau perangka"
+        },
+        {
+          "pdf_page": 44,
+          "match": "sistem Sistem",
+          "context": "si data sistem. Framework Laravel 6 Perancangan (Maulidi et Merancang sistem Sistem mampu Sistem al., 2025) informasi berbasis meningkatkan Informasi web"
+        },
+        {
+          "pdf_page": 44,
+          "match": "sistem Sistem",
+          "context": "rototyping berdasarkan pengujian UAT. 9 Pembangunan (Tang & Membangun sistem Sistem informasi Sistem Kartika Sari informasi penjualan berbasis web mampu"
+        },
+        {
+          "pdf_page": 45,
+          "match": "usaha usaha",
+          "context": "28 Toko Dunia usaha usaha dalam Pancing pemancingan. memantau aktivitas penjualan secara terstr"
+        },
+        {
+          "pdf_page": 45,
+          "match": "Pendidikan Pendidikan",
+          "context": "tingkat usability menunjukkan bahwa Dinas website Dinas metode System Pendidikan Pendidikan Provinsi Usability Scale (SUS) Provinsi Riau Riau menggunakan dapat d"
+        },
+        {
+          "pdf_page": 45,
+          "match": "Riau Riau",
+          "context": "System Pendidikan Pendidikan Provinsi Usability Scale (SUS) Provinsi Riau Riau menggunakan dapat digunakan menggunakan metode System untuk mengukur"
+        },
+        {
+          "pdf_page": 45,
+          "match": "menggunakan menggunakan",
+          "context": "njukkan bahwa Shopee al., 2021) website Shopee System Usability Scale menggunakan menggunakan (SUS) mampu System Usability metode System memberikan Scale (SUS) Usa"
+        },
+        {
+          "pdf_page": 67,
+          "match": "konfigurasi konfigurasi",
+          "context": "t member. 12 KD-12 Data notifikasi Menyimpan notifikasi pengguna, dan konfigurasi konfigurasi deposit pelanggan non- member, dan konfigurasi QRIS. 4.2.2 Analisis A"
+        },
+        {
+          "pdf_page": 76,
+          "match": "Halaman halaman",
+          "context": "lir di website. 3 UC- Mengakses Proses pengguna mengakses Pemilik, 03 Halaman halaman beranda publik (landing Pegawai, Utama page) yang memuat informasi um"
+        },
+        {
+          "pdf_page": 76,
+          "match": "Dashboard dashboard",
+          "context": "pesifik. Member 5 UC- Mengakses Proses pengguna mengakses Pemilik, 05 Dashboard dashboard sesuai hak aksesnya, Pegawai, yaitu dashboard member berisi QR Member"
+        },
+        {
+          "pdf_page": 77,
+          "match": "Kedatangan kedatangan",
+          "context": "at. Transaksi 9 UC- Mengelola Proses pegawai memverifikasi Pegawai 09 Kedatangan kedatangan pelanggan (via Scan Pelanggan QR/No HP) dan pencatatan deposit awal u"
+        },
+        {
+          "pdf_page": 77,
+          "match": "Pesanan pesanan",
+          "context": "nu spesial. 11 UC- Mengelola Proses pegawai melihat daftar Pegawai 11 Pesanan pesanan dapur yang masuk dan Masuk mengubah status pembuatannya menjadi pendi"
+        },
+        {
+          "pdf_page": 77,
+          "match": "Ketersediaan ketersediaan",
+          "context": "dibatalkan. 12 UC- Mengubah Proses pegawai mengubah status Pegawai 12 Ketersediaan ketersediaan item menu Menu (tersedia/tidak tersedia) untuk kelancaran operasional"
+        },
+        {
+          "pdf_page": 77,
+          "match": "Riwayat riwayat",
+          "context": "operasional. 13 UC- Melihat Proses pegawai melihat seluruh Pegawai 13 Riwayat riwayat transaksi operasional Transaksi pengunjung serta membuka detail Pelan"
+        },
+        {
+          "pdf_page": 78,
+          "match": "Laporan laporan",
+          "context": "anya. 25 UC- Melihat Proses analisis bisnis melalui filter Pemilik 25 Laporan laporan transaksi operasional Keuangan harian/bulanan dan ekspor ke format CS"
+        },
+        {
+          "pdf_page": 149,
+          "match": "login Login",
+          "context": "angan Endpoint API Sistem No Method Endpoint Fungsi Aktor 1 POST /api/login Login pengguna Pemilik, Pegawai, Member"
+        },
+        {
+          "pdf_page": 219,
+          "match": "Status Status",
+          "context": "71. Ringkasan Hasil Pengujian Black Box No Kelompok Kode Test Jumlah Status Status Pengujian Case Test Case Valid Tidak Valid 1 Login dan A01–A10 10 10"
+        },
+        {
+          "pdf_page": 220,
+          "match": "Sistem Sistem",
+          "context": "Pengujian Hasil yang Hasil Pengujian Status Diharapkan A01 Pengujian Sistem Sistem berhasil Valid registrasi member menyimpan user menyimpan data dengan"
+        },
+        {
+          "pdf_page": 221,
+          "match": "Sistem Sistem",
+          "context": "rstatus masih pending. menunggu validasi pemilik. A09 Pengujian akses Sistem Sistem berhasil Valid data pengguna menampilkan menampilkan setelah login. d"
+        }
+      ]
+    },
+    {
+      "kind": "punctuation_spacing_candidate",
+      "suggestion": "cek spasi setelah tanda baca / format URL",
+      "hits": [
+        {
+          "pdf_page": 3,
+          "match": "S.S",
+          "context": ", dan dinyatakan lulus. Susunan Tim Penguji Ketua : Muh. Subhan, S.ST., M.T. Sekretaris : Mochammad Arief Hermawan Sutoyo, M.Kom. Ang"
+        },
+        {
+          "pdf_page": 3,
+          "match": "M.T",
+          "context": "inyatakan lulus. Susunan Tim Penguji Ketua : Muh. Subhan, S.ST., M.T. Sekretaris : Mochammad Arief Hermawan Sutoyo, M.Kom. Anggota :"
+        },
+        {
+          "pdf_page": 3,
+          "match": "M.K",
+          "context": "ubhan, S.ST., M.T. Sekretaris : Mochammad Arief Hermawan Sutoyo, M.Kom. Anggota : 1. Daniel Arsa, S.Kom., M.S.I 2. Muhammad Razi A.,"
+        },
+        {
+          "pdf_page": 3,
+          "match": "S.K",
+          "context": "ochammad Arief Hermawan Sutoyo, M.Kom. Anggota : 1. Daniel Arsa, S.Kom., M.S.I 2. Muhammad Razi A., S.T., MMSI. Disetujui: Pembimbing"
+        },
+        {
+          "pdf_page": 3,
+          "match": "M.S",
+          "context": "Arief Hermawan Sutoyo, M.Kom. Anggota : 1. Daniel Arsa, S.Kom., M.S.I 2. Muhammad Razi A., S.T., MMSI. Disetujui: Pembimbing Utama P"
+        },
+        {
+          "pdf_page": 3,
+          "match": "S.T",
+          "context": "om. Anggota : 1. Daniel Arsa, S.Kom., M.S.I 2. Muhammad Razi A., S.T., MMSI. Disetujui: Pembimbing Utama Pembimbing Pendamping Muh. S"
+        },
+        {
+          "pdf_page": 3,
+          "match": "S.S",
+          "context": ". Disetujui: Pembimbing Utama Pembimbing Pendamping Muh. Subhan, S.ST., M.T. Mochammad Arief Hermawan Sutoyo, M.Kom. NIP. 19860812201"
+        },
+        {
+          "pdf_page": 3,
+          "match": "M.T",
+          "context": "ujui: Pembimbing Utama Pembimbing Pendamping Muh. Subhan, S.ST., M.T. Mochammad Arief Hermawan Sutoyo, M.Kom. NIP. 198608122014041001"
+        },
+        {
+          "pdf_page": 3,
+          "match": "M.K",
+          "context": "amping Muh. Subhan, S.ST., M.T. Mochammad Arief Hermawan Sutoyo, M.Kom. NIP. 198608122014041001 NIP. 199401312024061002 Diketahui: De"
+        },
+        {
+          "pdf_page": 3,
+          "match": "M.S",
+          "context": "nologi Jurusan Teknik Elektro dan Informatika Drs. Jefri Marzal, M.Sc., D.I.T. Edi Saputra, S.T., M.Sc. NIP. 196806021993031004 NIP."
+        },
+        {
+          "pdf_page": 3,
+          "match": "D.I",
+          "context": "Jurusan Teknik Elektro dan Informatika Drs. Jefri Marzal, M.Sc., D.I.T. Edi Saputra, S.T., M.Sc. NIP. 196806021993031004 NIP. 1985010"
+        },
+        {
+          "pdf_page": 3,
+          "match": "S.T",
+          "context": "ro dan Informatika Drs. Jefri Marzal, M.Sc., D.I.T. Edi Saputra, S.T., M.Sc. NIP. 196806021993031004 NIP. 198501082015041003 iii"
+        },
+        {
+          "pdf_page": 3,
+          "match": "M.S",
+          "context": "Informatika Drs. Jefri Marzal, M.Sc., D.I.T. Edi Saputra, S.T., M.Sc. NIP. 196806021993031004 NIP. 198501082015041003 iii"
+        },
+        {
+          "pdf_page": 6,
+          "match": "M.S",
+          "context": "an hingga menyelesaikan skripsi ini. 2. Bapak Drs. Jefri Marzal, M.Sc., D.I.T., selaku Dekan Fakultas Sains dan Teknologi Universitas"
+        },
+        {
+          "pdf_page": 6,
+          "match": "D.I",
+          "context": "ga menyelesaikan skripsi ini. 2. Bapak Drs. Jefri Marzal, M.Sc., D.I.T., selaku Dekan Fakultas Sains dan Teknologi Universitas Jambi."
+        },
+        {
+          "pdf_page": 6,
+          "match": "S.T",
+          "context": "tas Sains dan Teknologi Universitas Jambi. 3. Bapak Edi Saputra, S.T., M.Sc. selaku Ketua Jurusan Teknik Elektro dan Informatika Faku"
+        },
+        {
+          "pdf_page": 6,
+          "match": "M.S",
+          "context": "ins dan Teknologi Universitas Jambi. 3. Bapak Edi Saputra, S.T., M.Sc. selaku Ketua Jurusan Teknik Elektro dan Informatika Fakultas S"
+        },
+        {
+          "pdf_page": 6,
+          "match": "S.K",
+          "context": "an Informatika Fakultas Sains dan Teknologi. 4. Ibu Reni Aryani, S.Kom., M.S.I., selaku Koordinator Program Studi Sistem Informasi Un"
+        },
+        {
+          "pdf_page": 6,
+          "match": "M.S",
+          "context": "matika Fakultas Sains dan Teknologi. 4. Ibu Reni Aryani, S.Kom., M.S.I., selaku Koordinator Program Studi Sistem Informasi Universita"
+        },
+        {
+          "pdf_page": 6,
+          "match": "S.K",
+          "context": "Studi Sistem Informasi Universitas Jambi. 5. Ibu Yolla Noverina, S.Kom., M.Kom., selaku dosen PA penulis yang telah memberikan arahan"
+        }
+      ]
+    }
+  ],
+  "term_consistency_findings": [
+    {
+      "term": "back-end/backend/back end",
+      "variants": {
+        "back-end": 249,
+        "Back-end": 15,
+        "BACK-END": 3,
+        "Back-End": 2,
+        "BACKEND": 1
+      }
+    },
+    {
+      "term": "front-end/frontend/front end",
+      "variants": {
+        "front-end": 23,
+        "frontend": 4
+      }
+    },
+    {
+      "term": "use case/use-case",
+      "variants": {
+        "Use Case": 186,
+        "use case": 19,
+        "Use case": 1
+      }
+    },
+    {
+      "term": "QR Code/QR-Code/qrcode",
+      "variants": {
+        "QR code": 18,
+        "QR Code": 5
+      }
+    },
+    {
+      "term": "endpoint/end point",
+      "variants": {
+        "endpoint": 96,
+        "Endpoint": 32
+      }
+    }
+  ],
+  "rendered_finding_pages": [
+    "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\pdf_review_183\\render_findings\\page-054.png",
+    "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\pdf_review_183\\render_findings\\page-055.png",
+    "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\pdf_review_183\\render_findings\\page-060.png",
+    "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\pdf_review_183\\render_findings\\page-061.png",
+    "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\pdf_review_183\\render_findings\\page-065.png",
+    "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\pdf_review_183\\render_findings\\page-066.png"
+  ]
+}

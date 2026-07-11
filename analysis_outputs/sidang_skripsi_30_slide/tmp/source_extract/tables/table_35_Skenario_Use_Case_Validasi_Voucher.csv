@@ -1,0 +1,14 @@
+Nama Use Case,Validasi Voucher
+ID Use Case,UC-18
+Aktor,Pegawai
+Deskripsi,Proses pemotongan tagihan secara otomatis jika pelanggan memiliki voucher
+Precondition,Tagihan ikan dan pesanan lain telah digabungkan
+Aktor,Sistem
+Skenario Utama
+,1. Sistem memeriksa ketersediaan voucher aktif di akun pelanggan
+,2. Sistem menemukan nominal saldo voucher
+,3. Sistem melakukan auto-redeem memotong tagihan akhir sebesar nilai voucher
+Skenario Alternatif
+,1. Sistem memproses transaksi yang tagihannya lebih kecil dari nilai voucher
+,2. Sistem mengurangi tagihan menjadi Rp0 dan menghanguskan sisa nilai voucher
+Post Condition,Nilai pembayaran akhir setelah voucher dihitung dan dikunci

@@ -1,0 +1,1055 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/h197ei",
+    "id": "h197ei",
+    "slide": 22,
+    "layoutId": "781cdfa6-d849-440d-aa3b-b4594a8a0ce8",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "96f59847-c5ea-44e6-bd1c-e97c8d9560ad",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "781cdfa6-d849-440d-aa3b-b4594a8a0ce8",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "96f59847-c5ea-44e6-bd1c-e97c8d9560ad",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "96f59847-c5ea-44e6-bd1c-e97c8d9560ad",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h4byhgn2",
+      "id": "1",
+      "bbox": [
+        0,
+        0,
+        1280,
+        10
+      ],
+      "geometry": "rect",
+      "fillColor": "#F6B21A",
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/adsji5sn",
+      "id": "2",
+      "bbox": [
+        0,
+        10,
+        200,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#F47B20",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3ylc7u54",
+      "id": "3",
+      "bbox": [
+        72,
+        30,
+        420,
+        24
+      ],
+      "geometry": "rect",
+      "text": "INTEGRASI UI",
+      "textPreview": "INTEGRASI UI",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#5F6368",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "INTEGRASI UI"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "INTEGRASI UI",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#5F6368",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "INTEGRASI UI",
+              "fontSize": 12,
+              "color": "#5F6368",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s72x4nap",
+      "id": "4",
+      "bbox": [
+        1160,
+        650,
+        48,
+        24
+      ],
+      "geometry": "rect",
+      "text": "22",
+      "textPreview": "22",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#5F6368",
+        "bold": true,
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "22"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "22",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#5F6368",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "22",
+              "fontSize": 14,
+              "color": "#5F6368",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lszqtcj6",
+      "id": "5",
+      "bbox": [
+        72,
+        682,
+        1136,
+        1
+      ],
+      "geometry": "rect",
+      "fillColor": "#E5E7EB",
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a5gbq1or",
+      "id": "6",
+      "bbox": [
+        72,
+        58,
+        900,
+        80
+      ],
+      "geometry": "rect",
+      "text": "Prototype antarmuka membuktikan API dapat dipakai lintas role",
+      "textPreview": "Prototype antarmuka membuktikan API dapat dipakai lintas role",
+      "resolvedFontSize": 35,
+      "resolvedTextStyle": {
+        "fontSize": 35,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Prototype antarmuka membuktikan API dapat dipakai lintas"
+          },
+          {
+            "index": 2,
+            "text": "role"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Prototype antarmuka membuktikan API dapat dipakai lintas role",
+          "resolvedTextStyle": {
+            "fontSize": 35,
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Prototype antarmuka membuktikan API dapat dipakai lintas role",
+              "fontSize": 35,
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3m94fu18",
+      "id": "7",
+      "bbox": [
+        72,
+        156,
+        120,
+        5
+      ],
+      "geometry": "rect",
+      "fillColor": "#F47B20",
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s36hcrmh",
+      "id": "8",
+      "bbox": [
+        67,
+        174,
+        182,
+        272
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E5E7EB",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/orytsvu9",
+      "id": "9",
+      "bbox": [
+        68,
+        175,
+        180,
+        270
+      ],
+      "alt": "Gambar 76. Halaman utama",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "asset": {
+        "assetId": "0a92061d-2d19-4ef5-98da-cd95e137f8cf",
+        "contentType": "image/png",
+        "byteLength": 709890
+      }
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/58z25kb6",
+      "id": "10",
+      "bbox": [
+        68,
+        453,
+        180,
+        22
+      ],
+      "geometry": "rect",
+      "text": "Gambar 76. Halaman utama",
+      "textPreview": "Gambar 76. Halaman utama",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#5F6368",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Gambar 76. Halaman utama"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Gambar 76. Halaman utama",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#5F6368",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Gambar 76. Halaman utama",
+              "fontSize": 12,
+              "color": "#5F6368",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gn29gr2p",
+      "id": "11",
+      "bbox": [
+        274,
+        174,
+        212,
+        152
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E5E7EB",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/g3ex0nux",
+      "id": "12",
+      "bbox": [
+        275,
+        175,
+        210,
+        150
+      ],
+      "alt": "Gambar 78. Dashboard member",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "asset": {
+        "assetId": "27c2dce5-0aaa-419b-a492-c5d063747527",
+        "contentType": "image/png",
+        "byteLength": 99309
+      }
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yhgn29gr",
+      "id": "13",
+      "bbox": [
+        275,
+        333,
+        210,
+        22
+      ],
+      "geometry": "rect",
+      "text": "Gambar 78. Dashboard member",
+      "textPreview": "Gambar 78. Dashboard member",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#5F6368",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Gambar 78. Dashboard member"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Gambar 78. Dashboard member",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#5F6368",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Gambar 78. Dashboard member",
+              "fontSize": 12,
+              "color": "#5F6368",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5wjudg7a",
+      "id": "14",
+      "bbox": [
+        509,
+        174,
+        212,
+        152
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E5E7EB",
+      "lineWidth": 1
+    },
+    {
+      "order": 15,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/r65wjudg",
+      "id": "15",
+      "bbox": [
+        510,
+        175,
+        210,
+        150
+      ],
+      "alt": "Gambar 82. Dashboard pegawai",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "asset": {
+        "assetId": "1259f074-63c5-4d3b-ad6c-e19bf4d97391",
+        "contentType": "image/png",
+        "byteLength": 92469
+      }
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nuxc3ylc",
+      "id": "16",
+      "bbox": [
+        510,
+        333,
+        210,
+        22
+      ],
+      "geometry": "rect",
+      "text": "Gambar 82. Dashboard pegawai",
+      "textPreview": "Gambar 82. Dashboard pegawai",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#5F6368",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Gambar 82. Dashboard pegawai"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Gambar 82. Dashboard pegawai",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#5F6368",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Gambar 82. Dashboard pegawai",
+              "fontSize": 12,
+              "color": "#5F6368",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/y90je9cv",
+      "id": "17",
+      "bbox": [
+        744,
+        174,
+        212,
+        152
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E5E7EB",
+      "lineWidth": 1
+    },
+    {
+      "order": 18,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/yd0z6103",
+      "id": "18",
+      "bbox": [
+        745,
+        175,
+        210,
+        150
+      ],
+      "alt": "Gambar 92. Dashboard pemilik",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "asset": {
+        "assetId": "2d762dd1-c110-447c-9579-b48959bdb15b",
+        "contentType": "image/png",
+        "byteLength": 108648
+      }
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cbulwval",
+      "id": "19",
+      "bbox": [
+        745,
+        333,
+        210,
+        22
+      ],
+      "geometry": "rect",
+      "text": "Gambar 92. Dashboard pemilik",
+      "textPreview": "Gambar 92. Dashboard pemilik",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#5F6368",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Gambar 92. Dashboard pemilik"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Gambar 92. Dashboard pemilik",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#5F6368",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Gambar 92. Dashboard pemilik",
+              "fontSize": 12,
+              "color": "#5F6368",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8nqxs72x",
+      "id": "20",
+      "bbox": [
+        979,
+        174,
+        182,
+        272
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#E5E7EB",
+      "lineWidth": 1
+    },
+    {
+      "order": 21,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/ap4r65wj",
+      "id": "21",
+      "bbox": [
+        980,
+        175,
+        180,
+        270
+      ],
+      "alt": "Gambar 96. Laporan keuangan",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "asset": {
+        "assetId": "e7706ab2-779d-4d4b-a902-7c84d26fe60e",
+        "contentType": "image/png",
+        "byteLength": 328182
+      }
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qh0fepkz",
+      "id": "22",
+      "bbox": [
+        980,
+        453,
+        180,
+        22
+      ],
+      "geometry": "rect",
+      "text": "Gambar 96. Laporan keuangan",
+      "textPreview": "Gambar 96. Laporan keuangan",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "fontSize": 12,
+        "typeface": "+mn-lt",
+        "color": "#5F6368",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Gambar 96. Laporan keuangan"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Gambar 96. Laporan keuangan",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "color": "#5F6368",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Gambar 96. Laporan keuangan",
+              "fontSize": 12,
+              "color": "#5F6368",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/j2t83itg",
+      "id": "23",
+      "bbox": [
+        140,
+        518,
+        12,
+        12
+      ],
+      "geometry": "rect",
+      "fillColor": "#F47B20",
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8bat47y1",
+      "id": "24",
+      "bbox": [
+        166,
+        510,
+        934,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Data publik, member, pegawai, dan pemilik mengambil sumber dari layanan back-end.",
+      "textPreview": "Data publik, member, pegawai, dan pemilik mengambil sumber dari layanan back-end.",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Data publik, member, pegawai, dan pemilik mengambil sumber dari layanan back-end."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Data publik, member, pegawai, dan pemilik mengambil sumber dari layanan back-end.",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Data publik, member, pegawai, dan pemilik mengambil sumber dari layanan back-end.",
+              "fontSize": 18,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1w7mp0bi",
+      "id": "25",
+      "bbox": [
+        140,
+        556,
+        12,
+        12
+      ],
+      "geometry": "rect",
+      "fillColor": "#F6B21A",
+      "lineWidth": 0
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q5o7qpg3",
+      "id": "26",
+      "bbox": [
+        166,
+        548,
+        934,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Setiap tampilan menguji hubungan API dengan data operasional yang sama.",
+      "textPreview": "Setiap tampilan menguji hubungan API dengan data operasional yang sama.",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Setiap tampilan menguji hubungan API dengan data operasional yang sama."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Setiap tampilan menguji hubungan API dengan data operasional yang sama.",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Setiap tampilan menguji hubungan API dengan data operasional yang sama.",
+              "fontSize": 18,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jqh0fepk",
+      "id": "27",
+      "bbox": [
+        140,
+        594,
+        12,
+        12
+      ],
+      "geometry": "rect",
+      "fillColor": "#F47B20",
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c3ylc7u5",
+      "id": "28",
+      "bbox": [
+        166,
+        586,
+        934,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Integrasi menunjukkan dampak pada informasi pelanggan, pesanan, transaksi, stok, dan laporan.",
+      "textPreview": "Integrasi menunjukkan dampak pada informasi pelanggan, pesanan, transaksi, stok, dan laporan.",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Integrasi menunjukkan dampak pada informasi pelanggan, pesanan, transaksi, stok, dan laporan."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Integrasi menunjukkan dampak pada informasi pelanggan, pesanan, transaksi, stok, dan laporan.",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#111111",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Integrasi menunjukkan dampak pada informasi pelanggan, pesanan, transaksi, stok, dan laporan.",
+              "fontSize": 18,
+              "color": "#111111",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

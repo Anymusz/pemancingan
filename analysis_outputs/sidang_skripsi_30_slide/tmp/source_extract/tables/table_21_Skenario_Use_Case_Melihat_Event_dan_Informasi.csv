@@ -1,0 +1,13 @@
+Nama Use Case,Melihat Event dan Informasi
+ID Use Case,UC-04
+Aktor,"Pemilik, Pegawai, Member"
+Deskripsi,Proses pengguna melihat dan membaca detail event atau informasi yang dipublikasikan pada halaman utama sistem.
+Precondition,Aktor berada di halaman utama atau menu Event.
+Aktor,Sistem
+Skenario Utama
+1. Aktor memilih salah satu banner event atau pengumuman,
+,"2. Sistem menarik deskripsi lengkap, tanggal acara, dan status publikasi"
+,3. Sistem memuat rincian acara atau pengumuman dan menampilkannya di layar aktor
+Skenario Alternatif
+-,-
+Post Condition,Aktor menerima informasi detail acara atau pengumuman terkini.

@@ -1,0 +1,14 @@
+Nama Use Case,Melihat Leaderboard
+ID Use Case,UC-06
+Aktor,Member
+Deskripsi,Mengakses klasemen berdasarkan total akumulasi berat ikan tertinggi secara global
+Precondition,Aktor berada di dalam sistem
+Aktor,Sistem
+Skenario Utama
+1. Aktor menekan menu Leaderboard di sidebar navigasi,
+,2. Sistem mengambil data akumulasi tangkapan ikan dari seluruh member
+,3. Sistem mengurutkan data dari tertinggi ke terendah secara real-time
+,4. Sistem menampilkan tabel klasemen peringkat di layar
+Skenario Alternatif
+-,-
+Post Condition,Aktor mengetahui posisi peringkat klasemen terkini

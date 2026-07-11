@@ -1,0 +1,7126 @@
+[
+  {
+    "type": "table",
+    "block": 36,
+    "table_index": 1,
+    "rows": [
+      [
+        "Ketua",
+        ":",
+        "Muh. Subhan, S.ST., M.T."
+      ],
+      [
+        "Sekretaris",
+        ":",
+        "Mochammad Arief Hermawan Sutoyo, M.Kom."
+      ],
+      [
+        "Anggota",
+        ":",
+        "1. Daniel Arsa, S.Kom., M.S.I"
+      ],
+      [
+        "",
+        "",
+        "2. Muhammad Razi A., S.T., MMSI."
+      ]
+    ],
+    "row_count": 4,
+    "col_count": 3,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_1_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 40,
+    "table_index": 2,
+    "rows": [
+      [
+        "Pembimbing Utama",
+        "",
+        "Pembimbing Pendamping"
+      ],
+      [
+        "Muh. Subhan, S.ST., M.T.\nNIP. 198608122014041001",
+        "",
+        "Mochammad Arief Hermawan Sutoyo, M.Kom.\nNIP. 199401312024061002"
+      ]
+    ],
+    "row_count": 2,
+    "col_count": 3,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_2_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 44,
+    "table_index": 3,
+    "rows": [
+      [
+        "Dekan Fakultas Sains dan Teknologi",
+        "",
+        "Ketua Jurusan Teknik Elektro dan Informatika"
+      ],
+      [
+        "Drs. Jefri Marzal, M.Sc., D.I.T. NIP. 196806021993031004",
+        "",
+        "Edi Saputra, S.T., M.Sc. NIP. 198501082015041003"
+      ]
+    ],
+    "row_count": 2,
+    "col_count": 3,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_3_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 51,
+    "table_index": 4,
+    "rows": [],
+    "row_count": 0,
+    "col_count": 0,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_4_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 75,
+    "table_index": 5,
+    "rows": [
+      [
+        "Jambi,    Juni 2026"
+      ],
+      [
+        "Yang Menyatakan,"
+      ],
+      [
+        "Raka Bagaskara Putra"
+      ],
+      [
+        "F1E122183"
+      ]
+    ],
+    "row_count": 4,
+    "col_count": 1,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_5_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 360,
+    "table_index": 6,
+    "rows": [
+      [
+        "Model",
+        "Karakteristik Dan Keunggulan"
+      ],
+      [
+        "Waterfall",
+        "Memiliki tahapan kerja yang berurutan dan sistematis sehingga mudah dikendalikan (Burhani et al., 2025) Cocok digunakan untuk sistem yang kebutuhan dan tujuannya sudah didefinisikan dengan jelas sejak awal (Burhani et al., 2025). Menjamin hasil akhir yang stabil karena setiap tahapan harus selesai sebelum melanjutkan ke tahap berikutnya (Burhani et al., 2025)"
+      ],
+      [
+        "Rapid Application Development",
+        "Metodologi RAD menekankan efisiensi waktu dan iterasi cepat melalui pengembangan berbasis prototipe (E. A. Pratama et al., 2023). Metodologi RAD sangat sesuai untuk proyek yang membutuhkan hasil dalam waktu singkat dan memiliki kebutuhan yang dinamis (E. A. Pratama et al., 2023). Metodologi RAD melibatkan pengguna dalam setiap proses pengembangan agar hasil sistem lebih akurat dan sesuai harapan (E. A. Pratama et al., 2023)."
+      ],
+      [
+        "Scrum",
+        "Menerapkan konsep Agile dengan pendekatan iteratif dan kolaboratif dalam proses pengembangan (Nico Abrarsyah Atallah & Mardi Mardi, 2024) Menjalankan evaluasi rutin di setiap sprint agar produk dapat disesuaikan secara berkelanjutan (Nico Abrarsyah Atallah & Mardi Mardi, 2024). Mendorong kerja sama tim, komunikasi intensif, dan adaptasi cepat terhadap perubahan kebutuhan (Nico Abrarsyah Atallah & Mardi Mardi, 2024)."
+      ]
+    ],
+    "row_count": 4,
+    "col_count": 2,
+    "caption": "Tabel 1. Perbandingan Metodologi Pengembangan Perangkat Lunak",
+    "number": "1",
+    "title": "Perbandingan Metodologi Pengembangan Perangkat Lunak",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_1_Perbandingan_Metodologi_Pengembangan_Perangkat_Lunak.csv"
+  },
+  {
+    "type": "table",
+    "block": 402,
+    "table_index": 7,
+    "rows": [
+      [
+        "Nama Simbol",
+        "Gambar",
+        "Keterangan"
+      ],
+      [
+        "Aktor",
+        "",
+        "Aktor menggambarkan pihak luar seperti pengguna, sistem lain, atau perangkat yang berinteraksi langsung dengan sistem. Dalam diagram, aktor terhubung dengan use case melalui asosiasi, namun tidak mengendalikan proses di dalamnya."
+      ],
+      [
+        "Use Case",
+        "",
+        "Use Case menjelaskan fungsi atau layanan yang disediakan sistem bagi actor. Use case dihubungkan dengan aktor melalui asosiasi dan dapat saling berhubungan dengan use case lain melalui relasi include atau extend"
+      ],
+      [
+        "Asosiasi",
+        "",
+        "Asosiasi menunjukkan hubungan interaksi atau pertukaran data antara pengguna dan sistem, baik dalam bentuk input maupun output."
+      ],
+      [
+        "Generalisasi",
+        "",
+        "Generalization menggambarkan hubungan umum dan khusus antara aktor atau antar use case."
+      ],
+      [
+        "Include",
+        "",
+        "Include Relationship menunjukkan bahwa suatu use case selalu memanggil use case lain sebagai bagian dari proses utama. Hubungan ini digunakan untuk menghindari pengulangan proses yang sama"
+      ],
+      [
+        "Extend",
+        "",
+        "Extend Relationship menunjukkan bahwa suatu use case dapat diperluas oleh use case lain jika kondisi tertentu terpenuhi. Relasi ini menggambarkan proses tambahan yang bersifat opsional."
+      ]
+    ],
+    "row_count": 7,
+    "col_count": 3,
+    "caption": "Tabel 2. Simbol-simbol dalam Use Case Diagram",
+    "number": "2",
+    "title": "Simbol-simbol dalam Use Case Diagram",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_2_Simbol-simbol_dalam_Use_Case_Diagram.csv"
+  },
+  {
+    "type": "table",
+    "block": 406,
+    "table_index": 8,
+    "rows": [
+      [
+        "Nama Simbol",
+        "Gambar",
+        "Keterangan"
+      ],
+      [
+        "Status Awal",
+        "",
+        "Menandai titik dimulainya suatu rangkaian aktivitas dalam sistem."
+      ],
+      [
+        "Status Akhir",
+        "",
+        "Menandai titik berhentinya seluruh rangkaian aktivitas dalam diagram."
+      ],
+      [
+        "Aktivitas",
+        "",
+        "menggambarkan suatu tindakan atau proses yang dilakukan dalam alur kerja sistem."
+      ],
+      [
+        "Percabangan (Fork)",
+        "",
+        "Membagi satu alur menjadi beberapa aktivitas yang dapat berjalan secara bersamaan."
+      ],
+      [
+        "Penggabungan (Join)",
+        "",
+        "Menyatukan kembali beberapa aktivitas paralel menjadi satu alur proses."
+      ],
+      [
+        "Decision",
+        "",
+        "Decision digunakan untuk menunjukkan percabangan proses berdasarkan kondisi tertentu. Setiap cabang akan diarahkan ke alur yang berbeda sesuai hasil keputusan"
+      ],
+      [
+        "Swimlane",
+        "",
+        "Membagi diagram aktivitas ke dalam beberapa bagian berdasarkan pelaku atau unit yang bertanggung jawab."
+      ]
+    ],
+    "row_count": 8,
+    "col_count": 3,
+    "caption": "Tabel 3. Simbol-simbol Activity Diagram",
+    "number": "3",
+    "title": "Simbol-simbol Activity Diagram",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_3_Simbol-simbol_Activity_Diagram.csv"
+  },
+  {
+    "type": "table",
+    "block": 413,
+    "table_index": 9,
+    "rows": [
+      [
+        "Nama Simbol",
+        "Gambar",
+        "Keterangan"
+      ],
+      [
+        "Class",
+        "",
+        "Menggambarkan kelas dalam struktur sistem yang terdiri dari tiga bagian utama, yaitu nama kelas, atribut, dan operasi. Nama kelas harus unik dan ditulis tanpa spasi, atribut merupakan data yang dimiliki kelas, sedangkan operasi menggambarkan fungsi atau perilaku kelas. Kelas biasanya berhubungan dengan kelas lain melalui berbagai jenis relasi."
+      ],
+      [
+        "Association",
+        "",
+        "Menunjukkan hubungan antar kelas, di mana satu kelas dapat menggunakan atau mengenali kelas lain. Hubungan ini dapat disertai multiplicity untuk menunjukkan jumlah objek yang terlibat, seperti satu-ke-satu atau satu-ke-banyak."
+      ],
+      [
+        "Directed Association",
+        "",
+        "Directed Association menggambarkan hubungan satu arah antara dua kelas, di mana satu kelas mengenali atau menggunakan kelas lainnya, tetapi tidak sebaliknya. Directed Association sering digunakan untuk memperjelas arah komunikasi atau akses antar kelas dalam sistem."
+      ],
+      [
+        "Generalization",
+        "",
+        "Generalisasi menunjukkan hubungan umum dan khusus antara dua kelas. Kelas turunan mewarisi atribut dan operasi dari kelas induknya, tetapi dapat menambah atau memodifikasi fungsinya."
+      ],
+      [
+        "Dependency",
+        "",
+        "Dependency menunjukkan hubungan ketergantungan sementara antara dua kelas, di mana satu kelas menggunakan kelas lain untuk menjalankan fungsi tertentu."
+      ],
+      [
+        "Aggregation",
+        "",
+        "Agregasi menunjukkan hubungan “memiliki” yang bersifat lemah antara dua kelas. Kelas keseluruhan memiliki kelas bagian, namun bagian tersebut tetap dapat berdiri sendiri meskipun keseluruhan dihapus"
+      ],
+      [
+        "Composition",
+        "",
+        "Komposisi merupakan bentuk hubungan yang lebih kuat dari agregasi. Dalam komposisi, bagian tidak dapat berdiri sendiri tanpa kelas keseluruhan. Jika kelas utama dihapus, maka bagian juga ikut hilang."
+      ]
+    ],
+    "row_count": 8,
+    "col_count": 3,
+    "caption": "Tabel 4. Simbol-simbol Class Diagram",
+    "number": "4",
+    "title": "Simbol-simbol Class Diagram",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_4_Simbol-simbol_Class_Diagram.csv"
+  },
+  {
+    "type": "table",
+    "block": 448,
+    "table_index": 10,
+    "rows": [
+      [
+        "No",
+        "Judul Penelitian",
+        "Penulis & Tahun",
+        "Tujuan Penelitian",
+        "Hasil Penelitian"
+      ],
+      [
+        "1",
+        "Rancang Bangun Aplikasi Penjualan Online Menggunakan Metode RAD pada UMKM Utama Sport",
+        "Merancang aplikasi penjualan online yang mampu mengelola transaksi dan data produk secara efisien menggunakan metode RAD.",
+        "Metode Rapid Application Development (RAD) mampu mempercepat proses pengembangan aplikasi penjualan online serta meningkatkan efisiensi pengelolaan transaksi dan pengolahan data produk secara terintegrasi, sehingga sistem dapat mendukung aktivitas penjualan UMKM secara lebih optimal."
+      ],
+      [
+        "2",
+        "Penerapan Metode Rapid Application Development (RAD) dalam Pengembangan Website Penjualan Produk UMKM Bikomi Utara",
+        "Mengimplementasikan metode RAD dalam pengembangan sistem penjualan berbasis web.",
+        "Sistem penjualan berbasis web yang dikembangkan menggunakan metode Rapid Application Development (RAD) mampu meningkatkan efisiensi pelayanan serta mempermudah pengelolaan data transaksi dan data produk UMKM secara terstruktur dan real-time."
+      ],
+      [
+        "3",
+        "Penerapan Metode Rapid Application Development (RAD) untuk Digitalisasi UKM Industri Busana Muslim",
+        "Merancang prototype aplikasi marketplace dan company profile berbasis web sebagai dukungan untuk digitalisasi UMKM.",
+        "Digitalisasi proses bisnis UKM industri busana muslim dengan pendekatan Rapid Application Development (RAD) mampu mendukung pengelolaan transaksi dan promosi produk secara lebih terorganisasi, sehingga meningkatkan efisiensi operasional dan kemudahan pengelolaan data usaha."
+      ],
+      [
+        "4",
+        "Optimalisasi Sistem Digitalisasi Penerimaan dan Pengeluaran Barang dengan Laravel 11",
+        "(Devgan Oktawijaya & Agustin, 2024)",
+        "Membangun sistem digitalisasi penerimaan dan pengeluaran barang dengan memanfaatkan framework Laravel 11 sebagai back-end utama.",
+        "Penggunaan Laravel 11 sebagai back-end mempercepat proses transaksi dan meningkatkan efisiensi distribusi barang secara digital."
+      ],
+      [
+        "5",
+        "Rancang Bangun Sistem Informasi Penerimaan Mahasiswa Baru Berbasis Web Dengan Menggunakan Framework Laravel",
+        "(Nugraha et al., 2024)",
+        "Merancang dan menerapkan sistem pendaftaran mahasiswa baru berbasis web untuk meningkatkan efektivitas proses penerimaan.",
+        "Laravel digunakan untuk membangun back-end REST API yang mempercepat proses pendaftaran mahasiswa baru dan mengoptimalkan integrasi data sistem."
+      ],
+      [
+        "6",
+        "Perancangan Sistem Informasi Berbasis Website Pada Himpunan Mahasiswa Program Studi Sistem Informasi",
+        "Merancang sistem informasi berbasis website menggunakan metodologi Prototype untuk mendukung pengelolaan kegiatan, pendaftaran, dan komunikasi organisasi.",
+        "Sistem mampu meningkatkan efektivitas pengelolaan data organisasi, pendaftaran, dan aspirasi mahasiswa. Pengujian Black Box menunjukkan seluruh fungsi berjalan valid."
+      ],
+      [
+        "7",
+        "Pengembangan Platform Digital Wisata Memancing di Kota Banda Aceh",
+        "Mengembangkan platform digital berbasis website untuk menyediakan informasi spot memancing, toko pemancingan, dan toko umpan di Kota Banda Aceh.",
+        "Platform digital berbasis CMS WordPress mampu menyajikan data spot memancing, toko pemancingan, dan toko umpan dalam bentuk tabel dan peta interaktif sehingga mempermudah akses informasi bagi pemancing dan mendukung promosi wisata memancing daerah."
+      ],
+      [
+        "8",
+        "Pengembangan Sistem Informasi Manajemen Keuangan Lesehan & Kolam Pancing Kresna Berbasis Website Menggunakan Model Evolutionary Prototyping",
+        "Mengembangkan sistem informasi manajemen keuangan berbasis web untuk mengatasi pencatatan keuangan manual pada usaha lesehan dan kolam pancing.",
+        "Penerapan model evolutionary prototyping berhasil menyederhanakan proses bisnis keuangan, meningkatkan akurasi pencatatan dan pelaporan, serta memperoleh tingkat penerimaan pengguna sebesar 87% berdasarkan pengujian UAT."
+      ],
+      [
+        "9",
+        "Pembangunan Sistem Informasi Berbasis Web pada Penjualan Usaha Memancing di Toko Dunia Pancing",
+        "Membangun sistem informasi penjualan berbasis web untuk mendukung pengelolaan transaksi dan data penjualan pada usaha pemancingan.",
+        "Sistem informasi berbasis web mampu meningkatkan efektivitas pencatatan transaksi penjualan, mempercepat proses pengolahan data, serta membantu pemilik usaha dalam memantau aktivitas penjualan secara terstruktur."
+      ],
+      [
+        "10",
+        "Evaluasi usability website Dinas Pendidikan Provinsi Riau menggunakan metode System Usability Scale",
+        "Mengevaluasi tingkat usability website Dinas Pendidikan Provinsi Riau menggunakan metode System Usability Scale (SUS).",
+        "Hasil penelitian menunjukkan bahwa metode System Usability Scale (SUS) dapat digunakan untuk mengukur tingkat usability website berdasarkan persepsi pengguna. SUS menghasilkan skor kuantitatif yang dapat digunakan untuk menilai kemudahan penggunaan sistem serta menjadi dasar dalam menentukan kebutuhan perbaikan pada website."
+      ],
+      [
+        "11",
+        "Evaluasi usability website Shopee menggunakan System Usability Scale (SUS)",
+        "Mengevaluasi tingkat usability website Shopee menggunakan metode System Usability Scale (SUS) berdasarkan pengalaman pengguna.",
+        "Hasil penelitian menunjukkan bahwa System Usability Scale (SUS) mampu memberikan gambaran mengenai tingkat kemudahan penggunaan website berdasarkan penilaian pengguna. Penggunaan SUS membantu mengetahui apakah sistem memiliki usability yang baik atau masih memerlukan perbaikan dari sisi kemudahan penggunaan."
+      ]
+    ],
+    "row_count": 12,
+    "col_count": 5,
+    "caption": "Tabel 5. Penelitian Terdahulu",
+    "number": "5",
+    "title": "Penelitian Terdahulu",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_5_Penelitian_Terdahulu.csv"
+  },
+  {
+    "type": "table",
+    "block": 503,
+    "table_index": 11,
+    "rows": [
+      [
+        "No",
+        "Aktor",
+        "Deskripsi Peran"
+      ],
+      [
+        "1",
+        "Nama Aktor",
+        "Deskripsi umum peran"
+      ],
+      [
+        "2",
+        "...",
+        "..."
+      ]
+    ],
+    "row_count": 3,
+    "col_count": 3,
+    "caption": "Tabel 6. Format Identifikasi Aktor",
+    "number": "6",
+    "title": "Format Identifikasi Aktor",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_6_Format_Identifikasi_Aktor.csv"
+  },
+  {
+    "type": "table",
+    "block": 506,
+    "table_index": 12,
+    "rows": [
+      [
+        "No",
+        "Kode",
+        "Deskripsi Kebutuhan Fungsional"
+      ],
+      [
+        "1",
+        "KF-1",
+        "Uraian singkat fungsi sistem"
+      ],
+      [
+        "2",
+        "KF-2",
+        "..."
+      ]
+    ],
+    "row_count": 3,
+    "col_count": 3,
+    "caption": "Tabel 7. Format Kebutuhan Fungsional",
+    "number": "7",
+    "title": "Format Kebutuhan Fungsional",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_7_Format_Kebutuhan_Fungsional.csv"
+  },
+  {
+    "type": "table",
+    "block": 509,
+    "table_index": 13,
+    "rows": [
+      [
+        "No",
+        "Kode",
+        "Deskripsi Kebutuhan Non-Fungsional"
+      ],
+      [
+        "1",
+        "KNF-1",
+        "Uraian singkat aspek kualitas"
+      ],
+      [
+        "2",
+        "KNF-2",
+        "..."
+      ]
+    ],
+    "row_count": 3,
+    "col_count": 3,
+    "caption": "Tabel 8. Format Kebutuhan Non-Fungsional",
+    "number": "8",
+    "title": "Format Kebutuhan Non-Fungsional",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_8_Format_Kebutuhan_Non-Fungsional.csv"
+  },
+  {
+    "type": "table",
+    "block": 512,
+    "table_index": 14,
+    "rows": [
+      [
+        "No",
+        "Kode",
+        "Jenis Data",
+        "Deskripsi"
+      ],
+      [
+        "1",
+        "KD-1",
+        "Nama Data",
+        "Penjelasan singkat mengenai data yang dibutuhkan"
+      ],
+      [
+        "2",
+        "KD-2",
+        "...",
+        "..."
+      ]
+    ],
+    "row_count": 3,
+    "col_count": 4,
+    "caption": "Tabel 9. Format Kebutuhan Data",
+    "number": "9",
+    "title": "Format Kebutuhan Data",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_9_Format_Kebutuhan_Data.csv"
+  },
+  {
+    "type": "table",
+    "block": 521,
+    "table_index": 15,
+    "rows": [
+      [
+        "No",
+        "Method",
+        "URL Endpoint",
+        "Request (JSON)",
+        "Response (JSON)"
+      ],
+      [
+        "1",
+        "POST",
+        "/api/...",
+        "{ ... }",
+        "{ ... }"
+      ],
+      [
+        "2",
+        "GET",
+        "/api/...",
+        "-",
+        "{ ... }"
+      ],
+      [
+        "3",
+        "PUT",
+        "/api/.../{id}",
+        "{ ... }",
+        "{ ... }"
+      ],
+      [
+        "4",
+        "DELETE",
+        "/api/.../{id}",
+        "-",
+        "{ ... }"
+      ]
+    ],
+    "row_count": 5,
+    "col_count": 5,
+    "caption": "Tabel 10. Format Rancangan Endpoint API",
+    "number": "10",
+    "title": "Format Rancangan Endpoint API",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_10_Format_Rancangan_Endpoint_API.csv"
+  },
+  {
+    "type": "table",
+    "block": 539,
+    "table_index": 16,
+    "rows": [
+      [
+        "Test ID",
+        "Rincian Pengujian",
+        "Hasil yang Diharapkan",
+        "Hasil Pengujian",
+        "Status"
+      ],
+      [
+        "T01",
+        "Pengujian pencatatan transaksi penimbangan ikan dengan nilai berat yang valid.",
+        "Sistem menghitung total pembayaran sesuai tarif dan menyimpan transaksi tanpa error.",
+        "",
+        ""
+      ],
+      [
+        "T02",
+        "Pengujian pembaruan stok ikan setelah transaksi dilakukan.",
+        "Sistem mengurangi stok ikan sesuai jumlah yang tercatat pada transaksi.",
+        "",
+        ""
+      ],
+      [
+        "T03",
+        "Pengujian pengurangan saldo deposit pelanggan saat transaksi dibayar menggunakan deposit.",
+        "Sistem mengurangi saldo deposit dan mencatat perubahan pada riwayat deposit.",
+        "",
+        ""
+      ],
+      [
+        "T04",
+        "Pengujian tampilan laporan pendapatan harian berdasarkan transaksi yang telah tersimpan.",
+        "Sistem menampilkan total pendapatan harian berdasarkan data transaksi yang tersedia.",
+        "",
+        ""
+      ],
+      [
+        "T05",
+        "…",
+        "…",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 6,
+    "col_count": 5,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_16_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 550,
+    "table_index": 17,
+    "rows": [
+      [
+        "No",
+        "Komponen/Pernyataan",
+        "Skala Penilaian"
+      ],
+      [
+        "1",
+        "Saya berpikir akan menggunakan sistem ini lagi.",
+        "1 2 3 4 5"
+      ],
+      [
+        "2",
+        "Saya merasa sistem ini rumit untuk digunakan.",
+        "1 2 3 4 5"
+      ],
+      [
+        "3",
+        "Saya merasa sistem ini mudah digunakan.",
+        "1 2 3 4 5"
+      ],
+      [
+        "4",
+        "Saya membutuhkan bantuan dari orang lain atau teknisi dalam menggunakan sistem ini.",
+        "1 2 3 4 5"
+      ],
+      [
+        "5",
+        "Saya merasa fitur-fitur sistem ini berjalan dengan semestinya.",
+        "1 2 3 4 5"
+      ],
+      [
+        "6",
+        "Saya merasa ada banyak hal yang tidak konsisten pada sistem ini.",
+        "1 2 3 4 5"
+      ],
+      [
+        "7",
+        "Saya merasa orang lain akan memahami cara menggunakan sistem ini dengan cepat.",
+        "1 2 3 4 5"
+      ],
+      [
+        "8",
+        "Saya merasa sistem ini membingungkan.",
+        "1 2 3 4 5"
+      ],
+      [
+        "9",
+        "Saya merasa tidak ada hambatan dalam menggunakan sistem ini.",
+        "1 2 3 4 5"
+      ],
+      [
+        "10",
+        "Saya perlu membiasakan diri terlebih dahulu sebelum menggunakan sistem ini.",
+        "1 2 3 4 5"
+      ]
+    ],
+    "row_count": 11,
+    "col_count": 3,
+    "caption": "Tabel 12. Instrumen Pertanyaan SUS",
+    "number": "12",
+    "title": "Instrumen Pertanyaan SUS",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_12_Instrumen_Pertanyaan_SUS.csv"
+  },
+  {
+    "type": "table",
+    "block": 582,
+    "table_index": 18,
+    "rows": [
+      [
+        "No",
+        "Kode",
+        "Deskripsi Kebutuhan Fungsional"
+      ],
+      [
+        "1",
+        "KF-01",
+        "Sistem menyediakan autentikasi login dan logout bagi pengguna."
+      ],
+      [
+        "2",
+        "KF-02",
+        "Sistem membatasi hak akses berdasarkan role pemilik, pegawai, dan member."
+      ],
+      [
+        "3",
+        "KF-03",
+        "Sistem mengelola data member, validasi akun, status keanggotaan, tier, poin, dan QR code."
+      ],
+      [
+        "4",
+        "KF-04",
+        "Sistem mengelola data master operasional, meliputi menu, jenis ikan, stok ikan, item rental, event, dan informasi."
+      ],
+      [
+        "5",
+        "KF-05",
+        "Sistem mengelola kedatangan pelanggan member dan tamu, termasuk check-in, check-out, dan deposit tamu."
+      ],
+      [
+        "6",
+        "KF-06",
+        "Sistem mengelola pesanan menu dan item rental sebelum transaksi akhir."
+      ],
+      [
+        "7",
+        "KF-07",
+        "Sistem memproses checkout transaksi, meliputi perhitungan ikan, menu, rental, denda, diskon tier, voucher, deposit, dan metode pembayaran."
+      ],
+      [
+        "8",
+        "KF-08",
+        "Sistem memperbarui poin member, tier member, total berat ikan, leaderboard, dan stok ikan setelah transaksi."
+      ],
+      [
+        "9",
+        "KF-09",
+        "Sistem menampilkan indikator stok ikan menipis dan mengirim notifikasi kepada aktor terkait ketika stok melewati batas minimum."
+      ],
+      [
+        "10",
+        "KF-10",
+        "Sistem mengelola voucher bulanan, konfigurasi voucher, konfigurasi QRIS, dan konfigurasi deposit tamu."
+      ],
+      [
+        "11",
+        "KF-11",
+        "Sistem menyediakan riwayat transaksi dan laporan operasional/keuangan."
+      ],
+      [
+        "12",
+        "KF-12",
+        "Sistem menyediakan endpoint API sebagai media komunikasi antara back-end dan prototype antarmuka pengguna dari penelitian sebelumnya."
+      ]
+    ],
+    "row_count": 13,
+    "col_count": 3,
+    "caption": "Tabel 13. Kebutuhan Fungsional",
+    "number": "13",
+    "title": "Kebutuhan Fungsional",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_13_Kebutuhan_Fungsional.csv"
+  },
+  {
+    "type": "table",
+    "block": 585,
+    "table_index": 19,
+    "rows": [
+      [
+        "No",
+        "Kode",
+        "Deskripsi Kebutuhan Non-Fungsional"
+      ],
+      [
+        "1",
+        "KNF-01",
+        "Sistem harus menyediakan autentikasi pengguna agar hanya pengguna terdaftar yang dapat mengakses sistem."
+      ],
+      [
+        "2",
+        "KNF-02",
+        "Sistem harus membatasi akses fitur berdasarkan role pemilik, pegawai, dan member."
+      ],
+      [
+        "3",
+        "KNF-03",
+        "Sistem harus melakukan validasi data sebelum data disimpan ke dalam basis data."
+      ],
+      [
+        "4",
+        "KNF-04",
+        "Sistem harus menjaga integritas data melalui relasi antar data, seperti pengguna, member, stok, transaksi, dan voucher."
+      ],
+      [
+        "5",
+        "KNF-05",
+        "Sistem harus menyediakan API untuk integrasi dengan prototype antarmuka pengguna dari penelitian sebelumnya."
+      ],
+      [
+        "6",
+        "KNF-06",
+        "Sistem harus memiliki struktur back-end yang terorganisir agar mudah dikembangkan dan dipelihara"
+      ]
+    ],
+    "row_count": 7,
+    "col_count": 3,
+    "caption": "Tabel 14. Kebutuhan Non-Fungsional",
+    "number": "14",
+    "title": "Kebutuhan Non-Fungsional",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_14_Kebutuhan_Non-Fungsional.csv"
+  },
+  {
+    "type": "table",
+    "block": 588,
+    "table_index": 20,
+    "rows": [
+      [
+        "No",
+        "Kode",
+        "Jenis Data",
+        "Deskripsi"
+      ],
+      [
+        "1",
+        "KD-01",
+        "Data pengguna",
+        "Menyimpan data akun pemilik, pegawai, dan member."
+      ],
+      [
+        "2",
+        "KD-02",
+        "Data member",
+        "Menyimpan informasi keanggotaan, tier, poin, total berat ikan, dan QR code."
+      ],
+      [
+        "3",
+        "KD-03",
+        "Data ikan",
+        "Menyimpan jenis ikan, harga per kilogram, dan status ketersediaan."
+      ],
+      [
+        "4",
+        "KD-04",
+        "Data stok ikan",
+        "Menyimpan jumlah stok ikan, batas minimum stok, dan riwayat restok."
+      ],
+      [
+        "5",
+        "KD-05",
+        "Data menu dan penyewaan",
+        "Menyimpan data makanan, minuman, serta item penyewaan."
+      ],
+      [
+        "6",
+        "KD-06",
+        "Data event dan informasi",
+        "Menyimpan data event atau informasi yang dipublikasikan oleh pengelola."
+      ],
+      [
+        "7",
+        "KD-07",
+        "Data kedatangan",
+        "Menyimpan data check-in, check-out, deposit, status kedatangan, dan petugas pencatat."
+      ],
+      [
+        "8",
+        "KD-08",
+        "Data pesanan",
+        "Menyimpan data pesanan menu atau item penyewaan sebelum transaksi akhir."
+      ],
+      [
+        "9",
+        "KD-09",
+        "Data transaksi",
+        "Menyimpan transaksi utama, metode pembayaran, diskon, poin, dan total pembayaran."
+      ],
+      [
+        "10",
+        "KD-10",
+        "Data detail transaksi",
+        "Menyimpan rincian item transaksi, seperti ikan, menu, penyewaan, atau penalti."
+      ],
+      [
+        "11",
+        "KD-11",
+        "Data voucher dan leaderboard",
+        "Menyimpan data voucher, konfigurasi voucher, periode, status voucher, dan peringkat member."
+      ],
+      [
+        "12",
+        "KD-12",
+        "Data notifikasi dan konfigurasi",
+        "Menyimpan notifikasi pengguna, konfigurasi deposit pelanggan non-member, dan konfigurasi QRIS."
+      ]
+    ],
+    "row_count": 13,
+    "col_count": 4,
+    "caption": "Tabel 15. Kebutuhan Data",
+    "number": "15",
+    "title": "Kebutuhan Data",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_15_Kebutuhan_Data.csv"
+  },
+  {
+    "type": "table",
+    "block": 592,
+    "table_index": 21,
+    "rows": [
+      [
+        "No",
+        "Aktor",
+        "Deskripsi Peran"
+      ],
+      [
+        "1",
+        "Pemilik",
+        "Pengguna dengan hak akses tertinggi yang dapat mengelola data pengguna, data master, konfigurasi sistem, transaksi, laporan, leaderboard, dan voucher."
+      ],
+      [
+        "2",
+        "Pegawai",
+        "Pengguna yang menjalankan proses operasional harian, seperti mencatat kedatangan pelanggan, mengelola pesanan, memperbarui stok, memproses transaksi, dan membantu pencatatan data pelanggan."
+      ],
+      [
+        "3",
+        "Member",
+        "Pelanggan terdaftar yang memiliki akun untuk mengakses informasi keanggotaan, poin, tier, voucher, riwayat transaksi, Pelanggan terdaftar yang memiliki akun untuk mengakses informasi keanggotaan, poin, tier, voucher, riwayat transaksi, serta melakukan pemesanan melalui sistem."
+      ]
+    ],
+    "row_count": 4,
+    "col_count": 3,
+    "caption": "Tabel 16. Identifikasi Aktor",
+    "number": "16",
+    "title": "Identifikasi Aktor",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_16_Identifikasi_Aktor.csv"
+  },
+  {
+    "type": "table",
+    "block": 653,
+    "table_index": 22,
+    "rows": [
+      [
+        "No",
+        "Kode",
+        "Use Case",
+        "Deskripsi",
+        "Hak Akses"
+      ],
+      [
+        "1",
+        "UC-01",
+        "Login Sistem",
+        "Proses autentikasi pengguna dengan memasukkan No. HP atau Email dan password untuk mengakses dashboard sesuai hak akses pengguna.",
+        "Pemilik, Pegawai, Member"
+      ],
+      [
+        "2",
+        "UC-02",
+        "Mendaftar Akun",
+        "Proses pendaftaran akun secara mandiri oleh pelanggan melalui pengisian formulir di website.",
+        "Member"
+      ],
+      [
+        "3",
+        "UC-03",
+        "Mengakses Halaman Utama",
+        "Proses pengguna mengakses halaman beranda publik (landing page) yang memuat informasi umum, leaderboard, event aktif, serta pop up menu spesial.",
+        "Pemilik, Pegawai, Member"
+      ],
+      [
+        "4",
+        "UC-04",
+        "Melihat Event dan Informasi",
+        "Proses pengguna melihat rincian publikasi acara dan pengumuman secara spesifik.",
+        "Pemilik, Pegawai, Member"
+      ],
+      [
+        "5",
+        "UC-05",
+        "Mengakses Dashboard",
+        "Proses pengguna mengakses dashboard sesuai hak aksesnya, yaitu dashboard member berisi QR Code, tier, poin, leaderboard, dan voucher; dashboard pegawai berisi ringkasan kedatangan, pesanan, dan transaksi; serta dashboard pemilik berisi ringkasan manajerial usaha.",
+        "Pemilik, Pegawai, Member"
+      ],
+      [
+        "6",
+        "UC-06",
+        "Melihat Leaderboard",
+        "Proses mengakses klasemen peringkat tangkapan ikan secara global dan melihat posisi tier.",
+        "Member"
+      ],
+      [
+        "7",
+        "UC-07",
+        "Memesan Menu",
+        "Proses member melakukan pemesanan makanan dan minuman secara mandiri via website, termasuk melihat menu spesial, memilih kuantitas menu, melihat total sementara, serta menyimpan pesanan sebagai tagihan belum dibayar dengan status awal pending untuk diproses pegawai.",
+        "Member"
+      ],
+      [
+        "8",
+        "UC-08",
+        "Melihat Riwayat Transaksi",
+        "Proses pelanggan melihat historis transaksinya sendiri secara privat.",
+        "Member"
+      ],
+      [
+        "9",
+        "UC-09",
+        "Mengelola Kedatangan Pelanggan",
+        "Proses pegawai memverifikasi kedatangan pelanggan (via Scan QR/No HP) dan pencatatan deposit awal untuk Guest.",
+        "Pegawai"
+      ],
+      [
+        "10",
+        "UC-10",
+        "Menambah Pesanan",
+        "Proses pegawai menginput pesanan makanan/minuman sekaligus sewa alat pancing secara manual dari kasir, dengan daftar menu yang menampilkan penanda menu spesial.",
+        "Pegawai"
+      ],
+      [
+        "11",
+        "UC-11",
+        "Mengelola Pesanan Masuk",
+        "Proses pegawai melihat daftar pesanan dapur yang masuk dan mengubah status pembuatannya menjadi pending, diproses, selesai, atau dibatalkan.",
+        "Pegawai"
+      ],
+      [
+        "12",
+        "UC-12",
+        "Mengubah Ketersediaan Menu",
+        "Proses pegawai mengubah status ketersediaan item menu (tersedia/tidak tersedia) untuk kelancaran operasional.",
+        "Pegawai"
+      ],
+      [
+        "13",
+        "UC-13",
+        "Melihat Riwayat Transaksi Pelanggan",
+        "Proses pegawai melihat seluruh riwayat transaksi operasional pengunjung serta membuka detail nota transaksi untuk kebutuhan verifikasi kasir.",
+        "Pegawai"
+      ],
+      [
+        "14",
+        "UC-14",
+        "Checkout Transaksi",
+        "Proses penyelesaian pembayaran akhir di kasir untuk ikan, menu F&B, penyewaan alat, dan menampilkan nota digital transaksi.",
+        "Pegawai"
+      ],
+      [
+        "15",
+        "UC-15",
+        "Input Berat Ikan",
+        "Proses menginputkan hasil timbangan ikan secara spesifik ke sistem kasir (Include dari Checkout Transaksi).",
+        "Pegawai"
+      ],
+      [
+        "16",
+        "UC-16",
+        "Hitung Harga Ikan",
+        "Proses kalkulasi total harga asli berdasarkan berat ikan secara otomatis (Include dari Checkout Transaksi).",
+        "Pegawai"
+      ],
+      [
+        "17",
+        "UC-17",
+        "Validasi Diskon Tier",
+        "Proses penerapan potongan persentase diskon ikan sesuai tier pelanggan (Include dari Checkout Transaksi).",
+        "Pegawai"
+      ],
+      [
+        "18",
+        "UC-18",
+        "Validasi Voucher",
+        "Proses auto-redeem pemotongan tagihan jika pelanggan memiliki tiket voucher bulanan (Include dari Checkout Transaksi).",
+        "Pegawai"
+      ],
+      [
+        "19",
+        "UC-19",
+        "Update dan evaluasi Poin Member",
+        "Proses sistem menambahkan poin ke akun member setelah checkout transaksi, memperbarui tier, serta mengevaluasi masa aktif poin secara otomatis dengan mereset poin menjadi 0 apabila member tidak melakukan transaksi selama 180 hari.",
+        "Pegawai"
+      ],
+      [
+        "20",
+        "UC-20",
+        "Update Leaderboard",
+        "Proses pembaruan klasemen peringkat tangkapan ikan secara otomatis (Include dari Checkout Transaksi).",
+        "Pegawai"
+      ],
+      [
+        "21",
+        "UC-21",
+        "Mengelola Akun Member",
+        "Proses pemilik usaha melakukan verifikasi untuk menyetujui, menolak, atau menonaktifkan akun member.",
+        "Pemilik"
+      ],
+      [
+        "22",
+        "UC-22",
+        "Mengelola Menu",
+        "Proses pemilik menambah, mengubah nama/harga, menghapus data menu makanan/minuman, serta menandai atau membatalkan status menu spesial.",
+        "Pemilik"
+      ],
+      [
+        "23",
+        "UC-23",
+        "Mengelola Inventaris Ikan",
+        "Proses pengelolaan referensi jenis ikan, harga per kilogram, dan penambahan stok ikan (restock) secara terpusat.",
+        "Pemilik"
+      ],
+      [
+        "24",
+        "UC-24",
+        "Mengelola Rental Item",
+        "Proses pengelolaan data master untuk daftar alat pancing operasional beserta penetapan tarif sewanya.",
+        "Pemilik"
+      ],
+      [
+        "25",
+        "UC-25",
+        "Melihat Laporan Keuangan",
+        "Proses analisis bisnis melalui filter laporan transaksi operasional harian/bulanan dan ekspor ke format CSV.",
+        "Pemilik"
+      ],
+      [
+        "26",
+        "UC-26",
+        "Mengelola Voucher",
+        "Proses pemilik mengonfigurasi nominal hadiah voucher bulanan, memantau riwayat distribusi voucher, serta sistem menerbitkan voucher otomatis kepada member Top 3 berdasarkan hasil leaderboard dan konfigurasi yang berlaku.",
+        "Pemilik"
+      ],
+      [
+        "27",
+        "UC-27",
+        "Mengelola Event & Informasi",
+        "Proses untuk menambah, mengubah, menghapus, serta menyortir/mencari publikasi acara pemancingan dan pengumuman.",
+        "Pemilik"
+      ],
+      [
+        "28",
+        "UC-28",
+        "Memantau Leaderboard",
+        "Proses pemilik memantau klasemen peringkat member berdasarkan akumulasi berat ikan, termasuk total poin, tier, dan potensi penerima voucher Top 3.",
+        "Pemilik"
+      ],
+      [
+        "29",
+        "UC-29",
+        "Mengelola Pengaturan Sistem",
+        "Proses untuk menyesuaikan parameter operasional utama, yaitu konfigurasi file QRIS pembayaran dan nominal kewajiban deposit tamu.",
+        "Pemilik"
+      ],
+      [
+        "30",
+        "UC-30",
+        "Logout Sistem",
+        "Proses pengguna keluar dari sistem dengan menghapus token akses lokal dan mengarahkan pengguna kembali ke halaman login.",
+        "Pemilik, Pegawai, Member"
+      ]
+    ],
+    "row_count": 31,
+    "col_count": 5,
+    "caption": "Tabel 17. Spesifikasi Use Case Sistem Informasi Pemancingan S",
+    "number": "17",
+    "title": "Spesifikasi Use Case Sistem Informasi Pemancingan S",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_17_Spesifikasi_Use_Case_Sistem_Informasi_Pemancingan_S.csv"
+  },
+  {
+    "type": "table",
+    "block": 658,
+    "table_index": 23,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Login Sistem"
+      ],
+      [
+        "ID Use Case",
+        "UC-01"
+      ],
+      [
+        "Aktor",
+        "Pemilik, Pegawai, Member"
+      ],
+      [
+        "Deskripsi",
+        "Proses autentikasi pengguna menggunakan No. HP atau Email dan password untuk masuk ke dalam sistem sesuai hak aksesnya."
+      ],
+      [
+        "Precondition",
+        "Aktor telah terdaftar dan akun berstatus aktif di dalam sistem."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor mengakses halaman login.",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan halaman login."
+      ],
+      [
+        "3. Aktor memasukkan No. HP atau Email dan password, lalu menekan tombol Login.",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem memvalidasi No. HP atau Email dan password."
+      ],
+      [
+        "",
+        "5. Sistem memeriksa status akun pengguna."
+      ],
+      [
+        "",
+        "6. Sistem membuat token akses dan menyimpan data pengguna."
+      ],
+      [
+        "",
+        "7. Sistem menampilkan dashboard sesuai hak akses aktor."
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor memasukkan No. HP atau Email atau password yang salah.",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem mendeteksi data login tidak sesuai."
+      ],
+      [
+        "",
+        "3. Sistem menampilkan peringatan data login salah dan tetap menampilkan halaman login."
+      ],
+      [
+        "4. Akun aktor belum divalidasi, ditolak, atau dinonaktifkan.",
+        ""
+      ],
+      [
+        "",
+        "5. Sistem menolak login dan menampilkan pesan sesuai status akun."
+      ],
+      [
+        "Post Condition",
+        "Aktor berhasil masuk ke dashboard sesuai hak aksesnya."
+      ]
+    ],
+    "row_count": 21,
+    "col_count": 2,
+    "caption": "Tabel 18. Skenario Use Case Login Sistem",
+    "number": "18",
+    "title": "Skenario Use Case Login Sistem",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_18_Skenario_Use_Case_Login_Sistem.csv"
+  },
+  {
+    "type": "table",
+    "block": 662,
+    "table_index": 24,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mendaftar Akun"
+      ],
+      [
+        "ID Use Case",
+        "UC-02"
+      ],
+      [
+        "Aktor",
+        "Member"
+      ],
+      [
+        "Deskripsi",
+        "Proses pendaftaran akun mandiri oleh pelanggan melalui pengisian formulir di website."
+      ],
+      [
+        "Precondition",
+        "Aktor belum memiliki akun member di sistem."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor mengakses website dan memilih menu daftar",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan formulir pendaftaran akun"
+      ],
+      [
+        "3. Aktor mengisi data diri pada formulir dan menekan tombol daftar",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem memvalidasi kelengkapan data agar tidak ada duplikasi nomor HP"
+      ],
+      [
+        "",
+        "5. Sistem menyimpan data dengan status Menunggu Validasi"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor menginputkan nomor HP yang sudah terdaftar",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memvalidasi data dan mendeteksi duplikasi"
+      ],
+      [
+        "",
+        "3. Sistem menampilkan peringatan nomor sudah digunakan dan mengembalikan form"
+      ],
+      [
+        "Post Condition",
+        "Akun tersimpan dan menunggu persetujuan validasi oleh Pemilik."
+      ]
+    ],
+    "row_count": 17,
+    "col_count": 2,
+    "caption": "Tabel 19. Skenario Use Case Mendaftar Akun",
+    "number": "19",
+    "title": "Skenario Use Case Mendaftar Akun",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_19_Skenario_Use_Case_Mendaftar_Akun.csv"
+  },
+  {
+    "type": "table",
+    "block": 666,
+    "table_index": 25,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengakses Halaman Utama"
+      ],
+      [
+        "ID Use Case",
+        "UC-03"
+      ],
+      [
+        "Aktor",
+        "Pemilik, Pegawai, Member"
+      ],
+      [
+        "Deskripsi",
+        "Proses pengguna mengakses halaman beranda publik yang memuat informasi umum, leaderboard, event aktif, serta pop up menu spesial."
+      ],
+      [
+        "Precondition",
+        "Aktor berada pada halaman website sistem."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman utama website pemancingan",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan halaman beranda publik"
+      ],
+      [
+        "",
+        "3. Sistem menampilkan informasi umum pemancingan, event aktif, leaderboard, dan menu navigasi"
+      ],
+      [
+        "",
+        "4. Sistem memeriksa menu spesial yang sedang aktif"
+      ],
+      [
+        "",
+        "5. Sistem menampilkan pop up menu spesial jika terdapat menu spesial aktif"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor membuka halaman utama saat tidak ada menu spesial aktif",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem tetap menampilkan halaman utama tanpa pop up menu spesial"
+      ],
+      [
+        "Post Condition",
+        "Aktor berhasil melihat halaman utama beserta informasi yang tersedia."
+      ]
+    ],
+    "row_count": 16,
+    "col_count": 2,
+    "caption": "Tabel 20. Skenario Use Case Mengakses Halaman Utama",
+    "number": "20",
+    "title": "Skenario Use Case Mengakses Halaman Utama",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_20_Skenario_Use_Case_Mengakses_Halaman_Utama.csv"
+  },
+  {
+    "type": "table",
+    "block": 670,
+    "table_index": 26,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Melihat Event dan Informasi"
+      ],
+      [
+        "ID Use Case",
+        "UC-04"
+      ],
+      [
+        "Aktor",
+        "Pemilik, Pegawai, Member"
+      ],
+      [
+        "Deskripsi",
+        "Proses pengguna melihat dan membaca detail event atau informasi yang dipublikasikan pada halaman utama sistem."
+      ],
+      [
+        "Precondition",
+        "Aktor berada di halaman utama atau menu Event."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor memilih salah satu banner event atau pengumuman",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menarik deskripsi lengkap, tanggal acara, dan status publikasi"
+      ],
+      [
+        "",
+        "3. Sistem memuat rincian acara atau pengumuman dan menampilkannya di layar aktor"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "-",
+        "-"
+      ],
+      [
+        "Post Condition",
+        "Aktor menerima informasi detail acara atau pengumuman terkini."
+      ]
+    ],
+    "row_count": 13,
+    "col_count": 2,
+    "caption": "Tabel 21. Skenario Use Case Melihat Event dan Informasi",
+    "number": "21",
+    "title": "Skenario Use Case Melihat Event dan Informasi",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_21_Skenario_Use_Case_Melihat_Event_dan_Informasi.csv"
+  },
+  {
+    "type": "table",
+    "block": 677,
+    "table_index": 27,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengakses Dashboard"
+      ],
+      [
+        "ID Use Case",
+        "UC-05"
+      ],
+      [
+        "Aktor",
+        "Pemilik, Pegawai, Member"
+      ],
+      [
+        "Deskripsi",
+        "Mengakses halaman privat yang menampilkan informasi dashboard sesuai hak akses pengguna."
+      ],
+      [
+        "Precondition",
+        "Aktor telah berhasil melakukan proses login ke dalam sistem."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor menekan menu navigasi Dashboard",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memvalidasi sesi login pengguna"
+      ],
+      [
+        "",
+        "3. Sistem mengidentifikasi role aktor yang sedang login"
+      ],
+      [
+        "",
+        "4. Jika aktor adalah Member, sistem menampilkan QR Code, status tier, progress poin, leaderboard, voucher aktif, dan ringkasan transaksi member"
+      ],
+      [
+        "",
+        "5. Jika aktor adalah Pegawai, sistem menampilkan ringkasan kedatangan, pesanan, dan transaksi"
+      ],
+      [
+        "",
+        "6. Jika aktor adalah Pemilik, sistem menampilkan ringkasan manajerial usaha"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor mengakses Dashboard saat sesi login kedaluwarsa",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem mendeteksi bahwa sesi sudah tidak aktif"
+      ],
+      [
+        "",
+        "3. Sistem mengarahkan aktor kembali ke halaman login"
+      ],
+      [
+        "Post Condition",
+        "Halaman Dashboard terbuka dan aktor dapat melihat informasi sesuai hak aksesnya."
+      ]
+    ],
+    "row_count": 18,
+    "col_count": 2,
+    "caption": "Tabel 22. Skenario Use Case Mengakses Dashboard",
+    "number": "22",
+    "title": "Skenario Use Case Mengakses Dashboard",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_22_Skenario_Use_Case_Mengakses_Dashboard.csv"
+  },
+  {
+    "type": "table",
+    "block": 683,
+    "table_index": 28,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Melihat Leaderboard"
+      ],
+      [
+        "ID Use Case",
+        "UC-06"
+      ],
+      [
+        "Aktor",
+        "Member"
+      ],
+      [
+        "Deskripsi",
+        "Mengakses klasemen berdasarkan total akumulasi berat ikan tertinggi secara global"
+      ],
+      [
+        "Precondition",
+        "Aktor berada di dalam sistem"
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor menekan menu Leaderboard di sidebar navigasi",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem mengambil data akumulasi tangkapan ikan dari seluruh member"
+      ],
+      [
+        "",
+        "3. Sistem mengurutkan data dari tertinggi ke terendah secara real-time"
+      ],
+      [
+        "",
+        "4. Sistem menampilkan tabel klasemen peringkat di layar"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "-",
+        "-"
+      ],
+      [
+        "Post Condition",
+        "Aktor mengetahui posisi peringkat klasemen terkini"
+      ]
+    ],
+    "row_count": 14,
+    "col_count": 2,
+    "caption": "Tabel 23. Skenario Use Case Melihat Leaderboard",
+    "number": "23",
+    "title": "Skenario Use Case Melihat Leaderboard",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_23_Skenario_Use_Case_Melihat_Leaderboard.csv"
+  },
+  {
+    "type": "table",
+    "block": 687,
+    "table_index": 29,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Memesan Menu"
+      ],
+      [
+        "ID Use Case",
+        "UC-07"
+      ],
+      [
+        "Aktor",
+        "Member"
+      ],
+      [
+        "Deskripsi",
+        "Proses member melakukan pemesanan makanan dan minuman secara mandiri via website, termasuk melihat menu spesial, memilih kuantitas menu, melihat total sementara, serta menyimpan pesanan sebagai tagihan belum dibayar dengan status awal pending untuk diproses pegawai."
+      ],
+      [
+        "Precondition",
+        "Aktor telah login sebagai member dan telah melakukan check-in pada hari tersebut."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman pemesanan menu",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan daftar menu makanan dan minuman yang tersedia"
+      ],
+      [
+        "",
+        "3. Sistem menandai atau memprioritaskan menu yang berstatus sebagai menu spesial"
+      ],
+      [
+        "4. Aktor memilih menu dan menentukan kuantitas pesanan",
+        ""
+      ],
+      [
+        "",
+        "5. Sistem menghitung subtotal dan total sementara pesanan"
+      ],
+      [
+        "6. Aktor menekan tombol Kirim Pesanan",
+        ""
+      ],
+      [
+        "",
+        "7. Sistem memvalidasi ketersediaan menu dan status check-in member"
+      ],
+      [
+        "",
+        "8. Sistem menyimpan pesanan sebagai tagihan belum dibayar dengan status awal pending"
+      ],
+      [
+        "",
+        "9. Sistem menampilkan status pesanan member dan mengirimkan pesanan ke daftar pesanan masuk pegawai"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor memilih atau mengirim menu yang tidak tersedia",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menolak pesanan dan menampilkan pesan bahwa menu tidak tersedia"
+      ],
+      [
+        "3. Aktor belum melakukan check-in pada hari tersebut",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem menolak pesanan dan menampilkan pesan bahwa aktor harus menghubungi pegawai untuk melakukan check-in"
+      ],
+      [
+        "Post Condition",
+        "Pesanan member berhasil tercatat sebagai tagihan belum dibayar dan dapat diproses oleh pegawai pada daftar pesanan masuk."
+      ]
+    ],
+    "row_count": 22,
+    "col_count": 2,
+    "caption": "Tabel 24. Skenario Use Case Memesan Menu",
+    "number": "24",
+    "title": "Skenario Use Case Memesan Menu",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_24_Skenario_Use_Case_Memesan_Menu.csv"
+  },
+  {
+    "type": "table",
+    "block": 695,
+    "table_index": 30,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Melihat Riwayat Transaksi"
+      ],
+      [
+        "ID Use Case",
+        "UC-08"
+      ],
+      [
+        "Aktor",
+        "Member"
+      ],
+      [
+        "Deskripsi",
+        "Proses pelanggan melihat catatan historis beserta rincian transaksinya, yaitu item, diskon, metode bayar, dan poin secara langsung di layar."
+      ],
+      [
+        "Precondition",
+        "Aktor telah login ke dalam sistem."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor memilih menu Riwayat Transaksi",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem mengecek basis data transaksi pelanggan"
+      ],
+      [
+        "",
+        "3. Sistem mendeteksi bahwa pelanggan memiliki riwayat transaksi"
+      ],
+      [
+        "",
+        "4. Sistem menampilkan daftar riwayat beserta rincian transaksi, item, diskon, metode bayar, dan poin di layar"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor belum pernah melakukan transaksi apa pun",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem mengecek basis data dan mendeteksi belum ada riwayat transaksi"
+      ],
+      [
+        "",
+        "3. Sistem menampilkan pesan layar kosong “Belum ada riwayat transaksi”"
+      ],
+      [
+        "Post Condition",
+        "Aktor berhasil melihat daftar dan rincian riwayat transaksinya di layar, atau melihat pesan bahwa belum ada riwayat transaksi."
+      ]
+    ],
+    "row_count": 16,
+    "col_count": 2,
+    "caption": "Tabel 25. Skenario Use Case Melihat Riwayat Transaksi",
+    "number": "25",
+    "title": "Skenario Use Case Melihat Riwayat Transaksi",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_25_Skenario_Use_Case_Melihat_Riwayat_Transaksi.csv"
+  },
+  {
+    "type": "table",
+    "block": 699,
+    "table_index": 31,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengelola Kedatangan Pelanggan"
+      ],
+      [
+        "ID Use Case",
+        "UC-09"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Proses pegawai melakukan pendaftaran kedatangan (check-in) menggunakan opsi Cari Manual, Scan QR, atau pendaftaran Tamu."
+      ],
+      [
+        "Precondition",
+        "Aktor telah bersiap di antarmuka kasir."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka menu Check-in di bawah kategori Kedatangan",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan halaman Check-in beserta opsi \"Cari Manual\", \"Scan QR\", dan \"Tamu\""
+      ],
+      [
+        "3. Aktor memilih opsi Cari Manual / Scan QR dan memverifikasi data member",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem melacak identitas dan memuat profil member di layar"
+      ],
+      [
+        "",
+        "5. Sistem menambahkan pelanggan tersebut ke daftar \"Kedatangan Hari Ini\""
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor memilih opsi Tamu pada halaman Check-in",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memunculkan form pendaftaran tamu"
+      ],
+      [
+        "3. Aktor menginput penerimaan deposit dan mengaktifkan kartu Guest",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem membuka sesi akun Guest dan mencatat saldo awal deposit"
+      ],
+      [
+        "",
+        "5. Sistem menambahkan tamu tersebut ke daftar \"Kedatangan Hari Ini\""
+      ],
+      [
+        "Post Condition",
+        "Pelanggan resmi tercatat hadir di daftar Kedatangan Hari Ini pada sesi operasional berjalan."
+      ]
+    ],
+    "row_count": 19,
+    "col_count": 2,
+    "caption": "Tabel 26. Skenario Use Case Mengelola Kedatangan Pelanggan",
+    "number": "26",
+    "title": "Skenario Use Case Mengelola Kedatangan Pelanggan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_26_Skenario_Use_Case_Mengelola_Kedatangan_Pelanggan.csv"
+  },
+  {
+    "type": "table",
+    "block": 703,
+    "table_index": 32,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Menambah Pesanan"
+      ],
+      [
+        "ID Use Case",
+        "UC-10"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Proses pegawai menginput pesanan makanan/minuman sekaligus sewa alat pancing secara manual dari kasir, dengan daftar menu yang menampilkan penanda menu spesial."
+      ],
+      [
+        "Precondition",
+        "Aktor telah login sebagai pegawai dan terdapat pelanggan atau kedatangan aktif yang akan ditambahkan pesanan."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman tambah pesanan",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan daftar pelanggan aktif atau kedatangan aktif"
+      ],
+      [
+        "3. Aktor memilih pelanggan atau kedatangan yang akan ditambahkan pesanan",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem menampilkan daftar menu dan item sewa yang tersedia"
+      ],
+      [
+        "",
+        "5. Sistem menampilkan penanda pada menu yang berstatus menu spesial"
+      ],
+      [
+        "6. Aktor memilih menu, item sewa, dan jumlah pesanan pelanggan",
+        ""
+      ],
+      [
+        "",
+        "7. Sistem memvalidasi ketersediaan item yang dipilih"
+      ],
+      [
+        "",
+        "8. Sistem menghitung subtotal dan total sementara pesanan"
+      ],
+      [
+        "9. Aktor menyimpan pesanan pelanggan",
+        ""
+      ],
+      [
+        "",
+        "10. Sistem menyimpan pesanan sebagai tagihan belum dibayar dengan status awal pending"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor memilih menu atau item sewa yang tidak tersedia",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menolak penambahan pesanan dan menampilkan pesan bahwa item tidak tersedia"
+      ],
+      [
+        "Post Condition",
+        "Pesanan pelanggan berhasil ditambahkan sebagai tagihan belum dibayar dan dapat diproses pada daftar pesanan masuk."
+      ]
+    ],
+    "row_count": 21,
+    "col_count": 2,
+    "caption": "Tabel 27. Skenario Use Case Menambah Pesanan",
+    "number": "27",
+    "title": "Skenario Use Case Menambah Pesanan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_27_Skenario_Use_Case_Menambah_Pesanan.csv"
+  },
+  {
+    "type": "table",
+    "block": 706,
+    "table_index": 33,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengelola Pesanan Masuk"
+      ],
+      [
+        "ID Use Case",
+        "UC-11"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Proses pegawai mengelola pesanan yang masih berjalan dengan status pending, diproses, selesai, atau dibatalkan."
+      ],
+      [
+        "Precondition",
+        "Aktor telah login sebagai pegawai dan terdapat data pesanan."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman Pesanan Masuk",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan daftar pesanan yang masih berjalan"
+      ],
+      [
+        "3. Aktor memilih salah satu pesanan",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem menampilkan detail pesanan"
+      ],
+      [
+        "5. Aktor mengubah status pesanan menjadi pending, diproses, selesai, atau dibatalkan",
+        ""
+      ],
+      [
+        "",
+        "6. Sistem menyimpan perubahan status pesanan"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor membuka detail pesanan yang tidak tersedia",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan pesan bahwa data pesanan tidak ditemukan"
+      ],
+      [
+        "Post Condition",
+        "Status pesanan berhasil diperbarui pada sistem."
+      ]
+    ],
+    "row_count": 17,
+    "col_count": 2,
+    "caption": "Tabel 28. Skenario Use Case Mengelola Pesanan Masuk",
+    "number": "28",
+    "title": "Skenario Use Case Mengelola Pesanan Masuk",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_28_Skenario_Use_Case_Mengelola_Pesanan_Masuk.csv"
+  },
+  {
+    "type": "table",
+    "block": 710,
+    "table_index": 34,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengubah Ketersediaan Menu"
+      ],
+      [
+        "ID Use Case",
+        "UC-12"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Proses pegawai mengubah status operasional item F&B atau rental apabila stok habis."
+      ],
+      [
+        "Precondition",
+        "Aktor berada di antarmuka sistem kasir."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka menu Ketersediaan Menu di sidebar navigasi",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan halaman yang memuat daftar Ketersediaan Menu, Ketersediaan Rental, dan Stok Ikan"
+      ],
+      [
+        "3. Aktor menekan menu aksi (titik tiga) pada item tertentu dan mengubah statusnya (misal: menjadi \"Tidak Tersedia\")",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem menyimpan pembaruan ke database dan mengubah badge status di layar"
+      ],
+      [
+        "",
+        "5. Sistem secara otomatis menonaktifkan pesanan item tersebut di katalog self-order maupun kasir"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "-",
+        "-"
+      ],
+      [
+        "Post Condition",
+        "Ketersediaan item menu dan rental telah tersinkronisasi sesuai kondisi nyata."
+      ]
+    ],
+    "row_count": 15,
+    "col_count": 2,
+    "caption": "Tabel 29. Skenario Use Case Mengubah Ketersediaan Menu",
+    "number": "29",
+    "title": "Skenario Use Case Mengubah Ketersediaan Menu",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_29_Skenario_Use_Case_Mengubah_Ketersediaan_Menu.csv"
+  },
+  {
+    "type": "table",
+    "block": 714,
+    "table_index": 35,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Melihat Riwayat Transaksi Pelanggan"
+      ],
+      [
+        "ID Use Case",
+        "UC-13"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Proses pegawai melihat seluruh riwayat transaksi operasional pengunjung serta membuka detail nota transaksi untuk kebutuhan verifikasi kasir."
+      ],
+      [
+        "Precondition",
+        "Aktor telah login sebagai pegawai dan data transaksi pelanggan tersedia."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman riwayat transaksi pelanggan",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan daftar riwayat transaksi operasional pengunjung"
+      ],
+      [
+        "3. Aktor memilih salah satu transaksi pelanggan",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem menampilkan detail transaksi atau nota digital"
+      ],
+      [
+        "5. Aktor memeriksa informasi item transaksi, total pembayaran, waktu transaksi, dan data pelanggan",
+        ""
+      ],
+      [
+        "",
+        "6. Sistem menampilkan data transaksi sesuai pilihan aktor"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor mencari transaksi yang tidak tersedia",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan pesan bahwa data transaksi tidak ditemukan"
+      ],
+      [
+        "Post Condition",
+        "Aktor berhasil melihat riwayat transaksi pelanggan dan detail nota transaksi yang dipilih."
+      ]
+    ],
+    "row_count": 17,
+    "col_count": 2,
+    "caption": "Tabel 30. Skenario Use Case Melihat Riwayat Transaksi Pelanggan",
+    "number": "30",
+    "title": "Skenario Use Case Melihat Riwayat Transaksi Pelanggan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_30_Skenario_Use_Case_Melihat_Riwayat_Transaksi_Pelanggan.csv"
+  },
+  {
+    "type": "table",
+    "block": 718,
+    "table_index": 36,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Checkout Transaksi"
+      ],
+      [
+        "ID Use Case",
+        "UC-14"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Proses penyelesaian pembayaran akhir di kasir untuk ikan, menu F&B, penyewaan alat, dan menampilkan nota digital transaksi."
+      ],
+      [
+        "Precondition",
+        "Aktor telah login sebagai pegawai dan terdapat pesanan atau data pembayaran pelanggan yang akan diselesaikan."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor memilih pelanggan atau pesanan yang akan di-checkout",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan rincian tagihan ikan, menu F&B, penyewaan alat, dan total pembayaran"
+      ],
+      [
+        "3. Aktor memasukkan data pembayaran",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem memvalidasi data pembayaran"
+      ],
+      [
+        "",
+        "5. Sistem memproses checkout transaksi"
+      ],
+      [
+        "",
+        "6. Sistem memperbarui data transaksi dan poin member jika pelanggan adalah member"
+      ],
+      [
+        "",
+        "7. Sistem menampilkan nota digital transaksi"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor memasukkan data pembayaran yang tidak valid",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menolak checkout dan menampilkan pesan kesalahan"
+      ],
+      [
+        "Post Condition",
+        "Transaksi berhasil diselesaikan dan nota digital transaksi tersedia pada sistem."
+      ]
+    ],
+    "row_count": 18,
+    "col_count": 2,
+    "caption": "Tabel 31. Skenario Use Case Checkout Transaksi",
+    "number": "31",
+    "title": "Skenario Use Case Checkout Transaksi",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_31_Skenario_Use_Case_Checkout_Transaksi.csv"
+  },
+  {
+    "type": "table",
+    "block": 722,
+    "table_index": 37,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Input Berat Ikan"
+      ],
+      [
+        "ID Use Case",
+        "UC-15"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Proses menginputkan hasil penimbangan ikan secara spesifik"
+      ],
+      [
+        "Precondition",
+        "Aktor berada di dalam menu Checkout Transaksi"
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor memilih jenis ikan dari dropdown menu",
+        ""
+      ],
+      [
+        "2. Aktor mengetikkan angka penimbangan ikan dalam satuan kilogram",
+        ""
+      ],
+      [
+        "",
+        "3. Sistem menangkap variabel angka kilogram tersebut untuk diproses"
+      ],
+      [
+        "Skenario Alternatif",
+        ""
+      ],
+      [
+        "1. Aktor memasukkan karakter huruf secara tidak sengaja pada kolom berat",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memvalidasi kolom dan menolak input"
+      ],
+      [
+        "Post Condition",
+        "Sistem memperoleh variabel berat ikan untuk kalkulasi"
+      ]
+    ],
+    "row_count": 14,
+    "col_count": 2,
+    "caption": "Tabel 32. Skenario Use Case Input Berat Ikan",
+    "number": "32",
+    "title": "Skenario Use Case Input Berat Ikan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_32_Skenario_Use_Case_Input_Berat_Ikan.csv"
+  },
+  {
+    "type": "table",
+    "block": 726,
+    "table_index": 38,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Hitung Harga Ikan"
+      ],
+      [
+        "ID Use Case",
+        "UC-16"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Kalkulasi total harga asli berdasarkan berat ikan secara otomatis"
+      ],
+      [
+        "Precondition",
+        "Input berat ikan telah didapatkan"
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "",
+        "1. Sistem menarik data referensi harga pasar ikan dari basis data"
+      ],
+      [
+        "",
+        "2. Sistem mengalikan variabel berat dengan harga dasar"
+      ],
+      [
+        "",
+        "3. Sistem menghasilkan nilai Subtotal Harga Asli sebelum diskon"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "-",
+        "-"
+      ],
+      [
+        "Post Condition",
+        "Subtotal harga asli ikan berhasil dikalkulasi secara matematis"
+      ]
+    ],
+    "row_count": 13,
+    "col_count": 2,
+    "caption": "Tabel 33. Skenario Use Case Hitung Harga Ikan",
+    "number": "33",
+    "title": "Skenario Use Case Hitung Harga Ikan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_33_Skenario_Use_Case_Hitung_Harga_Ikan.csv"
+  },
+  {
+    "type": "table",
+    "block": 730,
+    "table_index": 39,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Validasi Diskon Tier"
+      ],
+      [
+        "ID Use Case",
+        "UC-17"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Penerapan pemotongan persentase harga ikan sesuai tier pelanggan"
+      ],
+      [
+        "Precondition",
+        "Subtotal harga ikan asli telah dikalkulasi"
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "",
+        "1. Sistem mengecek status tier milik pelanggan"
+      ],
+      [
+        "",
+        "2. Sistem memotong nominal tagihan sesuai persentase diskon tier"
+      ],
+      [
+        "",
+        "3. Sistem menetapkan subtotal tagihan ikan yang baru"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "",
+        "1. Sistem mendeteksi pelanggan berstatus Tier Regular atau Guest"
+      ],
+      [
+        "",
+        "2. Sistem melewati pemotongan dan menetapkan harga normal"
+      ],
+      [
+        "Post Condition",
+        "Tagihan harga ikan yang memperhitungkan hak keanggotaan ditetapkan"
+      ]
+    ],
+    "row_count": 14,
+    "col_count": 2,
+    "caption": "Tabel 34. Skenario Use Case Validasi Diskon Tier",
+    "number": "34",
+    "title": "Skenario Use Case Validasi Diskon Tier",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_34_Skenario_Use_Case_Validasi_Diskon_Tier.csv"
+  },
+  {
+    "type": "table",
+    "block": 734,
+    "table_index": 40,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Validasi Voucher"
+      ],
+      [
+        "ID Use Case",
+        "UC-18"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Proses pemotongan tagihan secara otomatis jika pelanggan memiliki voucher"
+      ],
+      [
+        "Precondition",
+        "Tagihan ikan dan pesanan lain telah digabungkan"
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "",
+        "1. Sistem memeriksa ketersediaan voucher aktif di akun pelanggan"
+      ],
+      [
+        "",
+        "2. Sistem menemukan nominal saldo voucher"
+      ],
+      [
+        "",
+        "3. Sistem melakukan auto-redeem memotong tagihan akhir sebesar nilai voucher"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "",
+        "1. Sistem memproses transaksi yang tagihannya lebih kecil dari nilai voucher"
+      ],
+      [
+        "",
+        "2. Sistem mengurangi tagihan menjadi Rp0 dan menghanguskan sisa nilai voucher"
+      ],
+      [
+        "Post Condition",
+        "Nilai pembayaran akhir setelah voucher dihitung dan dikunci"
+      ]
+    ],
+    "row_count": 14,
+    "col_count": 2,
+    "caption": "Tabel 35. Skenario Use Case Validasi Voucher",
+    "number": "35",
+    "title": "Skenario Use Case Validasi Voucher",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_35_Skenario_Use_Case_Validasi_Voucher.csv"
+  },
+  {
+    "type": "table",
+    "block": 739,
+    "table_index": 41,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Update dan Evaluasi Poin Member"
+      ],
+      [
+        "ID Use Case",
+        "UC-19"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Proses sistem menambahkan poin ke akun member setelah checkout transaksi, memperbarui tier, serta mengevaluasi masa aktif poin secara otomatis dengan mereset poin menjadi 0 apabila member tidak melakukan transaksi selama 180 hari."
+      ],
+      [
+        "Precondition",
+        "Checkout transaksi member telah berhasil diproses atau jadwal evaluasi poin otomatis berjalan."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor menyelesaikan checkout transaksi member",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menerima data transaksi member yang telah selesai"
+      ],
+      [
+        "",
+        "3. Sistem menghitung poin berdasarkan transaksi member"
+      ],
+      [
+        "",
+        "4. Sistem memperbarui total poin member"
+      ],
+      [
+        "",
+        "5. Sistem mengevaluasi tier member berdasarkan total poin terbaru"
+      ],
+      [
+        "",
+        "6. Sistem menyimpan perubahan poin dan tier member"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Sistem menjalankan evaluasi otomatis terhadap member yang tidak melakukan transaksi",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memeriksa tanggal transaksi terakhir member"
+      ],
+      [
+        "",
+        "3. Jika member mendekati 180 hari tidak bertransaksi, sistem mengirimkan peringatan"
+      ],
+      [
+        "",
+        "4. Jika member tidak melakukan transaksi selama 180 hari, sistem mereset poin member menjadi 0"
+      ],
+      [
+        "Post Condition",
+        "Poin dan tier member berhasil diperbarui, atau poin member direset jika memenuhi ketentuan tidak aktif."
+      ]
+    ],
+    "row_count": 19,
+    "col_count": 2,
+    "caption": "Tabel 36. Skenario Use Case Update dan Evaluasi Poin Member",
+    "number": "36",
+    "title": "Skenario Use Case Update dan Evaluasi Poin Member",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_36_Skenario_Use_Case_Update_dan_Evaluasi_Poin_Member.csv"
+  },
+  {
+    "type": "table",
+    "block": 743,
+    "table_index": 42,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Update Leaderboard"
+      ],
+      [
+        "ID Use Case",
+        "UC-20"
+      ],
+      [
+        "Aktor",
+        "Pegawai"
+      ],
+      [
+        "Deskripsi",
+        "Pembaruan akumulasi berat ikan pada klasemen peringkat"
+      ],
+      [
+        "Precondition",
+        "Transaksi LUNAS telah berhasil disimpan"
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "",
+        "1. Sistem mengambil variabel berat ikan dari transaksi yang baru terjadi"
+      ],
+      [
+        "",
+        "2. Sistem menjumlahkan kilogram tersebut ke rekam jejak pelanggan"
+      ],
+      [
+        "",
+        "3. Sistem merotasi dan mengurutkan ulang peringkat klasemen"
+      ],
+      [
+        "",
+        "4. Sistem menembakkan alert notifikasi jika pelanggan naik peringkat"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "",
+        "1. Sistem memproses transaksi yang tidak mengandung pembelian ikan"
+      ],
+      [
+        "",
+        "2. Sistem mendeteksi nilai 0 kg dan melewati tahapan pembaruan ini"
+      ],
+      [
+        "Post Condition",
+        "Tabel peringkat Leaderboard termutakhirkan secara akurat"
+      ]
+    ],
+    "row_count": 15,
+    "col_count": 2,
+    "caption": "Tabel 37. Skenario Use Case Update Leaderboard",
+    "number": "37",
+    "title": "Skenario Use Case Update Leaderboard",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_37_Skenario_Use_Case_Update_Leaderboard.csv"
+  },
+  {
+    "type": "table",
+    "block": 747,
+    "table_index": 43,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengelola Akun Member"
+      ],
+      [
+        "ID Use Case",
+        "UC-21"
+      ],
+      [
+        "Aktor",
+        "Pemilik"
+      ],
+      [
+        "Deskripsi",
+        "Proses pemilik usaha melakukan verifikasi untuk menyetujui, menolak, atau menonaktifkan akun member."
+      ],
+      [
+        "Precondition",
+        "Terdapat notifikasi akun pelanggan berstatus Menunggu Validasi atau ada kebutuhan mengelola akun aktif."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka menu Kelola Akun Pelanggan",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan daftar akun member (tab Pending, Active, Rejected, Deactivated)"
+      ],
+      [
+        "3. Aktor memeriksa kecocokan data pada tab Pending lalu menekan tombol Setujui Akun",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem merubah status akun menjadi Aktif, menetapkan tier awal REGULAR, dan membuat ID Member"
+      ],
+      [
+        "",
+        "5. Sistem mengirimkan notifikasi persetujuan ke perangkat pelanggan"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor mendapati data yang tidak meyakinkan lalu menekan tombol Tolak Akun, ATAU memilih akun yang sudah Aktif lalu menekan tombol Nonaktifkan",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem mengubah status akun menjadi Ditolak / Deactivated dan mencabut akses pelanggan tersebut dari sistem"
+      ],
+      [
+        "Post Condition",
+        "Status keanggotaan pelanggan tervalidasi, diperbarui, dan fungsional sesuai keputusan pemilik."
+      ]
+    ],
+    "row_count": 16,
+    "col_count": 2,
+    "caption": "Tabel 38. Skenario Use Case Mengelola Akun Member",
+    "number": "38",
+    "title": "Skenario Use Case Mengelola Akun Member",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_38_Skenario_Use_Case_Mengelola_Akun_Member.csv"
+  },
+  {
+    "type": "table",
+    "block": 751,
+    "table_index": 44,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengelola Menu"
+      ],
+      [
+        "ID Use Case",
+        "UC-22"
+      ],
+      [
+        "Aktor",
+        "Pemilik"
+      ],
+      [
+        "Deskripsi",
+        "Proses pemilik menambah, mengubah nama/harga, menghapus data menu makanan/minuman, serta menandai atau membatalkan status menu spesial."
+      ],
+      [
+        "Precondition",
+        "Aktor telah login sebagai pemilik dan berada pada halaman kelola menu."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman Kelola Menu",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan daftar menu makanan dan minuman"
+      ],
+      [
+        "3. Aktor menambah, mengubah, menghapus, atau mengatur data menu",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem memvalidasi data menu"
+      ],
+      [
+        "",
+        "5. Sistem menyimpan perubahan data menu"
+      ],
+      [
+        "6. Aktor menandai atau membatalkan status menu spesial",
+        ""
+      ],
+      [
+        "",
+        "7. Sistem memperbarui status menu spesial"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor menandai menu spesial ketika jumlah menu spesial aktif sudah mencapai 3 menu",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menolak perubahan dan menampilkan pesan bahwa menu spesial maksimal 3 menu"
+      ],
+      [
+        "Post Condition",
+        "Data menu berhasil diperbarui pada sistem."
+      ]
+    ],
+    "row_count": 18,
+    "col_count": 2,
+    "caption": "Tabel 39. Skenario Use Case Mengelola Menu",
+    "number": "39",
+    "title": "Skenario Use Case Mengelola Menu",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_39_Skenario_Use_Case_Mengelola_Menu.csv"
+  },
+  {
+    "type": "table",
+    "block": 755,
+    "table_index": 45,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengelola Inventaris Ikan"
+      ],
+      [
+        "ID Use Case",
+        "UC-23"
+      ],
+      [
+        "Aktor",
+        "Pemilik"
+      ],
+      [
+        "Deskripsi",
+        "Pengelolaan referensi jenis ikan harga per kg dan restock fisik."
+      ],
+      [
+        "Precondition",
+        "Aktor berada di menu Inventaris Ikan."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman Manajemen Jenis Ikan",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memuat tabel daftar referensi ikan beserta ketersediaan stoknya serta tabel data riwayat restock dari basis data"
+      ],
+      [
+        "3. Aktor memilih aksi Restock pada tabel, menginput tambahan kilogram, lalu menekan Simpan",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem menambah stok fisik, mencatat log riwayat (timestamp), dan secara otomatis mengirimkan notifikasi broadcast ke seluruh member"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor melakukan operasi Tambah jenis ikan baru, Mengedit data (nama/harga/status), atau Menghapus referensi ikan",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memvalidasi perintah tersebut dan memperbarui atau menghapus referensi data ikan secara permanen dari basis data"
+      ],
+      [
+        "Post Condition",
+        "Stok fisik dan harga referensi ikan menjadi terkoordinasi dan akurat."
+      ]
+    ],
+    "row_count": 15,
+    "col_count": 2,
+    "caption": "Tabel 40. Skenario Use Case Mengelola Inventaris Ikan",
+    "number": "40",
+    "title": "Skenario Use Case Mengelola Inventaris Ikan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_40_Skenario_Use_Case_Mengelola_Inventaris_Ikan.csv"
+  },
+  {
+    "type": "table",
+    "block": 759,
+    "table_index": 46,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengelola Rental Item"
+      ],
+      [
+        "ID Use Case",
+        "UC-24"
+      ],
+      [
+        "Aktor",
+        "Pemilik"
+      ],
+      [
+        "Deskripsi",
+        "Proses back-end penambahan (create), pengubahan tarif/status (update), serta pencabutan (delete) daftar alat pancing operasional."
+      ],
+      [
+        "Precondition",
+        "Aktor berada di halaman pengaturan operasional (Rental Item)."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman modul Rental Item",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memuat tabel daftar alat sewa operasional dari basis data"
+      ],
+      [
+        "3. Aktor melakukan operasi penambahan item rental baru dengan mengisi parameter (nama, harga, satuan, deskripsi, foto) lalu menekan Simpan",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem memvalidasi request dan menyimpan data item rental baru ke basis data"
+      ],
+      [
+        "",
+        "5. Sistem memperbarui daftar ketersediaan penyewaan secara otomatis ke kasir"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor melakukan operasi modifikasi data (Edit/Ubah Status aktif) atau operasi pencabutan data (Hapus) pada suatu alat rental",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memvalidasi perintah dan memperbarui data (update) atau menghapus item penyewaan secara permanen (delete) dari basis data"
+      ],
+      [
+        "Post Condition",
+        "Data referensi tarif dan ketersediaan alat rental berhasil diperbarui di dalam sistem."
+      ]
+    ],
+    "row_count": 16,
+    "col_count": 2,
+    "caption": "Tabel 41. Skenario Use Case Mengelola Rental Item",
+    "number": "41",
+    "title": "Skenario Use Case Mengelola Rental Item",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_41_Skenario_Use_Case_Mengelola_Rental_Item.csv"
+  },
+  {
+    "type": "table",
+    "block": 763,
+    "table_index": 47,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Melihat Laporan Keuangan"
+      ],
+      [
+        "ID Use Case",
+        "UC-25"
+      ],
+      [
+        "Aktor",
+        "Pemilik"
+      ],
+      [
+        "Deskripsi",
+        "Proses back-end untuk menarik (read), memfilter rentang waktu, mengalkulasi metrik bisnis, serta men- generate file ekspor data transaksi operasional."
+      ],
+      [
+        "Precondition",
+        "Aktor berada di menu Laporan Keuangan."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman Laporan Keuangan atau mengubah filter periode (Harian/Mingguan/Bulanan/Custom)",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menerima parameter rentang waktu dan menarik rekapitulasi data LUNAS dari basis data"
+      ],
+      [
+        "",
+        "3. Sistem mengalkulasi ulang metrik (total pendapatan, diskon, breakdown transaksi) dan menampilkannya"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor melakukan request ekspor data dengan menekan tombol Export Excel",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memproses data pada periode yang sedang aktif lalu men- generate tabel mentah (format Excel/CSV)"
+      ],
+      [
+        "",
+        "3. Sistem mengirimkan file laporan keuangan tersebut untuk diunduh ke perangkat aktor"
+      ],
+      [
+        "Post Condition",
+        "Aktor memperoleh data analitik keuangan yang akurat baik di layar maupun dalam bentuk file."
+      ]
+    ],
+    "row_count": 15,
+    "col_count": 2,
+    "caption": "Tabel 42. Skenario Use Case Melihat Laporan Keuangan",
+    "number": "42",
+    "title": "Skenario Use Case Melihat Laporan Keuangan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_42_Skenario_Use_Case_Melihat_Laporan_Keuangan.csv"
+  },
+  {
+    "type": "table",
+    "block": 767,
+    "table_index": 48,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengelola Voucher"
+      ],
+      [
+        "ID Use Case",
+        "UC-26"
+      ],
+      [
+        "Aktor",
+        "Pemilik"
+      ],
+      [
+        "Deskripsi",
+        "Proses pemilik mengonfigurasi nominal hadiah voucher bulanan, memantau riwayat distribusi voucher, serta sistem menerbitkan voucher otomatis kepada member Top 3 berdasarkan hasil leaderboard dan konfigurasi yang berlaku."
+      ],
+      [
+        "Precondition",
+        "Aktor telah login sebagai pemilik atau jadwal penerbitan voucher otomatis berjalan."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman Kelola Voucher",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan data konfigurasi voucher dan riwayat distribusi voucher"
+      ],
+      [
+        "3. Aktor mengatur nominal hadiah atau ketentuan voucher bulanan",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem memvalidasi konfigurasi voucher"
+      ],
+      [
+        "",
+        "5. Sistem menyimpan konfigurasi voucher"
+      ],
+      [
+        "6. Aktor melihat riwayat distribusi voucher",
+        ""
+      ],
+      [
+        "",
+        "7. Sistem menampilkan daftar voucher yang telah diterbitkan"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Sistem menjalankan proses penerbitan voucher otomatis pada jadwal tertentu",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memeriksa Top 3 member berdasarkan hasil leaderboard"
+      ],
+      [
+        "",
+        "3. Sistem menerbitkan voucher otomatis kepada member yang memenuhi ketentuan"
+      ],
+      [
+        "",
+        "4. Sistem menyimpan riwayat distribusi voucher"
+      ],
+      [
+        "Post Condition",
+        "Konfigurasi voucher tersimpan dan voucher otomatis dapat diterbitkan kepada member Top 3 berdasarkan leaderboard."
+      ]
+    ],
+    "row_count": 20,
+    "col_count": 2,
+    "caption": "Tabel 43. Skenario Use Case Mengelola Voucher",
+    "number": "43",
+    "title": "Skenario Use Case Mengelola Voucher",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_43_Skenario_Use_Case_Mengelola_Voucher.csv"
+  },
+  {
+    "type": "table",
+    "block": 771,
+    "table_index": 49,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengelola Event & Informasi"
+      ],
+      [
+        "ID Use Case",
+        "UC-27"
+      ],
+      [
+        "Aktor",
+        "Pemilik"
+      ],
+      [
+        "Deskripsi",
+        "Proses back-end untuk menambah, mengubah, menghapus, serta menyortir/mencari publikasi acara dan pengumuman."
+      ],
+      [
+        "Precondition",
+        "Aktor berada di menu Kelola Event dan Informasi."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor mengisi formulir pembuatan acara baru, mengatur status \"Dipublikasikan\", lalu menekan Simpan",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memvalidasi request, merekam konten ke basis data, lalu memicu pengiriman notifikasi broadcast ke pelanggan"
+      ],
+      [
+        "Skenario Alternatif 1"
+      ],
+      [
+        "1. Aktor melakukan modifikasi data (Edit) atau pencabutan data (Hapus) pada acara tertentu",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem mengeksekusi query update pembaruan data atau penghapusan lunak (soft delete) pada basis data"
+      ],
+      [
+        "Skenario Alternatif 2"
+      ],
+      [
+        "1. Aktor mencari judul, memilih filter status/kategori, atau mencentang opsi \"Tampilkan yang dihapus\"",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem mengeksekusi query parameter secara dinamis dan menyajikan ulang daftar tabel sesuai filter yang diminta"
+      ],
+      [
+        "Post Condition",
+        "Pengelolaan data dan tampilan penayangan acara/informasi berhasil disesuaikan."
+      ]
+    ],
+    "row_count": 16,
+    "col_count": 2,
+    "caption": "Tabel 44. Skenario Use Case Mengelola Event & Informasi",
+    "number": "44",
+    "title": "Skenario Use Case Mengelola Event & Informasi",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_44_Skenario_Use_Case_Mengelola_Event___Informasi.csv"
+  },
+  {
+    "type": "table",
+    "block": 775,
+    "table_index": 50,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Memantau Leaderboard"
+      ],
+      [
+        "ID Use Case",
+        "UC-28"
+      ],
+      [
+        "Aktor",
+        "Pemilik"
+      ],
+      [
+        "Deskripsi",
+        "Proses pemilik memantau klasemen peringkat member berdasarkan akumulasi berat ikan, termasuk total poin, tier, dan potensi penerima voucher Top 3."
+      ],
+      [
+        "Precondition",
+        "Aktor telah login sebagai pemilik dan data leaderboard tersedia."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor membuka halaman Leaderboard",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan klasemen peringkat member berdasarkan akumulasi berat ikan"
+      ],
+      [
+        "",
+        "3. Sistem menampilkan informasi total poin, tier, dan peringkat member"
+      ],
+      [
+        "",
+        "4. Sistem menampilkan Top 3 member yang berpotensi menerima voucher"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor membuka halaman Leaderboard saat data belum tersedia",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan pesan bahwa data leaderboard belum tersedia"
+      ],
+      [
+        "Post Condition",
+        "Aktor berhasil memantau leaderboard member dan potensi penerima voucher Top 3."
+      ]
+    ],
+    "row_count": 15,
+    "col_count": 2,
+    "caption": "Tabel 45. Skenario Use Case Memantau Leaderboard",
+    "number": "45",
+    "title": "Skenario Use Case Memantau Leaderboard",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_45_Skenario_Use_Case_Memantau_Leaderboard.csv"
+  },
+  {
+    "type": "table",
+    "block": 779,
+    "table_index": 51,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Mengelola Pengaturan Sistem"
+      ],
+      [
+        "ID Use Case",
+        "UC-29"
+      ],
+      [
+        "Aktor",
+        "Pemilik"
+      ],
+      [
+        "Deskripsi",
+        "Proses back-end untuk menyesuaikan parameter operasional utama, yaitu konfigurasi file QRIS pembayaran dan nominal kewajiban deposit tamu."
+      ],
+      [
+        "Precondition",
+        "Aktor berada di menu Pengaturan Sistem."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor menginput nominal angka baru pada kolom Deposit Tamu lalu menekan tombol Simpan Deposit",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memvalidasi request dan menyimpan variabel parameter baru tersebut ke database pusat"
+      ],
+      [
+        "",
+        "3. Sistem memberlakukan aturan limitasi/potongan deposit tamu yang baru pada operasional kasir"
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor memilih file gambar QRIS baru (format JPG/PNG) lalu melakukan upload",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem memvalidasi ekstensi dan ukuran file , lalu menyimpannya ke storage server"
+      ],
+      [
+        "",
+        "3. Sistem memperbarui gambar barcode QRIS yang ditampilkan untuk pembayaran checkout"
+      ],
+      [
+        "Post Condition",
+        "Aturan baku operasional aplikasi dan metode pembayaran yang baru resmi diterapkan."
+      ]
+    ],
+    "row_count": 15,
+    "col_count": 2,
+    "caption": "Tabel 46. Skenario Use Case Mengelola Pengaturan Sistem",
+    "number": "46",
+    "title": "Skenario Use Case Mengelola Pengaturan Sistem",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_46_Skenario_Use_Case_Mengelola_Pengaturan_Sistem.csv"
+  },
+  {
+    "type": "table",
+    "block": 782,
+    "table_index": 52,
+    "rows": [
+      [
+        "Nama Use Case",
+        "Logout Sistem"
+      ],
+      [
+        "ID Use Case",
+        "UC-30"
+      ],
+      [
+        "Aktor",
+        "Pemilik, Pegawai, Member"
+      ],
+      [
+        "Deskripsi",
+        "Proses pengguna keluar dari sistem dengan menghapus token akses lokal dan mengarahkan pengguna kembali ke halaman login."
+      ],
+      [
+        "Precondition",
+        "Aktor telah berhasil login dan berada di halaman dashboard sesuai hak aksesnya."
+      ],
+      [
+        "Aktor",
+        "Sistem"
+      ],
+      [
+        "Skenario Utama"
+      ],
+      [
+        "1. Aktor menekan tombol Logout pada sidebar dashboard.",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan dialog konfirmasi logout."
+      ],
+      [
+        "3. Aktor menekan tombol Logout pada dialog konfirmasi.",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem menghapus token akses pengguna dari penyimpanan lokal."
+      ],
+      [
+        "",
+        "5. Sistem menghapus data pengguna dari penyimpanan lokal jika tersedia."
+      ],
+      [
+        "",
+        "6. Sistem mengarahkan aktor ke halaman login."
+      ],
+      [
+        "Skenario Alternatif"
+      ],
+      [
+        "1. Aktor menekan tombol Logout pada sidebar dashboard.",
+        ""
+      ],
+      [
+        "",
+        "2. Sistem menampilkan dialog konfirmasi logout."
+      ],
+      [
+        "3. Aktor menekan tombol Batal.",
+        ""
+      ],
+      [
+        "",
+        "4. Sistem menutup dialog konfirmasi dan tetap menampilkan halaman dashboard."
+      ],
+      [
+        "Post Condition",
+        "Token akses pengguna telah dihapus dan aktor keluar dari sistem."
+      ]
+    ],
+    "row_count": 19,
+    "col_count": 2,
+    "caption": "Tabel 47. Skenario Use Case Logout Sistem",
+    "number": "47",
+    "title": "Skenario Use Case Logout Sistem",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_47_Skenario_Use_Case_Logout_Sistem.csv"
+  },
+  {
+    "type": "table",
+    "block": 963,
+    "table_index": 53,
+    "rows": [
+      [
+        "No",
+        "Entitas",
+        "Deskripsi"
+      ],
+      [
+        "1",
+        "User",
+        "Menyimpan data akun pengguna sistem, yaitu pemilik, pegawai, dan member."
+      ],
+      [
+        "2",
+        "Member",
+        "Menyimpan data keanggotaan pelanggan, seperti ID member, poin, tier, QR code, dan total berat ikan."
+      ],
+      [
+        "3",
+        "Member Tier",
+        "Menyimpan data tingkatan member dan ketentuan diskon berdasarkan jumlah poin."
+      ],
+      [
+        "4",
+        "Arrival",
+        "Menyimpan data check-in, check-out, status kedatangan, dan deposit pelanggan tamu."
+      ],
+      [
+        "5",
+        "Pending Order",
+        "Menyimpan data pesanan sementara sebelum diproses menjadi transaksi akhir."
+      ],
+      [
+        "6",
+        "Transaksi",
+        "Menyimpan data transaksi utama, total pembayaran, metode pembayaran, diskon, voucher, dan poin."
+      ],
+      [
+        "7",
+        "Transaksi Item",
+        "Menyimpan rincian item transaksi, seperti ikan, menu, rental, atau denda."
+      ],
+      [
+        "8",
+        "Tipe Ikan",
+        "Menyimpan data jenis ikan dan harga per kilogram."
+      ],
+      [
+        "9",
+        "Stok Ikan",
+        "Menyimpan data stok ikan dan batas minimum stok."
+      ],
+      [
+        "10",
+        "Riwayat Restok Ikan",
+        "Menyimpan riwayat penambahan stok ikan."
+      ],
+      [
+        "11",
+        "Menu",
+        "Menyimpan data makanan dan minuman yang tersedia."
+      ],
+      [
+        "12",
+        "Rental Item",
+        "Menyimpan data alat pancing atau item penyewaan."
+      ],
+      [
+        "13",
+        "Voucher",
+        "Menyimpan data voucher yang diberikan kepada member."
+      ],
+      [
+        "14",
+        "Notifikasi",
+        "Menyimpan data notifikasi yang dikirimkan kepada pengguna."
+      ],
+      [
+        "15",
+        "Event",
+        "Menyimpan data event dan informasi yang dipublikasikan."
+      ],
+      [
+        "16",
+        "Konfigurasi Guest",
+        "Menyimpan konfigurasi nominal deposit pelanggan tamu."
+      ],
+      [
+        "17",
+        "Konfigurasi QRIS",
+        "Menyimpan konfigurasi gambar QRIS untuk pembayaran."
+      ]
+    ],
+    "row_count": 18,
+    "col_count": 3,
+    "caption": "Tabel 48. Rancangan Entitas Basis Data Sistem",
+    "number": "48",
+    "title": "Rancangan Entitas Basis Data Sistem",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_48_Rancangan_Entitas_Basis_Data_Sistem.csv"
+  },
+  {
+    "type": "table",
+    "block": 970,
+    "table_index": 54,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "name",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "3",
+        "email",
+        "Varchar",
+        "255",
+        "UNIQUE"
+      ],
+      [
+        "4",
+        "email_verified_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "5",
+        "password",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "6",
+        "phone",
+        "Varchar",
+        "255",
+        "UNIQUE"
+      ],
+      [
+        "7",
+        "address",
+        "Text",
+        "",
+        ""
+      ],
+      [
+        "8",
+        "role",
+        "Enum",
+        "",
+        ""
+      ],
+      [
+        "9",
+        "status",
+        "Enum",
+        "",
+        ""
+      ],
+      [
+        "10",
+        "rejection_reason",
+        "Text",
+        "",
+        ""
+      ],
+      [
+        "11",
+        "rejected_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "12",
+        "deactivated_reason",
+        "Text",
+        "",
+        ""
+      ],
+      [
+        "13",
+        "deactivated_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "14",
+        "remember_token",
+        "Varchar",
+        "100",
+        ""
+      ],
+      [
+        "15",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "16",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 17,
+    "col_count": 5,
+    "caption": "Tabel 49. Struktur Class Users",
+    "number": "49",
+    "title": "Struktur Class Users",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_49_Struktur_Class_Users.csv"
+  },
+  {
+    "type": "table",
+    "block": 974,
+    "table_index": 55,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "name",
+        "Varchar",
+        "20",
+        "UNIQUE"
+      ],
+      [
+        "3",
+        "min_points",
+        "Int",
+        "10",
+        "INDEX"
+      ],
+      [
+        "4",
+        "max_points",
+        "Int",
+        "10",
+        ""
+      ],
+      [
+        "5",
+        "discount_percentage",
+        "Decimal",
+        "5,2",
+        ""
+      ],
+      [
+        "6",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "7",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 8,
+    "col_count": 5,
+    "caption": "Tabel 50. Struktur Class Member Tier",
+    "number": "50",
+    "title": "Struktur Class Member Tier",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_50_Struktur_Class_Member_Tier.csv"
+  },
+  {
+    "type": "table",
+    "block": 978,
+    "table_index": 56,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "user_id",
+        "Bigint",
+        "20",
+        "FK, UNIQUE"
+      ],
+      [
+        "3",
+        "member_id",
+        "Varchar",
+        "11",
+        "UNIQUE"
+      ],
+      [
+        "4",
+        "tier_id",
+        "Bigint",
+        "20",
+        "FK"
+      ],
+      [
+        "5",
+        "total_points",
+        "Int",
+        "11",
+        ""
+      ],
+      [
+        "6",
+        "total_fish_weight",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "7",
+        "qr_code_hash",
+        "Varchar",
+        "100",
+        "UNIQUE"
+      ],
+      [
+        "8",
+        "last_transaction_date",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "9",
+        "points_expiry_warned_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "10",
+        "approved_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "11",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "12",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 13,
+    "col_count": 5,
+    "caption": "Tabel 51. Struktur Class Member",
+    "number": "51",
+    "title": "Struktur Class Member",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_51_Struktur_Class_Member.csv"
+  },
+  {
+    "type": "table",
+    "block": 986,
+    "table_index": 57,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "name",
+        "Varchar",
+        "100",
+        "UNIQUE"
+      ],
+      [
+        "3",
+        "price_per_kg",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "4",
+        "is_active",
+        "Boolean",
+        "",
+        ""
+      ],
+      [
+        "5",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "6",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "7",
+        "deleted_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 8,
+    "col_count": 5,
+    "caption": "Tabel 52. Struktur Class Tipe Ikan",
+    "number": "52",
+    "title": "Struktur Class Tipe Ikan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_52_Struktur_Class_Tipe_Ikan.csv"
+  },
+  {
+    "type": "table",
+    "block": 990,
+    "table_index": 58,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "fish_type_id",
+        "Bigint",
+        "20",
+        "FK, UNIQUE"
+      ],
+      [
+        "3",
+        "current_stock_kg",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "4",
+        "alert_threshold_kg",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "5",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "6",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 7,
+    "col_count": 5,
+    "caption": "Tabel 53. Struktur Class Stok Ikan",
+    "number": "53",
+    "title": "Struktur Class Stok Ikan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_53_Struktur_Class_Stok_Ikan.csv"
+  },
+  {
+    "type": "table",
+    "block": 994,
+    "table_index": 59,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "fish_type_id",
+        "Bigint",
+        "20",
+        "FK"
+      ],
+      [
+        "3",
+        "quantity_kg",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "4",
+        "stock_before",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "5",
+        "stock_after",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "6",
+        "restocked_by",
+        "Bigint",
+        "20",
+        "FK"
+      ],
+      [
+        "7",
+        "notes",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "8",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "9",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 10,
+    "col_count": 5,
+    "caption": "Tabel 54. Struktur Class Riwayat Restock Ikan",
+    "number": "54",
+    "title": "Struktur Class Riwayat Restock Ikan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_54_Struktur_Class_Riwayat_Restock_Ikan.csv"
+  },
+  {
+    "type": "table",
+    "block": 998,
+    "table_index": 60,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "title",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "3",
+        "description",
+        "Text",
+        "",
+        ""
+      ],
+      [
+        "4",
+        "category",
+        "Enum",
+        "",
+        ""
+      ],
+      [
+        "5",
+        "start_date",
+        "Date",
+        "",
+        "INDEX"
+      ],
+      [
+        "6",
+        "end_date",
+        "Date",
+        "",
+        "INDEX"
+      ],
+      [
+        "7",
+        "status",
+        "Enum",
+        "",
+        "INDEX"
+      ],
+      [
+        "8",
+        "image",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "9",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "10",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "11",
+        "deleted_at",
+        "Timestamp",
+        "",
+        "INDEX"
+      ]
+    ],
+    "row_count": 12,
+    "col_count": 5,
+    "caption": "Tabel 55. Struktur Class Events",
+    "number": "55",
+    "title": "Struktur Class Events",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_55_Struktur_Class_Events.csv"
+  },
+  {
+    "type": "table",
+    "block": 1003,
+    "table_index": 61,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "name",
+        "Varchar",
+        "100",
+        ""
+      ],
+      [
+        "3",
+        "price",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "4",
+        "category",
+        "Enum",
+        "",
+        "INDEX"
+      ],
+      [
+        "5",
+        "availability",
+        "Enum",
+        "",
+        "INDEX"
+      ],
+      [
+        "6",
+        "is_special",
+        "Boolean",
+        "",
+        ""
+      ],
+      [
+        "7",
+        "description",
+        "Text",
+        "",
+        ""
+      ],
+      [
+        "8",
+        "image",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "9",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "10",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "11",
+        "deleted_at",
+        "Timestamp",
+        "",
+        "INDEX"
+      ]
+    ],
+    "row_count": 12,
+    "col_count": 5,
+    "caption": "Tabel 56. Struktur Class Menu",
+    "number": "56",
+    "title": "Struktur Class Menu",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_56_Struktur_Class_Menu.csv"
+  },
+  {
+    "type": "table",
+    "block": 1007,
+    "table_index": 62,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "member_id",
+        "Bigint",
+        "20",
+        "FK, INDEX"
+      ],
+      [
+        "3",
+        "guest_name",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "4",
+        "deposit_amount",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "5",
+        "check_in_at",
+        "Timestamp",
+        "",
+        "INDEX"
+      ],
+      [
+        "6",
+        "check_out_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "7",
+        "status",
+        "Enum",
+        "",
+        "INDEX"
+      ],
+      [
+        "8",
+        "checked_in_by",
+        "Bigint",
+        "20",
+        "FK, INDEX"
+      ],
+      [
+        "9",
+        "notes",
+        "Text",
+        "",
+        ""
+      ],
+      [
+        "10",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "11",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 12,
+    "col_count": 5,
+    "caption": "Tabel 57. Struktur Class Kedatangan",
+    "number": "57",
+    "title": "Struktur Class Kedatangan",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_57_Struktur_Class_Kedatangan.csv"
+  },
+  {
+    "type": "table",
+    "block": 1011,
+    "table_index": 63,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "arrival_id",
+        "Bigint",
+        "20",
+        "FK, INDEX"
+      ],
+      [
+        "3",
+        "item_type",
+        "Enum",
+        "",
+        ""
+      ],
+      [
+        "4",
+        "item_id",
+        "Bigint",
+        "20",
+        "FK"
+      ],
+      [
+        "5",
+        "item_name_snapshot",
+        "Varchar",
+        "100",
+        ""
+      ],
+      [
+        "6",
+        "quantity",
+        "Smallint",
+        "5",
+        ""
+      ],
+      [
+        "7",
+        "unit_price_snapshot",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "8",
+        "subtotal",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "9",
+        "payment_status",
+        "Enum",
+        "",
+        "INDEX"
+      ],
+      [
+        "10",
+        "production_status",
+        "Enum",
+        "",
+        "INDEX"
+      ],
+      [
+        "11",
+        "cancellation_reason",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "12",
+        "order_source",
+        "Enum",
+        "",
+        ""
+      ],
+      [
+        "13",
+        "created_by",
+        "Bigint",
+        "20",
+        "FK"
+      ],
+      [
+        "14",
+        "transaction_id",
+        "Bigint",
+        "20",
+        "FK, INDEX"
+      ],
+      [
+        "15",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "16",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 17,
+    "col_count": 5,
+    "caption": "Tabel 58. Struktur Class Pending Orders",
+    "number": "58",
+    "title": "Struktur Class Pending Orders",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_58_Struktur_Class_Pending_Orders.csv"
+  },
+  {
+    "type": "table",
+    "block": 1017,
+    "table_index": 64,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "name",
+        "Varchar",
+        "255",
+        "UNIQUE"
+      ],
+      [
+        "3",
+        "price_per_unit",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "4",
+        "unit_label",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "5",
+        "description",
+        "Text",
+        "",
+        ""
+      ],
+      [
+        "6",
+        "image",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "7",
+        "is_active",
+        "Boolean",
+        "",
+        ""
+      ],
+      [
+        "8",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "9",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "10",
+        "deleted_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 11,
+    "col_count": 5,
+    "caption": "Tabel 59. Struktur Class Rental Item",
+    "number": "59",
+    "title": "Struktur Class Rental Item",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_59_Struktur_Class_Rental_Item.csv"
+  },
+  {
+    "type": "table",
+    "block": 1021,
+    "table_index": 65,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "transaction_code",
+        "Varchar",
+        "30",
+        "UNIQUE"
+      ],
+      [
+        "3",
+        "arrival_id",
+        "Bigint",
+        "20",
+        "FK, INDEX"
+      ],
+      [
+        "4",
+        "total_amount",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "5",
+        "discount_tier",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "6",
+        "discount_voucher",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "7",
+        "final_amount",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "8",
+        "tips",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "9",
+        "payment_method",
+        "Enum",
+        "",
+        ""
+      ],
+      [
+        "10",
+        "payment_proof",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "11",
+        "points_earned",
+        "Int",
+        "11",
+        ""
+      ],
+      [
+        "12",
+        "status",
+        "Varchar",
+        "255",
+        "INDEX"
+      ],
+      [
+        "13",
+        "processed_by",
+        "Bigint",
+        "20",
+        "FK, INDEX"
+      ],
+      [
+        "14",
+        "transaction_date",
+        "Timestamp",
+        "",
+        "INDEX"
+      ],
+      [
+        "15",
+        "notes",
+        "Text",
+        "",
+        ""
+      ],
+      [
+        "16",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "17",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 18,
+    "col_count": 5,
+    "caption": "Tabel 60. Struktur Class Transaksi",
+    "number": "60",
+    "title": "Struktur Class Transaksi",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_60_Struktur_Class_Transaksi.csv"
+  },
+  {
+    "type": "table",
+    "block": 1025,
+    "table_index": 66,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "transaction_id",
+        "Bigint",
+        "20",
+        "FK, INDEX"
+      ],
+      [
+        "3",
+        "item_type",
+        "Enum",
+        "",
+        "INDEX"
+      ],
+      [
+        "4",
+        "item_id",
+        "Bigint",
+        "20",
+        "INDEX"
+      ],
+      [
+        "5",
+        "item_name_snapshot",
+        "Varchar",
+        "100",
+        ""
+      ],
+      [
+        "6",
+        "quantity",
+        "Decimal",
+        "8,2",
+        ""
+      ],
+      [
+        "7",
+        "unit_price_snapshot",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "8",
+        "subtotal",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "9",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "10",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 11,
+    "col_count": 5,
+    "caption": "Tabel 61. Struktur Class Transaksi Item",
+    "number": "61",
+    "title": "Struktur Class Transaksi Item",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_61_Struktur_Class_Transaksi_Item.csv"
+  },
+  {
+    "type": "table",
+    "block": 1029,
+    "table_index": 67,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "rank",
+        "Tinyint",
+        "3",
+        "UNIQUE"
+      ],
+      [
+        "3",
+        "amount",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "4",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "5",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 6,
+    "col_count": 5,
+    "caption": "Tabel 62. Struktur Class Konfigurasi Voucher",
+    "number": "62",
+    "title": "Struktur Class Konfigurasi Voucher",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_62_Struktur_Class_Konfigurasi_Voucher.csv"
+  },
+  {
+    "type": "table",
+    "block": 1033,
+    "table_index": 68,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "member_id",
+        "Bigint",
+        "20",
+        "FK, Unique Composite"
+      ],
+      [
+        "3",
+        "amount",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "4",
+        "source",
+        "Enum",
+        "",
+        ""
+      ],
+      [
+        "5",
+        "rank",
+        "Tinyint",
+        "3",
+        "Unique Composite"
+      ],
+      [
+        "6",
+        "period_year",
+        "Smallint",
+        "5",
+        "Unique Composite"
+      ],
+      [
+        "7",
+        "period_month",
+        "Tinyint",
+        "3",
+        "Unique Composite"
+      ],
+      [
+        "8",
+        "status",
+        "Enum",
+        "",
+        ""
+      ],
+      [
+        "9",
+        "used_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "10",
+        "transaction_id",
+        "Bigint",
+        "20",
+        "FK"
+      ],
+      [
+        "11",
+        "issued_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "12",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "13",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 14,
+    "col_count": 5,
+    "caption": "Tabel 63. Struktur Class Voucher",
+    "number": "63",
+    "title": "Struktur Class Voucher",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_63_Struktur_Class_Voucher.csv"
+  },
+  {
+    "type": "table",
+    "block": 1039,
+    "table_index": 69,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "user_id",
+        "Bigint",
+        "20",
+        "FK, INDEX"
+      ],
+      [
+        "3",
+        "type",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "4",
+        "title",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "5",
+        "body",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "6",
+        "data",
+        "Json",
+        "",
+        ""
+      ],
+      [
+        "7",
+        "is_read",
+        "Boolean",
+        "",
+        "INDEX"
+      ],
+      [
+        "8",
+        "read_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "9",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "10",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 11,
+    "col_count": 5,
+    "caption": "Tabel 64. Struktur Class Notifikasi",
+    "number": "64",
+    "title": "Struktur Class Notifikasi",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_64_Struktur_Class_Notifikasi.csv"
+  },
+  {
+    "type": "table",
+    "block": 1043,
+    "table_index": 70,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "deposit_amount",
+        "Decimal",
+        "10,2",
+        ""
+      ],
+      [
+        "3",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "4",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 5,
+    "col_count": 5,
+    "caption": "Tabel 65. Struktur Class Konfigurasi Guest",
+    "number": "65",
+    "title": "Struktur Class Konfigurasi Guest",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_65_Struktur_Class_Konfigurasi_Guest.csv"
+  },
+  {
+    "type": "table",
+    "block": 1047,
+    "table_index": 71,
+    "rows": [
+      [
+        "No",
+        "Nama Field",
+        "Tipe",
+        "Panjang",
+        "Indeks"
+      ],
+      [
+        "1",
+        "id",
+        "Bigint",
+        "20",
+        "PK"
+      ],
+      [
+        "2",
+        "image",
+        "Varchar",
+        "255",
+        ""
+      ],
+      [
+        "3",
+        "created_at",
+        "Timestamp",
+        "",
+        ""
+      ],
+      [
+        "4",
+        "updated_at",
+        "Timestamp",
+        "",
+        ""
+      ]
+    ],
+    "row_count": 5,
+    "col_count": 5,
+    "caption": "Tabel 66. Struktur Class Konfigurasi QRIS",
+    "number": "66",
+    "title": "Struktur Class Konfigurasi QRIS",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_66_Struktur_Class_Konfigurasi_QRIS.csv"
+  },
+  {
+    "type": "table",
+    "block": 1054,
+    "table_index": 72,
+    "rows": [
+      [
+        "No",
+        "Method",
+        "Endpoint",
+        "Fungsi",
+        "Aktor"
+      ],
+      [
+        "1",
+        "POST",
+        "/api/login",
+        "Login pengguna",
+        "Pemilik, Pegawai, Member"
+      ],
+      [
+        "2",
+        "POST",
+        "/api/register",
+        "Registrasi akun member",
+        "Member"
+      ],
+      [
+        "3",
+        "GET",
+        "/api/member/profile",
+        "Menampilkan profil dan dashboard member",
+        "Member"
+      ],
+      [
+        "4",
+        "GET",
+        "/api/leaderboard",
+        "Menampilkan leaderboard public, termasuk member",
+        "Publik, Member"
+      ],
+      [
+        "5",
+        "POST",
+        "/api/employee/check-in",
+        "Mencatat kedatangan member atau tamu",
+        "Pegawai"
+      ],
+      [
+        "6",
+        "GET",
+        "/api/employee/today-arrivals",
+        "Menampilkan kedatangan hari ini",
+        "Pegawai"
+      ],
+      [
+        "7",
+        "POST",
+        "/api/member/orders",
+        "Membuat pesanan menu oleh member",
+        "Member"
+      ],
+      [
+        "8",
+        "POST",
+        "/api/employee/pending-orders",
+        "Membuat pesanan pelanggan oleh pegawai",
+        "Pegawai"
+      ],
+      [
+        "9",
+        "POST",
+        "/api/employee/checkout",
+        "Memproses checkout transaksi",
+        "Pegawai"
+      ],
+      [
+        "10",
+        "GET",
+        "/api/owner/reports/summary",
+        "Menampilkan ringkasan laporan operasional",
+        "Pemilik"
+      ]
+    ],
+    "row_count": 11,
+    "col_count": 5,
+    "caption": "Tabel 67. Rancangan Endpoint API Sistem",
+    "number": "67",
+    "title": "Rancangan Endpoint API Sistem",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_67_Rancangan_Endpoint_API_Sistem.csv"
+  },
+  {
+    "type": "table",
+    "block": 1072,
+    "table_index": 73,
+    "rows": [
+      [
+        "No",
+        "Kelompok",
+        "Nama Tabel",
+        "Penjelasan Implementasi"
+      ],
+      [
+        "1",
+        "Tabel utama",
+        "users",
+        "Tabel users berhasil dibuat melalui migration Laravel. Menyimpan akun pengguna sistem, role akses, status akun, dan data kontak."
+      ],
+      [
+        "2",
+        "Tabel utama",
+        "members",
+        "Tabel members berhasil dibuat melalui migration Laravel. Menyimpan data keanggotaan pelanggan, poin, tier, QR code, dan riwayat aktivitas member."
+      ],
+      [
+        "3",
+        "Tabel utama",
+        "member_tiers",
+        "Tabel member_tiers berhasil dibuat melalui migration Laravel. Menyimpan tingkatan member, batas poin, dan persentase diskon setiap tier."
+      ],
+      [
+        "4",
+        "Tabel utama",
+        "arrivals",
+        "Tabel arrivals berhasil dibuat melalui migration Laravel. Mencatat kedatangan pelanggan member maupun tamu, deposit, check-in, check-out, dan petugas pencatat."
+      ],
+      [
+        "5",
+        "Tabel utama",
+        "pending_orders",
+        "Tabel pending_orders berhasil dibuat melalui migration Laravel. Menyimpan pesanan sementara sebelum transaksi final, termasuk status pembayaran dan proses pesanan."
+      ],
+      [
+        "6",
+        "Tabel utama",
+        "transactions",
+        "Tabel transactions berhasil dibuat melalui migration Laravel. Menyimpan transaksi utama, nilai pembayaran, diskon, metode bayar, poin, dan petugas pemroses."
+      ],
+      [
+        "7",
+        "Tabel utama",
+        "transaction_items",
+        "Tabel transaction_items berhasil dibuat melalui migration Laravel. Menyimpan rincian item transaksi seperti ikan, menu, rental, atau denda beserta harga snapshot."
+      ],
+      [
+        "8",
+        "Tabel utama",
+        "fish_types",
+        "Tabel fish_types berhasil dibuat melalui migration Laravel. Menyimpan master jenis ikan, harga per kilogram, dan status ketersediaan."
+      ],
+      [
+        "9",
+        "Tabel utama",
+        "fish_stocks",
+        "Tabel fish_stocks berhasil dibuat melalui migration Laravel. Menyimpan stok ikan per jenis ikan serta batas minimum untuk peringatan stok."
+      ],
+      [
+        "10",
+        "Tabel utama",
+        "restock_logs",
+        "Tabel restock_logs berhasil dibuat melalui migration Laravel. Mencatat aktivitas penambahan stok ikan, stok sebelum-sesudah, dan petugas restok."
+      ],
+      [
+        "11",
+        "Tabel utama",
+        "menus",
+        "Tabel menus berhasil dibuat melalui migration Laravel. Menyimpan menu makanan dan minuman, kategori, harga, ketersediaan, deskripsi, dan gambar."
+      ],
+      [
+        "12",
+        "Tabel utama",
+        "rental_items",
+        "Tabel rental_items berhasil dibuat melalui migration Laravel. Menyimpan item rental atau alat pancing, harga sewa, satuan, deskripsi, gambar, dan status aktif."
+      ],
+      [
+        "13",
+        "Tabel utama",
+        "voucher_configs",
+        "Tabel voucher_configs berhasil dibuat melalui migration Laravel. Menyimpan konfigurasi nominal voucher berdasarkan peringkat leaderboard."
+      ],
+      [
+        "14",
+        "Tabel utama",
+        "vouchers",
+        "Tabel vouchers berhasil dibuat melalui migration Laravel. Menyimpan voucher member, nominal, sumber, periode, status penggunaan, dan transaksi pemakaian."
+      ],
+      [
+        "15",
+        "Tabel utama",
+        "notifications",
+        "Tabel notifications berhasil dibuat melalui migration Laravel. Menyimpan pesan notifikasi pengguna, tipe, judul, isi, data tambahan, dan status baca."
+      ],
+      [
+        "16",
+        "Tabel utama",
+        "events",
+        "Tabel events berhasil dibuat melalui migration Laravel. Menyimpan informasi event atau pengumuman, periode, status publikasi, dan gambar pendukung."
+      ],
+      [
+        "17",
+        "Tabel utama",
+        "guest_configs",
+        "Tabel guest_configs berhasil dibuat melalui migration Laravel. Menyimpan konfigurasi nominal deposit untuk pelanggan tamu atau non-member."
+      ],
+      [
+        "18",
+        "Tabel utama",
+        "qris_configs",
+        "Tabel qris_configs berhasil dibuat melalui migration Laravel. Menyimpan konfigurasi gambar QRIS yang digunakan untuk pembayaran."
+      ],
+      [
+        "19",
+        "Tabel pendukung",
+        "migrations",
+        "Tabel migrations terbentuk sebagai tabel pendukung Laravel. Mencatat migration Laravel yang sudah dijalankan agar perubahan skema basis data dapat dikontrol."
+      ],
+      [
+        "20",
+        "Tabel pendukung",
+        "password_reset_tokens",
+        "Tabel password_reset_tokens terbentuk sebagai tabel pendukung Laravel. Menyimpan token reset password untuk kebutuhan autentikasi pengguna."
+      ],
+      [
+        "21",
+        "Tabel pendukung",
+        "personal_access_tokens",
+        "Tabel personal_access_tokens terbentuk sebagai tabel pendukung Laravel. Menyimpan token autentikasi Laravel Sanctum untuk akses API."
+      ],
+      [
+        "22",
+        "Tabel pendukung",
+        "sessions",
+        "Tabel sessions terbentuk sebagai tabel pendukung Laravel. Menyimpan data sesi pengguna ketika mekanisme session digunakan oleh aplikasi."
+      ],
+      [
+        "23",
+        "Tabel pendukung",
+        "cache",
+        "Tabel cache terbentuk sebagai tabel pendukung Laravel. Menyimpan data cache aplikasi untuk mempercepat proses tertentu."
+      ],
+      [
+        "24",
+        "Tabel pendukung",
+        "cache_locks",
+        "Tabel cache_locks terbentuk sebagai tabel pendukung Laravel. Menyimpan lock cache agar proses yang membutuhkan penguncian dapat berjalan aman."
+      ],
+      [
+        "25",
+        "Tabel pendukung",
+        "jobs",
+        "Tabel jobs terbentuk sebagai tabel pendukung Laravel. Menyimpan antrean job yang akan diproses secara asynchronous."
+      ],
+      [
+        "26",
+        "Tabel pendukung",
+        "job_batches",
+        "Tabel job_batches terbentuk sebagai tabel pendukung Laravel. Menyimpan informasi batch job Laravel."
+      ],
+      [
+        "27",
+        "Tabel pendukung",
+        "failed_jobs",
+        "Tabel failed_jobs terbentuk sebagai tabel pendukung Laravel. Menyimpan job yang gagal diproses agar dapat dianalisis atau dijalankan ulang."
+      ]
+    ],
+    "row_count": 28,
+    "col_count": 4,
+    "caption": "Tabel 68. Implementasi Tabel Basis Data",
+    "number": "68",
+    "title": "Implementasi Tabel Basis Data",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_68_Implementasi_Tabel_Basis_Data.csv"
+  },
+  {
+    "type": "table",
+    "block": 1135,
+    "table_index": 74,
+    "rows": [
+      [
+        "No",
+        "Controller",
+        "Fungsi Utama"
+      ],
+      [
+        "1",
+        "AuthController",
+        "Registrasi, login, logout, reset password, autentikasi Sanctum, dan token akses."
+      ],
+      [
+        "2",
+        "UserController",
+        "Pembaruan profil dan password pengguna yang sedang login."
+      ],
+      [
+        "3",
+        "Member/MemberController",
+        "Profil member, riwayat transaksi, voucher, tier, dan leaderboard member."
+      ],
+      [
+        "4",
+        "Member/OrderController",
+        "Pembuatan pesanan menu atau rental oleh member sebelum checkout."
+      ],
+      [
+        "5",
+        "Employee/ArrivalController",
+        "Check-in, check-out, pencarian member, kedatangan hari ini, dan validasi QR."
+      ],
+      [
+        "6",
+        "Employee/PendingOrderController",
+        "Pesanan sementara menu atau rental sebelum diproses menjadi transaksi."
+      ],
+      [
+        "7",
+        "Employee/TransactionController",
+        "Checkout, pembayaran, diskon tier, voucher, poin, stok ikan, dan riwayat transaksi."
+      ],
+      [
+        "8",
+        "Employee/MenuController",
+        "Daftar menu dan perubahan status ketersediaan menu oleh pegawai."
+      ],
+      [
+        "9",
+        "Employee/FishStockController",
+        "Data stok ikan untuk mendukung proses transaksi pegawai."
+      ],
+      [
+        "10",
+        "Owner/MemberValidationController",
+        "Validasi, persetujuan, penolakan, reaktivasi, dan penonaktifan member."
+      ],
+      [
+        "11",
+        "Owner/FishTypeController",
+        "CRUD jenis ikan, harga ikan, dan status aktif jenis ikan."
+      ],
+      [
+        "12",
+        "Owner/FishStockController",
+        "Stok ikan, restock, batas minimum stok, dan riwayat restock."
+      ],
+      [
+        "13",
+        "Owner/MenuController",
+        "CRUD menu, status ketersediaan, dan menu spesial oleh owner."
+      ],
+      [
+        "14",
+        "Owner/ReportController",
+        "Ringkasan laporan, breakdown transaksi, export, dan ringkasan stok."
+      ],
+      [
+        "15",
+        "NotificationController",
+        "Daftar notifikasi, jumlah belum dibaca, dan perubahan status baca."
+      ],
+      [
+        "16",
+        "EventController",
+        "Daftar event/informasi publik dan detail event yang dipublikasikan."
+      ]
+    ],
+    "row_count": 17,
+    "col_count": 3,
+    "caption": "Tabel 69. Daftar Controller Utama Back-end",
+    "number": "69",
+    "title": "Daftar Controller Utama Back-end",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_69_Daftar_Controller_Utama_Back-end.csv"
+  },
+  {
+    "type": "table",
+    "block": 1187,
+    "table_index": 75,
+    "rows": [
+      [
+        "No",
+        "Role/Akses",
+        "Method",
+        "URL Endpoint",
+        "Request/Parameter",
+        "Keterangan"
+      ],
+      [
+        "1",
+        "Auth",
+        "POST",
+        "/api/login",
+        "Body: login, password",
+        "Autentikasi pengguna dan pembuatan token Sanctum."
+      ],
+      [
+        "2",
+        "Auth",
+        "POST",
+        "/api/register",
+        "Body: name, phone, email, password, password_confirmation, address",
+        "Registrasi akun member baru dengan status pending."
+      ],
+      [
+        "3",
+        "Member",
+        "GET",
+        "/api/member/profile",
+        "Header: Authorization Bearer token_member",
+        "Menampilkan profil, tier, poin, QR code, dan posisi leaderboard member."
+      ],
+      [
+        "4",
+        "Member",
+        "POST",
+        "/api/member/orders",
+        "Body: items[].menu_id, items[].quantity",
+        "Mencatat pesanan menu mandiri member ke pending_orders."
+      ],
+      [
+        "5",
+        "Member",
+        "GET",
+        "/api/member/transactions",
+        "Query: start_date, end_date, per_page",
+        "Menampilkan riwayat transaksi member."
+      ],
+      [
+        "6",
+        "Employee",
+        "POST",
+        "/api/employee/check-in",
+        "Body member: type=member, member_id, notes; body guest: type=guest, guest_name, notes",
+        "Mencatat kedatangan pelanggan member atau tamu pada tabel arrivals."
+      ],
+      [
+        "7",
+        "Employee",
+        "POST",
+        "/api/employee/pending-orders",
+        "Body: arrival_id, items[].item_type(menu/rental), items[].item_id, items[].quantity",
+        "Mencatat pesanan sementara menu atau rental sebelum checkout."
+      ],
+      [
+        "8",
+        "Employee",
+        "PATCH",
+        "/api/employee/pending-orders/{id}/status",
+        "Body: status(pending/processing/done/cancelled), cancellation_reason",
+        "Mengubah status produksi pending order."
+      ],
+      [
+        "9",
+        "Employee",
+        "POST",
+        "/api/employee/checkout",
+        "Body: arrival_id, fish_items[].item_id, fish_items[].quantity, penalty_items[], payment_method, tips, notes",
+        "Memproses transaksi, pembayaran, item transaksi, stok ikan, poin, dan voucher."
+      ],
+      [
+        "10",
+        "Employee",
+        "GET",
+        "/api/employee/fish-stocks",
+        "Header: Authorization Bearer token_employee",
+        "Menampilkan stok ikan untuk kebutuhan transaksi pegawai."
+      ],
+      [
+        "11",
+        "Owner",
+        "GET",
+        "/api/owner/menus",
+        "Query: search, category, availability, include_deleted",
+        "Menampilkan data menu makanan dan minuman."
+      ],
+      [
+        "12",
+        "Owner",
+        "POST",
+        "/api/owner/menus",
+        "Body: name, price, category(food/beverage), availability, description, image",
+        "Menambahkan menu baru sesuai field tabel menus."
+      ],
+      [
+        "13",
+        "Owner",
+        "GET",
+        "/api/owner/fish-stocks",
+        "Header: Authorization Bearer token_owner",
+        "Menampilkan stok ikan untuk pemilik."
+      ],
+      [
+        "14",
+        "Owner",
+        "POST",
+        "/api/owner/fish-stocks/{fishTypeId}/restock",
+        "Body: quantity_kg, notes",
+        "Mencatat restock ikan dan memperbarui current_stock_kg."
+      ],
+      [
+        "15",
+        "Owner",
+        "GET",
+        "/api/owner/reports/summary",
+        "Query: period(daily/weekly/monthly/custom), start_date, end_date",
+        "Menampilkan ringkasan laporan transaksi untuk owner."
+      ],
+      [
+        "16",
+        "Owner",
+        "PUT",
+        "/api/owner/voucher-configs",
+        "Body: configs[].rank(1/2/3), configs[].amount",
+        "Memperbarui nominal voucher leaderboard."
+      ],
+      [
+        "17",
+        "Public",
+        "GET",
+        "/api/leaderboard",
+        "Query: page, per_page",
+        "Menampilkan peringkat member berdasarkan total berat ikan."
+      ],
+      [
+        "18",
+        "Public",
+        "GET",
+        "/api/events",
+        "Query: page, per_page, category",
+        "Menampilkan event dan informasi publik."
+      ]
+    ],
+    "row_count": 19,
+    "col_count": 6,
+    "caption": "Tabel 70. Endpoint API",
+    "number": "70",
+    "title": "Endpoint API",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_70_Endpoint_API.csv"
+  },
+  {
+    "type": "table",
+    "block": 1422,
+    "table_index": 76,
+    "rows": [
+      [
+        "No",
+        "Kelompok Pengujian",
+        "Kode Test Case",
+        "Jumlah Test Case",
+        "Status Valid",
+        "Status Tidak Valid"
+      ],
+      [
+        "1",
+        "Login dan Autentikasi",
+        "A01–A10",
+        "10",
+        "10",
+        "0"
+      ],
+      [
+        "2",
+        "Halaman Utama",
+        "B01–B07",
+        "7",
+        "7",
+        "0"
+      ],
+      [
+        "3",
+        "Fitur Member",
+        "C01–C16",
+        "16",
+        "16",
+        "0"
+      ],
+      [
+        "4",
+        "Fitur Pegawai",
+        "D01–D42",
+        "42",
+        "42",
+        "0"
+      ],
+      [
+        "5",
+        "Fitur Pemilik",
+        "E01–E30",
+        "30",
+        "30",
+        "0"
+      ],
+      [
+        "Total",
+        "",
+        "",
+        "105",
+        "105",
+        "0"
+      ]
+    ],
+    "row_count": 7,
+    "col_count": 6,
+    "caption": "Tabel 71. Ringkasan Hasil Pengujian Black Box",
+    "number": "71",
+    "title": "Ringkasan Hasil Pengujian Black Box",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_71_Ringkasan_Hasil_Pengujian_Black_Box.csv"
+  },
+  {
+    "type": "table",
+    "block": 1426,
+    "table_index": 77,
+    "rows": [
+      [
+        "Test ID",
+        "Rincian Pengujian",
+        "Hasil yang Diharapkan",
+        "Hasil Pengujian",
+        "Status"
+      ],
+      [
+        "A01",
+        "Pengujian registrasi member dengan data valid.",
+        "Sistem menyimpan user baru dengan status pending.",
+        "Sistem berhasil menyimpan data registrasi member dengan status pending.",
+        "Valid"
+      ],
+      [
+        "A02",
+        "Pengujian registrasi member dengan email yang sudah terdaftar.",
+        "Sistem menolak registrasi dan menampilkan pesan validasi.",
+        "Sistem menolak registrasi karena email sudah terdaftar.",
+        "Valid"
+      ],
+      [
+        "A03",
+        "Pengujian registrasi member dengan password kurang dari 8 karakter.",
+        "Sistem menolak registrasi dan menampilkan validasi password.",
+        "Sistem menampilkan pesan validasi password.",
+        "Valid"
+      ],
+      [
+        "A04",
+        "Pengujian login pemilik dengan data valid.",
+        "Sistem menerima login, menghasilkan token, dan mengarahkan pengguna ke dashboard pemilik.",
+        "Sistem berhasil menerima login sebagai pemilik.",
+        "Valid"
+      ],
+      [
+        "A05",
+        "Pengujian login pegawai dengan data valid.",
+        "Sistem menerima login, menghasilkan token, dan mengarahkan pengguna ke dashboard pegawai.",
+        "Sistem berhasil menerima login sebagai pegawai.",
+        "Valid"
+      ],
+      [
+        "A06",
+        "Pengujian login member aktif dengan data valid.",
+        "Sistem menerima login, menghasilkan token, dan mengarahkan pengguna ke dashboard member.",
+        "Sistem berhasil menerima login sebagai member.",
+        "Valid"
+      ],
+      [
+        "A07",
+        "Pengujian login dengan password salah.",
+        "Sistem menolak login dan menampilkan pesan kesalahan.",
+        "Sistem menolak login karena password tidak sesuai.",
+        "Valid"
+      ],
+      [
+        "A08",
+        "Pengujian login akun member berstatus pending.",
+        "Sistem menolak login dan menampilkan pesan akun masih menunggu validasi pemilik.",
+        "Sistem menolak login akun member yang masih berstatus pending.",
+        "Valid"
+      ],
+      [
+        "A09",
+        "Pengujian akses data pengguna setelah login.",
+        "Sistem menampilkan data user yang sedang login.",
+        "Sistem berhasil menampilkan data pengguna yang sedang login.",
+        "Valid"
+      ],
+      [
+        "A10",
+        "Pengujian logout pengguna.",
+        "Sistem menghapus token akses dan mengakhiri sesi pengguna.",
+        "Sistem berhasil menghapus token akses dan logout pengguna.",
+        "Valid"
+      ]
+    ],
+    "row_count": 11,
+    "col_count": 5,
+    "caption": "Tabel 72. Hasil Pengujian Login dan Autentikasi",
+    "number": "72",
+    "title": "Hasil Pengujian Login dan Autentikasi",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_72_Hasil_Pengujian_Login_dan_Autentikasi.csv"
+  },
+  {
+    "type": "table",
+    "block": 1430,
+    "table_index": 78,
+    "rows": [
+      [
+        "Test ID",
+        "Rincian Pengujian",
+        "Hasil yang Diharapkan",
+        "Hasil Pengujian",
+        "Status"
+      ],
+      [
+        "B01",
+        "Pengujian tampilan leaderboard pada halaman utama.",
+        "Sistem menampilkan leaderboard berdasarkan data member.",
+        "Sistem berhasil menampilkan data leaderboard member.",
+        "Valid"
+      ],
+      [
+        "B02",
+        "Pengujian tampilan daftar event pada halaman utama.",
+        "Sistem menampilkan daftar event atau pengumuman yang tersedia.",
+        "Sistem berhasil menampilkan daftar event.",
+        "Valid"
+      ],
+      [
+        "B03",
+        "Pengujian tampilan detail event.",
+        "Sistem menampilkan detail event berdasarkan data yang dipilih.",
+        "Sistem berhasil menampilkan detail event.",
+        "Valid"
+      ],
+      [
+        "B04",
+        "Pengujian tampilan jenis ikan pada halaman utama.",
+        "Sistem menampilkan daftar jenis ikan yang tersedia.",
+        "Sistem berhasil menampilkan data jenis ikan.",
+        "Valid"
+      ],
+      [
+        "B05",
+        "Pengujian tampilan tier member pada halaman utama.",
+        "Sistem menampilkan daftar tier member.",
+        "Sistem berhasil menampilkan daftar tier member.",
+        "Valid"
+      ],
+      [
+        "B06",
+        "Pengujian tampilan menu spesial pada halaman utama.",
+        "Sistem menampilkan menu dengan status is_special.",
+        "Sistem berhasil menampilkan data menu spesial.",
+        "Valid"
+      ],
+      [
+        "B07",
+        "Pengujian pemanggilan ulang data menu spesial.",
+        "Sistem tetap menampilkan data menu spesial tanpa error ketika endpoint dipanggil kembali.",
+        "Sistem berhasil menampilkan data menu spesial pada pemanggilan ulang.",
+        "Valid"
+      ]
+    ],
+    "row_count": 8,
+    "col_count": 5,
+    "caption": "Tabel 73. Hasil Pengujian Halaman Utama",
+    "number": "73",
+    "title": "Hasil Pengujian Halaman Utama",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_73_Hasil_Pengujian_Halaman_Utama.csv"
+  },
+  {
+    "type": "table",
+    "block": 1434,
+    "table_index": 79,
+    "rows": [
+      [
+        "Test ID",
+        "Rincian Pengujian",
+        "Hasil yang Diharapkan",
+        "Hasil Pengujian",
+        "Status"
+      ],
+      [
+        "C01",
+        "Pengujian tampilan dashboard member.",
+        "Sistem menampilkan profil, tier, poin, total berat ikan, voucher, dan QR code member.",
+        "Sistem berhasil menampilkan dashboard member.",
+        "Valid"
+      ],
+      [
+        "C02",
+        "Pengujian tampilan voucher member.",
+        "Sistem menampilkan daftar voucher milik member.",
+        "Sistem berhasil menampilkan daftar voucher member.",
+        "Valid"
+      ],
+      [
+        "C03",
+        "Pengujian tampilan leaderboard pada role member.",
+        "Sistem menampilkan leaderboard dan posisi member.",
+        "Sistem berhasil menampilkan leaderboard member.",
+        "Valid"
+      ],
+      [
+        "C04",
+        "Pengujian daftar menu untuk member.",
+        "Sistem menampilkan menu yang tersedia.",
+        "Sistem berhasil menampilkan daftar menu.",
+        "Valid"
+      ],
+      [
+        "C05",
+        "Pengujian pembuatan pesanan member dengan menu valid.",
+        "Sistem menyimpan pesanan ke tabel pending_orders dengan sumber pesanan self.",
+        "Sistem berhasil menyimpan pesanan member.",
+        "Valid"
+      ],
+      [
+        "C06",
+        "Pengujian pembuatan pesanan member dengan beberapa item menu.",
+        "Sistem menyimpan seluruh item pesanan dan menghitung subtotal.",
+        "Sistem berhasil menyimpan beberapa item pesanan.",
+        "Valid"
+      ],
+      [
+        "C07",
+        "Pengujian pembuatan pesanan member ketika belum check-in.",
+        "Sistem menolak pesanan dan menampilkan pesan bahwa member belum check-in.",
+        "Sistem menolak pesanan karena tidak terdapat kedatangan aktif.",
+        "Valid"
+      ],
+      [
+        "C08",
+        "Pengujian pembuatan pesanan member dengan jumlah 0.",
+        "Sistem menolak pesanan karena jumlah minimal 1.",
+        "Sistem menampilkan validasi jumlah pesanan.",
+        "Valid"
+      ],
+      [
+        "C09",
+        "Pengujian pembuatan pesanan member dengan menu tidak tersedia.",
+        "Sistem menolak pesanan menu yang tidak tersedia.",
+        "Sistem menolak pesanan untuk menu yang tidak tersedia.",
+        "Valid"
+      ],
+      [
+        "C10",
+        "Pengujian daftar pesanan member.",
+        "Sistem menampilkan pesanan member yang belum dibayar.",
+        "Sistem berhasil menampilkan daftar pesanan member.",
+        "Valid"
+      ],
+      [
+        "C11",
+        "Pengujian daftar pesanan member saat tidak ada pesanan.",
+        "Sistem menampilkan daftar kosong tanpa error.",
+        "Sistem berhasil menampilkan daftar kosong.",
+        "Valid"
+      ],
+      [
+        "C12",
+        "Pengujian riwayat transaksi member.",
+        "Sistem menampilkan transaksi yang pernah dilakukan member.",
+        "Sistem berhasil menampilkan riwayat transaksi member.",
+        "Valid"
+      ],
+      [
+        "C13",
+        "Pengujian update profil member dengan data valid.",
+        "Sistem memperbarui data profil pengguna.",
+        "Sistem berhasil memperbarui profil pengguna.",
+        "Valid"
+      ],
+      [
+        "C14",
+        "Pengujian update profil member dengan format email tidak valid.",
+        "Sistem menolak pembaruan dan menampilkan validasi email.",
+        "Sistem menampilkan validasi format email.",
+        "Valid"
+      ],
+      [
+        "C15",
+        "Pengujian update password member dengan password valid.",
+        "Sistem memperbarui password pengguna.",
+        "Sistem berhasil memperbarui password pengguna.",
+        "Valid"
+      ],
+      [
+        "C16",
+        "Pengujian update password member dengan password kurang dari batas minimal.",
+        "Sistem menolak perubahan password.",
+        "Sistem menampilkan validasi password.",
+        "Valid"
+      ]
+    ],
+    "row_count": 17,
+    "col_count": 5,
+    "caption": "Tabel 74. Hasil Pengujian Fitur Member",
+    "number": "74",
+    "title": "Hasil Pengujian Fitur Member",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_74_Hasil_Pengujian_Fitur_Member.csv"
+  },
+  {
+    "type": "table",
+    "block": 1437,
+    "table_index": 80,
+    "rows": [
+      [
+        "Test ID",
+        "Rincian Pengujian",
+        "Hasil yang Diharapkan",
+        "Hasil Pengujian",
+        "Status"
+      ],
+      [
+        "D01",
+        "Pengujian pencarian member aktif.",
+        "Sistem menampilkan data member sesuai kata kunci.",
+        "Sistem berhasil menampilkan data member yang sesuai.",
+        "Valid"
+      ],
+      [
+        "D02",
+        "Pengujian pencarian member dengan kata kunci kosong.",
+        "Sistem menampilkan daftar kosong tanpa error.",
+        "Sistem berhasil menampilkan daftar kosong.",
+        "Valid"
+      ],
+      [
+        "D03",
+        "Pengujian pencarian member yang tidak ditemukan.",
+        "Sistem menampilkan data kosong.",
+        "Sistem berhasil menampilkan data kosong.",
+        "Valid"
+      ],
+      [
+        "D04",
+        "Pengujian validasi QR code member valid.",
+        "Sistem menampilkan data member berdasarkan QR code.",
+        "Sistem berhasil menampilkan data member sesuai QR code.",
+        "Valid"
+      ],
+      [
+        "D05",
+        "Pengujian validasi QR code tidak valid.",
+        "Sistem menolak QR code dan menampilkan pesan kesalahan.",
+        "Sistem menolak QR code tidak valid.",
+        "Valid"
+      ],
+      [
+        "D06",
+        "Pengujian check-in member aktif.",
+        "Sistem membuat data arrivals dengan status active.",
+        "Sistem berhasil membuat data kedatangan member.",
+        "Valid"
+      ],
+      [
+        "D07",
+        "Pengujian check-in member yang sudah check-in hari ini.",
+        "Sistem menolak check-in ulang.",
+        "Sistem berhasil menolak check-in ulang.",
+        "Valid"
+      ],
+      [
+        "D08",
+        "Pengujian check-in member tidak aktif.",
+        "Sistem menolak check-in member.",
+        "Sistem menampilkan pesan member tidak aktif.",
+        "Valid"
+      ],
+      [
+        "D09",
+        "Pengujian check-in member dengan member_id kosong.",
+        "Sistem menolak input dan menampilkan validasi.",
+        "Sistem menampilkan validasi data member.",
+        "Valid"
+      ],
+      [
+        "D10",
+        "Pengujian check-in tamu dengan nama valid.",
+        "Sistem membuat data tamu pada arrivals dengan deposit.",
+        "Sistem berhasil membuat data kedatangan tamu.",
+        "Valid"
+      ],
+      [
+        "D11",
+        "Pengujian check-in tamu dengan nama kosong.",
+        "Sistem menolak input dan menampilkan validasi nama tamu.",
+        "Sistem menampilkan validasi nama tamu.",
+        "Valid"
+      ],
+      [
+        "D12",
+        "Pengujian daftar kedatangan hari ini.",
+        "Sistem menampilkan data member dan tamu pada hari berjalan.",
+        "Sistem berhasil menampilkan daftar kedatangan hari ini.",
+        "Valid"
+      ],
+      [
+        "D13",
+        "Pengujian pencarian data kedatangan aktif.",
+        "Sistem menampilkan data kedatangan sesuai kata kunci.",
+        "Sistem berhasil menampilkan data kedatangan aktif.",
+        "Valid"
+      ],
+      [
+        "D14",
+        "Pengujian check-out kedatangan aktif.",
+        "Sistem mengubah status kedatangan menjadi completed.",
+        "Sistem berhasil melakukan check-out kedatangan.",
+        "Valid"
+      ],
+      [
+        "D15",
+        "Pengujian check-out data kedatangan yang tidak ditemukan.",
+        "Sistem menolak dan menampilkan pesan data tidak ditemukan.",
+        "Sistem menolak check-out karena data tidak ditemukan.",
+        "Valid"
+      ],
+      [
+        "D16",
+        "Pengujian daftar menu pegawai.",
+        "Sistem menampilkan daftar menu.",
+        "Sistem berhasil menampilkan daftar menu pegawai.",
+        "Valid"
+      ],
+      [
+        "D17",
+        "Pengujian perubahan ketersediaan menu oleh pegawai.",
+        "Sistem mengubah status ketersediaan menu dari tersedia menjadi tidak tersedia atau sebaliknya.",
+        "Sistem berhasil mengubah status ketersediaan menu.",
+        "Valid"
+      ],
+      [
+        "D18",
+        "Pengujian tambah pesanan menu valid.",
+        "Sistem menyimpan pesanan menu ke tabel pending_orders.",
+        "Sistem berhasil menyimpan pesanan menu.",
+        "Valid"
+      ],
+      [
+        "D19",
+        "Pengujian tambah pesanan rental valid.",
+        "Sistem menyimpan pesanan rental ke tabel pending_orders.",
+        "Sistem berhasil menyimpan pesanan rental.",
+        "Valid"
+      ],
+      [
+        "D20",
+        "Pengujian tambah pesanan dengan arrival tidak aktif.",
+        "Sistem menolak pesanan.",
+        "Sistem menampilkan pesan arrival tidak aktif.",
+        "Valid"
+      ],
+      [
+        "D21",
+        "Pengujian tambah pesanan dengan quantity 0.",
+        "Sistem menolak pesanan karena quantity minimal 1.",
+        "Sistem menampilkan validasi quantity.",
+        "Valid"
+      ],
+      [
+        "D22",
+        "Pengujian tambah pesanan menu tanpa item_id.",
+        "Sistem menolak input dan meminta item_id.",
+        "Sistem menampilkan validasi item_id.",
+        "Valid"
+      ],
+      [
+        "D23",
+        "Pengujian tambah pesanan menu tidak tersedia.",
+        "Sistem menolak pesanan menu yang tidak tersedia.",
+        "Sistem menampilkan pesan menu tidak tersedia.",
+        "Valid"
+      ],
+      [
+        "D24",
+        "Pengujian tambah pesanan rental tidak aktif.",
+        "Sistem menolak pesanan rental yang tidak aktif.",
+        "Sistem menampilkan pesan rental tidak aktif.",
+        "Valid"
+      ],
+      [
+        "D25",
+        "Pengujian daftar pesanan masuk.",
+        "Sistem menampilkan pending order yang belum dibayar.",
+        "Sistem berhasil menampilkan daftar pesanan masuk.",
+        "Valid"
+      ],
+      [
+        "D26",
+        "Pengujian daftar pesanan pada arrival tertentu.",
+        "Sistem menampilkan pending order berdasarkan arrival_id.",
+        "Sistem berhasil menampilkan pesanan berdasarkan arrival.",
+        "Valid"
+      ],
+      [
+        "D27",
+        "Pengujian perubahan status pesanan menjadi processing.",
+        "Sistem memperbarui status menjadi sedang diproses.",
+        "Sistem berhasil memperbarui status pesanan menjadi processing.",
+        "Valid"
+      ],
+      [
+        "D28",
+        "Pengujian perubahan status pesanan menjadi done.",
+        "Sistem memperbarui status menjadi selesai.",
+        "Sistem berhasil memperbarui status pesanan menjadi done.",
+        "Valid"
+      ],
+      [
+        "D29",
+        "Pengujian pembatalan pending order dengan alasan.",
+        "Sistem mengubah status menjadi cancelled dan menyimpan alasan pembatalan.",
+        "Sistem berhasil membatalkan pending order dan menyimpan alasan.",
+        "Valid"
+      ],
+      [
+        "D30",
+        "Pengujian pembatalan pending order tanpa alasan.",
+        "Sistem menolak pembatalan dan meminta alasan pembatalan.",
+        "Sistem menampilkan validasi alasan pembatalan.",
+        "Valid"
+      ],
+      [
+        "D31",
+        "Pengujian perubahan status pesanan yang sudah dibayar.",
+        "Sistem menolak perubahan status pesanan.",
+        "Sistem menolak perubahan status pada pesanan yang sudah dibayar.",
+        "Valid"
+      ],
+      [
+        "D32",
+        "Pengujian checkout dengan data valid.",
+        "Sistem membuat transaksi baru, menyimpan rincian transaksi, dan menampilkan nota transaksi.",
+        "Sistem berhasil membuat transaksi baru dan menampilkan data nota transaksi.",
+        "Valid"
+      ],
+      [
+        "D33",
+        "Pengujian checkout tanpa item transaksi.",
+        "Sistem menolak checkout.",
+        "Sistem menampilkan pesan tidak ada item untuk di-checkout.",
+        "Valid"
+      ],
+      [
+        "D34",
+        "Pengujian checkout arrival tidak aktif.",
+        "Sistem menolak checkout.",
+        "Sistem menampilkan pesan bahwa kedatangan sudah tidak aktif.",
+        "Valid"
+      ],
+      [
+        "D35",
+        "Pengujian checkout metode transfer tanpa bukti pembayaran.",
+        "Sistem menolak checkout dan meminta bukti pembayaran.",
+        "Sistem menampilkan validasi bukti pembayaran.",
+        "Valid"
+      ],
+      [
+        "D36",
+        "Pengujian checkout dengan berat ikan 0.",
+        "Sistem menolak input karena berat ikan minimal 0,01 kg.",
+        "Sistem menampilkan validasi berat ikan.",
+        "Valid"
+      ],
+      [
+        "D37",
+        "Pengujian checkout dengan penalti valid.",
+        "Sistem menyimpan item penalti ke transaction_items.",
+        "Sistem berhasil menyimpan item penalti pada transaksi.",
+        "Valid"
+      ],
+      [
+        "D38",
+        "Pengujian checkout dengan tips valid.",
+        "Sistem menyimpan nilai tips pada transaksi.",
+        "Sistem berhasil menyimpan nilai tips.",
+        "Valid"
+      ],
+      [
+        "D39",
+        "Pengujian tampilan nota transaksi.",
+        "Sistem menampilkan kode transaksi, pelanggan, item, diskon, total, metode bayar, dan poin.",
+        "Sistem berhasil menampilkan detail nota transaksi.",
+        "Valid"
+      ],
+      [
+        "D40",
+        "Pengujian riwayat transaksi pegawai.",
+        "Sistem menampilkan daftar transaksi.",
+        "Sistem berhasil menampilkan riwayat transaksi pegawai.",
+        "Valid"
+      ],
+      [
+        "D41",
+        "Pengujian filter transaksi pegawai.",
+        "Sistem menampilkan transaksi sesuai tanggal, metode bayar, atau kode transaksi.",
+        "Sistem berhasil menampilkan transaksi sesuai filter.",
+        "Valid"
+      ],
+      [
+        "D42",
+        "Pengujian tampilan stok ikan pegawai.",
+        "Sistem menampilkan daftar stok ikan dan status stok.",
+        "Sistem berhasil menampilkan data stok ikan.",
+        "Valid"
+      ]
+    ],
+    "row_count": 43,
+    "col_count": 5,
+    "caption": "Tabel 75. Hasil Pengujian Fitur Pegawai",
+    "number": "75",
+    "title": "Hasil Pengujian Fitur Pegawai",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_75_Hasil_Pengujian_Fitur_Pegawai.csv"
+  },
+  {
+    "type": "table",
+    "block": 1440,
+    "table_index": 81,
+    "rows": [
+      [
+        "Test ID",
+        "Rincian Pengujian",
+        "Hasil yang Diharapkan",
+        "Hasil Pengujian",
+        "Status"
+      ],
+      [
+        "E01",
+        "Pengujian dashboard pemilik.",
+        "Sistem menampilkan ringkasan laporan, transaksi, member, diskon, dan stok ikan.",
+        "Sistem berhasil menampilkan ringkasan dashboard pemilik.",
+        "Valid"
+      ],
+      [
+        "E02",
+        "Pengujian daftar member pending.",
+        "Sistem menampilkan member berstatus pending.",
+        "Sistem berhasil menampilkan daftar member pending.",
+        "Valid"
+      ],
+      [
+        "E03",
+        "Pengujian persetujuan member.",
+        "Sistem mengubah status user menjadi active dan membuat data member.",
+        "Sistem berhasil menyetujui member.",
+        "Valid"
+      ],
+      [
+        "E04",
+        "Pengujian penolakan member dengan alasan.",
+        "Sistem mengubah status menjadi rejected dan menyimpan alasan penolakan.",
+        "Sistem berhasil menolak member dan menyimpan alasan.",
+        "Valid"
+      ],
+      [
+        "E05",
+        "Pengujian nonaktif member.",
+        "Sistem mengubah status member menjadi deactivated.",
+        "Sistem berhasil menonaktifkan member.",
+        "Valid"
+      ],
+      [
+        "E06",
+        "Pengujian daftar member aktif.",
+        "Sistem menampilkan member aktif.",
+        "Sistem berhasil menampilkan daftar member aktif.",
+        "Valid"
+      ],
+      [
+        "E07",
+        "Pengujian daftar member nonaktif.",
+        "Sistem menampilkan member nonaktif.",
+        "Sistem berhasil menampilkan daftar member nonaktif.",
+        "Valid"
+      ],
+      [
+        "E08",
+        "Pengujian riwayat validasi member.",
+        "Sistem menampilkan riwayat validasi member.",
+        "Sistem berhasil menampilkan riwayat validasi member.",
+        "Valid"
+      ],
+      [
+        "E09",
+        "Pengujian daftar menu pemilik.",
+        "Sistem menampilkan semua menu.",
+        "Sistem berhasil menampilkan daftar menu pemilik.",
+        "Valid"
+      ],
+      [
+        "E10",
+        "Pengujian tambah menu valid.",
+        "Sistem menyimpan menu baru ke tabel menus.",
+        "Sistem berhasil menambahkan menu baru.",
+        "Valid"
+      ],
+      [
+        "E11",
+        "Pengujian tambah menu dengan field wajib kosong.",
+        "Sistem menolak input dan menampilkan validasi.",
+        "Sistem menampilkan validasi data menu.",
+        "Valid"
+      ],
+      [
+        "E12",
+        "Pengujian tambah menu dengan harga negatif.",
+        "Sistem menolak input harga negatif.",
+        "Sistem menampilkan validasi harga menu.",
+        "Valid"
+      ],
+      [
+        "E13",
+        "Pengujian ubah menu valid.",
+        "Sistem memperbarui data menu.",
+        "Sistem berhasil memperbarui data menu.",
+        "Valid"
+      ],
+      [
+        "E14",
+        "Pengujian hapus menu.",
+        "Sistem menghapus menu secara soft delete.",
+        "Sistem berhasil menghapus menu.",
+        "Valid"
+      ],
+      [
+        "E15",
+        "Pengujian ubah ketersediaan menu.",
+        "Sistem memperbarui availability menu.",
+        "Sistem berhasil memperbarui ketersediaan menu.",
+        "Valid"
+      ],
+      [
+        "E16",
+        "Pengujian menu spesial valid.",
+        "Sistem mengubah is_special menjadi aktif pada menu yang tersedia.",
+        "Sistem berhasil menjadikan menu sebagai menu spesial.",
+        "Valid"
+      ],
+      [
+        "E17",
+        "Pengujian menu spesial pada menu tidak tersedia.",
+        "Sistem menolak menu tidak tersedia untuk dijadikan menu spesial.",
+        "Sistem menampilkan pesan bahwa menu harus tersedia untuk dijadikan spesial.",
+        "Valid"
+      ],
+      [
+        "E18",
+        "Pengujian batas maksimal tiga menu spesial.",
+        "Sistem menolak menu spesial keempat.",
+        "Sistem menampilkan pesan maksimal tiga menu spesial aktif.",
+        "Valid"
+      ],
+      [
+        "E19",
+        "Pengujian daftar jenis ikan.",
+        "Sistem menampilkan data jenis ikan.",
+        "Sistem berhasil menampilkan daftar jenis ikan.",
+        "Valid"
+      ],
+      [
+        "E20",
+        "Pengujian tambah jenis ikan valid.",
+        "Sistem menyimpan jenis ikan dan membuat data stok awal.",
+        "Sistem berhasil menambahkan jenis ikan dan stok awal.",
+        "Valid"
+      ],
+      [
+        "E21",
+        "Pengujian tambah jenis ikan dengan harga kurang dari batas minimal.",
+        "Sistem menolak input harga ikan.",
+        "Sistem menampilkan validasi harga ikan.",
+        "Valid"
+      ],
+      [
+        "E22",
+        "Pengujian tambah jenis ikan dengan nama duplikat.",
+        "Sistem menolak nama jenis ikan yang sama.",
+        "Sistem menampilkan validasi nama jenis ikan duplikat.",
+        "Valid"
+      ],
+      [
+        "E23",
+        "Pengujian ubah jenis ikan.",
+        "Sistem memperbarui nama dan harga ikan.",
+        "Sistem berhasil memperbarui data jenis ikan.",
+        "Valid"
+      ],
+      [
+        "E24",
+        "Pengujian nonaktif jenis ikan.",
+        "Sistem mengubah status aktif jenis ikan.",
+        "Sistem berhasil memperbarui status aktif jenis ikan.",
+        "Valid"
+      ],
+      [
+        "E25",
+        "Pengujian tampilan stok ikan.",
+        "Sistem menampilkan stok ikan dan indikator stok menipis.",
+        "Sistem berhasil menampilkan data stok ikan.",
+        "Valid"
+      ],
+      [
+        "E26",
+        "Pengujian restock ikan valid.",
+        "Sistem menambah stok ikan dan menyimpan data restock_logs.",
+        "Sistem berhasil menambahkan stok ikan dan menyimpan riwayat restock.",
+        "Valid"
+      ],
+      [
+        "E27",
+        "Pengujian restock ikan dengan jumlah 0.",
+        "Sistem menolak restock karena jumlah minimal 0,1 kg.",
+        "Sistem menampilkan validasi jumlah restock.",
+        "Valid"
+      ],
+      [
+        "E28",
+        "Pengujian ubah ambang batas stok.",
+        "Sistem memperbarui alert_threshold_kg.",
+        "Sistem berhasil memperbarui ambang batas stok.",
+        "Valid"
+      ],
+      [
+        "E29",
+        "Pengujian laporan keuangan pemilik.",
+        "Sistem menampilkan ringkasan, breakdown, transaksi, stok, dan tren harian.",
+        "Sistem berhasil menampilkan laporan keuangan.",
+        "Valid"
+      ],
+      [
+        "E30",
+        "Pengujian export laporan keuangan.",
+        "Sistem menghasilkan file laporan sesuai data transaksi.",
+        "Sistem berhasil menghasilkan laporan untuk diekspor.",
+        "Valid"
+      ]
+    ],
+    "row_count": 31,
+    "col_count": 5,
+    "caption": "Tabel 76. Hasil Pengujian Fitur Pemilik",
+    "number": "76",
+    "title": "Hasil Pengujian Fitur Pemilik",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_76_Hasil_Pengujian_Fitur_Pemilik.csv"
+  },
+  {
+    "type": "table",
+    "block": 1448,
+    "table_index": 82,
+    "rows": [
+      [
+        "No",
+        "Deskripsi Tugas",
+        "Tujuan Evaluasi"
+      ],
+      [
+        "1",
+        "Meninjau ringkasan informasi pada Dashboard Owner.",
+        "Menilai kemudahan pemilik dalam memahami kondisi operasional dan informasi bisnis."
+      ],
+      [
+        "2",
+        "Membuka halaman Manajemen Member dan memeriksa salah satu data member.",
+        "Menilai kemudahan pemilik dalam mengakses data pelanggan terdaftar."
+      ],
+      [
+        "3",
+        "Membuka halaman Manajemen Menu dan memeriksa data menu yang tersedia.",
+        "Menilai kemudahan pemilik dalam mengelola informasi menu dan status ketersediaannya."
+      ],
+      [
+        "4",
+        "Membuka halaman Manajemen Ikan dan memeriksa data stok ikan.",
+        "Menilai kemudahan pemilik dalam memantau stok ikan sebagai dasar pengelolaan operasional."
+      ],
+      [
+        "5",
+        "Membuka halaman Laporan Keuangan dan melihat data transaksi beserta bukti pembayaran.",
+        "Menilai kemudahan pemilik dalam mengakses laporan, riwayat transaksi, dan dokumentasi pembayaran."
+      ]
+    ],
+    "row_count": 6,
+    "col_count": 3,
+    "caption": "Tabel 77. Skenario Tugas Pengujian Owner",
+    "number": "77",
+    "title": "Skenario Tugas Pengujian Owner",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_77_Skenario_Tugas_Pengujian_Owner.csv"
+  },
+  {
+    "type": "table",
+    "block": 1451,
+    "table_index": 83,
+    "rows": [
+      [
+        "No",
+        "Deskripsi Tugas",
+        "Tujuan Evaluasi"
+      ],
+      [
+        "1",
+        "Melakukan registrasi kedatangan pelanggan sesuai skenario yang diberikan.",
+        "Menilai kemudahan pegawai dalam mencatat kedatangan pelanggan member maupun guest."
+      ],
+      [
+        "2",
+        "Membuka halaman Kedatangan Hari Ini dan memilih salah satu kedatangan aktif.",
+        "Menilai kemudahan pegawai dalam memantau sesi kunjungan yang sedang berjalan."
+      ],
+      [
+        "3",
+        "Menambahkan pesanan pelanggan melalui halaman Tambah Pesanan.",
+        "Menilai kemudahan pegawai dalam mencatat pesanan secara digital."
+      ],
+      [
+        "4",
+        "Membuka halaman Pesanan Masuk dan memproses pesanan sampai selesai.",
+        "Menilai kemudahan pegawai dalam memantau dan memperbarui status pesanan."
+      ],
+      [
+        "5",
+        "Menyelesaikan pembayaran, termasuk mengunggah bukti pembayaran jika metode pembayaran memerlukan bukti.",
+        "Menilai kemudahan pegawai dalam menyelesaikan transaksi melalui alur checkout digital."
+      ],
+      [
+        "6",
+        "Membuka halaman Riwayat Transaksi dan memeriksa salah satu transaksi yang telah selesai.",
+        "Menilai kemudahan pegawai dalam mengakses kembali data transaksi pelanggan yang telah selesai, termasuk informasi pembayaran dan detail transaksi."
+      ]
+    ],
+    "row_count": 7,
+    "col_count": 3,
+    "caption": "Tabel 78. Skenario Tugas Pengujian Employee",
+    "number": "78",
+    "title": "Skenario Tugas Pengujian Employee",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_78_Skenario_Tugas_Pengujian_Employee.csv"
+  },
+  {
+    "type": "table",
+    "block": 1456,
+    "table_index": 84,
+    "rows": [
+      [
+        "No",
+        "Deskripsi Tugas",
+        "Tujuan Evaluasi"
+      ],
+      [
+        "1",
+        "Melihat informasi akun, poin, dan posisi pemeringkatan pada Dashboard Member.",
+        "Menilai kemudahan member dalam memahami status akun dan loyalitas."
+      ],
+      [
+        "2",
+        "Membuka halaman menu dan melihat daftar menu yang tersedia.",
+        "Menilai kemudahan member dalam mengakses informasi menu secara mandiri."
+      ],
+      [
+        "3",
+        "Melakukan pemesanan makanan atau minuman melalui halaman Pesanan.",
+        "Menilai kemudahan member dalam melakukan pemesanan mandiri tanpa bantuan langsung pegawai."
+      ],
+      [
+        "4",
+        "Membuka Riwayat Transaksi untuk melihat rekam jejak kunjungan dan pengeluaran.",
+        "Menilai kemudahan member dalam mengakses dokumentasi transaksi pribadi."
+      ],
+      [
+        "5",
+        "Membuka halaman Leaderboard untuk melihat pemeringkatan berdasarkan poin loyalitas.",
+        "Menilai kemudahan member dalam memahami fitur loyalitas berbasis pemeringkatan."
+      ]
+    ],
+    "row_count": 6,
+    "col_count": 3,
+    "caption": "Tabel 79. Skenario Tugas Pengujian Member",
+    "number": "79",
+    "title": "Skenario Tugas Pengujian Member",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_79_Skenario_Tugas_Pengujian_Member.csv"
+  },
+  {
+    "type": "table",
+    "block": 1461,
+    "table_index": 85,
+    "rows": [
+      [
+        "Kode Responden",
+        "Peran",
+        "Jumlah",
+        "Keterangan"
+      ],
+      [
+        "R1",
+        "Owner",
+        "1",
+        "Pemilik usaha"
+      ],
+      [
+        "R2",
+        "Employee",
+        "1",
+        "Pegawai operasional"
+      ],
+      [
+        "R3-R7",
+        "Member",
+        "5",
+        "Pelanggan yang berperan sebagai member"
+      ],
+      [
+        "Total",
+        "",
+        "7",
+        ""
+      ]
+    ],
+    "row_count": 5,
+    "col_count": 4,
+    "caption": "Tabel 80. Responden Pengujian Usability",
+    "number": "80",
+    "title": "Responden Pengujian Usability",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_80_Responden_Pengujian_Usability.csv"
+  },
+  {
+    "type": "table",
+    "block": 1466,
+    "table_index": 86,
+    "rows": [
+      [
+        "Kode Responden",
+        "Peran",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "P8",
+        "P9",
+        "P10"
+      ],
+      [
+        "R1",
+        "Owner",
+        "5",
+        "2",
+        "4",
+        "3",
+        "4",
+        "2",
+        "4",
+        "1",
+        "5",
+        "3"
+      ],
+      [
+        "R2",
+        "Employee",
+        "5",
+        "1",
+        "5",
+        "1",
+        "5",
+        "2",
+        "5",
+        "2",
+        "5",
+        "2"
+      ],
+      [
+        "R3",
+        "Member",
+        "5",
+        "1",
+        "5",
+        "1",
+        "5",
+        "2",
+        "5",
+        "2",
+        "5",
+        "1"
+      ],
+      [
+        "R4",
+        "Member",
+        "4",
+        "1",
+        "4",
+        "1",
+        "4",
+        "2",
+        "5",
+        "1",
+        "4",
+        "2"
+      ],
+      [
+        "R5",
+        "Member",
+        "5",
+        "1",
+        "5",
+        "2",
+        "4",
+        "1",
+        "5",
+        "2",
+        "5",
+        "1"
+      ],
+      [
+        "R6",
+        "Member",
+        "5",
+        "1",
+        "4",
+        "1",
+        "5",
+        "1",
+        "4",
+        "1",
+        "5",
+        "2"
+      ],
+      [
+        "R7",
+        "Member",
+        "5",
+        "1",
+        "5",
+        "1",
+        "4",
+        "1",
+        "5",
+        "2",
+        "4",
+        "1"
+      ]
+    ],
+    "row_count": 8,
+    "col_count": 12,
+    "caption": "Tabel 81. Hasil Jawaban Kuesioner SUS",
+    "number": "81",
+    "title": "Hasil Jawaban Kuesioner SUS",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_81_Hasil_Jawaban_Kuesioner_SUS.csv"
+  },
+  {
+    "type": "table",
+    "block": 1474,
+    "table_index": 87,
+    "rows": [
+      [
+        "Kode Responden",
+        "Peran",
+        "Jumlah Skor Konversi",
+        "Skor SUS"
+      ],
+      [
+        "R1",
+        "Owner",
+        "31",
+        "77,5"
+      ],
+      [
+        "R2",
+        "Employee",
+        "37",
+        "92,5"
+      ],
+      [
+        "R3",
+        "Member",
+        "38",
+        "95,0"
+      ],
+      [
+        "R4",
+        "Member",
+        "34",
+        "85,0"
+      ],
+      [
+        "R5",
+        "Member",
+        "37",
+        "92,5"
+      ],
+      [
+        "R6",
+        "Member",
+        "37",
+        "92,5"
+      ],
+      [
+        "R7",
+        "Member",
+        "37",
+        "92,5"
+      ],
+      [
+        "Total",
+        "",
+        "251",
+        "627,5"
+      ],
+      [
+        "Rata-rata",
+        "",
+        "",
+        "89,6"
+      ]
+    ],
+    "row_count": 10,
+    "col_count": 4,
+    "caption": "Tabel 82. Hasil Perhitungan Skor SUS",
+    "number": "82",
+    "title": "Hasil Perhitungan Skor SUS",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_82_Hasil_Perhitungan_Skor_SUS.csv"
+  },
+  {
+    "type": "table",
+    "block": 1582,
+    "table_index": 88,
+    "rows": [],
+    "row_count": 0,
+    "col_count": 0,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_88_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 1590,
+    "table_index": 89,
+    "rows": [
+      [
+        "Skenario Owner"
+      ]
+    ],
+    "row_count": 1,
+    "col_count": 1,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_89_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 1592,
+    "table_index": 90,
+    "rows": [
+      [
+        "Skenario Employee"
+      ],
+      [
+        "Skenario Member"
+      ]
+    ],
+    "row_count": 2,
+    "col_count": 1,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_90_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 1594,
+    "table_index": 91,
+    "rows": [],
+    "row_count": 0,
+    "col_count": 0,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_91_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 1596,
+    "table_index": 92,
+    "rows": [],
+    "row_count": 0,
+    "col_count": 0,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_92_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 1601,
+    "table_index": 93,
+    "rows": [
+      [
+        "Artefak",
+        "Tautan"
+      ],
+      [
+        "Repositori Back-End",
+        "https://github.com/Anymusz/pemancingan"
+      ],
+      [
+        "kuesioner SUS",
+        "https://bit.ly/pemancingan-s"
+      ]
+    ],
+    "row_count": 3,
+    "col_count": 2,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_93_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 1606,
+    "table_index": 94,
+    "rows": [],
+    "row_count": 0,
+    "col_count": 0,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_94_table.csv"
+  },
+  {
+    "type": "table",
+    "block": 1611,
+    "table_index": 95,
+    "rows": [],
+    "row_count": 0,
+    "col_count": 0,
+    "caption": "",
+    "number": "",
+    "title": "",
+    "csv_path": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\tmp\\source_extract\\tables\\table_95_table.csv"
+  }
+]

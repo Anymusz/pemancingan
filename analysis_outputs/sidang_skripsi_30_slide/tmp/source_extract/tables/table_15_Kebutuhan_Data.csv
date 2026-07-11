@@ -1,0 +1,13 @@
+No,Kode,Jenis Data,Deskripsi
+1,KD-01,Data pengguna,"Menyimpan data akun pemilik, pegawai, dan member."
+2,KD-02,Data member,"Menyimpan informasi keanggotaan, tier, poin, total berat ikan, dan QR code."
+3,KD-03,Data ikan,"Menyimpan jenis ikan, harga per kilogram, dan status ketersediaan."
+4,KD-04,Data stok ikan,"Menyimpan jumlah stok ikan, batas minimum stok, dan riwayat restok."
+5,KD-05,Data menu dan penyewaan,"Menyimpan data makanan, minuman, serta item penyewaan."
+6,KD-06,Data event dan informasi,Menyimpan data event atau informasi yang dipublikasikan oleh pengelola.
+7,KD-07,Data kedatangan,"Menyimpan data check-in, check-out, deposit, status kedatangan, dan petugas pencatat."
+8,KD-08,Data pesanan,Menyimpan data pesanan menu atau item penyewaan sebelum transaksi akhir.
+9,KD-09,Data transaksi,"Menyimpan transaksi utama, metode pembayaran, diskon, poin, dan total pembayaran."
+10,KD-10,Data detail transaksi,"Menyimpan rincian item transaksi, seperti ikan, menu, penyewaan, atau penalti."
+11,KD-11,Data voucher dan leaderboard,"Menyimpan data voucher, konfigurasi voucher, periode, status voucher, dan peringkat member."
+12,KD-12,Data notifikasi dan konfigurasi,"Menyimpan notifikasi pengguna, konfigurasi deposit pelanggan non-member, dan konfigurasi QRIS."

@@ -1,0 +1,20 @@
+Nama Use Case,Mengelola Voucher
+ID Use Case,UC-26
+Aktor,Pemilik
+Deskripsi,"Proses pemilik mengonfigurasi nominal hadiah voucher bulanan, memantau riwayat distribusi voucher, serta sistem menerbitkan voucher otomatis kepada member Top 3 berdasarkan hasil leaderboard dan konfigurasi yang berlaku."
+Precondition,Aktor telah login sebagai pemilik atau jadwal penerbitan voucher otomatis berjalan.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman Kelola Voucher,
+,2. Sistem menampilkan data konfigurasi voucher dan riwayat distribusi voucher
+3. Aktor mengatur nominal hadiah atau ketentuan voucher bulanan,
+,4. Sistem memvalidasi konfigurasi voucher
+,5. Sistem menyimpan konfigurasi voucher
+6. Aktor melihat riwayat distribusi voucher,
+,7. Sistem menampilkan daftar voucher yang telah diterbitkan
+Skenario Alternatif
+1. Sistem menjalankan proses penerbitan voucher otomatis pada jadwal tertentu,
+,2. Sistem memeriksa Top 3 member berdasarkan hasil leaderboard
+,3. Sistem menerbitkan voucher otomatis kepada member yang memenuhi ketentuan
+,4. Sistem menyimpan riwayat distribusi voucher
+Post Condition,Konfigurasi voucher tersimpan dan voucher otomatis dapat diterbitkan kepada member Top 3 berdasarkan leaderboard.

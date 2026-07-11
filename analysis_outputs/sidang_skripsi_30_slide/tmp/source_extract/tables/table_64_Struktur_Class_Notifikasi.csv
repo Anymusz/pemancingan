@@ -1,0 +1,11 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,user_id,Bigint,20,"FK, INDEX"
+3,type,Varchar,255,
+4,title,Varchar,255,
+5,body,Varchar,255,
+6,data,Json,,
+7,is_read,Boolean,,INDEX
+8,read_at,Timestamp,,
+9,created_at,Timestamp,,
+10,updated_at,Timestamp,,

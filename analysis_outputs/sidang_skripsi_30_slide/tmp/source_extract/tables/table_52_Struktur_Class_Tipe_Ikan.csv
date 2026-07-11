@@ -1,0 +1,8 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,name,Varchar,100,UNIQUE
+3,price_per_kg,Decimal,"10,2",
+4,is_active,Boolean,,
+5,created_at,Timestamp,,
+6,updated_at,Timestamp,,
+7,deleted_at,Timestamp,,

@@ -1,0 +1,15 @@
+Nama Use Case,Memantau Leaderboard
+ID Use Case,UC-28
+Aktor,Pemilik
+Deskripsi,"Proses pemilik memantau klasemen peringkat member berdasarkan akumulasi berat ikan, termasuk total poin, tier, dan potensi penerima voucher Top 3."
+Precondition,Aktor telah login sebagai pemilik dan data leaderboard tersedia.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman Leaderboard,
+,2. Sistem menampilkan klasemen peringkat member berdasarkan akumulasi berat ikan
+,"3. Sistem menampilkan informasi total poin, tier, dan peringkat member"
+,4. Sistem menampilkan Top 3 member yang berpotensi menerima voucher
+Skenario Alternatif
+1. Aktor membuka halaman Leaderboard saat data belum tersedia,
+,2. Sistem menampilkan pesan bahwa data leaderboard belum tersedia
+Post Condition,Aktor berhasil memantau leaderboard member dan potensi penerima voucher Top 3.

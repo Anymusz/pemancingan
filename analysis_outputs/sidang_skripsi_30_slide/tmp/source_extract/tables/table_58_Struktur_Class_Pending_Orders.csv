@@ -1,0 +1,17 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,arrival_id,Bigint,20,"FK, INDEX"
+3,item_type,Enum,,
+4,item_id,Bigint,20,FK
+5,item_name_snapshot,Varchar,100,
+6,quantity,Smallint,5,
+7,unit_price_snapshot,Decimal,"10,2",
+8,subtotal,Decimal,"10,2",
+9,payment_status,Enum,,INDEX
+10,production_status,Enum,,INDEX
+11,cancellation_reason,Varchar,255,
+12,order_source,Enum,,
+13,created_by,Bigint,20,FK
+14,transaction_id,Bigint,20,"FK, INDEX"
+15,created_at,Timestamp,,
+16,updated_at,Timestamp,,

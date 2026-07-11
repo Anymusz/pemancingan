@@ -1,0 +1,17 @@
+Nama Use Case,Mendaftar Akun
+ID Use Case,UC-02
+Aktor,Member
+Deskripsi,Proses pendaftaran akun mandiri oleh pelanggan melalui pengisian formulir di website.
+Precondition,Aktor belum memiliki akun member di sistem.
+Aktor,Sistem
+Skenario Utama
+1. Aktor mengakses website dan memilih menu daftar,
+,2. Sistem menampilkan formulir pendaftaran akun
+3. Aktor mengisi data diri pada formulir dan menekan tombol daftar,
+,4. Sistem memvalidasi kelengkapan data agar tidak ada duplikasi nomor HP
+,5. Sistem menyimpan data dengan status Menunggu Validasi
+Skenario Alternatif
+1. Aktor menginputkan nomor HP yang sudah terdaftar,
+,2. Sistem memvalidasi data dan mendeteksi duplikasi
+,3. Sistem menampilkan peringatan nomor sudah digunakan dan mengembalikan form
+Post Condition,Akun tersimpan dan menunggu persetujuan validasi oleh Pemilik.

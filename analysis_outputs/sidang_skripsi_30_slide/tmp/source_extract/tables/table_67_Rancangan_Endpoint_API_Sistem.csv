@@ -1,0 +1,11 @@
+No,Method,Endpoint,Fungsi,Aktor
+1,POST,/api/login,Login pengguna,"Pemilik, Pegawai, Member"
+2,POST,/api/register,Registrasi akun member,Member
+3,GET,/api/member/profile,Menampilkan profil dan dashboard member,Member
+4,GET,/api/leaderboard,"Menampilkan leaderboard public, termasuk member","Publik, Member"
+5,POST,/api/employee/check-in,Mencatat kedatangan member atau tamu,Pegawai
+6,GET,/api/employee/today-arrivals,Menampilkan kedatangan hari ini,Pegawai
+7,POST,/api/member/orders,Membuat pesanan menu oleh member,Member
+8,POST,/api/employee/pending-orders,Membuat pesanan pelanggan oleh pegawai,Pegawai
+9,POST,/api/employee/checkout,Memproses checkout transaksi,Pegawai
+10,GET,/api/owner/reports/summary,Menampilkan ringkasan laporan operasional,Pemilik

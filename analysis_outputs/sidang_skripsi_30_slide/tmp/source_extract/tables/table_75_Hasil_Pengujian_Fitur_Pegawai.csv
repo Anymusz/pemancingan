@@ -1,0 +1,43 @@
+Test ID,Rincian Pengujian,Hasil yang Diharapkan,Hasil Pengujian,Status
+D01,Pengujian pencarian member aktif.,Sistem menampilkan data member sesuai kata kunci.,Sistem berhasil menampilkan data member yang sesuai.,Valid
+D02,Pengujian pencarian member dengan kata kunci kosong.,Sistem menampilkan daftar kosong tanpa error.,Sistem berhasil menampilkan daftar kosong.,Valid
+D03,Pengujian pencarian member yang tidak ditemukan.,Sistem menampilkan data kosong.,Sistem berhasil menampilkan data kosong.,Valid
+D04,Pengujian validasi QR code member valid.,Sistem menampilkan data member berdasarkan QR code.,Sistem berhasil menampilkan data member sesuai QR code.,Valid
+D05,Pengujian validasi QR code tidak valid.,Sistem menolak QR code dan menampilkan pesan kesalahan.,Sistem menolak QR code tidak valid.,Valid
+D06,Pengujian check-in member aktif.,Sistem membuat data arrivals dengan status active.,Sistem berhasil membuat data kedatangan member.,Valid
+D07,Pengujian check-in member yang sudah check-in hari ini.,Sistem menolak check-in ulang.,Sistem berhasil menolak check-in ulang.,Valid
+D08,Pengujian check-in member tidak aktif.,Sistem menolak check-in member.,Sistem menampilkan pesan member tidak aktif.,Valid
+D09,Pengujian check-in member dengan member_id kosong.,Sistem menolak input dan menampilkan validasi.,Sistem menampilkan validasi data member.,Valid
+D10,Pengujian check-in tamu dengan nama valid.,Sistem membuat data tamu pada arrivals dengan deposit.,Sistem berhasil membuat data kedatangan tamu.,Valid
+D11,Pengujian check-in tamu dengan nama kosong.,Sistem menolak input dan menampilkan validasi nama tamu.,Sistem menampilkan validasi nama tamu.,Valid
+D12,Pengujian daftar kedatangan hari ini.,Sistem menampilkan data member dan tamu pada hari berjalan.,Sistem berhasil menampilkan daftar kedatangan hari ini.,Valid
+D13,Pengujian pencarian data kedatangan aktif.,Sistem menampilkan data kedatangan sesuai kata kunci.,Sistem berhasil menampilkan data kedatangan aktif.,Valid
+D14,Pengujian check-out kedatangan aktif.,Sistem mengubah status kedatangan menjadi completed.,Sistem berhasil melakukan check-out kedatangan.,Valid
+D15,Pengujian check-out data kedatangan yang tidak ditemukan.,Sistem menolak dan menampilkan pesan data tidak ditemukan.,Sistem menolak check-out karena data tidak ditemukan.,Valid
+D16,Pengujian daftar menu pegawai.,Sistem menampilkan daftar menu.,Sistem berhasil menampilkan daftar menu pegawai.,Valid
+D17,Pengujian perubahan ketersediaan menu oleh pegawai.,Sistem mengubah status ketersediaan menu dari tersedia menjadi tidak tersedia atau sebaliknya.,Sistem berhasil mengubah status ketersediaan menu.,Valid
+D18,Pengujian tambah pesanan menu valid.,Sistem menyimpan pesanan menu ke tabel pending_orders.,Sistem berhasil menyimpan pesanan menu.,Valid
+D19,Pengujian tambah pesanan rental valid.,Sistem menyimpan pesanan rental ke tabel pending_orders.,Sistem berhasil menyimpan pesanan rental.,Valid
+D20,Pengujian tambah pesanan dengan arrival tidak aktif.,Sistem menolak pesanan.,Sistem menampilkan pesan arrival tidak aktif.,Valid
+D21,Pengujian tambah pesanan dengan quantity 0.,Sistem menolak pesanan karena quantity minimal 1.,Sistem menampilkan validasi quantity.,Valid
+D22,Pengujian tambah pesanan menu tanpa item_id.,Sistem menolak input dan meminta item_id.,Sistem menampilkan validasi item_id.,Valid
+D23,Pengujian tambah pesanan menu tidak tersedia.,Sistem menolak pesanan menu yang tidak tersedia.,Sistem menampilkan pesan menu tidak tersedia.,Valid
+D24,Pengujian tambah pesanan rental tidak aktif.,Sistem menolak pesanan rental yang tidak aktif.,Sistem menampilkan pesan rental tidak aktif.,Valid
+D25,Pengujian daftar pesanan masuk.,Sistem menampilkan pending order yang belum dibayar.,Sistem berhasil menampilkan daftar pesanan masuk.,Valid
+D26,Pengujian daftar pesanan pada arrival tertentu.,Sistem menampilkan pending order berdasarkan arrival_id.,Sistem berhasil menampilkan pesanan berdasarkan arrival.,Valid
+D27,Pengujian perubahan status pesanan menjadi processing.,Sistem memperbarui status menjadi sedang diproses.,Sistem berhasil memperbarui status pesanan menjadi processing.,Valid
+D28,Pengujian perubahan status pesanan menjadi done.,Sistem memperbarui status menjadi selesai.,Sistem berhasil memperbarui status pesanan menjadi done.,Valid
+D29,Pengujian pembatalan pending order dengan alasan.,Sistem mengubah status menjadi cancelled dan menyimpan alasan pembatalan.,Sistem berhasil membatalkan pending order dan menyimpan alasan.,Valid
+D30,Pengujian pembatalan pending order tanpa alasan.,Sistem menolak pembatalan dan meminta alasan pembatalan.,Sistem menampilkan validasi alasan pembatalan.,Valid
+D31,Pengujian perubahan status pesanan yang sudah dibayar.,Sistem menolak perubahan status pesanan.,Sistem menolak perubahan status pada pesanan yang sudah dibayar.,Valid
+D32,Pengujian checkout dengan data valid.,"Sistem membuat transaksi baru, menyimpan rincian transaksi, dan menampilkan nota transaksi.",Sistem berhasil membuat transaksi baru dan menampilkan data nota transaksi.,Valid
+D33,Pengujian checkout tanpa item transaksi.,Sistem menolak checkout.,Sistem menampilkan pesan tidak ada item untuk di-checkout.,Valid
+D34,Pengujian checkout arrival tidak aktif.,Sistem menolak checkout.,Sistem menampilkan pesan bahwa kedatangan sudah tidak aktif.,Valid
+D35,Pengujian checkout metode transfer tanpa bukti pembayaran.,Sistem menolak checkout dan meminta bukti pembayaran.,Sistem menampilkan validasi bukti pembayaran.,Valid
+D36,Pengujian checkout dengan berat ikan 0.,"Sistem menolak input karena berat ikan minimal 0,01 kg.",Sistem menampilkan validasi berat ikan.,Valid
+D37,Pengujian checkout dengan penalti valid.,Sistem menyimpan item penalti ke transaction_items.,Sistem berhasil menyimpan item penalti pada transaksi.,Valid
+D38,Pengujian checkout dengan tips valid.,Sistem menyimpan nilai tips pada transaksi.,Sistem berhasil menyimpan nilai tips.,Valid
+D39,Pengujian tampilan nota transaksi.,"Sistem menampilkan kode transaksi, pelanggan, item, diskon, total, metode bayar, dan poin.",Sistem berhasil menampilkan detail nota transaksi.,Valid
+D40,Pengujian riwayat transaksi pegawai.,Sistem menampilkan daftar transaksi.,Sistem berhasil menampilkan riwayat transaksi pegawai.,Valid
+D41,Pengujian filter transaksi pegawai.,"Sistem menampilkan transaksi sesuai tanggal, metode bayar, atau kode transaksi.",Sistem berhasil menampilkan transaksi sesuai filter.,Valid
+D42,Pengujian tampilan stok ikan pegawai.,Sistem menampilkan daftar stok ikan dan status stok.,Sistem berhasil menampilkan data stok ikan.,Valid

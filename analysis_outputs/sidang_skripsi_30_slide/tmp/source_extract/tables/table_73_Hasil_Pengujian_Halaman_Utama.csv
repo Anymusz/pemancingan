@@ -1,0 +1,8 @@
+Test ID,Rincian Pengujian,Hasil yang Diharapkan,Hasil Pengujian,Status
+B01,Pengujian tampilan leaderboard pada halaman utama.,Sistem menampilkan leaderboard berdasarkan data member.,Sistem berhasil menampilkan data leaderboard member.,Valid
+B02,Pengujian tampilan daftar event pada halaman utama.,Sistem menampilkan daftar event atau pengumuman yang tersedia.,Sistem berhasil menampilkan daftar event.,Valid
+B03,Pengujian tampilan detail event.,Sistem menampilkan detail event berdasarkan data yang dipilih.,Sistem berhasil menampilkan detail event.,Valid
+B04,Pengujian tampilan jenis ikan pada halaman utama.,Sistem menampilkan daftar jenis ikan yang tersedia.,Sistem berhasil menampilkan data jenis ikan.,Valid
+B05,Pengujian tampilan tier member pada halaman utama.,Sistem menampilkan daftar tier member.,Sistem berhasil menampilkan daftar tier member.,Valid
+B06,Pengujian tampilan menu spesial pada halaman utama.,Sistem menampilkan menu dengan status is_special.,Sistem berhasil menampilkan data menu spesial.,Valid
+B07,Pengujian pemanggilan ulang data menu spesial.,Sistem tetap menampilkan data menu spesial tanpa error ketika endpoint dipanggil kembali.,Sistem berhasil menampilkan data menu spesial pada pemanggilan ulang.,Valid

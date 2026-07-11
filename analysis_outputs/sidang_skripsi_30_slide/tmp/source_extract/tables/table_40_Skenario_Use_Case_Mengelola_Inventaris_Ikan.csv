@@ -1,0 +1,15 @@
+Nama Use Case,Mengelola Inventaris Ikan
+ID Use Case,UC-23
+Aktor,Pemilik
+Deskripsi,Pengelolaan referensi jenis ikan harga per kg dan restock fisik.
+Precondition,Aktor berada di menu Inventaris Ikan.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman Manajemen Jenis Ikan,
+,2. Sistem memuat tabel daftar referensi ikan beserta ketersediaan stoknya serta tabel data riwayat restock dari basis data
+"3. Aktor memilih aksi Restock pada tabel, menginput tambahan kilogram, lalu menekan Simpan",
+,"4. Sistem menambah stok fisik, mencatat log riwayat (timestamp), dan secara otomatis mengirimkan notifikasi broadcast ke seluruh member"
+Skenario Alternatif
+"1. Aktor melakukan operasi Tambah jenis ikan baru, Mengedit data (nama/harga/status), atau Menghapus referensi ikan",
+,2. Sistem memvalidasi perintah tersebut dan memperbarui atau menghapus referensi data ikan secara permanen dari basis data
+Post Condition,Stok fisik dan harga referensi ikan menjadi terkoordinasi dan akurat.

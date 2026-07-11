@@ -1,0 +1,18 @@
+Nama Use Case,Mengelola Menu
+ID Use Case,UC-22
+Aktor,Pemilik
+Deskripsi,"Proses pemilik menambah, mengubah nama/harga, menghapus data menu makanan/minuman, serta menandai atau membatalkan status menu spesial."
+Precondition,Aktor telah login sebagai pemilik dan berada pada halaman kelola menu.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman Kelola Menu,
+,2. Sistem menampilkan daftar menu makanan dan minuman
+"3. Aktor menambah, mengubah, menghapus, atau mengatur data menu",
+,4. Sistem memvalidasi data menu
+,5. Sistem menyimpan perubahan data menu
+6. Aktor menandai atau membatalkan status menu spesial,
+,7. Sistem memperbarui status menu spesial
+Skenario Alternatif
+1. Aktor menandai menu spesial ketika jumlah menu spesial aktif sudah mencapai 3 menu,
+,2. Sistem menolak perubahan dan menampilkan pesan bahwa menu spesial maksimal 3 menu
+Post Condition,Data menu berhasil diperbarui pada sistem.

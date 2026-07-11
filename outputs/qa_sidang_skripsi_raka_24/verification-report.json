@@ -1,0 +1,117 @@
+{
+  "pptx": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\outputs\\Sidang_Skripsi_Raka_Bagaskara_Putra.pptx",
+  "slideCount": 24,
+  "expectedSlideCount": 24,
+  "renderedPngCount": 24,
+  "outOfBounds": [],
+  "activityDiagramMentions": [],
+  "slide11Image": {
+    "bbox": [
+      245.67,
+      165,
+      788.67,
+      455
+    ],
+    "contentType": "image/png",
+    "byteLength": 297666
+  },
+  "slideTitles": [
+    {
+      "slide": 1,
+      "title": "Perancangan dan Implementasi Back-End Sistem Informasi untuk Mendukung Digitalisasi Bisnis Pemancingan S Menggunakan Metodologi Rapid Application Development (RAD)"
+    },
+    {
+      "slide": 2,
+      "title": "KONTEKS MASALAH"
+    },
+    {
+      "slide": 3,
+      "title": "ARAH PENELITIAN"
+    },
+    {
+      "slide": 4,
+      "title": "RUANG LINGKUP"
+    },
+    {
+      "slide": 5,
+      "title": "METODOLOGI"
+    },
+    {
+      "slide": 6,
+      "title": "PENGUMPULAN DATA"
+    },
+    {
+      "slide": 7,
+      "title": "PLANNING"
+    },
+    {
+      "slide": 8,
+      "title": "ANALYSIS"
+    },
+    {
+      "slide": 9,
+      "title": "ANALYSIS"
+    },
+    {
+      "slide": 10,
+      "title": "DESIGN"
+    },
+    {
+      "slide": 11,
+      "title": "DESIGN"
+    },
+    {
+      "slide": 12,
+      "title": "DESIGN DATABASE"
+    },
+    {
+      "slide": 13,
+      "title": "DESIGN API"
+    },
+    {
+      "slide": 14,
+      "title": "ARSITEKTUR"
+    },
+    {
+      "slide": 15,
+      "title": "TEKNOLOGI"
+    },
+    {
+      "slide": 16,
+      "title": "IMPLEMENTASI DATABASE"
+    },
+    {
+      "slide": 17,
+      "title": "AUTENTIKASI"
+    },
+    {
+      "slide": 18,
+      "title": "LOGIKA BISNIS"
+    },
+    {
+      "slide": 19,
+      "title": "ENDPOINT API"
+    },
+    {
+      "slide": 20,
+      "title": "INTEGRASI UI"
+    },
+    {
+      "slide": 21,
+      "title": "PENGUJIAN"
+    },
+    {
+      "slide": 22,
+      "title": "HASIL SUS"
+    },
+    {
+      "slide": 23,
+      "title": "KESIMPULAN"
+    },
+    {
+      "slide": 24,
+      "title": "SARAN"
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,17 @@
+Nama Use Case,Melihat Riwayat Transaksi Pelanggan
+ID Use Case,UC-13
+Aktor,Pegawai
+Deskripsi,Proses pegawai melihat seluruh riwayat transaksi operasional pengunjung serta membuka detail nota transaksi untuk kebutuhan verifikasi kasir.
+Precondition,Aktor telah login sebagai pegawai dan data transaksi pelanggan tersedia.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman riwayat transaksi pelanggan,
+,2. Sistem menampilkan daftar riwayat transaksi operasional pengunjung
+3. Aktor memilih salah satu transaksi pelanggan,
+,4. Sistem menampilkan detail transaksi atau nota digital
+"5. Aktor memeriksa informasi item transaksi, total pembayaran, waktu transaksi, dan data pelanggan",
+,6. Sistem menampilkan data transaksi sesuai pilihan aktor
+Skenario Alternatif
+1. Aktor mencari transaksi yang tidak tersedia,
+,2. Sistem menampilkan pesan bahwa data transaksi tidak ditemukan
+Post Condition,Aktor berhasil melihat riwayat transaksi pelanggan dan detail nota transaksi yang dipilih.

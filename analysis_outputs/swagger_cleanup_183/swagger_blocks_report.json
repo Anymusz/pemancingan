@@ -1,0 +1,2721 @@
+{
+  "blockCount": 1604,
+  "matches": [
+    {
+      "index": 233,
+      "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI162",
+      "context": [
+        {
+          "index": 228,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 62. Kode TransactionController Perhitungan Pembayaran155",
+          "hasDrawing": false
+        },
+        {
+          "index": 229,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 63. Kode TransactionController Update Stok dan Member157",
+          "hasDrawing": false
+        },
+        {
+          "index": 230,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 64. Potongan Kode Middleware CheckRole158",
+          "hasDrawing": false
+        },
+        {
+          "index": 231,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 65. Potongan Kode Alias Middleware Role159",
+          "hasDrawing": false
+        },
+        {
+          "index": 232,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 66. Potongan Kode Route Group API Berdasarkan Role159",
+          "hasDrawing": false
+        },
+        {
+          "index": 233,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI162",
+          "hasDrawing": false
+        },
+        {
+          "index": 234,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 68. Request Login pada Swagger162",
+          "hasDrawing": false
+        },
+        {
+          "index": 235,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 69. Request Pesanan Member163",
+          "hasDrawing": false
+        },
+        {
+          "index": 236,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+          "hasDrawing": false
+        },
+        {
+          "index": 237,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 71. Response Endpoint GET Events165",
+          "hasDrawing": false
+        },
+        {
+          "index": 238,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 72. Response Login Owner166",
+          "hasDrawing": false
+        },
+        {
+          "index": 239,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 73. Response Endpoint Protected167",
+          "hasDrawing": false
+        },
+        {
+          "index": 240,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 74. Response Pesanan Member168",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 234,
+      "text": "Gambar 68. Request Login pada Swagger162",
+      "context": [
+        {
+          "index": 229,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 63. Kode TransactionController Update Stok dan Member157",
+          "hasDrawing": false
+        },
+        {
+          "index": 230,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 64. Potongan Kode Middleware CheckRole158",
+          "hasDrawing": false
+        },
+        {
+          "index": 231,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 65. Potongan Kode Alias Middleware Role159",
+          "hasDrawing": false
+        },
+        {
+          "index": 232,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 66. Potongan Kode Route Group API Berdasarkan Role159",
+          "hasDrawing": false
+        },
+        {
+          "index": 233,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI162",
+          "hasDrawing": false
+        },
+        {
+          "index": 234,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 68. Request Login pada Swagger162",
+          "hasDrawing": false
+        },
+        {
+          "index": 235,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 69. Request Pesanan Member163",
+          "hasDrawing": false
+        },
+        {
+          "index": 236,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+          "hasDrawing": false
+        },
+        {
+          "index": 237,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 71. Response Endpoint GET Events165",
+          "hasDrawing": false
+        },
+        {
+          "index": 238,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 72. Response Login Owner166",
+          "hasDrawing": false
+        },
+        {
+          "index": 239,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 73. Response Endpoint Protected167",
+          "hasDrawing": false
+        },
+        {
+          "index": 240,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 74. Response Pesanan Member168",
+          "hasDrawing": false
+        },
+        {
+          "index": 241,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 75. Response Checkout Pegawai169",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 235,
+      "text": "Gambar 69. Request Pesanan Member163",
+      "context": [
+        {
+          "index": 230,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 64. Potongan Kode Middleware CheckRole158",
+          "hasDrawing": false
+        },
+        {
+          "index": 231,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 65. Potongan Kode Alias Middleware Role159",
+          "hasDrawing": false
+        },
+        {
+          "index": 232,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 66. Potongan Kode Route Group API Berdasarkan Role159",
+          "hasDrawing": false
+        },
+        {
+          "index": 233,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI162",
+          "hasDrawing": false
+        },
+        {
+          "index": 234,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 68. Request Login pada Swagger162",
+          "hasDrawing": false
+        },
+        {
+          "index": 235,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 69. Request Pesanan Member163",
+          "hasDrawing": false
+        },
+        {
+          "index": 236,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+          "hasDrawing": false
+        },
+        {
+          "index": 237,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 71. Response Endpoint GET Events165",
+          "hasDrawing": false
+        },
+        {
+          "index": 238,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 72. Response Login Owner166",
+          "hasDrawing": false
+        },
+        {
+          "index": 239,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 73. Response Endpoint Protected167",
+          "hasDrawing": false
+        },
+        {
+          "index": 240,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 74. Response Pesanan Member168",
+          "hasDrawing": false
+        },
+        {
+          "index": 241,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 75. Response Checkout Pegawai169",
+          "hasDrawing": false
+        },
+        {
+          "index": 242,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 76. Halaman Utama Prototype171",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 236,
+      "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+      "context": [
+        {
+          "index": 231,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 65. Potongan Kode Alias Middleware Role159",
+          "hasDrawing": false
+        },
+        {
+          "index": 232,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 66. Potongan Kode Route Group API Berdasarkan Role159",
+          "hasDrawing": false
+        },
+        {
+          "index": 233,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI162",
+          "hasDrawing": false
+        },
+        {
+          "index": 234,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 68. Request Login pada Swagger162",
+          "hasDrawing": false
+        },
+        {
+          "index": 235,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 69. Request Pesanan Member163",
+          "hasDrawing": false
+        },
+        {
+          "index": 236,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+          "hasDrawing": false
+        },
+        {
+          "index": 237,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 71. Response Endpoint GET Events165",
+          "hasDrawing": false
+        },
+        {
+          "index": 238,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 72. Response Login Owner166",
+          "hasDrawing": false
+        },
+        {
+          "index": 239,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 73. Response Endpoint Protected167",
+          "hasDrawing": false
+        },
+        {
+          "index": 240,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 74. Response Pesanan Member168",
+          "hasDrawing": false
+        },
+        {
+          "index": 241,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 75. Response Checkout Pegawai169",
+          "hasDrawing": false
+        },
+        {
+          "index": 242,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 76. Halaman Utama Prototype171",
+          "hasDrawing": false
+        },
+        {
+          "index": 243,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 77. Halaman Login Prototype172",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 237,
+      "text": "Gambar 71. Response Endpoint GET Events165",
+      "context": [
+        {
+          "index": 232,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 66. Potongan Kode Route Group API Berdasarkan Role159",
+          "hasDrawing": false
+        },
+        {
+          "index": 233,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI162",
+          "hasDrawing": false
+        },
+        {
+          "index": 234,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 68. Request Login pada Swagger162",
+          "hasDrawing": false
+        },
+        {
+          "index": 235,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 69. Request Pesanan Member163",
+          "hasDrawing": false
+        },
+        {
+          "index": 236,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+          "hasDrawing": false
+        },
+        {
+          "index": 237,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 71. Response Endpoint GET Events165",
+          "hasDrawing": false
+        },
+        {
+          "index": 238,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 72. Response Login Owner166",
+          "hasDrawing": false
+        },
+        {
+          "index": 239,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 73. Response Endpoint Protected167",
+          "hasDrawing": false
+        },
+        {
+          "index": 240,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 74. Response Pesanan Member168",
+          "hasDrawing": false
+        },
+        {
+          "index": 241,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 75. Response Checkout Pegawai169",
+          "hasDrawing": false
+        },
+        {
+          "index": 242,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 76. Halaman Utama Prototype171",
+          "hasDrawing": false
+        },
+        {
+          "index": 243,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 77. Halaman Login Prototype172",
+          "hasDrawing": false
+        },
+        {
+          "index": 244,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 78. Dashboard Member174",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 238,
+      "text": "Gambar 72. Response Login Owner166",
+      "context": [
+        {
+          "index": 233,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI162",
+          "hasDrawing": false
+        },
+        {
+          "index": 234,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 68. Request Login pada Swagger162",
+          "hasDrawing": false
+        },
+        {
+          "index": 235,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 69. Request Pesanan Member163",
+          "hasDrawing": false
+        },
+        {
+          "index": 236,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+          "hasDrawing": false
+        },
+        {
+          "index": 237,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 71. Response Endpoint GET Events165",
+          "hasDrawing": false
+        },
+        {
+          "index": 238,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 72. Response Login Owner166",
+          "hasDrawing": false
+        },
+        {
+          "index": 239,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 73. Response Endpoint Protected167",
+          "hasDrawing": false
+        },
+        {
+          "index": 240,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 74. Response Pesanan Member168",
+          "hasDrawing": false
+        },
+        {
+          "index": 241,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 75. Response Checkout Pegawai169",
+          "hasDrawing": false
+        },
+        {
+          "index": 242,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 76. Halaman Utama Prototype171",
+          "hasDrawing": false
+        },
+        {
+          "index": 243,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 77. Halaman Login Prototype172",
+          "hasDrawing": false
+        },
+        {
+          "index": 244,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 78. Dashboard Member174",
+          "hasDrawing": false
+        },
+        {
+          "index": 245,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 79. Halaman Pesanan Member175",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 239,
+      "text": "Gambar 73. Response Endpoint Protected167",
+      "context": [
+        {
+          "index": 234,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 68. Request Login pada Swagger162",
+          "hasDrawing": false
+        },
+        {
+          "index": 235,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 69. Request Pesanan Member163",
+          "hasDrawing": false
+        },
+        {
+          "index": 236,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+          "hasDrawing": false
+        },
+        {
+          "index": 237,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 71. Response Endpoint GET Events165",
+          "hasDrawing": false
+        },
+        {
+          "index": 238,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 72. Response Login Owner166",
+          "hasDrawing": false
+        },
+        {
+          "index": 239,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 73. Response Endpoint Protected167",
+          "hasDrawing": false
+        },
+        {
+          "index": 240,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 74. Response Pesanan Member168",
+          "hasDrawing": false
+        },
+        {
+          "index": 241,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 75. Response Checkout Pegawai169",
+          "hasDrawing": false
+        },
+        {
+          "index": 242,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 76. Halaman Utama Prototype171",
+          "hasDrawing": false
+        },
+        {
+          "index": 243,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 77. Halaman Login Prototype172",
+          "hasDrawing": false
+        },
+        {
+          "index": 244,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 78. Dashboard Member174",
+          "hasDrawing": false
+        },
+        {
+          "index": 245,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 79. Halaman Pesanan Member175",
+          "hasDrawing": false
+        },
+        {
+          "index": 246,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 80. Halaman Riwayat Transaksi Member176",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 240,
+      "text": "Gambar 74. Response Pesanan Member168",
+      "context": [
+        {
+          "index": 235,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 69. Request Pesanan Member163",
+          "hasDrawing": false
+        },
+        {
+          "index": 236,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+          "hasDrawing": false
+        },
+        {
+          "index": 237,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 71. Response Endpoint GET Events165",
+          "hasDrawing": false
+        },
+        {
+          "index": 238,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 72. Response Login Owner166",
+          "hasDrawing": false
+        },
+        {
+          "index": 239,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 73. Response Endpoint Protected167",
+          "hasDrawing": false
+        },
+        {
+          "index": 240,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 74. Response Pesanan Member168",
+          "hasDrawing": false
+        },
+        {
+          "index": 241,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 75. Response Checkout Pegawai169",
+          "hasDrawing": false
+        },
+        {
+          "index": 242,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 76. Halaman Utama Prototype171",
+          "hasDrawing": false
+        },
+        {
+          "index": 243,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 77. Halaman Login Prototype172",
+          "hasDrawing": false
+        },
+        {
+          "index": 244,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 78. Dashboard Member174",
+          "hasDrawing": false
+        },
+        {
+          "index": 245,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 79. Halaman Pesanan Member175",
+          "hasDrawing": false
+        },
+        {
+          "index": 246,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 80. Halaman Riwayat Transaksi Member176",
+          "hasDrawing": false
+        },
+        {
+          "index": 247,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 81. Halaman Leaderboard Member177",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 241,
+      "text": "Gambar 75. Response Checkout Pegawai169",
+      "context": [
+        {
+          "index": 236,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+          "hasDrawing": false
+        },
+        {
+          "index": 237,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 71. Response Endpoint GET Events165",
+          "hasDrawing": false
+        },
+        {
+          "index": 238,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 72. Response Login Owner166",
+          "hasDrawing": false
+        },
+        {
+          "index": 239,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 73. Response Endpoint Protected167",
+          "hasDrawing": false
+        },
+        {
+          "index": 240,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 74. Response Pesanan Member168",
+          "hasDrawing": false
+        },
+        {
+          "index": 241,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 75. Response Checkout Pegawai169",
+          "hasDrawing": false
+        },
+        {
+          "index": 242,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 76. Halaman Utama Prototype171",
+          "hasDrawing": false
+        },
+        {
+          "index": 243,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 77. Halaman Login Prototype172",
+          "hasDrawing": false
+        },
+        {
+          "index": 244,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 78. Dashboard Member174",
+          "hasDrawing": false
+        },
+        {
+          "index": 245,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 79. Halaman Pesanan Member175",
+          "hasDrawing": false
+        },
+        {
+          "index": 246,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 80. Halaman Riwayat Transaksi Member176",
+          "hasDrawing": false
+        },
+        {
+          "index": 247,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 81. Halaman Leaderboard Member177",
+          "hasDrawing": false
+        },
+        {
+          "index": 248,
+          "type": "p",
+          "style": "TableofFigures",
+          "text": "Gambar 82. Dashboard Pegawai178",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1193,
+      "text": "Gambar 67 sampai Gambar 70 memperlihatkan beberapa contoh dokumentasi endpoint API melalui Swagger/OpenAPI. Bukti tersebut meliputi pengelompokan endpoint, contoh request body, penggunaan token autentikasi, pengiriman bukti pembayaran, dan response data dari database. Dengan dokumentasi ini, jalur komunikasi antara frontend dan back-end dapat ditelusuri secara lebih jelas.",
+      "context": [
+        {
+          "index": 1188,
+          "type": "p",
+          "style": "Caption",
+          "text": "Tabel 70. Endpoint API",
+          "hasDrawing": false
+        },
+        {
+          "index": 1189,
+          "type": "tbl",
+          "style": "",
+          "text": "NoRole/AksesMethodURL EndpointRequest/ParameterKeterangan1AuthPOST/api/loginBody: login, passwordAutentikasi pengguna dan pembuatan token Sanctum.2AuthPOST/api/registerBody: name, phone, email, password, password_confirmation, addressRegistrasi akun ",
+          "hasDrawing": false
+        },
+        {
+          "index": 1190,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Tabel 71, request pada endpoint utama mengikuti aturan validasi back-end. Contohnya, endpoint pesanan member menggunakan items yang berisi menu_id dan quantity, endpoint pending order menggunakan item_type bernilai menu atau rental, endpoint checkout menggunakan fish_items dengan item_id dari tabel fish_types, sedangkan endpoint restock menggunakan quantity_kg untuk memperbarui stok ikan. Dengan format tersebut, data yang dikirim dari prototype dapat diproses sesuai struktur basis data yang telah diimplementasikan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1191,
+          "type": "p",
+          "style": "Heading4",
+          "text": "Dokumentasi Endpoint API melalui Swagger",
+          "hasDrawing": false
+        },
+        {
+          "index": 1192,
+          "type": "p",
+          "style": "",
+          "text": "Selain disajikan dalam bentuk tabel, implementasi endpoint API dibuktikan melalui screenshot Swagger/OpenAPI. Bukti ini digunakan untuk menunjukkan bahwa endpoint telah memiliki method, URL, request body atau parameter, status HTTP, dan response JSON yang dapat diuji langsung sebelum diintegrasikan dengan prototype antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1193,
+          "type": "p",
+          "style": "",
+          "text": "Gambar 67 sampai Gambar 70 memperlihatkan beberapa contoh dokumentasi endpoint API melalui Swagger/OpenAPI. Bukti tersebut meliputi pengelompokan endpoint, contoh request body, penggunaan token autentikasi, pengiriman bukti pembayaran, dan response data dari database. Dengan dokumentasi ini, jalur komunikasi antara frontend dan back-end dapat ditelusuri secara lebih jelas.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1194,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1195,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI",
+          "hasDrawing": false
+        },
+        {
+          "index": 1196,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 67, Swagger menampilkan identitas API Pemancingan S, server lokal, skema autentikasi Bearer Token, serta pengelompokan endpoint berdasarkan fitur dan role. Informasi ini menunjukkan bahwa endpoint API telah terdokumentasi dalam format OpenAPI.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1197,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1198,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 68. Request Login pada Swagger",
+          "hasDrawing": false
+        },
+        {
+          "index": 1199,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 68, Swagger digunakan untuk menguji endpoint login yang diimplementasikan pada AuthController. Endpoint ini menggunakan method POST untuk menerima data autentikasi berupa login dan password. Data tersebut kemudian diproses oleh back-end melalui validasi format input, pemeriksaan akun, dan verifikasi status pengguna. Pengujian ini memastikan bahwa endpoint login siap menjadi pintu awal autentikasi sebelum digunakan pada antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1200,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        }
+      ]
+    },
+    {
+      "index": 1195,
+      "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI",
+      "context": [
+        {
+          "index": 1190,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Tabel 71, request pada endpoint utama mengikuti aturan validasi back-end. Contohnya, endpoint pesanan member menggunakan items yang berisi menu_id dan quantity, endpoint pending order menggunakan item_type bernilai menu atau rental, endpoint checkout menggunakan fish_items dengan item_id dari tabel fish_types, sedangkan endpoint restock menggunakan quantity_kg untuk memperbarui stok ikan. Dengan format tersebut, data yang dikirim dari prototype dapat diproses sesuai struktur basis data yang telah diimplementasikan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1191,
+          "type": "p",
+          "style": "Heading4",
+          "text": "Dokumentasi Endpoint API melalui Swagger",
+          "hasDrawing": false
+        },
+        {
+          "index": 1192,
+          "type": "p",
+          "style": "",
+          "text": "Selain disajikan dalam bentuk tabel, implementasi endpoint API dibuktikan melalui screenshot Swagger/OpenAPI. Bukti ini digunakan untuk menunjukkan bahwa endpoint telah memiliki method, URL, request body atau parameter, status HTTP, dan response JSON yang dapat diuji langsung sebelum diintegrasikan dengan prototype antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1193,
+          "type": "p",
+          "style": "",
+          "text": "Gambar 67 sampai Gambar 70 memperlihatkan beberapa contoh dokumentasi endpoint API melalui Swagger/OpenAPI. Bukti tersebut meliputi pengelompokan endpoint, contoh request body, penggunaan token autentikasi, pengiriman bukti pembayaran, dan response data dari database. Dengan dokumentasi ini, jalur komunikasi antara frontend dan back-end dapat ditelusuri secara lebih jelas.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1194,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1195,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI",
+          "hasDrawing": false
+        },
+        {
+          "index": 1196,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 67, Swagger menampilkan identitas API Pemancingan S, server lokal, skema autentikasi Bearer Token, serta pengelompokan endpoint berdasarkan fitur dan role. Informasi ini menunjukkan bahwa endpoint API telah terdokumentasi dalam format OpenAPI.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1197,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1198,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 68. Request Login pada Swagger",
+          "hasDrawing": false
+        },
+        {
+          "index": 1199,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 68, Swagger digunakan untuk menguji endpoint login yang diimplementasikan pada AuthController. Endpoint ini menggunakan method POST untuk menerima data autentikasi berupa login dan password. Data tersebut kemudian diproses oleh back-end melalui validasi format input, pemeriksaan akun, dan verifikasi status pengguna. Pengujian ini memastikan bahwa endpoint login siap menjadi pintu awal autentikasi sebelum digunakan pada antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1200,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1201,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+          "hasDrawing": false
+        },
+        {
+          "index": 1202,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 70, Swagger digunakan untuk menguji endpoint checkout transaksi yang dapat diakses oleh pegawai. Request body pada endpoint ini memuat data transaksi, seperti arrival_id, fish_items, penalty_items, payment_method, tips, notes, dan payment_proof. Field payment_proof digunakan untuk mengunggah bukti pembayaran pada metode pembayaran QRIS atau transfer. Data yang dikirimkan melalui endpoint ini selanjutnya diproses oleh back-end untuk menyelesaikan transaksi sesuai aturan bisnis yang telah ditetapkan. Pengujian melalui Swagger menunjukkan bahwa endpoint checkout mampu menerima seluruh data yang diperlukan untuk proses penyelesaian transaksi pelanggan.",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1196,
+      "text": "Berdasarkan Gambar 67, Swagger menampilkan identitas API Pemancingan S, server lokal, skema autentikasi Bearer Token, serta pengelompokan endpoint berdasarkan fitur dan role. Informasi ini menunjukkan bahwa endpoint API telah terdokumentasi dalam format OpenAPI.",
+      "context": [
+        {
+          "index": 1191,
+          "type": "p",
+          "style": "Heading4",
+          "text": "Dokumentasi Endpoint API melalui Swagger",
+          "hasDrawing": false
+        },
+        {
+          "index": 1192,
+          "type": "p",
+          "style": "",
+          "text": "Selain disajikan dalam bentuk tabel, implementasi endpoint API dibuktikan melalui screenshot Swagger/OpenAPI. Bukti ini digunakan untuk menunjukkan bahwa endpoint telah memiliki method, URL, request body atau parameter, status HTTP, dan response JSON yang dapat diuji langsung sebelum diintegrasikan dengan prototype antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1193,
+          "type": "p",
+          "style": "",
+          "text": "Gambar 67 sampai Gambar 70 memperlihatkan beberapa contoh dokumentasi endpoint API melalui Swagger/OpenAPI. Bukti tersebut meliputi pengelompokan endpoint, contoh request body, penggunaan token autentikasi, pengiriman bukti pembayaran, dan response data dari database. Dengan dokumentasi ini, jalur komunikasi antara frontend dan back-end dapat ditelusuri secara lebih jelas.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1194,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1195,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI",
+          "hasDrawing": false
+        },
+        {
+          "index": 1196,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 67, Swagger menampilkan identitas API Pemancingan S, server lokal, skema autentikasi Bearer Token, serta pengelompokan endpoint berdasarkan fitur dan role. Informasi ini menunjukkan bahwa endpoint API telah terdokumentasi dalam format OpenAPI.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1197,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1198,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 68. Request Login pada Swagger",
+          "hasDrawing": false
+        },
+        {
+          "index": 1199,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 68, Swagger digunakan untuk menguji endpoint login yang diimplementasikan pada AuthController. Endpoint ini menggunakan method POST untuk menerima data autentikasi berupa login dan password. Data tersebut kemudian diproses oleh back-end melalui validasi format input, pemeriksaan akun, dan verifikasi status pengguna. Pengujian ini memastikan bahwa endpoint login siap menjadi pintu awal autentikasi sebelum digunakan pada antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1200,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1201,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+          "hasDrawing": false
+        },
+        {
+          "index": 1202,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 70, Swagger digunakan untuk menguji endpoint checkout transaksi yang dapat diakses oleh pegawai. Request body pada endpoint ini memuat data transaksi, seperti arrival_id, fish_items, penalty_items, payment_method, tips, notes, dan payment_proof. Field payment_proof digunakan untuk mengunggah bukti pembayaran pada metode pembayaran QRIS atau transfer. Data yang dikirimkan melalui endpoint ini selanjutnya diproses oleh back-end untuk menyelesaikan transaksi sesuai aturan bisnis yang telah ditetapkan. Pengujian melalui Swagger menunjukkan bahwa endpoint checkout mampu menerima seluruh data yang diperlukan untuk proses penyelesaian transaksi pelanggan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1203,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        }
+      ]
+    },
+    {
+      "index": 1198,
+      "text": "Gambar 68. Request Login pada Swagger",
+      "context": [
+        {
+          "index": 1193,
+          "type": "p",
+          "style": "",
+          "text": "Gambar 67 sampai Gambar 70 memperlihatkan beberapa contoh dokumentasi endpoint API melalui Swagger/OpenAPI. Bukti tersebut meliputi pengelompokan endpoint, contoh request body, penggunaan token autentikasi, pengiriman bukti pembayaran, dan response data dari database. Dengan dokumentasi ini, jalur komunikasi antara frontend dan back-end dapat ditelusuri secara lebih jelas.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1194,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1195,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI",
+          "hasDrawing": false
+        },
+        {
+          "index": 1196,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 67, Swagger menampilkan identitas API Pemancingan S, server lokal, skema autentikasi Bearer Token, serta pengelompokan endpoint berdasarkan fitur dan role. Informasi ini menunjukkan bahwa endpoint API telah terdokumentasi dalam format OpenAPI.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1197,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1198,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 68. Request Login pada Swagger",
+          "hasDrawing": false
+        },
+        {
+          "index": 1199,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 68, Swagger digunakan untuk menguji endpoint login yang diimplementasikan pada AuthController. Endpoint ini menggunakan method POST untuk menerima data autentikasi berupa login dan password. Data tersebut kemudian diproses oleh back-end melalui validasi format input, pemeriksaan akun, dan verifikasi status pengguna. Pengujian ini memastikan bahwa endpoint login siap menjadi pintu awal autentikasi sebelum digunakan pada antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1200,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1201,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+          "hasDrawing": false
+        },
+        {
+          "index": 1202,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 70, Swagger digunakan untuk menguji endpoint checkout transaksi yang dapat diakses oleh pegawai. Request body pada endpoint ini memuat data transaksi, seperti arrival_id, fish_items, penalty_items, payment_method, tips, notes, dan payment_proof. Field payment_proof digunakan untuk mengunggah bukti pembayaran pada metode pembayaran QRIS atau transfer. Data yang dikirimkan melalui endpoint ini selanjutnya diproses oleh back-end untuk menyelesaikan transaksi sesuai aturan bisnis yang telah ditetapkan. Pengujian melalui Swagger menunjukkan bahwa endpoint checkout mampu menerima seluruh data yang diperlukan untuk proses penyelesaian transaksi pelanggan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1203,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1204,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 75. Response Checkout Pegawai",
+          "hasDrawing": false
+        },
+        {
+          "index": 1205,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 75, endpoint POST /api/employee/checkout dieksekusi menggunakan format multipart/form-data dengan data transaksi berupa arrival_id, fish_items, payment_method, serta file payment_proof sebagai bukti pembayaran. Hasil pengujian menunjukkan response dengan status 201 yang menandakan bahwa proses checkout berhasil dilakukan dan data transaksi berhasil disimpan oleh sistem. Response yang dikembalikan memuat informasi transaksi yang telah diproses berdasarkan data checkout yang dikirimkan melalui Swagger. Hasil ini menunjukkan bahwa endpoint checkout mampu menerima, memvalidasi, dan memproses data transaksi secara terintegrasi sesuai aturan bisnis yang telah diterapkan pada sistem.",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1199,
+      "text": "Berdasarkan Gambar 68, Swagger digunakan untuk menguji endpoint login yang diimplementasikan pada AuthController. Endpoint ini menggunakan method POST untuk menerima data autentikasi berupa login dan password. Data tersebut kemudian diproses oleh back-end melalui validasi format input, pemeriksaan akun, dan verifikasi status pengguna. Pengujian ini memastikan bahwa endpoint login siap menjadi pintu awal autentikasi sebelum digunakan pada antarmuka pengguna.",
+      "context": [
+        {
+          "index": 1194,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1195,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI",
+          "hasDrawing": false
+        },
+        {
+          "index": 1196,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 67, Swagger menampilkan identitas API Pemancingan S, server lokal, skema autentikasi Bearer Token, serta pengelompokan endpoint berdasarkan fitur dan role. Informasi ini menunjukkan bahwa endpoint API telah terdokumentasi dalam format OpenAPI.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1197,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1198,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 68. Request Login pada Swagger",
+          "hasDrawing": false
+        },
+        {
+          "index": 1199,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 68, Swagger digunakan untuk menguji endpoint login yang diimplementasikan pada AuthController. Endpoint ini menggunakan method POST untuk menerima data autentikasi berupa login dan password. Data tersebut kemudian diproses oleh back-end melalui validasi format input, pemeriksaan akun, dan verifikasi status pengguna. Pengujian ini memastikan bahwa endpoint login siap menjadi pintu awal autentikasi sebelum digunakan pada antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1200,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1201,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+          "hasDrawing": false
+        },
+        {
+          "index": 1202,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 70, Swagger digunakan untuk menguji endpoint checkout transaksi yang dapat diakses oleh pegawai. Request body pada endpoint ini memuat data transaksi, seperti arrival_id, fish_items, penalty_items, payment_method, tips, notes, dan payment_proof. Field payment_proof digunakan untuk mengunggah bukti pembayaran pada metode pembayaran QRIS atau transfer. Data yang dikirimkan melalui endpoint ini selanjutnya diproses oleh back-end untuk menyelesaikan transaksi sesuai aturan bisnis yang telah ditetapkan. Pengujian melalui Swagger menunjukkan bahwa endpoint checkout mampu menerima seluruh data yang diperlukan untuk proses penyelesaian transaksi pelanggan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1203,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1204,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 75. Response Checkout Pegawai",
+          "hasDrawing": false
+        },
+        {
+          "index": 1205,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 75, endpoint POST /api/employee/checkout dieksekusi menggunakan format multipart/form-data dengan data transaksi berupa arrival_id, fish_items, payment_method, serta file payment_proof sebagai bukti pembayaran. Hasil pengujian menunjukkan response dengan status 201 yang menandakan bahwa proses checkout berhasil dilakukan dan data transaksi berhasil disimpan oleh sistem. Response yang dikembalikan memuat informasi transaksi yang telah diproses berdasarkan data checkout yang dikirimkan melalui Swagger. Hasil ini menunjukkan bahwa endpoint checkout mampu menerima, memvalidasi, dan memproses data transaksi secara terintegrasi sesuai aturan bisnis yang telah diterapkan pada sistem.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1206,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1201,
+      "text": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+      "context": [
+        {
+          "index": 1196,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 67, Swagger menampilkan identitas API Pemancingan S, server lokal, skema autentikasi Bearer Token, serta pengelompokan endpoint berdasarkan fitur dan role. Informasi ini menunjukkan bahwa endpoint API telah terdokumentasi dalam format OpenAPI.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1197,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1198,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 68. Request Login pada Swagger",
+          "hasDrawing": false
+        },
+        {
+          "index": 1199,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 68, Swagger digunakan untuk menguji endpoint login yang diimplementasikan pada AuthController. Endpoint ini menggunakan method POST untuk menerima data autentikasi berupa login dan password. Data tersebut kemudian diproses oleh back-end melalui validasi format input, pemeriksaan akun, dan verifikasi status pengguna. Pengujian ini memastikan bahwa endpoint login siap menjadi pintu awal autentikasi sebelum digunakan pada antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1200,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1201,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+          "hasDrawing": false
+        },
+        {
+          "index": 1202,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 70, Swagger digunakan untuk menguji endpoint checkout transaksi yang dapat diakses oleh pegawai. Request body pada endpoint ini memuat data transaksi, seperti arrival_id, fish_items, penalty_items, payment_method, tips, notes, dan payment_proof. Field payment_proof digunakan untuk mengunggah bukti pembayaran pada metode pembayaran QRIS atau transfer. Data yang dikirimkan melalui endpoint ini selanjutnya diproses oleh back-end untuk menyelesaikan transaksi sesuai aturan bisnis yang telah ditetapkan. Pengujian melalui Swagger menunjukkan bahwa endpoint checkout mampu menerima seluruh data yang diperlukan untuk proses penyelesaian transaksi pelanggan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1203,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1204,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 75. Response Checkout Pegawai",
+          "hasDrawing": false
+        },
+        {
+          "index": 1205,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 75, endpoint POST /api/employee/checkout dieksekusi menggunakan format multipart/form-data dengan data transaksi berupa arrival_id, fish_items, payment_method, serta file payment_proof sebagai bukti pembayaran. Hasil pengujian menunjukkan response dengan status 201 yang menandakan bahwa proses checkout berhasil dilakukan dan data transaksi berhasil disimpan oleh sistem. Response yang dikembalikan memuat informasi transaksi yang telah diproses berdasarkan data checkout yang dikirimkan melalui Swagger. Hasil ini menunjukkan bahwa endpoint checkout mampu menerima, memvalidasi, dan memproses data transaksi secara terintegrasi sesuai aturan bisnis yang telah diterapkan pada sistem.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1206,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": false
+        },
+        {
+          "index": 1207,
+          "type": "p",
+          "style": "Heading3",
+          "text": "Integrasi Back-end dengan Prototype Antarmuka Pengguna",
+          "hasDrawing": false
+        },
+        {
+          "index": 1208,
+          "type": "p",
+          "style": "",
+          "text": "Integrasi back-end dengan prototype antarmuka pengguna dilakukan untuk menghubungkan setiap tampilan front-end dengan layanan API yang mengelola data operasional Pemancingan S. Fokus pembahasan pada subbab ini bukan pada urutan teknis request, controller, database, dan response, melainkan pada bagaimana data dari antarmuka masuk ke back-end, digunakan kembali oleh fitur lain, dan menghasilkan dampak operasional yang dapat diamati.",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1202,
+      "text": "Berdasarkan Gambar 70, Swagger digunakan untuk menguji endpoint checkout transaksi yang dapat diakses oleh pegawai. Request body pada endpoint ini memuat data transaksi, seperti arrival_id, fish_items, penalty_items, payment_method, tips, notes, dan payment_proof. Field payment_proof digunakan untuk mengunggah bukti pembayaran pada metode pembayaran QRIS atau transfer. Data yang dikirimkan melalui endpoint ini selanjutnya diproses oleh back-end untuk menyelesaikan transaksi sesuai aturan bisnis yang telah ditetapkan. Pengujian melalui Swagger menunjukkan bahwa endpoint checkout mampu menerima seluruh data yang diperlukan untuk proses penyelesaian transaksi pelanggan.",
+      "context": [
+        {
+          "index": 1197,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1198,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 68. Request Login pada Swagger",
+          "hasDrawing": false
+        },
+        {
+          "index": 1199,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 68, Swagger digunakan untuk menguji endpoint login yang diimplementasikan pada AuthController. Endpoint ini menggunakan method POST untuk menerima data autentikasi berupa login dan password. Data tersebut kemudian diproses oleh back-end melalui validasi format input, pemeriksaan akun, dan verifikasi status pengguna. Pengujian ini memastikan bahwa endpoint login siap menjadi pintu awal autentikasi sebelum digunakan pada antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1200,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1201,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+          "hasDrawing": false
+        },
+        {
+          "index": 1202,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 70, Swagger digunakan untuk menguji endpoint checkout transaksi yang dapat diakses oleh pegawai. Request body pada endpoint ini memuat data transaksi, seperti arrival_id, fish_items, penalty_items, payment_method, tips, notes, dan payment_proof. Field payment_proof digunakan untuk mengunggah bukti pembayaran pada metode pembayaran QRIS atau transfer. Data yang dikirimkan melalui endpoint ini selanjutnya diproses oleh back-end untuk menyelesaikan transaksi sesuai aturan bisnis yang telah ditetapkan. Pengujian melalui Swagger menunjukkan bahwa endpoint checkout mampu menerima seluruh data yang diperlukan untuk proses penyelesaian transaksi pelanggan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1203,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1204,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 75. Response Checkout Pegawai",
+          "hasDrawing": false
+        },
+        {
+          "index": 1205,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 75, endpoint POST /api/employee/checkout dieksekusi menggunakan format multipart/form-data dengan data transaksi berupa arrival_id, fish_items, payment_method, serta file payment_proof sebagai bukti pembayaran. Hasil pengujian menunjukkan response dengan status 201 yang menandakan bahwa proses checkout berhasil dilakukan dan data transaksi berhasil disimpan oleh sistem. Response yang dikembalikan memuat informasi transaksi yang telah diproses berdasarkan data checkout yang dikirimkan melalui Swagger. Hasil ini menunjukkan bahwa endpoint checkout mampu menerima, memvalidasi, dan memproses data transaksi secara terintegrasi sesuai aturan bisnis yang telah diterapkan pada sistem.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1206,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": false
+        },
+        {
+          "index": 1207,
+          "type": "p",
+          "style": "Heading3",
+          "text": "Integrasi Back-end dengan Prototype Antarmuka Pengguna",
+          "hasDrawing": false
+        },
+        {
+          "index": 1208,
+          "type": "p",
+          "style": "",
+          "text": "Integrasi back-end dengan prototype antarmuka pengguna dilakukan untuk menghubungkan setiap tampilan front-end dengan layanan API yang mengelola data operasional Pemancingan S. Fokus pembahasan pada subbab ini bukan pada urutan teknis request, controller, database, dan response, melainkan pada bagaimana data dari antarmuka masuk ke back-end, digunakan kembali oleh fitur lain, dan menghasilkan dampak operasional yang dapat diamati.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1209,
+          "type": "p",
+          "style": "",
+          "text": "Setiap fitur dibahas berdasarkan tiga hal, yaitu fungsi integrasi front-end dan back-end, hubungan fitur dengan masalah operasional Pemancingan S, serta dampaknya terhadap pencatatan manual, pencatatan ganda, hafalan pegawai, pemantauan data terkini melalui sistem, konsistensi data, pelacakan transaksi, dan penyusunan laporan. Dengan pola tersebut, integrasi tidak hanya dipahami sebagai hubungan teknis, tetapi juga sebagai perbaikan alur kerja operasional.",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1204,
+      "text": "Gambar 75. Response Checkout Pegawai",
+      "context": [
+        {
+          "index": 1199,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 68, Swagger digunakan untuk menguji endpoint login yang diimplementasikan pada AuthController. Endpoint ini menggunakan method POST untuk menerima data autentikasi berupa login dan password. Data tersebut kemudian diproses oleh back-end melalui validasi format input, pemeriksaan akun, dan verifikasi status pengguna. Pengujian ini memastikan bahwa endpoint login siap menjadi pintu awal autentikasi sebelum digunakan pada antarmuka pengguna.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1200,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1201,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+          "hasDrawing": false
+        },
+        {
+          "index": 1202,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 70, Swagger digunakan untuk menguji endpoint checkout transaksi yang dapat diakses oleh pegawai. Request body pada endpoint ini memuat data transaksi, seperti arrival_id, fish_items, penalty_items, payment_method, tips, notes, dan payment_proof. Field payment_proof digunakan untuk mengunggah bukti pembayaran pada metode pembayaran QRIS atau transfer. Data yang dikirimkan melalui endpoint ini selanjutnya diproses oleh back-end untuk menyelesaikan transaksi sesuai aturan bisnis yang telah ditetapkan. Pengujian melalui Swagger menunjukkan bahwa endpoint checkout mampu menerima seluruh data yang diperlukan untuk proses penyelesaian transaksi pelanggan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1203,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1204,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 75. Response Checkout Pegawai",
+          "hasDrawing": false
+        },
+        {
+          "index": 1205,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 75, endpoint POST /api/employee/checkout dieksekusi menggunakan format multipart/form-data dengan data transaksi berupa arrival_id, fish_items, payment_method, serta file payment_proof sebagai bukti pembayaran. Hasil pengujian menunjukkan response dengan status 201 yang menandakan bahwa proses checkout berhasil dilakukan dan data transaksi berhasil disimpan oleh sistem. Response yang dikembalikan memuat informasi transaksi yang telah diproses berdasarkan data checkout yang dikirimkan melalui Swagger. Hasil ini menunjukkan bahwa endpoint checkout mampu menerima, memvalidasi, dan memproses data transaksi secara terintegrasi sesuai aturan bisnis yang telah diterapkan pada sistem.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1206,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": false
+        },
+        {
+          "index": 1207,
+          "type": "p",
+          "style": "Heading3",
+          "text": "Integrasi Back-end dengan Prototype Antarmuka Pengguna",
+          "hasDrawing": false
+        },
+        {
+          "index": 1208,
+          "type": "p",
+          "style": "",
+          "text": "Integrasi back-end dengan prototype antarmuka pengguna dilakukan untuk menghubungkan setiap tampilan front-end dengan layanan API yang mengelola data operasional Pemancingan S. Fokus pembahasan pada subbab ini bukan pada urutan teknis request, controller, database, dan response, melainkan pada bagaimana data dari antarmuka masuk ke back-end, digunakan kembali oleh fitur lain, dan menghasilkan dampak operasional yang dapat diamati.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1209,
+          "type": "p",
+          "style": "",
+          "text": "Setiap fitur dibahas berdasarkan tiga hal, yaitu fungsi integrasi front-end dan back-end, hubungan fitur dengan masalah operasional Pemancingan S, serta dampaknya terhadap pencatatan manual, pencatatan ganda, hafalan pegawai, pemantauan data terkini melalui sistem, konsistensi data, pelacakan transaksi, dan penyusunan laporan. Dengan pola tersebut, integrasi tidak hanya dipahami sebagai hubungan teknis, tetapi juga sebagai perbaikan alur kerja operasional.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1210,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan alur tersebut, pembahasan integrasi dibagi menjadi integrasi halaman utama, login pengguna, fitur member, fitur pegawai, dan fitur pemilik. Setiap bagian disusun dengan pola masalah operasional, fungsi integrasi, dan dampak operasional agar pembahasan tidak berulang pada mekanisme teknis yang sama.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1211,
+          "type": "p",
+          "style": "",
+          "text": "Integrasi Halaman Utama",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1205,
+      "text": "Berdasarkan Gambar 75, endpoint POST /api/employee/checkout dieksekusi menggunakan format multipart/form-data dengan data transaksi berupa arrival_id, fish_items, payment_method, serta file payment_proof sebagai bukti pembayaran. Hasil pengujian menunjukkan response dengan status 201 yang menandakan bahwa proses checkout berhasil dilakukan dan data transaksi berhasil disimpan oleh sistem. Response yang dikembalikan memuat informasi transaksi yang telah diproses berdasarkan data checkout yang dikirimkan melalui Swagger. Hasil ini menunjukkan bahwa endpoint checkout mampu menerima, memvalidasi, dan memproses data transaksi secara terintegrasi sesuai aturan bisnis yang telah diterapkan pada sistem.",
+      "context": [
+        {
+          "index": 1200,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1201,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+          "hasDrawing": false
+        },
+        {
+          "index": 1202,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 70, Swagger digunakan untuk menguji endpoint checkout transaksi yang dapat diakses oleh pegawai. Request body pada endpoint ini memuat data transaksi, seperti arrival_id, fish_items, penalty_items, payment_method, tips, notes, dan payment_proof. Field payment_proof digunakan untuk mengunggah bukti pembayaran pada metode pembayaran QRIS atau transfer. Data yang dikirimkan melalui endpoint ini selanjutnya diproses oleh back-end untuk menyelesaikan transaksi sesuai aturan bisnis yang telah ditetapkan. Pengujian melalui Swagger menunjukkan bahwa endpoint checkout mampu menerima seluruh data yang diperlukan untuk proses penyelesaian transaksi pelanggan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1203,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1204,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 75. Response Checkout Pegawai",
+          "hasDrawing": false
+        },
+        {
+          "index": 1205,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 75, endpoint POST /api/employee/checkout dieksekusi menggunakan format multipart/form-data dengan data transaksi berupa arrival_id, fish_items, payment_method, serta file payment_proof sebagai bukti pembayaran. Hasil pengujian menunjukkan response dengan status 201 yang menandakan bahwa proses checkout berhasil dilakukan dan data transaksi berhasil disimpan oleh sistem. Response yang dikembalikan memuat informasi transaksi yang telah diproses berdasarkan data checkout yang dikirimkan melalui Swagger. Hasil ini menunjukkan bahwa endpoint checkout mampu menerima, memvalidasi, dan memproses data transaksi secara terintegrasi sesuai aturan bisnis yang telah diterapkan pada sistem.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1206,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": false
+        },
+        {
+          "index": 1207,
+          "type": "p",
+          "style": "Heading3",
+          "text": "Integrasi Back-end dengan Prototype Antarmuka Pengguna",
+          "hasDrawing": false
+        },
+        {
+          "index": 1208,
+          "type": "p",
+          "style": "",
+          "text": "Integrasi back-end dengan prototype antarmuka pengguna dilakukan untuk menghubungkan setiap tampilan front-end dengan layanan API yang mengelola data operasional Pemancingan S. Fokus pembahasan pada subbab ini bukan pada urutan teknis request, controller, database, dan response, melainkan pada bagaimana data dari antarmuka masuk ke back-end, digunakan kembali oleh fitur lain, dan menghasilkan dampak operasional yang dapat diamati.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1209,
+          "type": "p",
+          "style": "",
+          "text": "Setiap fitur dibahas berdasarkan tiga hal, yaitu fungsi integrasi front-end dan back-end, hubungan fitur dengan masalah operasional Pemancingan S, serta dampaknya terhadap pencatatan manual, pencatatan ganda, hafalan pegawai, pemantauan data terkini melalui sistem, konsistensi data, pelacakan transaksi, dan penyusunan laporan. Dengan pola tersebut, integrasi tidak hanya dipahami sebagai hubungan teknis, tetapi juga sebagai perbaikan alur kerja operasional.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1210,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan alur tersebut, pembahasan integrasi dibagi menjadi integrasi halaman utama, login pengguna, fitur member, fitur pegawai, dan fitur pemilik. Setiap bagian disusun dengan pola masalah operasional, fungsi integrasi, dan dampak operasional agar pembahasan tidak berulang pada mekanisme teknis yang sama.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1211,
+          "type": "p",
+          "style": "",
+          "text": "Integrasi Halaman Utama",
+          "hasDrawing": false
+        },
+        {
+          "index": 1212,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada halaman utama adalah menampilkan informasi publik Pemancingan S dari data yang dikelola sistem tanpa proses login. Halaman ini menjadi titik awal bagi pelanggan untuk melihat informasi layanan, membership, leaderboard, event, pengumuman, FAQ, serta akses menuju login atau pendaftaran member. Integrasi endpoint publik seperti /api/leaderboard, /api/events, dan /api/special-menus membuat informasi yang tampil tidak bergantung pada perubahan manual di antarmuka.",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1216,
+      "text": "Berdasarkan Gambar 71, halaman utama telah menampilkan data publik seperti manfaat membership, leaderboard pemancing terbaik, acara dan pengumuman, informasi pemancingan, FAQ, dan footer bantuan. Hubungannya dengan masalah operasional terletak pada kebutuhan menjaga informasi pelanggan agar sama dengan data yang dikelola pemilik. Dampaknya, pencatatan manual dan pencatatan ganda informasi publik dapat dikurangi, ketergantungan pegawai terhadap ingatan manual mengenai perubahan menu atau event dapat dikurangi, pemantauan informasi promosi melalui sistem menjadi lebih mudah, konsistensi data lebih terjaga, informasi publik yang dilihat pelanggan dapat mengacu pada data yang sama dengan data yang dikelola pemilik, dan pengelolaan informasi promosi menjadi lebih tertata karena data event dan menu spesial ditampilkan melalui layanan back-end.",
+      "context": [
+        {
+          "index": 1211,
+          "type": "p",
+          "style": "",
+          "text": "Integrasi Halaman Utama",
+          "hasDrawing": false
+        },
+        {
+          "index": 1212,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada halaman utama adalah menampilkan informasi publik Pemancingan S dari data yang dikelola sistem tanpa proses login. Halaman ini menjadi titik awal bagi pelanggan untuk melihat informasi layanan, membership, leaderboard, event, pengumuman, FAQ, serta akses menuju login atau pendaftaran member. Integrasi endpoint publik seperti /api/leaderboard, /api/events, dan /api/special-menus membuat informasi yang tampil tidak bergantung pada perubahan manual di antarmuka.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1213,
+          "type": "p",
+          "style": "",
+          "text": "Pada fitur halaman utama, data publik seperti leaderboard, event, dan menu spesial tidak lagi disiapkan sebagai informasi statis pada antarmuka. Data tersebut diambil dari layanan back-end sehingga perubahan informasi dapat dilakukan melalui pengelolaan data sistem. Hal ini membantu mengurangi risiko informasi berbeda antara tampilan pelanggan dan data operasional yang dikelola pemilik.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1214,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1215,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 76. Halaman Utama Prototype",
+          "hasDrawing": false
+        },
+        {
+          "index": 1216,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 71, halaman utama telah menampilkan data publik seperti manfaat membership, leaderboard pemancing terbaik, acara dan pengumuman, informasi pemancingan, FAQ, dan footer bantuan. Hubungannya dengan masalah operasional terletak pada kebutuhan menjaga informasi pelanggan agar sama dengan data yang dikelola pemilik. Dampaknya, pencatatan manual dan pencatatan ganda informasi publik dapat dikurangi, ketergantungan pegawai terhadap ingatan manual mengenai perubahan menu atau event dapat dikurangi, pemantauan informasi promosi melalui sistem menjadi lebih mudah, konsistensi data lebih terjaga, informasi publik yang dilihat pelanggan dapat mengacu pada data yang sama dengan data yang dikelola pemilik, dan pengelolaan informasi promosi menjadi lebih tertata karena data event dan menu spesial ditampilkan melalui layanan back-end.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1217,
+          "type": "p",
+          "style": "",
+          "text": "Integrasi Login Pengguna",
+          "hasDrawing": false
+        },
+        {
+          "index": 1218,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada login pengguna adalah memvalidasi akun sebelum pengguna mengakses fitur sesuai role. Form login pada prototype mengirimkan data ke layanan autentikasi back-end agar akses member, pegawai, dan pemilik dapat dibedakan sejak awal. Integrasi ini penting karena data pelanggan, transaksi, stok, dan laporan tidak boleh dikelola oleh pengguna yang tidak memiliki kewenangan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1219,
+          "type": "p",
+          "style": "",
+          "text": "Setelah data login dikirimkan, sistem memvalidasi input, memeriksa kecocokan akun pada tabel users, memastikan status akun aktif, dan menghasilkan token akses apabila autentikasi berhasil. Token tersebut digunakan untuk mengakses fitur yang membutuhkan otorisasi. Dengan alur ini, sistem dapat mengurangi risiko penggunaan fitur oleh pengguna yang tidak berhak dan menjaga agar data operasional hanya dapat diakses sesuai kewenangan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1220,
+          "type": "p",
+          "style": "",
+          "text": "Apabila login berhasil, prototype antarmuka pengguna mengarahkan pengguna ke halaman sesuai role, yaitu member, pegawai, atau pemilik. Pembatasan ini penting karena proses operasional Pemancingan S melibatkan data pelanggan, transaksi, stok, dan laporan yang tidak boleh dikelola oleh semua pengguna. Dengan demikian, login berfungsi sebagai dasar pengendalian akses dan pencegahan manipulasi data.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1221,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1222,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 77. Halaman Login Prototype",
+          "hasDrawing": false
+        },
+        {
+          "index": 1223,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 72, halaman login telah terhubung dengan endpoint /api/login. Hubungannya dengan masalah operasional terletak pada kebutuhan mengendalikan siapa yang mencatat, memproses, atau memantau data usaha. Dampaknya, pencatatan manual dan pencatatan ganda akibat akses tidak terkontrol dapat dikurangi, pegawai tidak perlu mengandalkan hafalan untuk membedakan hak akses, pemantauan data terkini melalui sistem dapat dikaitkan dengan role pengguna, konsistensi data lebih terjaga, pelacakan transaksi dapat mengacu pada identitas pemroses, dan penyusunan laporan memiliki sumber aktivitas yang lebih jelas.",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1223,
+      "text": "Berdasarkan Gambar 72, halaman login telah terhubung dengan endpoint /api/login. Hubungannya dengan masalah operasional terletak pada kebutuhan mengendalikan siapa yang mencatat, memproses, atau memantau data usaha. Dampaknya, pencatatan manual dan pencatatan ganda akibat akses tidak terkontrol dapat dikurangi, pegawai tidak perlu mengandalkan hafalan untuk membedakan hak akses, pemantauan data terkini melalui sistem dapat dikaitkan dengan role pengguna, konsistensi data lebih terjaga, pelacakan transaksi dapat mengacu pada identitas pemroses, dan penyusunan laporan memiliki sumber aktivitas yang lebih jelas.",
+      "context": [
+        {
+          "index": 1218,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada login pengguna adalah memvalidasi akun sebelum pengguna mengakses fitur sesuai role. Form login pada prototype mengirimkan data ke layanan autentikasi back-end agar akses member, pegawai, dan pemilik dapat dibedakan sejak awal. Integrasi ini penting karena data pelanggan, transaksi, stok, dan laporan tidak boleh dikelola oleh pengguna yang tidak memiliki kewenangan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1219,
+          "type": "p",
+          "style": "",
+          "text": "Setelah data login dikirimkan, sistem memvalidasi input, memeriksa kecocokan akun pada tabel users, memastikan status akun aktif, dan menghasilkan token akses apabila autentikasi berhasil. Token tersebut digunakan untuk mengakses fitur yang membutuhkan otorisasi. Dengan alur ini, sistem dapat mengurangi risiko penggunaan fitur oleh pengguna yang tidak berhak dan menjaga agar data operasional hanya dapat diakses sesuai kewenangan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1220,
+          "type": "p",
+          "style": "",
+          "text": "Apabila login berhasil, prototype antarmuka pengguna mengarahkan pengguna ke halaman sesuai role, yaitu member, pegawai, atau pemilik. Pembatasan ini penting karena proses operasional Pemancingan S melibatkan data pelanggan, transaksi, stok, dan laporan yang tidak boleh dikelola oleh semua pengguna. Dengan demikian, login berfungsi sebagai dasar pengendalian akses dan pencegahan manipulasi data.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1221,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1222,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 77. Halaman Login Prototype",
+          "hasDrawing": false
+        },
+        {
+          "index": 1223,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 72, halaman login telah terhubung dengan endpoint /api/login. Hubungannya dengan masalah operasional terletak pada kebutuhan mengendalikan siapa yang mencatat, memproses, atau memantau data usaha. Dampaknya, pencatatan manual dan pencatatan ganda akibat akses tidak terkontrol dapat dikurangi, pegawai tidak perlu mengandalkan hafalan untuk membedakan hak akses, pemantauan data terkini melalui sistem dapat dikaitkan dengan role pengguna, konsistensi data lebih terjaga, pelacakan transaksi dapat mengacu pada identitas pemroses, dan penyusunan laporan memiliki sumber aktivitas yang lebih jelas.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1224,
+          "type": "p",
+          "style": "",
+          "text": "Selain proses login, sistem juga menyediakan endpoint autentikasi lain seperti /api/register untuk pendaftaran akun member dan /api/logout untuk keluar dari sistem. Namun, pembahasan integrasi difokuskan pada login karena fitur tersebut menjadi pintu awal untuk membedakan akses member, pegawai, dan pemilik sebelum sistem memproses data operasional.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1225,
+          "type": "p",
+          "style": "",
+          "text": "Integrasi Fitur Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1226,
+          "type": "p",
+          "style": "",
+          "text": "Setelah proses login berhasil, pengguna dengan role member diarahkan ke antarmuka member. Fitur member dirancang agar pelanggan dapat melihat identitas digital, status keanggotaan, pesanan, riwayat transaksi, dan leaderboard secara mandiri. Integrasi ini penting karena data pelanggan tidak lagi bergantung pada ingatan pegawai, tetapi tersimpan dan dapat ditelusuri melalui basis data.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1227,
+          "type": "p",
+          "style": "ListParagraph",
+          "text": "Integrasi Dashboard Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1228,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada Dashboard Member adalah menampilkan ringkasan identitas dan status loyalitas pelanggan dari data sistem. Data profil member, QR code, voucher aktif, dan leaderboard digunakan kembali pada proses check-in, transaksi, serta pemberian reward. Dengan demikian, dashboard member menjadi penghubung data pelanggan dengan proses operasional lain.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1229,
+          "type": "p",
+          "style": "",
+          "text": "Pada fitur ini, data member yang ditampilkan pada dashboard berasal dari basis data yang sama dengan data transaksi dan kedatangan. Informasi seperti tier, poin, total berat ikan, QR code, dan voucher membantu pelanggan memahami statusnya sendiri tanpa harus bertanya kepada pegawai. Bagi operasional, data tersebut mengurangi ketergantungan pada hafalan pegawai ketika membedakan pelanggan member dan non-member.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1230,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        }
+      ]
+    },
+    {
+      "index": 1232,
+      "text": "Berdasarkan Gambar 73, Dashboard Member menampilkan data keanggotaan yang berasal dari beberapa endpoint, seperti profil member, voucher aktif, dan leaderboard. Hubungannya dengan masalah operasional adalah mengurangi ketergantungan pada ingatan pegawai ketika membedakan pelanggan member dan non-member. Dampaknya, pencatatan manual identitas pelanggan dan pencatatan ganda data loyalitas dapat dikurangi, ketergantungan pegawai terhadap ingatan manual dapat dikurangi, pemantauan status member melalui sistem menjadi lebih mudah, konsistensi data member lebih kuat, pelacakan transaksi dapat dikaitkan dengan identitas digital, dan penyusunan laporan loyalitas memiliki data dasar yang lebih rapi.",
+      "context": [
+        {
+          "index": 1227,
+          "type": "p",
+          "style": "ListParagraph",
+          "text": "Integrasi Dashboard Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1228,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada Dashboard Member adalah menampilkan ringkasan identitas dan status loyalitas pelanggan dari data sistem. Data profil member, QR code, voucher aktif, dan leaderboard digunakan kembali pada proses check-in, transaksi, serta pemberian reward. Dengan demikian, dashboard member menjadi penghubung data pelanggan dengan proses operasional lain.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1229,
+          "type": "p",
+          "style": "",
+          "text": "Pada fitur ini, data member yang ditampilkan pada dashboard berasal dari basis data yang sama dengan data transaksi dan kedatangan. Informasi seperti tier, poin, total berat ikan, QR code, dan voucher membantu pelanggan memahami statusnya sendiri tanpa harus bertanya kepada pegawai. Bagi operasional, data tersebut mengurangi ketergantungan pada hafalan pegawai ketika membedakan pelanggan member dan non-member.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1230,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1231,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 78. Dashboard Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1232,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 73, Dashboard Member menampilkan data keanggotaan yang berasal dari beberapa endpoint, seperti profil member, voucher aktif, dan leaderboard. Hubungannya dengan masalah operasional adalah mengurangi ketergantungan pada ingatan pegawai ketika membedakan pelanggan member dan non-member. Dampaknya, pencatatan manual identitas pelanggan dan pencatatan ganda data loyalitas dapat dikurangi, ketergantungan pegawai terhadap ingatan manual dapat dikurangi, pemantauan status member melalui sistem menjadi lebih mudah, konsistensi data member lebih kuat, pelacakan transaksi dapat dikaitkan dengan identitas digital, dan penyusunan laporan loyalitas memiliki data dasar yang lebih rapi.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1233,
+          "type": "p",
+          "style": "ListParagraph",
+          "text": "Integrasi Fitur Pesanan Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1234,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada fitur Pesanan Member adalah memasukkan pesanan makanan dan minuman dari antarmuka member langsung ke alur operasional pegawai. Pilihan menu dan jumlah pesanan dikirim ke layanan back-end melalui endpoint /api/member/orders, lalu disimpan sebagai pending_orders. Tujuannya adalah agar pesanan pelanggan tidak perlu dicatat ulang secara manual oleh pegawai.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1235,
+          "type": "p",
+          "style": "",
+          "text": "Pada fitur ini, sistem memvalidasi pesanan member, memastikan member memiliki data kedatangan aktif, mengambil informasi menu dari tabel menus, lalu menyimpan pesanan ke tabel pending_orders. Dengan penyimpanan tersebut, pesanan mandiri memiliki jejak data yang sama dengan pesanan yang dicatat pegawai. Hal ini mengurangi risiko kehilangan informasi pesanan, kesalahan jumlah item, dan perbedaan catatan antara pelanggan dan pegawai.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1236,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1237,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 79. Halaman Pesanan Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1238,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 74, halaman Pesanan Member menampilkan daftar menu, pengaturan jumlah pesanan, subtotal, dan status pesanan. Hubungannya dengan masalah operasional adalah mencegah pesanan self-order terpisah dari alur pelayanan pegawai. Dampaknya, pencatatan manual dan pencatatan ganda pesanan dapat dikurangi, hafalan pegawai terhadap pesanan pelanggan tidak lagi menjadi tumpuan, pemantauan status pesanan melalui sistem lebih terbantu, konsistensi data pesanan lebih terjaga, pelacakan transaksi dapat dimulai sejak pesanan dibuat, dan data pesanan dapat menjadi dasar penyusunan laporan penjualan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1239,
+          "type": "p",
+          "style": "ListParagraph",
+          "text": "Integrasi Fitur Riwayat Transaksi Member",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1238,
+      "text": "Berdasarkan Gambar 74, halaman Pesanan Member menampilkan daftar menu, pengaturan jumlah pesanan, subtotal, dan status pesanan. Hubungannya dengan masalah operasional adalah mencegah pesanan self-order terpisah dari alur pelayanan pegawai. Dampaknya, pencatatan manual dan pencatatan ganda pesanan dapat dikurangi, hafalan pegawai terhadap pesanan pelanggan tidak lagi menjadi tumpuan, pemantauan status pesanan melalui sistem lebih terbantu, konsistensi data pesanan lebih terjaga, pelacakan transaksi dapat dimulai sejak pesanan dibuat, dan data pesanan dapat menjadi dasar penyusunan laporan penjualan.",
+      "context": [
+        {
+          "index": 1233,
+          "type": "p",
+          "style": "ListParagraph",
+          "text": "Integrasi Fitur Pesanan Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1234,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada fitur Pesanan Member adalah memasukkan pesanan makanan dan minuman dari antarmuka member langsung ke alur operasional pegawai. Pilihan menu dan jumlah pesanan dikirim ke layanan back-end melalui endpoint /api/member/orders, lalu disimpan sebagai pending_orders. Tujuannya adalah agar pesanan pelanggan tidak perlu dicatat ulang secara manual oleh pegawai.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1235,
+          "type": "p",
+          "style": "",
+          "text": "Pada fitur ini, sistem memvalidasi pesanan member, memastikan member memiliki data kedatangan aktif, mengambil informasi menu dari tabel menus, lalu menyimpan pesanan ke tabel pending_orders. Dengan penyimpanan tersebut, pesanan mandiri memiliki jejak data yang sama dengan pesanan yang dicatat pegawai. Hal ini mengurangi risiko kehilangan informasi pesanan, kesalahan jumlah item, dan perbedaan catatan antara pelanggan dan pegawai.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1236,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1237,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 79. Halaman Pesanan Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1238,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 74, halaman Pesanan Member menampilkan daftar menu, pengaturan jumlah pesanan, subtotal, dan status pesanan. Hubungannya dengan masalah operasional adalah mencegah pesanan self-order terpisah dari alur pelayanan pegawai. Dampaknya, pencatatan manual dan pencatatan ganda pesanan dapat dikurangi, hafalan pegawai terhadap pesanan pelanggan tidak lagi menjadi tumpuan, pemantauan status pesanan melalui sistem lebih terbantu, konsistensi data pesanan lebih terjaga, pelacakan transaksi dapat dimulai sejak pesanan dibuat, dan data pesanan dapat menjadi dasar penyusunan laporan penjualan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1239,
+          "type": "p",
+          "style": "ListParagraph",
+          "text": "Integrasi Fitur Riwayat Transaksi Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1240,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada fitur Riwayat Transaksi Member adalah menampilkan transaksi pelanggan berdasarkan data yang tersimpan setelah checkout. Antarmuka member mengambil riwayat transaksi melalui endpoint /api/member/transactions sehingga pelanggan dapat melihat kembali pembayaran, poin, dan aktivitas transaksinya. Fitur ini menghubungkan data pelanggan dengan bukti transaksi tanpa bergantung pada nota fisik.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1241,
+          "type": "p",
+          "style": "",
+          "text": "Data riwayat transaksi member diambil dari transaksi yang terhubung dengan data kedatangan pelanggan. Hubungan tersebut menunjukkan bahwa transaksi tidak berdiri sendiri, tetapi berkaitan dengan sesi kunjungan, status member, poin, dan riwayat pembayaran. Dengan penyimpanan terpusat, riwayat transaksi dapat digunakan untuk mengurangi perbedaan data antara catatan pelanggan dan catatan operasional.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1242,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1243,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 80. Halaman Riwayat Transaksi Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1244,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 75, halaman Riwayat Transaksi Member menampilkan tanggal, nomor transaksi, total bayar, metode pembayaran, dan poin yang diperoleh. Hubungannya dengan masalah operasional adalah menyediakan akses riwayat transaksi tanpa meminta pegawai membuka catatan manual. Dampaknya, pencatatan manual dan pencatatan ganda riwayat pembayaran dapat dikurangi, ketergantungan pegawai terhadap ingatan manual mengenai transaksi pelanggan dapat dikurangi, pemantauan riwayat member melalui sistem menjadi lebih terbuka, konsistensi data transaksi lebih terjaga, pelacakan transaksi menjadi lebih mudah, dan data riwayat dapat mendukung penyusunan laporan pelanggan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1245,
+          "type": "p",
+          "style": "ListParagraph",
+          "text": "Integrasi Fitur Leaderboard Member",
+          "hasDrawing": false
+        }
+      ]
+    },
+    {
+      "index": 1244,
+      "text": "Berdasarkan Gambar 75, halaman Riwayat Transaksi Member menampilkan tanggal, nomor transaksi, total bayar, metode pembayaran, dan poin yang diperoleh. Hubungannya dengan masalah operasional adalah menyediakan akses riwayat transaksi tanpa meminta pegawai membuka catatan manual. Dampaknya, pencatatan manual dan pencatatan ganda riwayat pembayaran dapat dikurangi, ketergantungan pegawai terhadap ingatan manual mengenai transaksi pelanggan dapat dikurangi, pemantauan riwayat member melalui sistem menjadi lebih terbuka, konsistensi data transaksi lebih terjaga, pelacakan transaksi menjadi lebih mudah, dan data riwayat dapat mendukung penyusunan laporan pelanggan.",
+      "context": [
+        {
+          "index": 1239,
+          "type": "p",
+          "style": "ListParagraph",
+          "text": "Integrasi Fitur Riwayat Transaksi Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1240,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada fitur Riwayat Transaksi Member adalah menampilkan transaksi pelanggan berdasarkan data yang tersimpan setelah checkout. Antarmuka member mengambil riwayat transaksi melalui endpoint /api/member/transactions sehingga pelanggan dapat melihat kembali pembayaran, poin, dan aktivitas transaksinya. Fitur ini menghubungkan data pelanggan dengan bukti transaksi tanpa bergantung pada nota fisik.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1241,
+          "type": "p",
+          "style": "",
+          "text": "Data riwayat transaksi member diambil dari transaksi yang terhubung dengan data kedatangan pelanggan. Hubungan tersebut menunjukkan bahwa transaksi tidak berdiri sendiri, tetapi berkaitan dengan sesi kunjungan, status member, poin, dan riwayat pembayaran. Dengan penyimpanan terpusat, riwayat transaksi dapat digunakan untuk mengurangi perbedaan data antara catatan pelanggan dan catatan operasional.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1242,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1243,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 80. Halaman Riwayat Transaksi Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1244,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 75, halaman Riwayat Transaksi Member menampilkan tanggal, nomor transaksi, total bayar, metode pembayaran, dan poin yang diperoleh. Hubungannya dengan masalah operasional adalah menyediakan akses riwayat transaksi tanpa meminta pegawai membuka catatan manual. Dampaknya, pencatatan manual dan pencatatan ganda riwayat pembayaran dapat dikurangi, ketergantungan pegawai terhadap ingatan manual mengenai transaksi pelanggan dapat dikurangi, pemantauan riwayat member melalui sistem menjadi lebih terbuka, konsistensi data transaksi lebih terjaga, pelacakan transaksi menjadi lebih mudah, dan data riwayat dapat mendukung penyusunan laporan pelanggan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1245,
+          "type": "p",
+          "style": "ListParagraph",
+          "text": "Integrasi Fitur Leaderboard Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1246,
+          "type": "p",
+          "style": "",
+          "text": "Fungsi integrasi front-end dan back-end pada fitur Leaderboard Member adalah menampilkan peringkat member berdasarkan total berat ikan yang tercatat pada sistem. Data transaksi dan hasil tangkapan digunakan untuk menyusun peringkat, poin, tier, dan informasi reward. Dengan integrasi ini, leaderboard tidak disusun melalui rekap manual, tetapi berasal dari data operasional yang tersimpan.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1247,
+          "type": "p",
+          "style": "",
+          "text": "Selain klasemen, halaman ini menampilkan informasi ringkas member yang sedang login, seperti member ID, tier, poin, total berat ikan, diskon, dan progress menuju tier berikutnya. Keterhubungan data profil dan data leaderboard membuat pelanggan dapat melihat dampak transaksi terhadap status keanggotaannya. Hal ini membantu menjaga konsistensi antara data loyalitas, transaksi, dan pemberian voucher.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1248,
+          "type": "p",
+          "style": "",
+          "text": "",
+          "hasDrawing": true
+        },
+        {
+          "index": 1249,
+          "type": "p",
+          "style": "Caption",
+          "text": "Gambar 81. Halaman Leaderboard Member",
+          "hasDrawing": false
+        },
+        {
+          "index": 1250,
+          "type": "p",
+          "style": "",
+          "text": "Berdasarkan Gambar 76, halaman Leaderboard Member menampilkan profil ringkas member dan klasemen peringkat berdasarkan total berat ikan. Hubungannya dengan masalah operasional adalah menjaga agar program loyalitas tidak dihitung secara terpisah dari transaksi. Dampaknya, pencatatan manual dan pencatatan ganda peringkat dapat dikurangi, ketergantungan pegawai terhadap ingatan manual mengenai capaian member dapat dikurangi, pemantauan posisi member melalui sistem menjadi lebih mudah, konsistensi data poin dan reward lebih terjaga, pelacakan transaksi dapat menjelaskan perubahan peringkat, dan penyusunan laporan loyalitas dapat memakai data leaderboard yang sama.",
+          "hasDrawing": false
+        },
+        {
+          "index": 1251,
+          "type": "p",
+          "style": "",
+          "text": "Integrasi Fitur Pegawai",
+          "hasDrawing": false
+        }
+      ]
+    }
+  ],
+  "figures67plus": [
+    {
+      "index": 233,
+      "number": 67,
+      "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI162",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 234,
+      "number": 68,
+      "text": "Gambar 68. Request Login pada Swagger162",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 235,
+      "number": 69,
+      "text": "Gambar 69. Request Pesanan Member163",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 236,
+      "number": 70,
+      "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 237,
+      "number": 71,
+      "text": "Gambar 71. Response Endpoint GET Events165",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 238,
+      "number": 72,
+      "text": "Gambar 72. Response Login Owner166",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 239,
+      "number": 73,
+      "text": "Gambar 73. Response Endpoint Protected167",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 240,
+      "number": 74,
+      "text": "Gambar 74. Response Pesanan Member168",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 241,
+      "number": 75,
+      "text": "Gambar 75. Response Checkout Pegawai169",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 242,
+      "number": 76,
+      "text": "Gambar 76. Halaman Utama Prototype171",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 243,
+      "number": 77,
+      "text": "Gambar 77. Halaman Login Prototype172",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 244,
+      "number": 78,
+      "text": "Gambar 78. Dashboard Member174",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 245,
+      "number": 79,
+      "text": "Gambar 79. Halaman Pesanan Member175",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 246,
+      "number": 80,
+      "text": "Gambar 80. Halaman Riwayat Transaksi Member176",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 247,
+      "number": 81,
+      "text": "Gambar 81. Halaman Leaderboard Member177",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 248,
+      "number": 82,
+      "text": "Gambar 82. Dashboard Pegawai178",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 249,
+      "number": 83,
+      "text": "Gambar 83. Pencarian Member pada Registrasi Kedatangan179",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 250,
+      "number": 84,
+      "text": "Gambar 84. Scan QR Code Member pada Registrasi Kedatangan179",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 251,
+      "number": 85,
+      "text": "Gambar 85. Registrasi Tamu pada Registrasi Kedatangan180",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 252,
+      "number": 86,
+      "text": "Gambar 86. Halaman Kedatangan Hari Ini181",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 253,
+      "number": 87,
+      "text": "Gambar 87. Halaman Tambah Pesanan182",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 254,
+      "number": 88,
+      "text": "Gambar 88. Halaman Pesanan Masuk183",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 255,
+      "number": 89,
+      "text": "Gambar 89. Halaman Pembayaran185",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 256,
+      "number": 90,
+      "text": "Gambar 90. Nota Digital Transaksi186",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 257,
+      "number": 91,
+      "text": "Gambar 91. Halaman Riwayat Transaksi Pegawai187",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 258,
+      "number": 92,
+      "text": "Gambar 92. Dashboard Pemilik188",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 259,
+      "number": 93,
+      "text": "Gambar 93. Halaman Manajemen Member189",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 260,
+      "number": 94,
+      "text": "Gambar 94. Halaman Manajemen Menu190",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 261,
+      "number": 95,
+      "text": "Gambar 95. Halaman Manajemen Jenis Ikan191",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 262,
+      "number": 96,
+      "text": "Gambar 96. Halaman Laporan Keuangan192",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 263,
+      "number": 97,
+      "text": "Gambar 97. Halaman Manajemen Voucher193",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 264,
+      "number": 98,
+      "text": "Gambar 98. Evaluasi Iterasi Pertama Tambah Pesanan196",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 265,
+      "number": 99,
+      "text": "Gambar 99. Evaluasi Iterasi Kedua pada Halaman Pesanan Masuk197",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 266,
+      "number": 100,
+      "text": "Gambar 100. Pembatalan Pending Order pada Checkout198",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 267,
+      "number": 101,
+      "text": "Gambar 101. Evaluasi Fitur Menu Spesial200",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 268,
+      "number": 102,
+      "text": "Gambar 102. Tampilan Popup Menu Spesial pada Halaman Utama201",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 269,
+      "number": 103,
+      "text": "Gambar 103. Interpretasi Skor SUS Hasil Pengujian224",
+      "hasDrawingPrev": false,
+      "style": "TableofFigures"
+    },
+    {
+      "index": 1195,
+      "number": 67,
+      "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1198,
+      "number": 68,
+      "text": "Gambar 68. Request Login pada Swagger",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1201,
+      "number": 70,
+      "text": "Gambar 70. Request Checkout dan Bukti Pembayaran",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1204,
+      "number": 75,
+      "text": "Gambar 75. Response Checkout Pegawai",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1215,
+      "number": 76,
+      "text": "Gambar 76. Halaman Utama Prototype",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1222,
+      "number": 77,
+      "text": "Gambar 77. Halaman Login Prototype",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1231,
+      "number": 78,
+      "text": "Gambar 78. Dashboard Member",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1237,
+      "number": 79,
+      "text": "Gambar 79. Halaman Pesanan Member",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1243,
+      "number": 80,
+      "text": "Gambar 80. Halaman Riwayat Transaksi Member",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1249,
+      "number": 81,
+      "text": "Gambar 81. Halaman Leaderboard Member",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1257,
+      "number": 82,
+      "text": "Gambar 82. Dashboard Pegawai",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1264,
+      "number": 83,
+      "text": "Gambar 83. Pencarian Member pada Registrasi Kedatangan",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1266,
+      "number": 84,
+      "text": "Gambar 84. Scan QR Code Member pada Registrasi Kedatangan",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1268,
+      "number": 85,
+      "text": "Gambar 85. Registrasi Tamu pada Registrasi Kedatangan",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1275,
+      "number": 86,
+      "text": "Gambar 86. Halaman Kedatangan Hari Ini",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1282,
+      "number": 87,
+      "text": "Gambar 87. Halaman Tambah Pesanan",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1290,
+      "number": 88,
+      "text": "Gambar 88. Halaman Pesanan Masuk",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1297,
+      "number": 89,
+      "text": "Gambar 89. Halaman Pembayaran",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1301,
+      "number": 90,
+      "text": "Gambar 90. Nota Digital Transaksi",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1308,
+      "number": 91,
+      "text": "Gambar 91. Halaman Riwayat Transaksi Pegawai",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1316,
+      "number": 92,
+      "text": "Gambar 92. Dashboard Pemilik",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1322,
+      "number": 93,
+      "text": "Gambar 93. Halaman Manajemen Member",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1329,
+      "number": 94,
+      "text": "Gambar 94. Halaman Manajemen Menu",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1335,
+      "number": 95,
+      "text": "Gambar 95. Halaman Manajemen Jenis Ikan",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1341,
+      "number": 96,
+      "text": "Gambar 96. Halaman Laporan Keuangan",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1347,
+      "number": 97,
+      "text": "Gambar 97. Halaman Manajemen Voucher",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1360,
+      "number": 98,
+      "text": "Gambar 98. Evaluasi Iterasi Pertama Tambah Pesanan",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1368,
+      "number": 99,
+      "text": "Gambar 99. Evaluasi Iterasi Kedua pada Halaman Pesanan Masuk",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1378,
+      "number": 100,
+      "text": "Gambar 100. Pembatalan Pending Order pada Checkout",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1391,
+      "number": 101,
+      "text": "Gambar 101. Evaluasi Fitur Menu Spesial",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1398,
+      "number": 102,
+      "text": "Gambar 102. Tampilan Popup Menu Spesial pada Halaman Utama",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    },
+    {
+      "index": 1470,
+      "number": 103,
+      "text": "Gambar 103. Interpretasi Skor SUS Hasil Pengujian",
+      "hasDrawingPrev": true,
+      "style": "Caption"
+    }
+  ]
+}

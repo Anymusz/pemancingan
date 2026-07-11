@@ -1,0 +1,129 @@
+{
+  "pptx": "D:\\Semester\\Semester7\\Skripsi\\Projek-Skripsi\\analysis_outputs\\sidang_skripsi_30_slide\\Sidang_Skripsi_Raka_Bagaskara_Putra_30_Slide.pptx",
+  "slideCount": 30,
+  "expectedSlideCount": 30,
+  "renderedPngCount": 30,
+  "outOfBounds": [],
+  "slideTitles": [
+    {
+      "slide": 1,
+      "title": "Perancangan dan Implementasi Back-End Sistem Informasi untuk Mendukung Digitalisasi Bisnis Pemancingan S Menggunakan Metodologi Rapid Application Development (RAD)"
+    },
+    {
+      "slide": 2,
+      "title": "KONTEKS MASALAH"
+    },
+    {
+      "slide": 3,
+      "title": "URGENSI"
+    },
+    {
+      "slide": 4,
+      "title": "ARAH PENELITIAN"
+    },
+    {
+      "slide": 5,
+      "title": "RUANG LINGKUP"
+    },
+    {
+      "slide": 6,
+      "title": "METODOLOGI"
+    },
+    {
+      "slide": 7,
+      "title": "PENGUMPULAN DATA"
+    },
+    {
+      "slide": 8,
+      "title": "PLANNING"
+    },
+    {
+      "slide": 9,
+      "title": "ANALYSIS"
+    },
+    {
+      "slide": 10,
+      "title": "ANALYSIS"
+    },
+    {
+      "slide": 11,
+      "title": "DESIGN"
+    },
+    {
+      "slide": 12,
+      "title": "DESIGN"
+    },
+    {
+      "slide": 13,
+      "title": "DESIGN DATABASE"
+    },
+    {
+      "slide": 14,
+      "title": "DESIGN API"
+    },
+    {
+      "slide": 15,
+      "title": "ALUR PROSES"
+    },
+    {
+      "slide": 16,
+      "title": "ARSITEKTUR"
+    },
+    {
+      "slide": 17,
+      "title": "TEKNOLOGI"
+    },
+    {
+      "slide": 18,
+      "title": "IMPLEMENTASI DATABASE"
+    },
+    {
+      "slide": 19,
+      "title": "AUTENTIKASI"
+    },
+    {
+      "slide": 20,
+      "title": "LOGIKA BISNIS"
+    },
+    {
+      "slide": 21,
+      "title": "ENDPOINT API"
+    },
+    {
+      "slide": 22,
+      "title": "INTEGRASI UI"
+    },
+    {
+      "slide": 23,
+      "title": "ITERASI"
+    },
+    {
+      "slide": 24,
+      "title": "DAMPAK"
+    },
+    {
+      "slide": 25,
+      "title": "DEMONSTRASI"
+    },
+    {
+      "slide": 26,
+      "title": "PENGUJIAN"
+    },
+    {
+      "slide": 27,
+      "title": "EVALUASI USABILITY"
+    },
+    {
+      "slide": 28,
+      "title": "HASIL SUS"
+    },
+    {
+      "slide": 29,
+      "title": "KESIMPULAN"
+    },
+    {
+      "slide": 30,
+      "title": "SARAN"
+    }
+  ]
+}

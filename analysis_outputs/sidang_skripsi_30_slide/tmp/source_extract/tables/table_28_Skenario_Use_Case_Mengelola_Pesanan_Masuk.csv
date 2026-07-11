@@ -1,0 +1,17 @@
+Nama Use Case,Mengelola Pesanan Masuk
+ID Use Case,UC-11
+Aktor,Pegawai
+Deskripsi,"Proses pegawai mengelola pesanan yang masih berjalan dengan status pending, diproses, selesai, atau dibatalkan."
+Precondition,Aktor telah login sebagai pegawai dan terdapat data pesanan.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman Pesanan Masuk,
+,2. Sistem menampilkan daftar pesanan yang masih berjalan
+3. Aktor memilih salah satu pesanan,
+,4. Sistem menampilkan detail pesanan
+"5. Aktor mengubah status pesanan menjadi pending, diproses, selesai, atau dibatalkan",
+,6. Sistem menyimpan perubahan status pesanan
+Skenario Alternatif
+1. Aktor membuka detail pesanan yang tidak tersedia,
+,2. Sistem menampilkan pesan bahwa data pesanan tidak ditemukan
+Post Condition,Status pesanan berhasil diperbarui pada sistem.

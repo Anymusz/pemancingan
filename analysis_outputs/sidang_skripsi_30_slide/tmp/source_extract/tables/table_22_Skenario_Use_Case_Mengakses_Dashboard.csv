@@ -1,0 +1,18 @@
+Nama Use Case,Mengakses Dashboard
+ID Use Case,UC-05
+Aktor,"Pemilik, Pegawai, Member"
+Deskripsi,Mengakses halaman privat yang menampilkan informasi dashboard sesuai hak akses pengguna.
+Precondition,Aktor telah berhasil melakukan proses login ke dalam sistem.
+Aktor,Sistem
+Skenario Utama
+1. Aktor menekan menu navigasi Dashboard,
+,2. Sistem memvalidasi sesi login pengguna
+,3. Sistem mengidentifikasi role aktor yang sedang login
+,"4. Jika aktor adalah Member, sistem menampilkan QR Code, status tier, progress poin, leaderboard, voucher aktif, dan ringkasan transaksi member"
+,"5. Jika aktor adalah Pegawai, sistem menampilkan ringkasan kedatangan, pesanan, dan transaksi"
+,"6. Jika aktor adalah Pemilik, sistem menampilkan ringkasan manajerial usaha"
+Skenario Alternatif
+1. Aktor mengakses Dashboard saat sesi login kedaluwarsa,
+,2. Sistem mendeteksi bahwa sesi sudah tidak aktif
+,3. Sistem mengarahkan aktor kembali ke halaman login
+Post Condition,Halaman Dashboard terbuka dan aktor dapat melihat informasi sesuai hak aksesnya.

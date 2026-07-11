@@ -1,0 +1,19 @@
+No,Role/Akses,Method,URL Endpoint,Request/Parameter,Keterangan
+1,Auth,POST,/api/login,"Body: login, password",Autentikasi pengguna dan pembuatan token Sanctum.
+2,Auth,POST,/api/register,"Body: name, phone, email, password, password_confirmation, address",Registrasi akun member baru dengan status pending.
+3,Member,GET,/api/member/profile,Header: Authorization Bearer token_member,"Menampilkan profil, tier, poin, QR code, dan posisi leaderboard member."
+4,Member,POST,/api/member/orders,"Body: items[].menu_id, items[].quantity",Mencatat pesanan menu mandiri member ke pending_orders.
+5,Member,GET,/api/member/transactions,"Query: start_date, end_date, per_page",Menampilkan riwayat transaksi member.
+6,Employee,POST,/api/employee/check-in,"Body member: type=member, member_id, notes; body guest: type=guest, guest_name, notes",Mencatat kedatangan pelanggan member atau tamu pada tabel arrivals.
+7,Employee,POST,/api/employee/pending-orders,"Body: arrival_id, items[].item_type(menu/rental), items[].item_id, items[].quantity",Mencatat pesanan sementara menu atau rental sebelum checkout.
+8,Employee,PATCH,/api/employee/pending-orders/{id}/status,"Body: status(pending/processing/done/cancelled), cancellation_reason",Mengubah status produksi pending order.
+9,Employee,POST,/api/employee/checkout,"Body: arrival_id, fish_items[].item_id, fish_items[].quantity, penalty_items[], payment_method, tips, notes","Memproses transaksi, pembayaran, item transaksi, stok ikan, poin, dan voucher."
+10,Employee,GET,/api/employee/fish-stocks,Header: Authorization Bearer token_employee,Menampilkan stok ikan untuk kebutuhan transaksi pegawai.
+11,Owner,GET,/api/owner/menus,"Query: search, category, availability, include_deleted",Menampilkan data menu makanan dan minuman.
+12,Owner,POST,/api/owner/menus,"Body: name, price, category(food/beverage), availability, description, image",Menambahkan menu baru sesuai field tabel menus.
+13,Owner,GET,/api/owner/fish-stocks,Header: Authorization Bearer token_owner,Menampilkan stok ikan untuk pemilik.
+14,Owner,POST,/api/owner/fish-stocks/{fishTypeId}/restock,"Body: quantity_kg, notes",Mencatat restock ikan dan memperbarui current_stock_kg.
+15,Owner,GET,/api/owner/reports/summary,"Query: period(daily/weekly/monthly/custom), start_date, end_date",Menampilkan ringkasan laporan transaksi untuk owner.
+16,Owner,PUT,/api/owner/voucher-configs,"Body: configs[].rank(1/2/3), configs[].amount",Memperbarui nominal voucher leaderboard.
+17,Public,GET,/api/leaderboard,"Query: page, per_page",Menampilkan peringkat member berdasarkan total berat ikan.
+18,Public,GET,/api/events,"Query: page, per_page, category",Menampilkan event dan informasi publik.

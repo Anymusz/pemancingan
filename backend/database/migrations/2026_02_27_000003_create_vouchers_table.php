@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('status', ['unused', 'used'])->default('unused');
             $table->timestamp('used_at')->nullable();
             $table->foreignId('transaction_id')->nullable()->constrained('transactions')->nullOnDelete();
-            $table->timestamp('issued_at');
+            $table->timestamp('issued_at')->useCurrent();
             $table->timestamps();
 
             // Unique constraints

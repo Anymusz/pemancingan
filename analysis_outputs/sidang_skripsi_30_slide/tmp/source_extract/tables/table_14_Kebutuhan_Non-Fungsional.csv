@@ -1,0 +1,7 @@
+No,Kode,Deskripsi Kebutuhan Non-Fungsional
+1,KNF-01,Sistem harus menyediakan autentikasi pengguna agar hanya pengguna terdaftar yang dapat mengakses sistem.
+2,KNF-02,"Sistem harus membatasi akses fitur berdasarkan role pemilik, pegawai, dan member."
+3,KNF-03,Sistem harus melakukan validasi data sebelum data disimpan ke dalam basis data.
+4,KNF-04,"Sistem harus menjaga integritas data melalui relasi antar data, seperti pengguna, member, stok, transaksi, dan voucher."
+5,KNF-05,Sistem harus menyediakan API untuk integrasi dengan prototype antarmuka pengguna dari penelitian sebelumnya.
+6,KNF-06,Sistem harus memiliki struktur back-end yang terorganisir agar mudah dikembangkan dan dipelihara

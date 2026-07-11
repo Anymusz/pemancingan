@@ -1,0 +1,8 @@
+Nama Simbol,Gambar,Keterangan
+Class,,"Menggambarkan kelas dalam struktur sistem yang terdiri dari tiga bagian utama, yaitu nama kelas, atribut, dan operasi. Nama kelas harus unik dan ditulis tanpa spasi, atribut merupakan data yang dimiliki kelas, sedangkan operasi menggambarkan fungsi atau perilaku kelas. Kelas biasanya berhubungan dengan kelas lain melalui berbagai jenis relasi."
+Association,,"Menunjukkan hubungan antar kelas, di mana satu kelas dapat menggunakan atau mengenali kelas lain. Hubungan ini dapat disertai multiplicity untuk menunjukkan jumlah objek yang terlibat, seperti satu-ke-satu atau satu-ke-banyak."
+Directed Association,,"Directed Association menggambarkan hubungan satu arah antara dua kelas, di mana satu kelas mengenali atau menggunakan kelas lainnya, tetapi tidak sebaliknya. Directed Association sering digunakan untuk memperjelas arah komunikasi atau akses antar kelas dalam sistem."
+Generalization,,"Generalisasi menunjukkan hubungan umum dan khusus antara dua kelas. Kelas turunan mewarisi atribut dan operasi dari kelas induknya, tetapi dapat menambah atau memodifikasi fungsinya."
+Dependency,,"Dependency menunjukkan hubungan ketergantungan sementara antara dua kelas, di mana satu kelas menggunakan kelas lain untuk menjalankan fungsi tertentu."
+Aggregation,,"Agregasi menunjukkan hubungan “memiliki” yang bersifat lemah antara dua kelas. Kelas keseluruhan memiliki kelas bagian, namun bagian tersebut tetap dapat berdiri sendiri meskipun keseluruhan dihapus"
+Composition,,"Komposisi merupakan bentuk hubungan yang lebih kuat dari agregasi. Dalam komposisi, bagian tidak dapat berdiri sendiri tanpa kelas keseluruhan. Jika kelas utama dihapus, maka bagian juga ikut hilang."

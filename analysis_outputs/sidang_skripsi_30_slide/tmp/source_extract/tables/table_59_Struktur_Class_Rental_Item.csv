@@ -1,0 +1,11 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,name,Varchar,255,UNIQUE
+3,price_per_unit,Decimal,"10,2",
+4,unit_label,Varchar,255,
+5,description,Text,,
+6,image,Varchar,255,
+7,is_active,Boolean,,
+8,created_at,Timestamp,,
+9,updated_at,Timestamp,,
+10,deleted_at,Timestamp,,

@@ -1,0 +1,19 @@
+Nama Use Case,Logout Sistem
+ID Use Case,UC-30
+Aktor,"Pemilik, Pegawai, Member"
+Deskripsi,Proses pengguna keluar dari sistem dengan menghapus token akses lokal dan mengarahkan pengguna kembali ke halaman login.
+Precondition,Aktor telah berhasil login dan berada di halaman dashboard sesuai hak aksesnya.
+Aktor,Sistem
+Skenario Utama
+1. Aktor menekan tombol Logout pada sidebar dashboard.,
+,2. Sistem menampilkan dialog konfirmasi logout.
+3. Aktor menekan tombol Logout pada dialog konfirmasi.,
+,4. Sistem menghapus token akses pengguna dari penyimpanan lokal.
+,5. Sistem menghapus data pengguna dari penyimpanan lokal jika tersedia.
+,6. Sistem mengarahkan aktor ke halaman login.
+Skenario Alternatif
+1. Aktor menekan tombol Logout pada sidebar dashboard.,
+,2. Sistem menampilkan dialog konfirmasi logout.
+3. Aktor menekan tombol Batal.,
+,4. Sistem menutup dialog konfirmasi dan tetap menampilkan halaman dashboard.
+Post Condition,Token akses pengguna telah dihapus dan aktor keluar dari sistem.

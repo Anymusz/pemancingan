@@ -1,0 +1,13 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,user_id,Bigint,20,"FK, UNIQUE"
+3,member_id,Varchar,11,UNIQUE
+4,tier_id,Bigint,20,FK
+5,total_points,Int,11,
+6,total_fish_weight,Decimal,"10,2",
+7,qr_code_hash,Varchar,100,UNIQUE
+8,last_transaction_date,Timestamp,,
+9,points_expiry_warned_at,Timestamp,,
+10,approved_at,Timestamp,,
+11,created_at,Timestamp,,
+12,updated_at,Timestamp,,

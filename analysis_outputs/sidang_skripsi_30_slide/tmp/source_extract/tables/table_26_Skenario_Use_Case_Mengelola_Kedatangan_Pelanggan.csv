@@ -1,0 +1,19 @@
+Nama Use Case,Mengelola Kedatangan Pelanggan
+ID Use Case,UC-09
+Aktor,Pegawai
+Deskripsi,"Proses pegawai melakukan pendaftaran kedatangan (check-in) menggunakan opsi Cari Manual, Scan QR, atau pendaftaran Tamu."
+Precondition,Aktor telah bersiap di antarmuka kasir.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka menu Check-in di bawah kategori Kedatangan,
+,"2. Sistem menampilkan halaman Check-in beserta opsi ""Cari Manual"", ""Scan QR"", dan ""Tamu"""
+3. Aktor memilih opsi Cari Manual / Scan QR dan memverifikasi data member,
+,4. Sistem melacak identitas dan memuat profil member di layar
+,"5. Sistem menambahkan pelanggan tersebut ke daftar ""Kedatangan Hari Ini"""
+Skenario Alternatif
+1. Aktor memilih opsi Tamu pada halaman Check-in,
+,2. Sistem memunculkan form pendaftaran tamu
+3. Aktor menginput penerimaan deposit dan mengaktifkan kartu Guest,
+,4. Sistem membuka sesi akun Guest dan mencatat saldo awal deposit
+,"5. Sistem menambahkan tamu tersebut ke daftar ""Kedatangan Hari Ini"""
+Post Condition,Pelanggan resmi tercatat hadir di daftar Kedatangan Hari Ini pada sesi operasional berjalan.

@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->integer('points_earned')->default(0);
             $table->string('status')->default('paid');
             $table->unsignedBigInteger('processed_by');
-            $table->timestamp('transaction_date');
+            $table->timestamp('transaction_date')->useCurrent();
             $table->text('notes')->nullable();
             $table->timestamps();
 

@@ -1,0 +1,13 @@
+No,Kode,Deskripsi Kebutuhan Fungsional
+1,KF-01,Sistem menyediakan autentikasi login dan logout bagi pengguna.
+2,KF-02,"Sistem membatasi hak akses berdasarkan role pemilik, pegawai, dan member."
+3,KF-03,"Sistem mengelola data member, validasi akun, status keanggotaan, tier, poin, dan QR code."
+4,KF-04,"Sistem mengelola data master operasional, meliputi menu, jenis ikan, stok ikan, item rental, event, dan informasi."
+5,KF-05,"Sistem mengelola kedatangan pelanggan member dan tamu, termasuk check-in, check-out, dan deposit tamu."
+6,KF-06,Sistem mengelola pesanan menu dan item rental sebelum transaksi akhir.
+7,KF-07,"Sistem memproses checkout transaksi, meliputi perhitungan ikan, menu, rental, denda, diskon tier, voucher, deposit, dan metode pembayaran."
+8,KF-08,"Sistem memperbarui poin member, tier member, total berat ikan, leaderboard, dan stok ikan setelah transaksi."
+9,KF-09,Sistem menampilkan indikator stok ikan menipis dan mengirim notifikasi kepada aktor terkait ketika stok melewati batas minimum.
+10,KF-10,"Sistem mengelola voucher bulanan, konfigurasi voucher, konfigurasi QRIS, dan konfigurasi deposit tamu."
+11,KF-11,Sistem menyediakan riwayat transaksi dan laporan operasional/keuangan.
+12,KF-12,Sistem menyediakan endpoint API sebagai media komunikasi antara back-end dan prototype antarmuka pengguna dari penelitian sebelumnya.

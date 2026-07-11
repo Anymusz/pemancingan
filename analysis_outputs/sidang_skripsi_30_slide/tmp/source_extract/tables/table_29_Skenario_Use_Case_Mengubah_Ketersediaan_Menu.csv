@@ -1,0 +1,15 @@
+Nama Use Case,Mengubah Ketersediaan Menu
+ID Use Case,UC-12
+Aktor,Pegawai
+Deskripsi,Proses pegawai mengubah status operasional item F&B atau rental apabila stok habis.
+Precondition,Aktor berada di antarmuka sistem kasir.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka menu Ketersediaan Menu di sidebar navigasi,
+,"2. Sistem menampilkan halaman yang memuat daftar Ketersediaan Menu, Ketersediaan Rental, dan Stok Ikan"
+"3. Aktor menekan menu aksi (titik tiga) pada item tertentu dan mengubah statusnya (misal: menjadi ""Tidak Tersedia"")",
+,4. Sistem menyimpan pembaruan ke database dan mengubah badge status di layar
+,5. Sistem secara otomatis menonaktifkan pesanan item tersebut di katalog self-order maupun kasir
+Skenario Alternatif
+-,-
+Post Condition,Ketersediaan item menu dan rental telah tersinkronisasi sesuai kondisi nyata.

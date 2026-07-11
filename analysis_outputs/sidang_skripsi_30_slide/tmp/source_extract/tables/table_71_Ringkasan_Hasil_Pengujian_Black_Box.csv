@@ -1,0 +1,7 @@
+No,Kelompok Pengujian,Kode Test Case,Jumlah Test Case,Status Valid,Status Tidak Valid
+1,Login dan Autentikasi,A01–A10,10,10,0
+2,Halaman Utama,B01–B07,7,7,0
+3,Fitur Member,C01–C16,16,16,0
+4,Fitur Pegawai,D01–D42,42,42,0
+5,Fitur Pemilik,E01–E30,30,30,0
+Total,,,105,105,0

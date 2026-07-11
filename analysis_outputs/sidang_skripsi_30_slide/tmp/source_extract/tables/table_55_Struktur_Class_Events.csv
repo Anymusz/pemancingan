@@ -1,0 +1,12 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,title,Varchar,255,
+3,description,Text,,
+4,category,Enum,,
+5,start_date,Date,,INDEX
+6,end_date,Date,,INDEX
+7,status,Enum,,INDEX
+8,image,Varchar,255,
+9,created_at,Timestamp,,
+10,updated_at,Timestamp,,
+11,deleted_at,Timestamp,,INDEX

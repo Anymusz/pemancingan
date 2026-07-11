@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('member_id')->nullable();
             $table->string('guest_name')->nullable();
             $table->decimal('deposit_amount', 10, 2)->default(0);
-            $table->timestamp('check_in_at');
+            $table->timestamp('check_in_at')->useCurrent();
             $table->timestamp('check_out_at')->nullable();
             $table->enum('status', ['active', 'completed'])->default('active');
             $table->unsignedBigInteger('checked_in_by');

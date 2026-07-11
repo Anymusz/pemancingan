@@ -1,0 +1,31 @@
+Test ID,Rincian Pengujian,Hasil yang Diharapkan,Hasil Pengujian,Status
+E01,Pengujian dashboard pemilik.,"Sistem menampilkan ringkasan laporan, transaksi, member, diskon, dan stok ikan.",Sistem berhasil menampilkan ringkasan dashboard pemilik.,Valid
+E02,Pengujian daftar member pending.,Sistem menampilkan member berstatus pending.,Sistem berhasil menampilkan daftar member pending.,Valid
+E03,Pengujian persetujuan member.,Sistem mengubah status user menjadi active dan membuat data member.,Sistem berhasil menyetujui member.,Valid
+E04,Pengujian penolakan member dengan alasan.,Sistem mengubah status menjadi rejected dan menyimpan alasan penolakan.,Sistem berhasil menolak member dan menyimpan alasan.,Valid
+E05,Pengujian nonaktif member.,Sistem mengubah status member menjadi deactivated.,Sistem berhasil menonaktifkan member.,Valid
+E06,Pengujian daftar member aktif.,Sistem menampilkan member aktif.,Sistem berhasil menampilkan daftar member aktif.,Valid
+E07,Pengujian daftar member nonaktif.,Sistem menampilkan member nonaktif.,Sistem berhasil menampilkan daftar member nonaktif.,Valid
+E08,Pengujian riwayat validasi member.,Sistem menampilkan riwayat validasi member.,Sistem berhasil menampilkan riwayat validasi member.,Valid
+E09,Pengujian daftar menu pemilik.,Sistem menampilkan semua menu.,Sistem berhasil menampilkan daftar menu pemilik.,Valid
+E10,Pengujian tambah menu valid.,Sistem menyimpan menu baru ke tabel menus.,Sistem berhasil menambahkan menu baru.,Valid
+E11,Pengujian tambah menu dengan field wajib kosong.,Sistem menolak input dan menampilkan validasi.,Sistem menampilkan validasi data menu.,Valid
+E12,Pengujian tambah menu dengan harga negatif.,Sistem menolak input harga negatif.,Sistem menampilkan validasi harga menu.,Valid
+E13,Pengujian ubah menu valid.,Sistem memperbarui data menu.,Sistem berhasil memperbarui data menu.,Valid
+E14,Pengujian hapus menu.,Sistem menghapus menu secara soft delete.,Sistem berhasil menghapus menu.,Valid
+E15,Pengujian ubah ketersediaan menu.,Sistem memperbarui availability menu.,Sistem berhasil memperbarui ketersediaan menu.,Valid
+E16,Pengujian menu spesial valid.,Sistem mengubah is_special menjadi aktif pada menu yang tersedia.,Sistem berhasil menjadikan menu sebagai menu spesial.,Valid
+E17,Pengujian menu spesial pada menu tidak tersedia.,Sistem menolak menu tidak tersedia untuk dijadikan menu spesial.,Sistem menampilkan pesan bahwa menu harus tersedia untuk dijadikan spesial.,Valid
+E18,Pengujian batas maksimal tiga menu spesial.,Sistem menolak menu spesial keempat.,Sistem menampilkan pesan maksimal tiga menu spesial aktif.,Valid
+E19,Pengujian daftar jenis ikan.,Sistem menampilkan data jenis ikan.,Sistem berhasil menampilkan daftar jenis ikan.,Valid
+E20,Pengujian tambah jenis ikan valid.,Sistem menyimpan jenis ikan dan membuat data stok awal.,Sistem berhasil menambahkan jenis ikan dan stok awal.,Valid
+E21,Pengujian tambah jenis ikan dengan harga kurang dari batas minimal.,Sistem menolak input harga ikan.,Sistem menampilkan validasi harga ikan.,Valid
+E22,Pengujian tambah jenis ikan dengan nama duplikat.,Sistem menolak nama jenis ikan yang sama.,Sistem menampilkan validasi nama jenis ikan duplikat.,Valid
+E23,Pengujian ubah jenis ikan.,Sistem memperbarui nama dan harga ikan.,Sistem berhasil memperbarui data jenis ikan.,Valid
+E24,Pengujian nonaktif jenis ikan.,Sistem mengubah status aktif jenis ikan.,Sistem berhasil memperbarui status aktif jenis ikan.,Valid
+E25,Pengujian tampilan stok ikan.,Sistem menampilkan stok ikan dan indikator stok menipis.,Sistem berhasil menampilkan data stok ikan.,Valid
+E26,Pengujian restock ikan valid.,Sistem menambah stok ikan dan menyimpan data restock_logs.,Sistem berhasil menambahkan stok ikan dan menyimpan riwayat restock.,Valid
+E27,Pengujian restock ikan dengan jumlah 0.,"Sistem menolak restock karena jumlah minimal 0,1 kg.",Sistem menampilkan validasi jumlah restock.,Valid
+E28,Pengujian ubah ambang batas stok.,Sistem memperbarui alert_threshold_kg.,Sistem berhasil memperbarui ambang batas stok.,Valid
+E29,Pengujian laporan keuangan pemilik.,"Sistem menampilkan ringkasan, breakdown, transaksi, stok, dan tren harian.",Sistem berhasil menampilkan laporan keuangan.,Valid
+E30,Pengujian export laporan keuangan.,Sistem menghasilkan file laporan sesuai data transaksi.,Sistem berhasil menghasilkan laporan untuk diekspor.,Valid

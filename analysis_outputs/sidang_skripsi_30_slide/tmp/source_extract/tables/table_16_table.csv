@@ -1,0 +1,6 @@
+Test ID,Rincian Pengujian,Hasil yang Diharapkan,Hasil Pengujian,Status
+T01,Pengujian pencatatan transaksi penimbangan ikan dengan nilai berat yang valid.,Sistem menghitung total pembayaran sesuai tarif dan menyimpan transaksi tanpa error.,,
+T02,Pengujian pembaruan stok ikan setelah transaksi dilakukan.,Sistem mengurangi stok ikan sesuai jumlah yang tercatat pada transaksi.,,
+T03,Pengujian pengurangan saldo deposit pelanggan saat transaksi dibayar menggunakan deposit.,Sistem mengurangi saldo deposit dan mencatat perubahan pada riwayat deposit.,,
+T04,Pengujian tampilan laporan pendapatan harian berdasarkan transaksi yang telah tersimpan.,Sistem menampilkan total pendapatan harian berdasarkan data transaksi yang tersedia.,,
+T05,…,…,,

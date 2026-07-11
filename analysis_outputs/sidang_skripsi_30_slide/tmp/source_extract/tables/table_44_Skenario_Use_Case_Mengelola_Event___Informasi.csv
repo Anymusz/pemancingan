@@ -1,0 +1,16 @@
+Nama Use Case,Mengelola Event & Informasi
+ID Use Case,UC-27
+Aktor,Pemilik
+Deskripsi,"Proses back-end untuk menambah, mengubah, menghapus, serta menyortir/mencari publikasi acara dan pengumuman."
+Precondition,Aktor berada di menu Kelola Event dan Informasi.
+Aktor,Sistem
+Skenario Utama
+"1. Aktor mengisi formulir pembuatan acara baru, mengatur status ""Dipublikasikan"", lalu menekan Simpan",
+,"2. Sistem memvalidasi request, merekam konten ke basis data, lalu memicu pengiriman notifikasi broadcast ke pelanggan"
+Skenario Alternatif 1
+1. Aktor melakukan modifikasi data (Edit) atau pencabutan data (Hapus) pada acara tertentu,
+,2. Sistem mengeksekusi query update pembaruan data atau penghapusan lunak (soft delete) pada basis data
+Skenario Alternatif 2
+"1. Aktor mencari judul, memilih filter status/kategori, atau mencentang opsi ""Tampilkan yang dihapus""",
+,2. Sistem mengeksekusi query parameter secara dinamis dan menyajikan ulang daftar tabel sesuai filter yang diminta
+Post Condition,Pengelolaan data dan tampilan penayangan acara/informasi berhasil disesuaikan.

@@ -1,0 +1,33 @@
+{
+  "docx": "D:\\Semester\\Semester7\\Skripsi\\BAB1-5\\183-Raka Bagaskara Putra.docx",
+  "deleted_blocks": [
+    {
+      "caption": "Gambar 74. Response Pesanan Member",
+      "start_index": 1215,
+      "end_index": 1217
+    },
+    {
+      "caption": "Gambar 73. Response Endpoint Protected",
+      "start_index": 1212,
+      "end_index": 1214
+    },
+    {
+      "caption": "Gambar 72. Response Login Owner",
+      "start_index": 1209,
+      "end_index": 1211
+    },
+    {
+      "caption": "Gambar 71. Response Endpoint GET Events",
+      "start_index": 1206,
+      "end_index": 1208
+    },
+    {
+      "caption": "Gambar 69. Request Pesanan Member",
+      "start_index": 1200,
+      "end_index": 1202
+    }
+  ],
+  "intro_replacements": 1,
+  "reference_paragraphs_rewritten": 31,
+  "field_paragraphs_skipped_for_word_update": 32
+}

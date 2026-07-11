@@ -1,0 +1,5 @@
+No,Method,URL Endpoint,Request (JSON),Response (JSON)
+1,POST,/api/...,{ ... },{ ... }
+2,GET,/api/...,-,{ ... }
+3,PUT,/api/.../{id},{ ... },{ ... }
+4,DELETE,/api/.../{id},-,{ ... }

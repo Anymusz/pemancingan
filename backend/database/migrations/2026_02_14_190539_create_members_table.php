@@ -24,7 +24,7 @@ return new class extends Migration {
             // Tracking
             $table->timestamp('last_transaction_date')->nullable();
             $table->timestamp('points_expiry_warned_at')->nullable()->default(null);
-            $table->timestamp('approved_at');
+            $table->timestamp('approved_at')->nullable();
 
             $table->timestamps();
 

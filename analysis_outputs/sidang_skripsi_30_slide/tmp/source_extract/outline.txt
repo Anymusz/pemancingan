@@ -1,0 +1,79 @@
+00031	Heading1	PENGESAHAN
+00045	Heading1	RINGKASAN
+00050	Heading1	RIWAYAT HIDUP
+00057	Heading1	PRAKATA
+00078	Heading1	DAFTAR ISI
+00080	Heading1	DAFTAR TABEL
+00165	Heading1	DAFTAR GAMBAR
+00271	Heading1	LAMPIRAN
+00281	Heading1	PENDAHULUAN
+00282	Heading2	Latar Belakang
+00290	Heading2	Rumusan Masalah
+00293	Heading2	Tujuan Penelitian
+00296	Heading2	Batasan Masalah
+00303	Heading2	Manfaat Penelitian
+00310	Heading1	TINJAUAN PUSTAKA
+00311	Heading2	Pengelolaan Usaha Mikro, Kecil, dan Menengah (UMKM)
+00317	Heading2	Digitalisasi Proses Bisnis Pemancingan
+00321	Heading2	Sistem Informasi Back-end
+00322	Heading3	Sistem Informasi
+00331	Heading3	Back-end
+00339	Heading2	Basis Data MySQL
+00343	Heading2	Framework Laravel
+00349	Heading2	System Development Life Cycle (SDLC)
+00362	Heading2	Metodologi Rapid Application Development
+00363	Heading3	Pengertian Rapid Application Development
+00371	Heading3	Kelebihan Rapid Application Development
+00378	Heading3	Kekurangan Rapid Application Development
+00385	Heading3	Tahapan RAD dengan Model System Prototyping
+00397	Heading2	Unified Modelling Language
+00399	Heading3	Use Case Diagram
+00403	Heading3	Activity Diagram
+00407	Heading3	Class Diagram
+00415	Heading2	Pengujian dan Evaluasi Sistem
+00416	Heading3	Black Box Testing
+00419	Heading3	Usability dan System Usability Scale
+00445	Heading2	Penelitian Terdahulu
+00457	Heading1	METODOLOGI PENELITIAN
+00458	Heading2	Waktu dan Tempat Penelitian
+00460	Heading2	Alat Penelitian
+00466	Heading2	Langkah Kerja Penelitian
+00477	Heading2	Metode Pengumpulan Data
+00486	Heading2	Metode Pengembangan Sistem
+00489	Heading3	Planning
+00495	Heading3	Analysis
+00514	Heading3	Design
+00523	Heading3	Implementation
+00533	Heading2	Pengujian dan Evaluasi Sistem
+00535	Heading3	Black Box Testing
+00542	Heading3	System Usability Scale (SUS)
+00559	Heading1	HASIL DAN PEMBAHASAN
+00560	Heading2	Tahap Perencanaan (Planning)
+00575	Heading2	Tahap Analisis (Analysis)
+00578	Heading3	Analisis Kebutuhan Sistem
+00589	Heading3	Analisis Aktor dan Entitas Sistem
+00594	Heading3	Analisis Sistem Berjalan
+00608	Heading3	Analisis Sistem Usulan
+00624	Heading2	Tahap Perancangan (Design)
+00627	Heading3	Use Case Diagram
+00783	Heading3	Activity Diagram
+00953	Heading3	Class Diagram
+00958	Heading3	Rancangan Basis Data
+01048	Heading3	Rancangan Endpoint API
+01057	Heading2	Tahap Implementasi (Implementation)
+01062	Heading3	Implementasi Basis Data
+01128	Heading3	Implementasi Back-end Sistem
+01181	Heading3	Implementasi Endpoint API
+01184	Heading4	Endpoint API
+01189	Heading4	Dokumentasi Endpoint API melalui Swagger
+01219	Heading3	Integrasi Back-end dengan Prototype Antarmuka Pengguna
+01361	Heading3	Evaluasi Prototype dan Perbaikan Iteratif
+01412	Heading2	Tahap Pengujian
+01417	Heading3	Black Box Testing
+01442	Heading3	System Usability Scale (SUS)
+01476	Heading3	Pembahasan Hasil Pengujian dan Evaluasi
+01486	Heading1	KESIMPULAN DAN SARAN
+01487	Heading2	Kesimpulan
+01492	Heading2	Saran
+01502	Heading1	DAFTAR PUSTAKA
+01504	Heading1	LAMPIRAN

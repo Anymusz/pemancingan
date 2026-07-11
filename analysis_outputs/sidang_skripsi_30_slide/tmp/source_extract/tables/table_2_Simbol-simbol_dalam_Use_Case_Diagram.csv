@@ -1,0 +1,7 @@
+Nama Simbol,Gambar,Keterangan
+Aktor,,"Aktor menggambarkan pihak luar seperti pengguna, sistem lain, atau perangkat yang berinteraksi langsung dengan sistem. Dalam diagram, aktor terhubung dengan use case melalui asosiasi, namun tidak mengendalikan proses di dalamnya."
+Use Case,,Use Case menjelaskan fungsi atau layanan yang disediakan sistem bagi actor. Use case dihubungkan dengan aktor melalui asosiasi dan dapat saling berhubungan dengan use case lain melalui relasi include atau extend
+Asosiasi,,"Asosiasi menunjukkan hubungan interaksi atau pertukaran data antara pengguna dan sistem, baik dalam bentuk input maupun output."
+Generalisasi,,Generalization menggambarkan hubungan umum dan khusus antara aktor atau antar use case.
+Include,,Include Relationship menunjukkan bahwa suatu use case selalu memanggil use case lain sebagai bagian dari proses utama. Hubungan ini digunakan untuk menghindari pengulangan proses yang sama
+Extend,,Extend Relationship menunjukkan bahwa suatu use case dapat diperluas oleh use case lain jika kondisi tertentu terpenuhi. Relasi ini menggambarkan proses tambahan yang bersifat opsional.

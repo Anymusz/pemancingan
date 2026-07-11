@@ -1,0 +1,13 @@
+Nama Use Case,Hitung Harga Ikan
+ID Use Case,UC-16
+Aktor,Pegawai
+Deskripsi,Kalkulasi total harga asli berdasarkan berat ikan secara otomatis
+Precondition,Input berat ikan telah didapatkan
+Aktor,Sistem
+Skenario Utama
+,1. Sistem menarik data referensi harga pasar ikan dari basis data
+,2. Sistem mengalikan variabel berat dengan harga dasar
+,3. Sistem menghasilkan nilai Subtotal Harga Asli sebelum diskon
+Skenario Alternatif
+-,-
+Post Condition,Subtotal harga asli ikan berhasil dikalkulasi secara matematis

@@ -1,0 +1,7 @@
+No,Deskripsi Tugas,Tujuan Evaluasi
+1,Melakukan registrasi kedatangan pelanggan sesuai skenario yang diberikan.,Menilai kemudahan pegawai dalam mencatat kedatangan pelanggan member maupun guest.
+2,Membuka halaman Kedatangan Hari Ini dan memilih salah satu kedatangan aktif.,Menilai kemudahan pegawai dalam memantau sesi kunjungan yang sedang berjalan.
+3,Menambahkan pesanan pelanggan melalui halaman Tambah Pesanan.,Menilai kemudahan pegawai dalam mencatat pesanan secara digital.
+4,Membuka halaman Pesanan Masuk dan memproses pesanan sampai selesai.,Menilai kemudahan pegawai dalam memantau dan memperbarui status pesanan.
+5,"Menyelesaikan pembayaran, termasuk mengunggah bukti pembayaran jika metode pembayaran memerlukan bukti.",Menilai kemudahan pegawai dalam menyelesaikan transaksi melalui alur checkout digital.
+6,Membuka halaman Riwayat Transaksi dan memeriksa salah satu transaksi yang telah selesai.,"Menilai kemudahan pegawai dalam mengakses kembali data transaksi pelanggan yang telah selesai, termasuk informasi pembayaran dan detail transaksi."

@@ -1,0 +1,22 @@
+Nama Use Case,Memesan Menu
+ID Use Case,UC-07
+Aktor,Member
+Deskripsi,"Proses member melakukan pemesanan makanan dan minuman secara mandiri via website, termasuk melihat menu spesial, memilih kuantitas menu, melihat total sementara, serta menyimpan pesanan sebagai tagihan belum dibayar dengan status awal pending untuk diproses pegawai."
+Precondition,Aktor telah login sebagai member dan telah melakukan check-in pada hari tersebut.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman pemesanan menu,
+,2. Sistem menampilkan daftar menu makanan dan minuman yang tersedia
+,3. Sistem menandai atau memprioritaskan menu yang berstatus sebagai menu spesial
+4. Aktor memilih menu dan menentukan kuantitas pesanan,
+,5. Sistem menghitung subtotal dan total sementara pesanan
+6. Aktor menekan tombol Kirim Pesanan,
+,7. Sistem memvalidasi ketersediaan menu dan status check-in member
+,8. Sistem menyimpan pesanan sebagai tagihan belum dibayar dengan status awal pending
+,9. Sistem menampilkan status pesanan member dan mengirimkan pesanan ke daftar pesanan masuk pegawai
+Skenario Alternatif
+1. Aktor memilih atau mengirim menu yang tidak tersedia,
+,2. Sistem menolak pesanan dan menampilkan pesan bahwa menu tidak tersedia
+3. Aktor belum melakukan check-in pada hari tersebut,
+,4. Sistem menolak pesanan dan menampilkan pesan bahwa aktor harus menghubungi pegawai untuk melakukan check-in
+Post Condition,Pesanan member berhasil tercatat sebagai tagihan belum dibayar dan dapat diproses oleh pegawai pada daftar pesanan masuk.

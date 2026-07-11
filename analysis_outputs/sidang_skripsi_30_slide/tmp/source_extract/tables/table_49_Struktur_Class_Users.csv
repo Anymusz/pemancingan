@@ -1,0 +1,17 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,name,Varchar,255,
+3,email,Varchar,255,UNIQUE
+4,email_verified_at,Timestamp,,
+5,password,Varchar,255,
+6,phone,Varchar,255,UNIQUE
+7,address,Text,,
+8,role,Enum,,
+9,status,Enum,,
+10,rejection_reason,Text,,
+11,rejected_at,Timestamp,,
+12,deactivated_reason,Text,,
+13,deactivated_at,Timestamp,,
+14,remember_token,Varchar,100,
+15,created_at,Timestamp,,
+16,updated_at,Timestamp,,

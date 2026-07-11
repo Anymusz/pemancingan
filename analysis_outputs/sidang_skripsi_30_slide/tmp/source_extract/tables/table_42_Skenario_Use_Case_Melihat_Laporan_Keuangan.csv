@@ -1,0 +1,15 @@
+Nama Use Case,Melihat Laporan Keuangan
+ID Use Case,UC-25
+Aktor,Pemilik
+Deskripsi,"Proses back-end untuk menarik (read), memfilter rentang waktu, mengalkulasi metrik bisnis, serta men- generate file ekspor data transaksi operasional."
+Precondition,Aktor berada di menu Laporan Keuangan.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman Laporan Keuangan atau mengubah filter periode (Harian/Mingguan/Bulanan/Custom),
+,2. Sistem menerima parameter rentang waktu dan menarik rekapitulasi data LUNAS dari basis data
+,"3. Sistem mengalkulasi ulang metrik (total pendapatan, diskon, breakdown transaksi) dan menampilkannya"
+Skenario Alternatif
+1. Aktor melakukan request ekspor data dengan menekan tombol Export Excel,
+,2. Sistem memproses data pada periode yang sedang aktif lalu men- generate tabel mentah (format Excel/CSV)
+,3. Sistem mengirimkan file laporan keuangan tersebut untuk diunduh ke perangkat aktor
+Post Condition,Aktor memperoleh data analitik keuangan yang akurat baik di layar maupun dalam bentuk file.

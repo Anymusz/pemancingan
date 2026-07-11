@@ -1,0 +1,17 @@
+No,Controller,Fungsi Utama
+1,AuthController,"Registrasi, login, logout, reset password, autentikasi Sanctum, dan token akses."
+2,UserController,Pembaruan profil dan password pengguna yang sedang login.
+3,Member/MemberController,"Profil member, riwayat transaksi, voucher, tier, dan leaderboard member."
+4,Member/OrderController,Pembuatan pesanan menu atau rental oleh member sebelum checkout.
+5,Employee/ArrivalController,"Check-in, check-out, pencarian member, kedatangan hari ini, dan validasi QR."
+6,Employee/PendingOrderController,Pesanan sementara menu atau rental sebelum diproses menjadi transaksi.
+7,Employee/TransactionController,"Checkout, pembayaran, diskon tier, voucher, poin, stok ikan, dan riwayat transaksi."
+8,Employee/MenuController,Daftar menu dan perubahan status ketersediaan menu oleh pegawai.
+9,Employee/FishStockController,Data stok ikan untuk mendukung proses transaksi pegawai.
+10,Owner/MemberValidationController,"Validasi, persetujuan, penolakan, reaktivasi, dan penonaktifan member."
+11,Owner/FishTypeController,"CRUD jenis ikan, harga ikan, dan status aktif jenis ikan."
+12,Owner/FishStockController,"Stok ikan, restock, batas minimum stok, dan riwayat restock."
+13,Owner/MenuController,"CRUD menu, status ketersediaan, dan menu spesial oleh owner."
+14,Owner/ReportController,"Ringkasan laporan, breakdown transaksi, export, dan ringkasan stok."
+15,NotificationController,"Daftar notifikasi, jumlah belum dibaca, dan perubahan status baca."
+16,EventController,Daftar event/informasi publik dan detail event yang dipublikasikan.

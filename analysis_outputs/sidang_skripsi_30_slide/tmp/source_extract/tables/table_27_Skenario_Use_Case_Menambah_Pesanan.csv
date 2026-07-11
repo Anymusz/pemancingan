@@ -1,0 +1,21 @@
+Nama Use Case,Menambah Pesanan
+ID Use Case,UC-10
+Aktor,Pegawai
+Deskripsi,"Proses pegawai menginput pesanan makanan/minuman sekaligus sewa alat pancing secara manual dari kasir, dengan daftar menu yang menampilkan penanda menu spesial."
+Precondition,Aktor telah login sebagai pegawai dan terdapat pelanggan atau kedatangan aktif yang akan ditambahkan pesanan.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman tambah pesanan,
+,2. Sistem menampilkan daftar pelanggan aktif atau kedatangan aktif
+3. Aktor memilih pelanggan atau kedatangan yang akan ditambahkan pesanan,
+,4. Sistem menampilkan daftar menu dan item sewa yang tersedia
+,5. Sistem menampilkan penanda pada menu yang berstatus menu spesial
+"6. Aktor memilih menu, item sewa, dan jumlah pesanan pelanggan",
+,7. Sistem memvalidasi ketersediaan item yang dipilih
+,8. Sistem menghitung subtotal dan total sementara pesanan
+9. Aktor menyimpan pesanan pelanggan,
+,10. Sistem menyimpan pesanan sebagai tagihan belum dibayar dengan status awal pending
+Skenario Alternatif
+1. Aktor memilih menu atau item sewa yang tidak tersedia,
+,2. Sistem menolak penambahan pesanan dan menampilkan pesan bahwa item tidak tersedia
+Post Condition,Pesanan pelanggan berhasil ditambahkan sebagai tagihan belum dibayar dan dapat diproses pada daftar pesanan masuk.

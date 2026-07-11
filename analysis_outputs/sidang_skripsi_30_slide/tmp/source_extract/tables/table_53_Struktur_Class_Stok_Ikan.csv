@@ -1,0 +1,7 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,fish_type_id,Bigint,20,"FK, UNIQUE"
+3,current_stock_kg,Decimal,"10,2",
+4,alert_threshold_kg,Decimal,"10,2",
+5,created_at,Timestamp,,
+6,updated_at,Timestamp,,

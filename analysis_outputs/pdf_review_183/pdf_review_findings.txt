@@ -1,0 +1,46 @@
+Source: D:\Semester\Semester7\Skripsi\BAB1-5\183-Raka Bagaskara Putra.pdf
+PDF pages: 269
+Captions: 373 | Tables detected: 387 | Images detected: 167
+
+LAYOUT FINDINGS
+- PDF p.54 printed 37 -> PDF p.55 printed 38: caption_object_split | Tabel 8. Format Kebutuhan Non-Fungsional
+  Next first: 38 / No Kode Deskripsi Kebutuhan Non-Fungsional / 1 KNF-1 Uraian singkat aspek kualitas / 2 KNF-2 ... / Tahap Analysis juga mencakup identifikasi kebutuhan data, yaitu proses
+- PDF p.60 printed 43 -> PDF p.61 printed 44: caption_object_split | Tabel 12. Instrumen Pertanyaan SUS
+  Next first: 44 / No Komponen/Pernyataan Skala Penilaian / 1 Saya berpikir akan menggunakan sistem ini lagi. 1 2 3 4 5 / 2 Saya merasa sistem ini rumit untuk digunakan. 1 2 3 4 5 / 3 Saya merasa sistem ini mudah digunakan. 1 2 3 4 5
+- PDF p.65 printed 48 -> PDF p.66 printed 49: caption_object_split | Tabel 14. Kebutuhan Non-Fungsional
+  Next first: 49 / 1 KNF-01 Sistem harus menyediakan autentikasi pengguna agar hanya / pengguna terdaftar yang dapat mengakses sistem. / 2 KNF-02 Sistem harus membatasi akses fitur berdasarkan role pemilik, / pegawai, dan member.
+
+Rendered evidence:
+- D:\Semester\Semester7\Skripsi\Projek-Skripsi\analysis_outputs\pdf_review_183\render_findings\page-054.png
+- D:\Semester\Semester7\Skripsi\Projek-Skripsi\analysis_outputs\pdf_review_183\render_findings\page-055.png
+- D:\Semester\Semester7\Skripsi\Projek-Skripsi\analysis_outputs\pdf_review_183\render_findings\page-060.png
+- D:\Semester\Semester7\Skripsi\Projek-Skripsi\analysis_outputs\pdf_review_183\render_findings\page-061.png
+- D:\Semester\Semester7\Skripsi\Projek-Skripsi\analysis_outputs\pdf_review_183\render_findings\page-065.png
+- D:\Semester\Semester7\Skripsi\Projek-Skripsi\analysis_outputs\pdf_review_183\render_findings\page-066.png
+
+TYPO FINDINGS
+- duplicate_word_candidate: cek apakah kata/nama berulang memang benar
+  PDF p.29: oduk dapat disesuaikan secara berkelanjutan (Nico Abrarsyah Atallah & Mardi Mardi, 2024). • Mendorong kerja sama tim, komunikasi intensif, dan adaptasi
+  PDF p.34: 2. Simbol-simbol dalam Use Case Diagram Nama Simbol Gambar Keterangan Aktor Aktor menggambarkan pihak luar seperti pengguna, sistem lain, atau perangka
+  PDF p.44: si data sistem. Framework Laravel 6 Perancangan (Maulidi et Merancang sistem Sistem mampu Sistem al., 2025) informasi berbasis meningkatkan Informasi web
+  PDF p.44: rototyping berdasarkan pengujian UAT. 9 Pembangunan (Tang & Membangun sistem Sistem informasi Sistem Kartika Sari informasi penjualan berbasis web mampu
+  PDF p.45: 28 Toko Dunia usaha usaha dalam Pancing pemancingan. memantau aktivitas penjualan secara terstr
+  PDF p.45: tingkat usability menunjukkan bahwa Dinas website Dinas metode System Pendidikan Pendidikan Provinsi Usability Scale (SUS) Provinsi Riau Riau menggunakan dapat d
+  PDF p.45: System Pendidikan Pendidikan Provinsi Usability Scale (SUS) Provinsi Riau Riau menggunakan dapat digunakan menggunakan metode System untuk mengukur
+  PDF p.45: njukkan bahwa Shopee al., 2021) website Shopee System Usability Scale menggunakan menggunakan (SUS) mampu System Usability metode System memberikan Scale (SUS) Usa
+- punctuation_spacing_candidate: cek spasi setelah tanda baca / format URL
+  PDF p.3: , dan dinyatakan lulus. Susunan Tim Penguji Ketua : Muh. Subhan, S.ST., M.T. Sekretaris : Mochammad Arief Hermawan Sutoyo, M.Kom. Ang
+  PDF p.3: inyatakan lulus. Susunan Tim Penguji Ketua : Muh. Subhan, S.ST., M.T. Sekretaris : Mochammad Arief Hermawan Sutoyo, M.Kom. Anggota :
+  PDF p.3: ubhan, S.ST., M.T. Sekretaris : Mochammad Arief Hermawan Sutoyo, M.Kom. Anggota : 1. Daniel Arsa, S.Kom., M.S.I 2. Muhammad Razi A.,
+  PDF p.3: ochammad Arief Hermawan Sutoyo, M.Kom. Anggota : 1. Daniel Arsa, S.Kom., M.S.I 2. Muhammad Razi A., S.T., MMSI. Disetujui: Pembimbing
+  PDF p.3: Arief Hermawan Sutoyo, M.Kom. Anggota : 1. Daniel Arsa, S.Kom., M.S.I 2. Muhammad Razi A., S.T., MMSI. Disetujui: Pembimbing Utama P
+  PDF p.3: om. Anggota : 1. Daniel Arsa, S.Kom., M.S.I 2. Muhammad Razi A., S.T., MMSI. Disetujui: Pembimbing Utama Pembimbing Pendamping Muh. S
+  PDF p.3: . Disetujui: Pembimbing Utama Pembimbing Pendamping Muh. Subhan, S.ST., M.T. Mochammad Arief Hermawan Sutoyo, M.Kom. NIP. 19860812201
+  PDF p.3: ujui: Pembimbing Utama Pembimbing Pendamping Muh. Subhan, S.ST., M.T. Mochammad Arief Hermawan Sutoyo, M.Kom. NIP. 198608122014041001
+
+TERM CONSISTENCY FINDINGS
+- back-end/backend/back end: back-end=249, Back-end=15, BACK-END=3, Back-End=2, BACKEND=1
+- front-end/frontend/front end: front-end=23, frontend=4
+- use case/use-case: Use Case=186, use case=19, Use case=1
+- QR Code/QR-Code/qrcode: QR code=18, QR Code=5
+- endpoint/end point: endpoint=96, Endpoint=32

@@ -1,0 +1,4146 @@
+{
+  "source": "D:\\Semester\\Semester7\\Skripsi\\BAB1-5\\183-Raka Bagaskara Putra.docx",
+  "block_count": 1612,
+  "paragraph_count": 1517,
+  "table_count": 95,
+  "image_paragraph_count": 107,
+  "caption_like_count": 406,
+  "heading_like_count": 81,
+  "styles_top": [
+    [
+      "",
+      703
+    ],
+    [
+      "ListParagraph",
+      327
+    ],
+    [
+      "Caption",
+      195
+    ],
+    [
+      "TableofFigures",
+      192
+    ],
+    [
+      "Heading3",
+      34
+    ],
+    [
+      "Heading2",
+      28
+    ],
+    [
+      "Heading1",
+      17
+    ],
+    [
+      "NormalWeb",
+      16
+    ],
+    [
+      "Heading4",
+      2
+    ],
+    [
+      "TOCHeading",
+      1
+    ],
+    [
+      "NoSpacing",
+      1
+    ],
+    [
+      "Pustaka",
+      1
+    ]
+  ],
+  "captions": [
+    {
+      "block": 81,
+      "style": "TableofFigures",
+      "text": "Tabel 1. Perbandingan Metodologi Pengembangan Perangkat Lunak12"
+    },
+    {
+      "block": 82,
+      "style": "TableofFigures",
+      "text": "Tabel 2. Simbol-simbol dalam Use Case Diagram18"
+    },
+    {
+      "block": 83,
+      "style": "TableofFigures",
+      "text": "Tabel 3. Simbol-simbol Activity Diagram20"
+    },
+    {
+      "block": 84,
+      "style": "TableofFigures",
+      "text": "Tabel 4. Simbol-simbol Class Diagram21"
+    },
+    {
+      "block": 85,
+      "style": "TableofFigures",
+      "text": "Tabel 5. Penelitian Terdahulu27"
+    },
+    {
+      "block": 86,
+      "style": "TableofFigures",
+      "text": "Tabel 6. Format Identifikasi Aktor38"
+    },
+    {
+      "block": 87,
+      "style": "TableofFigures",
+      "text": "Tabel 7. Format Kebutuhan Fungsional38"
+    },
+    {
+      "block": 88,
+      "style": "TableofFigures",
+      "text": "Tabel 8. Format Kebutuhan Non-Fungsional39"
+    },
+    {
+      "block": 89,
+      "style": "TableofFigures",
+      "text": "Tabel 9. Format Kebutuhan Data39"
+    },
+    {
+      "block": 90,
+      "style": "TableofFigures",
+      "text": "Tabel 10. Format Rancangan Endpoint API40"
+    },
+    {
+      "block": 91,
+      "style": "TableofFigures",
+      "text": "Tabel 11. Rencana Pengujian Black Box (Sumber: Permatasari et al., 2023)43"
+    },
+    {
+      "block": 92,
+      "style": "TableofFigures",
+      "text": "Tabel 12. Instrumen Pertanyaan SUS44"
+    },
+    {
+      "block": 93,
+      "style": "TableofFigures",
+      "text": "Tabel 13. Kebutuhan Fungsional49"
+    },
+    {
+      "block": 94,
+      "style": "TableofFigures",
+      "text": "Tabel 14. Kebutuhan Non-Fungsional50"
+    },
+    {
+      "block": 95,
+      "style": "TableofFigures",
+      "text": "Tabel 15. Kebutuhan Data50"
+    },
+    {
+      "block": 96,
+      "style": "TableofFigures",
+      "text": "Tabel 16. Identifikasi Aktor51"
+    },
+    {
+      "block": 97,
+      "style": "TableofFigures",
+      "text": "Tabel 17. Spesifikasi Use Case Sistem Informasi Pemancingan S60"
+    },
+    {
+      "block": 98,
+      "style": "TableofFigures",
+      "text": "Tabel 18. Skenario Use Case Login Sistem63"
+    },
+    {
+      "block": 99,
+      "style": "TableofFigures",
+      "text": "Tabel 19. Skenario Use Case Mendaftar Akun64"
+    },
+    {
+      "block": 100,
+      "style": "TableofFigures",
+      "text": "Tabel 20. Skenario Use Case Mengakses Halaman Utama65"
+    },
+    {
+      "block": 101,
+      "style": "TableofFigures",
+      "text": "Tabel 21. Skenario Use Case Melihat Event dan Informasi66"
+    },
+    {
+      "block": 102,
+      "style": "TableofFigures",
+      "text": "Tabel 22. Skenario Use Case Mengakses Dashboard67"
+    },
+    {
+      "block": 103,
+      "style": "TableofFigures",
+      "text": "Tabel 23. Skenario Use Case Melihat Leaderboard68"
+    },
+    {
+      "block": 104,
+      "style": "TableofFigures",
+      "text": "Tabel 24. Skenario Use Case Memesan Menu68"
+    },
+    {
+      "block": 105,
+      "style": "TableofFigures",
+      "text": "Tabel 25. Skenario Use Case Melihat Riwayat Transaksi70"
+    },
+    {
+      "block": 106,
+      "style": "TableofFigures",
+      "text": "Tabel 26. Skenario Use Case Mengelola Kedatangan Pelanggan70"
+    },
+    {
+      "block": 107,
+      "style": "TableofFigures",
+      "text": "Tabel 27. Skenario Use Case Menambah Pesanan71"
+    },
+    {
+      "block": 108,
+      "style": "TableofFigures",
+      "text": "Tabel 28. Skenario Use Case Mengelola Pesanan Masuk73"
+    },
+    {
+      "block": 109,
+      "style": "TableofFigures",
+      "text": "Tabel 29. Skenario Use Case Mengubah Ketersediaan Menu73"
+    },
+    {
+      "block": 110,
+      "style": "TableofFigures",
+      "text": "Tabel 30. Skenario Use Case Melihat Riwayat Transaksi Pelanggan74"
+    },
+    {
+      "block": 111,
+      "style": "TableofFigures",
+      "text": "Tabel 31. Skenario Use Case Checkout Transaksi75"
+    },
+    {
+      "block": 112,
+      "style": "TableofFigures",
+      "text": "Tabel 32. Skenario Use Case Input Berat Ikan76"
+    },
+    {
+      "block": 113,
+      "style": "TableofFigures",
+      "text": "Tabel 33. Skenario Use Case Hitung Harga Ikan77"
+    },
+    {
+      "block": 114,
+      "style": "TableofFigures",
+      "text": "Tabel 34. Skenario Use Case Validasi Diskon Tier77"
+    },
+    {
+      "block": 115,
+      "style": "TableofFigures",
+      "text": "Tabel 35. Skenario Use Case Validasi Voucher78"
+    },
+    {
+      "block": 116,
+      "style": "TableofFigures",
+      "text": "Tabel 36. Skenario Use Case Update dan Evaluasi Poin Member79"
+    },
+    {
+      "block": 117,
+      "style": "TableofFigures",
+      "text": "Tabel 37. Skenario Use Case Update Leaderboard80"
+    },
+    {
+      "block": 118,
+      "style": "TableofFigures",
+      "text": "Tabel 38. Skenario Use Case Mengelola Akun Member80"
+    },
+    {
+      "block": 119,
+      "style": "TableofFigures",
+      "text": "Tabel 39. Skenario Use Case Mengelola Menu81"
+    },
+    {
+      "block": 120,
+      "style": "TableofFigures",
+      "text": "Tabel 40. Skenario Use Case Mengelola Inventaris Ikan82"
+    },
+    {
+      "block": 121,
+      "style": "TableofFigures",
+      "text": "Tabel 41. Skenario Use Case Mengelola Rental Item83"
+    },
+    {
+      "block": 122,
+      "style": "TableofFigures",
+      "text": "Tabel 42. Skenario Use Case Melihat Laporan Keuangan84"
+    },
+    {
+      "block": 123,
+      "style": "TableofFigures",
+      "text": "Tabel 43. Skenario Use Case Mengelola Voucher85"
+    },
+    {
+      "block": 124,
+      "style": "TableofFigures",
+      "text": "Tabel 44. Skenario Use Case Mengelola Event & Informasi86"
+    },
+    {
+      "block": 125,
+      "style": "TableofFigures",
+      "text": "Tabel 45. Skenario Use Case Memantau Leaderboard87"
+    },
+    {
+      "block": 126,
+      "style": "TableofFigures",
+      "text": "Tabel 46. Skenario Use Case Mengelola Pengaturan Sistem88"
+    },
+    {
+      "block": 127,
+      "style": "TableofFigures",
+      "text": "Tabel 47. Skenario Use Case Logout Sistem89"
+    },
+    {
+      "block": 128,
+      "style": "TableofFigures",
+      "text": "Tabel 48. Rancangan Entitas Basis Data Sistem121"
+    },
+    {
+      "block": 129,
+      "style": "TableofFigures",
+      "text": "Tabel 49. Struktur Class Users123"
+    },
+    {
+      "block": 130,
+      "style": "TableofFigures",
+      "text": "Tabel 50. Struktur Class Member Tier124"
+    },
+    {
+      "block": 131,
+      "style": "TableofFigures",
+      "text": "Tabel 51. Struktur Class Member124"
+    },
+    {
+      "block": 132,
+      "style": "TableofFigures",
+      "text": "Tabel 52. Struktur Class Tipe Ikan125"
+    },
+    {
+      "block": 133,
+      "style": "TableofFigures",
+      "text": "Tabel 53. Struktur Class Stok Ikan125"
+    },
+    {
+      "block": 134,
+      "style": "TableofFigures",
+      "text": "Tabel 54. Struktur Class Riwayat Restock Ikan126"
+    },
+    {
+      "block": 135,
+      "style": "TableofFigures",
+      "text": "Tabel 55. Struktur Class Events126"
+    },
+    {
+      "block": 136,
+      "style": "TableofFigures",
+      "text": "Tabel 56. Struktur Class Menu127"
+    },
+    {
+      "block": 137,
+      "style": "TableofFigures",
+      "text": "Tabel 57. Struktur Class Kedatangan127"
+    },
+    {
+      "block": 138,
+      "style": "TableofFigures",
+      "text": "Tabel 58. Struktur Class Pending Orders128"
+    },
+    {
+      "block": 139,
+      "style": "TableofFigures",
+      "text": "Tabel 59. Struktur Class Rental Item129"
+    },
+    {
+      "block": 140,
+      "style": "TableofFigures",
+      "text": "Tabel 60. Struktur Class Transaksi129"
+    },
+    {
+      "block": 141,
+      "style": "TableofFigures",
+      "text": "Tabel 61. Struktur Class Transaksi Item130"
+    },
+    {
+      "block": 142,
+      "style": "TableofFigures",
+      "text": "Tabel 62. Struktur Class Konfigurasi Voucher131"
+    },
+    {
+      "block": 143,
+      "style": "TableofFigures",
+      "text": "Tabel 63. Struktur Class Voucher131"
+    },
+    {
+      "block": 144,
+      "style": "TableofFigures",
+      "text": "Tabel 64. Struktur Class Notifikasi132"
+    },
+    {
+      "block": 145,
+      "style": "TableofFigures",
+      "text": "Tabel 65. Struktur Class Konfigurasi Guest132"
+    },
+    {
+      "block": 146,
+      "style": "TableofFigures",
+      "text": "Tabel 66. Struktur Class Konfigurasi QRIS133"
+    },
+    {
+      "block": 147,
+      "style": "TableofFigures",
+      "text": "Tabel 67. Rancangan Endpoint API Sistem133"
+    },
+    {
+      "block": 148,
+      "style": "TableofFigures",
+      "text": "Tabel 68. Implementasi Tabel Basis Data137"
+    },
+    {
+      "block": 149,
+      "style": "TableofFigures",
+      "text": "Tabel 69. Daftar Controller Utama Back-end149"
+    },
+    {
+      "block": 150,
+      "style": "TableofFigures",
+      "text": "Tabel 70. Endpoint API160"
+    },
+    {
+      "block": 151,
+      "style": "TableofFigures",
+      "text": "Tabel 71. Ringkasan Hasil Pengujian Black Box203"
+    },
+    {
+      "block": 152,
+      "style": "TableofFigures",
+      "text": "Tabel 72. Hasil Pengujian Login dan Autentikasi204"
+    },
+    {
+      "block": 153,
+      "style": "TableofFigures",
+      "text": "Tabel 73. Hasil Pengujian Halaman Utama205"
+    },
+    {
+      "block": 154,
+      "style": "TableofFigures",
+      "text": "Tabel 74. Hasil Pengujian Fitur Member207"
+    },
+    {
+      "block": 155,
+      "style": "TableofFigures",
+      "text": "Tabel 75. Hasil Pengujian Fitur Pegawai209"
+    },
+    {
+      "block": 156,
+      "style": "TableofFigures",
+      "text": "Tabel 76. Hasil Pengujian Fitur Pemilik215"
+    },
+    {
+      "block": 157,
+      "style": "TableofFigures",
+      "text": "Tabel 77. Skenario Tugas Pengujian Owner219"
+    },
+    {
+      "block": 158,
+      "style": "TableofFigures",
+      "text": "Tabel 78. Skenario Tugas Pengujian Employee220"
+    },
+    {
+      "block": 159,
+      "style": "TableofFigures",
+      "text": "Tabel 79. Skenario Tugas Pengujian Member220"
+    },
+    {
+      "block": 160,
+      "style": "TableofFigures",
+      "text": "Tabel 80. Responden Pengujian Usability221"
+    },
+    {
+      "block": 161,
+      "style": "TableofFigures",
+      "text": "Tabel 81. Hasil Jawaban Kuesioner SUS222"
+    },
+    {
+      "block": 162,
+      "style": "TableofFigures",
+      "text": "Tabel 82. Hasil Perhitungan Skor SUS223"
+    },
+    {
+      "block": 166,
+      "style": "TableofFigures",
+      "text": "Gambar 1. System Development Life Cycle (Sumber: Dennis et al., 2018)12"
+    },
+    {
+      "block": 167,
+      "style": "TableofFigures",
+      "text": "Gambar 2. Tahapan System Prototyping dalam Metodologi RAD14"
+    },
+    {
+      "block": 168,
+      "style": "TableofFigures",
+      "text": "Gambar 3. SUS Score (Sumber: Jeff Sauro, 2011)26"
+    },
+    {
+      "block": 169,
+      "style": "TableofFigures",
+      "text": "Gambar 4. Kerangka Kerja Penelitian33"
+    },
+    {
+      "block": 170,
+      "style": "TableofFigures",
+      "text": "Gambar 5. Use Case Diagram Umum Sistem Informasi Pemancingan S56"
+    },
+    {
+      "block": 171,
+      "style": "TableofFigures",
+      "text": "Gambar 6. Use Case Diagram Detail Pemilik57"
+    },
+    {
+      "block": 172,
+      "style": "TableofFigures",
+      "text": "Gambar 7. Use Case Diagram Detail Pegawai58"
+    },
+    {
+      "block": 173,
+      "style": "TableofFigures",
+      "text": "Gambar 8. Use Case Diagram Detail Member59"
+    },
+    {
+      "block": 174,
+      "style": "TableofFigures",
+      "text": "Gambar 9. Activity Diagram Login Sistem90"
+    },
+    {
+      "block": 175,
+      "style": "TableofFigures",
+      "text": "Gambar 10. Activity Diagram Mendaftar Akun Member91"
+    },
+    {
+      "block": 176,
+      "style": "TableofFigures",
+      "text": "Gambar 11. Activity Diagram Mengakses Halaman Utama92"
+    },
+    {
+      "block": 177,
+      "style": "TableofFigures",
+      "text": "Gambar 12. Activity Diagram Melihat Event dan Informasi93"
+    },
+    {
+      "block": 178,
+      "style": "TableofFigures",
+      "text": "Gambar 13. Activity Diagram Mengakses Dashboard94"
+    },
+    {
+      "block": 179,
+      "style": "TableofFigures",
+      "text": "Gambar 14. Activity Diagram Melihat Leaderboard95"
+    },
+    {
+      "block": 180,
+      "style": "TableofFigures",
+      "text": "Gambar 15. Activity Diagram Memesan Menu96"
+    },
+    {
+      "block": 181,
+      "style": "TableofFigures",
+      "text": "Gambar 16. Activity Diagram Melihat Riwayat Transaksi Member97"
+    },
+    {
+      "block": 182,
+      "style": "TableofFigures",
+      "text": "Gambar 17. Activity Diagram Mengelola Kedatangan Pelanggan98"
+    },
+    {
+      "block": 183,
+      "style": "TableofFigures",
+      "text": "Gambar 18. Activity Diagram Menambah Pesanan99"
+    },
+    {
+      "block": 184,
+      "style": "TableofFigures",
+      "text": "Gambar 19. Activity Diagram Mengelola Pesanan Masuk100"
+    },
+    {
+      "block": 185,
+      "style": "TableofFigures",
+      "text": "Gambar 20. Activity Diagram Mengubah Ketersediaan Menu101"
+    },
+    {
+      "block": 186,
+      "style": "TableofFigures",
+      "text": "Gambar 21. Activity Diagram Melihat Riwayat Transaksi Pelanggan102"
+    },
+    {
+      "block": 187,
+      "style": "TableofFigures",
+      "text": "Gambar 22. Activity Diagram Checkout Transaksi103"
+    },
+    {
+      "block": 188,
+      "style": "TableofFigures",
+      "text": "Gambar 23. Activity Diagram Input Berat Ikan104"
+    },
+    {
+      "block": 189,
+      "style": "TableofFigures",
+      "text": "Gambar 24. Activity Diagram Hitung Harga Ikan105"
+    },
+    {
+      "block": 190,
+      "style": "TableofFigures",
+      "text": "Gambar 25. Activity Diagram Validasi Diskon Tier106"
+    },
+    {
+      "block": 191,
+      "style": "TableofFigures",
+      "text": "Gambar 26. Activity Diagram Validasi Voucher107"
+    },
+    {
+      "block": 192,
+      "style": "TableofFigures",
+      "text": "Gambar 27. Activity Diagram Update dan Evaluasi Poin Member108"
+    },
+    {
+      "block": 193,
+      "style": "TableofFigures",
+      "text": "Gambar 28. Activity Diagram Update Leaderboard109"
+    },
+    {
+      "block": 194,
+      "style": "TableofFigures",
+      "text": "Gambar 29. Activity Diagram Mengelola Akun Member110"
+    },
+    {
+      "block": 195,
+      "style": "TableofFigures",
+      "text": "Gambar 30. Activity Diagram Mengelola Menu111"
+    },
+    {
+      "block": 196,
+      "style": "TableofFigures",
+      "text": "Gambar 31. Activity Diagram Mengelola Inventaris Ikan112"
+    },
+    {
+      "block": 197,
+      "style": "TableofFigures",
+      "text": "Gambar 32. Activity Diagram Mengelola Rental Item113"
+    },
+    {
+      "block": 198,
+      "style": "TableofFigures",
+      "text": "Gambar 33. Activity Diagram Melihat Laporan Keuangan114"
+    },
+    {
+      "block": 199,
+      "style": "TableofFigures",
+      "text": "Gambar 34. Activity Diagram Mengelola Voucher115"
+    },
+    {
+      "block": 200,
+      "style": "TableofFigures",
+      "text": "Gambar 35. Activity Diagram Mengelola Event dan Informasi116"
+    },
+    {
+      "block": 201,
+      "style": "TableofFigures",
+      "text": "Gambar 36. Activity Diagram Memantau Leaderboard117"
+    },
+    {
+      "block": 202,
+      "style": "TableofFigures",
+      "text": "Gambar 37. Activity Diagram Mengelola Pengaturan Sistem118"
+    },
+    {
+      "block": 203,
+      "style": "TableofFigures",
+      "text": "Gambar 38. Activity Diagram Logout Sistem119"
+    },
+    {
+      "block": 204,
+      "style": "TableofFigures",
+      "text": "Gambar 39. Class Diagram Sistem Informasi Pemancingan S120"
+    },
+    {
+      "block": 205,
+      "style": "TableofFigures",
+      "text": "Gambar 40. Daftar Tabel pada Database pemancingan136"
+    },
+    {
+      "block": 206,
+      "style": "TableofFigures",
+      "text": "Gambar 41. Struktur Tabel members140"
+    },
+    {
+      "block": 207,
+      "style": "TableofFigures",
+      "text": "Gambar 42. Struktur Tabel member_tiers140"
+    },
+    {
+      "block": 208,
+      "style": "TableofFigures",
+      "text": "Gambar 43. Struktur Tabel arrivals141"
+    },
+    {
+      "block": 209,
+      "style": "TableofFigures",
+      "text": "Gambar 44. Struktur Tabel pending_orders141"
+    },
+    {
+      "block": 210,
+      "style": "TableofFigures",
+      "text": "Gambar 45. Struktur Tabel transactions142"
+    },
+    {
+      "block": 211,
+      "style": "TableofFigures",
+      "text": "Gambar 46. Struktur Tabel transaction_items142"
+    },
+    {
+      "block": 212,
+      "style": "TableofFigures",
+      "text": "Gambar 47. Struktur Tabel fish_types143"
+    },
+    {
+      "block": 213,
+      "style": "TableofFigures",
+      "text": "Gambar 48. Struktur Tabel fish_stocks143"
+    },
+    {
+      "block": 214,
+      "style": "TableofFigures",
+      "text": "Gambar 49. Struktur Tabel restock_logs144"
+    },
+    {
+      "block": 215,
+      "style": "TableofFigures",
+      "text": "Gambar 50. Struktur Tabel menus144"
+    },
+    {
+      "block": 216,
+      "style": "TableofFigures",
+      "text": "Gambar 51. Struktur Tabel rental_items145"
+    },
+    {
+      "block": 217,
+      "style": "TableofFigures",
+      "text": "Gambar 52. Struktur Tabel voucher_configs145"
+    },
+    {
+      "block": 218,
+      "style": "TableofFigures",
+      "text": "Gambar 53. Struktur Tabel vouchers146"
+    },
+    {
+      "block": 219,
+      "style": "TableofFigures",
+      "text": "Gambar 54. Struktur Tabel notifications146"
+    },
+    {
+      "block": 220,
+      "style": "TableofFigures",
+      "text": "Gambar 55. Struktur Tabel events147"
+    },
+    {
+      "block": 221,
+      "style": "TableofFigures",
+      "text": "Gambar 56. Struktur Tabel guest_configs147"
+    },
+    {
+      "block": 222,
+      "style": "TableofFigures",
+      "text": "Gambar 57. Struktur Tabel qris_configs148"
+    },
+    {
+      "block": 223,
+      "style": "TableofFigures",
+      "text": "Gambar 58. Struktur Folder Controller Laravel150"
+    },
+    {
+      "block": 224,
+      "style": "TableofFigures",
+      "text": "Gambar 59. Kode AuthController Login dan Token Sanctum151"
+    },
+    {
+      "block": 225,
+      "style": "TableofFigures",
+      "text": "Gambar 60. Kode ArrivalController Check-in Pelanggan152"
+    },
+    {
+      "block": 226,
+      "style": "TableofFigures",
+      "text": "Gambar 61. Kode TransactionController Validasi Checkout154"
+    },
+    {
+      "block": 227,
+      "style": "TableofFigures",
+      "text": "Gambar 62. Kode TransactionController Perhitungan Pembayaran155"
+    },
+    {
+      "block": 228,
+      "style": "TableofFigures",
+      "text": "Gambar 63. Kode TransactionController Update Stok dan Member157"
+    },
+    {
+      "block": 229,
+      "style": "TableofFigures",
+      "text": "Gambar 64. Potongan Kode Middleware CheckRole158"
+    },
+    {
+      "block": 230,
+      "style": "TableofFigures",
+      "text": "Gambar 65. Potongan Kode Alias Middleware Role159"
+    },
+    {
+      "block": 231,
+      "style": "TableofFigures",
+      "text": "Gambar 66. Potongan Kode Route Group API Berdasarkan Role159"
+    },
+    {
+      "block": 232,
+      "style": "TableofFigures",
+      "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI162"
+    },
+    {
+      "block": 233,
+      "style": "TableofFigures",
+      "text": "Gambar 68. Request Login pada Swagger162"
+    },
+    {
+      "block": 234,
+      "style": "TableofFigures",
+      "text": "Gambar 69. Request Pesanan Member163"
+    },
+    {
+      "block": 235,
+      "style": "TableofFigures",
+      "text": "Gambar 70. Request Checkout dan Bukti Pembayaran164"
+    },
+    {
+      "block": 236,
+      "style": "TableofFigures",
+      "text": "Gambar 71. Response Endpoint GET Events165"
+    },
+    {
+      "block": 237,
+      "style": "TableofFigures",
+      "text": "Gambar 72. Response Login Owner166"
+    },
+    {
+      "block": 238,
+      "style": "TableofFigures",
+      "text": "Gambar 73. Response Endpoint Protected167"
+    },
+    {
+      "block": 239,
+      "style": "TableofFigures",
+      "text": "Gambar 74. Response Pesanan Member168"
+    },
+    {
+      "block": 240,
+      "style": "TableofFigures",
+      "text": "Gambar 75. Response Checkout Pegawai169"
+    },
+    {
+      "block": 241,
+      "style": "TableofFigures",
+      "text": "Gambar 76. Halaman Utama Prototype171"
+    },
+    {
+      "block": 242,
+      "style": "TableofFigures",
+      "text": "Gambar 77. Halaman Login Prototype172"
+    },
+    {
+      "block": 243,
+      "style": "TableofFigures",
+      "text": "Gambar 78. Dashboard Member174"
+    },
+    {
+      "block": 244,
+      "style": "TableofFigures",
+      "text": "Gambar 79. Halaman Pesanan Member175"
+    },
+    {
+      "block": 245,
+      "style": "TableofFigures",
+      "text": "Gambar 80. Halaman Riwayat Transaksi Member176"
+    },
+    {
+      "block": 246,
+      "style": "TableofFigures",
+      "text": "Gambar 81. Halaman Leaderboard Member177"
+    },
+    {
+      "block": 247,
+      "style": "TableofFigures",
+      "text": "Gambar 82. Dashboard Pegawai178"
+    },
+    {
+      "block": 248,
+      "style": "TableofFigures",
+      "text": "Gambar 83. Pencarian Member pada Registrasi Kedatangan179"
+    },
+    {
+      "block": 249,
+      "style": "TableofFigures",
+      "text": "Gambar 84. Scan QR Code Member pada Registrasi Kedatangan179"
+    },
+    {
+      "block": 250,
+      "style": "TableofFigures",
+      "text": "Gambar 85. Registrasi Tamu pada Registrasi Kedatangan180"
+    },
+    {
+      "block": 251,
+      "style": "TableofFigures",
+      "text": "Gambar 86. Halaman Kedatangan Hari Ini181"
+    },
+    {
+      "block": 252,
+      "style": "TableofFigures",
+      "text": "Gambar 87. Halaman Tambah Pesanan182"
+    },
+    {
+      "block": 253,
+      "style": "TableofFigures",
+      "text": "Gambar 88. Halaman Pesanan Masuk183"
+    },
+    {
+      "block": 254,
+      "style": "TableofFigures",
+      "text": "Gambar 89. Halaman Pembayaran185"
+    },
+    {
+      "block": 255,
+      "style": "TableofFigures",
+      "text": "Gambar 90. Nota Digital Transaksi186"
+    },
+    {
+      "block": 256,
+      "style": "TableofFigures",
+      "text": "Gambar 91. Halaman Riwayat Transaksi Pegawai187"
+    },
+    {
+      "block": 257,
+      "style": "TableofFigures",
+      "text": "Gambar 92. Dashboard Pemilik188"
+    },
+    {
+      "block": 258,
+      "style": "TableofFigures",
+      "text": "Gambar 93. Halaman Manajemen Member189"
+    },
+    {
+      "block": 259,
+      "style": "TableofFigures",
+      "text": "Gambar 94. Halaman Manajemen Menu190"
+    },
+    {
+      "block": 260,
+      "style": "TableofFigures",
+      "text": "Gambar 95. Halaman Manajemen Jenis Ikan191"
+    },
+    {
+      "block": 261,
+      "style": "TableofFigures",
+      "text": "Gambar 96. Halaman Laporan Keuangan192"
+    },
+    {
+      "block": 262,
+      "style": "TableofFigures",
+      "text": "Gambar 97. Halaman Manajemen Voucher193"
+    },
+    {
+      "block": 263,
+      "style": "TableofFigures",
+      "text": "Gambar 98. Evaluasi Iterasi Pertama Tambah Pesanan196"
+    },
+    {
+      "block": 264,
+      "style": "TableofFigures",
+      "text": "Gambar 99. Evaluasi Iterasi Kedua pada Halaman Pesanan Masuk197"
+    },
+    {
+      "block": 265,
+      "style": "TableofFigures",
+      "text": "Gambar 100. Pembatalan Pending Order pada Checkout198"
+    },
+    {
+      "block": 266,
+      "style": "TableofFigures",
+      "text": "Gambar 101. Evaluasi Fitur Menu Spesial200"
+    },
+    {
+      "block": 267,
+      "style": "TableofFigures",
+      "text": "Gambar 102. Tampilan Popup Menu Spesial pada Halaman Utama201"
+    },
+    {
+      "block": 268,
+      "style": "TableofFigures",
+      "text": "Gambar 103. Interpretasi Skor SUS Hasil Pengujian224"
+    },
+    {
+      "block": 272,
+      "style": "TableofFigures",
+      "text": "Lampiran 1. Daftar Pertanyaan Wawancara235"
+    },
+    {
+      "block": 273,
+      "style": "TableofFigures",
+      "text": "Lampiran 2. Dokumentasi Observasi Lapangan239"
+    },
+    {
+      "block": 274,
+      "style": "TableofFigures",
+      "text": "Lampiran 3. Skenario Tugas Pengujian241"
+    },
+    {
+      "block": 275,
+      "style": "TableofFigures",
+      "text": "Lampiran 4. Kuesioner SUS244"
+    },
+    {
+      "block": 276,
+      "style": "TableofFigures",
+      "text": "Lampiran 5. Dokumentasi Pengujian Usability246"
+    },
+    {
+      "block": 277,
+      "style": "TableofFigures",
+      "text": "Lampiran 6. Tautan Artefak Penelitian249"
+    },
+    {
+      "block": 278,
+      "style": "TableofFigures",
+      "text": "Lampiran 7. Rekapitulasi Skor SUS249"
+    },
+    {
+      "block": 352,
+      "style": "Caption",
+      "text": "Gambar 1. System Development Life Cycle(Sumber: Dennis et al., 2018)"
+    },
+    {
+      "block": 359,
+      "style": "Caption",
+      "text": "Tabel 1. Perbandingan Metodologi Pengembangan Perangkat Lunak"
+    },
+    {
+      "block": 368,
+      "style": "Caption",
+      "text": "Gambar 2. Tahapan System Prototyping dalam Metodologi RAD"
+    },
+    {
+      "block": 401,
+      "style": "Caption",
+      "text": "Tabel 2. Simbol-simbol dalam Use Case Diagram"
+    },
+    {
+      "block": 405,
+      "style": "Caption",
+      "text": "Tabel 3. Simbol-simbol Activity Diagram"
+    },
+    {
+      "block": 412,
+      "style": "Caption",
+      "text": "Tabel 4. Simbol-simbol Class Diagram"
+    },
+    {
+      "block": 443,
+      "style": "Caption",
+      "text": "Gambar 3. SUS Score(Sumber: Jeff Sauro, 2011)"
+    },
+    {
+      "block": 447,
+      "style": "Caption",
+      "text": "Tabel 5. Penelitian Terdahulu"
+    },
+    {
+      "block": 469,
+      "style": "Caption",
+      "text": "Gambar 4. Kerangka Kerja Penelitian"
+    },
+    {
+      "block": 502,
+      "style": "Caption",
+      "text": "Tabel 6. Format Identifikasi Aktor"
+    },
+    {
+      "block": 505,
+      "style": "Caption",
+      "text": "Tabel 7. Format Kebutuhan Fungsional"
+    },
+    {
+      "block": 508,
+      "style": "Caption",
+      "text": "Tabel 8. Format Kebutuhan Non-Fungsional"
+    },
+    {
+      "block": 511,
+      "style": "Caption",
+      "text": "Tabel 9. Format Kebutuhan Data"
+    },
+    {
+      "block": 520,
+      "style": "Caption",
+      "text": "Tabel 10. Format Rancangan Endpoint API"
+    },
+    {
+      "block": 538,
+      "style": "Caption",
+      "text": "Tabel 11. Rencana Pengujian Black Box(Sumber: Permatasari et al., 2023)"
+    },
+    {
+      "block": 549,
+      "style": "Caption",
+      "text": "Tabel 12. Instrumen Pertanyaan SUS"
+    },
+    {
+      "block": 581,
+      "style": "Caption",
+      "text": "Tabel 13. Kebutuhan Fungsional"
+    },
+    {
+      "block": 584,
+      "style": "Caption",
+      "text": "Tabel 14. Kebutuhan Non-Fungsional"
+    },
+    {
+      "block": 587,
+      "style": "Caption",
+      "text": "Tabel 15. Kebutuhan Data"
+    },
+    {
+      "block": 591,
+      "style": "Caption",
+      "text": "Tabel 16. Identifikasi Aktor"
+    },
+    {
+      "block": 631,
+      "style": "Caption",
+      "text": "Gambar 5. Use Case Diagram Umum Sistem Informasi Pemancingan S"
+    },
+    {
+      "block": 636,
+      "style": "Caption",
+      "text": "Gambar 6. Use Case Diagram Detail Pemilik"
+    },
+    {
+      "block": 643,
+      "style": "Caption",
+      "text": "Gambar 7. Use Case Diagram Detail Pegawai"
+    },
+    {
+      "block": 648,
+      "style": "Caption",
+      "text": "Gambar 8. Use Case Diagram Detail Member"
+    },
+    {
+      "block": 652,
+      "style": "Caption",
+      "text": "Tabel 17. Spesifikasi Use Case Sistem Informasi Pemancingan S"
+    },
+    {
+      "block": 657,
+      "style": "Caption",
+      "text": "Tabel 18. Skenario Use Case Login Sistem"
+    },
+    {
+      "block": 661,
+      "style": "Caption",
+      "text": "Tabel 19. Skenario Use Case Mendaftar Akun"
+    },
+    {
+      "block": 665,
+      "style": "Caption",
+      "text": "Tabel 20. Skenario Use Case Mengakses Halaman Utama"
+    },
+    {
+      "block": 669,
+      "style": "Caption",
+      "text": "Tabel 21. Skenario Use Case Melihat Event dan Informasi"
+    },
+    {
+      "block": 676,
+      "style": "Caption",
+      "text": "Tabel 22. Skenario Use Case Mengakses Dashboard"
+    },
+    {
+      "block": 682,
+      "style": "Caption",
+      "text": "Tabel 23. Skenario Use Case Melihat Leaderboard"
+    },
+    {
+      "block": 686,
+      "style": "Caption",
+      "text": "Tabel 24. Skenario Use Case Memesan Menu"
+    },
+    {
+      "block": 694,
+      "style": "Caption",
+      "text": "Tabel 25. Skenario Use Case Melihat Riwayat Transaksi"
+    },
+    {
+      "block": 698,
+      "style": "Caption",
+      "text": "Tabel 26. Skenario Use Case Mengelola Kedatangan Pelanggan"
+    },
+    {
+      "block": 702,
+      "style": "Caption",
+      "text": "Tabel 27. Skenario Use Case Menambah Pesanan"
+    },
+    {
+      "block": 705,
+      "style": "Caption",
+      "text": "Tabel 28. Skenario Use Case Mengelola Pesanan Masuk"
+    },
+    {
+      "block": 709,
+      "style": "Caption",
+      "text": "Tabel 29. Skenario Use Case Mengubah Ketersediaan Menu"
+    },
+    {
+      "block": 713,
+      "style": "Caption",
+      "text": "Tabel 30. Skenario Use Case Melihat Riwayat Transaksi Pelanggan"
+    },
+    {
+      "block": 717,
+      "style": "Caption",
+      "text": "Tabel 31. Skenario Use Case Checkout Transaksi"
+    },
+    {
+      "block": 721,
+      "style": "Caption",
+      "text": "Tabel 32. Skenario Use Case Input Berat Ikan"
+    },
+    {
+      "block": 725,
+      "style": "Caption",
+      "text": "Tabel 33. Skenario Use Case Hitung Harga Ikan"
+    },
+    {
+      "block": 729,
+      "style": "Caption",
+      "text": "Tabel 34. Skenario Use Case Validasi Diskon Tier"
+    },
+    {
+      "block": 733,
+      "style": "Caption",
+      "text": "Tabel 35. Skenario Use Case Validasi Voucher"
+    },
+    {
+      "block": 738,
+      "style": "Caption",
+      "text": "Tabel 36. Skenario Use Case Update dan Evaluasi Poin Member"
+    },
+    {
+      "block": 742,
+      "style": "Caption",
+      "text": "Tabel 37. Skenario Use Case Update Leaderboard"
+    },
+    {
+      "block": 746,
+      "style": "Caption",
+      "text": "Tabel 38. Skenario Use Case Mengelola Akun Member"
+    },
+    {
+      "block": 750,
+      "style": "Caption",
+      "text": "Tabel 39. Skenario Use Case Mengelola Menu"
+    },
+    {
+      "block": 754,
+      "style": "Caption",
+      "text": "Tabel 40. Skenario Use Case Mengelola Inventaris Ikan"
+    },
+    {
+      "block": 758,
+      "style": "Caption",
+      "text": "Tabel 41. Skenario Use Case Mengelola Rental Item"
+    },
+    {
+      "block": 762,
+      "style": "Caption",
+      "text": "Tabel 42. Skenario Use Case Melihat Laporan Keuangan"
+    },
+    {
+      "block": 766,
+      "style": "Caption",
+      "text": "Tabel 43. Skenario Use Case Mengelola Voucher"
+    },
+    {
+      "block": 770,
+      "style": "Caption",
+      "text": "Tabel 44. Skenario Use Case Mengelola Event & Informasi"
+    },
+    {
+      "block": 774,
+      "style": "Caption",
+      "text": "Tabel 45. Skenario Use Case Memantau Leaderboard"
+    },
+    {
+      "block": 778,
+      "style": "Caption",
+      "text": "Tabel 46. Skenario Use Case Mengelola Pengaturan Sistem"
+    },
+    {
+      "block": 781,
+      "style": "Caption",
+      "text": "Tabel 47. Skenario Use Case Logout Sistem"
+    },
+    {
+      "block": 787,
+      "style": "Caption",
+      "text": "Gambar 9. Activity Diagram Login Sistem"
+    },
+    {
+      "block": 791,
+      "style": "Caption",
+      "text": "Gambar 10. Activity Diagram Mendaftar Akun Member"
+    },
+    {
+      "block": 797,
+      "style": "Caption",
+      "text": "Gambar 11. Activity Diagram Mengakses Halaman Utama"
+    },
+    {
+      "block": 803,
+      "style": "Caption",
+      "text": "Gambar 12. Activity Diagram Melihat Event dan Informasi"
+    },
+    {
+      "block": 808,
+      "style": "Caption",
+      "text": "Gambar 13. Activity Diagram Mengakses Dashboard"
+    },
+    {
+      "block": 813,
+      "style": "Caption",
+      "text": "Gambar 14. Activity Diagram Melihat Leaderboard"
+    },
+    {
+      "block": 818,
+      "style": "Caption",
+      "text": "Gambar 15. Activity Diagram Memesan Menu"
+    },
+    {
+      "block": 823,
+      "style": "Caption",
+      "text": "Gambar 16. Activity Diagram Melihat Riwayat Transaksi Member"
+    },
+    {
+      "block": 829,
+      "style": "Caption",
+      "text": "Gambar 17. Activity Diagram Mengelola Kedatangan Pelanggan"
+    },
+    {
+      "block": 834,
+      "style": "Caption",
+      "text": "Gambar 18. Activity Diagram Menambah Pesanan"
+    },
+    {
+      "block": 839,
+      "style": "Caption",
+      "text": "Gambar 19. Activity Diagram Mengelola Pesanan Masuk"
+    },
+    {
+      "block": 844,
+      "style": "Caption",
+      "text": "Gambar 20. Activity Diagram Mengubah Ketersediaan Menu"
+    },
+    {
+      "block": 849,
+      "style": "Caption",
+      "text": "Gambar 21. Activity Diagram Melihat Riwayat Transaksi Pelanggan"
+    },
+    {
+      "block": 854,
+      "style": "Caption",
+      "text": "Gambar 22. Activity Diagram Checkout Transaksi"
+    },
+    {
+      "block": 859,
+      "style": "Caption",
+      "text": "Gambar 23. Activity Diagram Input Berat Ikan"
+    },
+    {
+      "block": 864,
+      "style": "Caption",
+      "text": "Gambar 24. Activity Diagram Hitung Harga Ikan"
+    },
+    {
+      "block": 869,
+      "style": "Caption",
+      "text": "Gambar 25. Activity Diagram Validasi Diskon Tier"
+    },
+    {
+      "block": 876,
+      "style": "Caption",
+      "text": "Gambar 26. Activity Diagram Validasi Voucher"
+    },
+    {
+      "block": 881,
+      "style": "Caption",
+      "text": "Gambar 27. Activity Diagram Update dan Evaluasi Poin Member"
+    },
+    {
+      "block": 887,
+      "style": "Caption",
+      "text": "Gambar 28. Activity Diagram Update Leaderboard"
+    },
+    {
+      "block": 891,
+      "style": "Caption",
+      "text": "Gambar 29. Activity Diagram Mengelola Akun Member"
+    },
+    {
+      "block": 898,
+      "style": "Caption",
+      "text": "Gambar 30. Activity Diagram Mengelola Menu"
+    },
+    {
+      "block": 904,
+      "style": "Caption",
+      "text": "Gambar 31. Activity Diagram Mengelola Inventaris Ikan"
+    },
+    {
+      "block": 912,
+      "style": "Caption",
+      "text": "Gambar 32. Activity Diagram Mengelola Rental Item"
+    },
+    {
+      "block": 917,
+      "style": "Caption",
+      "text": "Gambar 33. Activity Diagram Melihat Laporan Keuangan"
+    },
+    {
+      "block": 922,
+      "style": "Caption",
+      "text": "Gambar 34. Activity Diagram Mengelola Voucher"
+    },
+    {
+      "block": 929,
+      "style": "Caption",
+      "text": "Gambar 35. Activity Diagram Mengelola Event dan Informasi"
+    },
+    {
+      "block": 937,
+      "style": "Caption",
+      "text": "Gambar 36. Activity Diagram Memantau Leaderboard"
+    },
+    {
+      "block": 946,
+      "style": "Caption",
+      "text": "Gambar 37. Activity Diagram Mengelola Pengaturan Sistem"
+    },
+    {
+      "block": 951,
+      "style": "Caption",
+      "text": "Gambar 38. Activity Diagram Logout Sistem"
+    },
+    {
+      "block": 956,
+      "style": "Caption",
+      "text": "Gambar 39. Class Diagram Sistem Informasi Pemancingan S"
+    },
+    {
+      "block": 962,
+      "style": "Caption",
+      "text": "Tabel 48. Rancangan Entitas Basis Data Sistem"
+    },
+    {
+      "block": 969,
+      "style": "Caption",
+      "text": "Tabel 49. Struktur Class Users"
+    },
+    {
+      "block": 973,
+      "style": "Caption",
+      "text": "Tabel 50. Struktur Class Member Tier"
+    },
+    {
+      "block": 977,
+      "style": "Caption",
+      "text": "Tabel 51. Struktur Class Member"
+    },
+    {
+      "block": 985,
+      "style": "Caption",
+      "text": "Tabel 52. Struktur Class Tipe Ikan"
+    },
+    {
+      "block": 989,
+      "style": "Caption",
+      "text": "Tabel 53. Struktur Class Stok Ikan"
+    },
+    {
+      "block": 993,
+      "style": "Caption",
+      "text": "Tabel 54. Struktur Class Riwayat Restock Ikan"
+    },
+    {
+      "block": 997,
+      "style": "Caption",
+      "text": "Tabel 55. Struktur Class Events"
+    },
+    {
+      "block": 1002,
+      "style": "Caption",
+      "text": "Tabel 56. Struktur Class Menu"
+    },
+    {
+      "block": 1006,
+      "style": "Caption",
+      "text": "Tabel 57. Struktur Class Kedatangan"
+    },
+    {
+      "block": 1010,
+      "style": "Caption",
+      "text": "Tabel 58. Struktur Class Pending Orders"
+    },
+    {
+      "block": 1016,
+      "style": "Caption",
+      "text": "Tabel 59. Struktur Class Rental Item"
+    },
+    {
+      "block": 1020,
+      "style": "Caption",
+      "text": "Tabel 60. Struktur Class Transaksi"
+    },
+    {
+      "block": 1024,
+      "style": "Caption",
+      "text": "Tabel 61. Struktur Class Transaksi Item"
+    },
+    {
+      "block": 1028,
+      "style": "Caption",
+      "text": "Tabel 62. Struktur Class Konfigurasi Voucher"
+    },
+    {
+      "block": 1032,
+      "style": "Caption",
+      "text": "Tabel 63. Struktur Class Voucher"
+    },
+    {
+      "block": 1038,
+      "style": "Caption",
+      "text": "Tabel 64. Struktur Class Notifikasi"
+    },
+    {
+      "block": 1042,
+      "style": "Caption",
+      "text": "Tabel 65. Struktur Class Konfigurasi Guest"
+    },
+    {
+      "block": 1046,
+      "style": "Caption",
+      "text": "Tabel 66. Struktur Class Konfigurasi QRIS"
+    },
+    {
+      "block": 1053,
+      "style": "Caption",
+      "text": "Tabel 67. Rancangan Endpoint API Sistem"
+    },
+    {
+      "block": 1068,
+      "style": "Caption",
+      "text": "Gambar 40. Daftar Tabel pada Database pemancingan"
+    },
+    {
+      "block": 1071,
+      "style": "Caption",
+      "text": "Tabel 68. Implementasi Tabel Basis Data"
+    },
+    {
+      "block": 1077,
+      "style": "Caption",
+      "text": "Gambar 41. Struktur Tabel members"
+    },
+    {
+      "block": 1078,
+      "style": "",
+      "text": "Gambar 41 menunjukkan struktur tabel members yang digunakan untuk menyimpan data keanggotaan pelanggan. Tabel ini menghubungkan akun pengguna dengan data member melalui user_id, menyimpan kode member pada member_id, serta mencatat tier_id, total poin, total berat ikan, hash QR code, tanggal transaksi terakhir, peringatan kedaluwarsa poin, dan waktu persetujuan member. Struktur tersebut mendukung proses validasi member, pemantauan level keanggotaan, penggunaan QR code, serta perhitungan poin dan berat ikan pada sistem."
+    },
+    {
+      "block": 1080,
+      "style": "Caption",
+      "text": "Gambar 42. Struktur Tabel member_tiers"
+    },
+    {
+      "block": 1081,
+      "style": "",
+      "text": "Gambar 42 menunjukkan struktur tabel member_tiers yang digunakan untuk mengatur tingkatan member, seperti REGULAR, BRONZE, SILVER, dan GOLD. Field min_points dan max_points menentukan rentang poin untuk setiap tier, sedangkan discount_percentage menyimpan persentase diskon yang diberikan kepada member. Dengan struktur ini, sistem dapat menentukan tier pelanggan secara konsisten berdasarkan poin yang dimiliki dan menerapkan diskon sesuai level keanggotaan."
+    },
+    {
+      "block": 1083,
+      "style": "Caption",
+      "text": "Gambar 43. Struktur Tabel arrivals"
+    },
+    {
+      "block": 1084,
+      "style": "",
+      "text": "Gambar 43 menunjukkan struktur tabel arrivals yang digunakan untuk mencatat kedatangan pelanggan ke lokasi pemancingan. Tabel ini dapat menyimpan data kedatangan member melalui member_id maupun pelanggan tamu melalui guest_name, disertai deposit_amount, waktu check-in, waktu check-out, status kedatangan, pegawai yang melakukan pencatatan pada checked_in_by, dan catatan tambahan. Struktur ini menjadi dasar proses registrasi kedatangan, pemantauan pelanggan aktif, serta penghubung antara kedatangan dan transaksi checkout."
+    },
+    {
+      "block": 1086,
+      "style": "Caption",
+      "text": "Gambar 44. Struktur Tabel pending_orders"
+    },
+    {
+      "block": 1087,
+      "style": "",
+      "text": "Gambar 44 menunjukkan struktur tabel pending_orders yang digunakan untuk menyimpan pesanan sementara sebelum diselesaikan dalam transaksi. Tabel ini berelasi dengan arrivals melalui arrival_id dan mencatat jenis item pesanan, item_id, nama item saat dipesan, jumlah, harga satuan, subtotal, status pembayaran, status produksi, sumber pesanan, pembuat pesanan, serta transaction_id jika pesanan telah masuk ke transaksi. Struktur tersebut mendukung alur pemesanan menu atau rental dari member maupun pencatatan manual oleh pegawai."
+    },
+    {
+      "block": 1089,
+      "style": "Caption",
+      "text": "Gambar 45. Struktur Tabel transactions"
+    },
+    {
+      "block": 1090,
+      "style": "",
+      "text": "Gambar 45 menunjukkan struktur tabel transactions yang digunakan untuk menyimpan transaksi utama setelah proses checkout. Tabel ini menyimpan kode transaksi, arrival_id, total pembayaran, diskon tier, diskon voucher, total akhir, tips, metode pembayaran, bukti pembayaran, poin yang diperoleh, status transaksi, pegawai pemroses, tanggal transaksi, serta catatan. Relasi dengan tabel arrivals dan users membuat setiap transaksi dapat ditelusuri berdasarkan sesi kedatangan pelanggan dan pegawai yang memproses pembayaran."
+    },
+    {
+      "block": 1092,
+      "style": "Caption",
+      "text": "Gambar 46. Struktur Tabel transaction_items"
+    },
+    {
+      "block": 1093,
+      "style": "",
+      "text": "Gambar 46 menunjukkan struktur tabel transaction_items yang digunakan untuk menyimpan rincian item dalam sebuah transaksi. Field transaction_id menghubungkan setiap rincian dengan tabel transactions, sedangkan item_type membedakan item ikan, menu, rental, atau denda. Tabel ini juga menyimpan item_id, nama item saat transaksi, jumlah, harga satuan, dan subtotal sehingga detail biaya transaksi tetap tercatat walaupun data master item berubah setelah transaksi dilakukan."
+    },
+    {
+      "block": 1095,
+      "style": "Caption",
+      "text": "Gambar 47. Struktur Tabel fish_types"
+    },
+    {
+      "block": 1096,
+      "style": "",
+      "text": "Gambar 47 menunjukkan struktur tabel fish_types yang digunakan untuk menyimpan data jenis ikan yang tersedia di Pemancingan S. Tabel ini memuat nama jenis ikan, harga per kilogram, status aktif, timestamp, dan deleted_at untuk mendukung soft delete. Struktur tersebut memungkinkan pemilik mengelola jenis ikan dan harga jual per kilogram tanpa menghapus riwayat data yang masih mungkin berkaitan dengan stok atau transaksi sebelumnya."
+    },
+    {
+      "block": 1098,
+      "style": "Caption",
+      "text": "Gambar 48. Struktur Tabel fish_stocks"
+    },
+    {
+      "block": 1099,
+      "style": "",
+      "text": "Gambar 48 menunjukkan struktur tabel fish_stocks yang digunakan untuk menyimpan jumlah stok ikan berdasarkan jenis ikan. Field fish_type_id menghubungkan data stok dengan tabel fish_types, sedangkan current_stock_kg menyimpan stok saat ini dan alert_threshold_kg menyimpan batas minimum stok. Dengan struktur ini, sistem dapat memantau ketersediaan ikan per jenis dan memberikan peringatan ketika stok mendekati batas minimum."
+    },
+    {
+      "block": 1101,
+      "style": "Caption",
+      "text": "Gambar 49. Struktur Tabel restock_logs"
+    },
+    {
+      "block": 1102,
+      "style": "",
+      "text": "Gambar 49 menunjukkan struktur tabel restock_logs yang digunakan untuk mencatat riwayat penambahan stok ikan. Tabel ini menyimpan fish_type_id, quantity_kg, stock_before, stock_after, pegawai atau pemilik yang melakukan restok pada restocked_by, serta catatan tambahan. Struktur tersebut membuat setiap perubahan stok dapat ditelusuri melalui riwayat restok karena sistem mencatat jumlah sebelum restok, jumlah yang ditambahkan, dan stok akhir setelah proses restok dilakukan."
+    },
+    {
+      "block": 1104,
+      "style": "Caption",
+      "text": "Gambar 50. Struktur Tabel menus"
+    },
+    {
+      "block": 1105,
+      "style": "",
+      "text": "Gambar 50 menunjukkan struktur tabel menus yang digunakan untuk menyimpan data menu makanan dan minuman. Tabel ini memuat nama menu, harga, kategori, status ketersediaan, penanda menu spesial, deskripsi, gambar, timestamp, dan deleted_at untuk soft delete. Struktur ini mendukung pengelolaan menu oleh pemilik, pemilihan menu oleh member, serta pencatatan pesanan menu pada pending_orders dan transaction_items."
+    },
+    {
+      "block": 1107,
+      "style": "Caption",
+      "text": "Gambar 51. Struktur Tabel rental_items"
+    },
+    {
+      "block": 1108,
+      "style": "",
+      "text": "Gambar 51 menunjukkan struktur tabel rental_items yang digunakan untuk menyimpan data alat sewa. Tabel ini menyimpan nama item rental, harga per unit, label satuan, deskripsi, gambar, status aktif, timestamp, dan deleted_at. Struktur tersebut mendukung pengelolaan perlengkapan sewa oleh pemilik serta pencatatan biaya rental pada pesanan dan transaksi pelanggan."
+    },
+    {
+      "block": 1110,
+      "style": "Caption",
+      "text": "Gambar 52. Struktur Tabel voucher_configs"
+    },
+    {
+      "block": 1111,
+      "style": "",
+      "text": "Gambar 52 menunjukkan struktur tabel voucher_configs yang digunakan untuk menyimpan konfigurasi nominal voucher berdasarkan peringkat leaderboard. Field rank menentukan posisi peringkat yang berhak memperoleh voucher, sedangkan amount menyimpan nominal voucher yang diberikan. Dengan struktur ini, pemilik dapat mengatur nilai hadiah voucher secara terpisah dari data voucher yang diterbitkan kepada member."
+    },
+    {
+      "block": 1113,
+      "style": "Caption",
+      "text": "Gambar 53. Struktur Tabel vouchers"
+    },
+    {
+      "block": 1114,
+      "style": "",
+      "text": "Gambar 53 menunjukkan struktur tabel vouchers yang digunakan untuk menyimpan voucher yang diterbitkan kepada member. Tabel ini memuat member_id, nominal voucher, sumber voucher, peringkat, periode tahun dan bulan, status penggunaan, waktu penggunaan, transaction_id jika voucher telah dipakai, serta waktu penerbitan. Struktur tersebut mendukung pemberian voucher leaderboard secara periodik dan memastikan penggunaan voucher dapat dilacak ke transaksi tertentu."
+    },
+    {
+      "block": 1116,
+      "style": "Caption",
+      "text": "Gambar 54. Struktur Tabel notifications"
+    },
+    {
+      "block": 1117,
+      "style": "",
+      "text": "Gambar 54 menunjukkan struktur tabel notifications yang digunakan untuk menyimpan notifikasi sistem bagi pengguna. Tabel ini berelasi dengan users melalui user_id dan menyimpan tipe notifikasi, judul, isi pesan, data tambahan dalam format JSON, status baca, waktu dibaca, serta timestamp. Struktur ini mendukung fitur pemberitahuan seperti validasi member, peringatan stok rendah, perubahan tier, dan informasi penting lain yang perlu diterima pengguna."
+    },
+    {
+      "block": 1119,
+      "style": "Caption",
+      "text": "Gambar 55. Struktur Tabel events"
+    },
+    {
+      "block": 1120,
+      "style": "",
+      "text": "Gambar 55 menunjukkan struktur tabel events yang digunakan untuk menyimpan data event dan informasi publik. Tabel ini memuat judul, deskripsi, kategori, tanggal mulai, tanggal selesai, status publikasi, gambar, timestamp, dan deleted_at. Struktur tersebut memungkinkan pemilik mengelola konten informasi atau event yang akan ditampilkan pada halaman publik maupun antarmuka pengguna."
+    },
+    {
+      "block": 1122,
+      "style": "Caption",
+      "text": "Gambar 56. Struktur Tabel guest_configs"
+    },
+    {
+      "block": 1123,
+      "style": "",
+      "text": "Gambar 56 menunjukkan struktur tabel guest_configs yang digunakan untuk menyimpan konfigurasi nominal deposit pelanggan tamu. Field deposit_amount menyimpan nilai deposit yang diterapkan saat pegawai melakukan registrasi kedatangan untuk pelanggan non-member. Struktur sederhana ini membuat nominal deposit dapat dikelola melalui sistem tanpa perlu mengubah kode program."
+    },
+    {
+      "block": 1125,
+      "style": "Caption",
+      "text": "Gambar 57. Struktur Tabel qris_configs"
+    },
+    {
+      "block": 1126,
+      "style": "",
+      "text": "Gambar 57 menunjukkan struktur tabel qris_configs yang digunakan untuk menyimpan konfigurasi gambar QRIS sebagai media pembayaran digital. Field image menyimpan lokasi file gambar QRIS, sedangkan created_at dan updated_at mencatat waktu perubahan konfigurasi. Struktur ini mendukung penggunaan metode pembayaran QRIS pada proses checkout dan memudahkan pemilik memperbarui gambar QRIS yang digunakan sistem."
+    },
+    {
+      "block": 1134,
+      "style": "Caption",
+      "text": "Tabel 69. Daftar Controller Utama Back-end"
+    },
+    {
+      "block": 1140,
+      "style": "Caption",
+      "text": "Gambar 58. Struktur Folder Controller Laravel"
+    },
+    {
+      "block": 1144,
+      "style": "Caption",
+      "text": "Gambar 59. Kode AuthController Login dan Token Sanctum"
+    },
+    {
+      "block": 1149,
+      "style": "Caption",
+      "text": "Gambar 60. Kode ArrivalController Check-in Pelanggan"
+    },
+    {
+      "block": 1154,
+      "style": "Caption",
+      "text": "Gambar 61. Kode TransactionController Validasi Checkout"
+    },
+    {
+      "block": 1159,
+      "style": "Caption",
+      "text": "Gambar 62. Kode TransactionController Perhitungan Pembayaran"
+    },
+    {
+      "block": 1165,
+      "style": "Caption",
+      "text": "Gambar 63. Kode TransactionController Update Stok dan Member"
+    },
+    {
+      "block": 1172,
+      "style": "Caption",
+      "text": "Gambar 64. Potongan Kode Middleware CheckRole"
+    },
+    {
+      "block": 1173,
+      "style": "",
+      "text": "Gambar 64 memperlihatkan middleware CheckRole yang membatasi akses berdasarkan role pengguna. Jika pengguna belum login atau role tidak sesuai, back-end mengembalikan response error sehingga endpoint owner, pegawai, dan member tidak dapat diakses sembarang pengguna."
+    },
+    {
+      "block": 1175,
+      "style": "Caption",
+      "text": "Gambar 65. Potongan Kode Alias Middleware Role"
+    },
+    {
+      "block": 1176,
+      "style": "",
+      "text": "Gambar 65 menunjukkan bahwa middleware role didaftarkan sebagai alias pada konfigurasi aplikasi Laravel. Alias ini memungkinkan route menggunakan penulisan ringkas seperti role:owner, role:employee, dan role:member."
+    },
+    {
+      "block": 1178,
+      "style": "Caption",
+      "text": "Gambar 66. Potongan Kode Route Group API Berdasarkan Role"
+    },
+    {
+      "block": 1179,
+      "style": "",
+      "text": "Gambar 66 menunjukkan pengelompokan endpoint API berdasarkan autentikasi Sanctum dan role. Endpoint member, owner, dan employee dipisahkan sehingga setiap kelompok fitur hanya dapat diakses oleh pengguna dengan hak akses yang sesuai."
+    },
+    {
+      "block": 1186,
+      "style": "Caption",
+      "text": "Tabel 70. Endpoint API"
+    },
+    {
+      "block": 1191,
+      "style": "",
+      "text": "Gambar 67 sampai Gambar 71 memperlihatkan bukti implementasi endpoint API melalui dokumentasi Swagger. Bukti tersebut meliputi pengelompokan endpoint, contoh request body, penggunaan token autentikasi, pengiriman bukti pembayaran, dan response data dari database. Dengan dokumentasi ini, jalur komunikasi antara frontend dan back-end dapat ditelusuri secara lebih jelas."
+    },
+    {
+      "block": 1193,
+      "style": "Caption",
+      "text": "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI"
+    },
+    {
+      "block": 1196,
+      "style": "Caption",
+      "text": "Gambar 68. Request Login pada Swagger"
+    },
+    {
+      "block": 1199,
+      "style": "Caption",
+      "text": "Gambar 69. Request Pesanan Member"
+    },
+    {
+      "block": 1202,
+      "style": "Caption",
+      "text": "Gambar 70. Request Checkout dan Bukti Pembayaran"
+    },
+    {
+      "block": 1205,
+      "style": "Caption",
+      "text": "Gambar 71. Response Endpoint GET Events"
+    },
+    {
+      "block": 1208,
+      "style": "Caption",
+      "text": "Gambar 72. Response Login Owner"
+    },
+    {
+      "block": 1211,
+      "style": "Caption",
+      "text": "Gambar 73. Response Endpoint Protected"
+    },
+    {
+      "block": 1214,
+      "style": "Caption",
+      "text": "Gambar 74. Response Pesanan Member"
+    },
+    {
+      "block": 1217,
+      "style": "Caption",
+      "text": "Gambar 75. Response Checkout Pegawai"
+    },
+    {
+      "block": 1227,
+      "style": "Caption",
+      "text": "Gambar 76. Halaman Utama Prototype"
+    },
+    {
+      "block": 1234,
+      "style": "Caption",
+      "text": "Gambar 77. Halaman Login Prototype"
+    },
+    {
+      "block": 1243,
+      "style": "Caption",
+      "text": "Gambar 78. Dashboard Member"
+    },
+    {
+      "block": 1249,
+      "style": "Caption",
+      "text": "Gambar 79. Halaman Pesanan Member"
+    },
+    {
+      "block": 1255,
+      "style": "Caption",
+      "text": "Gambar 80. Halaman Riwayat Transaksi Member"
+    },
+    {
+      "block": 1261,
+      "style": "Caption",
+      "text": "Gambar 81. Halaman Leaderboard Member"
+    },
+    {
+      "block": 1269,
+      "style": "Caption",
+      "text": "Gambar 82. Dashboard Pegawai"
+    },
+    {
+      "block": 1276,
+      "style": "Caption",
+      "text": "Gambar 83. Pencarian Member pada Registrasi Kedatangan"
+    },
+    {
+      "block": 1278,
+      "style": "Caption",
+      "text": "Gambar 84. Scan QR Code Member pada Registrasi Kedatangan"
+    },
+    {
+      "block": 1280,
+      "style": "Caption",
+      "text": "Gambar 85. Registrasi Tamu pada Registrasi Kedatangan"
+    },
+    {
+      "block": 1287,
+      "style": "Caption",
+      "text": "Gambar 86. Halaman Kedatangan Hari Ini"
+    },
+    {
+      "block": 1294,
+      "style": "Caption",
+      "text": "Gambar 87. Halaman Tambah Pesanan"
+    },
+    {
+      "block": 1302,
+      "style": "Caption",
+      "text": "Gambar 88. Halaman Pesanan Masuk"
+    },
+    {
+      "block": 1309,
+      "style": "Caption",
+      "text": "Gambar 89. Halaman Pembayaran"
+    },
+    {
+      "block": 1313,
+      "style": "Caption",
+      "text": "Gambar 90. Nota Digital Transaksi"
+    },
+    {
+      "block": 1320,
+      "style": "Caption",
+      "text": "Gambar 91. Halaman Riwayat Transaksi Pegawai"
+    },
+    {
+      "block": 1329,
+      "style": "Caption",
+      "text": "Gambar 92. Dashboard Pemilik"
+    },
+    {
+      "block": 1335,
+      "style": "Caption",
+      "text": "Gambar 93. Halaman Manajemen Member"
+    },
+    {
+      "block": 1341,
+      "style": "Caption",
+      "text": "Gambar 94. Halaman Manajemen Menu"
+    },
+    {
+      "block": 1347,
+      "style": "Caption",
+      "text": "Gambar 95. Halaman Manajemen Jenis Ikan"
+    },
+    {
+      "block": 1353,
+      "style": "Caption",
+      "text": "Gambar 96. Halaman Laporan Keuangan"
+    },
+    {
+      "block": 1359,
+      "style": "Caption",
+      "text": "Gambar 97. Halaman Manajemen Voucher"
+    },
+    {
+      "block": 1372,
+      "style": "Caption",
+      "text": "Gambar 98. Evaluasi Iterasi Pertama Tambah Pesanan"
+    },
+    {
+      "block": 1380,
+      "style": "Caption",
+      "text": "Gambar 99. Evaluasi Iterasi Kedua pada Halaman Pesanan Masuk"
+    },
+    {
+      "block": 1390,
+      "style": "Caption",
+      "text": "Gambar 100. Pembatalan Pending Order pada Checkout"
+    },
+    {
+      "block": 1402,
+      "style": "Caption",
+      "text": "Gambar 101. Evaluasi Fitur Menu Spesial"
+    },
+    {
+      "block": 1409,
+      "style": "Caption",
+      "text": "Gambar 102. Tampilan Popup Menu Spesial pada Halaman Utama"
+    },
+    {
+      "block": 1421,
+      "style": "Caption",
+      "text": "Tabel 71. Ringkasan Hasil Pengujian Black Box"
+    },
+    {
+      "block": 1425,
+      "style": "Caption",
+      "text": "Tabel 72. Hasil Pengujian Login dan Autentikasi"
+    },
+    {
+      "block": 1429,
+      "style": "Caption",
+      "text": "Tabel 73. Hasil Pengujian Halaman Utama"
+    },
+    {
+      "block": 1433,
+      "style": "Caption",
+      "text": "Tabel 74. Hasil Pengujian Fitur Member"
+    },
+    {
+      "block": 1436,
+      "style": "Caption",
+      "text": "Tabel 75. Hasil Pengujian Fitur Pegawai"
+    },
+    {
+      "block": 1439,
+      "style": "Caption",
+      "text": "Tabel 76. Hasil Pengujian Fitur Pemilik"
+    },
+    {
+      "block": 1447,
+      "style": "Caption",
+      "text": "Tabel 77. Skenario Tugas Pengujian Owner"
+    },
+    {
+      "block": 1450,
+      "style": "Caption",
+      "text": "Tabel 78. Skenario Tugas Pengujian Employee"
+    },
+    {
+      "block": 1455,
+      "style": "Caption",
+      "text": "Tabel 79. Skenario Tugas Pengujian Member"
+    },
+    {
+      "block": 1460,
+      "style": "Caption",
+      "text": "Tabel 80. Responden Pengujian Usability"
+    },
+    {
+      "block": 1465,
+      "style": "Caption",
+      "text": "Tabel 81. Hasil Jawaban Kuesioner SUS"
+    },
+    {
+      "block": 1473,
+      "style": "Caption",
+      "text": "Tabel 82. Hasil Perhitungan Skor SUS"
+    },
+    {
+      "block": 1481,
+      "style": "Caption",
+      "text": "Gambar 103. Interpretasi Skor SUS Hasil Pengujian"
+    },
+    {
+      "block": 1505,
+      "style": "Caption",
+      "text": "Lampiran 1. Daftar Pertanyaan Wawancara"
+    },
+    {
+      "block": 1581,
+      "style": "Caption",
+      "text": "Lampiran 2. Dokumentasi Observasi Lapangan"
+    },
+    {
+      "block": 1589,
+      "style": "Caption",
+      "text": "Lampiran 3. Skenario Tugas Pengujian"
+    },
+    {
+      "block": 1593,
+      "style": "Caption",
+      "text": "Lampiran 4. Kuesioner SUS"
+    },
+    {
+      "block": 1595,
+      "style": "Caption",
+      "text": "Lampiran 5. Dokumentasi Pengujian Usability"
+    },
+    {
+      "block": 1600,
+      "style": "Caption",
+      "text": "Lampiran 6. Tautan Artefak Penelitian"
+    },
+    {
+      "block": 1603,
+      "style": "Caption",
+      "text": "Lampiran 7. Rekapitulasi Skor SUS"
+    },
+    {
+      "block": 1605,
+      "style": "Caption",
+      "text": "Lampiran 8. Skenario dan Hasil Blackbox Testing"
+    }
+  ],
+  "headings": [
+    {
+      "block": 32,
+      "style": "Heading1",
+      "text": "PENGESAHAN"
+    },
+    {
+      "block": 46,
+      "style": "Heading1",
+      "text": "RINGKASAN"
+    },
+    {
+      "block": 51,
+      "style": "Heading1",
+      "text": "RIWAYAT HIDUP"
+    },
+    {
+      "block": 58,
+      "style": "Heading1",
+      "text": "PRAKATA"
+    },
+    {
+      "block": 78,
+      "style": "Heading1",
+      "text": "DAFTAR ISI"
+    },
+    {
+      "block": 80,
+      "style": "Heading1",
+      "text": "DAFTAR TABEL"
+    },
+    {
+      "block": 165,
+      "style": "Heading1",
+      "text": "DAFTAR GAMBAR"
+    },
+    {
+      "block": 271,
+      "style": "Heading1",
+      "text": "LAMPIRAN"
+    },
+    {
+      "block": 281,
+      "style": "Heading1",
+      "text": "PENDAHULUAN"
+    },
+    {
+      "block": 282,
+      "style": "Heading2",
+      "text": "Latar Belakang"
+    },
+    {
+      "block": 290,
+      "style": "Heading2",
+      "text": "Rumusan Masalah"
+    },
+    {
+      "block": 293,
+      "style": "Heading2",
+      "text": "Tujuan Penelitian"
+    },
+    {
+      "block": 296,
+      "style": "Heading2",
+      "text": "Batasan Masalah"
+    },
+    {
+      "block": 303,
+      "style": "Heading2",
+      "text": "Manfaat Penelitian"
+    },
+    {
+      "block": 309,
+      "style": "Heading1",
+      "text": ""
+    },
+    {
+      "block": 310,
+      "style": "Heading1",
+      "text": "TINJAUAN PUSTAKA"
+    },
+    {
+      "block": 311,
+      "style": "Heading2",
+      "text": "Pengelolaan Usaha Mikro, Kecil, dan Menengah (UMKM)"
+    },
+    {
+      "block": 317,
+      "style": "Heading2",
+      "text": "Digitalisasi Proses Bisnis Pemancingan"
+    },
+    {
+      "block": 321,
+      "style": "Heading2",
+      "text": "Sistem Informasi Back-end"
+    },
+    {
+      "block": 322,
+      "style": "Heading3",
+      "text": "Sistem Informasi"
+    },
+    {
+      "block": 331,
+      "style": "Heading3",
+      "text": "Back-end"
+    },
+    {
+      "block": 339,
+      "style": "Heading2",
+      "text": "Basis Data MySQL"
+    },
+    {
+      "block": 343,
+      "style": "Heading2",
+      "text": "Framework Laravel"
+    },
+    {
+      "block": 349,
+      "style": "Heading2",
+      "text": "System Development Life Cycle (SDLC)"
+    },
+    {
+      "block": 362,
+      "style": "Heading2",
+      "text": "Metodologi Rapid Application Development"
+    },
+    {
+      "block": 363,
+      "style": "Heading3",
+      "text": "Pengertian Rapid Application Development"
+    },
+    {
+      "block": 371,
+      "style": "Heading3",
+      "text": "Kelebihan Rapid Application Development"
+    },
+    {
+      "block": 378,
+      "style": "Heading3",
+      "text": "Kekurangan Rapid Application Development"
+    },
+    {
+      "block": 385,
+      "style": "Heading3",
+      "text": "Tahapan RAD dengan Model System Prototyping"
+    },
+    {
+      "block": 397,
+      "style": "Heading2",
+      "text": "Unified Modelling Language"
+    },
+    {
+      "block": 399,
+      "style": "Heading3",
+      "text": "Use Case Diagram"
+    },
+    {
+      "block": 403,
+      "style": "Heading3",
+      "text": "Activity Diagram"
+    },
+    {
+      "block": 407,
+      "style": "Heading3",
+      "text": "Class Diagram"
+    },
+    {
+      "block": 415,
+      "style": "Heading2",
+      "text": "Pengujian dan Evaluasi Sistem"
+    },
+    {
+      "block": 416,
+      "style": "Heading3",
+      "text": "Black Box Testing"
+    },
+    {
+      "block": 419,
+      "style": "Heading3",
+      "text": "Usability dan System Usability Scale"
+    },
+    {
+      "block": 445,
+      "style": "Heading2",
+      "text": "Penelitian Terdahulu"
+    },
+    {
+      "block": 456,
+      "style": "Heading1",
+      "text": ""
+    },
+    {
+      "block": 457,
+      "style": "Heading1",
+      "text": "METODOLOGI PENELITIAN"
+    },
+    {
+      "block": 458,
+      "style": "Heading2",
+      "text": "Waktu dan Tempat Penelitian"
+    },
+    {
+      "block": 460,
+      "style": "Heading2",
+      "text": "Alat Penelitian"
+    },
+    {
+      "block": 466,
+      "style": "Heading2",
+      "text": "Langkah Kerja Penelitian"
+    },
+    {
+      "block": 477,
+      "style": "Heading2",
+      "text": "Metode Pengumpulan Data"
+    },
+    {
+      "block": 486,
+      "style": "Heading2",
+      "text": "Metode Pengembangan Sistem"
+    },
+    {
+      "block": 489,
+      "style": "Heading3",
+      "text": "Planning"
+    },
+    {
+      "block": 495,
+      "style": "Heading3",
+      "text": "Analysis"
+    },
+    {
+      "block": 514,
+      "style": "Heading3",
+      "text": "Design"
+    },
+    {
+      "block": 523,
+      "style": "Heading3",
+      "text": "Implementation"
+    },
+    {
+      "block": 533,
+      "style": "Heading2",
+      "text": "Pengujian dan Evaluasi Sistem"
+    },
+    {
+      "block": 535,
+      "style": "Heading3",
+      "text": "Black Box Testing"
+    },
+    {
+      "block": 542,
+      "style": "Heading3",
+      "text": "System Usability Scale (SUS)"
+    },
+    {
+      "block": 559,
+      "style": "Heading1",
+      "text": "HASIL DAN PEMBAHASAN"
+    },
+    {
+      "block": 560,
+      "style": "Heading2",
+      "text": "Tahap Perencanaan (Planning)"
+    },
+    {
+      "block": 575,
+      "style": "Heading2",
+      "text": "Tahap Analisis (Analysis)"
+    },
+    {
+      "block": 578,
+      "style": "Heading3",
+      "text": "Analisis Kebutuhan Sistem"
+    },
+    {
+      "block": 589,
+      "style": "Heading3",
+      "text": "Analisis Aktor dan Entitas Sistem"
+    },
+    {
+      "block": 594,
+      "style": "Heading3",
+      "text": "Analisis Sistem Berjalan"
+    },
+    {
+      "block": 608,
+      "style": "Heading3",
+      "text": "Analisis Sistem Usulan"
+    },
+    {
+      "block": 624,
+      "style": "Heading2",
+      "text": "Tahap Perancangan (Design)"
+    },
+    {
+      "block": 627,
+      "style": "Heading3",
+      "text": "Use Case Diagram"
+    },
+    {
+      "block": 783,
+      "style": "Heading3",
+      "text": "Activity Diagram"
+    },
+    {
+      "block": 953,
+      "style": "Heading3",
+      "text": "Class Diagram"
+    },
+    {
+      "block": 958,
+      "style": "Heading3",
+      "text": "Rancangan Basis Data"
+    },
+    {
+      "block": 1048,
+      "style": "Heading3",
+      "text": "Rancangan Endpoint API"
+    },
+    {
+      "block": 1057,
+      "style": "Heading2",
+      "text": "Tahap Implementasi (Implementation)"
+    },
+    {
+      "block": 1062,
+      "style": "Heading3",
+      "text": "Implementasi Basis Data"
+    },
+    {
+      "block": 1128,
+      "style": "Heading3",
+      "text": "Implementasi Back-end Sistem"
+    },
+    {
+      "block": 1181,
+      "style": "Heading3",
+      "text": "Implementasi Endpoint API"
+    },
+    {
+      "block": 1184,
+      "style": "Heading4",
+      "text": "Endpoint API"
+    },
+    {
+      "block": 1189,
+      "style": "Heading4",
+      "text": "Dokumentasi Endpoint API melalui Swagger"
+    },
+    {
+      "block": 1219,
+      "style": "Heading3",
+      "text": "Integrasi Back-end dengan Prototype Antarmuka Pengguna"
+    },
+    {
+      "block": 1361,
+      "style": "Heading3",
+      "text": "Evaluasi Prototype dan Perbaikan Iteratif"
+    },
+    {
+      "block": 1412,
+      "style": "Heading2",
+      "text": "Tahap Pengujian"
+    },
+    {
+      "block": 1417,
+      "style": "Heading3",
+      "text": "Black Box Testing"
+    },
+    {
+      "block": 1442,
+      "style": "Heading3",
+      "text": "System Usability Scale (SUS)"
+    },
+    {
+      "block": 1476,
+      "style": "Heading3",
+      "text": "Pembahasan Hasil Pengujian dan Evaluasi"
+    },
+    {
+      "block": 1486,
+      "style": "Heading1",
+      "text": "KESIMPULAN DAN SARAN"
+    },
+    {
+      "block": 1487,
+      "style": "Heading2",
+      "text": "Kesimpulan"
+    },
+    {
+      "block": 1492,
+      "style": "Heading2",
+      "text": "Saran"
+    },
+    {
+      "block": 1502,
+      "style": "Heading1",
+      "text": "DAFTAR PUSTAKA"
+    },
+    {
+      "block": 1504,
+      "style": "Heading1",
+      "text": "LAMPIRAN"
+    }
+  ],
+  "image_paragraphs": [
+    {
+      "block": 6,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 23,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 351,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 367,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 425,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 442,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 468,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 630,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 635,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 642,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 647,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 786,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 790,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 796,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 802,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 807,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 812,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 817,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 822,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 828,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 833,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 838,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 843,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 848,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 853,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 858,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 863,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 868,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 875,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 880,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 886,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 890,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 897,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 903,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 911,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 916,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 921,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 928,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 936,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 945,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 950,
+      "style": "ListParagraph",
+      "text": ""
+    },
+    {
+      "block": 955,
+      "style": "Caption",
+      "text": ""
+    },
+    {
+      "block": 1067,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1076,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1079,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1082,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1085,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1088,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1091,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1094,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1097,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1100,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1103,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1106,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1109,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1112,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1115,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1118,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1121,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1124,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1139,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1143,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1148,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1153,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1158,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1164,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1171,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1174,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1177,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1192,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1195,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1198,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1201,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1204,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1207,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1210,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1213,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1216,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1226,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1233,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1242,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1248,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1254,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1260,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1268,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1275,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1277,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1279,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1286,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1293,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1301,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1308,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1312,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1319,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1328,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1334,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1340,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1346,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1352,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1358,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1371,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1379,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1389,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1401,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1408,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1480,
+      "style": "",
+      "text": ""
+    },
+    {
+      "block": 1604,
+      "style": "Pustaka",
+      "text": ""
+    }
+  ],
+  "tables": [
+    {
+      "block": 37,
+      "rows": 4,
+      "cols": 3,
+      "preview": [
+        "Ketua | : | Muh. Subhan, S.ST., M.T.",
+        "Sekretaris | : | Mochammad Arief Hermawan Sutoyo, M.Kom.",
+        "Anggota | : | 1. Daniel Arsa, S.Kom., M.S.I",
+        " |  | 2. Muhammad Razi A., S.T., MMSI."
+      ]
+    },
+    {
+      "block": 41,
+      "rows": 3,
+      "cols": 3,
+      "preview": [
+        "Pembimbing Utama |  | Pembimbing Pendamping",
+        " |  | ",
+        "Muh. Subhan, S.ST., M.T.NIP. 198608122014041001 |  | Mochammad Arief Hermawan Sutoyo, M.Kom.NIP. 199401312024061002"
+      ]
+    },
+    {
+      "block": 45,
+      "rows": 3,
+      "cols": 3,
+      "preview": [
+        "Dekan / Fakultas Sains dan Teknologi |  | Ketua / Jurusan Teknik Elektro dan Informatika",
+        " |  | ",
+        "Drs. Jefri Marzal, M.Sc., D.I.T. / NIP. 196806021993031004 |  | Edi Saputra, S.T., M.Sc. / NIP. 198501082015041003"
+      ]
+    },
+    {
+      "block": 52,
+      "rows": 1,
+      "cols": 1,
+      "preview": [
+        ""
+      ]
+    },
+    {
+      "block": 75,
+      "rows": 5,
+      "cols": 1,
+      "preview": [
+        "Jambi, 08 Juli 2026",
+        "Yang Menyatakan,",
+        "",
+        "Raka Bagaskara Putra",
+        "F1E122183"
+      ]
+    },
+    {
+      "block": 360,
+      "rows": 4,
+      "cols": 2,
+      "preview": [
+        "Model | Karakteristik Dan Keunggulan",
+        "Waterfall | Memiliki tahapan kerja yang berurutan dan sistematis sehingga mudah dikendalikan (Burhani et al., 2025) / Cocok digunakan untuk sistem yang kebutuhan dan tujuannya sudah didefinisikan dengan jelas sejak awal (Burhani et al., 2025). / Menjamin hasil akhir yang stabil karena setiap tahapan harus selesai sebelum melanjutkan ke tahap berikutnya (Burhani et al., 2025)",
+        "Rapid Application Development | Metodologi RAD menekankan efisiensi waktu dan iterasi cepat melalui pengembangan berbasis prototipe (E. A. Pratama et al., 2023). / Metodologi RAD sangat sesuai untuk proyek yang membutuhkan hasil dalam waktu singkat dan memiliki kebutuhan yang dinamis (E. A. Pratama et al., 2023). / Metodologi RAD melibatkan pengguna dalam setiap proses pengembangan agar hasil sistem lebih akurat dan sesuai harapan (E. A. Pratama et al., 2023).",
+        "Scrum | Menerapkan konsep Agile dengan pendekatan iteratif dan kolaboratif dalam proses pengembangan (Nico Abrarsyah Atallah & Mardi Mardi, 2024) / Menjalankan evaluasi rutin di setiap sprint agar produk dapat disesuaikan secara berkelanjutan (Nico Abrarsyah Atallah & Mardi Mardi, 2024). / Mendorong kerja sama tim, komunikasi intensif, dan adaptasi cepat terhadap perubahan kebutuhan (Nico Abrarsyah Atallah & Mardi Mardi, 2024)."
+      ]
+    },
+    {
+      "block": 402,
+      "rows": 7,
+      "cols": 3,
+      "preview": [
+        "Nama Simbol | Gambar | Keterangan",
+        "Aktor |  | Aktor menggambarkan pihak luar seperti pengguna, sistem lain, atau perangkat yang berinteraksi langsung dengan sistem. Dalam diagram, aktor terhubung dengan use case melalui asosiasi, namun tidak mengendalikan proses di dalamnya.",
+        "Use Case |  | Use Case menjelaskan fungsi atau layanan yang disediakan sistem bagi actor. Use case dihubungkan dengan aktor melalui asosiasi dan dapat saling berhubungan dengan use case lain melalui relasi include atau extend",
+        "Asosiasi |  | Asosiasi menunjukkan hubungan interaksi atau pertukaran data antara pengguna dan sistem, baik dalam bentuk input maupun output.",
+        "Generalisasi |  | Generalization menggambarkan hubungan umum dan khusus antara aktor atau antar use case."
+      ]
+    },
+    {
+      "block": 406,
+      "rows": 8,
+      "cols": 3,
+      "preview": [
+        "Nama Simbol | Gambar | Keterangan",
+        "Status Awal |  | Menandai titik dimulainya suatu rangkaian aktivitas dalam sistem.",
+        "Status Akhir |  | Menandai titik berhentinya seluruh rangkaian aktivitas dalam diagram.",
+        "Aktivitas |  | menggambarkan suatu tindakan atau proses yang dilakukan dalam alur kerja sistem.",
+        "Percabangan (Fork) |  | Membagi satu alur menjadi beberapa aktivitas yang dapat berjalan secara bersamaan."
+      ]
+    },
+    {
+      "block": 413,
+      "rows": 8,
+      "cols": 3,
+      "preview": [
+        "Nama Simbol | Gambar | Keterangan",
+        "Class |  | Menggambarkan kelas dalam struktur sistem yang terdiri dari tiga bagian utama, yaitu nama kelas, atribut, dan operasi. Nama kelas harus unik dan ditulis tanpa spasi, atribut merupakan data yang dimiliki kelas, sedangkan operasi menggambarkan fungsi atau perilaku kelas. Kelas biasanya berhubungan dengan kelas lain melalui berbagai jenis relasi.",
+        "Association |  | Menunjukkan hubungan antar kelas, di mana satu kelas dapat menggunakan atau mengenali kelas lain. Hubungan ini dapat disertai multiplicity untuk menunjukkan jumlah objek yang terlibat, seperti satu-ke-satu atau satu-ke-banyak.",
+        "Directed Association |  | Directed Association menggambarkan hubungan satu arah antara dua kelas, di mana satu kelas mengenali atau menggunakan kelas lainnya, tetapi tidak sebaliknya. Directed Association sering digunakan untuk memperjelas arah komunikasi atau akses antar kelas dalam sistem.",
+        "Generalization |  | Generalisasi menunjukkan hubungan umum dan khusus antara dua kelas. Kelas turunan mewarisi atribut dan operasi dari kelas induknya, tetapi dapat menambah atau memodifikasi fungsinya."
+      ]
+    },
+    {
+      "block": 448,
+      "rows": 12,
+      "cols": 5,
+      "preview": [
+        "No | Judul Penelitian | Penulis & Tahun | Tujuan Penelitian | Hasil Penelitian",
+        "1 | Rancang Bangun Aplikasi Penjualan Online Menggunakan Metode RAD pada UMKM Utama Sport | Merancang aplikasi penjualan online yang mampu mengelola transaksi dan data produk secara efisien menggunakan metode RAD. | Metode Rapid Application Development (RAD) mampu mempercepat proses pengembangan aplikasi penjualan online serta meningkatkan efisiensi pengelolaan transaksi dan pengolahan data produk secara terintegrasi, sehingga sistem dapat mendukung aktivitas penjualan UMKM secara lebih optimal.",
+        "2 | Penerapan Metode Rapid Application Development (RAD) dalam Pengembangan Website Penjualan Produk UMKM Bikomi Utara | Mengimplementasikan metode RAD dalam pengembangan sistem penjualan berbasis web. | Sistem penjualan berbasis web yang dikembangkan menggunakan metode Rapid Application Development (RAD) mampu meningkatkan efisiensi pelayanan serta mempermudah pengelolaan data transaksi dan data produk UMKM secara terstruktur dan real-time.",
+        "3 | Penerapan Metode Rapid Application Development (RAD) untuk Digitalisasi UKM Industri Busana Muslim | Merancang prototype aplikasi marketplace dan company profile berbasis web sebagai dukungan untuk digitalisasi UMKM. | Digitalisasi proses bisnis UKM industri busana muslim dengan pendekatan Rapid Application Development (RAD) mampu mendukung pengelolaan transaksi dan promosi produk secara lebih terorganisasi, sehingga meningkatkan efisiensi operasional dan kemudahan pengelolaan data usaha.",
+        "4 | Optimalisasi Sistem Digitalisasi Penerimaan dan Pengeluaran Barang dengan Laravel 11 |  | Membangun sistem digitalisasi penerimaan dan pengeluaran barang dengan memanfaatkan framework Laravel 11 sebagai back-end utama. | Penggunaan Laravel 11 sebagai back-end mempercepat proses transaksi dan meningkatkan efisiensi distribusi barang secara digital."
+      ]
+    },
+    {
+      "block": 503,
+      "rows": 3,
+      "cols": 3,
+      "preview": [
+        "No | Aktor | Deskripsi Peran",
+        "1 | Nama Aktor | Deskripsi umum peran",
+        "2 | ... | ..."
+      ]
+    },
+    {
+      "block": 506,
+      "rows": 3,
+      "cols": 3,
+      "preview": [
+        "No | Kode | Deskripsi Kebutuhan Fungsional",
+        "1 | KF-1 | Uraian singkat fungsi sistem",
+        "2 | KF-2 | ..."
+      ]
+    },
+    {
+      "block": 509,
+      "rows": 3,
+      "cols": 3,
+      "preview": [
+        "No | Kode | Deskripsi Kebutuhan Non-Fungsional",
+        "1 | KNF-1 | Uraian singkat aspek kualitas",
+        "2 | KNF-2 | ..."
+      ]
+    },
+    {
+      "block": 512,
+      "rows": 3,
+      "cols": 4,
+      "preview": [
+        "No | Kode | Jenis Data | Deskripsi",
+        "1 | KD-1 | Nama Data | Penjelasan singkat mengenai data yang dibutuhkan",
+        "2 | KD-2 | ... | ..."
+      ]
+    },
+    {
+      "block": 521,
+      "rows": 5,
+      "cols": 5,
+      "preview": [
+        "No | Method | URL Endpoint | Request (JSON) | Response (JSON)",
+        "1 | POST | /api/... | { ... } | { ... }",
+        "2 | GET | /api/... | - | { ... }",
+        "3 | PUT | /api/.../{id} | { ... } | { ... }",
+        "4 | DELETE | /api/.../{id} | - | { ... }"
+      ]
+    },
+    {
+      "block": 539,
+      "rows": 6,
+      "cols": 5,
+      "preview": [
+        "Test ID | Rincian Pengujian | Hasil yang Diharapkan | Hasil Pengujian | Status",
+        "T01 | Pengujian pencatatan transaksi penimbangan ikan dengan nilai berat yang valid. | Sistem menghitung total pembayaran sesuai tarif dan menyimpan transaksi tanpa error. |  | ",
+        "T02 | Pengujian pembaruan stok ikan setelah transaksi dilakukan. | Sistem mengurangi stok ikan sesuai jumlah yang tercatat pada transaksi. |  | ",
+        "T03 | Pengujian pengurangan saldo deposit pelanggan saat transaksi dibayar menggunakan deposit. | Sistem mengurangi saldo deposit dan mencatat perubahan pada riwayat deposit. |  | ",
+        "T04 | Pengujian tampilan laporan pendapatan harian berdasarkan transaksi yang telah tersimpan. | Sistem menampilkan total pendapatan harian berdasarkan data transaksi yang tersedia. |  | "
+      ]
+    },
+    {
+      "block": 550,
+      "rows": 11,
+      "cols": 3,
+      "preview": [
+        "No | Komponen/Pernyataan | Skala Penilaian",
+        "1 | Saya berpikir akan menggunakan sistem ini lagi. | 1 2 3 4 5",
+        "2 | Saya merasa sistem ini rumit untuk digunakan. | 1 2 3 4 5",
+        "3 | Saya merasa sistem ini mudah digunakan. | 1 2 3 4 5",
+        "4 | Saya membutuhkan bantuan dari orang lain atau teknisi dalam menggunakan sistem ini. | 1 2 3 4 5"
+      ]
+    },
+    {
+      "block": 582,
+      "rows": 13,
+      "cols": 3,
+      "preview": [
+        "No | Kode | Deskripsi Kebutuhan Fungsional",
+        "1 | KF-01 | Sistem menyediakan autentikasi login dan logout bagi pengguna.",
+        "2 | KF-02 | Sistem membatasi hak akses berdasarkan role pemilik, pegawai, dan member.",
+        "3 | KF-03 | Sistem mengelola data member, validasi akun, status keanggotaan, tier, poin, dan QR code.",
+        "4 | KF-04 | Sistem mengelola data master operasional, meliputi menu, jenis ikan, stok ikan, item rental, event, dan informasi."
+      ]
+    },
+    {
+      "block": 585,
+      "rows": 7,
+      "cols": 3,
+      "preview": [
+        "No | Kode | Deskripsi Kebutuhan Non-Fungsional",
+        "1 | KNF-01 | Sistem harus menyediakan autentikasi pengguna agar hanya pengguna terdaftar yang dapat mengakses sistem.",
+        "2 | KNF-02 | Sistem harus membatasi akses fitur berdasarkan role pemilik, pegawai, dan member.",
+        "3 | KNF-03 | Sistem harus melakukan validasi data sebelum data disimpan ke dalam basis data.",
+        "4 | KNF-04 | Sistem harus menjaga integritas data melalui relasi antar data, seperti pengguna, member, stok, transaksi, dan voucher."
+      ]
+    },
+    {
+      "block": 588,
+      "rows": 13,
+      "cols": 4,
+      "preview": [
+        "No | Kode | Jenis Data | Deskripsi",
+        "1 | KD-01 | Data pengguna | Menyimpan data akun pemilik, pegawai, dan member.",
+        "2 | KD-02 | Data member | Menyimpan informasi keanggotaan, tier, poin, total berat ikan, dan QR code.",
+        "3 | KD-03 | Data ikan | Menyimpan jenis ikan, harga per kilogram, dan status ketersediaan.",
+        "4 | KD-04 | Data stok ikan | Menyimpan jumlah stok ikan, batas minimum stok, dan riwayat restok."
+      ]
+    },
+    {
+      "block": 592,
+      "rows": 4,
+      "cols": 3,
+      "preview": [
+        "No | Aktor | Deskripsi Peran",
+        "1 | Pemilik | Pengguna dengan hak akses tertinggi yang dapat mengelola data pengguna, data master, konfigurasi sistem, transaksi, laporan, leaderboard, dan voucher.",
+        "2 | Pegawai | Pengguna yang menjalankan proses operasional harian, seperti mencatat kedatangan pelanggan, mengelola pesanan, memperbarui stok, memproses transaksi, dan membantu pencatatan data pelanggan.",
+        "3 | Member | Pelanggan terdaftar yang memiliki akun untuk mengakses informasi keanggotaan, poin, tier, voucher, riwayat transaksi, Pelanggan terdaftar yang memiliki akun untuk mengakses informasi keanggotaan, poin, tier, voucher, riwayat transaksi, serta melakukan pemesanan melalui sistem."
+      ]
+    },
+    {
+      "block": 653,
+      "rows": 31,
+      "cols": 5,
+      "preview": [
+        "No | Kode | Use Case | Deskripsi | Hak Akses",
+        "1 | UC-01 | Login Sistem | Proses autentikasi pengguna dengan memasukkan No. HP atau Email dan password untuk mengakses dashboard sesuai hak akses pengguna. | Pemilik, Pegawai, Member",
+        "2 | UC-02 | Mendaftar Akun | Proses pendaftaran akun secara mandiri oleh pelanggan melalui pengisian formulir di website. | Member",
+        "3 | UC-03 | Mengakses Halaman Utama | Proses pengguna mengakses halaman beranda publik (landing page) yang memuat informasi umum, leaderboard, event aktif, serta pop up menu spesial. | Pemilik, Pegawai, Member",
+        "4 | UC-04 | Melihat Event dan Informasi | Proses pengguna melihat rincian publikasi acara dan pengumuman secara spesifik. | Pemilik, Pegawai, Member"
+      ]
+    },
+    {
+      "block": 658,
+      "rows": 21,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Login Sistem",
+        "ID Use Case | UC-01",
+        "Aktor | Pemilik, Pegawai, Member",
+        "Deskripsi | Proses autentikasi pengguna menggunakan No. HP atau Email dan password untuk masuk ke dalam sistem sesuai hak aksesnya.",
+        "Precondition | Aktor telah terdaftar dan akun berstatus aktif di dalam sistem."
+      ]
+    },
+    {
+      "block": 662,
+      "rows": 17,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mendaftar Akun",
+        "ID Use Case | UC-02",
+        "Aktor | Member",
+        "Deskripsi | Proses pendaftaran akun mandiri oleh pelanggan melalui pengisian formulir di website.",
+        "Precondition | Aktor belum memiliki akun member di sistem."
+      ]
+    },
+    {
+      "block": 666,
+      "rows": 16,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengakses Halaman Utama",
+        "ID Use Case | UC-03",
+        "Aktor | Pemilik, Pegawai, Member",
+        "Deskripsi | Proses pengguna mengakses halaman beranda publik yang memuat informasi umum, leaderboard, event aktif, serta pop up menu spesial.",
+        "Precondition | Aktor berada pada halaman website sistem."
+      ]
+    },
+    {
+      "block": 670,
+      "rows": 13,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Melihat Event dan Informasi",
+        "ID Use Case | UC-04",
+        "Aktor | Pemilik, Pegawai, Member",
+        "Deskripsi | Proses pengguna melihat dan membaca detail event atau informasi yang dipublikasikan pada halaman utama sistem.",
+        "Precondition | Aktor berada di halaman utama atau menu Event."
+      ]
+    },
+    {
+      "block": 677,
+      "rows": 18,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengakses Dashboard",
+        "ID Use Case | UC-05",
+        "Aktor | Pemilik, Pegawai, Member",
+        "Deskripsi | Mengakses halaman privat yang menampilkan informasi dashboard sesuai hak akses pengguna.",
+        "Precondition | Aktor telah berhasil melakukan proses login ke dalam sistem."
+      ]
+    },
+    {
+      "block": 683,
+      "rows": 14,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Melihat Leaderboard",
+        "ID Use Case | UC-06",
+        "Aktor | Member",
+        "Deskripsi | Mengakses klasemen berdasarkan total akumulasi berat ikan tertinggi secara global",
+        "Precondition | Aktor berada di dalam sistem"
+      ]
+    },
+    {
+      "block": 687,
+      "rows": 22,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Memesan Menu",
+        "ID Use Case | UC-07",
+        "Aktor | Member",
+        "Deskripsi | Proses member melakukan pemesanan makanan dan minuman secara mandiri via website, termasuk melihat menu spesial, memilih kuantitas menu, melihat total sementara, serta menyimpan pesanan sebagai tagihan belum dibayar dengan status awal pending untuk diproses pegawai.",
+        "Precondition | Aktor telah login sebagai member dan telah melakukan check-in pada hari tersebut."
+      ]
+    },
+    {
+      "block": 695,
+      "rows": 16,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Melihat Riwayat Transaksi",
+        "ID Use Case | UC-08",
+        "Aktor | Member",
+        "Deskripsi | Proses pelanggan melihat catatan historis beserta rincian transaksinya, yaitu item, diskon, metode bayar, dan poin secara langsung di layar.",
+        "Precondition | Aktor telah login ke dalam sistem."
+      ]
+    },
+    {
+      "block": 699,
+      "rows": 19,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengelola Kedatangan Pelanggan",
+        "ID Use Case | UC-09",
+        "Aktor | Pegawai",
+        "Deskripsi | Proses pegawai melakukan pendaftaran kedatangan (check-in) menggunakan opsi Cari Manual, Scan QR, atau pendaftaran Tamu.",
+        "Precondition | Aktor telah bersiap di antarmuka kasir."
+      ]
+    },
+    {
+      "block": 703,
+      "rows": 21,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Menambah Pesanan",
+        "ID Use Case | UC-10",
+        "Aktor | Pegawai",
+        "Deskripsi | Proses pegawai menginput pesanan makanan/minuman sekaligus sewa alat pancing secara manual dari kasir, dengan daftar menu yang menampilkan penanda menu spesial.",
+        "Precondition | Aktor telah login sebagai pegawai dan terdapat pelanggan atau kedatangan aktif yang akan ditambahkan pesanan."
+      ]
+    },
+    {
+      "block": 706,
+      "rows": 17,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengelola Pesanan Masuk",
+        "ID Use Case | UC-11",
+        "Aktor | Pegawai",
+        "Deskripsi | Proses pegawai mengelola pesanan yang masih berjalan dengan status pending, diproses, selesai, atau dibatalkan.",
+        "Precondition | Aktor telah login sebagai pegawai dan terdapat data pesanan."
+      ]
+    },
+    {
+      "block": 710,
+      "rows": 15,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengubah Ketersediaan Menu",
+        "ID Use Case | UC-12",
+        "Aktor | Pegawai",
+        "Deskripsi | Proses pegawai mengubah status operasional item F&B atau rental apabila stok habis.",
+        "Precondition | Aktor berada di antarmuka sistem kasir."
+      ]
+    },
+    {
+      "block": 714,
+      "rows": 17,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Melihat Riwayat Transaksi Pelanggan",
+        "ID Use Case | UC-13",
+        "Aktor | Pegawai",
+        "Deskripsi | Proses pegawai melihat seluruh riwayat transaksi operasional pengunjung serta membuka detail nota transaksi untuk kebutuhan verifikasi kasir.",
+        "Precondition | Aktor telah login sebagai pegawai dan data transaksi pelanggan tersedia."
+      ]
+    },
+    {
+      "block": 718,
+      "rows": 18,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Checkout Transaksi",
+        "ID Use Case | UC-14",
+        "Aktor | Pegawai",
+        "Deskripsi | Proses penyelesaian pembayaran akhir di kasir untuk ikan, menu F&B, penyewaan alat, dan menampilkan nota digital transaksi.",
+        "Precondition | Aktor telah login sebagai pegawai dan terdapat pesanan atau data pembayaran pelanggan yang akan diselesaikan."
+      ]
+    },
+    {
+      "block": 722,
+      "rows": 14,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Input Berat Ikan",
+        "ID Use Case | UC-15",
+        "Aktor | Pegawai",
+        "Deskripsi | Proses menginputkan hasil penimbangan ikan secara spesifik",
+        "Precondition | Aktor berada di dalam menu Checkout Transaksi"
+      ]
+    },
+    {
+      "block": 726,
+      "rows": 13,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Hitung Harga Ikan",
+        "ID Use Case | UC-16",
+        "Aktor | Pegawai",
+        "Deskripsi | Kalkulasi total harga asli berdasarkan berat ikan secara otomatis",
+        "Precondition | Input berat ikan telah didapatkan"
+      ]
+    },
+    {
+      "block": 730,
+      "rows": 14,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Validasi Diskon Tier",
+        "ID Use Case | UC-17",
+        "Aktor | Pegawai",
+        "Deskripsi | Penerapan pemotongan persentase harga ikan sesuai tier pelanggan",
+        "Precondition | Subtotal harga ikan asli telah dikalkulasi"
+      ]
+    },
+    {
+      "block": 734,
+      "rows": 14,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Validasi Voucher",
+        "ID Use Case | UC-18",
+        "Aktor | Pegawai",
+        "Deskripsi | Proses pemotongan tagihan secara otomatis jika pelanggan memiliki voucher",
+        "Precondition | Tagihan ikan dan pesanan lain telah digabungkan"
+      ]
+    },
+    {
+      "block": 739,
+      "rows": 19,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Update dan Evaluasi Poin Member",
+        "ID Use Case | UC-19",
+        "Aktor | Pegawai",
+        "Deskripsi | Proses sistem menambahkan poin ke akun member setelah checkout transaksi, memperbarui tier, serta mengevaluasi masa aktif poin secara otomatis dengan mereset poin menjadi 0 apabila member tidak melakukan transaksi selama 180 hari.",
+        "Precondition | Checkout transaksi member telah berhasil diproses atau jadwal evaluasi poin otomatis berjalan."
+      ]
+    },
+    {
+      "block": 743,
+      "rows": 15,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Update Leaderboard",
+        "ID Use Case | UC-20",
+        "Aktor | Pegawai",
+        "Deskripsi | Pembaruan akumulasi berat ikan pada klasemen peringkat",
+        "Precondition | Transaksi LUNAS telah berhasil disimpan"
+      ]
+    },
+    {
+      "block": 747,
+      "rows": 16,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengelola Akun Member",
+        "ID Use Case | UC-21",
+        "Aktor | Pemilik",
+        "Deskripsi | Proses pemilik usaha melakukan verifikasi untuk menyetujui, menolak, atau menonaktifkan akun member.",
+        "Precondition | Terdapat notifikasi akun pelanggan berstatus Menunggu Validasi atau ada kebutuhan mengelola akun aktif."
+      ]
+    },
+    {
+      "block": 751,
+      "rows": 18,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengelola Menu",
+        "ID Use Case | UC-22",
+        "Aktor | Pemilik",
+        "Deskripsi | Proses pemilik menambah, mengubah nama/harga, menghapus data menu makanan/minuman, serta menandai atau membatalkan status menu spesial.",
+        "Precondition | Aktor telah login sebagai pemilik dan berada pada halaman kelola menu."
+      ]
+    },
+    {
+      "block": 755,
+      "rows": 15,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengelola Inventaris Ikan",
+        "ID Use Case | UC-23",
+        "Aktor | Pemilik",
+        "Deskripsi | Pengelolaan referensi jenis ikan harga per kg dan restock fisik.",
+        "Precondition | Aktor berada di menu Inventaris Ikan."
+      ]
+    },
+    {
+      "block": 759,
+      "rows": 16,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengelola Rental Item",
+        "ID Use Case | UC-24",
+        "Aktor | Pemilik",
+        "Deskripsi | Proses back-end penambahan (create), pengubahan tarif/status (update), serta pencabutan (delete) daftar alat pancing operasional.",
+        "Precondition | Aktor berada di halaman pengaturan operasional (Rental Item)."
+      ]
+    },
+    {
+      "block": 763,
+      "rows": 15,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Melihat Laporan Keuangan",
+        "ID Use Case | UC-25",
+        "Aktor | Pemilik",
+        "Deskripsi | Proses back-end untuk menarik (read), memfilter rentang waktu, mengalkulasi metrik bisnis, serta men- generate file ekspor data transaksi operasional.",
+        "Precondition | Aktor berada di menu Laporan Keuangan."
+      ]
+    },
+    {
+      "block": 767,
+      "rows": 20,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengelola Voucher",
+        "ID Use Case | UC-26",
+        "Aktor | Pemilik",
+        "Deskripsi | Proses pemilik mengonfigurasi nominal hadiah voucher bulanan, memantau riwayat distribusi voucher, serta sistem menerbitkan voucher otomatis kepada member Top 3 berdasarkan hasil leaderboard dan konfigurasi yang berlaku.",
+        "Precondition | Aktor telah login sebagai pemilik atau jadwal penerbitan voucher otomatis berjalan."
+      ]
+    },
+    {
+      "block": 771,
+      "rows": 16,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengelola Event & Informasi",
+        "ID Use Case | UC-27",
+        "Aktor | Pemilik",
+        "Deskripsi | Proses back-end untuk menambah, mengubah, menghapus, serta menyortir/mencari publikasi acara dan pengumuman.",
+        "Precondition | Aktor berada di menu Kelola Event dan Informasi."
+      ]
+    },
+    {
+      "block": 775,
+      "rows": 15,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Memantau Leaderboard",
+        "ID Use Case | UC-28",
+        "Aktor | Pemilik",
+        "Deskripsi | Proses pemilik memantau klasemen peringkat member berdasarkan akumulasi berat ikan, termasuk total poin, tier, dan potensi penerima voucher Top 3.",
+        "Precondition | Aktor telah login sebagai pemilik dan data leaderboard tersedia."
+      ]
+    },
+    {
+      "block": 779,
+      "rows": 15,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Mengelola Pengaturan Sistem",
+        "ID Use Case | UC-29",
+        "Aktor | Pemilik",
+        "Deskripsi | Proses back-end untuk menyesuaikan parameter operasional utama, yaitu konfigurasi file QRIS pembayaran dan nominal kewajiban deposit tamu.",
+        "Precondition | Aktor berada di menu Pengaturan Sistem."
+      ]
+    },
+    {
+      "block": 782,
+      "rows": 19,
+      "cols": 2,
+      "preview": [
+        "Nama Use Case | Logout Sistem",
+        "ID Use Case | UC-30",
+        "Aktor | Pemilik, Pegawai, Member",
+        "Deskripsi | Proses pengguna keluar dari sistem dengan menghapus token akses lokal dan mengarahkan pengguna kembali ke halaman login.",
+        "Precondition | Aktor telah berhasil login dan berada di halaman dashboard sesuai hak aksesnya."
+      ]
+    },
+    {
+      "block": 963,
+      "rows": 18,
+      "cols": 3,
+      "preview": [
+        "No | Entitas | Deskripsi",
+        "1 | User | Menyimpan data akun pengguna sistem, yaitu pemilik, pegawai, dan member.",
+        "2 | Member | Menyimpan data keanggotaan pelanggan, seperti ID member, poin, tier, QR code, dan total berat ikan.",
+        "3 | Member Tier | Menyimpan data tingkatan member dan ketentuan diskon berdasarkan jumlah poin.",
+        "4 | Arrival | Menyimpan data check-in, check-out, status kedatangan, dan deposit pelanggan tamu."
+      ]
+    },
+    {
+      "block": 970,
+      "rows": 17,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | name | Varchar | 255 | ",
+        "3 | email | Varchar | 255 | UNIQUE",
+        "4 | email_verified_at | Timestamp |  | "
+      ]
+    },
+    {
+      "block": 974,
+      "rows": 8,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | name | Varchar | 20 | UNIQUE",
+        "3 | min_points | Int | 10 | INDEX",
+        "4 | max_points | Int | 10 | "
+      ]
+    },
+    {
+      "block": 978,
+      "rows": 13,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | user_id | Bigint | 20 | FK, UNIQUE",
+        "3 | member_id | Varchar | 11 | UNIQUE",
+        "4 | tier_id | Bigint | 20 | FK"
+      ]
+    },
+    {
+      "block": 986,
+      "rows": 8,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | name | Varchar | 100 | UNIQUE",
+        "3 | price_per_kg | Decimal | 10,2 | ",
+        "4 | is_active | Boolean |  | "
+      ]
+    },
+    {
+      "block": 990,
+      "rows": 7,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | fish_type_id | Bigint | 20 | FK, UNIQUE",
+        "3 | current_stock_kg | Decimal | 10,2 | ",
+        "4 | alert_threshold_kg | Decimal | 10,2 | "
+      ]
+    },
+    {
+      "block": 994,
+      "rows": 10,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | fish_type_id | Bigint | 20 | FK",
+        "3 | quantity_kg | Decimal | 10,2 | ",
+        "4 | stock_before | Decimal | 10,2 | "
+      ]
+    },
+    {
+      "block": 998,
+      "rows": 12,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | title | Varchar | 255 | ",
+        "3 | description | Text |  | ",
+        "4 | category | Enum |  | "
+      ]
+    },
+    {
+      "block": 1003,
+      "rows": 12,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | name | Varchar | 100 | ",
+        "3 | price | Decimal | 10,2 | ",
+        "4 | category | Enum |  | INDEX"
+      ]
+    },
+    {
+      "block": 1007,
+      "rows": 12,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | member_id | Bigint | 20 | FK, INDEX",
+        "3 | guest_name | Varchar | 255 | ",
+        "4 | deposit_amount | Decimal | 10,2 | "
+      ]
+    },
+    {
+      "block": 1011,
+      "rows": 17,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | arrival_id | Bigint | 20 | FK, INDEX",
+        "3 | item_type | Enum |  | ",
+        "4 | item_id | Bigint | 20 | FK"
+      ]
+    },
+    {
+      "block": 1017,
+      "rows": 11,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | name | Varchar | 255 | UNIQUE",
+        "3 | price_per_unit | Decimal | 10,2 | ",
+        "4 | unit_label | Varchar | 255 | "
+      ]
+    },
+    {
+      "block": 1021,
+      "rows": 18,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | transaction_code | Varchar | 30 | UNIQUE",
+        "3 | arrival_id | Bigint | 20 | FK, INDEX",
+        "4 | total_amount | Decimal | 10,2 | "
+      ]
+    },
+    {
+      "block": 1025,
+      "rows": 11,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | transaction_id | Bigint | 20 | FK, INDEX",
+        "3 | item_type | Enum |  | INDEX",
+        "4 | item_id | Bigint | 20 | INDEX"
+      ]
+    },
+    {
+      "block": 1029,
+      "rows": 6,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | rank | Tinyint | 3 | UNIQUE",
+        "3 | amount | Decimal | 10,2 | ",
+        "4 | created_at | Timestamp |  | "
+      ]
+    },
+    {
+      "block": 1033,
+      "rows": 14,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | member_id | Bigint | 20 | FK, Unique Composite",
+        "3 | amount | Decimal | 10,2 | ",
+        "4 | source | Enum |  | "
+      ]
+    },
+    {
+      "block": 1039,
+      "rows": 11,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | user_id | Bigint | 20 | FK, INDEX",
+        "3 | type | Varchar | 255 | ",
+        "4 | title | Varchar | 255 | "
+      ]
+    },
+    {
+      "block": 1043,
+      "rows": 5,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | deposit_amount | Decimal | 10,2 | ",
+        "3 | created_at | Timestamp |  | ",
+        "4 | updated_at | Timestamp |  | "
+      ]
+    },
+    {
+      "block": 1047,
+      "rows": 5,
+      "cols": 5,
+      "preview": [
+        "No | Nama Field | Tipe | Panjang | Indeks",
+        "1 | id | Bigint | 20 | PK",
+        "2 | image | Varchar | 255 | ",
+        "3 | created_at | Timestamp |  | ",
+        "4 | updated_at | Timestamp |  | "
+      ]
+    },
+    {
+      "block": 1054,
+      "rows": 11,
+      "cols": 5,
+      "preview": [
+        "No | Method | Endpoint | Fungsi | Aktor",
+        "1 | POST | /api/login | Login pengguna | Pemilik, Pegawai, Member",
+        "2 | POST | /api/register | Registrasi akun member | Member",
+        "3 | GET | /api/member/profile | Menampilkan profil dan dashboard member | Member",
+        "4 | GET | /api/leaderboard | Menampilkan leaderboard public, termasuk member | Publik, Member"
+      ]
+    },
+    {
+      "block": 1072,
+      "rows": 28,
+      "cols": 4,
+      "preview": [
+        "No | Kelompok | Nama Tabel | Penjelasan Implementasi",
+        "1 | Tabel utama | users | Tabel users berhasil dibuat melalui migration Laravel. Menyimpan akun pengguna sistem, role akses, status akun, dan data kontak.",
+        "2 | Tabel utama | members | Tabel members berhasil dibuat melalui migration Laravel. Menyimpan data keanggotaan pelanggan, poin, tier, QR code, dan riwayat aktivitas member.",
+        "3 | Tabel utama | member_tiers | Tabel member_tiers berhasil dibuat melalui migration Laravel. Menyimpan tingkatan member, batas poin, dan persentase diskon setiap tier.",
+        "4 | Tabel utama | arrivals | Tabel arrivals berhasil dibuat melalui migration Laravel. Mencatat kedatangan pelanggan member maupun tamu, deposit, check-in, check-out, dan petugas pencatat."
+      ]
+    },
+    {
+      "block": 1135,
+      "rows": 17,
+      "cols": 3,
+      "preview": [
+        "No | Controller | Fungsi Utama",
+        "1 | AuthController | Registrasi, login, logout, reset password, autentikasi Sanctum, dan token akses.",
+        "2 | UserController | Pembaruan profil dan password pengguna yang sedang login.",
+        "3 | Member/MemberController | Profil member, riwayat transaksi, voucher, tier, dan leaderboard member.",
+        "4 | Member/OrderController | Pembuatan pesanan menu atau rental oleh member sebelum checkout."
+      ]
+    },
+    {
+      "block": 1187,
+      "rows": 19,
+      "cols": 6,
+      "preview": [
+        "No | Role/Akses | Method | URL Endpoint | Request/Parameter | Keterangan",
+        "1 | Auth | POST | /api/login | Body: login, password | Autentikasi pengguna dan pembuatan token Sanctum.",
+        "2 | Auth | POST | /api/register | Body: name, phone, email, password, password_confirmation, address | Registrasi akun member baru dengan status pending.",
+        "3 | Member | GET | /api/member/profile | Header: Authorization Bearer token_member | Menampilkan profil, tier, poin, QR code, dan posisi leaderboard member.",
+        "4 | Member | POST | /api/member/orders | Body: items[].menu_id, items[].quantity | Mencatat pesanan menu mandiri member ke pending_orders."
+      ]
+    },
+    {
+      "block": 1422,
+      "rows": 7,
+      "cols": 6,
+      "preview": [
+        "No | Kelompok Pengujian | Kode Test Case | Jumlah Test Case | Status Valid | Status Tidak Valid",
+        "1 | Login dan Autentikasi | A01–A10 | 10 | 10 | 0",
+        "2 | Halaman Utama | B01–B07 | 7 | 7 | 0",
+        "3 | Fitur Member | C01–C16 | 16 | 16 | 0",
+        "4 | Fitur Pegawai | D01–D42 | 42 | 42 | 0"
+      ]
+    },
+    {
+      "block": 1426,
+      "rows": 11,
+      "cols": 5,
+      "preview": [
+        "Test ID | Rincian Pengujian | Hasil yang Diharapkan | Hasil Pengujian | Status",
+        "A01 | Pengujian registrasi member dengan data valid. | Sistem menyimpan user baru dengan status pending. | Sistem berhasil menyimpan data registrasi member dengan status pending. | Valid",
+        "A02 | Pengujian registrasi member dengan email yang sudah terdaftar. | Sistem menolak registrasi dan menampilkan pesan validasi. | Sistem menolak registrasi karena email sudah terdaftar. | Valid",
+        "A03 | Pengujian registrasi member dengan password kurang dari 8 karakter. | Sistem menolak registrasi dan menampilkan validasi password. | Sistem menampilkan pesan validasi password. | Valid",
+        "A04 | Pengujian login pemilik dengan data valid. | Sistem menerima login, menghasilkan token, dan mengarahkan pengguna ke dashboard pemilik. | Sistem berhasil menerima login sebagai pemilik. | Valid"
+      ]
+    },
+    {
+      "block": 1430,
+      "rows": 8,
+      "cols": 5,
+      "preview": [
+        "Test ID | Rincian Pengujian | Hasil yang Diharapkan | Hasil Pengujian | Status",
+        "B01 | Pengujian tampilan leaderboard pada halaman utama. | Sistem menampilkan leaderboard berdasarkan data member. | Sistem berhasil menampilkan data leaderboard member. | Valid",
+        "B02 | Pengujian tampilan daftar event pada halaman utama. | Sistem menampilkan daftar event atau pengumuman yang tersedia. | Sistem berhasil menampilkan daftar event. | Valid",
+        "B03 | Pengujian tampilan detail event. | Sistem menampilkan detail event berdasarkan data yang dipilih. | Sistem berhasil menampilkan detail event. | Valid",
+        "B04 | Pengujian tampilan jenis ikan pada halaman utama. | Sistem menampilkan daftar jenis ikan yang tersedia. | Sistem berhasil menampilkan data jenis ikan. | Valid"
+      ]
+    },
+    {
+      "block": 1434,
+      "rows": 17,
+      "cols": 5,
+      "preview": [
+        "Test ID | Rincian Pengujian | Hasil yang Diharapkan | Hasil Pengujian | Status",
+        "C01 | Pengujian tampilan dashboard member. | Sistem menampilkan profil, tier, poin, total berat ikan, voucher, dan QR code member. | Sistem berhasil menampilkan dashboard member. | Valid",
+        "C02 | Pengujian tampilan voucher member. | Sistem menampilkan daftar voucher milik member. | Sistem berhasil menampilkan daftar voucher member. | Valid",
+        "C03 | Pengujian tampilan leaderboard pada role member. | Sistem menampilkan leaderboard dan posisi member. | Sistem berhasil menampilkan leaderboard member. | Valid",
+        "C04 | Pengujian daftar menu untuk member. | Sistem menampilkan menu yang tersedia. | Sistem berhasil menampilkan daftar menu. | Valid"
+      ]
+    },
+    {
+      "block": 1437,
+      "rows": 43,
+      "cols": 5,
+      "preview": [
+        "Test ID | Rincian Pengujian | Hasil yang Diharapkan | Hasil Pengujian | Status",
+        "D01 | Pengujian pencarian member aktif. | Sistem menampilkan data member sesuai kata kunci. | Sistem berhasil menampilkan data member yang sesuai. | Valid",
+        "D02 | Pengujian pencarian member dengan kata kunci kosong. | Sistem menampilkan daftar kosong tanpa error. | Sistem berhasil menampilkan daftar kosong. | Valid",
+        "D03 | Pengujian pencarian member yang tidak ditemukan. | Sistem menampilkan data kosong. | Sistem berhasil menampilkan data kosong. | Valid",
+        "D04 | Pengujian validasi QR code member valid. | Sistem menampilkan data member berdasarkan QR code. | Sistem berhasil menampilkan data member sesuai QR code. | Valid"
+      ]
+    },
+    {
+      "block": 1440,
+      "rows": 31,
+      "cols": 5,
+      "preview": [
+        "Test ID | Rincian Pengujian | Hasil yang Diharapkan | Hasil Pengujian | Status",
+        "E01 | Pengujian dashboard pemilik. | Sistem menampilkan ringkasan laporan, transaksi, member, diskon, dan stok ikan. | Sistem berhasil menampilkan ringkasan dashboard pemilik. | Valid",
+        "E02 | Pengujian daftar member pending. | Sistem menampilkan member berstatus pending. | Sistem berhasil menampilkan daftar member pending. | Valid",
+        "E03 | Pengujian persetujuan member. | Sistem mengubah status user menjadi active dan membuat data member. | Sistem berhasil menyetujui member. | Valid",
+        "E04 | Pengujian penolakan member dengan alasan. | Sistem mengubah status menjadi rejected dan menyimpan alasan penolakan. | Sistem berhasil menolak member dan menyimpan alasan. | Valid"
+      ]
+    },
+    {
+      "block": 1448,
+      "rows": 6,
+      "cols": 3,
+      "preview": [
+        "No | Deskripsi Tugas | Tujuan Evaluasi",
+        "1 | Meninjau ringkasan informasi pada Dashboard Owner. | Menilai kemudahan pemilik dalam memahami kondisi operasional dan informasi bisnis.",
+        "2 | Membuka halaman Manajemen Member dan memeriksa salah satu data member. | Menilai kemudahan pemilik dalam mengakses data pelanggan terdaftar.",
+        "3 | Membuka halaman Manajemen Menu dan memeriksa data menu yang tersedia. | Menilai kemudahan pemilik dalam mengelola informasi menu dan status ketersediaannya.",
+        "4 | Membuka halaman Manajemen Ikan dan memeriksa data stok ikan. | Menilai kemudahan pemilik dalam memantau stok ikan sebagai dasar pengelolaan operasional."
+      ]
+    },
+    {
+      "block": 1451,
+      "rows": 7,
+      "cols": 3,
+      "preview": [
+        "No | Deskripsi Tugas | Tujuan Evaluasi",
+        "1 | Melakukan registrasi kedatangan pelanggan sesuai skenario yang diberikan. | Menilai kemudahan pegawai dalam mencatat kedatangan pelanggan member maupun guest.",
+        "2 | Membuka halaman Kedatangan Hari Ini dan memilih salah satu kedatangan aktif. | Menilai kemudahan pegawai dalam memantau sesi kunjungan yang sedang berjalan.",
+        "3 | Menambahkan pesanan pelanggan melalui halaman Tambah Pesanan. | Menilai kemudahan pegawai dalam mencatat pesanan secara digital.",
+        "4 | Membuka halaman Pesanan Masuk dan memproses pesanan sampai selesai. | Menilai kemudahan pegawai dalam memantau dan memperbarui status pesanan."
+      ]
+    },
+    {
+      "block": 1456,
+      "rows": 6,
+      "cols": 3,
+      "preview": [
+        "No | Deskripsi Tugas | Tujuan Evaluasi",
+        "1 | Melihat informasi akun, poin, dan posisi pemeringkatan pada Dashboard Member. | Menilai kemudahan member dalam memahami status akun dan loyalitas.",
+        "2 | Membuka halaman menu dan melihat daftar menu yang tersedia. | Menilai kemudahan member dalam mengakses informasi menu secara mandiri.",
+        "3 | Melakukan pemesanan makanan atau minuman melalui halaman Pesanan. | Menilai kemudahan member dalam melakukan pemesanan mandiri tanpa bantuan langsung pegawai.",
+        "4 | Membuka Riwayat Transaksi untuk melihat rekam jejak kunjungan dan pengeluaran. | Menilai kemudahan member dalam mengakses dokumentasi transaksi pribadi."
+      ]
+    },
+    {
+      "block": 1461,
+      "rows": 5,
+      "cols": 4,
+      "preview": [
+        "Kode Responden | Peran | Jumlah | Keterangan",
+        "R1 | Owner | 1 | Pemilik usaha",
+        "R2 | Employee | 1 | Pegawai operasional",
+        "R3-R7 | Member | 5 | Pelanggan yang berperan sebagai member",
+        "Total |  | 7 | "
+      ]
+    },
+    {
+      "block": 1466,
+      "rows": 8,
+      "cols": 12,
+      "preview": [
+        "Kode Responden | Peran | P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10",
+        "R1 | Owner | 5 | 2 | 4 | 3 | 4 | 2 | 4 | 1 | 5 | 3",
+        "R2 | Employee | 5 | 1 | 5 | 1 | 5 | 2 | 5 | 2 | 5 | 2",
+        "R3 | Member | 5 | 1 | 5 | 1 | 5 | 2 | 5 | 2 | 5 | 1",
+        "R4 | Member | 4 | 1 | 4 | 1 | 4 | 2 | 5 | 1 | 4 | 2"
+      ]
+    },
+    {
+      "block": 1474,
+      "rows": 10,
+      "cols": 4,
+      "preview": [
+        "Kode Responden | Peran | Jumlah Skor Konversi | Skor SUS",
+        "R1 | Owner | 31 | 77,5",
+        "R2 | Employee | 37 | 92,5",
+        "R3 | Member | 38 | 95,0",
+        "R4 | Member | 34 | 85,0"
+      ]
+    },
+    {
+      "block": 1582,
+      "rows": 4,
+      "cols": 1,
+      "preview": [
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "block": 1590,
+      "rows": 1,
+      "cols": 1,
+      "preview": [
+        "Skenario Owner"
+      ]
+    },
+    {
+      "block": 1592,
+      "rows": 4,
+      "cols": 1,
+      "preview": [
+        "Skenario Employee",
+        "Skenario Member",
+        "",
+        ""
+      ]
+    },
+    {
+      "block": 1594,
+      "rows": 5,
+      "cols": 3,
+      "preview": [
+        " |  | ",
+        " |  | ",
+        " |  | ",
+        " |  | ",
+        " |  | "
+      ]
+    },
+    {
+      "block": 1596,
+      "rows": 7,
+      "cols": 1,
+      "preview": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "block": 1601,
+      "rows": 3,
+      "cols": 2,
+      "preview": [
+        "Artefak | Tautan",
+        "Repositori Back-End | https://github.com/Anymusz/pemancingan",
+        "kuesioner SUS | https://bit.ly/pemancingan-s"
+      ]
+    },
+    {
+      "block": 1606,
+      "rows": 1,
+      "cols": 2,
+      "preview": [
+        " | "
+      ]
+    },
+    {
+      "block": 1611,
+      "rows": 7,
+      "cols": 2,
+      "preview": [
+        " | ",
+        " | ",
+        " | ",
+        " | ",
+        " | "
+      ]
+    }
+  ]
+}

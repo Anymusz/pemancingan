@@ -1,0 +1,6 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,rank,Tinyint,3,UNIQUE
+3,amount,Decimal,"10,2",
+4,created_at,Timestamp,,
+5,updated_at,Timestamp,,

@@ -1,0 +1,15 @@
+Nama Use Case,Mengelola Pengaturan Sistem
+ID Use Case,UC-29
+Aktor,Pemilik
+Deskripsi,"Proses back-end untuk menyesuaikan parameter operasional utama, yaitu konfigurasi file QRIS pembayaran dan nominal kewajiban deposit tamu."
+Precondition,Aktor berada di menu Pengaturan Sistem.
+Aktor,Sistem
+Skenario Utama
+1. Aktor menginput nominal angka baru pada kolom Deposit Tamu lalu menekan tombol Simpan Deposit,
+,2. Sistem memvalidasi request dan menyimpan variabel parameter baru tersebut ke database pusat
+,3. Sistem memberlakukan aturan limitasi/potongan deposit tamu yang baru pada operasional kasir
+Skenario Alternatif
+1. Aktor memilih file gambar QRIS baru (format JPG/PNG) lalu melakukan upload,
+,"2. Sistem memvalidasi ekstensi dan ukuran file , lalu menyimpannya ke storage server"
+,3. Sistem memperbarui gambar barcode QRIS yang ditampilkan untuk pembayaran checkout
+Post Condition,Aturan baku operasional aplikasi dan metode pembayaran yang baru resmi diterapkan.

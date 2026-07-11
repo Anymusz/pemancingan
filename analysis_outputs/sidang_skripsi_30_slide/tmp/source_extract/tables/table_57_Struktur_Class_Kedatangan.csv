@@ -1,0 +1,12 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,member_id,Bigint,20,"FK, INDEX"
+3,guest_name,Varchar,255,
+4,deposit_amount,Decimal,"10,2",
+5,check_in_at,Timestamp,,INDEX
+6,check_out_at,Timestamp,,
+7,status,Enum,,INDEX
+8,checked_in_by,Bigint,20,"FK, INDEX"
+9,notes,Text,,
+10,created_at,Timestamp,,
+11,updated_at,Timestamp,,

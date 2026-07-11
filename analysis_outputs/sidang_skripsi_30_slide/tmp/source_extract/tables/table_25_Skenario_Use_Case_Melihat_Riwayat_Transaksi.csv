@@ -1,0 +1,16 @@
+Nama Use Case,Melihat Riwayat Transaksi
+ID Use Case,UC-08
+Aktor,Member
+Deskripsi,"Proses pelanggan melihat catatan historis beserta rincian transaksinya, yaitu item, diskon, metode bayar, dan poin secara langsung di layar."
+Precondition,Aktor telah login ke dalam sistem.
+Aktor,Sistem
+Skenario Utama
+1. Aktor memilih menu Riwayat Transaksi,
+,2. Sistem mengecek basis data transaksi pelanggan
+,3. Sistem mendeteksi bahwa pelanggan memiliki riwayat transaksi
+,"4. Sistem menampilkan daftar riwayat beserta rincian transaksi, item, diskon, metode bayar, dan poin di layar"
+Skenario Alternatif
+1. Aktor belum pernah melakukan transaksi apa pun,
+,2. Sistem mengecek basis data dan mendeteksi belum ada riwayat transaksi
+,3. Sistem menampilkan pesan layar kosong “Belum ada riwayat transaksi”
+Post Condition,"Aktor berhasil melihat daftar dan rincian riwayat transaksinya di layar, atau melihat pesan bahwa belum ada riwayat transaksi."

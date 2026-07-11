@@ -1,0 +1,138 @@
+{
+  "source": "D:\\Semester\\Semester7\\Skripsi\\BAB1-5\\183-Raka Bagaskara Putra.docx",
+  "pageCount": 269,
+  "paragraphCount_word": 6565,
+  "tableCount": 95,
+  "inlineShapeCount": 145,
+  "shapeCount": 22,
+  "layout_findings": [
+    {
+      "kind": "caption-object-page-split",
+      "page": 177,
+      "next_page": 178,
+      "title_kind": "gambar-caption",
+      "expected_object": "image",
+      "title": "Gambar 67 sampai Gambar 71 memperlihatkan bukti implementasi endpoint API melalui dokumentasi Swagger. Bukti tersebut meliputi pengelompokan endpoint, contoh request body, penggunaan token autentikasi, pengiriman bukti pembayaran, dan response data dari database. Dengan dokumentasi ini, jalur komunikasi antara frontend dan back-end dapat ditelusuri secara lebih jelas.",
+      "current_page_objects": {
+        "tables": 1,
+        "images": 0
+      },
+      "next_page_objects": {
+        "tables": 0,
+        "images": 2
+      },
+      "next_page_first_lines": [
+        "/",
+        "Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI",
+        "Berdasarkan Gambar 67, Swagger menampilkan identitas API Pemancingan S, server lokal, skema autentikasi Bearer Token, serta pengelompokan endpoint berdasarkan fitur dan role. Informasi ini menunjukkan bahwa endpoint API telah terdokumentasi dalam format OpenAPI.",
+        "/",
+        "Gambar 68. Request Login pada Swagger"
+      ]
+    }
+  ],
+  "typo_findings": [
+    {
+      "kind": "duplicate-word",
+      "pattern": "kata ganda berurutan",
+      "suggestion": "hapus salah satu kata",
+      "count_sampled": 4,
+      "hits": [
+        {
+          "page": 29,
+          "match": "Mardi Mardi",
+          "context": "boratif dalam proses pengembangan (Nico Abrarsyah Atallah & Mardi Mardi, 2024) Menjalankan evaluasi rutin di setiap sprint agar pro"
+        },
+        {
+          "page": 29,
+          "match": "Mardi Mardi",
+          "context": "disesuaikan secara berkelanjutan (Nico Abrarsyah Atallah & Mardi Mardi, 2024). Mendorong kerja sama tim, komunikasi intensif, dan"
+        },
+        {
+          "page": 29,
+          "match": "Mardi Mardi",
+          "context": "epat terhadap perubahan kebutuhan (Nico Abrarsyah Atallah & Mardi Mardi, 2024). Berdasarkan karakteristik di atas, peneliti memutus"
+        },
+        {
+          "page": 248,
+          "match": "Mardi Mardi",
+          "context": "urnal Teknologi Informasi, 10(1). Nico Abrarsyah Atallah, & Mardi Mardi. (2024). Penggunaan Metode Agile Scrum Pada Perancangan Sis"
+        }
+      ]
+    },
+    {
+      "kind": "punctuation-spacing",
+      "pattern": "tanda baca tanpa spasi setelahnya",
+      "suggestion": "tambahkan spasi setelah tanda baca jika bukan singkatan/kode",
+      "count_sampled": 1,
+      "hits": [
+        {
+          "page": 247,
+          "match": "u.C",
+          "context": "ity with the System Usability Scale (SUS). Https://Measuringu.Com/Sus/. Kawakib Kartono, F., Nursaadah, S., Nugroho, M. R.,"
+        }
+      ]
+    }
+  ],
+  "term_consistency_findings": [
+    {
+      "kind": "term-consistency",
+      "term": "back-end/backend/back end",
+      "variants": {
+        "back-end": 260,
+        "Back-end": 11,
+        "BACK-END": 3,
+        "Back-End": 2
+      }
+    },
+    {
+      "kind": "term-consistency",
+      "term": "front-end/frontend/front end",
+      "variants": {
+        "front-end": 23,
+        "frontend": 4
+      }
+    },
+    {
+      "kind": "term-consistency",
+      "term": "use case/use-case",
+      "variants": {
+        "Use Case": 185,
+        "use case": 19,
+        "Use case": 1
+      }
+    },
+    {
+      "kind": "term-consistency",
+      "term": "activity diagram",
+      "variants": {
+        "Activity Diagram": 133,
+        "activity diagram": 1
+      }
+    },
+    {
+      "kind": "term-consistency",
+      "term": "QR Code/QR-Code/qrcode",
+      "variants": {
+        "QR code": 21,
+        "QR Code": 6
+      }
+    },
+    {
+      "kind": "term-consistency",
+      "term": "endpoint/end point",
+      "variants": {
+        "endpoint": 95,
+        "Endpoint": 29
+      }
+    },
+    {
+      "kind": "term-consistency",
+      "term": "Rapid Application Development/RAD",
+      "variants": {
+        "RAD": 57,
+        "Rapid Application Development": 39,
+        "RAPID APPLICATION DEVELOPMENT": 3
+      }
+    }
+  ]
+}

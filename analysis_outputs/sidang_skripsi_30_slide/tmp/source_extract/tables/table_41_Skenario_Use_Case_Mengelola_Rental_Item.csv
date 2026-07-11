@@ -1,0 +1,16 @@
+Nama Use Case,Mengelola Rental Item
+ID Use Case,UC-24
+Aktor,Pemilik
+Deskripsi,"Proses back-end penambahan (create), pengubahan tarif/status (update), serta pencabutan (delete) daftar alat pancing operasional."
+Precondition,Aktor berada di halaman pengaturan operasional (Rental Item).
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman modul Rental Item,
+,2. Sistem memuat tabel daftar alat sewa operasional dari basis data
+"3. Aktor melakukan operasi penambahan item rental baru dengan mengisi parameter (nama, harga, satuan, deskripsi, foto) lalu menekan Simpan",
+,4. Sistem memvalidasi request dan menyimpan data item rental baru ke basis data
+,5. Sistem memperbarui daftar ketersediaan penyewaan secara otomatis ke kasir
+Skenario Alternatif
+1. Aktor melakukan operasi modifikasi data (Edit/Ubah Status aktif) atau operasi pencabutan data (Hapus) pada suatu alat rental,
+,2. Sistem memvalidasi perintah dan memperbarui data (update) atau menghapus item penyewaan secara permanen (delete) dari basis data
+Post Condition,Data referensi tarif dan ketersediaan alat rental berhasil diperbarui di dalam sistem.

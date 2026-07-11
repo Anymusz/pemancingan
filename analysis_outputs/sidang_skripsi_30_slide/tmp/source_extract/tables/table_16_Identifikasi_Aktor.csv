@@ -1,0 +1,4 @@
+No,Aktor,Deskripsi Peran
+1,Pemilik,"Pengguna dengan hak akses tertinggi yang dapat mengelola data pengguna, data master, konfigurasi sistem, transaksi, laporan, leaderboard, dan voucher."
+2,Pegawai,"Pengguna yang menjalankan proses operasional harian, seperti mencatat kedatangan pelanggan, mengelola pesanan, memperbarui stok, memproses transaksi, dan membantu pencatatan data pelanggan."
+3,Member,"Pelanggan terdaftar yang memiliki akun untuk mengakses informasi keanggotaan, poin, tier, voucher, riwayat transaksi, Pelanggan terdaftar yang memiliki akun untuk mengakses informasi keanggotaan, poin, tier, voucher, riwayat transaksi, serta melakukan pemesanan melalui sistem."

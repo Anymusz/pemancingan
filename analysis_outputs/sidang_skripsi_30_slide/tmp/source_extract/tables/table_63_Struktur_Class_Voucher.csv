@@ -1,0 +1,14 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,member_id,Bigint,20,"FK, Unique Composite"
+3,amount,Decimal,"10,2",
+4,source,Enum,,
+5,rank,Tinyint,3,Unique Composite
+6,period_year,Smallint,5,Unique Composite
+7,period_month,Tinyint,3,Unique Composite
+8,status,Enum,,
+9,used_at,Timestamp,,
+10,transaction_id,Bigint,20,FK
+11,issued_at,Timestamp,,
+12,created_at,Timestamp,,
+13,updated_at,Timestamp,,

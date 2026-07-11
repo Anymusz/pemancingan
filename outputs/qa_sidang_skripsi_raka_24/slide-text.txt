@@ -1,0 +1,324 @@
+--- Slide 1: Perancangan dan Implementasi Back-End Sistem Informasi untuk Mendukung Digitalisasi Bisnis Pemancingan S Menggunakan Metodologi Rapid Application Development (RAD)
+Perancangan dan Implementasi Back-End Sistem Informasi untuk Mendukung Digitalisasi Bisnis Pemancingan S Menggunakan Metodologi Rapid Application Development (RAD)
+Raka Bagaskara Putra
+F1E122183
+Program Studi Sistem Informasi
+Jurusan Teknik Elektro dan Informatika
+Fakultas Sains dan Teknologi
+Universitas Jambi, 2026
+Sidang Skripsi
+--- Slide 2: KONTEKS MASALAH
+KONTEKS MASALAH
+02
+Operasional masih bertumpu pada catatan manual
+Transaksi dicatat di buku tulis tanpa format standar.
+Data diinput ulang ke aplikasi pihak ketiga oleh pemilik.
+Verifikasi pelanggan masih bergantung pada hafalan pegawai.
+Data transaksi, stok, rental, dan laporan belum berada di satu sistem.
+Buku tulis
+->
+Input ulang
+->
+Rekap terlambat
+1-3 hari
+Jeda rekap transaksi
+Terpisah
+Sumber data operasional
+Sumber: Latar Belakang dan Ringkasan skripsi.
+--- Slide 3: ARAH PENELITIAN
+ARAH PENELITIAN
+03
+Penelitian menjawab kebutuhan back-end yang terintegrasi
+Rumusan masalah
+Bagaimana analisis kebutuhan back-end mendukung operasional Pemancingan S?
+Bagaimana rancangan dan implementasi back-end menggunakan RAD?
+Tujuan penelitian
+Menganalisis kebutuhan sistem sesuai proses operasional.
+Merancang dan mengimplementasikan back-end berbasis web yang terintegrasi.
+Analisis kebutuhan
+->
+Rancangan back-end
+->
+Implementasi API
+--- Slide 4: RUANG LINGKUP
+RUANG LINGKUP
+04
+Batasan menjaga fokus pada layanan back-end
+Fokus pada analisis kebutuhan, perancangan, dan implementasi back-end.
+Metode pengembangan: RAD dengan model System Prototyping.
+Fitur inti: transaksi, stok ikan, penyewaan alat, dan laporan.
+Fitur pendukung: autentikasi, role, member, voucher, notifikasi, konfigurasi, API.
+Front-end dibahas sebagai prototype integrasi dari penelitian sebelumnya.
+--- Slide 5: METODOLOGI
+METODOLOGI
+05
+RAD dipakai untuk mengembangkan prototype secara iteratif
+Gambar 2. Tahapan System Prototyping dalam RAD
+Gambar 4. Kerangka kerja penelitian
+Planning mengidentifikasi masalah dan ruang lingkup.
+Analysis memetakan kebutuhan, aktor, data, serta proses bisnis.
+Design menerjemahkan kebutuhan ke UML, database, dan API.
+Implementation membangun Laravel, MySQL, integrasi, dan evaluasi.
+--- Slide 6: PENGUMPULAN DATA
+PENGUMPULAN DATA
+06
+Data lapangan dikumpulkan dari proses nyata Pemancingan S
+The Hok
+Lokasi
+Kec. Jambi Selatan
+Nov 2025-Mar 2026
+Periode
+Teknik pengumpulan data
+Studi literatur untuk teori sistem informasi, RAD, Laravel, MySQL, dan evaluasi.
+Observasi aktivitas transaksi, stok, penyewaan, dan laporan.
+Wawancara pemilik dan pegawai untuk menggali masalah dan kebutuhan.
+Wawancara terbatas pelanggan untuk memahami alur layanan.
+--- Slide 7: PLANNING
+PLANNING
+07
+Planning menetapkan masalah, ruang lingkup, dan kebutuhan awal
+Observasi
+->
+Wawancara
+->
+Identifikasi masalah
+->
+Rencana kerja
+Masalah utama: transaksi manual, stok belum terhubung, laporan kurang efektif.
+Ruang lingkup ditetapkan pada back-end dan integrasi dengan prototype UI.
+Aktor awal: Owner, Employee, Member.
+Output tahap: kebutuhan awal, proses utama, dan acuan pengembangan berikutnya.
+Sumber: Tahap Perencanaan (Planning), BAB IV.
+--- Slide 8: ANALYSIS
+ANALYSIS
+08
+Analysis mengubah temuan lapangan menjadi kebutuhan sistem
+12
+Kebutuhan fungsional
+Tabel 13
+6
+Kebutuhan non-fungsional
+Tabel 14
+12
+Kebutuhan data
+Tabel 15
+3
+Aktor sistem
+Tabel 16
+Fungsi inti mencakup autentikasi, member, kedatangan, pesanan, checkout, stok, voucher, laporan, dan API.
+Kualitas sistem menekankan autentikasi, pembatasan role, validasi, integritas data, dan integrasi API.
+Data utama meliputi pengguna, member, ikan, stok, menu, rental, transaksi, voucher, notifikasi, dan konfigurasi.
+--- Slide 9: ANALYSIS
+ANALYSIS
+09
+Sistem usulan menyatukan alur yang sebelumnya terpisah
+Sistem Berjalan
+Sistem Usulan
+Transaksi dicatat di buku tulis.
+Pemilik melakukan input ulang.
+Member divalidasi dari ingatan pegawai.
+Stok dan laporan tidak otomatis terhubung.
+Data masuk melalui layanan back-end.
+Role menentukan hak akses setiap aktor.
+Member, transaksi, stok, voucher, dan laporan memakai basis data yang sama.
+Dashboard dan laporan mengambil data operasional terkini.
+--- Slide 10: DESIGN
+DESIGN
+10
+Use case memusatkan tiga aktor pada proses operasional inti
+Gambar 5. Use Case Diagram Umum Sistem Informasi Pemancingan S
+Aktor: Pemilik, Pegawai, Member.
+--- Slide 11: DESIGN
+DESIGN
+11
+Class diagram menggambarkan relasi data dan logika domain
+Gambar 39. Class Diagram Sistem Informasi Pemancingan S - Revisi Layout
+--- Slide 12: DESIGN DATABASE
+DESIGN DATABASE
+12
+Rancangan database menata entitas utama operasional
+17
+Entitas rancangan
+Tabel 48
+5
+Kelompok data
+Pengguna, transaksi, stok, layanan, konfigurasi
+Entitas kunci
+User, Member, Member Tier
+Arrival, Pending Order, Transaksi, Transaction Item
+Tipe Ikan, Stok Ikan, Riwayat Restok
+Menu, Rental Item, Voucher, Notifikasi, Event
+Konfigurasi Guest dan QRIS
+Member
+->
+Kedatangan
+->
+Pesanan
+->
+Transaksi
+->
+Laporan
+--- Slide 13: DESIGN API
+DESIGN API
+13
+Endpoint API dirancang sebagai jembatan data antarmuka dan back-end
+10
+Endpoint rancangan utama
+Tabel 67
+POST /api/login untuk autentikasi pengguna.
+POST /api/register untuk registrasi member.
+GET /api/member/profile untuk profil dan dashboard member.
+POST /api/employee/check-in untuk mencatat kedatangan.
+POST /api/employee/checkout untuk menyelesaikan transaksi.
+GET /api/owner/reports/summary untuk laporan pemilik.
+Swagger hanya diposisikan sebagai dokumentasi endpoint, bukan fokus pembahasan utama.
+--- Slide 14: ARSITEKTUR
+ARSITEKTUR
+14
+Back-end menjadi pusat integrasi antara UI dan data operasional
+Prototype UI
+->
+REST API
+->
+Laravel Controller
+->
+MySQL
+Frontend mengirim request untuk login, member, kedatangan, pesanan, checkout, dan laporan.
+REST API menjaga format komunikasi data dalam JSON.
+Laravel memproses autentikasi, validasi, role, dan logika bisnis.
+MySQL menyimpan data operasional sebagai sumber data terpusat.
+--- Slide 15: TEKNOLOGI
+TEKNOLOGI
+15
+Teknologi dipilih untuk back-end API yang terstruktur
+Gambar 58. Struktur Folder Controller Laravel
+Laravel
+Framework
+MySQL
+Database
+Sanctum
+Keamanan API
+REST API
+Komunikasi
+Controller dipisahkan berdasarkan domain agar logika autentikasi, member, operasional pegawai, dan pemilik lebih mudah dipelihara.
+--- Slide 16: IMPLEMENTASI DATABASE
+IMPLEMENTASI DATABASE
+16
+Implementasi MySQL menghasilkan 27 tabel operasional
+Gambar 40. Daftar tabel pada database pemancingan
+27
+Total tabel
+18
+Tabel utama
+9
+Tabel pendukung
+Tabel utama menyimpan domain pengguna, member, kedatangan, transaksi, stok, menu, voucher, event, dan konfigurasi.
+Tabel pendukung berasal dari Laravel untuk migration, token, session, cache, dan job queue.
+--- Slide 17: AUTENTIKASI
+AUTENTIKASI
+17
+Sanctum dan middleware role menjaga akses tiap pengguna
+Gambar 59. Login dan token Sanctum
+Gambar 64. Middleware CheckRole
+Gambar 65. Alias middleware role
+Gambar 66. Route group API berdasarkan role
+Login membuat token akses untuk request API berikutnya.
+Middleware CheckRole membatasi akses berdasarkan Owner, Employee, dan Member.
+Route group mengelompokkan endpoint sesuai tanggung jawab aktor.
+--- Slide 18: LOGIKA BISNIS
+LOGIKA BISNIS
+18
+Controller menangani alur operasional, bukan sekadar CRUD
+Gambar 60. Check-in pelanggan
+Gambar 61. Validasi checkout
+Gambar 62. Perhitungan pembayaran
+Gambar 63. Update stok dan member
+ArrivalController mencatat pelanggan member/tamu dan status kedatangan.
+TransactionController memvalidasi checkout, menghitung pembayaran, memperbarui stok, serta poin member.
+--- Slide 19: ENDPOINT API
+ENDPOINT API
+19
+Endpoint utama mengikuti alur kerja tiap role
+Public
+->
+Member
+->
+Employee
+->
+Owner
+Public: leaderboard, event, informasi, dan menu spesial.
+Member: register, profile, dashboard, pesanan, riwayat transaksi.
+Employee: check-in, kedatangan hari ini, pending order, checkout, stok.
+Owner: laporan ringkas, member, menu, ikan, voucher, konfigurasi.
+Pembahasan Swagger diringkas pada fungsi dokumentasi endpoint.
+--- Slide 20: INTEGRASI UI
+INTEGRASI UI
+20
+Prototype antarmuka membuktikan API dapat dipakai lintas role
+Gambar 76. Halaman utama
+Gambar 78. Dashboard member
+Gambar 82. Dashboard pegawai
+Gambar 92. Dashboard pemilik
+Gambar 96. Laporan keuangan
+Data publik, member, pegawai, dan pemilik mengambil sumber dari layanan back-end.
+Setiap tampilan menguji hubungan API dengan data operasional yang sama.
+Integrasi menunjukkan dampak pada informasi pelanggan, pesanan, transaksi, stok, dan laporan.
+--- Slide 21: PENGUJIAN
+PENGUJIAN
+21
+Black Box Testing membuktikan fungsi utama valid
+105
+Total test case
+Tabel 71
+105
+Status valid
+100%
+0
+Status tidak valid
+Login dan autentikasi: 10/10 valid.
+Halaman utama: 7/7 valid.
+Fitur Member: 16/16 valid.
+Fitur Employee: 42/42 valid.
+Fitur Owner: 30/30 valid.
+--- Slide 22: HASIL SUS
+HASIL SUS
+22
+Skor SUS 89,6 menunjukkan sistem diterima sangat baik
+Gambar 103. Interpretasi Skor SUS Hasil Pengujian
+89,6
+Rata-rata SUS
+Excellent
+Adjective rating
+A
+Grade scale
+Acceptable
+Enam responden berada pada interpretasi Excellent.
+Satu responden berada pada interpretasi Good.
+--- Slide 23: KESIMPULAN
+KESIMPULAN
+23
+Pain point utama berhasil dijawab oleh back-end terintegrasi
+Analisis kebutuhan
+1
+Masalah manual diterjemahkan menjadi kebutuhan sistem.
+Design dan implementasi
+2
+Laravel, MySQL, Sanctum, REST API, role, validasi.
+Pengujian dan evaluasi
+3
+105 test case valid dan SUS 89,6.
+Back-end mendukung pengelolaan data pengguna, kedatangan, pesanan, checkout, stok, voucher, notifikasi, konfigurasi, dan laporan.
+Integrasi API membuat prototype antarmuka memakai data operasional yang sama.
+Hasil pengujian menunjukkan fungsi valid dan alur sistem diterima pengguna.
+--- Slide 24: SARAN
+SARAN
+24
+Pengembangan berikutnya memperkuat adopsi dan kesiapan produksi
+Untuk Pemancingan S
+Untuk Penelitian Selanjutnya
+Terapkan sistem secara bertahap di operasional nyata.
+Lakukan demonstrasi dan pelatihan untuk pemilik, pegawai, dan member.
+Mulai dari alur login, kedatangan, pemesanan, checkout, stok, menu, dan laporan.
+Integrasikan payment gateway atau QRIS dinamis.
+Uji performa, keamanan, deployment, monitoring, dan backup.
+Kembangkan aplikasi mobile, analitik bisnis, serta pengujian dengan periode lebih panjang.

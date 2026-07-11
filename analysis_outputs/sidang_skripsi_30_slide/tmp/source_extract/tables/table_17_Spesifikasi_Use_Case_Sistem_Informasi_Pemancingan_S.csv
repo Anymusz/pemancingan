@@ -1,0 +1,31 @@
+No,Kode,Use Case,Deskripsi,Hak Akses
+1,UC-01,Login Sistem,Proses autentikasi pengguna dengan memasukkan No. HP atau Email dan password untuk mengakses dashboard sesuai hak akses pengguna.,"Pemilik, Pegawai, Member"
+2,UC-02,Mendaftar Akun,Proses pendaftaran akun secara mandiri oleh pelanggan melalui pengisian formulir di website.,Member
+3,UC-03,Mengakses Halaman Utama,"Proses pengguna mengakses halaman beranda publik (landing page) yang memuat informasi umum, leaderboard, event aktif, serta pop up menu spesial.","Pemilik, Pegawai, Member"
+4,UC-04,Melihat Event dan Informasi,Proses pengguna melihat rincian publikasi acara dan pengumuman secara spesifik.,"Pemilik, Pegawai, Member"
+5,UC-05,Mengakses Dashboard,"Proses pengguna mengakses dashboard sesuai hak aksesnya, yaitu dashboard member berisi QR Code, tier, poin, leaderboard, dan voucher; dashboard pegawai berisi ringkasan kedatangan, pesanan, dan transaksi; serta dashboard pemilik berisi ringkasan manajerial usaha.","Pemilik, Pegawai, Member"
+6,UC-06,Melihat Leaderboard,Proses mengakses klasemen peringkat tangkapan ikan secara global dan melihat posisi tier.,Member
+7,UC-07,Memesan Menu,"Proses member melakukan pemesanan makanan dan minuman secara mandiri via website, termasuk melihat menu spesial, memilih kuantitas menu, melihat total sementara, serta menyimpan pesanan sebagai tagihan belum dibayar dengan status awal pending untuk diproses pegawai.",Member
+8,UC-08,Melihat Riwayat Transaksi,Proses pelanggan melihat historis transaksinya sendiri secara privat.,Member
+9,UC-09,Mengelola Kedatangan Pelanggan,Proses pegawai memverifikasi kedatangan pelanggan (via Scan QR/No HP) dan pencatatan deposit awal untuk Guest.,Pegawai
+10,UC-10,Menambah Pesanan,"Proses pegawai menginput pesanan makanan/minuman sekaligus sewa alat pancing secara manual dari kasir, dengan daftar menu yang menampilkan penanda menu spesial.",Pegawai
+11,UC-11,Mengelola Pesanan Masuk,"Proses pegawai melihat daftar pesanan dapur yang masuk dan mengubah status pembuatannya menjadi pending, diproses, selesai, atau dibatalkan.",Pegawai
+12,UC-12,Mengubah Ketersediaan Menu,Proses pegawai mengubah status ketersediaan item menu (tersedia/tidak tersedia) untuk kelancaran operasional.,Pegawai
+13,UC-13,Melihat Riwayat Transaksi Pelanggan,Proses pegawai melihat seluruh riwayat transaksi operasional pengunjung serta membuka detail nota transaksi untuk kebutuhan verifikasi kasir.,Pegawai
+14,UC-14,Checkout Transaksi,"Proses penyelesaian pembayaran akhir di kasir untuk ikan, menu F&B, penyewaan alat, dan menampilkan nota digital transaksi.",Pegawai
+15,UC-15,Input Berat Ikan,Proses menginputkan hasil timbangan ikan secara spesifik ke sistem kasir (Include dari Checkout Transaksi).,Pegawai
+16,UC-16,Hitung Harga Ikan,Proses kalkulasi total harga asli berdasarkan berat ikan secara otomatis (Include dari Checkout Transaksi).,Pegawai
+17,UC-17,Validasi Diskon Tier,Proses penerapan potongan persentase diskon ikan sesuai tier pelanggan (Include dari Checkout Transaksi).,Pegawai
+18,UC-18,Validasi Voucher,Proses auto-redeem pemotongan tagihan jika pelanggan memiliki tiket voucher bulanan (Include dari Checkout Transaksi).,Pegawai
+19,UC-19,Update dan evaluasi Poin Member,"Proses sistem menambahkan poin ke akun member setelah checkout transaksi, memperbarui tier, serta mengevaluasi masa aktif poin secara otomatis dengan mereset poin menjadi 0 apabila member tidak melakukan transaksi selama 180 hari.",Pegawai
+20,UC-20,Update Leaderboard,Proses pembaruan klasemen peringkat tangkapan ikan secara otomatis (Include dari Checkout Transaksi).,Pegawai
+21,UC-21,Mengelola Akun Member,"Proses pemilik usaha melakukan verifikasi untuk menyetujui, menolak, atau menonaktifkan akun member.",Pemilik
+22,UC-22,Mengelola Menu,"Proses pemilik menambah, mengubah nama/harga, menghapus data menu makanan/minuman, serta menandai atau membatalkan status menu spesial.",Pemilik
+23,UC-23,Mengelola Inventaris Ikan,"Proses pengelolaan referensi jenis ikan, harga per kilogram, dan penambahan stok ikan (restock) secara terpusat.",Pemilik
+24,UC-24,Mengelola Rental Item,Proses pengelolaan data master untuk daftar alat pancing operasional beserta penetapan tarif sewanya.,Pemilik
+25,UC-25,Melihat Laporan Keuangan,Proses analisis bisnis melalui filter laporan transaksi operasional harian/bulanan dan ekspor ke format CSV.,Pemilik
+26,UC-26,Mengelola Voucher,"Proses pemilik mengonfigurasi nominal hadiah voucher bulanan, memantau riwayat distribusi voucher, serta sistem menerbitkan voucher otomatis kepada member Top 3 berdasarkan hasil leaderboard dan konfigurasi yang berlaku.",Pemilik
+27,UC-27,Mengelola Event & Informasi,"Proses untuk menambah, mengubah, menghapus, serta menyortir/mencari publikasi acara pemancingan dan pengumuman.",Pemilik
+28,UC-28,Memantau Leaderboard,"Proses pemilik memantau klasemen peringkat member berdasarkan akumulasi berat ikan, termasuk total poin, tier, dan potensi penerima voucher Top 3.",Pemilik
+29,UC-29,Mengelola Pengaturan Sistem,"Proses untuk menyesuaikan parameter operasional utama, yaitu konfigurasi file QRIS pembayaran dan nominal kewajiban deposit tamu.",Pemilik
+30,UC-30,Logout Sistem,Proses pengguna keluar dari sistem dengan menghapus token akses lokal dan mengarahkan pengguna kembali ke halaman login.,"Pemilik, Pegawai, Member"

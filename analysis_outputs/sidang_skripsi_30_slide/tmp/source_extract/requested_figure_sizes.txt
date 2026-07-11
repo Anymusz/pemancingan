@@ -1,0 +1,42 @@
+  2 | 824x337      | PNG   | Tahapan System Prototyping dalam Metodologi RAD
+  4 | 362x942      | PNG   | Kerangka Kerja Penelitian
+  5 | 849x1212     | PNG   | Use Case Diagram Umum Sistem Informasi Pemancingan S
+ 39 | 4400x2700    | PNG   | Class Diagram Sistem Informasi Pemancingan S
+ 40 | 1200x1030    | PNG   | Daftar Tabel pada Database pemancingan
+ 58 | 318x858      | PNG   | Struktur Folder Controller Laravel
+ 59 | 1900x1402    | PNG   | Kode AuthController Login dan Token Sanctum
+ 60 | 1900x1831    | PNG   | Kode ArrivalController Check-in Pelanggan
+ 61 | 1900x2425    | PNG   | Kode TransactionController Validasi Checkout
+ 62 | 1900x2029    | PNG   | Kode TransactionController Perhitungan Pembayaran
+ 63 | 1900x3514    | PNG   | Kode TransactionController Update Stok dan Member
+ 64 | 1900x907     | PNG   | Potongan Kode Middleware CheckRole
+ 65 | 1900x510     | PNG   | Potongan Kode Alias Middleware Role
+ 66 | 1900x1600    | PNG   | Potongan Kode Route Group API Berdasarkan Role
+ 76 | 1521x4444    | PNG   | Halaman Utama Prototype
+ 77 | 1536x640     | PNG   | Halaman Login Prototype
+ 78 | 1891x924     | PNG   | Dashboard Member
+ 79 | 1880x930     | PNG   | Halaman Pesanan Member
+ 80 | 1895x918     | PNG   | Halaman Riwayat Transaksi Member
+ 81 | 1873x921     | PNG   | Halaman Leaderboard Member
+ 82 | 1521x968     | PNG   | Dashboard Pegawai
+ 83 | 1895x916     | PNG   | Pencarian Member pada Registrasi Kedatangan
+ 84 | 1893x926     | PNG   | Scan QR Code Member pada Registrasi Kedatangan
+ 85 | 1895x915     | PNG   | Registrasi Tamu pada Registrasi Kedatangan
+ 86 | 1899x915     | PNG   | Halaman Kedatangan Hari Ini
+ 87 | 1521x1485    | PNG   | Halaman Tambah Pesanan
+ 88 | 1521x956     | PNG   | Halaman Pesanan Masuk
+ 89 | 1521x1307    | PNG   | Halaman Pembayaran
+ 90 | 1536x1307    | PNG   | Nota Digital Transaksi
+ 91 | 1521x1122    | PNG   | Halaman Riwayat Transaksi Pegawai
+ 92 | 1521x1219    | PNG   | Dashboard Pemilik
+ 93 | 1536x676     | PNG   | Halaman Manajemen Member
+ 94 | 1521x978     | PNG   | Halaman Manajemen Menu
+ 95 | 1521x910     | PNG   | Halaman Manajemen Jenis Ikan
+ 96 | 1585x2410    | PNG   | Halaman Laporan Keuangan
+ 97 | 1521x911     | PNG   | Halaman Manajemen Voucher
+ 98 | 1878x975     | PNG   | Evaluasi Iterasi Pertama Tambah Pesanan
+ 99 | 1600x900     | PNG   | Evaluasi Iterasi Kedua pada Halaman Pesanan Masuk
+100 | 1600x780     | JPEG  | Pembatalan Pending Order pada Checkout
+101 | 1884x914     | PNG   | Evaluasi Fitur Menu Spesial
+102 | 1866x930     | PNG   | Tampilan Popup Menu Spesial pada Halaman Utama
+103 | 1600x533     | JPEG  | Interpretasi Skor SUS Hasil Pengujian

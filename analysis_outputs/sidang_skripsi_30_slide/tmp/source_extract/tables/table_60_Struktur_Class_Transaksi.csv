@@ -1,0 +1,18 @@
+No,Nama Field,Tipe,Panjang,Indeks
+1,id,Bigint,20,PK
+2,transaction_code,Varchar,30,UNIQUE
+3,arrival_id,Bigint,20,"FK, INDEX"
+4,total_amount,Decimal,"10,2",
+5,discount_tier,Decimal,"10,2",
+6,discount_voucher,Decimal,"10,2",
+7,final_amount,Decimal,"10,2",
+8,tips,Decimal,"10,2",
+9,payment_method,Enum,,
+10,payment_proof,Varchar,255,
+11,points_earned,Int,11,
+12,status,Varchar,255,INDEX
+13,processed_by,Bigint,20,"FK, INDEX"
+14,transaction_date,Timestamp,,INDEX
+15,notes,Text,,
+16,created_at,Timestamp,,
+17,updated_at,Timestamp,,

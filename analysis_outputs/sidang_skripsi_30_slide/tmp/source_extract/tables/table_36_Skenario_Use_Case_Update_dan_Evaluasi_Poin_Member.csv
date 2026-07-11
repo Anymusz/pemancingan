@@ -1,0 +1,19 @@
+Nama Use Case,Update dan Evaluasi Poin Member
+ID Use Case,UC-19
+Aktor,Pegawai
+Deskripsi,"Proses sistem menambahkan poin ke akun member setelah checkout transaksi, memperbarui tier, serta mengevaluasi masa aktif poin secara otomatis dengan mereset poin menjadi 0 apabila member tidak melakukan transaksi selama 180 hari."
+Precondition,Checkout transaksi member telah berhasil diproses atau jadwal evaluasi poin otomatis berjalan.
+Aktor,Sistem
+Skenario Utama
+1. Aktor menyelesaikan checkout transaksi member,
+,2. Sistem menerima data transaksi member yang telah selesai
+,3. Sistem menghitung poin berdasarkan transaksi member
+,4. Sistem memperbarui total poin member
+,5. Sistem mengevaluasi tier member berdasarkan total poin terbaru
+,6. Sistem menyimpan perubahan poin dan tier member
+Skenario Alternatif
+1. Sistem menjalankan evaluasi otomatis terhadap member yang tidak melakukan transaksi,
+,2. Sistem memeriksa tanggal transaksi terakhir member
+,"3. Jika member mendekati 180 hari tidak bertransaksi, sistem mengirimkan peringatan"
+,"4. Jika member tidak melakukan transaksi selama 180 hari, sistem mereset poin member menjadi 0"
+Post Condition,"Poin dan tier member berhasil diperbarui, atau poin member direset jika memenuhi ketentuan tidak aktif."

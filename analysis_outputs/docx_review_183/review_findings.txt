@@ -1,0 +1,24 @@
+Source: D:\Semester\Semester7\Skripsi\BAB1-5\183-Raka Bagaskara Putra.docx
+Pages: 269 | Tables: 95 | Images: 167
+
+LAYOUT FINDINGS
+- Page 177 -> 178: gambar-caption | Gambar 67 sampai Gambar 71 memperlihatkan bukti implementasi endpoint API melalui dokumentasi Swagger. Bukti tersebut meliputi pengelompokan endpoint, contoh request body, penggunaan token autentikasi, pengiriman bukti pembayaran, dan response data dari database. Dengan dokumentasi ini, jalur komunikasi antara frontend dan back-end dapat ditelusuri secara lebih jelas.
+  Next first: / / Gambar 67. Tampilan Utama Dokumentasi Swagger/OpenAPI / Berdasarkan Gambar 67, Swagger menampilkan identitas API Pemancingan S, server lokal, skema autentikasi Bearer Token, serta pengelompokan endpoint berdasarkan fitur dan role. Informasi ini menunjukkan bahwa endpoint API telah terdokumentasi dalam format OpenAPI. / / / Gambar 68. Request Login pada Swagger
+
+TYPO FINDINGS
+- duplicate-word: kata ganda berurutan -> hapus salah satu kata
+  p.29: boratif dalam proses pengembangan (Nico Abrarsyah Atallah & Mardi Mardi, 2024) Menjalankan evaluasi rutin di setiap sprint agar pro
+  p.29: disesuaikan secara berkelanjutan (Nico Abrarsyah Atallah & Mardi Mardi, 2024). Mendorong kerja sama tim, komunikasi intensif, dan
+  p.29: epat terhadap perubahan kebutuhan (Nico Abrarsyah Atallah & Mardi Mardi, 2024). Berdasarkan karakteristik di atas, peneliti memutus
+  p.248: urnal Teknologi Informasi, 10(1). Nico Abrarsyah Atallah, & Mardi Mardi. (2024). Penggunaan Metode Agile Scrum Pada Perancangan Sis
+- punctuation-spacing: tanda baca tanpa spasi setelahnya -> tambahkan spasi setelah tanda baca jika bukan singkatan/kode
+  p.247: ity with the System Usability Scale (SUS). Https://Measuringu.Com/Sus/. Kawakib Kartono, F., Nursaadah, S., Nugroho, M. R.,
+
+TERM CONSISTENCY FINDINGS
+- back-end/backend/back end: back-end=260, Back-end=11, BACK-END=3, Back-End=2
+- front-end/frontend/front end: front-end=23, frontend=4
+- use case/use-case: Use Case=185, use case=19, Use case=1
+- activity diagram: Activity Diagram=133, activity diagram=1
+- QR Code/QR-Code/qrcode: QR code=21, QR Code=6
+- endpoint/end point: endpoint=95, Endpoint=29
+- Rapid Application Development/RAD: RAD=57, Rapid Application Development=39, RAPID APPLICATION DEVELOPMENT=3

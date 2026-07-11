@@ -1,0 +1,18 @@
+No,Entitas,Deskripsi
+1,User,"Menyimpan data akun pengguna sistem, yaitu pemilik, pegawai, dan member."
+2,Member,"Menyimpan data keanggotaan pelanggan, seperti ID member, poin, tier, QR code, dan total berat ikan."
+3,Member Tier,Menyimpan data tingkatan member dan ketentuan diskon berdasarkan jumlah poin.
+4,Arrival,"Menyimpan data check-in, check-out, status kedatangan, dan deposit pelanggan tamu."
+5,Pending Order,Menyimpan data pesanan sementara sebelum diproses menjadi transaksi akhir.
+6,Transaksi,"Menyimpan data transaksi utama, total pembayaran, metode pembayaran, diskon, voucher, dan poin."
+7,Transaksi Item,"Menyimpan rincian item transaksi, seperti ikan, menu, rental, atau denda."
+8,Tipe Ikan,Menyimpan data jenis ikan dan harga per kilogram.
+9,Stok Ikan,Menyimpan data stok ikan dan batas minimum stok.
+10,Riwayat Restok Ikan,Menyimpan riwayat penambahan stok ikan.
+11,Menu,Menyimpan data makanan dan minuman yang tersedia.
+12,Rental Item,Menyimpan data alat pancing atau item penyewaan.
+13,Voucher,Menyimpan data voucher yang diberikan kepada member.
+14,Notifikasi,Menyimpan data notifikasi yang dikirimkan kepada pengguna.
+15,Event,Menyimpan data event dan informasi yang dipublikasikan.
+16,Konfigurasi Guest,Menyimpan konfigurasi nominal deposit pelanggan tamu.
+17,Konfigurasi QRIS,Menyimpan konfigurasi gambar QRIS untuk pembayaran.

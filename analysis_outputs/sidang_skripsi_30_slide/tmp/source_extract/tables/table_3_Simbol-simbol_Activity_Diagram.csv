@@ -1,0 +1,8 @@
+Nama Simbol,Gambar,Keterangan
+Status Awal,,Menandai titik dimulainya suatu rangkaian aktivitas dalam sistem.
+Status Akhir,,Menandai titik berhentinya seluruh rangkaian aktivitas dalam diagram.
+Aktivitas,,menggambarkan suatu tindakan atau proses yang dilakukan dalam alur kerja sistem.
+Percabangan (Fork),,Membagi satu alur menjadi beberapa aktivitas yang dapat berjalan secara bersamaan.
+Penggabungan (Join),,Menyatukan kembali beberapa aktivitas paralel menjadi satu alur proses.
+Decision,,Decision digunakan untuk menunjukkan percabangan proses berdasarkan kondisi tertentu. Setiap cabang akan diarahkan ke alur yang berbeda sesuai hasil keputusan
+Swimlane,,Membagi diagram aktivitas ke dalam beberapa bagian berdasarkan pelaku atau unit yang bertanggung jawab.

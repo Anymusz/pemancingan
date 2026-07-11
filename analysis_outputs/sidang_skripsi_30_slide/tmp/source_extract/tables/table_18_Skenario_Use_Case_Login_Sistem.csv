@@ -1,0 +1,21 @@
+Nama Use Case,Login Sistem
+ID Use Case,UC-01
+Aktor,"Pemilik, Pegawai, Member"
+Deskripsi,Proses autentikasi pengguna menggunakan No. HP atau Email dan password untuk masuk ke dalam sistem sesuai hak aksesnya.
+Precondition,Aktor telah terdaftar dan akun berstatus aktif di dalam sistem.
+Aktor,Sistem
+Skenario Utama
+1. Aktor mengakses halaman login.,
+,2. Sistem menampilkan halaman login.
+"3. Aktor memasukkan No. HP atau Email dan password, lalu menekan tombol Login.",
+,4. Sistem memvalidasi No. HP atau Email dan password.
+,5. Sistem memeriksa status akun pengguna.
+,6. Sistem membuat token akses dan menyimpan data pengguna.
+,7. Sistem menampilkan dashboard sesuai hak akses aktor.
+Skenario Alternatif
+1. Aktor memasukkan No. HP atau Email atau password yang salah.,
+,2. Sistem mendeteksi data login tidak sesuai.
+,3. Sistem menampilkan peringatan data login salah dan tetap menampilkan halaman login.
+"4. Akun aktor belum divalidasi, ditolak, atau dinonaktifkan.",
+,5. Sistem menolak login dan menampilkan pesan sesuai status akun.
+Post Condition,Aktor berhasil masuk ke dashboard sesuai hak aksesnya.

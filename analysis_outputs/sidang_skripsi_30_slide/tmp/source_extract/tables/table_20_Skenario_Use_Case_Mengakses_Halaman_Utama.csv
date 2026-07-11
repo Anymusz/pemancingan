@@ -1,0 +1,16 @@
+Nama Use Case,Mengakses Halaman Utama
+ID Use Case,UC-03
+Aktor,"Pemilik, Pegawai, Member"
+Deskripsi,"Proses pengguna mengakses halaman beranda publik yang memuat informasi umum, leaderboard, event aktif, serta pop up menu spesial."
+Precondition,Aktor berada pada halaman website sistem.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka halaman utama website pemancingan,
+,2. Sistem menampilkan halaman beranda publik
+,"3. Sistem menampilkan informasi umum pemancingan, event aktif, leaderboard, dan menu navigasi"
+,4. Sistem memeriksa menu spesial yang sedang aktif
+,5. Sistem menampilkan pop up menu spesial jika terdapat menu spesial aktif
+Skenario Alternatif
+1. Aktor membuka halaman utama saat tidak ada menu spesial aktif,
+,2. Sistem tetap menampilkan halaman utama tanpa pop up menu spesial
+Post Condition,Aktor berhasil melihat halaman utama beserta informasi yang tersedia.

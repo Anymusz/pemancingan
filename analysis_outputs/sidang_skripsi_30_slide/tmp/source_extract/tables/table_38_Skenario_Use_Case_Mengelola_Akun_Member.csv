@@ -1,0 +1,16 @@
+Nama Use Case,Mengelola Akun Member
+ID Use Case,UC-21
+Aktor,Pemilik
+Deskripsi,"Proses pemilik usaha melakukan verifikasi untuk menyetujui, menolak, atau menonaktifkan akun member."
+Precondition,Terdapat notifikasi akun pelanggan berstatus Menunggu Validasi atau ada kebutuhan mengelola akun aktif.
+Aktor,Sistem
+Skenario Utama
+1. Aktor membuka menu Kelola Akun Pelanggan,
+,"2. Sistem menampilkan daftar akun member (tab Pending, Active, Rejected, Deactivated)"
+3. Aktor memeriksa kecocokan data pada tab Pending lalu menekan tombol Setujui Akun,
+,"4. Sistem merubah status akun menjadi Aktif, menetapkan tier awal REGULAR, dan membuat ID Member"
+,5. Sistem mengirimkan notifikasi persetujuan ke perangkat pelanggan
+Skenario Alternatif
+"1. Aktor mendapati data yang tidak meyakinkan lalu menekan tombol Tolak Akun, ATAU memilih akun yang sudah Aktif lalu menekan tombol Nonaktifkan",
+,2. Sistem mengubah status akun menjadi Ditolak / Deactivated dan mencabut akses pelanggan tersebut dari sistem
+Post Condition,"Status keanggotaan pelanggan tervalidasi, diperbarui, dan fungsional sesuai keputusan pemilik."

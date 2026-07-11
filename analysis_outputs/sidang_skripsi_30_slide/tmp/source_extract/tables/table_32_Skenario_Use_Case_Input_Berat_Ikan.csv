@@ -1,0 +1,14 @@
+Nama Use Case,Input Berat Ikan
+ID Use Case,UC-15
+Aktor,Pegawai
+Deskripsi,Proses menginputkan hasil penimbangan ikan secara spesifik
+Precondition,Aktor berada di dalam menu Checkout Transaksi
+Aktor,Sistem
+Skenario Utama
+1. Aktor memilih jenis ikan dari dropdown menu,
+2. Aktor mengetikkan angka penimbangan ikan dalam satuan kilogram,
+,3. Sistem menangkap variabel angka kilogram tersebut untuk diproses
+Skenario Alternatif,
+1. Aktor memasukkan karakter huruf secara tidak sengaja pada kolom berat,
+,2. Sistem memvalidasi kolom dan menolak input
+Post Condition,Sistem memperoleh variabel berat ikan untuk kalkulasi

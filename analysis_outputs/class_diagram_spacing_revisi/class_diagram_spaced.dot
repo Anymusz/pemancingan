@@ -1,0 +1,344 @@
+digraph G {
+  graph [
+    rankdir=LR,
+    bgcolor="white",
+    pad="0.6",
+    nodesep="1.15",
+    ranksep="1.55",
+    splines=polyline,
+    outputorder=edgesfirst
+  ];
+  node [
+    shape=plain,
+    fontname="Arial",
+    margin=0
+  ];
+  edge [
+    fontname="Arial",
+    fontsize=16,
+    color="#111827",
+    penwidth=1.35,
+    arrowsize=0.8,
+    arrowhead=vee,
+    decorate=false
+  ];
+
+  subgraph cluster_identity {
+    label="Akun dan Member";
+    color="#E5E7EB";
+    margin=34;
+    User; Member; MemberTier; Voucher; Notification;
+  }
+
+  subgraph cluster_operations {
+    label="Operasional Transaksi";
+    color="#E5E7EB";
+    margin=34;
+    Arrival; PendingOrder; Transaction; TransactionItem;
+  }
+
+  subgraph cluster_inventory {
+    label="Inventaris dan Konten";
+    color="#E5E7EB";
+    margin=34;
+    FishType; FishStock; RestockLog; Menu; RentalItem; Event;
+  }
+
+  subgraph cluster_config {
+    label="Konfigurasi";
+    color="#E5E7EB";
+    margin=34;
+    GuestConfig; QrisConfig; VoucherConfig;
+  }
+
+  subgraph cluster_controllers {
+    label="Controller / Layanan API";
+    color="#F3F4F6";
+    margin=40;
+    AuthController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">AuthController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ register()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ login()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ me()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ logout()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+MemberValidationController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">MemberValidationController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ getPendingMembers()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ approveMember()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ rejectMember()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+MemberController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">MemberController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ profile()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ getRewardsHistory()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ getVouchers()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+ArrivalController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">ArrivalController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ checkIn()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ searchMember()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ resolveQr()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+PendingOrderController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">PendingOrderController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ store()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ index()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ updateStatus()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+OrderController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">OrderController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ store()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ myOrders()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+TransactionController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">TransactionController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ checkout()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ show()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ printReceipt()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+NotificationController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">NotificationController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ index()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ markAsRead()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ markAllAsRead()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+FishTypeController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">FishTypeController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ index()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ store()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ update()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ destroy()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+FishStockController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">FishStockController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ index()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ restock()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ updateThreshold()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+MenuController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">MenuController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ index()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ store()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ updateAvailability()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+EventController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">EventController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ index()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ store()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ update()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+RentalItemController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">RentalItemController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ index()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ store()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ update()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+SettingController [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="#F3F7F9"><B><FONT POINT-SIZE="18">SettingController</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ guestConfig()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ qrisConfig()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+  }
+
+  User [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">User</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ name: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ phone: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ email: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ role: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ status: enum</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ member()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ scopePendingMembers()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ sendPasswordResetNotification()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+Member [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">Member</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ user_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ member_id: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ tier_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ total_points: int</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ total_fish_weight: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ qr_code_hash: varchar</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ user()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ tier()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ generateMemberId()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ generateQRHash()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ getCurrentTier()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+MemberTier [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">MemberTier</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ name: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ min_points: int</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ max_points: int</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ discount_percentage: decimal</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ members()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+Arrival [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">Arrival</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ member_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ guest_name: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ deposit_amount: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ check_in_at: timestamp</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ check_out_at: timestamp</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ status: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ checked_in_by: bigint</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ member()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ checkedInBy()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ transaction()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ isActive()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ checkout()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+PendingOrder [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">PendingOrder</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ arrival_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ item_type: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ item_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ quantity: int</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ subtotal: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ payment_status: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ created_by: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ transaction_id: bigint</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ arrival()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ menu()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ createdBy()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ transaction()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+Transaction [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">Transaction</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ transaction_code: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ arrival_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ total_amount: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ discount_tier: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ discount_voucher: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ final_amount: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ payment_method: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ processed_by: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ transaction_date: timestamp</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ voucher()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ arrival()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ processedBy()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ items()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+TransactionItem [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">TransactionItem</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ transaction_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ item_type: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ item_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ quantity: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ unit_price_snapshot: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ subtotal: decimal</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ transaction()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+Voucher [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">Voucher</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ member_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ amount: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ source: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ rank: int</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ period_year: smallint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ period_month: tinyint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ status: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ used_at: timestamp</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ transaction_id: bigint</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ member()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ transaction()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+Notification [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">Notification</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ user_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ type: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ title: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ body: text</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ is_read: boolean</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ user()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+FishType [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">FishType</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ name: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ price_per_kg: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ is_active: boolean</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ deleted_at: timestamp</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ stock()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ restockLogs()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+FishStock [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">FishStock</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ fish_type_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ current_stock_kg: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ alert_threshold_kg: decimal</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ fishType()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+RestockLog [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">RestockLog</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ fish_type_id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ quantity_kg: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ stock_before: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ stock_after: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ restocked_by: bigint</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ fishType()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ restockedBy()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+Menu [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">Menu</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ name: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ price: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ category: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ availability: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ is_special: boolean</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ getImageUrlAttribute()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ scopeAvailable()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ scopeCategory()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+RentalItem [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">RentalItem</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ name: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ price_per_unit: decimal</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ unit_label: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ is_active: boolean</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ getImageUrlAttribute()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+Event [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">Event</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ title: varchar</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ description: text</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ category: enum</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ start_date: date</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ end_date: date</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ status: enum</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ getImageUrlAttribute()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ scopeActive()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ scopePublished()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+GuestConfig [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">GuestConfig</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ deposit_amount: decimal</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ current()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+QrisConfig [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">QrisConfig</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ image: varchar</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ current()</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ getImageUrlAttribute()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+VoucherConfig [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#00AFC8">
+      <TR><TD BGCOLOR="white"><B><FONT POINT-SIZE="18">VoucherConfig</FONT></B></TD></TR>
+      <TR><TD><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ id: bigint</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ rank: int</FONT></TD></TR><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ amount: decimal</FONT></TD></TR></TABLE></TD></TR>
+      <TR><TD BORDER="1" COLOR="#00AFC8"><TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="15">+ current()</FONT></TD></TR></TABLE></TD></TR>
+    </TABLE>
+  >];
+
+  { rank=same; User; Member; MemberTier; }
+  { rank=same; Arrival; PendingOrder; Transaction; TransactionItem; }
+  { rank=same; FishType; FishStock; RestockLog; }
+  { rank=same; Menu; RentalItem; Event; }
+  { rank=same; GuestConfig; QrisConfig; VoucherConfig; }
+
+  User -> Member [taillabel="1", headlabel="0..1 member()", labeldistance=2.8, labelangle=28, minlen=2];
+MemberTier -> Member [taillabel="1", headlabel="0..* members()", labeldistance=2.8, labelangle=-28, minlen=2];
+Member -> Arrival [taillabel="0..1", headlabel="0..* arrivals", labeldistance=2.8, labelangle=28, minlen=2];
+User -> Arrival [taillabel="1", headlabel="0..* checkedInBy()", labeldistance=2.8, labelangle=-28, minlen=2];
+Arrival -> PendingOrder [taillabel="1", headlabel="0..* pendingOrders", labeldistance=2.8, labelangle=28, minlen=2];
+User -> PendingOrder [taillabel="1", headlabel="0..* createdBy()", labeldistance=2.8, labelangle=-28, minlen=2];
+Menu -> PendingOrder [taillabel="1", headlabel="0..* menu()", labeldistance=2.8, labelangle=28, minlen=2];
+Arrival -> Transaction [taillabel="1", headlabel="0..1 transaction()", labeldistance=2.8, labelangle=-28, minlen=2];
+User -> Transaction [taillabel="1", headlabel="0..* processedBy()", labeldistance=2.8, labelangle=28, minlen=2];
+Transaction -> PendingOrder [taillabel="0..1", headlabel="0..* pendingOrders", labeldistance=2.8, labelangle=-28, minlen=2];
+Transaction -> TransactionItem [taillabel="1", headlabel="1..* items()", labeldistance=2.8, labelangle=28, minlen=2];
+Transaction -> Voucher [taillabel="0..1", headlabel="0..1 voucher()", labeldistance=2.8, labelangle=-28, minlen=2];
+Member -> Voucher [taillabel="1", headlabel="0..* vouchers", labeldistance=2.8, labelangle=28, minlen=2];
+User -> Notification [taillabel="1", headlabel="0..* notifications", labeldistance=2.8, labelangle=-28, minlen=2];
+FishType -> FishStock [taillabel="1", headlabel="1 stock()", labeldistance=2.8, labelangle=28, minlen=2];
+FishType -> RestockLog [taillabel="1", headlabel="0..* restockLogs()", labeldistance=2.8, labelangle=-28, minlen=2];
+User -> RestockLog [taillabel="1", headlabel="0..* restockedBy()", labeldistance=2.8, labelangle=28, minlen=2];
+  AuthController -> User [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+AuthController -> Member [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+MemberValidationController -> User [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+MemberValidationController -> Member [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+MemberController -> Member [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+MemberController -> Transaction [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+MemberController -> Voucher [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+ArrivalController -> Arrival [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+ArrivalController -> Member [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+PendingOrderController -> PendingOrder [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+PendingOrderController -> Arrival [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+OrderController -> PendingOrder [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+OrderController -> Menu [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+TransactionController -> Transaction [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+TransactionController -> TransactionItem [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+TransactionController -> Arrival [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+TransactionController -> FishStock [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+NotificationController -> Notification [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+FishTypeController -> FishType [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+FishStockController -> FishStock [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+FishStockController -> RestockLog [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+MenuController -> Menu [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+EventController -> Event [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+RentalItemController -> RentalItem [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+SettingController -> GuestConfig [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+SettingController -> QrisConfig [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+SettingController -> VoucherConfig [style=dashed, color="#6B7280", arrowhead=open, arrowsize=0.7, minlen=1];
+
+  legend [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#D1D5DB">
+      <TR><TD><B>Catatan relasi</B></TD></TR>
+      <TR><TD ALIGN="LEFT">Label relasi dan kardinalitas diletakkan di ujung konektor.</TD></TR>
+      <TR><TD ALIGN="LEFT">Garis solid = relasi model. Garis putus-putus = controller memakai model.</TD></TR>
+    </TABLE>
+  >];
+  legend -> TransactionItem [style=invis];
+}
