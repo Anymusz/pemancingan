@@ -12,6 +12,7 @@ import RentalManagement from "./RentalManagement";
 import EventManagement from "./event-management/EventManagement";
 import VoucherManagement from "./VoucherManagement";
 import FinancialReport from "./FinancialReport";
+import ActivityLog from "./ActivityLog";
 import Settings from "./Settings";
 import { removeToken, getUser, setUser } from "@/utils/tokenManager";
 import { useNotification } from "@/hooks/useNotification";
@@ -29,6 +30,7 @@ import {
   Trophy,
   Package,
   SlidersHorizontal,
+  ActivitySquare,
 } from "lucide-react";
 
 const OwnerDashboard = () => {
@@ -74,6 +76,7 @@ const OwnerDashboard = () => {
       label: "Operasional & Laporan",
       items: [
         { key: "financial-report", label: "Laporan Keuangan", icon: BarChart3 },
+        { key: "activity-log", label: "Log Aktivitas", icon: ActivitySquare },
         { key: "vouchers", label: "Voucher", icon: Ticket },
         { key: "leaderboard", label: "Leaderboard", icon: Trophy },
         { key: "settings", label: "Pengaturan", icon: SlidersHorizontal },
@@ -105,6 +108,7 @@ const OwnerDashboard = () => {
       {activeMenu === "events" && <EventManagement />}
       {activeMenu === "vouchers" && <VoucherManagement />}
       {activeMenu === "financial-report" && <FinancialReport />}
+      {activeMenu === "activity-log" && <ActivityLog />}
       {activeMenu === "settings" && <Settings />}
       {activeMenu === "profile" && (
         <ProfilePage

@@ -30,22 +30,22 @@ const ExpandableRow = ({ trx }) => {
         <table className="w-full text-sm mb-3">
           <thead>
             <tr className="border-b border-border">
-              <th className="text-left py-1 text-muted-foreground font-medium">
+              <th className="text-left py-1 text-muted-foreground font-medium text-xs">
                 Item
               </th>
-              <th className="text-left py-1 text-muted-foreground font-medium">
+              <th className="text-left py-1 text-muted-foreground font-medium text-xs">
                 Kategori
               </th>
-              <th className="text-right py-1 text-muted-foreground font-medium">
+              <th className="text-right py-1 text-muted-foreground font-medium text-xs">
                 Qty
               </th>
-              <th className="text-right py-1 text-muted-foreground font-medium">
+              <th className="text-right py-1 text-muted-foreground font-medium text-xs">
                 Harga Satuan
               </th>
-              <th className="text-right py-1 text-muted-foreground font-medium">
+              <th className="text-right py-1 text-muted-foreground font-medium text-xs">
                 Subtotal
               </th>
-              <th className="text-right py-1 text-muted-foreground font-medium">
+              <th className="text-right py-1 text-muted-foreground font-medium text-xs">
                 Diskon Tier
               </th>
             </tr>
@@ -53,24 +53,24 @@ const ExpandableRow = ({ trx }) => {
           <tbody>
             {items.map((item, idx) => (
               <tr key={idx}>
-                <td className="py-1 text-foreground">
+                <td className="py-1 text-foreground text-xs">
                   {item.item_name_snapshot}
                 </td>
-                <td className="py-1 text-foreground">
+                <td className="py-1 text-foreground text-xs">
                   {CATEGORY_LABELS[item.item_type] || item.item_type}
                 </td>
-                <td className="py-1 text-right text-foreground">
+                <td className="py-1 text-right text-foreground text-xs">
                   {item.item_type === "fish"
                     ? `${Number(item.quantity).toFixed(2)} kg`
                     : Number(item.quantity)}
                 </td>
-                <td className="py-1 text-right text-foreground">
+                <td className="py-1 text-right text-foreground text-xs">
                   {formatCurrency(item.unit_price_snapshot)}
                 </td>
-                <td className="py-1 text-right text-foreground">
+                <td className="py-1 text-right text-foreground text-xs">
                   {formatCurrency(item.subtotal)}
                 </td>
-                <td className="py-1 text-right text-foreground">
+                <td className="py-1 text-right text-foreground text-xs">
                   {formatCurrency(item.discount_tier_item)}
                 </td>
               </tr>
@@ -79,7 +79,7 @@ const ExpandableRow = ({ trx }) => {
         </table>
 
         {/* Payment summary */}
-        <div className="border-t border-border pt-2 space-y-1 text-sm">
+        <div className="border-t border-border pt-2 space-y-1 text-xs">
           <div className="flex justify-between text-muted-foreground">
             <span>Subtotal</span>
             <span>{formatCurrency(trx.total_amount)}</span>
@@ -118,7 +118,7 @@ const ExpandableRow = ({ trx }) => {
               <span>{formatCurrency(trx.tips)}</span>
             </div>
           )}
-          <div className="flex justify-between text-muted-foreground text-xs items-start">
+          <div className="flex justify-between text-muted-foreground items-start">
             <span>Bukti Pembayaran</span>
             {trx.payment_proof_url ? (
               <img
@@ -199,34 +199,34 @@ const DetailTableSection = ({
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-muted/60 border-b border-border">
-                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs">
                       Tanggal
                     </th>
-                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs">
                       No. Transaksi
                     </th>
-                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs">
                       Pelanggan
                     </th>
-                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                    <th className="text-left px-4 py-3 text-muted-foreground font-semibold text-xs">
                       Tipe
                     </th>
-                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs">
                       Total Bayar
                     </th>
-                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs">
                       Diskon Tier
                     </th>
-                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs">
                       Diskon Voucher
                     </th>
-                    <th className="text-center px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                    <th className="text-center px-4 py-3 text-muted-foreground font-semibold text-xs">
                       Metode
                     </th>
-                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs">
                       Poin
                     </th>
-                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs sm:text-sm">
+                    <th className="text-right px-4 py-3 text-muted-foreground font-semibold text-xs">
                       Tips
                     </th>
                   </tr>
@@ -238,13 +238,13 @@ const DetailTableSection = ({
                         onClick={() => handleRowClick(trx.transaction_code)}
                         className="border-b border-border bg-card hover:bg-muted/30 cursor-pointer transition-colors"
                       >
-                        <td className="px-4 py-3 text-foreground">
+                        <td className="px-4 py-3 text-foreground text-xs">
                           {formatDateTime(trx.transaction_date)}
                         </td>
                         <td className="px-4 py-3 text-foreground font-mono text-xs">
                           {trx.transaction_code}
                         </td>
-                        <td className="px-4 py-3 text-foreground">
+                        <td className="px-4 py-3 text-foreground text-xs">
                           {trx.customer_name}
                         </td>
                         <td className="px-4 py-3">
@@ -252,22 +252,22 @@ const DetailTableSection = ({
                             status={trx.is_guest ? "guest" : "member"}
                           />
                         </td>
-                        <td className="px-4 py-3 text-right text-foreground">
+                        <td className="px-4 py-3 text-right text-foreground text-xs">
                           {formatCurrency(trx.final_amount)}
                         </td>
-                        <td className="px-4 py-3 text-right text-foreground">
+                        <td className="px-4 py-3 text-right text-foreground text-xs">
                           {formatCurrency(trx.discount_tier)}
                         </td>
-                        <td className="px-4 py-3 text-right text-foreground">
+                        <td className="px-4 py-3 text-right text-foreground text-xs">
                           {formatCurrency(trx.discount_voucher)}
                         </td>
-                        <td className="px-4 py-3 text-center text-foreground">
+                        <td className="px-4 py-3 text-center text-foreground text-xs">
                           {PAYMENT_LABELS[trx.payment_method ?? "null"] ?? "-"}
                         </td>
                         <td className="px-4 py-3 text-right text-emerald-600">
                           {trx.is_guest ? "-" : `+${trx.points_earned ?? 0}`}
                         </td>
-                        <td className="px-4 py-3 text-right text-foreground">
+                        <td className="px-4 py-3 text-right text-foreground text-xs">
                           {formatCurrency(trx.tips)}
                         </td>
                       </tr>

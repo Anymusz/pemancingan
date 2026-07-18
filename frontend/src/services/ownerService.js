@@ -285,6 +285,18 @@ const ownerService = {
     const response = await api.patch(`/owner/employees/${id}/reactivate`);
     return response.data;
   },
+
+  // ==================== ACTIVITY LOG ====================
+
+  getActivityTransactions: async (params = {}) => {
+    const response = await api.get("/owner/activity/transactions", { params });
+    return response.data;
+  },
+
+  getActivityOrders: async (params = {}) => {
+    const response = await api.get("/owner/activity/orders", { params });
+    return response.data;
+  },
 };
 
 export default ownerService;

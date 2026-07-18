@@ -124,7 +124,7 @@ const PendingOrder = () => {
     },
     {
       value: "cancelled",
-      label: "Dibatalkan",
+      label: "Batal",
       badge: orders.filter((o) => o.production_status === "cancelled").length,
     },
   ];

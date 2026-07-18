@@ -16,7 +16,7 @@ import { PenaltySection } from "./PenaltySection";
 
 const TIER_DISCOUNT_FALLBACK = 0;
 
-const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
+const Checkout = ({ preselectArrivalId, onPreselectConsumed, isActive }) => {
   // ===== STATE =====
   const [arrivals, setArrivals] = useState([]);
   const [fishTypes, setFishTypes] = useState([]);
@@ -122,6 +122,11 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
   }, [preselectArrivalId, fetchArrivals]);
 
   useEffect(() => {
+    if (!isActive) return;
+    fetchArrivals();
+  }, [isActive, fetchArrivals]);
+
+  useEffect(() => {
     const init = async () => {
       setFetchLoading(true);
       try {
@@ -178,8 +183,8 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
   const handleCancelOrder = async (orderId) => {
     try {
       const res = await employeeService.updateOrderStatus(orderId, {
-        status: 'cancelled',
-        cancellation_reason: 'Dibatalkan saat checkout',
+        status: "cancelled",
+        cancellation_reason: "Dibatalkan saat checkout",
       });
       if (res.success) {
         setPendingOrders((prev) => prev.filter((o) => o.id !== orderId));
@@ -207,6 +212,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
     setFishItems([]);
     setPenaltyItems([]);
     setActiveVoucher(null);
+    setPaymentProof(null);
   };
 
   // ===== FISH HANDLER =====
@@ -320,11 +326,15 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
 
         const mapped = {
           ...res.data.transaction,
-          customer:      res.data.customer,
+          customer: res.data.customer,
           tier_upgraded: res.data.tier_upgraded,
-          voucher_used:  res.data.voucher_used,
-          total_points:  res.data.customer?.is_guest ? undefined : res.data.customer?.total_points,
-          current_tier:  res.data.customer?.is_guest ? undefined : res.data.customer?.current_tier,
+          voucher_used: res.data.voucher_used,
+          total_points: res.data.customer?.is_guest
+            ? undefined
+            : res.data.customer?.total_points,
+          current_tier: res.data.customer?.is_guest
+            ? undefined
+            : res.data.customer?.current_tier,
         };
         setReceiptData(mapped);
         setMemberPhoneForReceipt(res.data.customer?.phone ?? null);
@@ -339,7 +349,7 @@ const Checkout = ({ preselectArrivalId, onPreselectConsumed }) => {
 
   const handleReceiptClose = () => {
     const wasTierUpgraded = receiptData?.tier_upgraded;
-    const newTierName     = receiptData?.current_tier;
+    const newTierName = receiptData?.current_tier;
     setShowReceipt(false);
     setReceiptData(null);
     setMemberPhoneForReceipt(null);

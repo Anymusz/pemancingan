@@ -28,6 +28,7 @@ use App\Http\Controllers\Api\Owner\RentalItemController as OwnerRentalItemContro
 use App\Http\Controllers\Api\Owner\GuestConfigController as OwnerGuestConfigController;
 use App\Http\Controllers\Api\Owner\QrisConfigController as OwnerQrisConfigController;
 use App\Http\Controllers\Api\Owner\EmployeeController as OwnerEmployeeController;
+use App\Http\Controllers\Api\Owner\ActivityController as OwnerActivityController;
 use App\Http\Controllers\Api\Employee\RentalItemController as EmployeeRentalItemController;
 use App\Http\Controllers\Api\Employee\GuestConfigController as EmployeeGuestConfigController;
 use App\Http\Controllers\Api\Employee\QrisConfigController as EmployeeQrisConfigController;
@@ -163,6 +164,10 @@ Route::prefix('owner')->middleware(['auth:sanctum', 'role:owner'])->group(functi
     Route::put('/employees/{id}/password', [OwnerEmployeeController::class, 'updatePassword']);
     Route::patch('/employees/{id}/deactivate', [OwnerEmployeeController::class, 'deactivate']);
     Route::patch('/employees/{id}/reactivate', [OwnerEmployeeController::class, 'reactivate']);
+
+    // Activity Log
+    Route::get('/activity/transactions', [OwnerActivityController::class, 'transactions']);
+    Route::get('/activity/orders', [OwnerActivityController::class, 'orders']);
 });
 
 // ========================================

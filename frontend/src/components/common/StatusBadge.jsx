@@ -138,7 +138,7 @@ const STATUS_MAP = {
     icon: XCircle,
     classNames:
       "bg-red-500/10 text-red-600 border-red-500/20 hover:bg-red-500/20",
-    label: "Dibatalkan",
+    label: "Batal",
   },
   rejected: {
     icon: XCircle,

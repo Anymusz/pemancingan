@@ -149,6 +149,7 @@ const EmployeeDashboard = () => {
               <Checkout
                 preselectArrivalId={preselectArrivalId}
                 onPreselectConsumed={() => setPreselectArrivalId(null)}
+                isActive={activeMenu === "checkout"}
               />
             )}
             {menu === "history" && <TransactionHistory />}
